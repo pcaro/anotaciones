@@ -33,12 +33,8 @@ DEFAULT_PAGINATION = 5
 
 # Uncomment following line if you want document-relative URLs when developing
 # RELATIVE_URLS = True
-THEME = 'pelican-themes/waterspill'
-THEME = 'pelican-themes/Just-Read'
-THEME = 'pelican-themes/monospace'
-THEME = 'pelican-themes/SoMA'
-THEME = 'pelican-themes/pelican-sober'
-THEME = 'pelican-themes/elegant'
-THEME = 'pelican-themes/svbhack'
-THEME = 'pelican-themes/pelican-simplegrey'
 
+# THEME = 'pelican-themes/mg'
+# THEME = 'pelican-themes/Just-Read'  # Un buen punto de partida. Necesita cosas de elegant
+# THEME = 'pelican-themes/svbhack'
+THEME = 'pelican-elegant'  # Requiere atribucion
