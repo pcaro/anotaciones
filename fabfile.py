@@ -16,10 +16,10 @@ DEPLOY_PATH = env.deploy_path
 production = 'root@localhost:22'
 dest_path = '/var/www'
 
-# Rackspace Cloud Files configuration settings
-env.cloudfiles_username = 'my_rackspace_username'
-env.cloudfiles_api_key = 'my_rackspace_api_key'
-env.cloudfiles_container = 'my_cloudfiles_container'
+
+HERE = os.path.dirname(__file__)
+sys.path.append(HERE)
+from pelicanconf import THEME
 
 
 def clean():
@@ -62,15 +62,6 @@ def reserve():
 
 def preview():
     local('pelican -s publishconf.py')
-
-
-def cf_upload():
-    rebuild()
-    local('cd {deploy_path} && '
-          'swift -v -A https://auth.api.rackspacecloud.com/v1.0 '
-          '-U {cloudfiles_username} '
-          '-K {cloudfiles_api_key} '
-          'upload -c {cloudfiles_container} .'.format(**env))
 
 
 @hosts(production)
@@ -119,16 +110,16 @@ def make_entry(title):
     print("File created -> " + f_create)
 
 
-def live_build(port=8080):
-
-    local('make clean')
-    local('make html')
+def develop(port=8080):
+    "Develop using livereload"
+    rebuild()
     os.chdir('output')
     server = livereload.Server()
-    server.watch('../content/*.rst',
+    server.watch('../content/*',
+                 livereload.shell('pelican -s ../pelicanconf.py -o ../{}'.format(env.deploy_path)))
+
+    server.watch(THEME,
                  livereload.shell('pelican -s ../pelicanconf.py -o ../output'))
-    # server.watch('../naffy/',
-    #              livereload.shell('pelican -s ../pelicanconf.py -o ../output'))
     server.watch('*.html')
     server.watch('*.css')
     server.serve(liveport=35729, port=port)
