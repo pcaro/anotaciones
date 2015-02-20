@@ -6,6 +6,7 @@ Making a Static Blog with Pelican
 :tags: python, pelican, static-blog-generator
 :slug: making-a-static-blog-with-pelican
 :author: Nafiul Islam
+:status: draft
 :summary: Think of this as a post on all the good features that Pelican has to offer. \
           It shows you the best way to start your blog, write your content and change your \
           blog to however you see fit.
