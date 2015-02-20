@@ -13,6 +13,10 @@ TIMEZONE = 'Europe/Paris'
 
 DEFAULT_LANG = u'es'
 
+# i18n_subsites
+JINJA_EXTENSIONS = ['jinja2.ext.i18n', ]
+I18N_TEMPLATES_LANG = "en"
+
 DEFAULT_CATEGORY = 'Miscellaneous'
 USE_FOLDER_AS_CATEGORY = False
 ARTICLE_URL = u'{slug}'
