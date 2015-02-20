@@ -78,7 +78,7 @@ TYPOGRIFY = True
 DEFAULT_PAGINATION = False
 
 PLUGINS = ['i18n_subsites', 'extended_sitemap', 'extract_toc', 'tipue_search',
-           'code_include', 'share_post']
+           'code_include', 'share_post', 'twitter_bootstrap_rst_directives']
 MD_EXTENSIONS = ['codehilite(css_class=highlight)', 'extra', 'headerid', 'toc']
 DIRECT_TEMPLATES = (('index', 'tags', 'categories', 'archives', 'search', '404'))
 STATIC_PATHS = ['theme/images', 'images']
