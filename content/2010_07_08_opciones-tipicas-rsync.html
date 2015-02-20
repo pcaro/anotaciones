@@ -1,0 +1,15 @@
+<html>
+    <head>
+        <title>Opciones típicas rsync</title>
+        <meta name="category" content="Sistemas" />
+        <meta name="lang" content="es" />
+        <meta name="tags" content="linux" />
+        <meta name="date" content="2010-07-08 05:56" />
+        <meta name="guid" content="http://www.pablocaro.es/?p=241" />
+        <meta name="slug" content="opciones-tipicas-rsync" />
+    </head>
+    <body>
+        Para usar un rsync como un scp (pero con las ventajas de rsync como que puedo parar y continuar después):
+<pre lang="bash">rsync -azPrv -e 'ssh' usuario@host:/path/to/folder /path/to/destination</pre>
+    </body>
+</html>

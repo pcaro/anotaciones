@@ -1,0 +1,17 @@
+<html>
+    <head>
+        <title>¿Cómo hacer un "svn export" con git?</title>
+        <meta name="category" content="Programación" />
+        <meta name="lang" content="es" />
+        <meta name="date" content="2008-11-14 05:04" />
+        <meta name="guid" content="http://www.pablocaro.es/%c2%bfcomo-hacer-un-svn-export-con-git/" />
+        <meta name="slug" content="como-hacer-un-svn-export-con-git" />
+    </head>
+    <body>
+        Si tienes que descargarte un árbol git pero sin los metadatos, porque por ejemplo sólo quieres el código para congerlarlo versionado en el subversion de tu proyecto, lo más fácil es:
+
+git clone {clone-url}
+
+rm -rf .gitignore .git
+    </body>
+</html>

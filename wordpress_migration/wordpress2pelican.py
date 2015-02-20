@@ -91,7 +91,7 @@ class Posts(BaseModel):
         ).where(TermRelationships.object == self.id)]
 
     def slug(self):
-        return slugify(self.post_title, to_lower=True, separator='_')
+        return slugify(self.post_title, to_lower=True, separator='-')
 
     class Meta:
         db_table = 'wp_posts'
@@ -229,7 +229,9 @@ if __name__ == '__main__':
             "title": post.post_title,
             "date": post.post_date.strftime("%Y-%m-%d %H:%M"),
             "category": category,
-            "guid": post.guid
+            "guid": post.guid,
+            "lang": "es",
+            "slug": post.slug()
         }
 
         if tags:

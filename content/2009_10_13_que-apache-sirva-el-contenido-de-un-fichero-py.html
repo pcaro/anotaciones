@@ -1,0 +1,16 @@
+<html>
+    <head>
+        <title>Que apache sirva el contenido de un fichero .py</title>
+        <meta name="category" content="Sin Categoría" />
+        <meta name="lang" content="es" />
+        <meta name="date" content="2009-10-13 05:36" />
+        <meta name="guid" content="http://www.pablocaro.es/?p=161" />
+        <meta name="slug" content="que-apache-sirva-el-contenido-de-un-fichero-py" />
+    </head>
+    <body>
+        Para que el servidor apache de <a href="http://www.webfaction.com/" target="_blank">webfaction</a> no intentara ejecutar los scripts python que dejo para la descarga en este blog, me creé un fichero <a href="http://httpd.apache.org/docs/1.3/howto/htaccess.html"><em>.htaccess</em></a> y dentro:
+<pre>
+removeHandler cgi-script .pl .py .cgi
+</pre>
+    </body>
+</html>

@@ -1,0 +1,19 @@
+<html>
+    <head>
+        <title>Listar las bases de datos postgres que tengo instaladas</title>
+        <meta name="category" content="Sin Categoría" />
+        <meta name="lang" content="es" />
+        <meta name="date" content="2009-06-29 03:54" />
+        <meta name="guid" content="http://www.pablocaro.es/?p=104" />
+        <meta name="slug" content="listar-las-bases-de-datos-postgres-que-tengo-instaladas" />
+    </head>
+    <body>
+        Para ello:
+
+<pre lang="bash">
+pcaro@davinci$ sudo /etc/init.d/postgresql-8.3 start
+pcaro@davinci$ sudo su - postgres
+postgres@davinci:~$ psql -l
+</pre>
+    </body>
+</html>

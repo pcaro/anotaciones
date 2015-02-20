@@ -70,7 +70,7 @@ SITEMAP = {
 # TYPOGRIFY = True
 DEFAULT_PAGINATION = False
 
-PLUGINS = ['extended_sitemap', 'extract_toc', 'tipue_search']
+PLUGINS = ['i18n_subsites', 'extended_sitemap', 'extract_toc', 'tipue_search']
 MD_EXTENSIONS = ['codehilite(css_class=highlight)', 'extra', 'headerid', 'toc']
 DIRECT_TEMPLATES = (('index', 'tags', 'categories', 'archives', 'search', '404'))
 STATIC_PATHS = ['theme/images', 'images']

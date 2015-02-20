@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <title>ubuntu, wordpress, php5 y mysql</title>
+        <meta name="category" content="Sin Categoría" />
+        <meta name="lang" content="es" />
+        <meta name="date" content="2007-11-25 06:03" />
+        <meta name="guid" content="http://www.pablocaro.es/?p=17" />
+        <meta name="slug" content="ubuntu-wordpress-php5-y-mysql" />
+    </head>
+    <body>
+        Configurando un wordpress local para pruebas (con lighttpd), me encuentro con el siguiente error:
+
+<code>Your PHP installation appears to be missing the MySQL which is required for WordPress.</code>
+
+Sabía que php5 no tiene incluido el soporte para mysql pero para mi sorpresa en mi ubuntu yo sí tenía instalado el paquete adecuado.
+
+El problema es que no estaba activado. Por si les pasa a otros y para recordarlo en un futuro, la cosa se arregló con:
+
+<code>sudo dpkg-reconfigure php5-mysql</code>
+
+y el pertinente reinicio del servidor:
+
+<code> </code>
+
+<code>sudo /etc/init.d/lighttpd restart</code>
+    </body>
+</html>

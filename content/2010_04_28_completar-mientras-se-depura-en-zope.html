@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <title>Completar mientras se depura en zope</title>
+        <meta name="category" content="Programación" />
+        <meta name="lang" content="es" />
+        <meta name="tags" content="web" />
+        <meta name="date" content="2010-04-28 03:33" />
+        <meta name="guid" content="http://www.pablocaro.es/?p=237" />
+        <meta name="slug" content="completar-mientras-se-depura-en-zope" />
+    </head>
+    <body>
+        Siempre tengo que buscar esto en google, para esto tengo el blog:
+
+<pre lang="bash">
+$ bin/instance debug
+</pre>
+
+<pre lang="python">
+>>> import readline, rlcompleter
+>>> readline.parse_and_bind('tab: complete')
+>>> app.
+Display all 760 possibilities? (y or n)
+>>> 
+</pre>
+    </body>
+</html>

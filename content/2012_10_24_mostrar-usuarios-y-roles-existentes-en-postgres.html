@@ -1,0 +1,23 @@
+<html>
+    <head>
+        <title>Mostrar Usuarios  y roles existentes en postgres</title>
+        <meta name="category" content="Sistemas" />
+        <meta name="lang" content="es" />
+        <meta name="date" content="2012-10-24 02:13" />
+        <meta name="guid" content="http://www.pablocaro.es/?p=348" />
+        <meta name="slug" content="mostrar-usuarios-y-roles-existentes-en-postgres" />
+    </head>
+    <body>
+        Se utiliza <strong>\du</strong>
+<pre lang="bash">$ sudo su - postgres
+$ psql 
+postgres=# \du
+                           List of roles
+ Role name |                   Attributes                   | Member of 
+-----------+------------------------------------------------+-----------
+ openerp   | Superuser, Create role, Create DB, Replication | {}
+ postgres  | Superuser, Create role, Create DB, Replication | {}
+
+postgres=#</pre>
+    </body>
+</html>

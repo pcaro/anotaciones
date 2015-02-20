@@ -1,0 +1,23 @@
+<html>
+    <head>
+        <title>Deshabilitar autocompletado en vim</title>
+        <meta name="category" content="Sistemas" />
+        <meta name="lang" content="es" />
+        <meta name="tags" content="linux" />
+        <meta name="date" content="2011-06-20 04:42" />
+        <meta name="guid" content="http://www.pablocaro.es/?p=295" />
+        <meta name="slug" content="deshabilitar-autocompletado-en-vim" />
+    </head>
+    <body>
+        Uso poco vim, sólo cuando en servidores no tengo jed.
+
+Para pegar texto en el fichero actual sin que te haga un horrible indentado en cascada:
+<pre>:setlocal noautoindent
+:setlocal nocindent
+:setlocal nosmartindent
+:setlocal indentexpr=</pre>
+O su equivalente:
+<pre>:setl noai nocin nosi inde=</pre>
+Referencia: <a href="http://vim.wikia.com/wiki/How_to_stop_auto_indenting">http://vim.wikia.com/wiki/How_to_stop_auto_indenting </a>
+    </body>
+</html>

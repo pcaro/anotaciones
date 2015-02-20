@@ -1,0 +1,28 @@
+<html>
+    <head>
+        <title>Zen Coding y komodo edit</title>
+        <meta name="category" content="Programación" />
+        <meta name="lang" content="es" />
+        <meta name="tags" content="zope" />
+        <meta name="date" content="2010-10-15 14:41" />
+        <meta name="guid" content="http://www.pablocaro.es/?p=257" />
+        <meta name="slug" content="zen-coding-y-komodo-edit" />
+    </head>
+    <body>
+        Mi editor favorito <a href="http://www.activestate.com/komodo-edit" target="_blank">Komodo Edit</a> tiene un plugin de <a href="http://code.google.com/p/zen-coding/" target="_blank">Zen Coding </a>y este funciona muy bien también con plantillas zpt. Por ejemplo:
+
+Así una expresión como la siguente
+<pre lang="css">
+dl>tal:rep[tal:repeat]>dt+dd
+</pre>
+Se convierte en el siguiente trozo de html con los nesesarios tabstops:
+<pre lang="html">
+<dl>
+    <tal:rep tal:repeat="">
+        <dt></dt>
+        <dd></dd>
+    </tal:rep>
+</dl></pre>
+Muy pero que muy cómodo
+    </body>
+</html>
