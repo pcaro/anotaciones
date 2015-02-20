@@ -6,6 +6,8 @@
     If everything worked right, this will create a _posts directory with your converted posts.
 """
 
+from __future__ import unicode_literals
+
 import codecs
 import os
 import re
@@ -177,13 +179,31 @@ if __name__ == '__main__':
 
     post_num = 1
     for post in get_published_posts():
+        categories = post.categories()
+        tags = [c.lower() for c in categories if c not in ('Programación',
+                                                           'Personal', 'Sistemas',
+                                                           'Yaco', 'Sin categoría')]
+        category = 'Sin Categoría'
+        for c in ('Programación', 'Personal', 'Sistemas'):
+            if c in categories:
+                category = c
+                break
+        if 'linux' in tags:
+            category = 'Sistemas'
+        if 'zope' in tags or 'web' in tags:
+            category = 'Programación'
+        # post_tags = post.tags()
+
         data = {
             "title": post.post_title,
             "date": post.post_date.strftime("%Y-%m-%d %H:%M"),
-            "categories": ", ".join(post.categories()),
-            "tags": ", ".join(post.tags()),
+            "category": category,
             "guid": post.guid
         }
+
+        if tags:
+            data['tags'] = ", ".join(tags)
+
         fn = u"{0}-{1}.{2}".format(
             str(post_num).zfill(4),
             re.sub(r'[/!:?\-,\']', '', post.post_title.strip().lower().replace(' ', '_')),
@@ -191,9 +211,13 @@ if __name__ == '__main__':
         print "writing ../content/" + fn
         try:
             f = codecs.open(os.path.join("..", "content", fn), "w", "utf-8")
-            converter.fill(data, post.post_content.replace(u"\r\n", u"\n"), f)
+            converter.fill(data, post.post_content, f)
             f.close()
-        except:
-            import ipdb
-            ipdb.set_trace()
+        except Exception as e:
+            import sys
+            exc_type, exc_obj, exc_tb = sys.exc_info()
+            fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
+            print e
+            print(exc_type, fname, exc_tb.tb_lineno)
+            import ipdb; ipdb.set_trace()
         post_num += 1
