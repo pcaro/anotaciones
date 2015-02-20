@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <title>Manejo de árboles en bases de datos</title>
+        <meta name="date" content="2009-07-07 16:59" />
+        <meta name="category" content="Sin Categoría" />
+        <meta name="guid" content="http://www.pablocaro.es/?p=68" />
+    </head>
+    <body>
+        Hay cuatro formas de guardar árboles en bases de datos relacionales:
+<ol>
+	<li>Adjacency List</li>
+	<li>Materialized Paths</li>
+	<li>Nested Sets o Modified Preorder Tree Traversal (MPTT)</li>
+	<li>Nested intervals</li>
+</ol>
+Dejo unos enlaces:
+<ul>
+	<li><a href="http://www.dbazine.com/oracle/or-articles/tropashko4">Trees in SQL: Nested Sets and Materialized Path</a> El articulo y el hombre de referencia</li>
+	<li><a href="http://www.sitepoint.com/article/hierarchical-data-database/">Storing Hierarchical Data in a Database</a> Todo muy clarito con muy buenos ejemplos</li>
+	<li><a href="http://http://dev.mysql.com/tech-resources/articles/hierarchical-data.html">Mysql: datos jerárquicos</a> Explicación clara y general</li>
+	<li><a href="http://www.ibstaff.net/fmartinez/?p=18"> Materialized Path + Nested Sets </a> Una forma de mezclar estos dos metodos</li>
+</ul>
+Algunas implentacionaciones:
+<ul>
+	<li><a href="http://sqlamp.angri.ru/">sqlamp — Materialized Path for SQLAlchemy</a></li>
+	<li><a href="http://code.google.com/p/django-treebeard/">Django Treebeard</a> Adjacency List, Materialized Path y Nested Sets para django</li>
+	<li><a href="http://code.google.com/p/django-mptt/">django-mptt</a></li>
+</ul>
+    </body>
+</html>

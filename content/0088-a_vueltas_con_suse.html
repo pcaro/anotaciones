@@ -1,0 +1,22 @@
+<html>
+    <head>
+        <title>A vueltas con suse</title>
+        <meta name="date" content="2013-03-25 11:01" />
+        <meta name="category" content="Sin Categoría" />
+        <meta name="guid" content="http://www.pablocaro.es/?p=374" />
+    </head>
+    <body>
+        Algunos comandos de zypper para recordar:
+
+Para borrar un paquete y también las dependencias:
+<pre lang="bash">
+zypper remove  --clean-deps packate
+</pre>
+
+Listar paquetes huérfanos:
+<pre lang="bash">
+LC_ALL=C zypper se -s | fgrep '(System Packages)'
+</pre>
+
+    </body>
+</html>

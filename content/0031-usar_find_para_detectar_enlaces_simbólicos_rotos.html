@@ -1,0 +1,12 @@
+<html>
+    <head>
+        <title>Usar find para detectar enlaces simbólicos rotos</title>
+        <meta name="date" content="2008-11-20 11:30" />
+        <meta name="category" content="Sistemas" />
+        <meta name="guid" content="http://www.pablocaro.es/usar-find-para-detectar-enlaces-simbolicos-rotos/" />
+        <meta name="tags" content="linux" />
+    </head>
+    <body>
+        <code>for f in $(find /usr/local/bin -type l); do if [ ! -e "$f" ]; then <a title="Echo command (not yet written)" class="new" href="http://howto.wikia.com/index.php?title=Echo_command&action=edit&redlink=1">echo</a> $f; fi; done</code>
+    </body>
+</html>

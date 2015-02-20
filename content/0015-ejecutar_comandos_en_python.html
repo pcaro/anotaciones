@@ -1,0 +1,18 @@
+<html>
+    <head>
+        <title>Ejecutar comandos en python</title>
+        <meta name="date" content="2008-03-04 06:18" />
+        <meta name="category" content="Programación" />
+        <meta name="guid" content="http://www.pablocaro.es/ejecutar-comandos-de-sistemas-en-python/" />
+        <meta name="tags" content="python" />
+    </head>
+    <body>
+        Hago a menudo pequeños scripts en python. Y muchas de las veces necesito ejecutar algún comando del sistema.
+
+Habitualmente importaba el módulo <code>os</code> y llamaba a alguna de sus funciones (las popen).
+
+Pero en general no hace falta importar os. Existe un módulo llamado <a target="_blank" title="commands" href="http://docs.python.org/lib/module-commands.html"><code>commands</code></a><code> </code>(sólo para unix) que permite realizar esta tarea con suma facilidad y mejor lectura del código.
+
+Dejar claro que para cosas más avanzadas es mejor usar <code><a target="_blank" href="http://docs.python.org/lib/module-subprocess.html">subprocess</a> </code> que pretende reemplazarlo.
+    </body>
+</html>

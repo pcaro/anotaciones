@@ -167,6 +167,33 @@ class MarkdownConverter(object):
         # output.write(html_content)
         output.write(html2text.html2text(html_content))
 
+
+class HtmlConverter(object):
+    TEMPLATE = """<html>
+    <head>
+        <title>{title}</title>
+        {metas}
+    </head>
+    <body>
+        {html_content}
+    </body>
+</html>"""
+
+    def get_extension(self):
+        return 'html'
+
+    def fill(self, data, html_content, output):
+        metas = []
+        for k, v in data.iteritems():
+            if k != 'title':
+                metas.append('<meta name="{}" content="{}" />'.format(k, v))
+        metas = '\n        '.join(metas)
+        title = data['title']
+        content = self.TEMPLATE.format(metas=metas, title=title, html_content=html_content)
+        # output.write(html_content)
+        output.write(content)
+
+
 if __name__ == '__main__':
     # Output textile files in ./_posts
     if os.path.isdir("../content"):
@@ -175,7 +202,7 @@ if __name__ == '__main__':
         sys.exit(1)
     else:
         os.mkdir("../content")
-    converter = MarkdownConverter()
+    converter = HtmlConverter()
 
     post_num = 1
     for post in get_published_posts():

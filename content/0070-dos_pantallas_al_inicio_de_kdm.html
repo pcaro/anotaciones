@@ -1,0 +1,20 @@
+<html>
+    <head>
+        <title>Dos pantallas al inicio de kdm</title>
+        <meta name="date" content="2011-02-01 02:32" />
+        <meta name="category" content="Sistemas" />
+        <meta name="guid" content="http://www.pablocaro.es/?p=268" />
+    </head>
+    <body>
+        Para que ya el mismo kdm se ejecute con dos pantallas basta con poner la configuración deseada (usando <a title="xrandr" href="http://www.x.org/wiki/Projects/XRandR" target="_blank">xrandr</a>) en el fichero ﻿<strong>/etc/kde4/kdm/Xsetup</strong>. Por ejemplo, en mi caso uso dos pantallas en la oficina de modo que ese fichero contiene:
+<pre lang="bash">INT="LVDS1"
+EXT="VGA1"
+xrandr -q | grep -q "$EXT connected"   &amp;&amp; {
+xrandr --output $EXT --mode 1280x1024
+xrandr --output $INT --mode 1280x800
+xrandr --output $INT --bellow $EXT
+xrandr --output $INT --primary
+}</pre>
+Estas lineas hacen que se consulte si tengo el segundo monitor conectado y en se caso se configure de la forma deseada.
+    </body>
+</html>

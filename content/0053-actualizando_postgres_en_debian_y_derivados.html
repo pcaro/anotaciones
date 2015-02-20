@@ -1,0 +1,28 @@
+<html>
+    <head>
+        <title>Actualizando postgres en debian y derivados</title>
+        <meta name="date" content="2009-11-26 05:19" />
+        <meta name="category" content="Sistemas" />
+        <meta name="guid" content="http://www.pablocaro.es/?p=186" />
+    </head>
+    <body>
+        Siempre que se habla de debian, se alaba su paquetería. Y yo estoy de acuerdo de que es uno de los puntos fuertes de la distribución. Hoy me refiero a la facilidad de tener instaladas y conviviendo felices varias versiones de la base de datos <a href="http://www.postgresql.org/" target="_blank">postgres</a>. Ya comenté esto en su momento en <a href="/instalar-postgres-82-en-jaunty/" target="_blank">Instalar postgres 8.2 en jaunty</a>.
+
+Pues el tener dos servidores instalados a la vez, permite la fácil<a href="http://www.postgresql.org/docs/8.4/interactive/migration.html" target="_blank"> migración de un versión a otra del motor de base de datos</a>. En este caso detallo como migré las bases de datos de mi equipo ubuntu <a href="http://releases.ubuntu.com/karmic/" target="_blank">karmic</a> de postgres 8.3 a 8.4.
+<ol>
+	<li>Primero tener instalados los dos paquetes: postgresql-8.3 y postgresql-8.4.</li>
+	<li>Determinar en que puerto se ejecuta cada instancia. Esto lo podemos hacer mirando los ficheros <em>/etc/postgresql/8.X/main/postgresql.conf </em>(variable <em>port</em>). En mi caso 5482 y 5433 respectivamente. Lo puedes comprobar con:
+<pre lang="bash">$ sudo netstat -putan | grep postgres</pre>
+</li>
+	<li>Después lanzar los dos servidores:
+<pre lang="bash">$ sudo /etc/init.d/postgresql-8.3 start
+$ sudo /etc/init.d/postgresql-8.4 start</pre>
+</li>
+	<li>Finalmente copiar los datos de una versión a otra
+<pre>$ sudo su - postgres
+$ pg_dumpall -p 5432 | psql -d postgres -p 5433</pre>
+</li>
+	<li> Probar que todo ha ido correctamente</li>
+</ol>
+    </body>
+</html>

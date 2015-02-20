@@ -1,0 +1,21 @@
+<html>
+    <head>
+        <title>Importar claves gpg de repositorios ubuntu</title>
+        <meta name="date" content="2009-02-01 13:00" />
+        <meta name="category" content="Sistemas" />
+        <meta name="guid" content="http://www.pablocaro.es/?p=51" />
+        <meta name="tags" content="linux" />
+    </head>
+    <body>
+        Ante un error como este:
+
+W: GPG error: http://ppa.launchpad.net intrepid Release: The following signatures couldn't be verified because the public key is not available: NO_PUBKEY 3B81A3FBA47394CE
+
+Hay que importar las claves:
+<pre>gpg --keyserver keyserver.ubuntu.com --recv 3B81A3FBA47394CE
+gpg --export --armor 3B81A3FBA47394CE | sudo apt-key add -
+
+<em>UPDATE:</em>
+<em>Corregido el tema de los guiones, gracias a miguelbf por la indicación y perdón por la tardanza en arreglarlo</em></pre>
+    </body>
+</html>

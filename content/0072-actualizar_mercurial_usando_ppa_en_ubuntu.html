@@ -1,0 +1,21 @@
+<html>
+    <head>
+        <title>Actualizar Mercurial usando ppa en ubuntu</title>
+        <meta name="date" content="2011-02-25 05:12" />
+        <meta name="category" content="Sistemas" />
+        <meta name="guid" content="http://www.pablocaro.es/?p=274" />
+        <meta name="tags" content="linux" />
+    </head>
+    <body>
+        Existen tres PPA para mercurial:
+<a rel="nofollow" href="https://launchpad.net/~mercurial-ppa/+archive/releases">https://launchpad.net/~mercurial-ppa/+archive/releases</a> (última release, actualmente 1.7.5-0ppa1~maverick1)
+<a rel="nofollow" href="https://launchpad.net/~mercurial-ppa/+archive/stable-snapshots">https://launchpad.net/~mercurial-ppa/+archive/stable-snapshots</a> (snapshots de la rama estable, actualmente ﻿1.7.5+2-5fc7c84ed9b0-0ppa1~maverick1)
+<a rel="nofollow" href="https://launchpad.net/~mercurial-ppa/+archive/snapshots">https://launchpad.net/~mercurial-ppa/+archive/snapshots</a> (snapshots de lo último, actualmente 1.8~1.7.5+4-8f5c865b7b4a-0ppa1~maverick1)
+
+Como decía en la última anotación para añadir el PPA basta con:
+<pre class="bash">$ sudo add-apt-repository ppa:mercurial-ppa/stable-snapshots
+$ sudo aptitude update
+$ sudo aptitude  install Mercurial</pre>
+&nbsp;
+    </body>
+</html>

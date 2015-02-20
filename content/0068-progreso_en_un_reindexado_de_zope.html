@@ -1,0 +1,15 @@
+<html>
+    <head>
+        <title>Progreso en un reindexado de zope</title>
+        <meta name="date" content="2010-09-18 06:06" />
+        <meta name="category" content="Programación" />
+        <meta name="guid" content="http://www.pablocaro.es/?p=253" />
+        <meta name="tags" content="zope" />
+    </head>
+    <body>
+        Visto en el producto contentleadimage:
+<pre lang="python">from Products.ZCatalog.ProgressHandler import ZLogHandler
+ctool.reindexIndex(['hasContentLeadImage'], portal.REQUEST, pghandler=ZLogHandler())</pre>
+Esto muestra un progreso en la consola si estás ejecutando  en primer plano.
+    </body>
+</html>

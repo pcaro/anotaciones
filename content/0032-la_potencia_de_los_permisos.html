@@ -1,0 +1,19 @@
+<html>
+    <head>
+        <title>La potencia de los permisos</title>
+        <meta name="date" content="2008-12-01 14:06" />
+        <meta name="category" content="Sistemas" />
+        <meta name="guid" content="http://www.pablocaro.es/?p=43" />
+        <meta name="tags" content="linux" />
+    </head>
+    <body>
+        Recordar los comandos para controlar las listas de control de acceso en linux.
+
+<code>man setfacl
+man getfacl</code>
+
+Tras "setfacl -m user:joe:rwx dir",  verás que ls -d dir muestra un signo + al final que indica que se están utilizado permisos ampliados.
+
+Si quieres saber más, el tío google te lo dirá.
+    </body>
+</html>

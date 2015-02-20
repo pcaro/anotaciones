@@ -1,0 +1,20 @@
+<html>
+    <head>
+        <title>Descargar código de un repositorio publicado con gitweb</title>
+        <meta name="date" content="2010-01-04 14:31" />
+        <meta name="category" content="Sin Categoría" />
+        <meta name="guid" content="http://www.pablocaro.es/?p=217" />
+    </head>
+    <body>
+        <p>Quería probar un software disponible en la red (<a href="http://www.perfect-sale.com/">Perfect Sale</a>). Sabía que tenía que usar <em>git clone</em> pero no la url. </p>
+<p>
+No queda claro (al menos a mí) <a href="http://git.hforge.org/?p=shop.git;a=tree">en el repositorio gitweb</a> la url a usar.</p>
+Al fin, encontré la solución en <a href="http://gitweb.codeendeavor.com/">un repositorio mejor documentado</a> (gracias).
+<p>El protocolo es git y la url no incluye ese "projects" que vemos en el rastro de migas. Lo anoto para no volver a perder el tiempo otra vez.</p>
+<p>Así que para el proyecto citado la orden queda así:</p>
+<pre lang="bash">
+$ git clone git://git.hforge.org/shop.git
+</pre>
+
+    </body>
+</html>

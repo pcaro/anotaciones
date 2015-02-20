@@ -1,0 +1,33 @@
+<html>
+    <head>
+        <title>Plone: Registrar pasos de importación con zcml</title>
+        <meta name="date" content="2010-01-27 04:38" />
+        <meta name="category" content="Sin Categoría" />
+        <meta name="guid" content="http://www.pablocaro.es/?p=223" />
+    </head>
+    <body>
+        Registrar un paso de importación con xml el el profile, puede fallar cuando quitas el paquete del buildout.
+Un paso roto se que queda dentro de portal_setup_tool.
+
+En algunas versiones de plone esto da un error, haciendo imposible aplicar el perfil nunca más.
+
+En otras versiones (plone 3.2 hacia arriba) sólo da un warning.
+<pre lang="xml">
+<configure 
+    xmlns="http://namespaces.zope.org/zope" 
+    xmlns:gs="http://namespaces.zope.org/genericsetup" 
+    xmlns:five="http://namespaces.zope.org/five" 
+    i18n_domain="poi"> 
+  <gs:importStep 
+      name="poi_various" 
+      title="Poi various import handlers" 
+      description="" 
+      handler="Products.Poi.setuphandlers.import_various"> 
+    <depends name="catalog"/> 
+  </gs:importStep> 
+</configure> 
+</pre>
+
+Esto es una traducción de un correo de Mauris Van Rees
+    </body>
+</html>

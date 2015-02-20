@@ -1,0 +1,20 @@
+<html>
+    <head>
+        <title>pyinotify: Ejecutar comando cuando se modifica un fichero</title>
+        <meta name="date" content="2013-04-03 05:09" />
+        <meta name="category" content="Sistemas" />
+        <meta name="guid" content="http://www.pablocaro.es/?p=379" />
+        <meta name="tags" content="python, linux" />
+    </head>
+    <body>
+        Ya he comentado por aquí un comando <em>when-changed</em>.
+
+Ahora anoto otra alternativa, esta vez python. Se trata de pyinotify.
+
+Yo lo uso para generar la documentación de sphinx mientras estoy escribiendo:
+
+<pre lang="bash">
+python -m pyinotify -r -c "make html" -e IN_MODIFY source
+</pre>
+    </body>
+</html>

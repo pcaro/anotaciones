@@ -1,0 +1,16 @@
+<html>
+    <head>
+        <title>Parcheando, parcheando ...</title>
+        <meta name="date" content="2009-12-16 10:18" />
+        <meta name="category" content="Sistemas" />
+        <meta name="guid" content="http://www.pablocaro.es/?p=207" />
+        <meta name="tags" content="linux" />
+    </head>
+    <body>
+        Siempre tengo que buscar cómo usar patch. Como tengo un blog que se llama anotaciones pues apunto:
+<pre lang="bash">$ patch -p1 < baz.diff</pre>
+Donde el número 1 viene de mirar en el fichero .diff y contar las barras "/" que hay antes que el directorio donde estoy. Por ejemplo si veo <em>/users/stephen/package/src/net/http.c</em> y estoy en un directorio que contiene <em>net/http.c</em> pues es 5 (ojo, hay que contar la primera).
+
+Para referencia <a href="http://stephenjungels.com/jungels.net/articles/diff-patch-ten-minutes.html" target="_blank">The Ten Minute Guide to diff and patch</a>
+    </body>
+</html>
