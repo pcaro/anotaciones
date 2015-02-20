@@ -17,6 +17,7 @@ import html2text
 import yaml
 from html2rest import html2rest
 from peewee import *
+from slugify import slugify
 
 database = MySQLDatabase('blog2', **{'password': '1175321', 'user': 'root'})
 
@@ -88,6 +89,9 @@ class Posts(BaseModel):
         ).join(
             TermRelationships, on=(TermRelationships.term_taxonomy == TermTaxonomy.term_taxonomy)
         ).where(TermRelationships.object == self.id)]
+
+    def slug(self):
+        return slugify(self.post_title, to_lower=True, separator='_')
 
     class Meta:
         db_table = 'wp_posts'
@@ -231,10 +235,10 @@ if __name__ == '__main__':
         if tags:
             data['tags'] = ", ".join(tags)
 
-        fn = u"{0}-{1}.{2}".format(
-            str(post_num).zfill(4),
-            re.sub(r'[/!:?\-,\']', '', post.post_title.strip().lower().replace(' ', '_')),
+        fn = "{}_{:0>2}_{:0>2}_{}.{}".format(
+            post.post_date.year, post.post_date.month, post.post_date.day, post.slug(),
             converter.get_extension())
+
         print "writing ../content/" + fn
         try:
             f = codecs.open(os.path.join("..", "content", fn), "w", "utf-8")
@@ -246,5 +250,6 @@ if __name__ == '__main__':
             fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
             print e
             print(exc_type, fname, exc_tb.tb_lineno)
-            import ipdb; ipdb.set_trace()
+            import ipdb
+            ipdb.set_trace()
         post_num += 1
