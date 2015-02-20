@@ -10,6 +10,7 @@ SITEURL = ''
 PATH = 'content'
 
 TIMEZONE = 'Europe/Paris'
+DISQUS_SITENAME = 'anotaciones'
 
 DEFAULT_LANG = u'es'
 
@@ -36,10 +37,12 @@ LINKS = (('Pelican', 'http://getpelican.com/'),
          ('Jinja2', 'http://jinja.pocoo.org/'),
          ('You can modify those links in your config file', '#'),)
 
+GITHUB_URL = 'http://github.com/pcaro'
+TWITTER_USERNAME = 'pcaro'
 # Social
 SOCIAL = (
     ('Twitter', 'http://twitter.com/pcaro'),
-    ('Github', 'http://github.com/pcaro'),
+    ('Github', GITHUB_URL),
     ('Linkedin', 'https://www.linkedin.com/in/pcarorevuelta'),
     ('Facebook', 'https://www.facebook.com/pablo.carorevuelta'),
     ('Email', 'mailto:correo@pablocaro.es'),
@@ -71,10 +74,11 @@ SITEMAP = {
 }
 
 # THEME settings
-# TYPOGRIFY = True
+TYPOGRIFY = True
 DEFAULT_PAGINATION = False
 
-PLUGINS = ['i18n_subsites', 'extended_sitemap', 'extract_toc', 'tipue_search']
+PLUGINS = ['i18n_subsites', 'extended_sitemap', 'extract_toc', 'tipue_search',
+           'code_include', 'share_post']
 MD_EXTENSIONS = ['codehilite(css_class=highlight)', 'extra', 'headerid', 'toc']
 DIRECT_TEMPLATES = (('index', 'tags', 'categories', 'archives', 'search', '404'))
 STATIC_PATHS = ['theme/images', 'images']

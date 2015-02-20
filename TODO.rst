@@ -1,7 +1,6 @@
 Completar antes de publicar
 ===========================
 
-- Fabicons
 - Logo
 - Foto
 - Disqus
@@ -13,7 +12,11 @@ Ideas para escibir en el blog
 
 - Nueva cámara
 - Serie: Estrellas de github. Un comentario de cada proyecto que tengo destacado
-- Scripts para la migración a pelican
+- Blog
+
+  	+ Scripts para la migración a pelican
+  	+ Snippet para poner trans en jinja
+
 - Teclados
 - Serie: Comodidades en django
 

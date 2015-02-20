@@ -101,7 +101,7 @@ TEMPLATE = """
 """
 
 
-def make_entry(title):
+def write(title):
     today = datetime.today()
     slug = title.lower().strip().replace(' ', '-')
     f_create = "content/{}_{:0>2}_{:0>2}_{}.rst".format(
