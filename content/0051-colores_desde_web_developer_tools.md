@@ -1,7 +1,7 @@
 Date: 2009-11-10 04:55
+Category: Programación
 Guid: http://www.pablocaro.es/?p=176
-Tags: Yaco
-Categories: Yaco, Web
+Tags: web
 Title: Colores desde web developer tools
 
 Últimamente uso tanto [firebug](http://getfirebug.com/) que ni me acuerdo de

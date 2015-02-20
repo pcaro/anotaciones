@@ -1,7 +1,7 @@
 Date: 2009-12-16 10:18
+Category: Sistemas
 Guid: http://www.pablocaro.es/?p=207
-Tags: 
-Categories: Linux, Sistemas
+Tags: linux
 Title: Parcheando, parcheando ...
 
 Siempre tengo que buscar cómo usar patch. Como tengo un blog que se llama

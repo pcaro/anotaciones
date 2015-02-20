@@ -1,7 +1,7 @@
 Date: 2007-10-06 05:28
+Category: Sistemas
 Guid: http://www.pablocaro.es/?p=13
-Tags: 
-Categories: Linux
+Tags: linux
 Title: Knetworkmanager
 
 Ahora una de esas entradas para que me sirva de recordatorio. Habitualmente

@@ -1,7 +1,7 @@
 Date: 2009-06-16 10:31
+Category: Sin Categoría
 Guid: http://www.pablocaro.es/?p=94
-Tags: Python
-Categories: Python, Yaco
+Tags: python
 Title: Un servidor web de bolsillo gracias a python
 
 Otra cosita para recordar. La forma más simple de servir unos ficheros vía

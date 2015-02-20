@@ -1,7 +1,6 @@
 Date: 2009-11-26 05:19
+Category: Sistemas
 Guid: http://www.pablocaro.es/?p=186
-Tags: 
-Categories: Yaco, Sistemas
 Title: Actualizando postgres en debian y derivados
 
 Siempre que se habla de debian, se alaba su paquetería. Y yo estoy de acuerdo

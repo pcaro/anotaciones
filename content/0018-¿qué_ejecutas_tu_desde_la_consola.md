@@ -1,7 +1,6 @@
 Date: 2008-04-13 14:00
+Category: Sin Categoría
 Guid: http://www.pablocaro.es/%c2%bfque-ejecutas-tu-desde-la-consola/
-Tags: 
-Categories: Sin categoría
 Title: ¿Qué ejecutas tu desde la consola?
 
 Un meme para ver que ejecutas desde la consola: pcaro@davinci$ history|awk

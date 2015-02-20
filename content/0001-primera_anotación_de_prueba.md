@@ -1,7 +1,6 @@
 Date: 2006-10-10 09:55
+Category: Sin Categoría
 Guid: http://pcaro.webfactional.com/?p=3
-Tags: 
-Categories: Sin categoría
 Title: Primera anotación de prueba
 
 Como todo blog que comienza, es de obligado cumplimiento una primera entrada

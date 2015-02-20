@@ -1,7 +1,6 @@
 Date: 2008-03-31 03:25
+Category: Sin Categoría
 Guid: http://www.pablocaro.es/timing-en-psql-la-consola-de-postgres/
-Tags: 
-Categories: Sin categoría
 Title: Timing en "psql" la consola de postgres
 
 Recordar:

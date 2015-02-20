@@ -1,14 +1,16 @@
 Date: 2010-04-28 03:33
+Category: Programación
 Guid: http://www.pablocaro.es/?p=237
-Tags: 
-Categories: Web
+Tags: web
 Title: Completar mientras se depura en zope
 
 Siempre tengo que buscar esto en google, para esto tengo el blog:
 
     
     
+    
     $ bin/instance debug
+    
     
     
     

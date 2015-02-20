@@ -1,7 +1,7 @@
 Date: 2012-10-24 02:22
+Category: Sistemas
 Guid: http://www.pablocaro.es/?p=165
-Tags: 
-Categories: Linux, Yaco
+Tags: linux
 Title: Importar clave gpg. kgpg que gran programa
 
 gpg --keyserver pgp.rediris.es --search-keys erevilla@yaco.es gpg: buscando

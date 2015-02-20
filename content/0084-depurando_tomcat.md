@@ -1,7 +1,7 @@
 Date: 2012-10-24 03:13
+Category: Programación
 Guid: http://www.pablocaro.es/?p=331
-Tags: 
-Categories: Programación, Java
+Tags: java
 Title: Depurando Tomcat
 
 Se usa Java Platform Debuging Architecture JPDA <https://confluence.sakaiproje

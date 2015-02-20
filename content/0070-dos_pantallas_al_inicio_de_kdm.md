@@ -1,7 +1,6 @@
 Date: 2011-02-01 02:32
+Category: Sistemas
 Guid: http://www.pablocaro.es/?p=268
-Tags: 
-Categories: Yaco, Sistemas
 Title: Dos pantallas al inicio de kdm
 
 Para que ya el mismo kdm se ejecute con dos pantallas basta con poner la

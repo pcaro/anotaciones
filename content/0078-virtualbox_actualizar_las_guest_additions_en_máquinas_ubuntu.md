@@ -1,7 +1,7 @@
 Date: 2011-08-24 04:11
+Category: Sistemas
 Guid: http://www.pablocaro.es/?p=299
-Tags: 
-Categories: Linux, Yaco
+Tags: linux
 Title: virtualbox: Actualizar las Guest Additions en máquinas ubuntu
 
 Si usas [vagrant](http://vagrantup.com/) para gestionar máquinas virtuales con

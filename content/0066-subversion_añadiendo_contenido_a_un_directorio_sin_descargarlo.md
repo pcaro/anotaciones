@@ -1,7 +1,6 @@
 Date: 2010-07-16 05:05
+Category: Programación
 Guid: http://www.pablocaro.es/?p=247
-Tags: 
-Categories: Programación, Yaco, Sistemas
 Title: Subversion: Añadiendo contenido a un directorio sin descargarlo
 
 Caso práctico. Tengo un directorio _dev_ dentro del subversión con un montón

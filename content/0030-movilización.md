@@ -1,7 +1,6 @@
 Date: 2008-11-19 03:31
+Category: Personal
 Guid: http://www.pablocaro.es/movilizacion/
-Tags: 
-Categories: Yaco, Personal
 Title: Movilización
 
 Yo hoy me movilizo. Haz tu lo mismo: ![movilizaciÃ³n](http://www.pablocaro.es

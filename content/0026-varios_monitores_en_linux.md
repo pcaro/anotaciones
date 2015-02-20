@@ -1,7 +1,7 @@
 Date: 2008-11-10 03:27
+Category: Sistemas
 Guid: http://www.pablocaro.es/varios-monitores-en-linux/
-Tags: 
-Categories: Linux
+Tags: linux
 Title: Varios monitores en linux
 
 Esta anotación es sólo para comentar el comando xrandr que uso en kubuntu

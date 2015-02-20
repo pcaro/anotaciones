@@ -1,7 +1,7 @@
 Date: 2009-06-30 10:52
+Category: Sistemas
 Guid: http://www.pablocaro.es/?p=107
-Tags: 
-Categories: Linux, Yaco, Sistemas
+Tags: linux
 Title: Instalar postgres 8.2 en jaunty
 
 Postgres 8.3 no me permitía crear una base de datos con un encoding distinto a
@@ -11,6 +11,7 @@ Si intentaba importar los datos fallaba por el encoding:
 
     
     
+    
     # createdb base_datos  -O owner ; 
     # pg_restore -F c -d base_datos   viernes-27-feb-2009.dump
     pg_restore: [archiver (db)] COPY failed: ERROR:  secuencia de bytes no válida para codificación «UTF8»: 0xa2
@@ -18,6 +19,7 @@ Si intentaba importar los datos fallaba por el encoding:
 
 Y además no me dejaba crear la base de datos con el encoding correcto:
 
+    
     
     
     postgres@davinci$ createdb  base_datos -E latin1
@@ -35,6 +37,7 @@ buntu.com/hardy/i386/postgresql-8.2/download) y[ postgresql-
 client-8.2](http://packages.ubuntu.com/hardy/i386/postgresql-
 client-8.2/download) Una vez descargados los paquetes bastó:
 
+    
     
     
     pcaro@davinci$ sudo dpkg -i postgresql-client-8.2_8.2.7-1_i386.deb

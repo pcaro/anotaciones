@@ -1,7 +1,6 @@
 Date: 2008-05-11 12:07
+Category: Sistemas
 Guid: http://www.pablocaro.es/convertir-disco-vmware/
-Tags: 
-Categories: Sistemas
 Title: Convertir disco vmware
 
 pcaro@davinci$ vmware-vdiskmanager -r Windows\ XP\ Professional.vmdk -t 0

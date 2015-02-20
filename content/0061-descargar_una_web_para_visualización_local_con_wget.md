@@ -1,7 +1,6 @@
 Date: 2010-02-22 10:09
+Category: Sin Categoría
 Guid: http://www.pablocaro.es/?p=228
-Tags: 
-Categories: Sin categoría
 Title: Descargar una web para visualización local con wget
 
 El comando es

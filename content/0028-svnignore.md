@@ -1,7 +1,6 @@
 Date: 2008-11-13 03:59
+Category: Programación
 Guid: http://www.pablocaro.es/svnignore/
-Tags: 
-Categories: Programación, Yaco
 Title: svn:ignore
 
 Esta entrada  es para recordar los dos comandos: svn propedit svn:ignore

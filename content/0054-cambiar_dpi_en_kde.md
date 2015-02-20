@@ -1,7 +1,7 @@
 Date: 2009-12-04 05:35
+Category: Sistemas
 Guid: http://www.pablocaro.es/?p=196
-Tags: 
-Categories: Linux, Yaco, Sistemas
+Tags: linux
 Title: Cambiar dpi en kde
 
 Siempre que reinstalo me encuentro con el mismo problema. No tengo el dpi

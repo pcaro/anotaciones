@@ -1,7 +1,7 @@
 Date: 2006-12-15 14:23
+Category: Sin Categoría
 Guid: http://www.pablocaro.es/?p=6
-Tags: 
-Categories: .net
+Tags: .net
 Title: Siempre la coma como símbolo decimal en un formulario .net
 
 Entre los muchos lenguajes que me ha tocado codificar (únicamente no me

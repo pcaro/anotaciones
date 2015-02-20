@@ -1,7 +1,7 @@
 Date: 2012-09-12 03:38
+Category: Sistemas
 Guid: http://www.pablocaro.es/?p=336
-Tags: 
-Categories: Linux, Sistemas
+Tags: linux
 Title: Uso práctico de ngrep
 
 Ejemplo de uso común de **ngrep**:

@@ -1,7 +1,7 @@
 Date: 2011-02-25 05:12
+Category: Sistemas
 Guid: http://www.pablocaro.es/?p=274
-Tags: 
-Categories: Programación, Linux, Yaco
+Tags: linux
 Title: Actualizar Mercurial usando ppa en ubuntu
 
 Existen tres PPA para mercurial: <https://launchpad.net/~mercurial-

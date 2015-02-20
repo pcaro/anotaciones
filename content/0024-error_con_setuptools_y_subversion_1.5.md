@@ -1,7 +1,7 @@
 Date: 2008-09-14 13:50
+Category: Programación
 Guid: http://www.pablocaro.es/error-con-setuptools-y-subversion-15/
-Tags: 
-Categories: Programación, Python
+Tags: python
 Title: Error con setuptools y subversion 1.5
 
 La actual versión de

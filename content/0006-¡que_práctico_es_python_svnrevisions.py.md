@@ -1,7 +1,7 @@
 Date: 2007-04-10 09:55
+Category: Sin Categoría
 Guid: http://www.pablocaro.es/?p=10
-Tags: 
-Categories: Python
+Tags: python
 Title: ¡Que práctico es python!: svnrevisions.py
 
 Pongo a continuación un script rápido que hice hace ya un tiempo. En ese
@@ -19,6 +19,7 @@ listo. Se que es sucio, que podría usar las librerías de python para
 subversion, etc. Pero se hizo de forma rápida y funciona. El funcionamiento se
 puede ver en el código fuente, pero pongo una ayudita:
 
+    
     
     
     $ python svnrevisions.py

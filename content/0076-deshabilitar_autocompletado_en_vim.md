@@ -1,7 +1,7 @@
 Date: 2011-06-20 04:42
+Category: Sistemas
 Guid: http://www.pablocaro.es/?p=295
-Tags: 
-Categories: Linux, Yaco
+Tags: linux
 Title: Deshabilitar autocompletado en vim
 
 Uso poco vim, sólo cuando en servidores no tengo jed. Para pegar texto en el

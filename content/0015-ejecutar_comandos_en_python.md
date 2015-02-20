@@ -1,7 +1,7 @@
 Date: 2008-03-04 06:18
+Category: Programación
 Guid: http://www.pablocaro.es/ejecutar-comandos-de-sistemas-en-python/
-Tags: 
-Categories: Programación, Python
+Tags: python
 Title: Ejecutar comandos en python
 
 Hago a menudo pequeños scripts en python. Y muchas de las veces necesito

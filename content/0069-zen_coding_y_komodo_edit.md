@@ -1,7 +1,7 @@
 Date: 2010-10-15 14:41
+Category: Programación
 Guid: http://www.pablocaro.es/?p=257
-Tags: 
-Categories: Programación, Zope
+Tags: zope
 Title: Zen Coding y komodo edit
 
 Mi editor favorito [Komodo Edit](http://www.activestate.com/komodo-edit) tiene
@@ -11,11 +11,13 @@ como la siguente
 
     
     
+    
     dl>tal:rep[tal:repeat]>dt+dd
     
 
 Se convierte en el siguiente trozo de html con los nesesarios tabstops:
 
+    
     
     
     
