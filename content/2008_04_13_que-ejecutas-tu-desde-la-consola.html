@@ -8,8 +8,10 @@
         <meta name="slug" content="que-ejecutas-tu-desde-la-consola" />
     </head>
     <body>
+<p>
         Un meme para ver que ejecutas desde la consola:
-
+</p>
+<pre>
 pcaro@davinci$ history|awk '{a[$2]++} END{for(i in a){printf "%5d\t%s\n",a[i],i}}'|sort -rn|head
 95   sudo
 71   ls
@@ -21,7 +23,9 @@ pcaro@davinci$ history|awk '{a[$2]++} END{for(i in a){printf "%5d\t%s\n",a[i],i}
 15   i2e-cli
 14   ps
 13   man
-
+</pre>
+<p>
 A notar que dentro es un script que tengo para hacer un grep -r filtrando algunos resultados.i2e-cli es un diccionario.
+</p>
     </body>
 </html>

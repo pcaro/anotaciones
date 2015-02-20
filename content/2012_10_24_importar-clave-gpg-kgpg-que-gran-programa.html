@@ -9,6 +9,7 @@
         <meta name="slug" content="importar-clave-gpg-kgpg-que-gran-programa" />
     </head>
     <body>
+    <pre lang="bash">
         gpg --keyserver pgp.rediris.es --search-keys erevilla@yaco.es
 
 gpg: buscando «erevilla@yaco.es» de hkp servidor pgp.rediris.es
@@ -64,9 +65,13 @@ desconocido (1). Ernesto Revilla Derksen (Yaco)
 Por favor, advierta que la validez de clave mostrada no es necesariamente
 correcta a menos de que reinicie el programa.
 
+</pre>
+
 <a href="http://www.fermu.com/content/view/231/2/lang,es/">http://www.fermu.com/content/view/231/2/lang,es/</a>
 
 <a href="http://www.rediris.es/pgp/">http://www.rediris.es/pgp/</a>
+
+<pre lang="bash">
 
 Generando mi propia clave:
 pcaro@davinci$ gpg --gen-key
@@ -141,10 +146,15 @@ pub 1024D/4A52D5BA 2009-10-30 [[caduca: 2012-10-29]]
 Huella de clave = 483C F267 8A4B 0D27 3451 88A9 FE05 5E01 4A52 D5BA
 uid Pablo Caro Revuelta (pcaro) sub 2048g/7436FA09 2009-10-30 [[caduca: 2012-10-29]]
 
-<strong>programas graficos</strong>
-sudo aptitude install kleopatra kgpg
+</pre>
 
+<h2>programas graficos</h2>
+<pre lang="bash">
+sudo aptitude install kleopatra kgpg
+</pre>
+<p>
 Para que puedas enviar los correos firmados en kmail:
 <a href="http://randomguy3.wordpress.com/2008/07/24/kmail-trunk-signing/">http://randomguy3.wordpress.com/2008/07/24/kmail-trunk-signing/</a>
+</p>
     </body>
 </html>
