@@ -3,7 +3,6 @@ Completar antes de publicar
 
 - Logo
 - Foto
-- Disqus
 - Analitycs
 
 
