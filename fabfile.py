@@ -91,6 +91,12 @@ TEMPLATE = """
 :summary:
 :status: draft
 
+# These are the optional article meta data variables that you can use
+# subtitle
+# summary
+# disqus_identifier
+# modified
+# keywords
 
 """
 
