@@ -18,7 +18,13 @@ First make sure to create and activate a virtualenv_, then open a terminal at th
     $ pip install -r requirements.txt
 
 
-**Live reloading and Sass CSS compilation**
+Then download theme and plugins::
+
+    git clone https://github.com/pcaro/pelican-elegant.git
+    git clone https://github.com/getpelican/pelican-plugins.git plugins
+
+
+**Live reloading**
 
 If you'd like to take advantage of live reloading you can do so with the included fabric task. Make sure requirements are installed and virtualenv activated. Then, in the project root run::
 
