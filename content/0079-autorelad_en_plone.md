@@ -1,5 +1,7 @@
 Date: 2012-07-27 04:38
 Guid: http://www.pablocaro.es/?p=319
+Tags: 
+Categories: Programación, Yaco, Zope
 Title: Autorelad en plone
 
 Otro recordatorio. Para recargar mientras desarrollo una browserview en plone:

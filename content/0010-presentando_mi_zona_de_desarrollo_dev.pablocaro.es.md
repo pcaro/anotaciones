@@ -1,5 +1,7 @@
 Date: 2007-10-12 06:31
 Guid: http://www.pablocaro.es/?p=14
+Tags: 
+Categories: Programación, Proyecto informático
 Title: Presentando mi Zona de Desarrollo: dev.pablocaro.es
 
 He creado un nuevo subdominio que utilizaré para mis pequeñas cosas de

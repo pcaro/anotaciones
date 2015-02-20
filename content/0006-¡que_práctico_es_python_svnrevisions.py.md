@@ -1,5 +1,7 @@
 Date: 2007-04-10 09:55
 Guid: http://www.pablocaro.es/?p=10
+Tags: 
+Categories: Python
 Title: ¡Que práctico es python!: svnrevisions.py
 
 Pongo a continuación un script rápido que hice hace ya un tiempo. En ese

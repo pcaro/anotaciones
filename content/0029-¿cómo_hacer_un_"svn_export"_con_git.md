@@ -1,5 +1,7 @@
 Date: 2008-11-14 05:04
 Guid: http://www.pablocaro.es/%c2%bfcomo-hacer-un-svn-export-con-git/
+Tags: 
+Categories: Programación, Yaco
 Title: ¿Cómo hacer un "svn export" con git?
 
 Si tienes que descargarte un árbol git pero sin los metadatos, porque por

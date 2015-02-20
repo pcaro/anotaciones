@@ -1,5 +1,7 @@
 Date: 2007-11-01 14:01
 Guid: http://www.pablocaro.es/?p=16
+Tags: 
+Categories: Javascript
 Title: Para aprender javascript
 
 Para aprender una tecnología todos conocemos [nuestro punto de

@@ -1,5 +1,7 @@
 Date: 2011-06-13 07:41
 Guid: http://www.pablocaro.es/?p=291
+Tags: 
+Categories: Yaco
 Title: Diccionario de español para komodo edit
 
 Para instalarlo se siguen [estas

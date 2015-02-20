@@ -1,5 +1,7 @@
 Date: 2013-03-25 11:01
 Guid: http://www.pablocaro.es/?p=374
+Tags: 
+Categories: Sin categoría
 Title: A vueltas con suse
 
 Algunos comandos de zypper para recordar: Para borrar un paquete y también las

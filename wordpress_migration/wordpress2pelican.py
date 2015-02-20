@@ -16,7 +16,7 @@ import yaml
 from html2rest import html2rest
 from peewee import *
 
-database = MySQLDatabase('blog2', **{'password': 'PASSWORD', 'user': 'root'})
+database = MySQLDatabase('blog2', **{'password': '1175321', 'user': 'root'})
 
 
 class UnknownField(object):
@@ -71,6 +71,22 @@ class Posts(BaseModel):
     post_type = CharField()
     to_ping = TextField()
 
+    def categories(self):
+        return [t.name.capitalize() for t in Terms.select().join(
+            TermTaxonomy, on=(Terms.term == TermTaxonomy.term)).where(
+            TermTaxonomy.taxonomy == 'category'
+        ).join(
+            TermRelationships, on=(TermRelationships.term_taxonomy == TermTaxonomy.term_taxonomy)
+        ).where(TermRelationships.object == self.id)]
+
+    def tags(self):
+        return [t.name.capitalize() for t in Terms.select().join(
+            TermTaxonomy, on=(Terms.term == TermTaxonomy.term)).where(
+            TermTaxonomy.taxonomy == 'post_tag'
+        ).join(
+            TermRelationships, on=(TermRelationships.term_taxonomy == TermTaxonomy.term_taxonomy)
+        ).where(TermRelationships.object == self.id)]
+
     class Meta:
         db_table = 'wp_posts'
 
@@ -120,13 +136,14 @@ def get_blog_url(blog_id=0):
 
 
 class RestructuredTextConverter(object):
+
     def get_extension(self):
         return '.rst'
 
     def fill(self, data, html_content, output):
         title = data['title']
         output.write(title)
-        output.write("\n{}\n".format('#'*len(title)))
+        output.write("\n{}\n".format('#' * len(title)))
         output.write(yaml.safe_dump(data, default_flow_style=False, allow_unicode=True).decode("utf-8"))
         output.write("\n")
 
@@ -134,6 +151,7 @@ class RestructuredTextConverter(object):
 
 
 class MarkdownConverter(object):
+
     def get_extension(self):
         return 'md'
 
@@ -149,12 +167,12 @@ class MarkdownConverter(object):
 
 if __name__ == '__main__':
     # Output textile files in ./_posts
-    if os.path.isdir("content"):
+    if os.path.isdir("../content"):
         print "There's already a content directory here, "\
             "I'm not going to overwrite it."
         sys.exit(1)
     else:
-        os.mkdir("content")
+        os.mkdir("../content")
     converter = MarkdownConverter()
 
     post_num = 1
@@ -162,19 +180,20 @@ if __name__ == '__main__':
         data = {
             "title": post.post_title,
             "date": post.post_date.strftime("%Y-%m-%d %H:%M"),
-            # "categories": ", ".join(post.categories()),
-            # "tags": ", ".join(post.tags()),
+            "categories": ", ".join(post.categories()),
+            "tags": ", ".join(post.tags()),
             "guid": post.guid
         }
         fn = u"{0}-{1}.{2}".format(
             str(post_num).zfill(4),
             re.sub(r'[/!:?\-,\']', '', post.post_title.strip().lower().replace(' ', '_')),
             converter.get_extension())
-        print "writing _posts/" + fn
+        print "writing ../content/" + fn
         try:
-            f = codecs.open(os.path.join("content", fn), "w", "utf-8")
+            f = codecs.open(os.path.join("..", "content", fn), "w", "utf-8")
             converter.fill(data, post.post_content.replace(u"\r\n", u"\n"), f)
             f.close()
         except:
-            import ipdb; ipdb.set_trace()
+            import ipdb
+            ipdb.set_trace()
         post_num += 1

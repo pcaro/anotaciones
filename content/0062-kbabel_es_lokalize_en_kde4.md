@@ -1,5 +1,7 @@
 Date: 2010-03-25 10:41
 Guid: http://www.pablocaro.es/?p=233
+Tags: 
+Categories: Programación, Yaco
 Title: Kbabel es Lokalize en kde4
 
 Ya era la segunda vez que no encontraba el maravilloso

@@ -1,5 +1,7 @@
 Date: 2010-01-04 14:31
 Guid: http://www.pablocaro.es/?p=217
+Tags: 
+Categories: Sin categoría
 Title: Descargar código de un repositorio publicado con gitweb
 
 Quería probar un software disponible en la red ([Perfect Sale](http://www

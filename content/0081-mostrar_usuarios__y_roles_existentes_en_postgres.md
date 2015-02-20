@@ -1,5 +1,7 @@
 Date: 2012-10-24 02:13
 Guid: http://www.pablocaro.es/?p=348
+Tags: 
+Categories: Yaco, Sistemas
 Title: Mostrar Usuarios  y roles existentes en postgres
 
 Se utiliza **\du**

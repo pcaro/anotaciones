@@ -1,5 +1,7 @@
 Date: 2011-03-04 03:49
 Guid: http://www.pablocaro.es/?p=278
+Tags: 
+Categories: Linux, Zope
 Title: scp con compresión
 
 La mejor forma de descargar una zodb:

@@ -1,5 +1,7 @@
 Date: 2009-02-01 13:00
 Guid: http://www.pablocaro.es/?p=51
+Tags: 
+Categories: Linux
 Title: Importar claves gpg de repositorios ubuntu
 
 Ante un error como este: W: GPG error: http://ppa.launchpad.net intrepid

@@ -1,5 +1,7 @@
 Date: 2009-07-07 11:18
 Guid: http://www.pablocaro.es/?p=116
+Tags: 
+Categories: Yaco, Sistemas
 Title: Mostrar el código de funciones en postgres
 
 Puede resultar muy util ver el código de algún procedimiento almacenado en

@@ -1,5 +1,7 @@
 Date: 2010-07-14 01:33
 Guid: http://www.pablocaro.es/?p=244
+Tags: 
+Categories: Zope
 Title: Restaurando objectos plone borrados
 
 Para esas situaciones donde no funciona el undo, la salvación se llama

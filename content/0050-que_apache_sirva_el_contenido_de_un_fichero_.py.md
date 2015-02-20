@@ -1,5 +1,7 @@
 Date: 2009-10-13 05:36
 Guid: http://www.pablocaro.es/?p=161
+Tags: 
+Categories: Sin categoría
 Title: Que apache sirva el contenido de un fichero .py
 
 Para que el servidor apache de [webfaction](http://www.webfaction.com/) no

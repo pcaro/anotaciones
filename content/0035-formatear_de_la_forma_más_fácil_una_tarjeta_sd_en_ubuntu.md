@@ -1,5 +1,7 @@
 Date: 2009-01-30 13:44
 Guid: http://www.pablocaro.es/?p=49
+Tags: 
+Categories: Sin categoría
 Title: Formatear de la forma más fácil una tarjeta SD en ubuntu
 
 Otra anotación para recordar en un futuro. La forma más fácil de formatear una

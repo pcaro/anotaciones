@@ -1,5 +1,7 @@
 Date: 2009-12-10 06:32
 Guid: http://www.pablocaro.es/?p=204
+Tags: 
+Categories: Linux
 Title: Que las aplicaciones GTK+ luzcan mejor en kubuntu karmic
 
 Basta con seguir este [tutorial](http://marcosaruj.com/archives/401), que

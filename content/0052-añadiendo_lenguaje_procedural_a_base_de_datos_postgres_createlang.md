@@ -1,5 +1,7 @@
 Date: 2009-11-12 05:20
 Guid: http://www.pablocaro.es/?p=181
+Tags: 
+Categories: Yaco, Sistemas
 Title: Añadiendo lenguaje procedural a base de datos postgres: createlang
 
 Postgres 8.3 incluye 4 [lenguajes

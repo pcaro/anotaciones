@@ -1,5 +1,7 @@
 Date: 2009-07-07 16:59
 Guid: http://www.pablocaro.es/?p=68
+Tags: 
+Categories: Sin categoría
 Title: Manejo de árboles en bases de datos
 
 Hay cuatro formas de guardar árboles en bases de datos relacionales:

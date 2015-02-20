@@ -1,5 +1,7 @@
 Date: 2009-12-17 05:06
 Guid: http://www.pablocaro.es/?p=212
+Tags: 
+Categories: Sistemas
 Title: Crear base de datos mysql a partir de un backup 
 
 Primero crear la base de datos:

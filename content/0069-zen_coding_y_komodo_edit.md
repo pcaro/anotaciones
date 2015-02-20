@@ -1,5 +1,7 @@
 Date: 2010-10-15 14:41
 Guid: http://www.pablocaro.es/?p=257
+Tags: 
+Categories: Programación, Zope
 Title: Zen Coding y komodo edit
 
 Mi editor favorito [Komodo Edit](http://www.activestate.com/komodo-edit) tiene

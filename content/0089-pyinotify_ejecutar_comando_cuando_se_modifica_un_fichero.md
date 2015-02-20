@@ -1,5 +1,7 @@
 Date: 2013-04-03 05:09
 Guid: http://www.pablocaro.es/?p=379
+Tags: 
+Categories: Python, Linux, Yaco
 Title: pyinotify: Ejecutar comando cuando se modifica un fichero
 
 Ya he comentado por aquí un comando _when-changed_. Ahora anoto otra

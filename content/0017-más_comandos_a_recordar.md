@@ -1,5 +1,7 @@
 Date: 2008-04-09 11:54
 Guid: http://www.pablocaro.es/mas-comandos-a-recordar/
+Tags: 
+Categories: Yaco, Sistemas
 Title: Más comandos a recordar
 
 Otra nota para que no se me vuelvan a olvidar algunos de los super-mini-

@@ -1,5 +1,7 @@
 Date: 2008-07-23 05:07
 Guid: http://www.pablocaro.es/grabar-cd-de-800mb-en-linux/
+Tags: 
+Categories: Sistemas
 Title: Grabar CD de 800MB en linux
 
 Tenía que grabar unos datos. Eran 730MB aproximadamente, con un CD habitual

@@ -1,5 +1,7 @@
 Date: 2009-09-20 08:07
 Guid: http://www.pablocaro.es/?p=146
+Tags: 
+Categories: Sin categoría
 Title: Cambiar el aspecto de kdm: kdm theme generator
 
 [ KDM Theme Generator](http://www.kde-

@@ -1,5 +1,7 @@
 Date: 2009-12-09 03:18
 Guid: http://www.pablocaro.es/?p=200
+Tags: 
+Categories: Linux, Sistemas
 Title: Añadir PPA desde la consola a ubuntu karmic
 
 Para añadir un PPA a ubuntu karmic desde la consola basta con:

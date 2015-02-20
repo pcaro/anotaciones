@@ -1,5 +1,7 @@
 Date: 2008-12-01 14:06
 Guid: http://www.pablocaro.es/?p=43
+Tags: 
+Categories: Linux
 Title: La potencia de los permisos
 
 Recordar los comandos para controlar las listas de control de acceso en linux.

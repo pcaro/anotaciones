@@ -1,5 +1,7 @@
 Date: 2007-10-06 04:41
 Guid: http://www.pablocaro.es/?p=12
+Tags: 
+Categories: Proyecto informático
 Title: Comienzo de mi proyecto fin de carrera
 
 Esta es la primera de una serie de entradas sobre mi proyecto fin de carrera.

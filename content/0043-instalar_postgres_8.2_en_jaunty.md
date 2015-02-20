@@ -1,5 +1,7 @@
 Date: 2009-06-30 10:52
 Guid: http://www.pablocaro.es/?p=107
+Tags: 
+Categories: Linux, Yaco, Sistemas
 Title: Instalar postgres 8.2 en jaunty
 
 Postgres 8.3 no me permitía crear una base de datos con un encoding distinto a

@@ -1,5 +1,7 @@
 Date: 2010-07-25 05:33
 Guid: http://www.pablocaro.es/?p=250
+Tags: 
+Categories: Sistemas, Zope
 Title: Zope y noatime
 
 Una fácil mejora para el rendimiento de un zope con problemas de acceso a

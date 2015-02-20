@@ -1,5 +1,7 @@
 Date: 2008-09-11 16:24
 Guid: http://www.pablocaro.es/editores-mostrar-los-numeros-de-linea-en-emacs-y-en-jed/
+Tags: 
+Categories: Sin categoría
 Title: Editores: Mostrar los números de linea en emacs y en jed
 
 Para evitar esos odiosos porcentajes cuandos editas un fichero (¿de verdad le

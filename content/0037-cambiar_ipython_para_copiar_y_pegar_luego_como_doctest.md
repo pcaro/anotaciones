@@ -1,5 +1,7 @@
 Date: 2009-02-02 04:23
 Guid: http://www.pablocaro.es/?p=53
+Tags: 
+Categories: Python, Yaco
 Title: Cambiar ipython para copiar y pegar luego como doctest
 
 Otra de las ordenes que nunca recuerdo. Estando dentro de

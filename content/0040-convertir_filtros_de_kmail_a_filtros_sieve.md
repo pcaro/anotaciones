@@ -1,5 +1,7 @@
 Date: 2009-06-06 14:13
 Guid: http://www.pablocaro.es/?p=86
+Tags: 
+Categories: Python, Linux, Yaco, Sistemas
 Title: Convertir filtros de kmail a filtros sieve
 
 No hace mucho que dejé de usar

@@ -1,5 +1,7 @@
 Date: 2008-02-12 07:21
 Guid: http://www.pablocaro.es/rendimiento-y-monitorizacion-de-procesos-en-windows/
+Tags: 
+Categories: Sistemas
 Title: Rendimiento y Monitorización de procesos en windows
 
 Prácticamente nunca uso windows, y por trabajo, cuando tengo que hacerlo es

@@ -1,5 +1,7 @@
 Date: 2008-11-12 13:47
 Guid: http://www.pablocaro.es/reproducir-flash-con-opera-en-ubuntu/
+Tags: 
+Categories: Sin categoría
 Title: Reproducir flash con Opera en Ubuntu
 
 Traducción de un [comentario.](http://www.pablocaro.es/Often times Opera

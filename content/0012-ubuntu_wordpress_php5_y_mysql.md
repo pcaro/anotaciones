@@ -1,5 +1,7 @@
 Date: 2007-11-25 06:03
 Guid: http://www.pablocaro.es/?p=17
+Tags: 
+Categories: Sin categoría
 Title: ubuntu, wordpress, php5 y mysql
 
 Configurando un wordpress local para pruebas (con lighttpd), me encuentro con

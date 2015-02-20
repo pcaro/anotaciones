@@ -1,5 +1,7 @@
 Date: 2009-03-30 06:04
 Guid: http://www.pablocaro.es/?p=55
+Tags: 
+Categories: Yaco
 Title: Comandos útiles en la consola de postgres (pgsql)
 
 Otra de las cosas que simpre olvido. Así que lo anoto. Para sacar el resultado

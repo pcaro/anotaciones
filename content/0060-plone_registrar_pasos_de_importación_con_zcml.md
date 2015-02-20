@@ -1,5 +1,7 @@
 Date: 2010-01-27 04:38
 Guid: http://www.pablocaro.es/?p=223
+Tags: 
+Categories: Yaco
 Title: Plone: Registrar pasos de importación con zcml
 
 Registrar un paso de importación con xml el el profile, puede fallar cuando

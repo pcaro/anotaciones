@@ -1,5 +1,7 @@
 Date: 2010-09-18 06:06
 Guid: http://www.pablocaro.es/?p=253
+Tags: 
+Categories: Programación, Zope
 Title: Progreso en un reindexado de zope
 
 Visto en el producto contentleadimage:

@@ -1,5 +1,7 @@
 Date: 2009-05-21 10:41
 Guid: http://www.pablocaro.es/?p=62
+Tags: 
+Categories: Web
 Title: Contenedor de Floats: How to IE & FF
 
 Espero no olvidar esto más así que dejo la notita. Si tienes un elemento (por

@@ -1,5 +1,7 @@
 Date: 2012-10-24 03:18
 Guid: http://www.pablocaro.es/?p=315
+Tags: 
+Categories: Linux
 Title: reducir recursos de KDE
 
 Mágnifica entrada que explica como acelerar un poco tu sistema kde:

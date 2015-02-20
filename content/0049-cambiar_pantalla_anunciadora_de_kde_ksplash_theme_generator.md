@@ -1,5 +1,7 @@
 Date: 2009-09-20 08:22
 Guid: http://www.pablocaro.es/?p=150
+Tags: 
+Categories: Sin categoría
 Title: Cambiar pantalla anunciadora de kde: Ksplash theme generator
 
 Lo dicho en la nota anterior sobre [KDM Theme Generator](http://www.kde-

@@ -1,5 +1,7 @@
 Date: 2009-01-30 08:45
 Guid: http://www.pablocaro.es/?p=47
+Tags: Opera
+Categories: Programación
 Title: Siempre el último Dragonfly en Opera
 
 Para tener la versión de desarrollo de dragon fly en el opera basta con seguir

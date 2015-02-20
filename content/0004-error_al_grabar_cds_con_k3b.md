@@ -1,5 +1,7 @@
 Date: 2006-12-18 05:18
 Guid: http://www.pablocaro.es/?p=7
+Tags: 
+Categories: Linux, Yaco
 Title: Error al grabar CDs con k3b
 
 Tengo un Dell latitude D610 y kubuntu edgy. Desde dapper siempre me ha

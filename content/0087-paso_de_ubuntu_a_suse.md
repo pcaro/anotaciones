@@ -1,5 +1,7 @@
 Date: 2013-02-01 02:17
 Guid: http://www.pablocaro.es/?p=366
+Tags: 
+Categories: Linux, Yaco
 Title: Paso de ubuntu a suse
 
 En mi nuevo portátil del trabajo he pasado de Ubuntu a OpenSuse. Una

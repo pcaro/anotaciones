@@ -1,5 +1,7 @@
 Date: 2007-08-25 10:43
 Guid: http://www.pablocaro.es/?p=11
+Tags: 
+Categories: Personal
 Title: Mi nueva cámara
 
 Me acabo de compar una cámara digital compacta. No soy muy dado a fotos pero

@@ -1,5 +1,7 @@
 Date: 2008-07-22 09:43
 Guid: http://www.pablocaro.es/buscando-una-fuente-para-escribir-codigo/
+Tags: 
+Categories: Programación, Yaco
 Title: Buscando una fuente para escribir código
 
 Varios enlaces interesantes sobre este tema.
