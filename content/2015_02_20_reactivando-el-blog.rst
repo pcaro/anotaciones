@@ -11,7 +11,7 @@ Reactivando el blog
 
 
 Después de casi mucho tiempo inactivo (incluso offline) he decido que es el momento de
-relanzar este blog para que se sirva principalmente para lo de siempre: como bloc de notas.
+relanzar este blog para lo de siempre: como bloc de notas.
 
 He recuperado un fichero dump sql que tenía como copía de seguridad (desfasada eso sí) y con un pequeño
 script he creado este blog que ahora pasa a funcionar con `Pelican`_ (abandona Wordpress) y a alojarse en github pages.

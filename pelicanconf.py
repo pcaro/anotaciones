@@ -116,7 +116,7 @@ PROJECTS = [
     {
         'name': 'trac2rst',
         'url':
-            'http://oncrashreboot.com/pelican-elegant',
+            'https://github.com/pcaro/trac2rst',
             'description': 'I use trac2rst to help me in the task to pass'
             ' documentacion from trac to sphinx'},
     {
