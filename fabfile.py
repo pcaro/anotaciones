@@ -58,7 +58,7 @@ def serve():
     server.serve_forever()
 
 
-def reserve():
+def devserve():
     build()
     serve()
 
