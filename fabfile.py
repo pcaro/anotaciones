@@ -20,11 +20,6 @@ production = 'root@localhost:22'
 dest_path = '/var/www'
 
 
-HERE = os.path.dirname(__file__)
-sys.path.append(HERE)
-from pelicanconf import THEME
-
-
 def clean():
     if os.path.isdir(DEPLOY_PATH):
         local('rm -rf {deploy_path}'.format(**env))
@@ -119,8 +114,11 @@ def write(title):
     print("File created -> " + f_create)
 
 
-def develop(port=8080):
+def develop(port=7000):
     "Develop using livereload"
+    HERE = os.path.dirname(__file__)
+    sys.path.append(HERE)
+    from pelicanconf import THEME
     rebuild()
     os.chdir('output')
     server = livereload.Server()
