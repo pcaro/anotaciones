@@ -27,7 +27,7 @@ Then download theme and plugins::
 **Develop**
 For develop, use::
 
-    $ fab develop_live
+    $ fab develop
 
 **Live reloading**
 
