@@ -16,12 +16,12 @@ RELATIVE_URLS = False
 FEED_ALL_ATOM = 'feeds/all.atom.xml'
 CATEGORY_FEED_ATOM = 'feeds/%s.atom.xml'
 
-DELETE_OUTPUT_DIRECTORY = True
+DELETE_OUTPUT_DIRECTORY = False
 
 # Following items are often useful when publishing
 
-# DISQUS_SITENAME = ""
-# GOOGLE_ANALYTICS = ""
+DISQUS_SITENAME = "anotaciones"
+GOOGLE_ANALYTICS = "UA-60035125-1"
 
 # Feeds
 FEED_ALL_ATOM = 'feeds/all.atom.xml'

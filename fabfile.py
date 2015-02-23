@@ -16,8 +16,8 @@ env.deploy_path = 'output'
 DEPLOY_PATH = env.deploy_path
 
 # Remote server configuration
-production = 'root@localhost:22'
-dest_path = '/var/www'
+# production = 'root@localhost:22'
+# dest_path = '/var/www'
 
 
 def clean():
@@ -79,9 +79,9 @@ TEMPLATE = """
 {hashes}
 
 :date: {year}-{month}-{day} {hour}:{minute:02d}
-:tags:
+:tags: django, python
 :lang: es
-:category:
+:category: Progamación
 :slug: {slug}
 :summary:
 :status: draft
