@@ -15,10 +15,6 @@ from fabric.api import *
 env.deploy_path = 'output'
 DEPLOY_PATH = env.deploy_path
 
-# Remote server configuration
-# production = 'root@localhost:22'
-# dest_path = '/var/www'
-
 
 def clean():
     if os.path.isdir(DEPLOY_PATH):
@@ -60,18 +56,6 @@ def devserve():
 
 def preview():
     local('pelican -s publishconf.py')
-
-
-@hosts(production)
-def publish():
-    local('pelican -s publishconf.py')
-    project.rsync_project(
-        remote_dir=dest_path,
-        exclude=".DS_Store",
-        local_dir=DEPLOY_PATH.rstrip('/') + '/',
-        delete=True,
-        extra_opts='-c',
-    )
 
 
 TEMPLATE = """
