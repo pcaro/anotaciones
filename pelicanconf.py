@@ -7,7 +7,16 @@ SITENAME = u"""<span style="color:#AA1032;">Anotaciones</span> <span style="colo
 # SITENAME = u'Anotaciones de Pablo Caro'
 SITEURL = ''
 
+ARTICLE_PATH = "articles/"
 PATH = 'content'
+DELETE_OUTPUT_DIRECTORY = True
+OUTPUT_RETENTION = ['.git', '.gitignore', 'README.rst', 'CNAME', 'robots.txt']
+STATIC_PATHS = ['theme/images', 'images', 'extras']
+EXTRA_PATH_METADATA = {
+    'extras/CNAME': {'path': 'CNAME'},
+    'extras/robots.txt': {'path': 'robots.txt'},
+}
+
 
 TIMEZONE = 'Europe/Paris'
 DISQUS_SITENAME = 'anotaciones'
@@ -81,7 +90,6 @@ PLUGINS = ['i18n_subsites', 'extended_sitemap', 'extract_toc', 'tipue_search',
            'code_include', 'share_post', 'twitter_bootstrap_rst_directives']
 MD_EXTENSIONS = ['codehilite(css_class=highlight)', 'extra', 'headerid', 'toc']
 DIRECT_TEMPLATES = (('index', 'tags', 'categories', 'archives', 'search', '404'))
-STATIC_PATHS = ['theme/images', 'images']
 TAG_SAVE_AS = ''
 CATEGORY_SAVE_AS = ''
 AUTHOR_SAVE_AS = ''
