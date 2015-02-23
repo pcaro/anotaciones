@@ -9,23 +9,19 @@ import livereload
 import SimpleHTTPServer
 from fabric.api import *
 
-# Local path configuration (can be absolute or relative to fabfile)
-env.deploy_path = 'output'
-DEPLOY_PATH = env.deploy_path
-
 
 def _build():
-    local('pelican -s pelicanconf.py')
+    local('pelican -s pelicanconf.py -o output_dev')
 
 
 def _regenerate():
-    local('pelican -r -s pelicanconf.py')
+    local('pelican -r -s pelicanconf.py -o output_dev')
 
 
 def _serve():
-    os.chdir(env.deploy_path)
+    os.chdir('output_dev')
 
-    PORT = 8000
+    PORT = 7000
 
     class AddressReuseTCPServer(SocketServer.TCPServer):
         allow_reuse_address = True
@@ -37,8 +33,8 @@ def _serve():
 
 
 def develop():
-    _regenerate()
     _serve()
+    _regenerate()
 
 
 def develop_live(port=7000):
@@ -47,13 +43,13 @@ def develop_live(port=7000):
     sys.path.append(HERE)
     from pelicanconf import THEME
     _build()
-    os.chdir('output')
+    os.chdir('output_dev')
     server = livereload.Server()
     server.watch('../content/*',
-                 livereload.shell('pelican -s ../pelicanconf.py -o ../{}'.format(env.deploy_path)))
+                 livereload.shell('pelican -s ../pelicanconf.py -o ../output_dev'))
 
     server.watch(THEME,
-                 livereload.shell('pelican -s ../pelicanconf.py -o ../output'))
+                 livereload.shell('pelican -s ../pelicanconf.py -o ../output_dev'))
     server.watch('*.html')
     server.watch('*.css')
     server.serve(liveport=35729, port=port)
@@ -103,7 +99,7 @@ TEMPLATE = """
 def write(title):
     today = datetime.today()
     slug = title.lower().strip().replace(' ', '-')
-    f_create = "content/{}_{:0>2}_{:0>2}_{}.rst".format(
+    f_create = "content/articles/{}_{:0>2}_{:0>2}_{}.rst".format(
         today.year, today.month, today.day, slug)
     t = TEMPLATE.strip().format(title=title,
                                 hashes='#' * len(title),
