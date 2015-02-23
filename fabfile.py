@@ -14,15 +14,15 @@ env.deploy_path = 'output'
 DEPLOY_PATH = env.deploy_path
 
 
-def build():
+def _build():
     local('pelican -s pelicanconf.py')
 
 
-def regenerate():
+def _regenerate():
     local('pelican -r -s pelicanconf.py')
 
 
-def serve():
+def _serve():
     os.chdir(env.deploy_path)
 
     PORT = 8000
@@ -37,8 +37,8 @@ def serve():
 
 
 def develop():
-    regenerate()
-    serve()
+    _regenerate()
+    _serve()
 
 
 def develop_live(port=7000):
@@ -46,7 +46,7 @@ def develop_live(port=7000):
     HERE = os.path.dirname(__file__)
     sys.path.append(HERE)
     from pelicanconf import THEME
-    rebuild()
+    _build()
     os.chdir('output')
     server = livereload.Server()
     server.watch('../content/*',

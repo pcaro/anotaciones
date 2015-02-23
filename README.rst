@@ -24,20 +24,30 @@ Then download theme and plugins::
     git clone https://github.com/getpelican/pelican-plugins.git plugins
 
 
+**Develop**
+For develop, use::
+
+    $ fab develop_live
+
 **Live reloading**
 
 If you'd like to take advantage of live reloading you can do so with the included fabric task. Make sure requirements are installed and virtualenv activated. Then, in the project root run::
 
-    $ fab develop
+    $ fab develop_live
 
 
 To get live reloading to work you'll probably need to install an `appropriate browser extension`_
 
+** Production and github pages **
+To send to github pages, first regenerate in production mode (create feeds for example)::
+
+    $ fab production sent_to_githubpages
+
 **New entries**
 
-I have a *make_entry* task too. Use it::
+I have a *write* task too. Use it::
 
-    $ fab make_entry:"un titulo"
+    $ fab write:"un titulo"
 
 And a new file (restructured text) is created with de actual date and contents like::
 
