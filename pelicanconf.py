@@ -15,6 +15,7 @@ STATIC_PATHS = ['theme/images', 'images', 'extras']
 EXTRA_PATH_METADATA = {
     'extras/CNAME': {'path': 'CNAME'},
     'extras/robots.txt': {'path': 'robots.txt'},
+    'extras/README.rst': {'path': 'README.rst'},
 }
 
 
