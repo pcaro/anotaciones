@@ -61,14 +61,14 @@ def production():
 
 def sent_to_githubpages(publish_drafts=False):
 
-    try:
-        if os.path.exists('output/drafts'):
-            if not publish_drafts:
-                local('rm -rf output/drafts')
-    except Exception:
-        pass
+    # try:
+    #     if os.path.exists('output/drafts'):
+    #         if not publish_drafts:
+    #             local('rm -rf output/drafts')
+    # except Exception:
+    #     pass
 
-    # production()
+    production()
     os.chdir('output')
     local('git add *')
     local('git ci')
