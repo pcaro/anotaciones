@@ -62,7 +62,7 @@ DEFAULT_PAGINATION = 5
 PLUGIN_PATHS = ['plugins']
 
 # Uncomment following line if you want document-relative URLs when developing
-# RELATIVE_URLS = True
+RELATIVE_URLS = True
 
 # THEME = 'pelican-themes/mg'
 # THEME = 'pelican-themes/Just-Read'  # Un buen punto de partida. Necesita cosas de elegant

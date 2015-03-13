@@ -14,7 +14,7 @@ def _build():
     local('pelican -s pelicanconf.py -o output_dev')
 
 
-def _regenerate():
+def regenerate():
     local('pelican -r -s pelicanconf.py -o output_dev')
 
 
@@ -33,8 +33,8 @@ def _serve():
 
 
 def develop():
+    _build()
     _serve()
-    _regenerate()
 
 
 def develop_live(port=7000):
