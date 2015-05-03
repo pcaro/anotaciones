@@ -11,7 +11,7 @@ Instalar InSync en Opensuse
 
 Llevo varios dias probando `insync`_ y creo que lo voy a pagar con gusto.
 
-.. _insync: https://www.insynchq.com/downloads
+.. _insync: https://www.insynchq.com/
 
 Me he descargado dos paquetes, uno para el menu contextual de dolphin y otro (el de fedora) para el propio programa en sí::
 
