@@ -3,7 +3,6 @@ Completar antes de publicar
 
 - Logo
 - Foto
-- Analitycs
 
 
 Ideas para escibir en el blog
