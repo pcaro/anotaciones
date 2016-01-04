@@ -4,7 +4,7 @@ Repitiendo una función con hilos
 :date: 2015-5-3 21:00
 :tags: python
 :lang: es
-:category: Progamación
+:category: Programación
 :slug: repetiendo-una-función-con-hilos
 :summary: Vamos a utilizar hilos en python para ejecutar periodicamente una función
 

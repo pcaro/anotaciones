@@ -3,7 +3,7 @@ Cierra Google Code
 
 :date: 2015-3-13 17:11
 :tags: python
-:category: Progamación
+:category: Programación
 :slug: cierra-google-code
 
 

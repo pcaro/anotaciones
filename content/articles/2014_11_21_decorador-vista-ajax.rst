@@ -4,7 +4,7 @@ Decorador vista ajax
 :date: 2014-11-21 11:12
 :tags: python, django
 :lang: es
-:category: Progamación
+:category: Programación
 :slug: decorador-vista-ajax
 
 Para obligar que una vista `django`_ sea llamada sólo mediante llamamas AJAX.
