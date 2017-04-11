@@ -62,6 +62,8 @@ And a new file (restructured text) is created with de actual date and contents l
     :summary:
     :status: draft
 
+
+A good editor (with preview) is https://github.com/retext-project/retext
 Note: A good rst previewer is http://rst.ninjs.org/ or you can use restview_
 
 It's time to write entries!!!
