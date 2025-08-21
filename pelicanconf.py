@@ -119,7 +119,7 @@ ABOUT_ME = "Sobre mí"
 
 # SMO
 TWITTER_USERNAME = "pcaro"
-FEATURED_IMAGE = SITEURL + "/theme/images/apple-touch-icon-152x152.png"
+# FEATURED_IMAGE defined in publishconf.py for production
 
 SITESUBTITLE = "Anotaciones"
 
