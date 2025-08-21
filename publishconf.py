@@ -21,6 +21,9 @@ GOOGLE_ANALYTICS = "UA-60035125-1"
 # Disable typogrify to avoid SyntaxWarnings in Python 3.13
 TYPOGRIFY = False
 
+# Fix FEATURED_IMAGE for production
+FEATURED_IMAGE = SITEURL + "/theme/images/apple-touch-icon-152x152.png"
+
 # Feeds
 FEED_ALL_ATOM = "feeds/all.atom.xml"
 FEED_ALL_RSS = "feeds/all.rss.xml"
