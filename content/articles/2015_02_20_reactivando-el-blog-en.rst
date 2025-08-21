@@ -1,7 +1,7 @@
 Blogging again
 ##############
 
-:date: 2015-2-20 21:40
+:date: 2015-02-20 21:40
 :tags: python
 :lang: en
 :category: Personal
