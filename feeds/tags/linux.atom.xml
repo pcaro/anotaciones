@@ -1,0 +1,673 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Anotaciones por Pablo Caro - linux</title><link href="http://pablocaro.es/" rel="alternate"></link><link href="http://pablocaro.es/feeds/tags/linux.atom.xml" rel="self"></link><id>http://pablocaro.es/</id><updated>2017-04-11T14:07:00+02:00</updated><subtitle>Anotaciones</subtitle><entry><title>MobaXterm. Mucho más que un cliente ssh</title><link href="http://pablocaro.es/mobaxterm-mucho-m%C3%A1s-que-un-cliente-ssh" rel="alternate"></link><published>2017-04-11T14:07:00+02:00</published><updated>2017-04-11T14:07:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2017-04-11:/mobaxterm-mucho-más-que-un-cliente-ssh</id><summary type="html"></summary><content type="html">&lt;p&gt;Como sabéis, no soy de Windows. Linuxero desde hace años, tras pasar por múltiples sabores de Debian, ahora lo mío es &lt;a class="reference external" href="https://es.opensuse.org/Portal:Tumbleweed"&gt;OpenSuse Tumbleweed&lt;/a&gt;. Pero también tengo un equipo de trabajo Windows 7 que uso ocasionalmente.
+Para eso viene muy bien &lt;a class="reference external" href="http://mobaxterm.mobatek.net/"&gt;MobaXterm&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="http://mobaxterm.mobatek.net/"&gt;MobaXterm&lt;/a&gt; es un conjunto de aplicaciones muy interesantes para trabajar como en Linux y conectarte a equipos remotos:
+terminal, cliente ssh, servidor X, rdp, vnc, etc.&lt;/p&gt;
+</content><category term="Trucos"></category><category term="linux"></category></entry><entry><title>Correo no leído en pestaña principal de gmail</title><link href="http://pablocaro.es/gmail_correo_no_leido_solo_en_principal" rel="alternate"></link><published>2016-07-28T18:00:00+02:00</published><updated>2016-07-28T18:00:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2016-07-28:/gmail_correo_no_leido_solo_en_principal</id><summary type="html">&lt;p&gt;Lo de siempre, otra nota recordatoria.&lt;/p&gt;
+&lt;p&gt;Si filtras el correo en gmail por no leído (&lt;code&gt;is:unread&lt;/code&gt;), obtienes todo el correo no leído,
+que en mi caso siempre incluye cientos de notificaciones, social, promociones o foros que no suele ser lo que busco.&lt;/p&gt;
+&lt;p&gt;Para buscar los correos no leídos &lt;em&gt;de …&lt;/em&gt;&lt;/p&gt;</summary><content type="html">&lt;p&gt;Lo de siempre, otra nota recordatoria.&lt;/p&gt;
+&lt;p&gt;Si filtras el correo en gmail por no leído (&lt;code&gt;is:unread&lt;/code&gt;), obtienes todo el correo no leído,
+que en mi caso siempre incluye cientos de notificaciones, social, promociones o foros que no suele ser lo que busco.&lt;/p&gt;
+&lt;p&gt;Para buscar los correos no leídos &lt;em&gt;de la pestaña Principal&lt;/em&gt; la consulta a realizar es esta:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+is:inbox -category:(updates OR promotions OR social OR forums) is:unread
+&lt;/pre&gt;
+</content><category term="Trucos"></category><category term="linux"></category></entry><entry><title>Determinar slots de RAM en uso en Linux</title><link href="http://pablocaro.es/determinar-slots-ram-uso-linux" rel="alternate"></link><published>2016-07-13T20:28:00+02:00</published><updated>2016-07-13T20:28:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2016-07-13:/determinar-slots-ram-uso-linux</id><summary type="html">&lt;p&gt;Comandos de Linux para determinar cuántos slots de RAM están ocupados y su capacidad usando dmidecode, lshw y técnicas de inspección de hardware&lt;/p&gt;</summary><content type="html">&lt;p&gt;¿Cuántos &lt;strong&gt;slots de RAM tienes ocupados&lt;/strong&gt; y cuántos libres? Linux proporciona herramientas para inspeccionar la configuración de memoria sin abrir el ordenador.&lt;/p&gt;
+&lt;h2 id="dmidecode-la-herramienta-principal"&gt;dmidecode: La herramienta principal&lt;a class="headerlink" href="#dmidecode-la-herramienta-principal" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="informacion-basica-de-memoria"&gt;Información básica de memoria&lt;a class="headerlink" href="#informacion-basica-de-memoria" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Ver toda la información de memoria&lt;/span&gt;
+sudo&lt;span class="w"&gt; &lt;/span&gt;dmidecode&lt;span class="w"&gt; &lt;/span&gt;-t&lt;span class="w"&gt; &lt;/span&gt;memory
+
+&lt;span class="c1"&gt;# Tipo específico de memoria (tabla 16)&lt;/span&gt;
+sudo&lt;span class="w"&gt; &lt;/span&gt;dmidecode&lt;span class="w"&gt; &lt;/span&gt;-t&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;16&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Solo los tamaños instalados&lt;/span&gt;
+sudo&lt;span class="w"&gt; &lt;/span&gt;dmidecode&lt;span class="w"&gt; &lt;/span&gt;-t&lt;span class="w"&gt; &lt;/span&gt;memory&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;grep&lt;span class="w"&gt; &lt;/span&gt;-i&lt;span class="w"&gt; &lt;/span&gt;size
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Salida típica&lt;/strong&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;Size&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;8192&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;MB&lt;/span&gt;
+&lt;span class="n"&gt;Size&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;8192&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;MB&lt;/span&gt;
+&lt;span class="n"&gt;Size&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;No&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Module&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Installed&lt;/span&gt;
+&lt;span class="n"&gt;Size&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;No&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Module&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Installed&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id="informacion-detallada-por-slot"&gt;Información detallada por slot&lt;a class="headerlink" href="#informacion-detallada-por-slot" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Información granular de cada slot (tabla 17)&lt;/span&gt;
+sudo&lt;span class="w"&gt; &lt;/span&gt;dmidecode&lt;span class="w"&gt; &lt;/span&gt;-t&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;17&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Resumen compacto&lt;/span&gt;
+sudo&lt;span class="w"&gt; &lt;/span&gt;dmidecode&lt;span class="w"&gt; &lt;/span&gt;-t&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;17&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;grep&lt;span class="w"&gt; &lt;/span&gt;-E&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;(Size|Locator|Speed|Type:)&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Información proporcionada&lt;/strong&gt;:
+- &lt;strong&gt;Locator&lt;/strong&gt;: Identificador físico del slot (DIMM_A1, DIMM_B1, etc.)
+- &lt;strong&gt;Size&lt;/strong&gt;: Capacidad instalada o "No Module Installed"
+- &lt;strong&gt;Type&lt;/strong&gt;: DDR3, DDR4, etc.
+- &lt;strong&gt;Speed&lt;/strong&gt;: Velocidad en MT/s&lt;/p&gt;
+&lt;h2 id="lshw-alternativa-con-formato-estructurado"&gt;lshw: Alternativa con formato estructurado&lt;a class="headerlink" href="#lshw-alternativa-con-formato-estructurado" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Información de memoria con lshw&lt;/span&gt;
+sudo&lt;span class="w"&gt; &lt;/span&gt;lshw&lt;span class="w"&gt; &lt;/span&gt;-class&lt;span class="w"&gt; &lt;/span&gt;memory
+
+&lt;span class="c1"&gt;# Solo memoria física (sin caché)&lt;/span&gt;
+sudo&lt;span class="w"&gt; &lt;/span&gt;lshw&lt;span class="w"&gt; &lt;/span&gt;-class&lt;span class="w"&gt; &lt;/span&gt;memory&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;grep&lt;span class="w"&gt; &lt;/span&gt;-A&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;10&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;System Memory&amp;quot;&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Formato más compacto&lt;/span&gt;
+sudo&lt;span class="w"&gt; &lt;/span&gt;lshw&lt;span class="w"&gt; &lt;/span&gt;-short&lt;span class="w"&gt; &lt;/span&gt;-class&lt;span class="w"&gt; &lt;/span&gt;memory
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="scripts-utiles-para-analisis"&gt;Scripts útiles para análisis&lt;a class="headerlink" href="#scripts-utiles-para-analisis" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="contador-de-slots-ocupados"&gt;Contador de slots ocupados&lt;a class="headerlink" href="#contador-de-slots-ocupados" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="ch"&gt;#!/bin/bash&lt;/span&gt;
+&lt;span class="nb"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;=== Análisis de slots de RAM ===&amp;quot;&lt;/span&gt;
+&lt;span class="nv"&gt;TOTAL_SLOTS&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;dmidecode&lt;span class="w"&gt; &lt;/span&gt;-t&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;17&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;grep&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Size:&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;wc&lt;span class="w"&gt; &lt;/span&gt;-l&lt;span class="k"&gt;)&lt;/span&gt;
+&lt;span class="nv"&gt;OCCUPIED_SLOTS&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;dmidecode&lt;span class="w"&gt; &lt;/span&gt;-t&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;17&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;grep&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Size:&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;grep&lt;span class="w"&gt; &lt;/span&gt;-v&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;No Module&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;wc&lt;span class="w"&gt; &lt;/span&gt;-l&lt;span class="k"&gt;)&lt;/span&gt;
+&lt;span class="nv"&gt;FREE_SLOTS&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;$((&lt;/span&gt;&lt;span class="nv"&gt;TOTAL_SLOTS&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;OCCUPIED_SLOTS&lt;/span&gt;&lt;span class="k"&gt;))&lt;/span&gt;
+
+&lt;span class="nb"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Slots totales: &lt;/span&gt;&lt;span class="nv"&gt;$TOTAL_SLOTS&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+&lt;span class="nb"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Slots ocupados: &lt;/span&gt;&lt;span class="nv"&gt;$OCCUPIED_SLOTS&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;
+&lt;span class="nb"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Slots libres: &lt;/span&gt;&lt;span class="nv"&gt;$FREE_SLOTS&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id="resumen-detallado"&gt;Resumen detallado&lt;a class="headerlink" href="#resumen-detallado" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="ch"&gt;#!/bin/bash&lt;/span&gt;
+&lt;span class="nb"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;=== Configuración actual de RAM ===&amp;quot;&lt;/span&gt;
+sudo&lt;span class="w"&gt; &lt;/span&gt;dmidecode&lt;span class="w"&gt; &lt;/span&gt;-t&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;17&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;awk&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;
+&lt;span class="s1"&gt;/Memory Device/,/^$/ {&lt;/span&gt;
+&lt;span class="s1"&gt;    if(/Locator:/) locator=$2&lt;/span&gt;
+&lt;span class="s1"&gt;    if(/Size:/ &amp;amp;&amp;amp; !/No Module/) {&lt;/span&gt;
+&lt;span class="s1"&gt;        size=$2&amp;quot; &amp;quot;$3&lt;/span&gt;
+&lt;span class="s1"&gt;        print locator&amp;quot;: &amp;quot;size&lt;/span&gt;
+&lt;span class="s1"&gt;    }&lt;/span&gt;
+&lt;span class="s1"&gt;    if(/Size:.*No Module/) print locator&amp;quot;: Vacío&amp;quot;&lt;/span&gt;
+&lt;span class="s1"&gt;}&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="informacion-adicional-util"&gt;Información adicional útil&lt;a class="headerlink" href="#informacion-adicional-util" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="capacidad-maxima-soportada"&gt;Capacidad máxima soportada&lt;a class="headerlink" href="#capacidad-maxima-soportada" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Máxima capacidad total&lt;/span&gt;
+sudo&lt;span class="w"&gt; &lt;/span&gt;dmidecode&lt;span class="w"&gt; &lt;/span&gt;-t&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;16&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;grep&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Maximum Capacity&amp;quot;&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Número máximo de dispositivos&lt;/span&gt;
+sudo&lt;span class="w"&gt; &lt;/span&gt;dmidecode&lt;span class="w"&gt; &lt;/span&gt;-t&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;16&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;grep&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Number Of Devices&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id="verificacion-de-velocidad-y-tipo"&gt;Verificación de velocidad y tipo&lt;a class="headerlink" href="#verificacion-de-velocidad-y-tipo" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Velocidad configurada&lt;/span&gt;
+sudo&lt;span class="w"&gt; &lt;/span&gt;dmidecode&lt;span class="w"&gt; &lt;/span&gt;-t&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;17&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;grep&lt;span class="w"&gt; &lt;/span&gt;-E&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;(Speed|Configured)&amp;quot;&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Tipo de memoria&lt;/span&gt;
+sudo&lt;span class="w"&gt; &lt;/span&gt;dmidecode&lt;span class="w"&gt; &lt;/span&gt;-t&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;17&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;grep&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Type:&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;grep&lt;span class="w"&gt; &lt;/span&gt;-v&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Error&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="ejemplo-de-salida-interpretada"&gt;Ejemplo de salida interpretada&lt;a class="headerlink" href="#ejemplo-de-salida-interpretada" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$&lt;span class="w"&gt; &lt;/span&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;dmidecode&lt;span class="w"&gt; &lt;/span&gt;-t&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;17&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;grep&lt;span class="w"&gt; &lt;/span&gt;-E&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;(Locator|Size|Type:)&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;head&lt;span class="w"&gt; &lt;/span&gt;-12
+
+Locator:&lt;span class="w"&gt; &lt;/span&gt;DIMM_A1
+Size:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;8192&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;MB&lt;span class="w"&gt;  &lt;/span&gt;
+Type:&lt;span class="w"&gt; &lt;/span&gt;DDR4
+
+Locator:&lt;span class="w"&gt; &lt;/span&gt;DIMM_A2
+Size:&lt;span class="w"&gt; &lt;/span&gt;No&lt;span class="w"&gt; &lt;/span&gt;Module&lt;span class="w"&gt; &lt;/span&gt;Installed
+Type:&lt;span class="w"&gt; &lt;/span&gt;Unknown
+
+Locator:&lt;span class="w"&gt; &lt;/span&gt;DIMM_B1&lt;span class="w"&gt;  &lt;/span&gt;
+Size:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;8192&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;MB
+Type:&lt;span class="w"&gt; &lt;/span&gt;DDR4
+
+Locator:&lt;span class="w"&gt; &lt;/span&gt;DIMM_B2
+Size:&lt;span class="w"&gt; &lt;/span&gt;No&lt;span class="w"&gt; &lt;/span&gt;Module&lt;span class="w"&gt; &lt;/span&gt;Installed
+Type:&lt;span class="w"&gt; &lt;/span&gt;Unknown
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Interpretación&lt;/strong&gt;: 
+- 4 slots totales (DIMM_A1, A2, B1, B2)
+- 2 slots ocupados con 8GB DDR4 cada uno
+- 2 slots libres disponibles&lt;/p&gt;
+&lt;h2 id="limitaciones-importantes"&gt;Limitaciones importantes&lt;a class="headerlink" href="#limitaciones-importantes" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;⚠️ &lt;strong&gt;Precisión&lt;/strong&gt;: Las herramientas de línea de comandos pueden no reflejar perfectamente el hardware físico&lt;/p&gt;
+&lt;p&gt;⚠️ &lt;strong&gt;Privilegios&lt;/strong&gt;: Se requieren permisos de root para acceder a información DMI&lt;/p&gt;
+&lt;p&gt;⚠️ &lt;strong&gt;Compatibilidad&lt;/strong&gt;: Algunos sistemas embebidos pueden no proporcionar información completa&lt;/p&gt;
+&lt;p&gt;Para &lt;strong&gt;máxima certeza&lt;/strong&gt;, la inspección física sigue siendo recomendable, pero estas herramientas proporcionan información suficientemente precisa para la mayoría de casos.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Fuente original&lt;/em&gt;: &lt;a href="http://unix.stackexchange.com/questions/33249/how-to-determine-the-amount-of-ram-slots-in-use"&gt;Unix &amp;amp; Linux Stack Exchange&lt;/a&gt;&lt;/p&gt;</content><category term="Linux"></category><category term="linux"></category><category term="ram"></category><category term="dmidecode"></category><category term="lshw"></category><category term="hardware"></category><category term="memoria"></category></entry><entry><title>Botón central en firefox</title><link href="http://pablocaro.es/boton_central_firefox" rel="alternate"></link><published>2016-01-01T07:00:00+01:00</published><updated>2016-01-01T07:00:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2016-01-01:/boton_central_firefox</id><summary type="html">&lt;p class="first last"&gt;Que firefox deje de abrir la url pegada con el botón central del ratón&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;Otra nota recordatoria.
+Habitualmente abro los enlaces en nueva ventana en firefox usando el botón central.
+Me ocurre a menudo que tengo una url en el clipboard y firefox entonces me la abre en lugar del enlace.
+Para evitarlo, simplemente  &lt;code&gt;about:config&lt;/code&gt; y establecer la propiedad &lt;code&gt;middlemouse.contentLoadURL&lt;/code&gt; a false.&lt;/p&gt;
+</content><category term="Sistemas"></category><category term="linux"></category></entry><entry><title>NetHogs ver ancho de banda consumido</title><link href="http://pablocaro.es/nethogs-ver-ancho-de-banda-consumido" rel="alternate"></link><published>2015-04-16T11:37:00+02:00</published><updated>2015-04-16T11:37:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2015-04-16:/nethogs-ver-ancho-de-banda-consumido</id><summary type="html">&lt;p&gt;Para medir el ancho de banda que estoy utilizando en este momento utilizo NetHogs&lt;/p&gt;
+&lt;p&gt;Por defecto busca una interfaz de red llamada &amp;quot;eth0&amp;quot; si no la encuenta se queja así:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+ioctl failed while establishing local IP for selected device eth0. You may specify the device on the command line.
+&lt;/pre&gt;
+&lt;p&gt;Puedes …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Para medir el ancho de banda que estoy utilizando en este momento utilizo NetHogs&lt;/p&gt;
+&lt;p&gt;Por defecto busca una interfaz de red llamada &amp;quot;eth0&amp;quot; si no la encuenta se queja así:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+ioctl failed while establishing local IP for selected device eth0. You may specify the device on the command line.
+&lt;/pre&gt;
+&lt;p&gt;Puedes ver tu configuración de red con el comando &lt;em&gt;ip&lt;/em&gt;:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ ip a
+1: lo: &amp;lt;LOOPBACK,UP,LOWER_UP&amp;gt; mtu 65536 qdisc noqueue state UNKNOWN group default
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host
+       valid_lft forever preferred_lft forever
+2: wlp3s0: &amp;lt;BROADCAST,MULTICAST&amp;gt; mtu 1500 qdisc mq state DOWN group default qlen 1000
+    link/ether 84:3a:4b:50:14:cc brd ff:ff:ff:ff:ff:ff
+3: enp0s25: &amp;lt;BROADCAST,MULTICAST,UP,LOWER_UP&amp;gt; mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+    link/ether 3c:97:0e:77:76:d3 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.1.39/24 brd 192.168.1.255 scope global dynamic enp0s25
+       valid_lft 28955sec preferred_lft 28955sec
+    inet6 fe80::3e97:eff:fe77:76d3/64 scope link
+       valid_lft forever preferred_lft forever
+&lt;/pre&gt;
+&lt;p&gt;Como podéis ver en mi equipo tengo dos interfaces (aparte de la de loopback) que son enp0s25 (mi tarjeta de red con cable)
+y la wifi wlp3s0, en la que estoy conectado ahora que es la que voy a usar (podría listar las dos).&lt;/p&gt;
+&lt;p&gt;De forma que ejecutando:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ sudo nethogs enp0s25
+&lt;/pre&gt;
+&lt;p&gt;Puedo ver los procesos que están consumiendo más ancho de banda.&lt;/p&gt;
+&lt;img alt="Nethogs" class="align-center" src="images/nethogs.png" /&gt;
+&lt;p&gt;La ayuda del comando es:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+20:02 $ nethogs -h
+usage: nethogs [-V] [-b] [-d seconds] [-t] [-p] [device [device [device ...]]]
+                -V : prints version.
+                -d : delay for update refresh rate in seconds. default is 1.
+                -t : tracemode.
+                -b : bughunt mode - implies tracemode.
+                -p : sniff in promiscious mode (not recommended).
+                device : device(s) to monitor. default is eth0
+
+When nethogs is running, press:
+ q: quit
+ m: switch between total and kb/s mode
+&lt;/pre&gt;
+</content><category term="Sistemas"></category><category term="linux"></category></entry><entry><title>pyinotify: Ejecutar comando cuando se modifica un fichero</title><link href="http://pablocaro.es/pyinotify-ejecutar-comando-cuando-se-modifica-un-fichero" rel="alternate"></link><published>2013-04-03T05:09:00+02:00</published><updated>2013-04-03T05:09:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2013-04-03:/pyinotify-ejecutar-comando-cuando-se-modifica-un-fichero</id><content type="html">
+        Ya he comentado por aquí un comando &lt;em&gt;when-changed&lt;/em&gt;.
+
+Ahora anoto otra alternativa, esta vez python. Se trata de pyinotify.
+
+Yo lo uso para generar la documentación de sphinx mientras estoy escribiendo:
+
+&lt;pre lang="bash"&gt;
+python -m pyinotify -r -c "make html" -e IN_MODIFY source
+&lt;/pre&gt;
+    </content><category term="Sistemas"></category><category term="python"></category><category term="linux"></category></entry><entry><title>Paso de ubuntu a suse</title><link href="http://pablocaro.es/paso-de-ubuntu-a-suse" rel="alternate"></link><published>2013-02-01T02:17:00+01:00</published><updated>2013-02-01T02:17:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2013-02-01:/paso-de-ubuntu-a-suse</id><summary type="html">
+        En mi nuevo portátil del trabajo he pasado de Ubuntu a OpenSuse. Una distribución muy estable y sobre todo con el mejor soporte de KDE.
+
+Pero hay una cuantas cosas que nunca recuerdo. Como este blog se llama anotaciones...
+
+&lt;table width="100%"&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;th&gt;Debian&lt;/th&gt;
+&lt;th&gt;OpenSuse&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;dpkg -S fichero&lt;/td&gt;
+&lt;td&gt;rpm -q -f fichero&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;dpkg -L …&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;</summary><content type="html">
+        En mi nuevo portátil del trabajo he pasado de Ubuntu a OpenSuse. Una distribución muy estable y sobre todo con el mejor soporte de KDE.
+
+Pero hay una cuantas cosas que nunca recuerdo. Como este blog se llama anotaciones...
+
+&lt;table width="100%"&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;th&gt;Debian&lt;/th&gt;
+&lt;th&gt;OpenSuse&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;dpkg -S fichero&lt;/td&gt;
+&lt;td&gt;rpm -q -f fichero&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;dpkg -L paquete&lt;/td&gt;
+&lt;td&gt;rpm -q -l paquete&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;dpkg –purge –dry-run paquete&lt;/td&gt;
+&lt;td&gt;rpm -q –whatrequires paquee&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&amp;nbsp;
+
+&amp;nbsp;
+    </content><category term="Sistemas"></category><category term="linux"></category></entry><entry><title>reducir recursos de KDE</title><link href="http://pablocaro.es/reducir-recursos-de-kde" rel="alternate"></link><published>2012-10-24T03:18:00+02:00</published><updated>2012-10-24T03:18:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2012-10-24:/reducir-recursos-de-kde</id><content type="html">
+        Mágnifica entrada que explica como acelerar un poco tu sistema kde:
+
+&lt;a href="http://parduslife.com/2011/02/17/como-acelerar-el-entorno-de-escritorio-plasma-de-la-kde-sc/"&gt;http://parduslife.com/2011/02/17/como-acelerar-el-entorno-de-escritorio-plasma-de-la-kde-sc/&lt;/a&gt;
+
+No uso akonadi y siempre he querido pararlo. Así no tienes que hacer un
+&lt;pre lang="bash"&gt;akonadictl stop&lt;/pre&gt;
+tras arrancar.
+
+&amp;nbsp;
+
+&lt;a href="http://mschlander.wordpress.com/2011/08/18/disable-akonadi-in-kde-sc-4-7/"&gt;http://mschlander.wordpress.com/2011/08/18/disable-akonadi-in-kde-sc-4-7/&lt;/a&gt;
+
+&amp;nbsp;
+
+&amp;nbsp;
+    </content><category term="Sistemas"></category><category term="linux"></category></entry><entry><title>Importar clave gpg. kgpg que gran programa</title><link href="http://pablocaro.es/importar-clave-gpg-kgpg-que-gran-programa" rel="alternate"></link><published>2012-10-24T02:22:00+02:00</published><updated>2012-10-24T02:22:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2012-10-24:/importar-clave-gpg-kgpg-que-gran-programa</id><summary type="html">
+    &lt;pre lang="bash"&gt;
+        gpg --keyserver pgp.rediris.es --search-keys erevilla@yaco.es
+
+gpg: buscando «erevilla@yaco.es» de hkp servidor pgp.rediris.es
+(1) Ernesto Revilla Derksen (Yaco)
+1024 bit DSA key 3E455F5A, creado: 2009-09-16
+Keys 1-1 of 1 for "erevilla@yaco.es". Introduzca número(s), O)tro, o F)in &amp;gt; 1
+gpg …&lt;/pre&gt;</summary><content type="html">
+    &lt;pre lang="bash"&gt;
+        gpg --keyserver pgp.rediris.es --search-keys erevilla@yaco.es
+
+gpg: buscando «erevilla@yaco.es» de hkp servidor pgp.rediris.es
+(1) Ernesto Revilla Derksen (Yaco)
+1024 bit DSA key 3E455F5A, creado: 2009-09-16
+Keys 1-1 of 1 for "erevilla@yaco.es". Introduzca número(s), O)tro, o F)in &amp;gt; 1
+gpg: solicitando clave 3E455F5A de hkp servidor pgp.rediris.es
+gpg: clave 3E455F5A: clave pública "Ernesto Revilla Derksen (Yaco) " importada
+gpg: no se encuentran claves totalmente fiables
+gpg: Cantidad total procesada: 1
+gpg: importadas: 1
+
+kmail dice:
+Mensaje firmado por erevilla@yaco.es (ID Clave: 0x4D76FA323E455F5A).
+La firma es válida, pero no se conoce la validez de la clave.
+
+Ver: http://www.gnupg.org/gph/en/manual/x56.html
+Tengo que dar validez con una firma mía
+
+pcaro@davinci$ gpg --edit-key 3E455F5A
+gpg (GnuPG) 1.4.9; Copyright (C) 2008 Free Software Foundation, Inc.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+pub 1024D/3E455F5A creado: 2009-09-16 [caduca: 2011-09-16] uso: SC
+confianza: desconocido validez: desconocido
+sub 2048g/1AAA03F0 creado: 2009-09-16 [caduca: 2011-09-16] uso: E
+desconocido (1). Ernesto Revilla Derksen (Yaco)
+
+Orden&amp;gt; trust
+pub 1024D/3E455F5A creado: 2009-09-16 [caduca: 2011-09-16] uso: SC
+confianza: desconocido validez: desconocido
+sub 2048g/1AAA03F0 creado: 2009-09-16 [caduca: 2011-09-16] uso: E
+desconocido (1). Ernesto Revilla Derksen (Yaco)
+
+Por favor, decida su nivel de confianza para que este usuario
+verifique las claves de otros usuarios (mirando pasaportes,
+comprobando huellas dactilares en diferentes fuentes...)
+
+1 = No lo sé o prefiero no decirlo
+2 = NO tengo confianza
+3 = Confío un poco
+4 = Confío totalmente
+5 = confío absolutamente
+m = volver al menú principal
+
+¿Su decisión? 4
+
+pub 1024D/3E455F5A creado: 2009-09-16 [caduca: 2011-09-16] uso: SC
+confianza: total validez: desconocido
+sub 2048g/1AAA03F0 creado: 2009-09-16 [caduca: 2011-09-16] uso: E
+desconocido (1). Ernesto Revilla Derksen (Yaco)
+Por favor, advierta que la validez de clave mostrada no es necesariamente
+correcta a menos de que reinicie el programa.
+
+&lt;/pre&gt;
+
+&lt;a href="http://www.fermu.com/content/view/231/2/lang,es/"&gt;http://www.fermu.com/content/view/231/2/lang,es/&lt;/a&gt;
+
+&lt;a href="http://www.rediris.es/pgp/"&gt;http://www.rediris.es/pgp/&lt;/a&gt;
+
+&lt;pre lang="bash"&gt;
+
+Generando mi propia clave:
+pcaro@davinci$ gpg --gen-key
+gpg (GnuPG) 1.4.9; Copyright (C) 2008 Free Software Foundation, Inc.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Por favor seleccione tipo de clave deseado:
+(1) DSA y ElGamal (por defecto)
+(2) DSA (sólo firmar)
+(5) RSA (sólo firmar)
+¿Su selección?: 1
+El par de claves DSA tendrá 1024 bits.
+las claves ELG-E pueden tener entre 1024 y 4096 bits de longitud.
+¿De qué tamaño quiere la clave? (2048)
+El tamaño requerido es de 2048 bits
+Por favor, especifique el período de validez de la clave.
+0 = la clave nunca caduca
+= la clave caduca en n días
+w = la clave caduca en n semanas
+m = la clave caduca en n meses
+y = la clave caduca en n años
+¿Validez de la clave (0)? 3y
+La clave caduca lun 29 oct 2012 12:01:25 CET
+¿Es correcto? (s/n) s
+
+Necesita un identificador de usuario para identificar su clave. El programa
+construye el identificador a partir del Nombre Real, Comentario y Dirección
+de Correo electrónico de esta forma:
+"Heinrich Heine (Der Dichter)"
+
+Nombre y apellidos: Pablo Caro Revuelta
+Dirección de correo electrónico: pcaro@yaco.es
+Comentario:
+Ha seleccionado este ID de usuario:
+Â«Pablo Caro RevueltaÂ»
+
+¿Cambia (N)ombre, (C)omentario, (D)irección o (V)ale/(S)alir? C
+Comentario: pcaro
+Ha seleccionado este ID de usuario:
+Â«Pablo Caro Revuelta (pcaro)Â»
+
+¿Cambia (N)ombre, (C)omentario, (D)irección o (V)ale/(S)alir? V
+Necesita una frase contraseña para proteger su clave secreta.
+
+Es necesario generar muchos bytes aleatorios. Es una buena idea realizar
+alguna otra tarea (trabajar en otra ventana/consola, mover el ratón, usar
+la red y los discos) durante la generación de números primos. Esto da al
+generador de números aleatorios mayor oportunidad de recoger suficiente
+entropía.
+++++++++++.++++++++++++++++++++.++++++++++...+++++++++++++++..++++++++++++++++++++++++++++++..+++++..++++++++++.+++++++++++++++.++++++++++++++++++++......&amp;gt;.+++++.................................+++++
+
+No hay suficientes bytes aleatorios disponibles. Por favor, haga algún
+otro trabajo para que el sistema pueda recolectar más entropía
+(se necesitan 280 bytes más).
+
+Es necesario generar muchos bytes aleatorios. Es una buena idea realizar
+alguna otra tarea (trabajar en otra ventana/consola, mover el ratón, usar
+la red y los discos) durante la generación de números primos. Esto da al
+generador de números aleatorios mayor oportunidad de recoger suficiente
+entropía.
++++++++++++++++.+++++.+++++++++++++++..+++++.+++++..++++++++++++++++++++..++++++++++++++++++++.+++++.++++++++++++++++++++...+++++.++++++++++++++++++++.+++++++++++++++..&amp;gt;..+++++........&amp;gt;+++++.+++++.+++++....................+++++.....................................................+++++............................+++++^^^
+gpg: clave 4A52D5BA marcada como de confianza absoluta
+claves pública y secreta creadas y firmadas.
+
+gpg: comprobando base de datos de confianza
+gpg: 3 dudosa(s) necesarias, 1 completa(s) necesarias,
+modelo de confianza PGP
+gpg: nivel: 0 validez: 1 firmada: 0 confianza: 0-, 0q, 0n, 0m, 0f, 1u
+gpg: siguiente comprobación de base de datos de confianza el: 2012-10-29
+pub 1024D/4A52D5BA 2009-10-30 [[caduca: 2012-10-29]]
+Huella de clave = 483C F267 8A4B 0D27 3451 88A9 FE05 5E01 4A52 D5BA
+uid Pablo Caro Revuelta (pcaro) sub 2048g/7436FA09 2009-10-30 [[caduca: 2012-10-29]]
+
+&lt;/pre&gt;
+
+&lt;h2&gt;programas graficos&lt;/h2&gt;
+&lt;pre lang="bash"&gt;
+sudo aptitude install kleopatra kgpg
+&lt;/pre&gt;
+&lt;p&gt;
+Para que puedas enviar los correos firmados en kmail:
+&lt;a href="http://randomguy3.wordpress.com/2008/07/24/kmail-trunk-signing/"&gt;http://randomguy3.wordpress.com/2008/07/24/kmail-trunk-signing/&lt;/a&gt;
+&lt;/p&gt;
+    </content><category term="Sistemas"></category><category term="linux"></category></entry><entry><title>Traducciones y APT</title><link href="http://pablocaro.es/traducciones-y-apt" rel="alternate"></link><published>2012-10-24T02:20:00+02:00</published><updated>2012-10-24T02:20:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2012-10-24:/traducciones-y-apt</id><content type="html">
+    &lt;p&gt;
+        &lt;a href="http://mindref.blogspot.com.es/2012/10/apt-translations.html"&gt;http://mindref.blogspot.com.es/2012/10/apt-translations.html&lt;/a&gt;
+&lt;a href="http://manpages.ubuntu.com/manpages/natty/man5/apt.conf.5.html"&gt;http://manpages.ubuntu.com/manpages/natty/man5/apt.conf.5.html&lt;/a&gt;
+    &lt;/p&gt;
+    </content><category term="Sistemas"></category><category term="linux"></category></entry><entry><title>Uso práctico de ngrep</title><link href="http://pablocaro.es/uso-practico-de-ngrep" rel="alternate"></link><published>2012-09-12T03:38:00+02:00</published><updated>2012-09-12T03:38:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2012-09-12:/uso-practico-de-ngrep</id><content type="html">
+        Ejemplo de uso común de &lt;strong&gt;ngrep&lt;/strong&gt;:
+&lt;pre class="bash" lang="bash"&gt;sudo ngrep -d any port 80 -W byline&lt;/pre&gt;
+Esto es para examinar lo que circula por el puerto 80.
+    </content><category term="Sistemas"></category><category term="linux"></category></entry><entry><title>virtualbox: Actualizar las Guest Additions en máquinas ubuntu</title><link href="http://pablocaro.es/virtualbox-actualizar-las-guest-additions-en-maquinas-ubuntu" rel="alternate"></link><published>2011-08-24T04:11:00+02:00</published><updated>2011-08-24T04:11:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2011-08-24:/virtualbox-actualizar-las-guest-additions-en-maquinas-ubuntu</id><summary type="html">
+        Si usas &lt;a href="http://vagrantup.com/"&gt;vagrant&lt;/a&gt; para gestionar máquinas virtuales con &lt;a href="http://www.virtualbox.org/"&gt;virtualbox&lt;/a&gt;, un buen lugar para obtener boxes es &lt;a href="http://www.vagrantbox.es/"&gt;vagrantboxes&lt;/a&gt;.
+
+Pero a veces la versión que traen de las Guest Additions no coincide con el virtualbox que tienes (en mi caso el último). Vagrant se queja y puede ocasionar problemas.
+
+Lo más simple …</summary><content type="html">
+        Si usas &lt;a href="http://vagrantup.com/"&gt;vagrant&lt;/a&gt; para gestionar máquinas virtuales con &lt;a href="http://www.virtualbox.org/"&gt;virtualbox&lt;/a&gt;, un buen lugar para obtener boxes es &lt;a href="http://www.vagrantbox.es/"&gt;vagrantboxes&lt;/a&gt;.
+
+Pero a veces la versión que traen de las Guest Additions no coincide con el virtualbox que tienes (en mi caso el último). Vagrant se queja y puede ocasionar problemas.
+
+Lo más simple es arrancar la máquina en modo gráfico (config.vm.boot_mode = :gui en vagrant) e indicar en el menu de virtualbox en "Dispositivos" -&amp;gt; "CD/DVD" que se ponga VBoxGuestAddions.iso.
+
+Luego vasta con montar el cdrom y ejecutar el comando de instalación:
+&lt;pre lang="bash"&gt;$ sudo mount -t auto /dev/cdrom /mnt
+$ cd mnt
+$ sudo ./VBoxLinuxAdditions.run&lt;/pre&gt;
+Puede que tengas de instalar dkms. Si el sistema no tiene sistema gráfico instalado (como en este caso), se quejará pero quedará instalado todo bien.
+    </content><category term="Sistemas"></category><category term="linux"></category></entry><entry><title>Cambiar mapa de teclado en linux</title><link href="http://pablocaro.es/cambiar-mapa-de-teclado-en-linux" rel="alternate"></link><published>2011-08-24T03:59:00+02:00</published><updated>2011-08-24T03:59:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2011-08-24:/cambiar-mapa-de-teclado-en-linux</id><content type="html">
+        Siempre olvido esto:
+&lt;pre lang="bash"&gt;sudo keymap es&lt;/pre&gt;
+    </content><category term="Sistemas"></category><category term="linux"></category></entry><entry><title>Deshabilitar autocompletado en vim</title><link href="http://pablocaro.es/deshabilitar-autocompletado-en-vim" rel="alternate"></link><published>2011-06-20T04:42:00+02:00</published><updated>2011-06-20T04:42:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2011-06-20:/deshabilitar-autocompletado-en-vim</id><content type="html">
+        Uso poco vim, sólo cuando en servidores no tengo jed.
+
+Para pegar texto en el fichero actual sin que te haga un horrible indentado en cascada:
+&lt;pre&gt;:setlocal noautoindent
+:setlocal nocindent
+:setlocal nosmartindent
+:setlocal indentexpr=&lt;/pre&gt;
+O su equivalente:
+&lt;pre&gt;:setl noai nocin nosi inde=&lt;/pre&gt;
+Referencia: &lt;a href="http://vim.wikia.com/wiki/How_to_stop_auto_indenting"&gt;http://vim.wikia.com/wiki/How_to_stop_auto_indenting &lt;/a&gt;
+    </content><category term="Sistemas"></category><category term="linux"></category></entry><entry><title>scp con compresión</title><link href="http://pablocaro.es/scp-con-compresion" rel="alternate"></link><published>2011-03-04T03:49:00+01:00</published><updated>2011-03-04T03:49:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2011-03-04:/scp-con-compresion</id><content type="html">
+        La mejor forma de descargar una zodb:
+&lt;pre lang="bash"&gt;scp -C -o CompressionLevel=9 user@yoursite.com:~/plonefolder/zinstance/var/filestorage/Data.fs .&lt;/pre&gt;
+Leído en: &lt;a href="http://blog.mfabrik.com/2011/03/02/scp-file-copy-with-on-line-compression/"&gt;http://blog.mfabrik.com/2011/03/02/scp-file-copy-with-on-line-compression/&lt;/a&gt;
+    </content><category term="Programación"></category><category term="linux"></category><category term="zope"></category></entry><entry><title>Actualizar Mercurial usando ppa en ubuntu</title><link href="http://pablocaro.es/actualizar-mercurial-usando-ppa-en-ubuntu" rel="alternate"></link><published>2011-02-25T05:12:00+01:00</published><updated>2011-02-25T05:12:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2011-02-25:/actualizar-mercurial-usando-ppa-en-ubuntu</id><summary type="html">
+        Existen tres PPA para mercurial:
+&lt;a rel="nofollow" href="https://launchpad.net/~mercurial-ppa/+archive/releases"&gt;https://launchpad.net/~mercurial-ppa/+archive/releases&lt;/a&gt; (última release, actualmente 1.7.5-0ppa1~maverick1)
+&lt;a rel="nofollow" href="https://launchpad.net/~mercurial-ppa/+archive/stable-snapshots"&gt;https://launchpad.net/~mercurial-ppa/+archive/stable-snapshots&lt;/a&gt; (snapshots de la rama estable, actualmente ﻿1.7.5+2-5fc7c84ed9b0-0ppa1~maverick1)
+&lt;a rel="nofollow" href="https://launchpad.net/~mercurial-ppa/+archive/snapshots"&gt;https://launchpad.net/~mercurial-ppa/+archive/snapshots&lt;/a&gt; (snapshots de lo último, actualmente 1.8~1.7 …</summary><content type="html">
+        Existen tres PPA para mercurial:
+&lt;a rel="nofollow" href="https://launchpad.net/~mercurial-ppa/+archive/releases"&gt;https://launchpad.net/~mercurial-ppa/+archive/releases&lt;/a&gt; (última release, actualmente 1.7.5-0ppa1~maverick1)
+&lt;a rel="nofollow" href="https://launchpad.net/~mercurial-ppa/+archive/stable-snapshots"&gt;https://launchpad.net/~mercurial-ppa/+archive/stable-snapshots&lt;/a&gt; (snapshots de la rama estable, actualmente ﻿1.7.5+2-5fc7c84ed9b0-0ppa1~maverick1)
+&lt;a rel="nofollow" href="https://launchpad.net/~mercurial-ppa/+archive/snapshots"&gt;https://launchpad.net/~mercurial-ppa/+archive/snapshots&lt;/a&gt; (snapshots de lo último, actualmente 1.8~1.7.5+4-8f5c865b7b4a-0ppa1~maverick1)
+
+Como decía en la última anotación para añadir el PPA basta con:
+&lt;pre class="bash"&gt;$ sudo add-apt-repository ppa:mercurial-ppa/stable-snapshots
+$ sudo aptitude update
+$ sudo aptitude  install Mercurial&lt;/pre&gt;
+&amp;nbsp;
+    </content><category term="Sistemas"></category><category term="linux"></category></entry><entry><title>Opciones típicas rsync</title><link href="http://pablocaro.es/opciones-tipicas-rsync" rel="alternate"></link><published>2010-07-08T05:56:00+02:00</published><updated>2010-07-08T05:56:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2010-07-08:/opciones-tipicas-rsync</id><content type="html">
+        Para usar un rsync como un scp (pero con las ventajas de rsync como que puedo parar y continuar después):
+&lt;pre lang="bash"&gt;rsync -azPrv -e 'ssh' usuario@host:/path/to/folder /path/to/destination&lt;/pre&gt;
+    </content><category term="Sistemas"></category><category term="linux"></category></entry><entry><title>Parcheando, parcheando ...</title><link href="http://pablocaro.es/parcheando-parcheando" rel="alternate"></link><published>2009-12-16T10:18:00+01:00</published><updated>2009-12-16T10:18:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2009-12-16:/parcheando-parcheando</id><summary type="html">
+        Siempre tengo que buscar cómo usar patch. Como tengo un blog que se llama anotaciones pues apunto:
+&lt;pre lang="bash"&gt;$ patch -p1 &lt; baz.diff&lt;/pre&gt;
+Donde el número 1 viene de mirar en el fichero .diff y contar las barras "/" que hay antes que el directorio donde estoy. Por ejemplo si veo &lt;em&gt;/users/stephen …&lt;/em&gt;</summary><content type="html">
+        Siempre tengo que buscar cómo usar patch. Como tengo un blog que se llama anotaciones pues apunto:
+&lt;pre lang="bash"&gt;$ patch -p1 &lt; baz.diff&lt;/pre&gt;
+Donde el número 1 viene de mirar en el fichero .diff y contar las barras "/" que hay antes que el directorio donde estoy. Por ejemplo si veo &lt;em&gt;/users/stephen/package/src/net/http.c&lt;/em&gt; y estoy en un directorio que contiene &lt;em&gt;net/http.c&lt;/em&gt; pues es 5 (ojo, hay que contar la primera).
+
+Para referencia &lt;a href="http://stephenjungels.com/jungels.net/articles/diff-patch-ten-minutes.html" target="_blank"&gt;The Ten Minute Guide to diff and patch&lt;/a&gt;
+    </content><category term="Sistemas"></category><category term="linux"></category></entry><entry><title>Que las aplicaciones GTK+ luzcan mejor en kubuntu karmic</title><link href="http://pablocaro.es/que-las-aplicaciones-gtk-luzcan-mejor-en-kubuntu-karmic" rel="alternate"></link><published>2009-12-10T06:32:00+01:00</published><updated>2009-12-10T06:32:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2009-12-10:/que-las-aplicaciones-gtk-luzcan-mejor-en-kubuntu-karmic</id><content type="html">
+        Basta con seguir este &lt;a href="http://marcosaruj.com/archives/401" target="_blank"&gt;tutorial&lt;/a&gt;, que indica como instalar el tema &lt;a href="http://kde-look.org/content/show.php?action=content&amp;amp;content=103741&amp;amp;PHPSESSID=b084f440c2a6cc2a1644514b13fe591a" target="_blank"&gt;Oxygen-Molecule&lt;/a&gt;.
+    </content><category term="Sistemas"></category><category term="linux"></category></entry><entry><title>Añadir PPA desde la consola a ubuntu karmic</title><link href="http://pablocaro.es/anadir-ppa-desde-la-consola-a-ubuntu-karmic" rel="alternate"></link><published>2009-12-09T03:18:00+01:00</published><updated>2009-12-09T03:18:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2009-12-09:/anadir-ppa-desde-la-consola-a-ubuntu-karmic</id><summary type="html">
+        Para añadir un PPA a ubuntu karmic desde la consola basta con:
+
+&lt;pre lang="bash"&gt;
+ sudo add-apt-repository ppa:kubuntu-ppa/ppa
+
+[sudo] password for pcaro:                                
+Executing: gpg --ignore-time-conflict --no-options --no-default-keyring --secret-keyring /etc/apt/secring.gpg --trustdb-name /etc/apt/trustdb.gpg --keyring /etc/apt/trusted.gpg --keyserver keyserver.ubuntu.com --recv E4DFEC907DEDA4B8A670E8042836CB0A8AC93F7A                                                                                  
+gpg: solicitando clave …&lt;/pre&gt;</summary><content type="html">
+        Para añadir un PPA a ubuntu karmic desde la consola basta con:
+
+&lt;pre lang="bash"&gt;
+ sudo add-apt-repository ppa:kubuntu-ppa/ppa
+
+[sudo] password for pcaro:                                
+Executing: gpg --ignore-time-conflict --no-options --no-default-keyring --secret-keyring /etc/apt/secring.gpg --trustdb-name /etc/apt/trustdb.gpg --keyring /etc/apt/trusted.gpg --keyserver keyserver.ubuntu.com --recv E4DFEC907DEDA4B8A670E8042836CB0A8AC93F7A                                                                                  
+gpg: solicitando clave 8AC93F7A de hkp servidor keyserver.ubuntu.com                                             
+gpg: clave 8AC93F7A: clave pública "Launchpad Kubuntu Updates" importada                                         
+gpg: no se encuentran claves totalmente fiables                                                                  
+gpg: Cantidad total procesada: 1                                                                                 
+gpg:  
+&lt;/pre&gt;
+
+
+    </content><category term="Sistemas"></category><category term="linux"></category></entry><entry><title>Cambiar dpi en kde</title><link href="http://pablocaro.es/cambiar-dpi-en-kde" rel="alternate"></link><published>2009-12-04T05:35:00+01:00</published><updated>2009-12-04T05:35:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2009-12-04:/cambiar-dpi-en-kde</id><summary type="html">
+        Siempre que reinstalo me encuentro con el mismo problema. No tengo el dpi estándar de 96, sino uno extraño de 113.
+&lt;pre lang="bash"&gt;pcaro@davinci$ xdpyinfo | grep resolutio
+  resolution:    113x113 dots per inch&lt;/pre&gt;
+Como resultado, muchas páginas webs no se visualizan correctamente.
+
+Para solucionarlo tengo que decirle al servidor X que arranque …</summary><content type="html">
+        Siempre que reinstalo me encuentro con el mismo problema. No tengo el dpi estándar de 96, sino uno extraño de 113.
+&lt;pre lang="bash"&gt;pcaro@davinci$ xdpyinfo | grep resolutio
+  resolution:    113x113 dots per inch&lt;/pre&gt;
+Como resultado, muchas páginas webs no se visualizan correctamente.
+
+Para solucionarlo tengo que decirle al servidor X que arranque con un dpi predeterminado. Eso lo hago en los ficheros de configuración de kdm que es el encargado de ejecutar el servidor.
+
+Concretamente en &lt;em&gt;/etc/kde4/kdm/kdmrc&lt;/em&gt;. Basta con indicar al servidor X qué valor de dpi usar. Para ello usamos la opción &lt;em&gt;-dpi&lt;/em&gt;.
+&lt;pre lang="ini"&gt;# This string is subject to word splitting.
+# Default is ""
+ServerArgsLocal=-br -nolisten tcp -dpi 96&lt;/pre&gt;
+Eso es todo. Reiniciar las X y listo.
+
+PD: No se el motivo pero el nuevo dpi y mi tarjeta gráfica intel integrada, yo tengo mucho mejor rendimiento en la aceleración gráfica.
+    </content><category term="Sistemas"></category><category term="linux"></category></entry><entry><title>Cambiar la codificación de un fichero de texto</title><link href="http://pablocaro.es/cambiar-la-codificacion-de-un-fichero-de-texto" rel="alternate"></link><published>2009-07-27T11:19:00+02:00</published><updated>2009-07-27T11:19:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2009-07-27:/cambiar-la-codificacion-de-un-fichero-de-texto</id><content type="html">
+        Una nota para recordar el comando &lt;a href="http://en.wikipedia.org/wiki/Iconv" target="_blank"&gt;iconv&lt;/a&gt;:
+&lt;pre lang="bash"&gt;
+iconv -f fromEncoding -t toEncoding inputFile &gt; outputFile
+&lt;/pre&gt;
+    </content><category term="Sistemas"></category><category term="linux"></category></entry><entry><title>Instalar postgres 8.2 en jaunty</title><link href="http://pablocaro.es/instalar-postgres-8-2-en-jaunty" rel="alternate"></link><published>2009-06-30T10:52:00+02:00</published><updated>2009-06-30T10:52:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2009-06-30:/instalar-postgres-8-2-en-jaunty</id><summary type="html">
+        Postgres 8.3 no me permitía crear una base de datos con un encoding distinto a los instalados en mi maquina, y yo debía recuperar una copia de seguridad de una base de datos para la ampliación de unos trabajos que vienen  de antiguo.
+
+Si intentaba importar los datos fallaba …</summary><content type="html">
+        Postgres 8.3 no me permitía crear una base de datos con un encoding distinto a los instalados en mi maquina, y yo debía recuperar una copia de seguridad de una base de datos para la ampliación de unos trabajos que vienen  de antiguo.
+
+Si intentaba importar los datos fallaba por el encoding:
+&lt;pre&gt;
+# createdb base_datos  -O owner ; 
+# pg_restore -F c -d base_datos   viernes-27-feb-2009.dump
+pg_restore: [archiver (db)] COPY failed: ERROR:  secuencia de bytes no válida para codificación «UTF8»: 0xa2
+&lt;/pre&gt;
+
+Y además no me dejaba crear la base de datos con el encoding correcto:
+&lt;pre&gt;
+postgres@davinci$ createdb  base_datos -E latin1
+createdb: falló la creación de la base de datos:
+ERROR:  la codificación LATIN1 no coincide con la configuración regional del servidor es_ES.UTF-8
+DETAIL:  La configuración regional LC_CTYPE del servidor requiere la codificación UTF8.
+&lt;/pre&gt;
+
+Para poder seguir adelante dos alternativas:&lt;a href="http://softwarelibre.org.bo/wiki/postgresqlutf8tolatin1"&gt; cambiar el encoding de mi base de datos&lt;/a&gt; (no podía porque tengo otras bases de datos) o instalar postgres 8.2 (debian y derivados permiten tener varios postgres a la vez por paquetería)
+
+De esta forma que me dispuse a descargar los paquetes de haunty: &lt;a href="http://packages.ubuntu.com/hardy/i386/postgresql-8.2/download"&gt;postgresql-8.2&lt;/a&gt; y&lt;a href="http://packages.ubuntu.com/hardy/i386/postgresql-client-8.2/download"&gt; postgresql-client-8.2&lt;/a&gt;
+
+Una vez descargados los paquetes bastó:
+&lt;pre&gt;
+pcaro@davinci$ sudo dpkg -i postgresql-client-8.2_8.2.7-1_i386.deb
+pcaro@davinci$ sudo dpkg -i postgresql-8.2_8.2.7-1_i386.deb
+sudo aptitude hold postgresql-client-8.2
+sudo aptitude hold postgresql-8.2
+&lt;/pre&gt;
+
+Luego puedes configurar los postgres para que escuchen en distintos puertos o, si solo lo necesitas de forma temporal como yo, simplemente parar el 8.3 y levantar el 8.2 cuando sea necesario.
+
+PD: Gracias a Antonio por la ayuda.
+    </content><category term="Sistemas"></category><category term="linux"></category></entry><entry><title>Convertir filtros de kmail a filtros sieve</title><link href="http://pablocaro.es/convertir-filtros-de-kmail-a-filtros-sieve" rel="alternate"></link><published>2009-06-06T14:13:00+02:00</published><updated>2009-06-06T14:13:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2009-06-06:/convertir-filtros-de-kmail-a-filtros-sieve</id><summary type="html">
+        No hace mucho que dejé de usar &lt;a title="pop" href="http://en.wikipedia.org/wiki/Post_Office_Protocol" target="_blank"&gt;POP&lt;/a&gt; en mis correos para pasarme al &lt;a title="imap" href="http://en.wikipedia.org/wiki/IMAP" target="_blank"&gt;IMAP&lt;/a&gt; desconectado de kmail con toda las ventaja que ello supone.
+
+Pero todavía seguía utilizando los mismos filtros en kmail que me ordenan los correos por carpeta. Con este sistema el filtrado se realiza una vez …</summary><content type="html">
+        No hace mucho que dejé de usar &lt;a title="pop" href="http://en.wikipedia.org/wiki/Post_Office_Protocol" target="_blank"&gt;POP&lt;/a&gt; en mis correos para pasarme al &lt;a title="imap" href="http://en.wikipedia.org/wiki/IMAP" target="_blank"&gt;IMAP&lt;/a&gt; desconectado de kmail con toda las ventaja que ello supone.
+
+Pero todavía seguía utilizando los mismos filtros en kmail que me ordenan los correos por carpeta. Con este sistema el filtrado se realiza una vez descargado el correo, de forma que, ahora con imap, el kmail tiene que pasar los filtros y actualizar las carpetas en el servidor tras el moviento de correos. Desde luego no es lo más conveniente.
+
+Lo más util que el filtrado del correo se realice en el servidor. De esta forma nuestro correo ya se encuentra organizado accedas con el cliente que accedas al correo (webmail, móviles de última generación, etc). Para ello existen los filtros &lt;a title="sieve" href="http://en.wikipedia.org/wiki/Sieve_(mail_filtering_language)" target="_blank"&gt;sieve&lt;/a&gt;.
+
+Pero yo ya tenía mis filtros en kmail, de forma que me hice un pequeño programita python que convirtiera mis filtros de kmail en un fichero con los filtros sieve.
+
+No discrimina entre cuentas y solo esta probado (y funciona) con mis filtros simples de moviento de correo, pero lo dejo aquí por si a alguien pudiera resultarle de utilidad.
+
+Para usarlo:
+&lt;ol&gt;
+	&lt;li&gt;Guardar los filtros de kmail (Preferencias -&amp;gt; Configurar filtros -&amp;gt; Exportar) en un fichero (por ejemplo filtros_pcaro.ini)&lt;/li&gt;
+	&lt;li&gt;Ejecutar &lt;em&gt;python kmail_to_sieve.py  filtros_pcaro.ini &amp;gt; filtros.sieve&lt;/em&gt; Por la salida de error indicará que no ha podido convertir.&lt;/li&gt;
+	&lt;li&gt;Examinar filtros&lt;/li&gt;
+	&lt;li&gt;Subir y activar desde el mismo kmail (Preferencias -&amp;gt; Gestionar guiones de Sieve.&lt;/li&gt;
+&lt;/ol&gt;
+Podeís descargarlo desde aquí: &lt;a href="https://github.com/pcaro/little_scripts/blob/master/kmail_to_sieve.py"&gt;kmail_to_sieve&lt;/a&gt;
+
+PD: Arreglado el enlace. Gracias Helder por avisar.
+    </content><category term="Sistemas"></category><category term="python"></category><category term="linux"></category></entry><entry><title>Importar claves gpg de repositorios ubuntu</title><link href="http://pablocaro.es/importar-claves-gpg-de-repositorios-ubuntu" rel="alternate"></link><published>2009-02-01T13:00:00+01:00</published><updated>2009-02-01T13:00:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2009-02-01:/importar-claves-gpg-de-repositorios-ubuntu</id><summary type="html">
+        Ante un error como este:
+
+W: GPG error: http://ppa.launchpad.net intrepid Release: The following signatures couldn't be verified because the public key is not available: NO_PUBKEY 3B81A3FBA47394CE
+
+Hay que importar las claves:
+&lt;pre&gt;gpg --keyserver keyserver.ubuntu.com --recv 3B81A3FBA47394CE
+gpg --export --armor 3B81A3FBA47394CE | sudo apt-key add -
+
+&lt;em&gt;UPDATE:&lt;/em&gt;
+&lt;em&gt;Corregido …&lt;/em&gt;&lt;/pre&gt;</summary><content type="html">
+        Ante un error como este:
+
+W: GPG error: http://ppa.launchpad.net intrepid Release: The following signatures couldn't be verified because the public key is not available: NO_PUBKEY 3B81A3FBA47394CE
+
+Hay que importar las claves:
+&lt;pre&gt;gpg --keyserver keyserver.ubuntu.com --recv 3B81A3FBA47394CE
+gpg --export --armor 3B81A3FBA47394CE | sudo apt-key add -
+
+&lt;em&gt;UPDATE:&lt;/em&gt;
+&lt;em&gt;Corregido el tema de los guiones, gracias a miguelbf por la indicación y perdón por la tardanza en arreglarlo&lt;/em&gt;&lt;/pre&gt;
+    </content><category term="Sistemas"></category><category term="linux"></category></entry><entry><title>La potencia de los permisos</title><link href="http://pablocaro.es/la-potencia-de-los-permisos" rel="alternate"></link><published>2008-12-01T14:06:00+01:00</published><updated>2008-12-01T14:06:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2008-12-01:/la-potencia-de-los-permisos</id><summary type="html">
+        Recordar los comandos para controlar las listas de control de acceso en linux.
+
+&lt;code&gt;man setfacl
+man getfacl&lt;/code&gt;
+
+Tras "setfacl -m user:joe:rwx dir",  verás que ls -d dir muestra un signo + al final que indica que se están utilizado permisos ampliados.
+
+Si quieres saber más, el tío google te …</summary><content type="html">
+        Recordar los comandos para controlar las listas de control de acceso en linux.
+
+&lt;code&gt;man setfacl
+man getfacl&lt;/code&gt;
+
+Tras "setfacl -m user:joe:rwx dir",  verás que ls -d dir muestra un signo + al final que indica que se están utilizado permisos ampliados.
+
+Si quieres saber más, el tío google te lo dirá.
+    </content><category term="Sistemas"></category><category term="linux"></category></entry><entry><title>Usar find para detectar enlaces simbólicos rotos</title><link href="http://pablocaro.es/usar-find-para-detectar-enlaces-simbolicos-rotos" rel="alternate"></link><published>2008-11-20T11:30:00+01:00</published><updated>2008-11-20T11:30:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2008-11-20:/usar-find-para-detectar-enlaces-simbolicos-rotos</id><content type="html">
+        &lt;code&gt;for f in $(find /usr/local/bin -type l); do if [ ! -e "$f" ]; then &lt;a title="Echo command (not yet written)" class="new" href="http://howto.wikia.com/index.php?title=Echo_command&amp;amp;action=edit&amp;amp;redlink=1"&gt;echo&lt;/a&gt; $f; fi; done&lt;/code&gt;
+    </content><category term="Sistemas"></category><category term="linux"></category></entry><entry><title>Varios monitores en linux</title><link href="http://pablocaro.es/varios-monitores-en-linux" rel="alternate"></link><published>2008-11-10T03:27:00+01:00</published><updated>2008-11-10T03:27:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2008-11-10:/varios-monitores-en-linux</id><content type="html">
+        Esta anotación es sólo para comentar el comando xrandr que uso en kubuntu intrepid para trabajar con dos monitores.
+
+sudo xrandr --output VGA --auto
+sudo xrandr --output VGA --above LVDS
+    </content><category term="Sistemas"></category><category term="linux"></category></entry><entry><title>Knetworkmanager</title><link href="http://pablocaro.es/knetworkmanager" rel="alternate"></link><published>2007-10-06T05:28:00+02:00</published><updated>2007-10-06T05:28:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2007-10-06:/knetworkmanager</id><summary type="html">
+        Ahora una de esas entradas para que me sirva de recordatorio.
+
+Habitualmente estoy acostumbrado, cuando voy a un lugar y me dan conexión wifi, a configurarla a mano en /etc/network/interfaces.
+
+Esto hace que deje de funcionar el knetwormanager. Indica "configuración manual de red". Para que vuelva a tomar …</summary><content type="html">
+        Ahora una de esas entradas para que me sirva de recordatorio.
+
+Habitualmente estoy acostumbrado, cuando voy a un lugar y me dan conexión wifi, a configurarla a mano en /etc/network/interfaces.
+
+Esto hace que deje de funcionar el knetwormanager. Indica "configuración manual de red". Para que vuelva a tomar el control de las interaces de red tengo que comentar todas las líneas en ese fichero como bien se indica &lt;a target="_blank" title="documentación de NetworkManager" href="https://help.ubuntu.com/community/WifiDocs/NetworkManager"&gt;en la documentación de ubuntu&lt;/a&gt;.
+
+Para manejar el demonio NetWorkmanger tengo que usar:
+
+&lt;code&gt; /etc/dbus-1/event.d/25NetworkManager {start|stop|restart|force-reload} &lt;/code&gt;
+
+&lt;code&gt;/etc/dbus-1/event.d/26NetworkManagerDispatcher {start|stop|restart|force-reload}&lt;/code&gt;
+    </content><category term="Sistemas"></category><category term="linux"></category></entry><entry><title>Error al grabar CDs con k3b</title><link href="http://pablocaro.es/error-al-grabar-cds-con-k3b" rel="alternate"></link><published>2006-12-18T05:18:00+01:00</published><updated>2006-12-18T05:18:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2006-12-18:/error-al-grabar-cds-con-k3b</id><summary type="html">
+        Tengo un  Dell latitude D610 y kubuntu edgy.
+
+Desde dapper siempre me ha ocurrido un error al copiar cds con k3b. El problema es que no tengo acceso al dispositivo /dev/sg0
+
+con &lt;strike&gt;sudo chown /dev/sg0 root:cdrom&lt;/strike&gt; sudo root:cdrom /dev/sg0 lo soluciono (doy grupo cdrom a …</summary><content type="html">
+        Tengo un  Dell latitude D610 y kubuntu edgy.
+
+Desde dapper siempre me ha ocurrido un error al copiar cds con k3b. El problema es que no tengo acceso al dispositivo /dev/sg0
+
+con &lt;strike&gt;sudo chown /dev/sg0 root:cdrom&lt;/strike&gt; sudo root:cdrom /dev/sg0 lo soluciono (doy grupo cdrom a quién quiera que use la grabadora).
+
+El problema es que al reiniciar se vuelve a colocar el grupo a root y no se como cambiar esto en el udev. ¿Alguna idea?
+    </content><category term="Sistemas"></category><category term="linux"></category></entry></feed>

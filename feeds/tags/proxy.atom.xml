@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Anotaciones por Pablo Caro - proxy</title><link href="http://pablocaro.es/" rel="alternate"></link><link href="http://pablocaro.es/feeds/tags/proxy.atom.xml" rel="self"></link><id>http://pablocaro.es/</id><updated>2015-10-21T23:05:00+02:00</updated><subtitle>Anotaciones</subtitle><entry><title>La historia detrás de X-Forwarded-For y X-Real-IP</title><link href="http://pablocaro.es/historia-x-forwarded-for-x-real-ip" rel="alternate"></link><published>2015-10-21T23:05:00+02:00</published><updated>2015-10-21T23:05:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2015-10-21:/historia-x-forwarded-for-x-real-ip</id><summary type="html">&lt;p&gt;Análisis de los headers X-Forwarded-For y X-Real-IP, sus orígenes, diferencias y cómo determinar la IP real del cliente en arquitecturas con múltiples proxies&lt;/p&gt;</summary><content type="html">&lt;p&gt;Determinar la &lt;strong&gt;IP real del cliente&lt;/strong&gt; en arquitecturas con proxies es más complejo de lo que parece. Los headers &lt;code&gt;X-Forwarded-For&lt;/code&gt; y &lt;code&gt;X-Real-IP&lt;/code&gt; tienen diferentes propósitos y limitaciones.&lt;/p&gt;
+&lt;h2 id="x-forwarded-for-la-cadena-completa"&gt;X-Forwarded-For: La cadena completa&lt;a class="headerlink" href="#x-forwarded-for-la-cadena-completa" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="formato-y-proposito"&gt;Formato y propósito&lt;a class="headerlink" href="#formato-y-proposito" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nv"&gt;X&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;Forwarded&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="k"&gt;For&lt;/span&gt;:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;client&lt;/span&gt;,&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;proxy1&lt;/span&gt;,&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;proxy2&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Rastrea la IP original&lt;/strong&gt; del cliente a través de múltiples saltos&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Acumula IPs&lt;/strong&gt; conforme pasa por proxies&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;No es obligatorio&lt;/strong&gt; para todos los proxies&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="limitaciones-criticas"&gt;Limitaciones críticas&lt;a class="headerlink" href="#limitaciones-criticas" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;⚠️ &lt;strong&gt;Fácilmente falsificable&lt;/strong&gt;: Un cliente puede añadir IPs falsas&lt;br&gt;
+⚠️ &lt;strong&gt;Potencialmente no confiable&lt;/strong&gt; para determinar la IP real&lt;/p&gt;
+&lt;h2 id="x-real-ip-el-enfoque-directo"&gt;X-Real-IP: El enfoque directo&lt;a class="headerlink" href="#x-real-ip-el-enfoque-directo" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="caracteristicas"&gt;Características&lt;a class="headerlink" href="#caracteristicas" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Menos documentación&lt;/strong&gt; oficial disponible&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Comúnmente usado&lt;/strong&gt; junto con X-Forwarded-For&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Enfoque más simple&lt;/strong&gt; para pasar la IP del cliente&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="limitacion"&gt;Limitación&lt;a class="headerlink" href="#limitacion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;"Not many good info or specs about this one" - No hay estándares definitivos&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id="configuracion-nginx-recomendada"&gt;Configuración Nginx recomendada&lt;a class="headerlink" href="#configuracion-nginx-recomendada" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Para extraer la IP más precisa:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Configurar proxies conocidos&lt;/span&gt;
+&lt;span class="k"&gt;set_real_ip_from&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="s"&gt;.0.0.0/8&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="k"&gt;set_real_ip_from&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;172&lt;/span&gt;&lt;span class="s"&gt;.16.0.0/12&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="k"&gt;set_real_ip_from&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;192&lt;/span&gt;&lt;span class="s"&gt;.168.0.0/16&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Activar procesamiento recursivo&lt;/span&gt;
+&lt;span class="k"&gt;real_ip_recursive&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="no"&gt;on&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Usar X-Forwarded-For como fuente&lt;/span&gt;
+&lt;span class="k"&gt;real_ip_header&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;X-Forwarded-For&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="el-desafio-real"&gt;El desafío real&lt;a class="headerlink" href="#el-desafio-real" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Determinar la IP "real" del cliente es inherentemente complejo&lt;/strong&gt; debido a:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Múltiples saltos de red&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Proxies no cooperativos&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Potencial spoofing de IP&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Lack de estándares uniformes&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="buenas-practicas"&gt;Buenas prácticas&lt;a class="headerlink" href="#buenas-practicas" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Validar fuentes confiables&lt;/strong&gt; de headers&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Configurar correctamente&lt;/strong&gt; proxies conocidos&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;No confiar ciegamente&lt;/strong&gt; en headers de cliente&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Implementar logging&lt;/strong&gt; para debugging&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;La &lt;strong&gt;confiabilidad real&lt;/strong&gt; depende más de tu arquitectura de red que de los headers específicos utilizados.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Fuente original&lt;/em&gt;: &lt;a href="http://distinctplace.com/infrastructure/2014/04/23/story-behind-x-forwarded-for-and-x-real-ip-headers/"&gt;Distinct Place&lt;/a&gt;&lt;/p&gt;</content><category term="Redes"></category><category term="headers"></category><category term="x-forwarded-for"></category><category term="x-real-ip"></category><category term="proxy"></category><category term="nginx"></category></entry></feed>

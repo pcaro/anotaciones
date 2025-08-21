@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Anotaciones por Pablo Caro - Trucos</title><link href="http://pablocaro.es/" rel="alternate"></link><link href="http://pablocaro.es/feeds/categories/trucos.atom.xml" rel="self"></link><id>http://pablocaro.es/</id><updated>2017-04-11T14:07:00+02:00</updated><subtitle>Anotaciones</subtitle><entry><title>MobaXterm. Mucho más que un cliente ssh</title><link href="http://pablocaro.es/mobaxterm-mucho-m%C3%A1s-que-un-cliente-ssh" rel="alternate"></link><published>2017-04-11T14:07:00+02:00</published><updated>2017-04-11T14:07:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2017-04-11:/mobaxterm-mucho-más-que-un-cliente-ssh</id><summary type="html"></summary><content type="html">&lt;p&gt;Como sabéis, no soy de Windows. Linuxero desde hace años, tras pasar por múltiples sabores de Debian, ahora lo mío es &lt;a class="reference external" href="https://es.opensuse.org/Portal:Tumbleweed"&gt;OpenSuse Tumbleweed&lt;/a&gt;. Pero también tengo un equipo de trabajo Windows 7 que uso ocasionalmente.
+Para eso viene muy bien &lt;a class="reference external" href="http://mobaxterm.mobatek.net/"&gt;MobaXterm&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="http://mobaxterm.mobatek.net/"&gt;MobaXterm&lt;/a&gt; es un conjunto de aplicaciones muy interesantes para trabajar como en Linux y conectarte a equipos remotos:
+terminal, cliente ssh, servidor X, rdp, vnc, etc.&lt;/p&gt;
+</content><category term="Trucos"></category><category term="linux"></category></entry><entry><title>Correo no leído en pestaña principal de gmail</title><link href="http://pablocaro.es/gmail_correo_no_leido_solo_en_principal" rel="alternate"></link><published>2016-07-28T18:00:00+02:00</published><updated>2016-07-28T18:00:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2016-07-28:/gmail_correo_no_leido_solo_en_principal</id><summary type="html">&lt;p&gt;Lo de siempre, otra nota recordatoria.&lt;/p&gt;
+&lt;p&gt;Si filtras el correo en gmail por no leído (&lt;code&gt;is:unread&lt;/code&gt;), obtienes todo el correo no leído,
+que en mi caso siempre incluye cientos de notificaciones, social, promociones o foros que no suele ser lo que busco.&lt;/p&gt;
+&lt;p&gt;Para buscar los correos no leídos &lt;em&gt;de …&lt;/em&gt;&lt;/p&gt;</summary><content type="html">&lt;p&gt;Lo de siempre, otra nota recordatoria.&lt;/p&gt;
+&lt;p&gt;Si filtras el correo en gmail por no leído (&lt;code&gt;is:unread&lt;/code&gt;), obtienes todo el correo no leído,
+que en mi caso siempre incluye cientos de notificaciones, social, promociones o foros que no suele ser lo que busco.&lt;/p&gt;
+&lt;p&gt;Para buscar los correos no leídos &lt;em&gt;de la pestaña Principal&lt;/em&gt; la consulta a realizar es esta:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+is:inbox -category:(updates OR promotions OR social OR forums) is:unread
+&lt;/pre&gt;
+</content><category term="Trucos"></category><category term="linux"></category></entry></feed>

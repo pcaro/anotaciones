@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Anotaciones por Pablo Caro - zope</title><link href="http://pablocaro.es/" rel="alternate"></link><link href="http://pablocaro.es/feeds/tags/zope.atom.xml" rel="self"></link><id>http://pablocaro.es/</id><updated>2012-07-27T04:38:00+02:00</updated><subtitle>Anotaciones</subtitle><entry><title>Autorelad en plone</title><link href="http://pablocaro.es/autorelad-en-plone" rel="alternate"></link><published>2012-07-27T04:38:00+02:00</published><updated>2012-07-27T04:38:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2012-07-27:/autorelad-en-plone</id><summary type="html">
+        Otro recordatorio.
+
+Para recargar mientras desarrollo una browserview en plone:
+&lt;pre lang="bash"&gt;$ when-changed.py *.py -c wget -q -O /dev/null  \
+http://admin:admin@localhost:8080/@@reload?action=code&lt;/pre&gt;
+Basta pues con usar &lt;a title="when-changed" href="https://github.com/joh/when-changed"&gt;when-changed&lt;/a&gt; y &lt;a href="http://pypi.python.org/pypi/plone.reload/"&gt;plone.reload&lt;/a&gt;
+
+Se que existen extensiones  para el navegador  que recargan una  pestaña cuando cambia un fichero …</summary><content type="html">
+        Otro recordatorio.
+
+Para recargar mientras desarrollo una browserview en plone:
+&lt;pre lang="bash"&gt;$ when-changed.py *.py -c wget -q -O /dev/null  \
+http://admin:admin@localhost:8080/@@reload?action=code&lt;/pre&gt;
+Basta pues con usar &lt;a title="when-changed" href="https://github.com/joh/when-changed"&gt;when-changed&lt;/a&gt; y &lt;a href="http://pypi.python.org/pypi/plone.reload/"&gt;plone.reload&lt;/a&gt;
+
+Se que existen extensiones  para el navegador  que recargan una  pestaña cuando cambia un fichero, pero yo soy más de consola.
+    </content><category term="Programación"></category><category term="zope"></category></entry><entry><title>scp con compresión</title><link href="http://pablocaro.es/scp-con-compresion" rel="alternate"></link><published>2011-03-04T03:49:00+01:00</published><updated>2011-03-04T03:49:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2011-03-04:/scp-con-compresion</id><content type="html">
+        La mejor forma de descargar una zodb:
+&lt;pre lang="bash"&gt;scp -C -o CompressionLevel=9 user@yoursite.com:~/plonefolder/zinstance/var/filestorage/Data.fs .&lt;/pre&gt;
+Leído en: &lt;a href="http://blog.mfabrik.com/2011/03/02/scp-file-copy-with-on-line-compression/"&gt;http://blog.mfabrik.com/2011/03/02/scp-file-copy-with-on-line-compression/&lt;/a&gt;
+    </content><category term="Programación"></category><category term="linux"></category><category term="zope"></category></entry><entry><title>Zen Coding y komodo edit</title><link href="http://pablocaro.es/zen-coding-y-komodo-edit" rel="alternate"></link><published>2010-10-15T14:41:00+02:00</published><updated>2010-10-15T14:41:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2010-10-15:/zen-coding-y-komodo-edit</id><summary type="html">
+        Mi editor favorito &lt;a href="http://www.activestate.com/komodo-edit" target="_blank"&gt;Komodo Edit&lt;/a&gt; tiene un plugin de &lt;a href="http://code.google.com/p/zen-coding/" target="_blank"&gt;Zen Coding &lt;/a&gt;y este funciona muy bien también con plantillas zpt. Por ejemplo:
+
+Así una expresión como la siguente
+&lt;pre lang="css"&gt;
+dl&gt;tal:rep[tal:repeat]&gt;dt+dd
+&lt;/pre&gt;
+Se convierte en el siguiente trozo de html con los nesesarios tabstops:
+&lt;pre lang="css"&gt;
+&lt;dl&gt;
+    &lt;tal:rep tal:repeat=""&gt;
+        &lt;dt&gt;&lt;/dt&gt;
+        &lt;dd&gt;&lt;/dd&gt;
+    &lt;/tal:rep&gt;
+&lt;/dl&gt;&lt;/pre&gt;
+Muy pero que …</summary><content type="html">
+        Mi editor favorito &lt;a href="http://www.activestate.com/komodo-edit" target="_blank"&gt;Komodo Edit&lt;/a&gt; tiene un plugin de &lt;a href="http://code.google.com/p/zen-coding/" target="_blank"&gt;Zen Coding &lt;/a&gt;y este funciona muy bien también con plantillas zpt. Por ejemplo:
+
+Así una expresión como la siguente
+&lt;pre lang="css"&gt;
+dl&gt;tal:rep[tal:repeat]&gt;dt+dd
+&lt;/pre&gt;
+Se convierte en el siguiente trozo de html con los nesesarios tabstops:
+&lt;pre lang="css"&gt;
+&lt;dl&gt;
+    &lt;tal:rep tal:repeat=""&gt;
+        &lt;dt&gt;&lt;/dt&gt;
+        &lt;dd&gt;&lt;/dd&gt;
+    &lt;/tal:rep&gt;
+&lt;/dl&gt;&lt;/pre&gt;
+Muy pero que muy cómodo
+    </content><category term="Programación"></category><category term="zope"></category></entry><entry><title>Progreso en un reindexado de zope</title><link href="http://pablocaro.es/progreso-en-un-reindexado-de-zope" rel="alternate"></link><published>2010-09-18T06:06:00+02:00</published><updated>2010-09-18T06:06:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2010-09-18:/progreso-en-un-reindexado-de-zope</id><content type="html">
+        Visto en el producto contentleadimage:
+&lt;pre lang="python"&gt;from Products.ZCatalog.ProgressHandler import ZLogHandler
+ctool.reindexIndex(['hasContentLeadImage'], portal.REQUEST, pghandler=ZLogHandler())&lt;/pre&gt;
+Esto muestra un progreso en la consola si estás ejecutando  en primer plano.
+    </content><category term="Programación"></category><category term="zope"></category></entry><entry><title>Zope y noatime</title><link href="http://pablocaro.es/zope-y-noatime" rel="alternate"></link><published>2010-07-25T05:33:00+02:00</published><updated>2010-07-25T05:33:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2010-07-25:/zope-y-noatime</id><content type="html">
+        Una fácil mejora para el rendimiento de un zope con problemas de acceso a disco es&lt;a href="http://tldp.org/LDP/solrhe/Securing-Optimizing-Linux-RH-Edition-v1.3/chap6sec73.html"&gt; no actualizar la fecha de último acceso&lt;/a&gt; al fichero de la base de datos Data.fs:
+
+&lt;pre lang="bash"&gt;
+chattr -R +A Data.fs
+&lt;/pre&gt;
+
+Simple y efectivo.
+    </content><category term="Programación"></category><category term="zope"></category></entry><entry><title>Restaurando objectos plone borrados</title><link href="http://pablocaro.es/restaurando-objectos-plone-borrados" rel="alternate"></link><published>2010-07-14T01:33:00+02:00</published><updated>2010-07-14T01:33:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2010-07-14:/restaurando-objectos-plone-borrados</id><content type="html">
+        Para esas situaciones donde no funciona el undo, la salvación se llama &lt;a href="http://pypi.python.org/pypi/dm.historical"&gt;dm.historical&lt;/a&gt;
+
+Un claro ejemplo en &lt;a href="http://www.zopyx.de/blog/restoring-an-older-state-of-arbitrary-zope-objects" target="_blank"&gt;esta entrada&lt;/a&gt; del Blog de Andreas Jung
+    </content><category term="Programación"></category><category term="zope"></category></entry></feed>

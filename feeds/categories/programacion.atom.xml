@@ -1,0 +1,1088 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Anotaciones por Pablo Caro - Programación</title><link href="http://pablocaro.es/" rel="alternate"></link><link href="http://pablocaro.es/feeds/categories/programacion.atom.xml" rel="self"></link><id>http://pablocaro.es/</id><updated>2025-07-23T06:12:00+02:00</updated><subtitle>Anotaciones</subtitle><entry><title>Cómo uso git worktrees para trabajo concurrente</title><link href="http://pablocaro.es/como-uso-git-worktrees" rel="alternate"></link><published>2025-07-23T06:12:00+02:00</published><updated>2025-07-23T06:12:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2025-07-23:/como-uso-git-worktrees</id><summary type="html">&lt;p class="first last"&gt;Un enfoque práctico para usar git worktrees y maximizar la productividad con múltiples contextos de trabajo simultáneos&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;Aleksey Kladov comparte su enfoque único para usar git worktrees, que va más allá del simple cambio de ramas y se convierte en una metodología completa para el trabajo concurrente.&lt;/p&gt;
+&lt;img alt="Estructura de worktrees" class="align-center" src="https://matklad.github.io/images/worktree-structure.png" /&gt;
+&lt;div class="section" id="la-filosofia-central"&gt;
+&lt;h2&gt;La filosofía central&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;&amp;quot;Git no es un sistema de control de versiones, Git es una caja de herramientas para construir un VCS&amp;quot;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Esta perspectiva cambia completamente cómo pensamos sobre git. En lugar de limitarnos a las funcionalidades básicas, podemos crear nuestro propio flujo de trabajo optimizado.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="los-5-worktrees-especializados"&gt;
+&lt;h2&gt;Los 5 worktrees especializados&lt;/h2&gt;
+&lt;p&gt;El autor mantiene 5 worktrees, cada uno con un propósito específico:&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;&lt;strong&gt;main&lt;/strong&gt; - Snapshot de solo lectura
+- Reflejo limpio del main remoto
+- Referencia para comparaciones
+- Nunca se modifica localmente&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;work&lt;/strong&gt; - Espacio de trabajo principal
+- Desarrollo activo día a día
+- Commits frecuentes con mensajes mínimos
+- HEAD desacoplado para máxima flexibilidad&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;review&lt;/strong&gt; - Dedicado a revisiones de código
+- Contexto limpio para analizar PRs
+- Sin interferir con el trabajo en curso&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;fuzz&lt;/strong&gt; - Pruebas de larga duración
+- Fuzzing y tests que duran horas
+- Corre en paralelo sin bloquear el desarrollo&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;scratch&lt;/strong&gt; - Tareas rápidas no relacionadas
+- Experimentos
+- Fixes urgentes
+- Investigaciones puntuales&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# Estructura típica de directorios&lt;/span&gt;
+~/projects/my-project/
+├──&lt;span class="w"&gt; &lt;/span&gt;main/&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="c1"&gt;# worktree principal&lt;/span&gt;
+├──&lt;span class="w"&gt; &lt;/span&gt;work/&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="c1"&gt;# desarrollo activo&lt;/span&gt;
+├──&lt;span class="w"&gt; &lt;/span&gt;review/&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="c1"&gt;# revisiones&lt;/span&gt;
+├──&lt;span class="w"&gt; &lt;/span&gt;fuzz/&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="c1"&gt;# testing&lt;/span&gt;
+└──&lt;span class="w"&gt; &lt;/span&gt;scratch/&lt;span class="w"&gt;     &lt;/span&gt;&lt;span class="c1"&gt;# experimentos&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="ventajas-del-enfoque"&gt;
+&lt;h2&gt;Ventajas del enfoque&lt;/h2&gt;
+&lt;dl class="docutils"&gt;
+&lt;dt&gt;&lt;strong&gt;Trabajo verdaderamente concurrente&lt;/strong&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;ul class="first last simple"&gt;
+&lt;li&gt;Múltiples actividades de codificación simultáneas&lt;/li&gt;
+&lt;li&gt;Sin necesidad de stash o branch switching complejo&lt;/li&gt;
+&lt;li&gt;Separación limpia de contextos&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/dd&gt;
+&lt;dt&gt;&lt;strong&gt;Flujo de trabajo sin fricción&lt;/strong&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;ul class="first last simple"&gt;
+&lt;li&gt;Cambio instantáneo entre tareas&lt;/li&gt;
+&lt;li&gt;Commits frecuentes sin presión por mensajes perfectos&lt;/li&gt;
+&lt;li&gt;Experimentación libre en HEAD desacoplado&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/dd&gt;
+&lt;dt&gt;&lt;strong&gt;Paralelización real&lt;/strong&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;ul class="first last simple"&gt;
+&lt;li&gt;Fuzzing corriendo mientras desarrollas&lt;/li&gt;
+&lt;li&gt;Reviews sin interrumpir el trabajo principal&lt;/li&gt;
+&lt;li&gt;Tests en background sin bloqueos&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class="section" id="tecnicas-avanzadas"&gt;
+&lt;h2&gt;Técnicas avanzadas&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;HEAD desacoplado estratégico&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# En el worktree &amp;#39;work&amp;#39;, trabajar sin rama&lt;/span&gt;
+git&lt;span class="w"&gt; &lt;/span&gt;checkout&lt;span class="w"&gt; &lt;/span&gt;--detach&lt;span class="w"&gt; &lt;/span&gt;HEAD
+&lt;span class="c1"&gt;# Commit frecuente, reorganizar después&lt;/span&gt;
+git&lt;span class="w"&gt; &lt;/span&gt;commit&lt;span class="w"&gt; &lt;/span&gt;-m&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;wip&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;Scripts personalizados para operaciones comunes&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# Script para crear/cambiar worktrees rápidamente&lt;/span&gt;
+&lt;span class="c1"&gt;#!/bin/bash&lt;/span&gt;
+git&lt;span class="w"&gt; &lt;/span&gt;worktree&lt;span class="w"&gt; &lt;/span&gt;add&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;../&lt;/span&gt;&lt;span class="nv"&gt;$1&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$2&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+&lt;span class="nb"&gt;cd&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;../&lt;/span&gt;&lt;span class="nv"&gt;$1&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;Flujo de integración&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# Desde el worktree &amp;#39;work&amp;#39;&lt;/span&gt;
+git&lt;span class="w"&gt; &lt;/span&gt;log&lt;span class="w"&gt; &lt;/span&gt;--oneline&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="c1"&gt;# revisar commits&lt;/span&gt;
+git&lt;span class="w"&gt; &lt;/span&gt;reset&lt;span class="w"&gt; &lt;/span&gt;HEAD~5&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="c1"&gt;# deshacer commits temporales&lt;/span&gt;
+git&lt;span class="w"&gt; &lt;/span&gt;add&lt;span class="w"&gt; &lt;/span&gt;-p&lt;span class="w"&gt;         &lt;/span&gt;&lt;span class="c1"&gt;# seleccionar cambios&lt;/span&gt;
+git&lt;span class="w"&gt; &lt;/span&gt;commit&lt;span class="w"&gt;         &lt;/span&gt;&lt;span class="c1"&gt;# commit final limpio&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="lecciones-clave"&gt;
+&lt;h2&gt;Lecciones clave&lt;/h2&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;&lt;strong&gt;Git es flexible&lt;/strong&gt;: No hay &amp;quot;una forma correcta&amp;quot; de usar git&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Automatiza lo repetitivo&lt;/strong&gt;: Scripts personalizados para operaciones comunes&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Separa contextos&lt;/strong&gt;: Cada tipo de trabajo merece su propio espacio&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Commits baratos&lt;/strong&gt;: Commitea frecuentemente, organiza después&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Este enfoque transforma git de una herramienta de versionado en una plataforma completa de gestión de flujo de trabajo, maximizando la productividad a través del trabajo verdaderamente concurrente.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Artículo original&lt;/em&gt;: &lt;a class="reference external" href="https://matklad.github.io/2024/07/25/git-worktrees.html"&gt;How I Use Git Worktrees&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="Programación"></category><category term="git"></category><category term="worktrees"></category><category term="flujo-trabajo"></category><category term="productividad"></category></entry><entry><title>Búsqueda híbrida con SQLite: vector + texto completo</title><link href="http://pablocaro.es/busqueda-hibrida-sqlite-vector-texto" rel="alternate"></link><published>2024-10-06T11:43:00+02:00</published><updated>2024-10-06T11:43:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2024-10-06:/busqueda-hibrida-sqlite-vector-texto</id><summary type="html">&lt;p class="first last"&gt;Combinando búsqueda vectorial y texto completo en SQLite usando Reciprocal Rank Fusion para obtener mejores resultados&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;Simon Willison presenta una aproximación fascinante para combinar búsqueda vectorial y tradicional búsqueda de texto completo en SQLite, usando una técnica llamada &lt;strong&gt;Reciprocal Rank Fusion (RRF)&lt;/strong&gt;.&lt;/p&gt;
+&lt;div class="section" id="el-problema-central"&gt;
+&lt;h2&gt;El problema central&lt;/h2&gt;
+&lt;p&gt;Cuando tenemos búsquedas vectoriales (basadas en similitud semántica) y búsquedas de texto completo (FTS), cada una devuelve puntuaciones en escalas completamente diferentes:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;FTS devuelve puntuaciones de relevancia&lt;/li&gt;
+&lt;li&gt;Búsqueda vectorial devuelve distancias de similitud&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;¿Cómo combinar estos resultados de manera efectiva?&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="la-solucion-reciprocal-rank-fusion"&gt;
+&lt;h2&gt;La solución: Reciprocal Rank Fusion&lt;/h2&gt;
+&lt;p&gt;La técnica RRF evita comparar puntuaciones incompatibles y en su lugar se basa en el &lt;strong&gt;ranking&lt;/strong&gt; de cada resultado dentro de su respectivo método de búsqueda.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;SELECT&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;content&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(:&lt;/span&gt;&lt;span class="n"&gt;rrf_k&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;coalesce&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;fts_rank&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;999&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;fts_weight&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(:&lt;/span&gt;&lt;span class="n"&gt;rrf_k&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;coalesce&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;vec_rank&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;999&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;vec_weight&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;as&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;combined_rank&lt;/span&gt;
+&lt;span class="k"&gt;FROM&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="c1"&gt;-- Subconsulta FTS con row_number()&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;SELECT&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;row_number&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;OVER&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;ORDER&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;BY&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;rank&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;as&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;fts_rank&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;FROM&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;fts_search&lt;/span&gt;&lt;span class="p"&gt;(:&lt;/span&gt;&lt;span class="n"&gt;query&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;fts&lt;/span&gt;
+&lt;span class="k"&gt;FULL&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;OUTER&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;JOIN&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="c1"&gt;-- Subconsulta vectorial con row_number()&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;SELECT&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;row_number&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;OVER&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;ORDER&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;BY&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;distance&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;as&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;vec_rank&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;FROM&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;vector_search&lt;/span&gt;&lt;span class="p"&gt;(:&lt;/span&gt;&lt;span class="n"&gt;query&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;k&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;vec&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;ON&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;fts&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;id&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;vec&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;id&lt;/span&gt;
+&lt;span class="k"&gt;ORDER&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;BY&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;combined_rank&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;DESC&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="ventajas-del-enfoque-hibrido"&gt;
+&lt;h2&gt;Ventajas del enfoque híbrido&lt;/h2&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;&lt;strong&gt;Flexibilidad&lt;/strong&gt;: Permite ajustar pesos entre FTS y búsqueda vectorial&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Robustez&lt;/strong&gt;: Los resultados pueden aparecer en uno o ambos métodos&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Escalabilidad&lt;/strong&gt;: No requiere normalización compleja de puntuaciones&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Simplicidad&lt;/strong&gt;: Una sola consulta SQL maneja toda la lógica&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class="section" id="sqlite-como-plataforma-unificada"&gt;
+&lt;h2&gt;SQLite como plataforma unificada&lt;/h2&gt;
+&lt;p&gt;Con extensiones como &lt;a class="reference external" href="https://github.com/asg017/sqlite-vec"&gt;sqlite-vec&lt;/a&gt;, SQLite se convierte en una plataforma poderosa para:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Búsqueda de texto completo (FTS5 nativo)&lt;/li&gt;
+&lt;li&gt;Búsqueda vectorial de embeddings&lt;/li&gt;
+&lt;li&gt;Combinación híbrida de ambas técnicas&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Esta aproximación democratiza las técnicas avanzadas de búsqueda, haciéndolas accesibles sin infraestructura compleja.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Artículo original&lt;/em&gt;: &lt;a class="reference external" href="https://simonwillison.net/2024/Oct/4/hybrid-full-text-search-and-vector-search-with-sqlite/"&gt;Hybrid full-text search and vector search with SQLite&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="Programación"></category><category term="sqlite"></category><category term="búsqueda"></category><category term="vectores"></category><category term="fts"></category><category term="sql"></category></entry><entry><title>Conflación de datos geoespaciales con DuckDB y embeddings</title><link href="http://pablocaro.es/conflacion-datos-geoespaciales-duckdb" rel="alternate"></link><published>2024-10-01T07:12:00+02:00</published><updated>2024-10-01T07:12:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2024-10-01:/conflacion-datos-geoespaciales-duckdb</id><summary type="html">&lt;p class="first last"&gt;Técnicas avanzadas para integrar fuentes de datos geoespaciales usando DuckDB, H3, Ollama y modelos de embeddings&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;Drew Breunig presenta un fascinante caso práctico de &lt;strong&gt;conflación de datos geoespaciales&lt;/strong&gt;: el proceso de identificar y unir registros similares de fuentes diferentes.&lt;/p&gt;
+&lt;div class="section" id="el-reto-integrar-datos-de-restaurantes"&gt;
+&lt;h2&gt;El reto: Integrar datos de restaurantes&lt;/h2&gt;
+&lt;p&gt;El objetivo era conectar dos fuentes de datos:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;strong&gt;Inspecciones de restaurantes&lt;/strong&gt; del condado de Alameda&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Datos de lugares&lt;/strong&gt; de Overture Maps Foundation&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Dos datasets con información similar pero estructurada de forma diferente.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="herramientas-del-stack-moderno"&gt;
+&lt;h2&gt;Herramientas del stack moderno&lt;/h2&gt;
+&lt;dl class="docutils"&gt;
+&lt;dt&gt;&lt;strong&gt;DuckDB como motor principal&lt;/strong&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;ul class="first last simple"&gt;
+&lt;li&gt;&lt;strong&gt;Staging y consultas&lt;/strong&gt; de grandes volúmenes de datos&lt;/li&gt;
+&lt;li&gt;Soporte nativo para formatos geoespaciales&lt;/li&gt;
+&lt;li&gt;Performance excepcional para análisis exploratorio&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;p&gt;&lt;strong&gt;H3 para agrupación espacial&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;-- Agrupar lugares cercanos usando hexágonos H3&lt;/span&gt;
+&lt;span class="k"&gt;SELECT&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;h3_cell_to_lat_lng&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;h3_latlng_to_cell&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;lat&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;lng&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;9&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;as&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;h3_9&lt;/span&gt;
+&lt;span class="k"&gt;FROM&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;places&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;dl class="docutils"&gt;
+&lt;dt&gt;&lt;strong&gt;Ollama para embeddings locales&lt;/strong&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;ul class="first last simple"&gt;
+&lt;li&gt;Framework de ML ejecutándose localmente&lt;/li&gt;
+&lt;li&gt;Generación de embeddings contextuales&lt;/li&gt;
+&lt;li&gt;Sin dependencia de APIs externas&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class="section" id="tres-enfoques-de-matching"&gt;
+&lt;h2&gt;Tres enfoques de matching&lt;/h2&gt;
+&lt;dl class="docutils"&gt;
+&lt;dt&gt;&lt;strong&gt;1. Matching exacto por nombre&lt;/strong&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;ul class="first last simple"&gt;
+&lt;li&gt;&lt;strong&gt;Resultado&lt;/strong&gt;: ~31% de coincidencias&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Limitaciones&lt;/strong&gt;: Nombres de cadenas, números de unidad en direcciones&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;p&gt;&lt;strong&gt;2. Similitud de strings (Jaro-Winkler)&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;-- Comparación combinando nombre y dirección&lt;/span&gt;
+&lt;span class="k"&gt;WHERE&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;jaro_winkler_similarity&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;name1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;name2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;8&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="k"&gt;AND&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;levenshtein&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;address1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;address2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;strong&gt;Resultado&lt;/strong&gt;: ~68% de coincidencias&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Desventaja&lt;/strong&gt;: SQL complejo con muchas reglas condicionales&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;3. Matching basado en embeddings&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# Generar descripción contextual&lt;/span&gt;
+&lt;span class="n"&gt;description&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt; at &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;address&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt; in &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;city&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;embedding&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;ollama&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;embeddings&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;description&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;strong&gt;Resultado&lt;/strong&gt;: ~71% de coincidencias&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Ventajas&lt;/strong&gt;: Pipeline más simple, mayor flexibilidad&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Desventaja&lt;/strong&gt;: Mayor tiempo de procesamiento&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="insights-clave"&gt;
+&lt;h2&gt;Insights clave&lt;/h2&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;&lt;strong&gt;No existe la bala de plata&lt;/strong&gt; - cada método tiene fortalezas específicas&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Las herramientas locales son poderosas&lt;/strong&gt; - DuckDB + Ollama permiten análisis sofisticados sin cloud&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Los embeddings son prometedores&lt;/strong&gt; - especialmente para casos con contexto complejo&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;La conflación requiere iteración&lt;/strong&gt; - combinar múltiples técnicas mejora los resultados&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class="section" id="el-futuro-de-la-integracion-de-datos"&gt;
+&lt;h2&gt;El futuro de la integración de datos&lt;/h2&gt;
+&lt;p&gt;Este trabajo muestra cómo las herramientas modernas democratizan técnicas que antes requerían infraestructura compleja. La combinación de:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;strong&gt;Bases de datos analíticas&lt;/strong&gt; (DuckDB)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Índices espaciales&lt;/strong&gt; (H3)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ML local&lt;/strong&gt; (Ollama)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;...abre nuevas posibilidades para la integración inteligente de datos.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Artículo original&lt;/em&gt;: &lt;a class="reference external" href="https://www.dbreunig.com/2024/09/27/conflating-overture-points-of-interests-with-duckdb-ollama-and-more.html"&gt;Conflating Overture Places Using DuckDB, Ollama, Embeddings, and More&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="Programación"></category><category term="duckdb"></category><category term="geoespacial"></category><category term="embeddings"></category><category term="ollama"></category><category term="h3"></category></entry><entry><title>HTTPX: Cliente HTTP moderno para Python</title><link href="http://pablocaro.es/httpx-cliente-http-moderno-python" rel="alternate"></link><published>2024-09-23T00:07:00+02:00</published><updated>2024-09-23T00:07:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2024-09-23:/httpx-cliente-http-moderno-python</id><summary type="html">&lt;p class="first last"&gt;HTTPX emerge como el sucesor natural de requests, ofreciendo soporte async, HTTP/2 y una API moderna para aplicaciones Python contemporáneas&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;HTTPX se presenta como la evolución natural de la popular biblioteca &lt;tt class="docutils literal"&gt;requests&lt;/tt&gt;, manteniendo su simplicidad pero añadiendo capacidades modernas que las aplicaciones actuales necesitan.&lt;/p&gt;
+&lt;div class="section" id="por-que-httpx"&gt;
+&lt;h2&gt;¿Por qué HTTPX?&lt;/h2&gt;
+&lt;p&gt;Mientras &lt;tt class="docutils literal"&gt;requests&lt;/tt&gt; sigue siendo excelente para uso síncrono, HTTPX aborda las limitaciones que han surgido con el tiempo:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;strong&gt;Sin soporte async nativo&lt;/strong&gt; en requests&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;HTTP/2 no disponible&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Type hints limitados&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Timeouts menos precisos&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="instalacion-y-configuracion"&gt;
+&lt;h2&gt;Instalación y configuración&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# Instalación básica&lt;/span&gt;
+pip&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;httpx
+
+&lt;span class="c1"&gt;# Con soporte HTTP/2&lt;/span&gt;
+pip&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;httpx&lt;span class="o"&gt;[&lt;/span&gt;http2&lt;span class="o"&gt;]&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Con compresión avanzada&lt;/span&gt;
+pip&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;httpx&lt;span class="o"&gt;[&lt;/span&gt;brotli,zstd&lt;span class="o"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="api-familiar-capacidades-modernas"&gt;
+&lt;h2&gt;API familiar, capacidades modernas&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Uso síncrono&lt;/strong&gt; - Compatible con requests:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;httpx&lt;/span&gt;
+
+&lt;span class="c1"&gt;# GET básico&lt;/span&gt;
+&lt;span class="n"&gt;r&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;httpx&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;https://api.github.com/users/octocat&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;status_code&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="c1"&gt;# 200&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;json&lt;/span&gt;&lt;span class="p"&gt;()[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;login&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;  &lt;span class="c1"&gt;# &amp;#39;octocat&amp;#39;&lt;/span&gt;
+
+&lt;span class="c1"&gt;# POST con datos JSON&lt;/span&gt;
+&lt;span class="n"&gt;payload&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;key&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;value&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="n"&gt;r&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;httpx&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;post&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;https://httpbin.org/post&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;json&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;payload&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Headers personalizados&lt;/span&gt;
+&lt;span class="n"&gt;headers&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;User-Agent&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;my-app/1.0&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="n"&gt;r&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;httpx&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;https://api.example.com/data&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;headers&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;headers&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="el-poder-del-async-await"&gt;
+&lt;h2&gt;El poder del async/await&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Cliente asíncrono&lt;/strong&gt; - La verdadera ventaja:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;asyncio&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;httpx&lt;/span&gt;
+
+&lt;span class="k"&gt;async&lt;/span&gt; &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;fetch_user&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;client&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;username&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;r&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;await&lt;/span&gt; &lt;span class="n"&gt;client&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;https://api.github.com/users/&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;username&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;json&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+
+&lt;span class="k"&gt;async&lt;/span&gt; &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+    &lt;span class="k"&gt;async&lt;/span&gt; &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="n"&gt;httpx&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;AsyncClient&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;client&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;users&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;await&lt;/span&gt; &lt;span class="n"&gt;asyncio&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;gather&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+            &lt;span class="n"&gt;fetch_user&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;client&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;octocat&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+            &lt;span class="n"&gt;fetch_user&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;client&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;gvanrossum&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+            &lt;span class="n"&gt;fetch_user&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;client&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;kennethreitz&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;user&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;users&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;user&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;login&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;: &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;user&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;public_repos&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt; repos&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="n"&gt;asyncio&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;run&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;main&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="funcionalidades-avanzadas"&gt;
+&lt;h2&gt;Funcionalidades avanzadas&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Timeouts estrictos&lt;/strong&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# Timeout granular&lt;/span&gt;
+&lt;span class="n"&gt;timeout&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;httpx&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Timeout&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;10.0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;read&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mf"&gt;5.0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="k"&gt;async&lt;/span&gt; &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="n"&gt;httpx&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;AsyncClient&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;timeout&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;timeout&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;client&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;r&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;await&lt;/span&gt; &lt;span class="n"&gt;client&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;https://slow-api.example.com&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;Streaming de datos&lt;/strong&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# Descarga streaming&lt;/span&gt;
+&lt;span class="k"&gt;async&lt;/span&gt; &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="n"&gt;httpx&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;AsyncClient&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;client&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="k"&gt;async&lt;/span&gt; &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="n"&gt;client&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;stream&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;GET&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;https://example.com/bigfile.zip&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="k"&gt;async&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;chunk&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;aiter_bytes&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;chunk_size&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;8192&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+            &lt;span class="c1"&gt;# Procesar chunk&lt;/span&gt;
+            &lt;span class="n"&gt;process_data&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;chunk&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;Pruebas con aplicaciones WSGI/ASGI&lt;/strong&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# Testear FastAPI directamente&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;fastapi&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;FastAPI&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;httpx&lt;/span&gt;
+
+&lt;span class="n"&gt;app&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;FastAPI&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+
+&lt;span class="nd"&gt;@app&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;/&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;read_root&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;message&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Hello World&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Test directo sin servidor&lt;/span&gt;
+&lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="n"&gt;httpx&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Client&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;app&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;app&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;base_url&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;http://testserver&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;client&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;r&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;client&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;/&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;assert&lt;/span&gt; &lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;json&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;message&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Hello World&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="http-2-y-conexiones-persistentes"&gt;
+&lt;h2&gt;HTTP/2 y conexiones persistentes&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# Cliente con HTTP/2 y pool de conexiones&lt;/span&gt;
+&lt;span class="n"&gt;limits&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;httpx&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Limits&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;max_keepalive_connections&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;max_connections&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="k"&gt;async&lt;/span&gt; &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="n"&gt;httpx&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;AsyncClient&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;http2&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;limits&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;limits&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;client&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="c1"&gt;# Múltiples requests reutilizan conexiones&lt;/span&gt;
+    &lt;span class="n"&gt;tasks&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;client&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;https://httpbin.org/get?page=&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+             &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;50&lt;/span&gt;&lt;span class="p"&gt;)]&lt;/span&gt;
+
+    &lt;span class="n"&gt;responses&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;await&lt;/span&gt; &lt;span class="n"&gt;asyncio&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;gather&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;tasks&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Completed &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;responses&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt; requests&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="comparativa-requests-vs-httpx"&gt;
+&lt;h2&gt;Comparativa: requests vs HTTPX&lt;/h2&gt;
+&lt;table border="1" class="docutils"&gt;
+&lt;colgroup&gt;
+&lt;col width="33%" /&gt;
+&lt;col width="33%" /&gt;
+&lt;col width="33%" /&gt;
+&lt;/colgroup&gt;
+&lt;thead valign="bottom"&gt;
+&lt;tr&gt;&lt;th class="head"&gt;Característica&lt;/th&gt;
+&lt;th class="head"&gt;requests&lt;/th&gt;
+&lt;th class="head"&gt;HTTPX&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody valign="top"&gt;
+&lt;tr&gt;&lt;td&gt;API familiar&lt;/td&gt;
+&lt;td&gt;✓&lt;/td&gt;
+&lt;td&gt;✓&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Soporte async&lt;/td&gt;
+&lt;td&gt;✗&lt;/td&gt;
+&lt;td&gt;✓&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;HTTP/2&lt;/td&gt;
+&lt;td&gt;✗&lt;/td&gt;
+&lt;td&gt;✓&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Type hints&lt;/td&gt;
+&lt;td&gt;Parcial&lt;/td&gt;
+&lt;td&gt;Completo&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Timeouts precisos&lt;/td&gt;
+&lt;td&gt;Básico&lt;/td&gt;
+&lt;td&gt;Avanzado&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Testing WSGI/ASGI&lt;/td&gt;
+&lt;td&gt;✗&lt;/td&gt;
+&lt;td&gt;✓&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Streaming&lt;/td&gt;
+&lt;td&gt;Básico&lt;/td&gt;
+&lt;td&gt;Avanzado&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class="section" id="casos-de-uso-ideales"&gt;
+&lt;h2&gt;Casos de uso ideales&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;HTTPX es perfecto para&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;strong&gt;APIs concurrentes&lt;/strong&gt; con async/await&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Microservicios&lt;/strong&gt; que necesitan HTTP/2&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Testing de aplicaciones&lt;/strong&gt; FastAPI/Django&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Scraping a gran escala&lt;/strong&gt; con streaming&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Aplicaciones modernas&lt;/strong&gt; con type safety&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Mantén requests para&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;strong&gt;Scripts simples&lt;/strong&gt; sin concurrencia&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Proyectos legacy&lt;/strong&gt; ya establecidos&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Código con dependencias&lt;/strong&gt; que requieren requests&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="el-futuro-de-http-en-python"&gt;
+&lt;h2&gt;El futuro de HTTP en Python&lt;/h2&gt;
+&lt;p&gt;HTTPX representa el camino hacia adelante para aplicaciones HTTP en Python, ofreciendo:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;strong&gt;Performance moderna&lt;/strong&gt; con async y HTTP/2&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Developer experience&lt;/strong&gt; mejorada con tipos&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Ecosistema integrado&lt;/strong&gt; con frameworks actuales&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Compatibilidad&lt;/strong&gt; que facilita migración&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Es hora de considerar HTTPX como el cliente HTTP por defecto para nuevos proyectos Python.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Documentación oficial&lt;/em&gt;: &lt;a class="reference external" href="https://www.python-httpx.org/"&gt;python-httpx.org&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="Programación"></category><category term="python"></category><category term="http"></category><category term="httpx"></category><category term="async"></category><category term="requests"></category></entry><entry><title>Server-Sent Events: Comunicación en tiempo real simplificada</title><link href="http://pablocaro.es/server-sent-events-comunicacion-tiempo-real" rel="alternate"></link><published>2024-09-23T00:01:00+02:00</published><updated>2024-09-23T00:01:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2024-09-23:/server-sent-events-comunicacion-tiempo-real</id><summary type="html">&lt;p&gt;Server-Sent Events ofrece una alternativa simple y eficiente a WebSockets para comunicación unidireccional servidor-cliente en aplicaciones web&lt;/p&gt;</summary><content type="html">&lt;p&gt;Los &lt;strong&gt;Server-Sent Events (SSE)&lt;/strong&gt; representan una solución elegante y simple para implementar comunicación en tiempo real en aplicaciones web cuando solo necesitamos que el servidor envíe datos al cliente.&lt;/p&gt;
+&lt;h2 id="que-son-los-server-sent-events"&gt;¿Qué son los Server-Sent Events?&lt;a class="headerlink" href="#que-son-los-server-sent-events" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;SSE es un estándar web que permite que un servidor envíe datos automáticamente a una página web usando una conexión HTTP persistente. A diferencia de WebSockets, la comunicación es &lt;strong&gt;unidireccional&lt;/strong&gt;: solo el servidor puede enviar mensajes al cliente.&lt;/p&gt;
+&lt;h2 id="implementacion-basica"&gt;Implementación básica&lt;a class="headerlink" href="#implementacion-basica" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="cliente-javascript"&gt;Cliente (JavaScript)&lt;a class="headerlink" href="#cliente-javascript" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;// Crear conexión SSE&lt;/span&gt;
+&lt;span class="kd"&gt;const&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;eventSource&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;new&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;EventSource&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;/api/events&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+&lt;span class="c1"&gt;// Escuchar mensajes genéricos&lt;/span&gt;
+&lt;span class="nx"&gt;eventSource&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;onmessage&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;event&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Mensaje recibido:&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;event&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;data&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="kd"&gt;const&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;data&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;JSON&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;parse&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;event&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;data&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nx"&gt;updateUI&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;data&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
+
+&lt;span class="c1"&gt;// Escuchar eventos personalizados&lt;/span&gt;
+&lt;span class="nx"&gt;eventSource&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;addEventListener&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;notification&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;event&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="kd"&gt;const&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;notification&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;JSON&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;parse&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;event&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;data&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nx"&gt;showNotification&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;notification&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;title&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;notification&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;message&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;});&lt;/span&gt;
+
+&lt;span class="c1"&gt;// Manejar errores&lt;/span&gt;
+&lt;span class="nx"&gt;eventSource&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;onerror&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;event&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;error&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Error en SSE:&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;event&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
+
+&lt;span class="c1"&gt;// Cerrar conexión&lt;/span&gt;
+&lt;span class="c1"&gt;// eventSource.close();&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id="servidor-pythonflask"&gt;Servidor (Python/Flask)&lt;a class="headerlink" href="#servidor-pythonflask" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;flask&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Flask&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Response&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;json&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;time&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;threading&lt;/span&gt;
+
+&lt;span class="n"&gt;app&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Flask&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="vm"&gt;__name__&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;generate_events&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Generador que produce eventos SSE&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="c1"&gt;# Evento genérico&lt;/span&gt;
+        &lt;span class="n"&gt;data&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="s1"&gt;&amp;#39;timestamp&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;time&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;time&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt;
+            &lt;span class="s1"&gt;&amp;#39;users_online&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;get_users_count&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt;
+            &lt;span class="s1"&gt;&amp;#39;server_status&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;running&amp;#39;&lt;/span&gt;
+        &lt;span class="p"&gt;}&lt;/span&gt;
+
+        &lt;span class="k"&gt;yield&lt;/span&gt; &lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;data: &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;json&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dumps&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="se"&gt;\n\n&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+
+        &lt;span class="n"&gt;time&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sleep&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="c1"&gt;# Enviar cada 10 segundos&lt;/span&gt;
+
+&lt;span class="nd"&gt;@app&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;route&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;/api/events&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;stream_events&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Endpoint SSE&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;Response&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+        &lt;span class="n"&gt;generate_events&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt;
+        &lt;span class="n"&gt;mimetype&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;text/event-stream&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="n"&gt;headers&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="s1"&gt;&amp;#39;Cache-Control&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;no-cache&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+            &lt;span class="s1"&gt;&amp;#39;Connection&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;keep-alive&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+            &lt;span class="s1"&gt;&amp;#39;Access-Control-Allow-Origin&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;*&amp;#39;&lt;/span&gt;
+        &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="nd"&gt;@app&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;route&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;/api/notify&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;send_notification&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Enviar notificación específica&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;notification_event&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+        &lt;span class="n"&gt;notification&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="s1"&gt;&amp;#39;title&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Nueva actualización&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+            &lt;span class="s1"&gt;&amp;#39;message&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;El sistema se actualizó correctamente&amp;#39;&lt;/span&gt;
+        &lt;span class="p"&gt;}&lt;/span&gt;
+
+        &lt;span class="c1"&gt;# Evento con nombre personalizado&lt;/span&gt;
+        &lt;span class="k"&gt;yield&lt;/span&gt; &lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;event: notification&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+        &lt;span class="k"&gt;yield&lt;/span&gt; &lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;data: &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;json&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dumps&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;notification&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="se"&gt;\n\n&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;Response&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;notification_event&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt; &lt;span class="n"&gt;mimetype&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;text/event-stream&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="formato-del-stream-de-eventos"&gt;Formato del stream de eventos&lt;a class="headerlink" href="#formato-del-stream-de-eventos" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Los eventos SSE siguen un formato específico:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;event&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;message&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;type&lt;/span&gt;
+&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;{&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;key&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;value&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;}&lt;/span&gt;
+&lt;span class="n"&gt;id&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;unique&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;message&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;id&lt;/span&gt;
+&lt;span class="n"&gt;retry&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;3000&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;event&lt;/strong&gt;: Nombre del evento (opcional)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;data&lt;/strong&gt;: Contenido del mensaje&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;id&lt;/strong&gt;: Identificador único para reconexión&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;retry&lt;/strong&gt;: Tiempo de reintento en milisegundos&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="casos-de-uso-ideales"&gt;Casos de uso ideales&lt;a class="headerlink" href="#casos-de-uso-ideales" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="1-feeds-en-tiempo-real"&gt;1. Feeds en tiempo real&lt;a class="headerlink" href="#1-feeds-en-tiempo-real" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kd"&gt;const&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;newsSource&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;new&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;EventSource&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;/api/news-feed&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+&lt;span class="nx"&gt;newsSource&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;addEventListener&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;article&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;event&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="kd"&gt;const&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;article&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;JSON&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;parse&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;event&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;data&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nx"&gt;addArticleToFeed&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;article&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id="2-notificaciones-push"&gt;2. Notificaciones push&lt;a class="headerlink" href="#2-notificaciones-push" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kd"&gt;const&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;notificationSource&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;new&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;EventSource&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;/api/notifications&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+&lt;span class="nx"&gt;notificationSource&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;onmessage&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;event&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="kd"&gt;const&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;notification&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;JSON&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;parse&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;event&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;data&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="c1"&gt;// Mostrar notificación del navegador&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;Notification&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;permission&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;===&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;granted&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="ow"&gt;new&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;Notification&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;notification&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;title&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="nx"&gt;body&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;notification&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;message&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="nx"&gt;icon&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;/icon.png&amp;#39;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="p"&gt;});&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id="3-dashboard-en-tiempo-real"&gt;3. Dashboard en tiempo real&lt;a class="headerlink" href="#3-dashboard-en-tiempo-real" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kd"&gt;const&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;dashboardSource&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;new&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;EventSource&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;/api/dashboard&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+&lt;span class="nx"&gt;dashboardSource&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;addEventListener&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;metrics&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;event&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="kd"&gt;const&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;metrics&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;JSON&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;parse&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;event&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;data&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nx"&gt;updateCharts&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;metrics&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nx"&gt;updateCounters&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;metrics&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;});&lt;/span&gt;
+
+&lt;span class="nx"&gt;dashboardSource&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;addEventListener&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;alert&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;event&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="kd"&gt;const&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;alert&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;JSON&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;parse&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;event&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;data&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nx"&gt;showAlert&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;alert&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;level&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;alert&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;message&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="ventajas-de-sse"&gt;Ventajas de SSE&lt;a class="headerlink" href="#ventajas-de-sse" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Simplicidad&lt;/strong&gt;: API más simple que WebSockets&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Reconexión automática&lt;/strong&gt;: El navegador reintenta automáticamente&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Eficiencia&lt;/strong&gt;: Menor overhead que polling&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Compatibilidad&lt;/strong&gt;: Funciona sobre HTTP/HTTPS estándar&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Firewall-friendly&lt;/strong&gt;: No requiere puertos especiales&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="limitaciones-importantes"&gt;Limitaciones importantes&lt;a class="headerlink" href="#limitaciones-importantes" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Unidireccional&lt;/strong&gt;: Solo servidor → cliente&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Límites de conexión&lt;/strong&gt;: Navegadores limitan conexiones simultáneas&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Formato de datos&lt;/strong&gt;: Solo texto (aunque JSON funciona bien)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Sin compresión nativa&lt;/strong&gt;: A diferencia de WebSockets&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="sse-vs-websockets-cuando-usar-cada-uno"&gt;SSE vs WebSockets: ¿Cuándo usar cada uno?&lt;a class="headerlink" href="#sse-vs-websockets-cuando-usar-cada-uno" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="usa-sse-cuando"&gt;Usa SSE cuando:&lt;a class="headerlink" href="#usa-sse-cuando" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Solo necesitas servidor → cliente&lt;/li&gt;
+&lt;li&gt;Simplicidad es prioritaria  &lt;/li&gt;
+&lt;li&gt;Actualizaciones periódicas (feeds, notificaciones)&lt;/li&gt;
+&lt;li&gt;Compatibilidad con proxies/firewalls es importante&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="usa-websockets-cuando"&gt;Usa WebSockets cuando:&lt;a class="headerlink" href="#usa-websockets-cuando" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Necesitas comunicación bidireccional&lt;/li&gt;
+&lt;li&gt;Latencia ultra-baja es crítica&lt;/li&gt;
+&lt;li&gt;Intercambio intensivo de datos&lt;/li&gt;
+&lt;li&gt;Control total sobre el protocolo&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="manejo-de-errores-y-reconexion"&gt;Manejo de errores y reconexión&lt;a class="headerlink" href="#manejo-de-errores-y-reconexion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kd"&gt;const&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;eventSource&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;new&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;EventSource&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;/api/events&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+&lt;span class="kd"&gt;let&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;reconnectInterval&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;1000&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="kd"&gt;const&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;maxReconnectInterval&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;30000&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="nx"&gt;eventSource&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;onopen&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Conexión SSE establecida&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nx"&gt;reconnectInterval&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;1000&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;// Reset interval&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
+
+&lt;span class="nx"&gt;eventSource&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;onerror&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;event&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;error&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Error SSE:&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;event&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;eventSource&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;readyState&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;===&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;EventSource&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;CLOSED&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="c1"&gt;// Reconexión manual con backoff exponencial&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="nx"&gt;setTimeout&lt;/span&gt;&lt;span class="p"&gt;(()&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;=&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Intentando reconectar...&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="nx"&gt;reconnectSSE&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;reconnectInterval&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="nx"&gt;reconnectInterval&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;Math&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;min&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;reconnectInterval&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;maxReconnectInterval&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
+
+&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;reconnectSSE&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nx"&gt;eventSource&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;close&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nx"&gt;eventSource&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;new&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;EventSource&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;/api/events&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="conclusion"&gt;Conclusión&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Server-Sent Events ofrece una solución pragmática para comunicación en tiempo real cuando WebSockets resulta excesivo. Su simplicidad, reconexión automática y compatibilidad lo convierten en una opción excelente para feeds, notificaciones y dashboards en tiempo real.&lt;/p&gt;
+&lt;p&gt;Para aplicaciones que requieren actualizaciones del servidor al cliente sin la complejidad de WebSockets, SSE es la herramienta perfecta.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Documentación oficial&lt;/em&gt;: &lt;a href="https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events"&gt;Using server-sent events - MDN&lt;/a&gt;&lt;/p&gt;</content><category term="Programación"></category><category term="javascript"></category><category term="sse"></category><category term="tiempo-real"></category><category term="web-apis"></category></entry><entry><title>Repitiendo una función con hilos</title><link href="http://pablocaro.es/repetiendo-una-funci%C3%B3n-con-hilos" rel="alternate"></link><published>2015-05-03T21:00:00+02:00</published><updated>2015-05-03T21:00:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2015-05-03:/repetiendo-una-función-con-hilos</id><summary type="html">&lt;p class="first last"&gt;Vamos a utilizar hilos en python para ejecutar periodicamente una función&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;Tengo un servicio (con &lt;a class="reference external" href="https://github.com/jnrbsn/daemonocle"&gt;daemonocle&lt;/a&gt;  del que ya hablaré otro día) corriendo todo el tiempo en una &lt;a class="reference external" href="http://www.hardkernel.com/main/products/prdt_info.php"&gt;odroid c1&lt;/a&gt;.
+Consideré que era mejor controlar con hilos unas tareas periódicas que tengo que repetir (que ya estaba usando)
+en lugar de la típica entrada en cron.&lt;/p&gt;
+&lt;p&gt;Así puedo contrar mejor el funcionamiento de las mismas. Las ventajas para mí en este caso y para estas tareas concretas:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Ya tengo la configuración de logging realizada por el proceso principal. Estas tareas dejan su info en mis log rotacionales.&lt;/li&gt;
+&lt;li&gt;Parando  (arrancando) el servicio lo paro todo y a la vez.&lt;/li&gt;
+&lt;li&gt;Mido el consumo de recursos en su conjunto&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Dejo el snippet utilizado.&lt;/p&gt;
+&lt;p&gt;En  &lt;code&gt;utils.py&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# -*- coding: utf-8 -*-&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;__future__&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;unicode_literals&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;threading&lt;/span&gt;
+
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;RepeatedTimer&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;object&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="fm"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;interval&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;function&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;_timer&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;interval&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;interval&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;function&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;function&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;args&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;kwargs&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;is_running&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;False&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;start&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;_run&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;is_running&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;False&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;start&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;start&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;is_running&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;_timer&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;threading&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Timer&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;interval&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;_run&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+            &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;_timer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;start&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+            &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;is_running&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;True&lt;/span&gt;
+
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;stop&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;_timer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cancel&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;is_running&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;False&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;En &lt;code&gt;main.py&lt;/code&gt; podeís ver su uso, una de las funciones recibe un parámetro:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;setup_logging&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;youtube&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;youtube_api&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get_authenticated_service&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;events_thread&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;RepeatedTimer&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;UPDATE_EVENTS_SECONDS&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;backend_api&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;update_events_database&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;streams_thread&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;RepeatedTimer&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;UPDATE_STREAM_SECONDS&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;youtube_api&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;update_streams_database&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;youtube&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Deciros que paro estos hilos y limpio recursos en el evento de callback para shutdown que es de lo mejor de &lt;code&gt;daemonocle&lt;/code&gt;.
+Ya sabéis que python no es capaz de paralelizar del todo los hilos debido a al GIL, pero para tareas simples como estas con muy poca carga
+es simple y funciona a la perfección.&lt;/p&gt;
+</content><category term="Programación"></category><category term="python"></category></entry><entry><title>Cierra Google Code</title><link href="http://pablocaro.es/cierra-google-code" rel="alternate"></link><published>2015-03-13T17:11:00+01:00</published><updated>2015-03-13T17:11:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2015-03-13:/cierra-google-code</id><summary type="html">&lt;p&gt;Lo dicho, Google anunció el cierre de Google Code.&lt;/p&gt;
+&lt;p&gt;Hoy mismo recibí el correo avisandome (tenía un proyecto de prueba alojado allí) de que podía mover
+mis proyectos de forma simple a &lt;a class="reference external" href="http://github.com"&gt;github&lt;/a&gt;, el repositorio de facto hoy en día del software libre
+(lo siento por &lt;a class="reference external" href="https://bitbucket.org/pcaro"&gt;bitbucket&lt;/a&gt; y sobre todo …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Lo dicho, Google anunció el cierre de Google Code.&lt;/p&gt;
+&lt;p&gt;Hoy mismo recibí el correo avisandome (tenía un proyecto de prueba alojado allí) de que podía mover
+mis proyectos de forma simple a &lt;a class="reference external" href="http://github.com"&gt;github&lt;/a&gt;, el repositorio de facto hoy en día del software libre
+(lo siento por &lt;a class="reference external" href="https://bitbucket.org/pcaro"&gt;bitbucket&lt;/a&gt; y sobre todo por &lt;a class="reference external" href="http://mercurial.selenic.com/"&gt;mercurial&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;Su interfaz nunca fue la más amigable, ni tampoco consiguió gran popularidad pero todavía quedan proyectos interesantes
+en Google Code que supongo que pasarán a github o morirán para simpre.&lt;/p&gt;
+</content><category term="Programación"></category><category term="python"></category></entry><entry><title>pgcli el descubrimiento de hoy</title><link href="http://pablocaro.es/pgcli-el-descubrimiento-de-hoy" rel="alternate"></link><published>2015-03-02T08:26:00+01:00</published><updated>2015-03-02T08:26:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2015-03-02:/pgcli-el-descubrimiento-de-hoy</id><summary type="html">&lt;p class="first last"&gt;postresql command line&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;Leyendo mis feeds RSS acabo de dar con una herramienta muy útil. Se trata de &lt;a class="reference external" href="http://pgcli.com/"&gt;pgcli&lt;/a&gt; que no es más que una
+interfaz de línea de comandos para Postgres con autocompletado y resaltado de sintáxis.
+Como soy de usar la consola con las bases de datos, y postgres siempre es mi primera elección,
+me biene de perlas. with auto-completion and syntax highlighting&lt;/p&gt;
+&lt;p&gt;Yo recommiendo instalarla mediante &lt;a class="reference external" href="https://github.com/mitsuhiko/pipsi"&gt;pipsi&lt;/a&gt;.&lt;/p&gt;
+</content><category term="Programación"></category><category term="postgresql"></category></entry><entry><title>Decorador vista ajax</title><link href="http://pablocaro.es/decorador-vista-ajax" rel="alternate"></link><published>2014-11-21T11:12:00+01:00</published><updated>2014-11-21T11:12:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2014-11-21:/decorador-vista-ajax</id><summary type="html">&lt;p&gt;Para obligar que una vista &lt;a class="reference external" href="https://www.djangoproject.com/"&gt;django&lt;/a&gt; sea llamada sólo mediante llamamas AJAX.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;ajax_required&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="sd"&gt;    AJAX request required decorator&lt;/span&gt;
+&lt;span class="sd"&gt;    use it in your views:&lt;/span&gt;
+
+&lt;span class="sd"&gt;    @ajax_required&lt;/span&gt;
+&lt;span class="sd"&gt;    def my_view(request):&lt;/span&gt;
+&lt;span class="sd"&gt;        ....&lt;/span&gt;
+
+&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;wrap&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;is_ajax&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+            &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;HttpResponseBadRequest&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;wrap&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="vm"&gt;__doc__&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="vm"&gt;__doc__&lt;/span&gt;
+    &lt;span class="n"&gt;wrap&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="vm"&gt;__name__ …&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;Para obligar que una vista &lt;a class="reference external" href="https://www.djangoproject.com/"&gt;django&lt;/a&gt; sea llamada sólo mediante llamamas AJAX.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;ajax_required&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="sd"&gt;    AJAX request required decorator&lt;/span&gt;
+&lt;span class="sd"&gt;    use it in your views:&lt;/span&gt;
+
+&lt;span class="sd"&gt;    @ajax_required&lt;/span&gt;
+&lt;span class="sd"&gt;    def my_view(request):&lt;/span&gt;
+&lt;span class="sd"&gt;        ....&lt;/span&gt;
+
+&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;wrap&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;is_ajax&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+            &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;HttpResponseBadRequest&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;wrap&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="vm"&gt;__doc__&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="vm"&gt;__doc__&lt;/span&gt;
+    &lt;span class="n"&gt;wrap&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="vm"&gt;__name__&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="vm"&gt;__name__&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;wrap&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Un posible ejemplo de uso:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nd"&gt;@login_required&lt;/span&gt;
+&lt;span class="nd"&gt;@ajax_required&lt;/span&gt;
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;update_starts&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="o"&gt;...&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;JsonResponse&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;result&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;ok&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;})&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+</content><category term="Programación"></category><category term="python"></category><category term="django"></category></entry><entry><title>Función genérica para usar como upload_to</title><link href="http://pablocaro.es/funcion-generica-para-usar-como-upload_to" rel="alternate"></link><published>2014-10-11T11:02:00+02:00</published><updated>2014-10-11T11:02:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2014-10-11:/funcion-generica-para-usar-como-upload_to</id><summary type="html">&lt;p&gt;Los FileField en django necesitan ana función &lt;a class="reference external" href="https://docs.djangoproject.com/en/1.7/ref/models/fields/#django.db.models.FileField.upload_to"&gt;upload_to&lt;/a&gt; que determine donde se subirá el fichero.
+Yo suelo tener en &lt;code&gt;utils.py&lt;/code&gt; una función genérica que los deja en una subcarpeta con el nombre del modelo.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;generic_upload_to&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;instance&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;filename&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="sd"&gt;    Generic `upload_to` function for models.FileField and models.ImageField …&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;Los FileField en django necesitan ana función &lt;a class="reference external" href="https://docs.djangoproject.com/en/1.7/ref/models/fields/#django.db.models.FileField.upload_to"&gt;upload_to&lt;/a&gt; que determine donde se subirá el fichero.
+Yo suelo tener en &lt;code&gt;utils.py&lt;/code&gt; una función genérica que los deja en una subcarpeta con el nombre del modelo.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;generic_upload_to&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;instance&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;filename&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="sd"&gt;    Generic `upload_to` function for models.FileField and models.ImageField&lt;/span&gt;
+&lt;span class="sd"&gt;    which uploads files to `&amp;lt;app_label&amp;gt;/&amp;lt;model_name&amp;gt;/&amp;lt;file_name&amp;gt;`.&lt;/span&gt;
+&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;join&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;instance&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;_meta&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;app_label&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;instance&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;_meta&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;model_name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;filename&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;El uso el previsible:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;featured_image&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;ImageField&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;upload_to&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;generic_upload_to&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+                            &lt;span class="n"&gt;verbose_name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Imagen Destacada (770x490)&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+                            &lt;span class="n"&gt;max_length&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;250&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;blank&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;null&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+</content><category term="Programación"></category><category term="django"></category><category term="python"></category></entry><entry><title>Django: enlaces en listado de objectos</title><link href="http://pablocaro.es/enlaces-en-listado-de-objectos" rel="alternate"></link><published>2014-05-21T10:42:00+02:00</published><updated>2014-05-21T10:42:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2014-05-21:/enlaces-en-listado-de-objectos</id><summary type="html">&lt;p&gt;En mis proyectos suelo usar enlaces a elementos relacionados en el change_list del admin.&lt;/p&gt;
+&lt;div class="contents topic" id="ficheros"&gt;
+&lt;p class="topic-title"&gt;Ficheros&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#utils-py" id="toc-entry-1"&gt;utils.py&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#admin-py" id="toc-entry-2"&gt;admin.py&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="utils-py"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#toc-entry-1"&gt;utils.py&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Tengo esto en &lt;code&gt;utils.py&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.contrib&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;admin&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.contrib.contenttypes.models&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;ContentType&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.core&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;urlresolvers&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.utils.datastructures&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;SortedDict&lt;/span&gt;
+&lt;span class="kn"&gt;from …&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;En mis proyectos suelo usar enlaces a elementos relacionados en el change_list del admin.&lt;/p&gt;
+&lt;div class="contents topic" id="ficheros"&gt;
+&lt;p class="topic-title"&gt;Ficheros&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#utils-py" id="toc-entry-1"&gt;utils.py&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#admin-py" id="toc-entry-2"&gt;admin.py&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="utils-py"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#toc-entry-1"&gt;utils.py&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Tengo esto en &lt;code&gt;utils.py&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.contrib&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;admin&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.contrib.contenttypes.models&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;ContentType&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.core&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;urlresolvers&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.utils.datastructures&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;SortedDict&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.utils.functional&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;memoize&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;get_change_url&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;obj&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot; Utility method&lt;/span&gt;
+&lt;span class="sd"&gt;        def server_link(self, obj):&lt;/span&gt;
+&lt;span class="sd"&gt;             return self.get_change_url(obj.server)&lt;/span&gt;
+&lt;span class="sd"&gt;        server_link.short_description = _(&amp;#39;server&amp;#39;)&lt;/span&gt;
+&lt;span class="sd"&gt;        server_link.allow_tags = True&lt;/span&gt;
+&lt;span class="sd"&gt;        server_link.admin_order_field = &amp;#39;server__name&amp;#39;&lt;/span&gt;
+&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;obj&lt;/span&gt; &lt;span class="ow"&gt;is&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt;
+    &lt;span class="n"&gt;content_type&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;get_content_type&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;obj&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="vm"&gt;__class__&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="n"&gt;change_url&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;urlresolvers&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;reverse&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+        &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s2"&gt;:&lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s2"&gt;_&lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s2"&gt;_change&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;admin&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;site&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;app_name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;content_type&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;app_label&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;content_type&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;model&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+        &lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;obj&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pk&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;&amp;lt;a href=&amp;quot;&lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s1"&gt;&amp;quot;&amp;gt;&lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s1"&gt;&amp;lt;/a&amp;gt;&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;change_url&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;obj&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;_get_content_type&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;klass&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;ContentType&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;objects&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get_for_model&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;klass&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;get_content_type&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;memoize&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;_get_content_type&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;SortedDict&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Hago uso de memoize para aumentar la eficiencia. Creo que es el punto junto entre simplicidad
+en el código con facilidad de uso. He tenido también decoradores para repetir menos en el admin.py
+pero cuando otros veían el código no lo entendían a la primera.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="admin-py"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#toc-entry-2"&gt;admin.py&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Un ejemplo de uso: en &lt;code&gt;admin.py&lt;/code&gt; (suponiendo que el modelo Link tiene un FK llamado product):&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;utils&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;get_change_url&lt;/span&gt;
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;LinkAdmin&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;AdminImageMixin&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;admin&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ModelAdmin&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;list_display&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;name&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;is_visible&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;product_link&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;updated_at&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+    &lt;span class="n"&gt;search_fields&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;name&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;]&lt;/span&gt;
+
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;product_link&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;obj&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;get_change_url&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;obj&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;product&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;product_link&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;short_description&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Product&amp;#39;&lt;/span&gt;
+    &lt;span class="n"&gt;product_link&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;allow_tags&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;True&lt;/span&gt;
+    &lt;span class="n"&gt;product_link&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;admin_order_field&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;product__name&amp;#39;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+</content><category term="Programación"></category><category term="django"></category><category term="python"></category></entry><entry><title>Settings vars processor</title><link href="http://pablocaro.es/settings-vars-processor" rel="alternate"></link><published>2014-01-08T11:23:00+01:00</published><updated>2014-01-08T11:23:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2014-01-08:/settings-vars-processor</id><summary type="html">&lt;p&gt;Lo suelo usar durante el principio de los proyectos.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.conf&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;settings&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;django_settings&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.core.exceptions&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;ImproperlyConfigured&lt;/span&gt;
+
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;settings&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="sd"&gt;    Adds the settings specified in settings.TEMPLATE_VISIBLE_SETTINGS to&lt;/span&gt;
+&lt;span class="sd"&gt;    the request context.&lt;/span&gt;
+&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="n"&gt;new_settings&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{}&lt;/span&gt;
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;attr&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;django_settings&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;TEMPLATE_VISIBLE_SETTINGS&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="k"&gt;try&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="n"&gt;new_settings&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;attr&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;getattr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;django_settings&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;attr&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="k"&gt;except&lt;/span&gt; &lt;span class="ne"&gt;AttributeError …&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;Lo suelo usar durante el principio de los proyectos.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.conf&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;settings&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;django_settings&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.core.exceptions&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;ImproperlyConfigured&lt;/span&gt;
+
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;settings&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="sd"&gt;    Adds the settings specified in settings.TEMPLATE_VISIBLE_SETTINGS to&lt;/span&gt;
+&lt;span class="sd"&gt;    the request context.&lt;/span&gt;
+&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="n"&gt;new_settings&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{}&lt;/span&gt;
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;attr&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;django_settings&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;TEMPLATE_VISIBLE_SETTINGS&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="k"&gt;try&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="n"&gt;new_settings&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;attr&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;getattr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;django_settings&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;attr&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="k"&gt;except&lt;/span&gt; &lt;span class="ne"&gt;AttributeError&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;TEMPLATE_VISIBLE_SETTINGS: &amp;#39;&lt;/span&gt;&lt;span class="si"&gt;{0}&lt;/span&gt;&lt;span class="s2"&gt;&amp;#39; does not exist&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;attr&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+            &lt;span class="k"&gt;raise&lt;/span&gt; &lt;span class="n"&gt;ImproperlyConfigured&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;new_settings&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Se usa así:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;TEMPLATE_CONTEXT_PROCESSORS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;django.contrib.auth.context_processors.auth&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="o"&gt;...&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;web.context_processors.settings&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="n"&gt;DEBUG&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;True&lt;/span&gt;
+&lt;span class="n"&gt;CLIENT_SLOGAN&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Esto es un ejemplo&amp;#39;&lt;/span&gt;
+&lt;span class="n"&gt;TEMPLATE_VISIBLE_SETTINGS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;DEBUG&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;CLIENT_SLOGAN&amp;#39;&lt;/span&gt;
+&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+</content><category term="Programación"></category><category term="python"></category><category term="django"></category></entry><entry><title>Depurando Tomcat</title><link href="http://pablocaro.es/depurando-tomcat" rel="alternate"></link><published>2012-10-24T03:13:00+02:00</published><updated>2012-10-24T03:13:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2012-10-24:/depurando-tomcat</id><content type="html">
+        Se usa Java Platform Debuging Architecture JPDA
+
+&lt;a href="https://confluence.sakaiproject.org/display/BOOT/Setting+Up+Tomcat+For+Remote+Debugging"&gt;https://confluence.sakaiproject.org/display/BOOT/Setting+Up+Tomcat+For+Remote+Debugging&lt;/a&gt;
+    </content><category term="Programación"></category><category term="java"></category></entry><entry><title>Autorelad en plone</title><link href="http://pablocaro.es/autorelad-en-plone" rel="alternate"></link><published>2012-07-27T04:38:00+02:00</published><updated>2012-07-27T04:38:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2012-07-27:/autorelad-en-plone</id><summary type="html">
+        Otro recordatorio.
+
+Para recargar mientras desarrollo una browserview en plone:
+&lt;pre lang="bash"&gt;$ when-changed.py *.py -c wget -q -O /dev/null  \
+http://admin:admin@localhost:8080/@@reload?action=code&lt;/pre&gt;
+Basta pues con usar &lt;a title="when-changed" href="https://github.com/joh/when-changed"&gt;when-changed&lt;/a&gt; y &lt;a href="http://pypi.python.org/pypi/plone.reload/"&gt;plone.reload&lt;/a&gt;
+
+Se que existen extensiones  para el navegador  que recargan una  pestaña cuando cambia un fichero …</summary><content type="html">
+        Otro recordatorio.
+
+Para recargar mientras desarrollo una browserview en plone:
+&lt;pre lang="bash"&gt;$ when-changed.py *.py -c wget -q -O /dev/null  \
+http://admin:admin@localhost:8080/@@reload?action=code&lt;/pre&gt;
+Basta pues con usar &lt;a title="when-changed" href="https://github.com/joh/when-changed"&gt;when-changed&lt;/a&gt; y &lt;a href="http://pypi.python.org/pypi/plone.reload/"&gt;plone.reload&lt;/a&gt;
+
+Se que existen extensiones  para el navegador  que recargan una  pestaña cuando cambia un fichero, pero yo soy más de consola.
+    </content><category term="Programación"></category><category term="zope"></category></entry><entry><title>scp con compresión</title><link href="http://pablocaro.es/scp-con-compresion" rel="alternate"></link><published>2011-03-04T03:49:00+01:00</published><updated>2011-03-04T03:49:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2011-03-04:/scp-con-compresion</id><content type="html">
+        La mejor forma de descargar una zodb:
+&lt;pre lang="bash"&gt;scp -C -o CompressionLevel=9 user@yoursite.com:~/plonefolder/zinstance/var/filestorage/Data.fs .&lt;/pre&gt;
+Leído en: &lt;a href="http://blog.mfabrik.com/2011/03/02/scp-file-copy-with-on-line-compression/"&gt;http://blog.mfabrik.com/2011/03/02/scp-file-copy-with-on-line-compression/&lt;/a&gt;
+    </content><category term="Programación"></category><category term="linux"></category><category term="zope"></category></entry><entry><title>Zen Coding y komodo edit</title><link href="http://pablocaro.es/zen-coding-y-komodo-edit" rel="alternate"></link><published>2010-10-15T14:41:00+02:00</published><updated>2010-10-15T14:41:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2010-10-15:/zen-coding-y-komodo-edit</id><summary type="html">
+        Mi editor favorito &lt;a href="http://www.activestate.com/komodo-edit" target="_blank"&gt;Komodo Edit&lt;/a&gt; tiene un plugin de &lt;a href="http://code.google.com/p/zen-coding/" target="_blank"&gt;Zen Coding &lt;/a&gt;y este funciona muy bien también con plantillas zpt. Por ejemplo:
+
+Así una expresión como la siguente
+&lt;pre lang="css"&gt;
+dl&gt;tal:rep[tal:repeat]&gt;dt+dd
+&lt;/pre&gt;
+Se convierte en el siguiente trozo de html con los nesesarios tabstops:
+&lt;pre lang="css"&gt;
+&lt;dl&gt;
+    &lt;tal:rep tal:repeat=""&gt;
+        &lt;dt&gt;&lt;/dt&gt;
+        &lt;dd&gt;&lt;/dd&gt;
+    &lt;/tal:rep&gt;
+&lt;/dl&gt;&lt;/pre&gt;
+Muy pero que …</summary><content type="html">
+        Mi editor favorito &lt;a href="http://www.activestate.com/komodo-edit" target="_blank"&gt;Komodo Edit&lt;/a&gt; tiene un plugin de &lt;a href="http://code.google.com/p/zen-coding/" target="_blank"&gt;Zen Coding &lt;/a&gt;y este funciona muy bien también con plantillas zpt. Por ejemplo:
+
+Así una expresión como la siguente
+&lt;pre lang="css"&gt;
+dl&gt;tal:rep[tal:repeat]&gt;dt+dd
+&lt;/pre&gt;
+Se convierte en el siguiente trozo de html con los nesesarios tabstops:
+&lt;pre lang="css"&gt;
+&lt;dl&gt;
+    &lt;tal:rep tal:repeat=""&gt;
+        &lt;dt&gt;&lt;/dt&gt;
+        &lt;dd&gt;&lt;/dd&gt;
+    &lt;/tal:rep&gt;
+&lt;/dl&gt;&lt;/pre&gt;
+Muy pero que muy cómodo
+    </content><category term="Programación"></category><category term="zope"></category></entry><entry><title>Progreso en un reindexado de zope</title><link href="http://pablocaro.es/progreso-en-un-reindexado-de-zope" rel="alternate"></link><published>2010-09-18T06:06:00+02:00</published><updated>2010-09-18T06:06:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2010-09-18:/progreso-en-un-reindexado-de-zope</id><content type="html">
+        Visto en el producto contentleadimage:
+&lt;pre lang="python"&gt;from Products.ZCatalog.ProgressHandler import ZLogHandler
+ctool.reindexIndex(['hasContentLeadImage'], portal.REQUEST, pghandler=ZLogHandler())&lt;/pre&gt;
+Esto muestra un progreso en la consola si estás ejecutando  en primer plano.
+    </content><category term="Programación"></category><category term="zope"></category></entry><entry><title>Zope y noatime</title><link href="http://pablocaro.es/zope-y-noatime" rel="alternate"></link><published>2010-07-25T05:33:00+02:00</published><updated>2010-07-25T05:33:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2010-07-25:/zope-y-noatime</id><content type="html">
+        Una fácil mejora para el rendimiento de un zope con problemas de acceso a disco es&lt;a href="http://tldp.org/LDP/solrhe/Securing-Optimizing-Linux-RH-Edition-v1.3/chap6sec73.html"&gt; no actualizar la fecha de último acceso&lt;/a&gt; al fichero de la base de datos Data.fs:
+
+&lt;pre lang="bash"&gt;
+chattr -R +A Data.fs
+&lt;/pre&gt;
+
+Simple y efectivo.
+    </content><category term="Programación"></category><category term="zope"></category></entry><entry><title>Subversion: Añadiendo contenido a un directorio sin descargarlo</title><link href="http://pablocaro.es/subversion-anadiendo-contenido-a-un-directorio-sin-descargarlo" rel="alternate"></link><published>2010-07-16T05:05:00+02:00</published><updated>2010-07-16T05:05:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2010-07-16:/subversion-anadiendo-contenido-a-un-directorio-sin-descargarlo</id><summary type="html">
+        Caso práctico. Tengo un directorio &lt;em&gt;dev&lt;/em&gt; dentro del subversión con un montón de código con sus correspondientes ramas de &lt;code&gt;trunk&lt;/code&gt;, &lt;code&gt;branches&lt;/code&gt;, &lt;code&gt;tags&lt;/code&gt;, etc. Quiero añadir un nuevo producto pero no descargar todo ese enorme directorio &lt;em&gt;dev&lt;/em&gt;:
+&lt;pre lang="bash"&gt;svn co --depth empty https://repositorio/dev dev
+cp loquesea nuevo_producto
+svn add loquesea …&lt;/pre&gt;</summary><content type="html">
+        Caso práctico. Tengo un directorio &lt;em&gt;dev&lt;/em&gt; dentro del subversión con un montón de código con sus correspondientes ramas de &lt;code&gt;trunk&lt;/code&gt;, &lt;code&gt;branches&lt;/code&gt;, &lt;code&gt;tags&lt;/code&gt;, etc. Quiero añadir un nuevo producto pero no descargar todo ese enorme directorio &lt;em&gt;dev&lt;/em&gt;:
+&lt;pre lang="bash"&gt;svn co --depth empty https://repositorio/dev dev
+cp loquesea nuevo_producto
+svn add loquesea
+svn ci&lt;/pre&gt;
+Gracias ctabasco por la anotación.
+    </content><category term="Programación"></category></entry><entry><title>Restaurando objectos plone borrados</title><link href="http://pablocaro.es/restaurando-objectos-plone-borrados" rel="alternate"></link><published>2010-07-14T01:33:00+02:00</published><updated>2010-07-14T01:33:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2010-07-14:/restaurando-objectos-plone-borrados</id><content type="html">
+        Para esas situaciones donde no funciona el undo, la salvación se llama &lt;a href="http://pypi.python.org/pypi/dm.historical"&gt;dm.historical&lt;/a&gt;
+
+Un claro ejemplo en &lt;a href="http://www.zopyx.de/blog/restoring-an-older-state-of-arbitrary-zope-objects" target="_blank"&gt;esta entrada&lt;/a&gt; del Blog de Andreas Jung
+    </content><category term="Programación"></category><category term="zope"></category></entry><entry><title>Completar mientras se depura en zope</title><link href="http://pablocaro.es/completar-mientras-se-depura-en-zope" rel="alternate"></link><published>2010-04-28T03:33:00+02:00</published><updated>2010-04-28T03:33:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2010-04-28:/completar-mientras-se-depura-en-zope</id><content type="html">
+        Siempre tengo que buscar esto en google, para esto tengo el blog:
+
+&lt;pre lang="bash"&gt;
+$ bin/instance debug
+&lt;/pre&gt;
+
+&lt;pre lang="python"&gt;
+&gt;&gt;&gt; import readline, rlcompleter
+&gt;&gt;&gt; readline.parse_and_bind('tab: complete')
+&gt;&gt;&gt; app.
+Display all 760 possibilities? (y or n)
+&gt;&gt;&gt; 
+&lt;/pre&gt;
+    </content><category term="Programación"></category><category term="web"></category></entry><entry><title>Kbabel es Lokalize en kde4</title><link href="http://pablocaro.es/kbabel-es-lokalize-en-kde4" rel="alternate"></link><published>2010-03-25T10:41:00+01:00</published><updated>2010-03-25T10:41:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2010-03-25:/kbabel-es-lokalize-en-kde4</id><content type="html">
+        Ya era la segunda vez que no encontraba el maravilloso &lt;a href="http://kbabel.kde.org/" target="_blank"&gt;kbabel&lt;/a&gt; y es que en kde4 su sucesor se llama &lt;a href="http://userbase.kde.org/Lokalize" target="_blank"&gt;lokalize&lt;/a&gt;
+    </content><category term="Programación"></category></entry><entry><title>Colores desde web developer tools</title><link href="http://pablocaro.es/colores-desde-web-developer-tools" rel="alternate"></link><published>2009-11-10T04:55:00+01:00</published><updated>2009-11-10T04:55:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2009-11-10:/colores-desde-web-developer-tools</id><content type="html">
+        Últimamente uso tanto &lt;a href="http://getfirebug.com/"&gt;firebug&lt;/a&gt; que ni me acuerdo de las &lt;a href="https://addons.mozilla.org/en-US/firefox/addon/60"&gt;Web Developer Tools&lt;/a&gt;.
+Escribo esto para recordar que sigue siendo muy útil esta extensión. 
+Por ejemplo, puedo ver los colores (css) usados en una página web a través del menú &lt;em&gt;Información&lt;/em&gt;, seleccionando &lt;em&gt;Ver información del color&lt;/em&gt;.
+
+
+    </content><category term="Programación"></category><category term="web"></category></entry><entry><title>CSS: Estilos de selección de texto</title><link href="http://pablocaro.es/css-estilos-de-seleccion-de-texto" rel="alternate"></link><published>2009-07-09T03:57:00+02:00</published><updated>2009-07-09T03:57:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2009-07-09:/css-estilos-de-seleccion-de-texto</id><content type="html">
+        Una de esas declaraciones de CSS3 que ya aceptan muchos navegadores actuales es &lt;strong&gt;::selection&lt;/strong&gt;.
+Se puede utilizar así:
+&lt;pre lang="css"&gt;
+p::selection {
+	background: #ccaacc; /* Safari */
+	}
+p::-moz-selection {
+	background: #ccaacc; /* Firefox */
+}
+&lt;/pre&gt;
+    </content><category term="Programación"></category><category term="web"></category></entry><entry><title>Contenedor de Floats: How to IE &amp; FF</title><link href="http://pablocaro.es/contenedor-de-floats-how-to-ie-ff" rel="alternate"></link><published>2009-05-21T10:41:00+02:00</published><updated>2009-05-21T10:41:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2009-05-21:/contenedor-de-floats-how-to-ie-ff</id><summary type="html">
+        Espero no olvidar esto más así que dejo la notita.
+
+Si tienes un elemento (por ejemplo un div#padre), que contiene sólo flotantes (otros divs por ejemplo), no será capaz IE de calcular bien su tamaño (se ve muy claro con un background).
+
+Para que funcione con explorer y firefox …</summary><content type="html">
+        Espero no olvidar esto más así que dejo la notita.
+
+Si tienes un elemento (por ejemplo un div#padre), que contiene sólo flotantes (otros divs por ejemplo), no será capaz IE de calcular bien su tamaño (se ve muy claro con un background).
+
+Para que funcione con explorer y firefox la regla es ponerle al elemento contenedor las reglas css:
+
+&lt;pre lang="css"&gt;
+div#padre {
+  overflow: hidden;
+  zoom:1;
+}
+&lt;/pre&gt;
+
+la regla del zoom es para aplicar el hasLayout en el ie6. No es estándar y es mejor ponerla en un condicional para este navegador.
+
+Nota personal: Pablo olvida el div con el clear:both que en este caso no es solución.
+
+    </content><category term="Programación"></category><category term="web"></category></entry><entry><title>Siempre el último Dragonfly en Opera</title><link href="http://pablocaro.es/siempre-el-ultimo-dragonfly-en-opera" rel="alternate"></link><published>2009-01-30T08:45:00+01:00</published><updated>2009-01-30T08:45:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2009-01-30:/siempre-el-ultimo-dragonfly-en-opera</id><content type="html">
+        Para tener la versión de desarrollo de dragon fly en el opera basta con seguir la ruta:
+
+&lt;code&gt;about:config -&amp;gt; Developer Tools -&amp;gt; Developer Tools url&lt;/code&gt;
+
+Luego, introducir la url siguiente
+
+&lt;a href="http://dragonfly.opera.com/app/cutting-edge/"&gt;http://dragonfly.opera.com/app/cutting-edge/&lt;/a&gt;
+    </content><category term="Programación"></category></entry><entry><title>¿Cómo hacer un "svn export" con git?</title><link href="http://pablocaro.es/como-hacer-un-svn-export-con-git" rel="alternate"></link><published>2008-11-14T05:04:00+01:00</published><updated>2008-11-14T05:04:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2008-11-14:/como-hacer-un-svn-export-con-git</id><content type="html">
+        Si tienes que descargarte un árbol git pero sin los metadatos, porque por ejemplo sólo quieres el código para congerlarlo versionado en el subversion de tu proyecto, lo más fácil es:
+
+git clone {clone-url}
+
+rm -rf .gitignore .git
+    </content><category term="Programación"></category></entry><entry><title>svn:ignore</title><link href="http://pablocaro.es/svn-ignore" rel="alternate"></link><published>2008-11-13T03:59:00+01:00</published><updated>2008-11-13T03:59:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2008-11-13:/svn-ignore</id><content type="html">
+        Esta entrada  es para recordar los dos comandos:
+
+svn propedit svn:ignore ./some_path
+
+svn -R propset svn:ignore -F ../.svnignore .
+
+donde .svnignore contiene un patron por línea como *.pyc
+    </content><category term="Programación"></category></entry><entry><title>Error con setuptools y subversion 1.5</title><link href="http://pablocaro.es/error-con-setuptools-y-subversion-1-5" rel="alternate"></link><published>2008-09-14T13:50:00+02:00</published><updated>2008-09-14T13:50:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2008-09-14:/error-con-setuptools-y-subversion-1-5</id><summary type="html">
+        La actual versión de &lt;a target="_blank" href="http://peak.telecommunity.com/DevCenter/setuptools"&gt;setuptools&lt;/a&gt; no se lleva bien el subversion 1.5 (también el actual en mi ubuntu).
+
+Normalmente acostumbro a usar &lt;a target="_blank" href="http://pypi.python.org/pypi/virtualenv"&gt;virtualenv&lt;/a&gt; y me he encontrado con el error:
+&lt;pre&gt;NameError: global name 'log' is not defined&lt;/pre&gt;
+Ya está arreglado en el desarrollo de setuptools. Una posible solución es …</summary><content type="html">
+        La actual versión de &lt;a target="_blank" href="http://peak.telecommunity.com/DevCenter/setuptools"&gt;setuptools&lt;/a&gt; no se lleva bien el subversion 1.5 (también el actual en mi ubuntu).
+
+Normalmente acostumbro a usar &lt;a target="_blank" href="http://pypi.python.org/pypi/virtualenv"&gt;virtualenv&lt;/a&gt; y me he encontrado con el error:
+&lt;pre&gt;NameError: global name 'log' is not defined&lt;/pre&gt;
+Ya está arreglado en el desarrollo de setuptools. Una posible solución es:
+&lt;pre&gt;easy_install setuptools==dev06'&lt;/pre&gt;
+&lt;a target="_blank" href="http://groups.google.com/group/linux.debian.bugs.dist/browse_thread/thread/b5d23c96e328b178/796fd556351da9ca?lnk=rao"&gt;Aquí temos más información&lt;/a&gt;.
+    </content><category term="Programación"></category><category term="python"></category></entry><entry><title>Buscando una fuente para escribir código</title><link href="http://pablocaro.es/buscando-una-fuente-para-escribir-codigo" rel="alternate"></link><published>2008-07-22T09:43:00+02:00</published><updated>2008-07-22T09:43:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2008-07-22:/buscando-una-fuente-para-escribir-codigo</id><summary type="html">
+        Varios enlaces interesantes sobre este tema.
+&lt;ul&gt;
+	&lt;li&gt;&lt;a target="_blank" href="http://www.lowing.org/fonts/"&gt;Monospace/Fixed Width Programmer's Fonts&lt;/a&gt;. (Actualización de &lt;a target="_blank" href="http://www.kuro5hin.org/story/2004/12/6/11739/5249"&gt;Finding the Best Programmer's Font&lt;/a&gt;).&lt;/li&gt;
+	&lt;li&gt;&lt;a target="_blank" href="http://www.quickonlinetips.com/archives/2006/11/best-programming-fonts-for-easier-coding-and-readability/"&gt;Best Programming Fonts for Easy Coding and Readability&lt;/a&gt;.&lt;/li&gt;
+	&lt;li&gt;&lt;a target="_blank" href="http://www.briankotek.com/blog/index.cfm/2008/4/3/Development-Tip-Change-Your-Coding-Font"&gt;Development Tip: Change Your Coding Font&lt;/a&gt;.&lt;/li&gt;
+	&lt;li&gt;&lt;a target="_blank" href="http://www.codinghorror.com/blog/archives/000969.html"&gt;Revisiting Programming Fonts&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+Personalmente, la Bitstream Vera Sans Mono, me parece una fuente bastante aceptable. Me gusta mucho …</summary><content type="html">
+        Varios enlaces interesantes sobre este tema.
+&lt;ul&gt;
+	&lt;li&gt;&lt;a target="_blank" href="http://www.lowing.org/fonts/"&gt;Monospace/Fixed Width Programmer's Fonts&lt;/a&gt;. (Actualización de &lt;a target="_blank" href="http://www.kuro5hin.org/story/2004/12/6/11739/5249"&gt;Finding the Best Programmer's Font&lt;/a&gt;).&lt;/li&gt;
+	&lt;li&gt;&lt;a target="_blank" href="http://www.quickonlinetips.com/archives/2006/11/best-programming-fonts-for-easier-coding-and-readability/"&gt;Best Programming Fonts for Easy Coding and Readability&lt;/a&gt;.&lt;/li&gt;
+	&lt;li&gt;&lt;a target="_blank" href="http://www.briankotek.com/blog/index.cfm/2008/4/3/Development-Tip-Change-Your-Coding-Font"&gt;Development Tip: Change Your Coding Font&lt;/a&gt;.&lt;/li&gt;
+	&lt;li&gt;&lt;a target="_blank" href="http://www.codinghorror.com/blog/archives/000969.html"&gt;Revisiting Programming Fonts&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+Personalmente, la Bitstream Vera Sans Mono, me parece una fuente bastante aceptable. Me gusta mucho también Envy Code R.
+
+¿Qué tipo de letra es vuestra preferida para codificar?
+    </content><category term="Programación"></category></entry><entry><title>Ejecutar comandos en python</title><link href="http://pablocaro.es/ejecutar-comandos-en-python" rel="alternate"></link><published>2008-03-04T06:18:00+01:00</published><updated>2008-03-04T06:18:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2008-03-04:/ejecutar-comandos-en-python</id><summary type="html">
+        Hago a menudo pequeños scripts en python. Y muchas de las veces necesito ejecutar algún comando del sistema.
+
+Habitualmente importaba el módulo &lt;code&gt;os&lt;/code&gt; y llamaba a alguna de sus funciones (las popen).
+
+Pero en general no hace falta importar os. Existe un módulo llamado &lt;a target="_blank" title="commands" href="http://docs.python.org/lib/module-commands.html"&gt;&lt;code&gt;commands&lt;/code&gt;&lt;/a&gt;&lt;code&gt; &lt;/code&gt;(sólo para unix) que permite …</summary><content type="html">
+        Hago a menudo pequeños scripts en python. Y muchas de las veces necesito ejecutar algún comando del sistema.
+
+Habitualmente importaba el módulo &lt;code&gt;os&lt;/code&gt; y llamaba a alguna de sus funciones (las popen).
+
+Pero en general no hace falta importar os. Existe un módulo llamado &lt;a target="_blank" title="commands" href="http://docs.python.org/lib/module-commands.html"&gt;&lt;code&gt;commands&lt;/code&gt;&lt;/a&gt;&lt;code&gt; &lt;/code&gt;(sólo para unix) que permite realizar esta tarea con suma facilidad y mejor lectura del código.
+
+Dejar claro que para cosas más avanzadas es mejor usar &lt;code&gt;&lt;a target="_blank" href="http://docs.python.org/lib/module-subprocess.html"&gt;subprocess&lt;/a&gt; &lt;/code&gt; que pretende reemplazarlo.
+    </content><category term="Programación"></category><category term="python"></category></entry></feed>

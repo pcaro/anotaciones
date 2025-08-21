@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Anotaciones por Pablo Caro - git</title><link href="http://pablocaro.es/" rel="alternate"></link><link href="http://pablocaro.es/feeds/tags/git.atom.xml" rel="self"></link><id>http://pablocaro.es/</id><updated>2025-07-23T06:12:00+02:00</updated><subtitle>Anotaciones</subtitle><entry><title>Cómo uso git worktrees para trabajo concurrente</title><link href="http://pablocaro.es/como-uso-git-worktrees" rel="alternate"></link><published>2025-07-23T06:12:00+02:00</published><updated>2025-07-23T06:12:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2025-07-23:/como-uso-git-worktrees</id><summary type="html">&lt;p class="first last"&gt;Un enfoque práctico para usar git worktrees y maximizar la productividad con múltiples contextos de trabajo simultáneos&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;Aleksey Kladov comparte su enfoque único para usar git worktrees, que va más allá del simple cambio de ramas y se convierte en una metodología completa para el trabajo concurrente.&lt;/p&gt;
+&lt;img alt="Estructura de worktrees" class="align-center" src="https://matklad.github.io/images/worktree-structure.png" /&gt;
+&lt;div class="section" id="la-filosofia-central"&gt;
+&lt;h2&gt;La filosofía central&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;&amp;quot;Git no es un sistema de control de versiones, Git es una caja de herramientas para construir un VCS&amp;quot;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Esta perspectiva cambia completamente cómo pensamos sobre git. En lugar de limitarnos a las funcionalidades básicas, podemos crear nuestro propio flujo de trabajo optimizado.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="los-5-worktrees-especializados"&gt;
+&lt;h2&gt;Los 5 worktrees especializados&lt;/h2&gt;
+&lt;p&gt;El autor mantiene 5 worktrees, cada uno con un propósito específico:&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;&lt;strong&gt;main&lt;/strong&gt; - Snapshot de solo lectura
+- Reflejo limpio del main remoto
+- Referencia para comparaciones
+- Nunca se modifica localmente&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;work&lt;/strong&gt; - Espacio de trabajo principal
+- Desarrollo activo día a día
+- Commits frecuentes con mensajes mínimos
+- HEAD desacoplado para máxima flexibilidad&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;review&lt;/strong&gt; - Dedicado a revisiones de código
+- Contexto limpio para analizar PRs
+- Sin interferir con el trabajo en curso&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;fuzz&lt;/strong&gt; - Pruebas de larga duración
+- Fuzzing y tests que duran horas
+- Corre en paralelo sin bloquear el desarrollo&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;scratch&lt;/strong&gt; - Tareas rápidas no relacionadas
+- Experimentos
+- Fixes urgentes
+- Investigaciones puntuales&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# Estructura típica de directorios&lt;/span&gt;
+~/projects/my-project/
+├──&lt;span class="w"&gt; &lt;/span&gt;main/&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="c1"&gt;# worktree principal&lt;/span&gt;
+├──&lt;span class="w"&gt; &lt;/span&gt;work/&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="c1"&gt;# desarrollo activo&lt;/span&gt;
+├──&lt;span class="w"&gt; &lt;/span&gt;review/&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="c1"&gt;# revisiones&lt;/span&gt;
+├──&lt;span class="w"&gt; &lt;/span&gt;fuzz/&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="c1"&gt;# testing&lt;/span&gt;
+└──&lt;span class="w"&gt; &lt;/span&gt;scratch/&lt;span class="w"&gt;     &lt;/span&gt;&lt;span class="c1"&gt;# experimentos&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="ventajas-del-enfoque"&gt;
+&lt;h2&gt;Ventajas del enfoque&lt;/h2&gt;
+&lt;dl class="docutils"&gt;
+&lt;dt&gt;&lt;strong&gt;Trabajo verdaderamente concurrente&lt;/strong&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;ul class="first last simple"&gt;
+&lt;li&gt;Múltiples actividades de codificación simultáneas&lt;/li&gt;
+&lt;li&gt;Sin necesidad de stash o branch switching complejo&lt;/li&gt;
+&lt;li&gt;Separación limpia de contextos&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/dd&gt;
+&lt;dt&gt;&lt;strong&gt;Flujo de trabajo sin fricción&lt;/strong&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;ul class="first last simple"&gt;
+&lt;li&gt;Cambio instantáneo entre tareas&lt;/li&gt;
+&lt;li&gt;Commits frecuentes sin presión por mensajes perfectos&lt;/li&gt;
+&lt;li&gt;Experimentación libre en HEAD desacoplado&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/dd&gt;
+&lt;dt&gt;&lt;strong&gt;Paralelización real&lt;/strong&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;ul class="first last simple"&gt;
+&lt;li&gt;Fuzzing corriendo mientras desarrollas&lt;/li&gt;
+&lt;li&gt;Reviews sin interrumpir el trabajo principal&lt;/li&gt;
+&lt;li&gt;Tests en background sin bloqueos&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class="section" id="tecnicas-avanzadas"&gt;
+&lt;h2&gt;Técnicas avanzadas&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;HEAD desacoplado estratégico&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# En el worktree &amp;#39;work&amp;#39;, trabajar sin rama&lt;/span&gt;
+git&lt;span class="w"&gt; &lt;/span&gt;checkout&lt;span class="w"&gt; &lt;/span&gt;--detach&lt;span class="w"&gt; &lt;/span&gt;HEAD
+&lt;span class="c1"&gt;# Commit frecuente, reorganizar después&lt;/span&gt;
+git&lt;span class="w"&gt; &lt;/span&gt;commit&lt;span class="w"&gt; &lt;/span&gt;-m&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;wip&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;Scripts personalizados para operaciones comunes&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# Script para crear/cambiar worktrees rápidamente&lt;/span&gt;
+&lt;span class="c1"&gt;#!/bin/bash&lt;/span&gt;
+git&lt;span class="w"&gt; &lt;/span&gt;worktree&lt;span class="w"&gt; &lt;/span&gt;add&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;../&lt;/span&gt;&lt;span class="nv"&gt;$1&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$2&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+&lt;span class="nb"&gt;cd&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;../&lt;/span&gt;&lt;span class="nv"&gt;$1&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;Flujo de integración&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# Desde el worktree &amp;#39;work&amp;#39;&lt;/span&gt;
+git&lt;span class="w"&gt; &lt;/span&gt;log&lt;span class="w"&gt; &lt;/span&gt;--oneline&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="c1"&gt;# revisar commits&lt;/span&gt;
+git&lt;span class="w"&gt; &lt;/span&gt;reset&lt;span class="w"&gt; &lt;/span&gt;HEAD~5&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="c1"&gt;# deshacer commits temporales&lt;/span&gt;
+git&lt;span class="w"&gt; &lt;/span&gt;add&lt;span class="w"&gt; &lt;/span&gt;-p&lt;span class="w"&gt;         &lt;/span&gt;&lt;span class="c1"&gt;# seleccionar cambios&lt;/span&gt;
+git&lt;span class="w"&gt; &lt;/span&gt;commit&lt;span class="w"&gt;         &lt;/span&gt;&lt;span class="c1"&gt;# commit final limpio&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="lecciones-clave"&gt;
+&lt;h2&gt;Lecciones clave&lt;/h2&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;&lt;strong&gt;Git es flexible&lt;/strong&gt;: No hay &amp;quot;una forma correcta&amp;quot; de usar git&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Automatiza lo repetitivo&lt;/strong&gt;: Scripts personalizados para operaciones comunes&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Separa contextos&lt;/strong&gt;: Cada tipo de trabajo merece su propio espacio&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Commits baratos&lt;/strong&gt;: Commitea frecuentemente, organiza después&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Este enfoque transforma git de una herramienta de versionado en una plataforma completa de gestión de flujo de trabajo, maximizando la productividad a través del trabajo verdaderamente concurrente.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Artículo original&lt;/em&gt;: &lt;a class="reference external" href="https://matklad.github.io/2024/07/25/git-worktrees.html"&gt;How I Use Git Worktrees&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="Programación"></category><category term="git"></category><category term="worktrees"></category><category term="flujo-trabajo"></category><category term="productividad"></category></entry></feed>

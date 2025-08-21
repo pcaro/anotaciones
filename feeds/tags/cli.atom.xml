@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Anotaciones por Pablo Caro - cli</title><link href="http://pablocaro.es/" rel="alternate"></link><link href="http://pablocaro.es/feeds/tags/cli.atom.xml" rel="self"></link><id>http://pablocaro.es/</id><updated>2016-06-07T11:36:00+02:00</updated><subtitle>Anotaciones</subtitle><entry><title>Potentes herramientas para desarrolladores desde línea de comandos</title><link href="http://pablocaro.es/herramientas-desarrolladores-linea-comandos" rel="alternate"></link><published>2016-06-07T11:36:00+02:00</published><updated>2016-06-07T11:36:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2016-06-07:/herramientas-desarrolladores-linea-comandos</id><summary type="html">&lt;p&gt;Colección de herramientas de línea de comandos esenciales para desarrolladores: curl, ngrep, netcat, sshuttle, siege y mitmproxy&lt;/p&gt;</summary><content type="html">&lt;p&gt;La &lt;strong&gt;línea de comandos sigue siendo el entorno más poderoso&lt;/strong&gt; para desarrolladores. Estas herramientas especializadas amplían dramáticamente tus capacidades de debugging, testing y análisis.&lt;/p&gt;
+&lt;h2 id="curl-el-navajero-suizo-del-http"&gt;Curl: El navajero suizo del HTTP&lt;a class="headerlink" href="#curl-el-navajero-suizo-del-http" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Obtener tu IP pública&lt;/span&gt;
+curl&lt;span class="w"&gt; &lt;/span&gt;ifconfig.me
+
+&lt;span class="c1"&gt;# Inspeccionar headers de respuesta&lt;/span&gt;
+curl&lt;span class="w"&gt; &lt;/span&gt;-I&lt;span class="w"&gt; &lt;/span&gt;https://ejemplo.com
+
+&lt;span class="c1"&gt;# POST con datos JSON&lt;/span&gt;
+curl&lt;span class="w"&gt; &lt;/span&gt;-X&lt;span class="w"&gt; &lt;/span&gt;POST&lt;span class="w"&gt; &lt;/span&gt;-H&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Content-Type: application/json&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="se"&gt;\&lt;/span&gt;
+&lt;span class="w"&gt;     &lt;/span&gt;-d&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;{&amp;quot;key&amp;quot;:&amp;quot;value&amp;quot;}&amp;#39;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;https://api.ejemplo.com
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Uso principal&lt;/strong&gt;: Transferencia de datos de red, testing de APIs, inspección HTTP.&lt;/p&gt;
+&lt;h2 id="ngrep-grep-para-trafico-de-red"&gt;Ngrep: Grep para tráfico de red&lt;a class="headerlink" href="#ngrep-grep-para-trafico-de-red" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Filtrar tráfico HTTP por palabra clave&lt;/span&gt;
+ngrep&lt;span class="w"&gt; &lt;/span&gt;-i&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;password&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;port&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;80&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Capturar por IP específica&lt;/span&gt;
+ngrep&lt;span class="w"&gt; &lt;/span&gt;host&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;192&lt;/span&gt;.168.1.100
+
+&lt;span class="c1"&gt;# Monitorear tráfico en puerto específico&lt;/span&gt;
+ngrep&lt;span class="w"&gt; &lt;/span&gt;port&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;443&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Uso principal&lt;/strong&gt;: Análisis de paquetes de red, debugging de protocolos, monitoreo de tráfico.&lt;/p&gt;
+&lt;h2 id="netcat-nc-la-navaja-suiza-del-networking"&gt;Netcat (nc): La navaja suiza del networking&lt;a class="headerlink" href="#netcat-nc-la-navaja-suiza-del-networking" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Escaneo de puertos&lt;/span&gt;
+nc&lt;span class="w"&gt; &lt;/span&gt;-zv&lt;span class="w"&gt; &lt;/span&gt;ejemplo.com&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;-1000
+
+&lt;span class="c1"&gt;# Transferir archivo entre servidores&lt;/span&gt;
+&lt;span class="c1"&gt;# Receptor: nc -l 1234 &amp;gt; archivo_recibido&lt;/span&gt;
+&lt;span class="c1"&gt;# Emisor: nc servidor_destino 1234 &amp;lt; archivo_enviar&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Crear servidor HTTP simple&lt;/span&gt;
+&lt;span class="nb"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;HTTP/1.1 200 OK\n\nHola mundo&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;nc&lt;span class="w"&gt; &lt;/span&gt;-l&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;8080&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Uso principal&lt;/strong&gt;: Escaneo de puertos, transferencia de archivos, testing de conectividad.&lt;/p&gt;
+&lt;h2 id="sshuttle-vpn-facil-con-ssh"&gt;Sshuttle: VPN fácil con SSH&lt;a class="headerlink" href="#sshuttle-vpn-facil-con-ssh" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Tunelar todo el tráfico&lt;/span&gt;
+sshuttle&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;usuario@servidor&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;0&lt;/span&gt;.0.0.0/0
+
+&lt;span class="c1"&gt;# Tunelar solo una subred&lt;/span&gt;
+sshuttle&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;usuario@servidor&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;192&lt;/span&gt;.168.1.0/24
+
+&lt;span class="c1"&gt;# Evitar geobloqueos&lt;/span&gt;
+sshuttle&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;servidor_remoto&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;0&lt;/span&gt;.0.0.0/0&lt;span class="w"&gt; &lt;/span&gt;--dns
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Uso principal&lt;/strong&gt;: Tunneling seguro, bypass de geo-restricciones, protección en WiFi público.&lt;/p&gt;
+&lt;h2 id="siege-bombardeo-de-carga-http"&gt;Siege: Bombardeo de carga HTTP&lt;a class="headerlink" href="#siege-bombardeo-de-carga-http" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Test de carga simple&lt;/span&gt;
+siege&lt;span class="w"&gt; &lt;/span&gt;-c&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;25&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;-t&lt;span class="w"&gt; &lt;/span&gt;60s&lt;span class="w"&gt; &lt;/span&gt;https://ejemplo.com
+
+&lt;span class="c1"&gt;# Test con múltiples URLs&lt;/span&gt;
+siege&lt;span class="w"&gt; &lt;/span&gt;-c&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;50&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;-t&lt;span class="w"&gt; &lt;/span&gt;30s&lt;span class="w"&gt; &lt;/span&gt;-f&lt;span class="w"&gt; &lt;/span&gt;urls.txt
+
+&lt;span class="c1"&gt;# Benchmark específico&lt;/span&gt;
+siege&lt;span class="w"&gt; &lt;/span&gt;-c&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;100&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;10&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;https://api.ejemplo.com/endpoint
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Uso principal&lt;/strong&gt;: Testing de rendimiento, benchmarking HTTP, simulación de carga.&lt;/p&gt;
+&lt;h2 id="mitmproxy-espia-del-trafico-https"&gt;Mitmproxy: Espía del tráfico HTTP/S&lt;a class="headerlink" href="#mitmproxy-espia-del-trafico-https" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Proxy básico&lt;/span&gt;
+mitmproxy&lt;span class="w"&gt; &lt;/span&gt;-p&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;8080&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Modo transparent&lt;/span&gt;
+mitmproxy&lt;span class="w"&gt; &lt;/span&gt;--mode&lt;span class="w"&gt; &lt;/span&gt;transparent
+
+&lt;span class="c1"&gt;# Guardar tráfico en archivo&lt;/span&gt;
+mitmdump&lt;span class="w"&gt; &lt;/span&gt;-w&lt;span class="w"&gt; &lt;/span&gt;captura.flow
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Uso principal&lt;/strong&gt;: Debugging de aplicaciones web, inspección de tráfico HTTPS, análisis de APIs.&lt;/p&gt;
+&lt;h2 id="flujo-de-trabajo-tipico"&gt;Flujo de trabajo típico&lt;a class="headerlink" href="#flujo-de-trabajo-tipico" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# 1. Escanear conectividad&lt;/span&gt;
+nc&lt;span class="w"&gt; &lt;/span&gt;-zv&lt;span class="w"&gt; &lt;/span&gt;api.ejemplo.com&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;443&lt;/span&gt;
+
+&lt;span class="c1"&gt;# 2. Analizar respuesta&lt;/span&gt;
+curl&lt;span class="w"&gt; &lt;/span&gt;-I&lt;span class="w"&gt; &lt;/span&gt;https://api.ejemplo.com
+
+&lt;span class="c1"&gt;# 3. Monitorear tráfico&lt;/span&gt;
+ngrep&lt;span class="w"&gt; &lt;/span&gt;-i&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;api&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;port&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;443&lt;/span&gt;
+
+&lt;span class="c1"&gt;# 4. Test de carga&lt;/span&gt;
+siege&lt;span class="w"&gt; &lt;/span&gt;-c&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;20&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;-t&lt;span class="w"&gt; &lt;/span&gt;30s&lt;span class="w"&gt; &lt;/span&gt;https://api.ejemplo.com
+
+&lt;span class="c1"&gt;# 5. Debugging detallado&lt;/span&gt;
+mitmproxy&lt;span class="w"&gt; &lt;/span&gt;-p&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;8080&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="por-que-linea-de-comandos"&gt;¿Por qué línea de comandos?&lt;a class="headerlink" href="#por-que-linea-de-comandos" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Velocidad&lt;/strong&gt;: Sin overhead de GUI&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Scriptabilidad&lt;/strong&gt;: Automatización completa&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Flexibilidad&lt;/strong&gt;: Combinación con pipes y redirects&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Universalidad&lt;/strong&gt;: Disponible en cualquier servidor&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Estas herramientas convierten tu terminal en un &lt;strong&gt;laboratorio completo de networking y testing&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Fuente original&lt;/em&gt;: &lt;a href="http://www.xn--apaados-6za.es/tenemos-que-apanar/internet-tutoriales-y-trucos/317-potentes-herramientas-desarrolladores-linea-comandos.html"&gt;Somos Apañados&lt;/a&gt;&lt;/p&gt;</content><category term="Herramientas"></category><category term="cli"></category><category term="herramientas"></category><category term="desarrollo"></category><category term="networking"></category><category term="testing"></category></entry></feed>

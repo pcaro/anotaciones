@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0"><channel><title>Anotaciones por Pablo Caro - django</title><link>http://pablocaro.es/</link><description>Anotaciones</description><lastBuildDate>Mon, 20 Apr 2015 18:18:00 +0200</lastBuildDate><item><title>Instalar InSync en Opensuse</title><link>http://pablocaro.es/instalar-insync-en-opensuse</link><description></description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Mon, 20 Apr 2015 18:18:00 +0200</pubDate><guid isPermaLink="false">tag:pablocaro.es,2015-04-20:/instalar-insync-en-opensuse</guid><category>Sistemas</category><category>django</category><category>python</category></item><item><title>Decorador vista ajax</title><link>http://pablocaro.es/decorador-vista-ajax</link><description>&lt;p&gt;Para obligar que una vista &lt;a class="reference external" href="https://www.djangoproject.com/"&gt;django&lt;/a&gt; sea llamada sólo mediante llamamas AJAX.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;ajax_required&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="sd"&gt;    AJAX request required decorator&lt;/span&gt;
+&lt;span class="sd"&gt;    use it in your views:&lt;/span&gt;
+
+&lt;span class="sd"&gt;    @ajax_required&lt;/span&gt;
+&lt;span class="sd"&gt;    def my_view(request):&lt;/span&gt;
+&lt;span class="sd"&gt;        ....&lt;/span&gt;
+
+&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;wrap&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;is_ajax&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+            &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;HttpResponseBadRequest&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;wrap&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="vm"&gt;__doc__&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="vm"&gt;__doc__&lt;/span&gt;
+    &lt;span class="n"&gt;wrap&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="vm"&gt;__name__ …&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Fri, 21 Nov 2014 11:12:00 +0100</pubDate><guid isPermaLink="false">tag:pablocaro.es,2014-11-21:/decorador-vista-ajax</guid><category>Programación</category><category>python</category><category>django</category></item><item><title>Función genérica para usar como upload_to</title><link>http://pablocaro.es/funcion-generica-para-usar-como-upload_to</link><description>&lt;p&gt;Los FileField en django necesitan ana función &lt;a class="reference external" href="https://docs.djangoproject.com/en/1.7/ref/models/fields/#django.db.models.FileField.upload_to"&gt;upload_to&lt;/a&gt; que determine donde se subirá el fichero.
+Yo suelo tener en &lt;code&gt;utils.py&lt;/code&gt; una función genérica que los deja en una subcarpeta con el nombre del modelo.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;generic_upload_to&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;instance&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;filename&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="sd"&gt;    Generic `upload_to` function for models.FileField and models.ImageField …&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Sat, 11 Oct 2014 11:02:00 +0200</pubDate><guid isPermaLink="false">tag:pablocaro.es,2014-10-11:/funcion-generica-para-usar-como-upload_to</guid><category>Programación</category><category>django</category><category>python</category></item><item><title>Django: enlaces en listado de objectos</title><link>http://pablocaro.es/enlaces-en-listado-de-objectos</link><description>&lt;p&gt;En mis proyectos suelo usar enlaces a elementos relacionados en el change_list del admin.&lt;/p&gt;
+&lt;div class="contents topic" id="ficheros"&gt;
+&lt;p class="topic-title"&gt;Ficheros&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#utils-py" id="toc-entry-1"&gt;utils.py&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#admin-py" id="toc-entry-2"&gt;admin.py&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="utils-py"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#toc-entry-1"&gt;utils.py&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Tengo esto en &lt;code&gt;utils.py&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.contrib&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;admin&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.contrib.contenttypes.models&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;ContentType&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.core&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;urlresolvers&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.utils.datastructures&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;SortedDict&lt;/span&gt;
+&lt;span class="kn"&gt;from …&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Wed, 21 May 2014 10:42:00 +0200</pubDate><guid isPermaLink="false">tag:pablocaro.es,2014-05-21:/enlaces-en-listado-de-objectos</guid><category>Programación</category><category>django</category><category>python</category></item><item><title>Settings vars processor</title><link>http://pablocaro.es/settings-vars-processor</link><description>&lt;p&gt;Lo suelo usar durante el principio de los proyectos.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.conf&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;settings&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;django_settings&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.core.exceptions&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;ImproperlyConfigured&lt;/span&gt;
+
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;settings&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="sd"&gt;    Adds the settings specified in settings.TEMPLATE_VISIBLE_SETTINGS to&lt;/span&gt;
+&lt;span class="sd"&gt;    the request context.&lt;/span&gt;
+&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="n"&gt;new_settings&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{}&lt;/span&gt;
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;attr&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;django_settings&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;TEMPLATE_VISIBLE_SETTINGS&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="k"&gt;try&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="n"&gt;new_settings&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;attr&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;getattr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;django_settings&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;attr&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="k"&gt;except&lt;/span&gt; &lt;span class="ne"&gt;AttributeError …&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Wed, 08 Jan 2014 11:23:00 +0100</pubDate><guid isPermaLink="false">tag:pablocaro.es,2014-01-08:/settings-vars-processor</guid><category>Programación</category><category>python</category><category>django</category></item></channel></rss>

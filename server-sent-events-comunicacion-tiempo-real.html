@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8"> 
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Pablo Caro" />
+        <meta name="copyright" content="Pablo Caro" />
+
+        <meta name="description" content="Server-Sent Events ofrece una alternativa simple y eficiente a WebSockets para comunicación unidireccional servidor-cliente en aplicaciones web
+" />
+        <meta name="twitter:creator" content="@pcaro">
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="javascript, sse, tiempo-real, web-apis, Programación, " />
+
+<meta property="og:title" content="Server-Sent Events: Comunicación en tiempo real simplificada "/>
+<meta property="og:url" content="http://pablocaro.es/server-sent-events-comunicacion-tiempo-real" />
+<meta property="og:description" content="Server-Sent Events ofrece una alternativa simple y eficiente a WebSockets para comunicación unidireccional servidor-cliente en aplicaciones web" />
+<meta property="og:site_name" content="Anotaciones por Pablo Caro" />
+<meta property="og:article:author" content="Pablo Caro" />
+<meta property="og:article:published_time" content="2024-09-23T00:01:00+02:00" />
+<meta name="twitter:title" content="Server-Sent Events: Comunicación en tiempo real simplificada ">
+<meta name="twitter:description" content="Server-Sent Events ofrece una alternativa simple y eficiente a WebSockets para comunicación unidireccional servidor-cliente en aplicaciones web">
+<meta property="og:image" content="http://pablocaro.es/theme/images/apple-touch-icon-152x152.png" />
+<meta name="twitter:image" content="http://pablocaro.es/theme/images/apple-touch-icon-152x152.png" >
+
+        <title>Server-Sent Events: Comunicación en tiempo real simplificada  · Anotaciones por Pablo Caro
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="http://pablocaro.es/theme/css/pygments.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://pablocaro.es/theme/tipuesearch/tipuesearch.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://pablocaro.es/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://pablocaro.es/theme/css/custom.css" media="screen">
+        <link rel="shortcut icon" href="http://pablocaro.es/theme/images/favicon.ico" type="image/x-icon" type="image/png" />
+        <link rel="icon" href="http://pablocaro.es/theme/images/apple-touch-icon-152x152.png" type="image/png" />
+        <link rel="apple-touch-icon" href="http://pablocaro.es/theme/images/apple-touch-icon.png"  type="image/png" />
+        <link rel="apple-touch-icon" sizes="57x57" href="http://pablocaro.es/theme/images/apple-touch-icon-57x57.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="72x72" href="http://pablocaro.es/theme/images/apple-touch-icon-72x72.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="76x76" href="http://pablocaro.es/theme/images/apple-touch-icon-76x76.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="114x114" href="http://pablocaro.es/theme/images/apple-touch-icon-114x114.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="120x120" href="http://pablocaro.es/theme/images/apple-touch-icon-120x120.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="144x144" href="http://pablocaro.es/theme/images/apple-touch-icon-144x144.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="152x152" href="http://pablocaro.es/theme/images/apple-touch-icon-152x152.png" type="image/png" />
+        <link href="http://pablocaro.es/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Anotaciones por Pablo Caro - Full Atom Feed" />
+        <link href="http://pablocaro.es/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Anotaciones por Pablo Caro - Full RSS Feed" />
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+     })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-60035125-1', 'auto');
+    ga('send', 'pageview');
+</script>
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="http://pablocaro.es/"><span class=site-name><span style="color:#AA1032;">Anotaciones</span> <span style="color:darkblue;">por</span> <span style="color:black">Pablo Caro</span></span></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="http://pablocaro.es">Inicio</a></li>
+                            <li ><a href="http://pablocaro.es/categories.html">Categorías</a></li>
+                            <li ><a href="http://pablocaro.es/tags.html">Etiquetas</a></li>
+                            <li ><a href="http://pablocaro.es/archives.html">Archivos</a></li>
+                            <li><form class="navbar-search" action="http://pablocaro.es/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Búsqueda" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="http://pablocaro.es/server-sent-events-comunicacion-tiempo-real"> Server-Sent Events: Comunicación en tiempo real simplificada  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+        <div class="span8 offset2 article-content">
+
+            
+            <p>Los <strong>Server-Sent Events (SSE)</strong> representan una solución elegante y simple para implementar comunicación en tiempo real en aplicaciones web cuando solo necesitamos que el servidor envíe datos al cliente.</p>
+<h2 id="que-son-los-server-sent-events">¿Qué son los Server-Sent Events?<a class="headerlink" href="#que-son-los-server-sent-events" title="Permanent link">&para;</a></h2>
+<p>SSE es un estándar web que permite que un servidor envíe datos automáticamente a una página web usando una conexión HTTP persistente. A diferencia de WebSockets, la comunicación es <strong>unidireccional</strong>: solo el servidor puede enviar mensajes al cliente.</p>
+<h2 id="implementacion-basica">Implementación básica<a class="headerlink" href="#implementacion-basica" title="Permanent link">&para;</a></h2>
+<h3 id="cliente-javascript">Cliente (JavaScript)<a class="headerlink" href="#cliente-javascript" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1">// Crear conexión SSE</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">eventSource</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">EventSource</span><span class="p">(</span><span class="s1">&#39;/api/events&#39;</span><span class="p">);</span>
+
+<span class="c1">// Escuchar mensajes genéricos</span>
+<span class="nx">eventSource</span><span class="p">.</span><span class="nx">onmessage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Mensaje recibido:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">event</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">updateUI</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="c1">// Escuchar eventos personalizados</span>
+<span class="nx">eventSource</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;notification&#39;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">notification</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">showNotification</span><span class="p">(</span><span class="nx">notification</span><span class="p">.</span><span class="nx">title</span><span class="p">,</span><span class="w"> </span><span class="nx">notification</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="c1">// Manejar errores</span>
+<span class="nx">eventSource</span><span class="p">.</span><span class="nx">onerror</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;Error en SSE:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">event</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="c1">// Cerrar conexión</span>
+<span class="c1">// eventSource.close();</span>
+</code></pre></div>
+
+<h3 id="servidor-pythonflask">Servidor (Python/Flask)<a class="headerlink" href="#servidor-pythonflask" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">Response</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">threading</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">generate_events</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Generador que produce eventos SSE&quot;&quot;&quot;</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="c1"># Evento genérico</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;timestamp&#39;</span><span class="p">:</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">(),</span>
+            <span class="s1">&#39;users_online&#39;</span><span class="p">:</span> <span class="n">get_users_count</span><span class="p">(),</span>
+            <span class="s1">&#39;server_status&#39;</span><span class="p">:</span> <span class="s1">&#39;running&#39;</span>
+        <span class="p">}</span>
+
+        <span class="k">yield</span> <span class="sa">f</span><span class="s2">&quot;data: </span><span class="si">{</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="si">}</span><span class="se">\n\n</span><span class="s2">&quot;</span>
+
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>  <span class="c1"># Enviar cada 10 segundos</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/api/events&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">stream_events</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Endpoint SSE&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">Response</span><span class="p">(</span>
+        <span class="n">generate_events</span><span class="p">(),</span>
+        <span class="n">mimetype</span><span class="o">=</span><span class="s1">&#39;text/event-stream&#39;</span><span class="p">,</span>
+        <span class="n">headers</span><span class="o">=</span><span class="p">{</span>
+            <span class="s1">&#39;Cache-Control&#39;</span><span class="p">:</span> <span class="s1">&#39;no-cache&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;Connection&#39;</span><span class="p">:</span> <span class="s1">&#39;keep-alive&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;Access-Control-Allow-Origin&#39;</span><span class="p">:</span> <span class="s1">&#39;*&#39;</span>
+        <span class="p">}</span>
+    <span class="p">)</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/api/notify&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">send_notification</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Enviar notificación específica&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">notification_event</span><span class="p">():</span>
+        <span class="n">notification</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;Nueva actualización&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;message&#39;</span><span class="p">:</span> <span class="s1">&#39;El sistema se actualizó correctamente&#39;</span>
+        <span class="p">}</span>
+
+        <span class="c1"># Evento con nombre personalizado</span>
+        <span class="k">yield</span> <span class="sa">f</span><span class="s2">&quot;event: notification</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="k">yield</span> <span class="sa">f</span><span class="s2">&quot;data: </span><span class="si">{</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">notification</span><span class="p">)</span><span class="si">}</span><span class="se">\n\n</span><span class="s2">&quot;</span>
+
+    <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">notification_event</span><span class="p">(),</span> <span class="n">mimetype</span><span class="o">=</span><span class="s1">&#39;text/event-stream&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+<h2 id="formato-del-stream-de-eventos">Formato del stream de eventos<a class="headerlink" href="#formato-del-stream-de-eventos" title="Permanent link">&para;</a></h2>
+<p>Los eventos SSE siguen un formato específico:</p>
+<div class="highlight"><pre><span></span><code><span class="n">event</span><span class="o">:</span><span class="w"> </span><span class="n">message</span><span class="o">-</span><span class="n">type</span>
+<span class="n">data</span><span class="o">:</span><span class="w"> </span><span class="o">{</span><span class="s2">&quot;key&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;value&quot;</span><span class="o">}</span>
+<span class="n">id</span><span class="o">:</span><span class="w"> </span><span class="n">unique</span><span class="o">-</span><span class="n">message</span><span class="o">-</span><span class="n">id</span>
+<span class="n">retry</span><span class="o">:</span><span class="w"> </span><span class="mi">3000</span>
+</code></pre></div>
+
+<ul>
+<li><strong>event</strong>: Nombre del evento (opcional)</li>
+<li><strong>data</strong>: Contenido del mensaje</li>
+<li><strong>id</strong>: Identificador único para reconexión</li>
+<li><strong>retry</strong>: Tiempo de reintento en milisegundos</li>
+</ul>
+<h2 id="casos-de-uso-ideales">Casos de uso ideales<a class="headerlink" href="#casos-de-uso-ideales" title="Permanent link">&para;</a></h2>
+<h3 id="1-feeds-en-tiempo-real">1. Feeds en tiempo real<a class="headerlink" href="#1-feeds-en-tiempo-real" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">newsSource</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">EventSource</span><span class="p">(</span><span class="s1">&#39;/api/news-feed&#39;</span><span class="p">);</span>
+
+<span class="nx">newsSource</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;article&#39;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">article</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">addArticleToFeed</span><span class="p">(</span><span class="nx">article</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div>
+
+<h3 id="2-notificaciones-push">2. Notificaciones push<a class="headerlink" href="#2-notificaciones-push" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">notificationSource</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">EventSource</span><span class="p">(</span><span class="s1">&#39;/api/notifications&#39;</span><span class="p">);</span>
+
+<span class="nx">notificationSource</span><span class="p">.</span><span class="nx">onmessage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">notification</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Mostrar notificación del navegador</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">Notification</span><span class="p">.</span><span class="nx">permission</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;granted&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="ow">new</span><span class="w"> </span><span class="nx">Notification</span><span class="p">(</span><span class="nx">notification</span><span class="p">.</span><span class="nx">title</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="nx">notification</span><span class="p">.</span><span class="nx">message</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">icon</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;/icon.png&#39;</span>
+<span class="w">        </span><span class="p">});</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div>
+
+<h3 id="3-dashboard-en-tiempo-real">3. Dashboard en tiempo real<a class="headerlink" href="#3-dashboard-en-tiempo-real" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">dashboardSource</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">EventSource</span><span class="p">(</span><span class="s1">&#39;/api/dashboard&#39;</span><span class="p">);</span>
+
+<span class="nx">dashboardSource</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;metrics&#39;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">metrics</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">updateCharts</span><span class="p">(</span><span class="nx">metrics</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">updateCounters</span><span class="p">(</span><span class="nx">metrics</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nx">dashboardSource</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;alert&#39;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">alert</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">showAlert</span><span class="p">(</span><span class="nx">alert</span><span class="p">.</span><span class="nx">level</span><span class="p">,</span><span class="w"> </span><span class="nx">alert</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div>
+
+<h2 id="ventajas-de-sse">Ventajas de SSE<a class="headerlink" href="#ventajas-de-sse" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>Simplicidad</strong>: API más simple que WebSockets</li>
+<li><strong>Reconexión automática</strong>: El navegador reintenta automáticamente</li>
+<li><strong>Eficiencia</strong>: Menor overhead que polling</li>
+<li><strong>Compatibilidad</strong>: Funciona sobre HTTP/HTTPS estándar</li>
+<li><strong>Firewall-friendly</strong>: No requiere puertos especiales</li>
+</ol>
+<h2 id="limitaciones-importantes">Limitaciones importantes<a class="headerlink" href="#limitaciones-importantes" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>Unidireccional</strong>: Solo servidor → cliente</li>
+<li><strong>Límites de conexión</strong>: Navegadores limitan conexiones simultáneas</li>
+<li><strong>Formato de datos</strong>: Solo texto (aunque JSON funciona bien)</li>
+<li><strong>Sin compresión nativa</strong>: A diferencia de WebSockets</li>
+</ol>
+<h2 id="sse-vs-websockets-cuando-usar-cada-uno">SSE vs WebSockets: ¿Cuándo usar cada uno?<a class="headerlink" href="#sse-vs-websockets-cuando-usar-cada-uno" title="Permanent link">&para;</a></h2>
+<h3 id="usa-sse-cuando">Usa SSE cuando:<a class="headerlink" href="#usa-sse-cuando" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Solo necesitas servidor → cliente</li>
+<li>Simplicidad es prioritaria  </li>
+<li>Actualizaciones periódicas (feeds, notificaciones)</li>
+<li>Compatibilidad con proxies/firewalls es importante</li>
+</ul>
+<h3 id="usa-websockets-cuando">Usa WebSockets cuando:<a class="headerlink" href="#usa-websockets-cuando" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Necesitas comunicación bidireccional</li>
+<li>Latencia ultra-baja es crítica</li>
+<li>Intercambio intensivo de datos</li>
+<li>Control total sobre el protocolo</li>
+</ul>
+<h2 id="manejo-de-errores-y-reconexion">Manejo de errores y reconexión<a class="headerlink" href="#manejo-de-errores-y-reconexion" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">eventSource</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">EventSource</span><span class="p">(</span><span class="s1">&#39;/api/events&#39;</span><span class="p">);</span>
+
+<span class="kd">let</span><span class="w"> </span><span class="nx">reconnectInterval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1000</span><span class="p">;</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">maxReconnectInterval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">30000</span><span class="p">;</span>
+
+<span class="nx">eventSource</span><span class="p">.</span><span class="nx">onopen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Conexión SSE establecida&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">reconnectInterval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1000</span><span class="p">;</span><span class="w"> </span><span class="c1">// Reset interval</span>
+<span class="p">};</span>
+
+<span class="nx">eventSource</span><span class="p">.</span><span class="nx">onerror</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;Error SSE:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">event</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">eventSource</span><span class="p">.</span><span class="nx">readyState</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="nx">EventSource</span><span class="p">.</span><span class="nx">CLOSED</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Reconexión manual con backoff exponencial</span>
+<span class="w">        </span><span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Intentando reconectar...&#39;</span><span class="p">);</span>
+<span class="w">            </span><span class="nx">reconnectSSE</span><span class="p">();</span>
+<span class="w">        </span><span class="p">},</span><span class="w"> </span><span class="nx">reconnectInterval</span><span class="p">);</span>
+
+<span class="w">        </span><span class="nx">reconnectInterval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Math</span><span class="p">.</span><span class="nx">min</span><span class="p">(</span><span class="nx">reconnectInterval</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="nx">maxReconnectInterval</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kd">function</span><span class="w"> </span><span class="nx">reconnectSSE</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">eventSource</span><span class="p">.</span><span class="nx">close</span><span class="p">();</span>
+<span class="w">    </span><span class="nx">eventSource</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">EventSource</span><span class="p">(</span><span class="s1">&#39;/api/events&#39;</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="conclusion">Conclusión<a class="headerlink" href="#conclusion" title="Permanent link">&para;</a></h2>
+<p>Server-Sent Events ofrece una solución pragmática para comunicación en tiempo real cuando WebSockets resulta excesivo. Su simplicidad, reconexión automática y compatibilidad lo convierten en una opción excelente para feeds, notificaciones y dashboards en tiempo real.</p>
+<p>Para aplicaciones que requieren actualizaciones del servidor al cliente sin la complejidad de WebSockets, SSE es la herramienta perfecta.</p>
+<p><em>Documentación oficial</em>: <a href="https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events">Using server-sent events - MDN</a></p>
+            
+            <section>
+<p id="comment-message">¿Qué te parece? ¿Piensas que olvidé algo? ¿Poco claro? Deja abajo tus comentarios. </p>
+<div class="accordion" id="accordion2">
+    <div class="accordion-group">
+        <div class="accordion-heading">
+            <a class="accordion-toggle disqus-comment-count" data-toggle="collapse" data-parent="#accordion2"
+                href="http://pablocaro.es/server-sent-events-comunicacion-tiempo-real#disqus_thread">
+                Comments
+            </a>
+        </div>
+        <div id="disqus_thread" class="accordion-body collapse">
+            <div class="accordion-inner">
+                <div class="comments">
+                    <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'anotaciones';
+        var disqus_identifier = 'http://pablocaro.es/server-sent-events-comunicacion-tiempo-real';
+    var disqus_url = 'http://pablocaro.es/server-sent-events-comunicacion-tiempo-real';
+
+    (function() {
+         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+         dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+     })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+
+            <hr/>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+            <h4>Publicado</h4>
+            <time pubdate="pubdate" datetime="2024-09-23T00:01:00+02:00">sep 23, 2024</time>
+            <h4>Categoría</h4>
+            <a class="category-link" href="http://pablocaro.es/categories.html#programacion-ref">Programación</a>
+            <h4>Tags</h4>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="http://pablocaro.es/tags.html#javascript-ref">javascript
+                    <span>2</span>
+</a></li>
+                <li><a href="http://pablocaro.es/tags.html#sse-ref">sse
+                    <span>1</span>
+</a></li>
+                <li><a href="http://pablocaro.es/tags.html#tiempo-real-ref">tiempo-real
+                    <span>1</span>
+</a></li>
+                <li><a href="http://pablocaro.es/tags.html#web-apis-ref">web-apis
+                    <span>1</span>
+</a></li>
+            </ul>
+<h4>Contacta conmigo</h4>
+    <a href="http://twitter.com/pcaro" title="My Twitter Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-twitter sidebar-social-links"></i></a>
+    <a href="http://github.com/pcaro" title="My Github Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-github sidebar-social-links"></i></a>
+    <a href="https://www.linkedin.com/in/pcarorevuelta" title="My Linkedin Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-linkedin sidebar-social-links"></i></a>
+    <a href="https://www.facebook.com/pablo.carorevuelta" title="My Facebook Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-facebook sidebar-social-links"></i></a>
+    <a href="mailto:correo@pablocaro.es" title="My Email Address" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-envelope sidebar-social-links"></i></a>
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-subtitle"><span class="site-name"><span style="color:#AA1032;">Anotaciones</span> <span style="color:darkblue;">por</span> <span style="color:black">Pablo Caro</span></span> - Anotaciones</li>
+        <li class="elegant-license"><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"> Anotaciones</span> de <a xmlns:cc="http://creativecommons.org/ns#" href="http://pablocaro.es" property="cc:attributionName" rel="cc:attributionURL">Pablo Caro</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>.</li>
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a></li>
+    </ul>
+</div>
+</footer>            <script src="http://code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+            <script type="text/javascript">
+var disqus_shortname = 'anotaciones';
+(function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
+<script  language="javascript" type="text/javascript">
+function uncollapse() {
+    if (window.location.hash.match(/^#comment-\d+$/)) {
+        $('#disqus_thread').collapse('show');
+    }
+}
+</script>
+<script type="text/javascript" language="JavaScript">
+uncollapse();
+window.onhashchange=function(){
+    if (window.location.hash.match(/^#comment-\d+$/))
+        window.location.reload(true);
+}
+</script>
+<script>
+$('#disqus_thread').on('shown', function () {
+    var link = document.getElementsByClassName('accordion-toggle');
+    var old_innerHTML = link[0].innerHTML;
+    $(link[0]).fadeOut(500, function() {
+        $(this).text('Click here to hide comments').fadeIn(500);
+    });
+    $('#disqus_thread').on('hidden', function () {
+        $(link[0]).fadeOut(500, function() {
+            $(this).text(old_innerHTML).fadeIn(500);
+        });
+    })
+})
+</script>
+
+
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : http://oncrashreboot.com/pelican-elegant -->
+</html>

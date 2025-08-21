@@ -1,0 +1,496 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0"><channel><title>Anotaciones por Pablo Caro</title><link>http://pablocaro.es/</link><description>Anotaciones</description><lastBuildDate>Wed, 23 Jul 2025 06:12:00 +0200</lastBuildDate><item><title>Cómo uso git worktrees para trabajo concurrente</title><link>http://pablocaro.es/como-uso-git-worktrees</link><description>&lt;p class="first last"&gt;Un enfoque práctico para usar git worktrees y maximizar la productividad con múltiples contextos de trabajo simultáneos&lt;/p&gt;
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Wed, 23 Jul 2025 06:12:00 +0200</pubDate><guid isPermaLink="false">tag:pablocaro.es,2025-07-23:/como-uso-git-worktrees</guid><category>Programación</category><category>git</category><category>worktrees</category><category>flujo-trabajo</category><category>productividad</category></item><item><title>Búsqueda híbrida con SQLite: vector + texto completo</title><link>http://pablocaro.es/busqueda-hibrida-sqlite-vector-texto</link><description>&lt;p class="first last"&gt;Combinando búsqueda vectorial y texto completo en SQLite usando Reciprocal Rank Fusion para obtener mejores resultados&lt;/p&gt;
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Sun, 06 Oct 2024 11:43:00 +0200</pubDate><guid isPermaLink="false">tag:pablocaro.es,2024-10-06:/busqueda-hibrida-sqlite-vector-texto</guid><category>Programación</category><category>sqlite</category><category>búsqueda</category><category>vectores</category><category>fts</category><category>sql</category></item><item><title>Conflación de datos geoespaciales con DuckDB y embeddings</title><link>http://pablocaro.es/conflacion-datos-geoespaciales-duckdb</link><description>&lt;p class="first last"&gt;Técnicas avanzadas para integrar fuentes de datos geoespaciales usando DuckDB, H3, Ollama y modelos de embeddings&lt;/p&gt;
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Tue, 01 Oct 2024 07:12:00 +0200</pubDate><guid isPermaLink="false">tag:pablocaro.es,2024-10-01:/conflacion-datos-geoespaciales-duckdb</guid><category>Programación</category><category>duckdb</category><category>geoespacial</category><category>embeddings</category><category>ollama</category><category>h3</category></item><item><title>HTTPX: Cliente HTTP moderno para Python</title><link>http://pablocaro.es/httpx-cliente-http-moderno-python</link><description>&lt;p class="first last"&gt;HTTPX emerge como el sucesor natural de requests, ofreciendo soporte async, HTTP/2 y una API moderna para aplicaciones Python contemporáneas&lt;/p&gt;
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Mon, 23 Sep 2024 00:07:00 +0200</pubDate><guid isPermaLink="false">tag:pablocaro.es,2024-09-23:/httpx-cliente-http-moderno-python</guid><category>Programación</category><category>python</category><category>http</category><category>httpx</category><category>async</category><category>requests</category></item><item><title>Server-Sent Events: Comunicación en tiempo real simplificada</title><link>http://pablocaro.es/server-sent-events-comunicacion-tiempo-real</link><description>&lt;p&gt;Server-Sent Events ofrece una alternativa simple y eficiente a WebSockets para comunicación unidireccional servidor-cliente en aplicaciones web&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Mon, 23 Sep 2024 00:01:00 +0200</pubDate><guid isPermaLink="false">tag:pablocaro.es,2024-09-23:/server-sent-events-comunicacion-tiempo-real</guid><category>Programación</category><category>javascript</category><category>sse</category><category>tiempo-real</category><category>web-apis</category></item><item><title>Una de versiones</title><link>http://pablocaro.es/una-de-versiones</link><description></description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Mon, 01 May 2017 18:04:00 +0200</pubDate><guid isPermaLink="false">tag:pablocaro.es,2017-05-01:/una-de-versiones</guid><category>Progamación</category><category>python</category></item><item><title>MobaXterm. Mucho más que un cliente ssh</title><link>http://pablocaro.es/mobaxterm-mucho-m%C3%A1s-que-un-cliente-ssh</link><description></description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Tue, 11 Apr 2017 14:07:00 +0200</pubDate><guid isPermaLink="false">tag:pablocaro.es,2017-04-11:/mobaxterm-mucho-más-que-un-cliente-ssh</guid><category>Trucos</category><category>linux</category></item><item><title>PosteRazor: Crea pósters gigantes desde cualquier imagen</title><link>http://pablocaro.es/posterazor-crear-posters-grandes</link><description>&lt;p&gt;PosteRazor convierte cualquier imagen en un póster gigante dividiendo la imagen en páginas imprimibles que puedes ensamblar&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Fri, 24 Feb 2017 20:06:00 +0100</pubDate><guid isPermaLink="false">tag:pablocaro.es,2017-02-24:/posterazor-crear-posters-grandes</guid><category>Herramientas</category><category>posterazor</category><category>impresión</category><category>pósters</category><category>diy</category><category>herramientas</category></item><item><title>Correo no leído en pestaña principal de gmail</title><link>http://pablocaro.es/gmail_correo_no_leido_solo_en_principal</link><description>&lt;p&gt;Lo de siempre, otra nota recordatoria.&lt;/p&gt;
+&lt;p&gt;Si filtras el correo en gmail por no leído (&lt;code&gt;is:unread&lt;/code&gt;), obtienes todo el correo no leído,
+que en mi caso siempre incluye cientos de notificaciones, social, promociones o foros que no suele ser lo que busco.&lt;/p&gt;
+&lt;p&gt;Para buscar los correos no leídos &lt;em&gt;de …&lt;/em&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Thu, 28 Jul 2016 18:00:00 +0200</pubDate><guid isPermaLink="false">tag:pablocaro.es,2016-07-28:/gmail_correo_no_leido_solo_en_principal</guid><category>Trucos</category><category>linux</category></item><item><title>Documentación técnica con Sphinx, Paver y Cog</title><link>http://pablocaro.es/documentacion-tecnica-sphinx-paver-cog</link><description>&lt;p&gt;Workflow automatizado para crear documentación técnica usando Sphinx, Paver y Cog, eliminando tareas repetitivas y errores manuales en ejemplos de código&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Thu, 14 Jul 2016 00:47:00 +0200</pubDate><guid isPermaLink="false">tag:pablocaro.es,2016-07-14:/documentacion-tecnica-sphinx-paver-cog</guid><category>Documentación</category><category>sphinx</category><category>paver</category><category>cog</category><category>documentación</category><category>rst</category><category>automation</category></item><item><title>Determinar slots de RAM en uso en Linux</title><link>http://pablocaro.es/determinar-slots-ram-uso-linux</link><description>&lt;p&gt;Comandos de Linux para determinar cuántos slots de RAM están ocupados y su capacidad usando dmidecode, lshw y técnicas de inspección de hardware&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Wed, 13 Jul 2016 20:28:00 +0200</pubDate><guid isPermaLink="false">tag:pablocaro.es,2016-07-13:/determinar-slots-ram-uso-linux</guid><category>Linux</category><category>linux</category><category>ram</category><category>dmidecode</category><category>lshw</category><category>hardware</category><category>memoria</category></item><item><title>Introducción a los sistemas de trading de alta frecuencia</title><link>http://pablocaro.es/introduccion-trading-alta-frecuencia</link><description>&lt;p&gt;Conceptos fundamentales sobre los sistemas de trading de alta frecuencia (HFT), programas que ejecutan miles de operaciones por día en fracciones de segundo&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Mon, 27 Jun 2016 11:51:00 +0200</pubDate><guid isPermaLink="false">tag:pablocaro.es,2016-06-27:/introduccion-trading-alta-frecuencia</guid><category>Finanzas</category><category>trading</category><category>hft</category><category>high-frequency</category><category>algoritmos</category><category>finanzas</category></item><item><title>Cómo encontrar hosts vivos en tu red local</title><link>http://pablocaro.es/encontrar-hosts-vivos-red</link><description>&lt;p&gt;Métodos y herramientas para descubrir dispositivos activos en redes locales usando nmap, arp-scan, netdiscover y otras técnicas de reconocimiento&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Mon, 27 Jun 2016 07:59:00 +0200</pubDate><guid isPermaLink="false">tag:pablocaro.es,2016-06-27:/encontrar-hosts-vivos-red</guid><category>Seguridad</category><category>nmap</category><category>network-discovery</category><category>arp-scan</category><category>netdiscover</category><category>seguridad</category></item><item><title>Potentes herramientas para desarrolladores desde línea de comandos</title><link>http://pablocaro.es/herramientas-desarrolladores-linea-comandos</link><description>&lt;p&gt;Colección de herramientas de línea de comandos esenciales para desarrolladores: curl, ngrep, netcat, sshuttle, siege y mitmproxy&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Tue, 07 Jun 2016 11:36:00 +0200</pubDate><guid isPermaLink="false">tag:pablocaro.es,2016-06-07:/herramientas-desarrolladores-linea-comandos</guid><category>Herramientas</category><category>cli</category><category>herramientas</category><category>desarrollo</category><category>networking</category><category>testing</category></item><item><title>Sysdig: Plataforma de seguridad cloud-nativa con IA</title><link>http://pablocaro.es/sysdig-seguridad-cloud-nativa</link><description>&lt;p&gt;Sysdig ofrece una plataforma de seguridad integral para entornos cloud-nativos que combina IA, visibilidad en tiempo real e innovación open source&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Wed, 10 Feb 2016 14:37:00 +0100</pubDate><guid isPermaLink="false">tag:pablocaro.es,2016-02-10:/sysdig-seguridad-cloud-nativa</guid><category>Herramientas</category><category>sysdig</category><category>seguridad</category><category>cloud</category><category>kubernetes</category><category>falco</category></item><item><title>Python: Crear generadores repetibles (repeating generators)</title><link>http://pablocaro.es/python-generadores-repetibles</link><description>&lt;p&gt;Técnicas en Python para crear generadores que se pueden iterar múltiples veces, superando la limitación de "una sola vez" de los generadores estándar&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Tue, 09 Feb 2016 10:10:00 +0100</pubDate><guid isPermaLink="false">tag:pablocaro.es,2016-02-09:/python-generadores-repetibles</guid><category>Python</category><category>python</category><category>generadores</category><category>itertools</category><category>decoradores</category><category>yield</category></item><item><title>Botón central en firefox</title><link>http://pablocaro.es/boton_central_firefox</link><description>&lt;p class="first last"&gt;Que firefox deje de abrir la url pegada con el botón central del ratón&lt;/p&gt;
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Fri, 01 Jan 2016 07:00:00 +0100</pubDate><guid isPermaLink="false">tag:pablocaro.es,2016-01-01:/boton_central_firefox</guid><category>Sistemas</category><category>linux</category></item><item><title>Bootstrap: Dos enlaces en la misma fila en dropdown</title><link>http://pablocaro.es/bootstrap-dropdown-enlaces-horizontal</link><description>&lt;p&gt;Técnica CSS para colocar dos enlaces en la misma fila horizontal dentro de un menú dropdown de Bootstrap usando flexbox&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Tue, 15 Dec 2015 10:40:00 +0100</pubDate><guid isPermaLink="false">tag:pablocaro.es,2015-12-15:/bootstrap-dropdown-enlaces-horizontal</guid><category>Frontend</category><category>bootstrap</category><category>css</category><category>dropdown</category><category>flexbox</category><category>html</category></item><item><title>Galen Framework: Testing automatizado para diseño responsive</title><link>http://pablocaro.es/galen-framework-testing-responsive</link><description>&lt;p&gt;Galen Framework simplifica el testing automatizado de layouts responsivos verificando la posición y apariencia de elementos across different dispositivos&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Fri, 13 Nov 2015 18:20:00 +0100</pubDate><guid isPermaLink="false">tag:pablocaro.es,2015-11-13:/galen-framework-testing-responsive</guid><category>Testing</category><category>galen</category><category>testing</category><category>responsive</category><category>layout</category><category>selenium</category></item><item><title>La historia detrás de X-Forwarded-For y X-Real-IP</title><link>http://pablocaro.es/historia-x-forwarded-for-x-real-ip</link><description>&lt;p&gt;Análisis de los headers X-Forwarded-For y X-Real-IP, sus orígenes, diferencias y cómo determinar la IP real del cliente en arquitecturas con múltiples proxies&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Wed, 21 Oct 2015 23:05:00 +0200</pubDate><guid isPermaLink="false">tag:pablocaro.es,2015-10-21:/historia-x-forwarded-for-x-real-ip</guid><category>Redes</category><category>headers</category><category>x-forwarded-for</category><category>x-real-ip</category><category>proxy</category><category>nginx</category></item><item><title>Nginx: Configurar X-Forwarded-For en reverse proxy</title><link>http://pablocaro.es/nginx-x-forwarded-for-reverse-proxy</link><description>&lt;p&gt;Cómo configurar Nginx para pasar la IP real del cliente a servidores backend usando el header X-Forwarded-For en configuraciones de reverse proxy&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Wed, 21 Oct 2015 23:05:00 +0200</pubDate><guid isPermaLink="false">tag:pablocaro.es,2015-10-21:/nginx-x-forwarded-for-reverse-proxy</guid><category>DevOps</category><category>nginx</category><category>reverse-proxy</category><category>x-forwarded-for</category><category>ip-real</category><category>configuración</category></item><item><title>SQL: Seleccionar filas con valor máximo por grupo</title><link>http://pablocaro.es/sql-select-rows-max-value</link><description>&lt;p&gt;Técnicas SQL para seleccionar filas completas con el valor máximo de una columna dentro de grupos, comparando rendimiento de subqueries, joins y window functions&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Wed, 21 Oct 2015 23:05:00 +0200</pubDate><guid isPermaLink="false">tag:pablocaro.es,2015-10-21:/sql-select-rows-max-value</guid><category>SQL</category><category>sql</category><category>mysql</category><category>consultas</category><category>window-functions</category><category>joins</category></item><item><title>Repitiendo una función con hilos</title><link>http://pablocaro.es/repetiendo-una-funci%C3%B3n-con-hilos</link><description>&lt;p class="first last"&gt;Vamos a utilizar hilos en python para ejecutar periodicamente una función&lt;/p&gt;
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Sun, 03 May 2015 21:00:00 +0200</pubDate><guid isPermaLink="false">tag:pablocaro.es,2015-05-03:/repetiendo-una-función-con-hilos</guid><category>Programación</category><category>python</category></item><item><title>Instalar InSync en Opensuse</title><link>http://pablocaro.es/instalar-insync-en-opensuse</link><description></description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Mon, 20 Apr 2015 18:18:00 +0200</pubDate><guid isPermaLink="false">tag:pablocaro.es,2015-04-20:/instalar-insync-en-opensuse</guid><category>Sistemas</category><category>django</category><category>python</category></item><item><title>NetHogs ver ancho de banda consumido</title><link>http://pablocaro.es/nethogs-ver-ancho-de-banda-consumido</link><description>&lt;p&gt;Para medir el ancho de banda que estoy utilizando en este momento utilizo NetHogs&lt;/p&gt;
+&lt;p&gt;Por defecto busca una interfaz de red llamada &amp;quot;eth0&amp;quot; si no la encuenta se queja así:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+ioctl failed while establishing local IP for selected device eth0. You may specify the device on the command line.
+&lt;/pre&gt;
+&lt;p&gt;Puedes …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Thu, 16 Apr 2015 11:37:00 +0200</pubDate><guid isPermaLink="false">tag:pablocaro.es,2015-04-16:/nethogs-ver-ancho-de-banda-consumido</guid><category>Sistemas</category><category>linux</category></item><item><title>Cierra Google Code</title><link>http://pablocaro.es/cierra-google-code</link><description>&lt;p&gt;Lo dicho, Google anunció el cierre de Google Code.&lt;/p&gt;
+&lt;p&gt;Hoy mismo recibí el correo avisandome (tenía un proyecto de prueba alojado allí) de que podía mover
+mis proyectos de forma simple a &lt;a class="reference external" href="http://github.com"&gt;github&lt;/a&gt;, el repositorio de facto hoy en día del software libre
+(lo siento por &lt;a class="reference external" href="https://bitbucket.org/pcaro"&gt;bitbucket&lt;/a&gt; y sobre todo …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Fri, 13 Mar 2015 17:11:00 +0100</pubDate><guid isPermaLink="false">tag:pablocaro.es,2015-03-13:/cierra-google-code</guid><category>Programación</category><category>python</category></item><item><title>pgcli el descubrimiento de hoy</title><link>http://pablocaro.es/pgcli-el-descubrimiento-de-hoy</link><description>&lt;p class="first last"&gt;postresql command line&lt;/p&gt;
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Mon, 02 Mar 2015 08:26:00 +0100</pubDate><guid isPermaLink="false">tag:pablocaro.es,2015-03-02:/pgcli-el-descubrimiento-de-hoy</guid><category>Programación</category><category>postgresql</category></item><item><title>Reactivando el blog</title><link>http://pablocaro.es/reactivando-el-blog</link><description>&lt;p class="first last"&gt;Ya estoy de nuevo escribiendo.&lt;/p&gt;
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Fri, 20 Feb 2015 21:40:00 +0100</pubDate><guid isPermaLink="false">tag:pablocaro.es,2015-02-20:/reactivando-el-blog</guid><category>Personal</category><category>python</category></item><item><title>Blogging again</title><link>http://pablocaro.es/reactivando-el-blog-en.html</link><description>&lt;p class="first last"&gt;Ya estoy de nuevo escribiendo.&lt;/p&gt;
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Fri, 20 Feb 2015 21:40:00 +0100</pubDate><guid isPermaLink="false">tag:pablocaro.es,2015-02-20:/reactivando-el-blog-en.html</guid><category>Personal</category><category>python</category></item><item><title>Decorador vista ajax</title><link>http://pablocaro.es/decorador-vista-ajax</link><description>&lt;p&gt;Para obligar que una vista &lt;a class="reference external" href="https://www.djangoproject.com/"&gt;django&lt;/a&gt; sea llamada sólo mediante llamamas AJAX.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;ajax_required&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="sd"&gt;    AJAX request required decorator&lt;/span&gt;
+&lt;span class="sd"&gt;    use it in your views:&lt;/span&gt;
+
+&lt;span class="sd"&gt;    @ajax_required&lt;/span&gt;
+&lt;span class="sd"&gt;    def my_view(request):&lt;/span&gt;
+&lt;span class="sd"&gt;        ....&lt;/span&gt;
+
+&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;wrap&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;is_ajax&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+            &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;HttpResponseBadRequest&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;wrap&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="vm"&gt;__doc__&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="vm"&gt;__doc__&lt;/span&gt;
+    &lt;span class="n"&gt;wrap&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="vm"&gt;__name__ …&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Fri, 21 Nov 2014 11:12:00 +0100</pubDate><guid isPermaLink="false">tag:pablocaro.es,2014-11-21:/decorador-vista-ajax</guid><category>Programación</category><category>python</category><category>django</category></item><item><title>Función genérica para usar como upload_to</title><link>http://pablocaro.es/funcion-generica-para-usar-como-upload_to</link><description>&lt;p&gt;Los FileField en django necesitan ana función &lt;a class="reference external" href="https://docs.djangoproject.com/en/1.7/ref/models/fields/#django.db.models.FileField.upload_to"&gt;upload_to&lt;/a&gt; que determine donde se subirá el fichero.
+Yo suelo tener en &lt;code&gt;utils.py&lt;/code&gt; una función genérica que los deja en una subcarpeta con el nombre del modelo.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;generic_upload_to&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;instance&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;filename&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="sd"&gt;    Generic `upload_to` function for models.FileField and models.ImageField …&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Sat, 11 Oct 2014 11:02:00 +0200</pubDate><guid isPermaLink="false">tag:pablocaro.es,2014-10-11:/funcion-generica-para-usar-como-upload_to</guid><category>Programación</category><category>django</category><category>python</category></item><item><title>Django: enlaces en listado de objectos</title><link>http://pablocaro.es/enlaces-en-listado-de-objectos</link><description>&lt;p&gt;En mis proyectos suelo usar enlaces a elementos relacionados en el change_list del admin.&lt;/p&gt;
+&lt;div class="contents topic" id="ficheros"&gt;
+&lt;p class="topic-title"&gt;Ficheros&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#utils-py" id="toc-entry-1"&gt;utils.py&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#admin-py" id="toc-entry-2"&gt;admin.py&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="utils-py"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#toc-entry-1"&gt;utils.py&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Tengo esto en &lt;code&gt;utils.py&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.contrib&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;admin&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.contrib.contenttypes.models&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;ContentType&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.core&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;urlresolvers&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.utils.datastructures&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;SortedDict&lt;/span&gt;
+&lt;span class="kn"&gt;from …&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Wed, 21 May 2014 10:42:00 +0200</pubDate><guid isPermaLink="false">tag:pablocaro.es,2014-05-21:/enlaces-en-listado-de-objectos</guid><category>Programación</category><category>django</category><category>python</category></item><item><title>Settings vars processor</title><link>http://pablocaro.es/settings-vars-processor</link><description>&lt;p&gt;Lo suelo usar durante el principio de los proyectos.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.conf&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;settings&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;django_settings&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.core.exceptions&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;ImproperlyConfigured&lt;/span&gt;
+
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;settings&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="sd"&gt;    Adds the settings specified in settings.TEMPLATE_VISIBLE_SETTINGS to&lt;/span&gt;
+&lt;span class="sd"&gt;    the request context.&lt;/span&gt;
+&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="n"&gt;new_settings&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{}&lt;/span&gt;
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;attr&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;django_settings&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;TEMPLATE_VISIBLE_SETTINGS&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="k"&gt;try&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="n"&gt;new_settings&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;attr&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;getattr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;django_settings&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;attr&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="k"&gt;except&lt;/span&gt; &lt;span class="ne"&gt;AttributeError …&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Wed, 08 Jan 2014 11:23:00 +0100</pubDate><guid isPermaLink="false">tag:pablocaro.es,2014-01-08:/settings-vars-processor</guid><category>Programación</category><category>python</category><category>django</category></item><item><title>pyinotify: Ejecutar comando cuando se modifica un fichero</title><link>http://pablocaro.es/pyinotify-ejecutar-comando-cuando-se-modifica-un-fichero</link><description>
+        Ya he comentado por aquí un comando &lt;em&gt;when-changed&lt;/em&gt;.
+
+Ahora anoto otra alternativa, esta vez python. Se trata de pyinotify.
+
+Yo lo uso para generar la documentación de sphinx mientras estoy escribiendo:
+
+&lt;pre lang="bash"&gt;
+python -m pyinotify -r -c "make html" -e IN_MODIFY source
+&lt;/pre&gt;
+    </description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Wed, 03 Apr 2013 05:09:00 +0200</pubDate><guid isPermaLink="false">tag:pablocaro.es,2013-04-03:/pyinotify-ejecutar-comando-cuando-se-modifica-un-fichero</guid><category>Sistemas</category><category>python</category><category>linux</category></item><item><title>A vueltas con suse</title><link>http://pablocaro.es/a-vueltas-con-suse</link><description>
+        Algunos comandos de zypper para recordar:
+
+Para borrar un paquete y también las dependencias:
+&lt;pre lang="bash"&gt;
+zypper remove  --clean-deps packate
+&lt;/pre&gt;
+
+Listar paquetes huérfanos:
+&lt;pre lang="bash"&gt;
+LC_ALL=C zypper se -s | fgrep '(System Packages)'
+&lt;/pre&gt;
+
+    </description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Mon, 25 Mar 2013 11:01:00 +0100</pubDate><guid isPermaLink="false">tag:pablocaro.es,2013-03-25:/a-vueltas-con-suse</guid><category>Sin Categoría</category></item><item><title>Paso de ubuntu a suse</title><link>http://pablocaro.es/paso-de-ubuntu-a-suse</link><description>
+        En mi nuevo portátil del trabajo he pasado de Ubuntu a OpenSuse. Una distribución muy estable y sobre todo con el mejor soporte de KDE.
+
+Pero hay una cuantas cosas que nunca recuerdo. Como este blog se llama anotaciones...
+
+&lt;table width="100%"&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;th&gt;Debian&lt;/th&gt;
+&lt;th&gt;OpenSuse&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;dpkg -S fichero&lt;/td&gt;
+&lt;td&gt;rpm -q -f fichero&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;dpkg -L …&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Fri, 01 Feb 2013 02:17:00 +0100</pubDate><guid isPermaLink="false">tag:pablocaro.es,2013-02-01:/paso-de-ubuntu-a-suse</guid><category>Sistemas</category><category>linux</category></item><item><title>reducir recursos de KDE</title><link>http://pablocaro.es/reducir-recursos-de-kde</link><description>
+        Mágnifica entrada que explica como acelerar un poco tu sistema kde:
+
+&lt;a href="http://parduslife.com/2011/02/17/como-acelerar-el-entorno-de-escritorio-plasma-de-la-kde-sc/"&gt;http://parduslife.com/2011/02/17/como-acelerar-el-entorno-de-escritorio-plasma-de-la-kde-sc/&lt;/a&gt;
+
+No uso akonadi y siempre he querido pararlo. Así no tienes que hacer un
+&lt;pre lang="bash"&gt;akonadictl stop&lt;/pre&gt;
+tras arrancar.
+
+&amp;nbsp;
+
+&lt;a href="http://mschlander.wordpress.com/2011/08/18/disable-akonadi-in-kde-sc-4-7/"&gt;http://mschlander.wordpress.com/2011/08/18/disable-akonadi-in-kde-sc-4-7/&lt;/a&gt;
+
+&amp;nbsp;
+
+&amp;nbsp;
+    </description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Wed, 24 Oct 2012 03:18:00 +0200</pubDate><guid isPermaLink="false">tag:pablocaro.es,2012-10-24:/reducir-recursos-de-kde</guid><category>Sistemas</category><category>linux</category></item><item><title>Cambiar de lugar un virtualenv</title><link>http://pablocaro.es/cambiar-de-lugar-un-virtualenv</link><description>
+        La opción --relocate no funciona bien.
+
+Lo mejor es usar &lt;a href="https://github.com/fireteam/virtualenv-tools"&gt;virtualenv-tools&lt;/a&gt;.
+    </description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Wed, 24 Oct 2012 03:15:00 +0200</pubDate><guid isPermaLink="false">tag:pablocaro.es,2012-10-24:/cambiar-de-lugar-un-virtualenv</guid><category>Sin Categoría</category><category>python</category></item><item><title>Depurando Tomcat</title><link>http://pablocaro.es/depurando-tomcat</link><description>
+        Se usa Java Platform Debuging Architecture JPDA
+
+&lt;a href="https://confluence.sakaiproject.org/display/BOOT/Setting+Up+Tomcat+For+Remote+Debugging"&gt;https://confluence.sakaiproject.org/display/BOOT/Setting+Up+Tomcat+For+Remote+Debugging&lt;/a&gt;
+    </description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Wed, 24 Oct 2012 03:13:00 +0200</pubDate><guid isPermaLink="false">tag:pablocaro.es,2012-10-24:/depurando-tomcat</guid><category>Programación</category><category>java</category></item><item><title>Importar clave gpg. kgpg que gran programa</title><link>http://pablocaro.es/importar-clave-gpg-kgpg-que-gran-programa</link><description>
+    &lt;pre lang="bash"&gt;
+        gpg --keyserver pgp.rediris.es --search-keys erevilla@yaco.es
+
+gpg: buscando «erevilla@yaco.es» de hkp servidor pgp.rediris.es
+(1) Ernesto Revilla Derksen (Yaco)
+1024 bit DSA key 3E455F5A, creado: 2009-09-16
+Keys 1-1 of 1 for "erevilla@yaco.es". Introduzca número(s), O)tro, o F)in &amp;gt; 1
+gpg …&lt;/pre&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Wed, 24 Oct 2012 02:22:00 +0200</pubDate><guid isPermaLink="false">tag:pablocaro.es,2012-10-24:/importar-clave-gpg-kgpg-que-gran-programa</guid><category>Sistemas</category><category>linux</category></item><item><title>Traducciones y APT</title><link>http://pablocaro.es/traducciones-y-apt</link><description>
+    &lt;p&gt;
+        &lt;a href="http://mindref.blogspot.com.es/2012/10/apt-translations.html"&gt;http://mindref.blogspot.com.es/2012/10/apt-translations.html&lt;/a&gt;
+&lt;a href="http://manpages.ubuntu.com/manpages/natty/man5/apt.conf.5.html"&gt;http://manpages.ubuntu.com/manpages/natty/man5/apt.conf.5.html&lt;/a&gt;
+    &lt;/p&gt;
+    </description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Wed, 24 Oct 2012 02:20:00 +0200</pubDate><guid isPermaLink="false">tag:pablocaro.es,2012-10-24:/traducciones-y-apt</guid><category>Sistemas</category><category>linux</category></item><item><title>Mostrar Usuarios y roles existentes en postgres</title><link>http://pablocaro.es/mostrar-usuarios-y-roles-existentes-en-postgres</link><description>
+        Se utiliza &lt;strong&gt;\du&lt;/strong&gt;
+&lt;pre lang="bash"&gt;$ sudo su - postgres
+$ psql 
+postgres=# \du
+                           List of roles
+ Role name |                   Attributes                   | Member of 
+-----------+------------------------------------------------+-----------
+ openerp   | Superuser, Create role, Create DB, Replication | {}
+ postgres  | Superuser, Create role, Create DB, Replication | {}
+
+postgres=#&lt;/pre&gt;
+    </description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Wed, 24 Oct 2012 02:13:00 +0200</pubDate><guid isPermaLink="false">tag:pablocaro.es,2012-10-24:/mostrar-usuarios-y-roles-existentes-en-postgres</guid><category>Sistemas</category></item><item><title>Uso práctico de ngrep</title><link>http://pablocaro.es/uso-practico-de-ngrep</link><description>
+        Ejemplo de uso común de &lt;strong&gt;ngrep&lt;/strong&gt;:
+&lt;pre class="bash" lang="bash"&gt;sudo ngrep -d any port 80 -W byline&lt;/pre&gt;
+Esto es para examinar lo que circula por el puerto 80.
+    </description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Wed, 12 Sep 2012 03:38:00 +0200</pubDate><guid isPermaLink="false">tag:pablocaro.es,2012-09-12:/uso-practico-de-ngrep</guid><category>Sistemas</category><category>linux</category></item><item><title>Autorelad en plone</title><link>http://pablocaro.es/autorelad-en-plone</link><description>
+        Otro recordatorio.
+
+Para recargar mientras desarrollo una browserview en plone:
+&lt;pre lang="bash"&gt;$ when-changed.py *.py -c wget -q -O /dev/null  \
+http://admin:admin@localhost:8080/@@reload?action=code&lt;/pre&gt;
+Basta pues con usar &lt;a title="when-changed" href="https://github.com/joh/when-changed"&gt;when-changed&lt;/a&gt; y &lt;a href="http://pypi.python.org/pypi/plone.reload/"&gt;plone.reload&lt;/a&gt;
+
+Se que existen extensiones  para el navegador  que recargan una  pestaña cuando cambia un fichero …</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Fri, 27 Jul 2012 04:38:00 +0200</pubDate><guid isPermaLink="false">tag:pablocaro.es,2012-07-27:/autorelad-en-plone</guid><category>Programación</category><category>zope</category></item><item><title>virtualbox: Actualizar las Guest Additions en máquinas ubuntu</title><link>http://pablocaro.es/virtualbox-actualizar-las-guest-additions-en-maquinas-ubuntu</link><description>
+        Si usas &lt;a href="http://vagrantup.com/"&gt;vagrant&lt;/a&gt; para gestionar máquinas virtuales con &lt;a href="http://www.virtualbox.org/"&gt;virtualbox&lt;/a&gt;, un buen lugar para obtener boxes es &lt;a href="http://www.vagrantbox.es/"&gt;vagrantboxes&lt;/a&gt;.
+
+Pero a veces la versión que traen de las Guest Additions no coincide con el virtualbox que tienes (en mi caso el último). Vagrant se queja y puede ocasionar problemas.
+
+Lo más simple …</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Wed, 24 Aug 2011 04:11:00 +0200</pubDate><guid isPermaLink="false">tag:pablocaro.es,2011-08-24:/virtualbox-actualizar-las-guest-additions-en-maquinas-ubuntu</guid><category>Sistemas</category><category>linux</category></item><item><title>Cambiar mapa de teclado en linux</title><link>http://pablocaro.es/cambiar-mapa-de-teclado-en-linux</link><description>
+        Siempre olvido esto:
+&lt;pre lang="bash"&gt;sudo keymap es&lt;/pre&gt;
+    </description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Wed, 24 Aug 2011 03:59:00 +0200</pubDate><guid isPermaLink="false">tag:pablocaro.es,2011-08-24:/cambiar-mapa-de-teclado-en-linux</guid><category>Sistemas</category><category>linux</category></item><item><title>Deshabilitar autocompletado en vim</title><link>http://pablocaro.es/deshabilitar-autocompletado-en-vim</link><description>
+        Uso poco vim, sólo cuando en servidores no tengo jed.
+
+Para pegar texto en el fichero actual sin que te haga un horrible indentado en cascada:
+&lt;pre&gt;:setlocal noautoindent
+:setlocal nocindent
+:setlocal nosmartindent
+:setlocal indentexpr=&lt;/pre&gt;
+O su equivalente:
+&lt;pre&gt;:setl noai nocin nosi inde=&lt;/pre&gt;
+Referencia: &lt;a href="http://vim.wikia.com/wiki/How_to_stop_auto_indenting"&gt;http://vim.wikia.com/wiki/How_to_stop_auto_indenting &lt;/a&gt;
+    </description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Mon, 20 Jun 2011 04:42:00 +0200</pubDate><guid isPermaLink="false">tag:pablocaro.es,2011-06-20:/deshabilitar-autocompletado-en-vim</guid><category>Sistemas</category><category>linux</category></item><item><title>Diccionario de español para komodo edit</title><link>http://pablocaro.es/diccionario-de-espanol-para-komodo-edit</link><description>
+        Para instalarlo se siguen &lt;a href="http://community.activestate.com/faq/how-do-i-install-new-dictionaries-spell-checking#comment-4059" target="_blank"&gt;estas instrucciones&lt;/a&gt; descargando previamente &lt;a href="https://addons.mozilla.org/es-ES/firefox/addon/spanish-spain-dictionary/" target="_blank"&gt;el addon&lt;/a&gt;.
+
+No he probado a ver si funciona en el perfil de usuario, pero eso estaría mejor.
+    </description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Mon, 13 Jun 2011 07:41:00 +0200</pubDate><guid isPermaLink="false">tag:pablocaro.es,2011-06-13:/diccionario-de-espanol-para-komodo-edit</guid><category>Sin Categoría</category></item><item><title>21/3</title><link>http://pablocaro.es/21-3</link><description>
+        Han pasado ya&lt;a title="día síndrome down" href="http://www.abc.es/20110321/comunidad-castillaleon/abcp-mundial-sindrome-down-20110321.html"&gt; tres días 21&lt;/a&gt; en lo que llevamos de año. Ayer, fue un día de &lt;a href="http://www.eldiariomontanes.es/v/20110322/sociedad/destacados/jovenes-sindrome-down-exigen-20110322.html"&gt;reivindicaciones&lt;/a&gt;, para exigir la visibilidad necesaria y el respecto que esta sociedad &lt;a href="http://www.elpais.com/articulo/sociedad/Inhabilitado/dueno/pub/echo/jovenes/Down/elpepisoc/20110311elpepisoc_13/Tes"&gt;todavía niega&lt;/a&gt;. Cuando en el día de hoy se habla de &lt;a href="http://www.elpais.com/articulo/internacional/disputas/participacion/OTAN/dividen/aliados/elpepuint/20110322elpepuint_6/Tes"&gt;guerra&lt;/a&gt; y &lt;a href="http://www.elpais.com/articulo/internacional/tecnicos/reanundan/trabajos/Fukushima/elpepuint/20110322elpepuint_5/Tes"&gt;emisiones radiactivas&lt;/a&gt;, yo he aprendido en este último …</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Tue, 22 Mar 2011 02:35:00 +0100</pubDate><guid isPermaLink="false">tag:pablocaro.es,2011-03-22:/21-3</guid><category>Sin Categoría</category></item><item><title>scp con compresión</title><link>http://pablocaro.es/scp-con-compresion</link><description>
+        La mejor forma de descargar una zodb:
+&lt;pre lang="bash"&gt;scp -C -o CompressionLevel=9 user@yoursite.com:~/plonefolder/zinstance/var/filestorage/Data.fs .&lt;/pre&gt;
+Leído en: &lt;a href="http://blog.mfabrik.com/2011/03/02/scp-file-copy-with-on-line-compression/"&gt;http://blog.mfabrik.com/2011/03/02/scp-file-copy-with-on-line-compression/&lt;/a&gt;
+    </description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Fri, 04 Mar 2011 03:49:00 +0100</pubDate><guid isPermaLink="false">tag:pablocaro.es,2011-03-04:/scp-con-compresion</guid><category>Programación</category><category>linux</category><category>zope</category></item><item><title>Actualizar Mercurial usando ppa en ubuntu</title><link>http://pablocaro.es/actualizar-mercurial-usando-ppa-en-ubuntu</link><description>
+        Existen tres PPA para mercurial:
+&lt;a rel="nofollow" href="https://launchpad.net/~mercurial-ppa/+archive/releases"&gt;https://launchpad.net/~mercurial-ppa/+archive/releases&lt;/a&gt; (última release, actualmente 1.7.5-0ppa1~maverick1)
+&lt;a rel="nofollow" href="https://launchpad.net/~mercurial-ppa/+archive/stable-snapshots"&gt;https://launchpad.net/~mercurial-ppa/+archive/stable-snapshots&lt;/a&gt; (snapshots de la rama estable, actualmente ﻿1.7.5+2-5fc7c84ed9b0-0ppa1~maverick1)
+&lt;a rel="nofollow" href="https://launchpad.net/~mercurial-ppa/+archive/snapshots"&gt;https://launchpad.net/~mercurial-ppa/+archive/snapshots&lt;/a&gt; (snapshots de lo último, actualmente 1.8~1.7 …</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Fri, 25 Feb 2011 05:12:00 +0100</pubDate><guid isPermaLink="false">tag:pablocaro.es,2011-02-25:/actualizar-mercurial-usando-ppa-en-ubuntu</guid><category>Sistemas</category><category>linux</category></item><item><title>Añadiendo un repositio PPA en karmic</title><link>http://pablocaro.es/anadiendo-un-repositio-ppa-en-karmic</link><description>
+        Este comandito te añade sola la fuente (ojo, en el directorio /etc/apt/sources.list.d) y pide las claves:
+&lt;pre lang="bash"&gt;sudo add-apt-repository ppa:chromium-daily&lt;/pre&gt;
+    </description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Wed, 23 Feb 2011 07:22:00 +0100</pubDate><guid isPermaLink="false">tag:pablocaro.es,2011-02-23:/anadiendo-un-repositio-ppa-en-karmic</guid><category>Sin Categoría</category></item><item><title>Dos pantallas al inicio de kdm</title><link>http://pablocaro.es/dos-pantallas-al-inicio-de-kdm</link><description>
+        Para que ya el mismo kdm se ejecute con dos pantallas basta con poner la configuración deseada (usando &lt;a title="xrandr" href="http://www.x.org/wiki/Projects/XRandR" target="_blank"&gt;xrandr&lt;/a&gt;) en el fichero ﻿&lt;strong&gt;/etc/kde4/kdm/Xsetup&lt;/strong&gt;. Por ejemplo, en mi caso uso dos pantallas en la oficina de modo que ese fichero contiene:
+&lt;pre lang="bash"&gt;INT="LVDS1"
+EXT="VGA1"
+xrandr -q | grep …&lt;/pre&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Tue, 01 Feb 2011 02:32:00 +0100</pubDate><guid isPermaLink="false">tag:pablocaro.es,2011-02-01:/dos-pantallas-al-inicio-de-kdm</guid><category>Sistemas</category></item><item><title>Zen Coding y komodo edit</title><link>http://pablocaro.es/zen-coding-y-komodo-edit</link><description>
+        Mi editor favorito &lt;a href="http://www.activestate.com/komodo-edit" target="_blank"&gt;Komodo Edit&lt;/a&gt; tiene un plugin de &lt;a href="http://code.google.com/p/zen-coding/" target="_blank"&gt;Zen Coding &lt;/a&gt;y este funciona muy bien también con plantillas zpt. Por ejemplo:
+
+Así una expresión como la siguente
+&lt;pre lang="css"&gt;
+dl&gt;tal:rep[tal:repeat]&gt;dt+dd
+&lt;/pre&gt;
+Se convierte en el siguiente trozo de html con los nesesarios tabstops:
+&lt;pre lang="css"&gt;
+&lt;dl&gt;
+    &lt;tal:rep tal:repeat=""&gt;
+        &lt;dt&gt;&lt;/dt&gt;
+        &lt;dd&gt;&lt;/dd&gt;
+    &lt;/tal:rep&gt;
+&lt;/dl&gt;&lt;/pre&gt;
+Muy pero que …</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Fri, 15 Oct 2010 14:41:00 +0200</pubDate><guid isPermaLink="false">tag:pablocaro.es,2010-10-15:/zen-coding-y-komodo-edit</guid><category>Programación</category><category>zope</category></item><item><title>Progreso en un reindexado de zope</title><link>http://pablocaro.es/progreso-en-un-reindexado-de-zope</link><description>
+        Visto en el producto contentleadimage:
+&lt;pre lang="python"&gt;from Products.ZCatalog.ProgressHandler import ZLogHandler
+ctool.reindexIndex(['hasContentLeadImage'], portal.REQUEST, pghandler=ZLogHandler())&lt;/pre&gt;
+Esto muestra un progreso en la consola si estás ejecutando  en primer plano.
+    </description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Sat, 18 Sep 2010 06:06:00 +0200</pubDate><guid isPermaLink="false">tag:pablocaro.es,2010-09-18:/progreso-en-un-reindexado-de-zope</guid><category>Programación</category><category>zope</category></item><item><title>Zope y noatime</title><link>http://pablocaro.es/zope-y-noatime</link><description>
+        Una fácil mejora para el rendimiento de un zope con problemas de acceso a disco es&lt;a href="http://tldp.org/LDP/solrhe/Securing-Optimizing-Linux-RH-Edition-v1.3/chap6sec73.html"&gt; no actualizar la fecha de último acceso&lt;/a&gt; al fichero de la base de datos Data.fs:
+
+&lt;pre lang="bash"&gt;
+chattr -R +A Data.fs
+&lt;/pre&gt;
+
+Simple y efectivo.
+    </description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Sun, 25 Jul 2010 05:33:00 +0200</pubDate><guid isPermaLink="false">tag:pablocaro.es,2010-07-25:/zope-y-noatime</guid><category>Programación</category><category>zope</category></item><item><title>Subversion: Añadiendo contenido a un directorio sin descargarlo</title><link>http://pablocaro.es/subversion-anadiendo-contenido-a-un-directorio-sin-descargarlo</link><description>
+        Caso práctico. Tengo un directorio &lt;em&gt;dev&lt;/em&gt; dentro del subversión con un montón de código con sus correspondientes ramas de &lt;code&gt;trunk&lt;/code&gt;, &lt;code&gt;branches&lt;/code&gt;, &lt;code&gt;tags&lt;/code&gt;, etc. Quiero añadir un nuevo producto pero no descargar todo ese enorme directorio &lt;em&gt;dev&lt;/em&gt;:
+&lt;pre lang="bash"&gt;svn co --depth empty https://repositorio/dev dev
+cp loquesea nuevo_producto
+svn add loquesea …&lt;/pre&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Fri, 16 Jul 2010 05:05:00 +0200</pubDate><guid isPermaLink="false">tag:pablocaro.es,2010-07-16:/subversion-anadiendo-contenido-a-un-directorio-sin-descargarlo</guid><category>Programación</category></item><item><title>Restaurando objectos plone borrados</title><link>http://pablocaro.es/restaurando-objectos-plone-borrados</link><description>
+        Para esas situaciones donde no funciona el undo, la salvación se llama &lt;a href="http://pypi.python.org/pypi/dm.historical"&gt;dm.historical&lt;/a&gt;
+
+Un claro ejemplo en &lt;a href="http://www.zopyx.de/blog/restoring-an-older-state-of-arbitrary-zope-objects" target="_blank"&gt;esta entrada&lt;/a&gt; del Blog de Andreas Jung
+    </description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Wed, 14 Jul 2010 01:33:00 +0200</pubDate><guid isPermaLink="false">tag:pablocaro.es,2010-07-14:/restaurando-objectos-plone-borrados</guid><category>Programación</category><category>zope</category></item><item><title>Opciones típicas rsync</title><link>http://pablocaro.es/opciones-tipicas-rsync</link><description>
+        Para usar un rsync como un scp (pero con las ventajas de rsync como que puedo parar y continuar después):
+&lt;pre lang="bash"&gt;rsync -azPrv -e 'ssh' usuario@host:/path/to/folder /path/to/destination&lt;/pre&gt;
+    </description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Thu, 08 Jul 2010 05:56:00 +0200</pubDate><guid isPermaLink="false">tag:pablocaro.es,2010-07-08:/opciones-tipicas-rsync</guid><category>Sistemas</category><category>linux</category></item><item><title>Completar mientras se depura en zope</title><link>http://pablocaro.es/completar-mientras-se-depura-en-zope</link><description>
+        Siempre tengo que buscar esto en google, para esto tengo el blog:
+
+&lt;pre lang="bash"&gt;
+$ bin/instance debug
+&lt;/pre&gt;
+
+&lt;pre lang="python"&gt;
+&gt;&gt;&gt; import readline, rlcompleter
+&gt;&gt;&gt; readline.parse_and_bind('tab: complete')
+&gt;&gt;&gt; app.
+Display all 760 possibilities? (y or n)
+&gt;&gt;&gt; 
+&lt;/pre&gt;
+    </description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Wed, 28 Apr 2010 03:33:00 +0200</pubDate><guid isPermaLink="false">tag:pablocaro.es,2010-04-28:/completar-mientras-se-depura-en-zope</guid><category>Programación</category><category>web</category></item><item><title>Kbabel es Lokalize en kde4</title><link>http://pablocaro.es/kbabel-es-lokalize-en-kde4</link><description>
+        Ya era la segunda vez que no encontraba el maravilloso &lt;a href="http://kbabel.kde.org/" target="_blank"&gt;kbabel&lt;/a&gt; y es que en kde4 su sucesor se llama &lt;a href="http://userbase.kde.org/Lokalize" target="_blank"&gt;lokalize&lt;/a&gt;
+    </description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Thu, 25 Mar 2010 10:41:00 +0100</pubDate><guid isPermaLink="false">tag:pablocaro.es,2010-03-25:/kbabel-es-lokalize-en-kde4</guid><category>Programación</category></item><item><title>Descargar una web para visualización local con wget</title><link>http://pablocaro.es/descargar-una-web-para-visualizacion-local-con-wget</link><description>
+        El comando es
+&lt;pre lang="bash"&gt;$ wget -E -H -k -K -p  http://www.google.es&lt;/pre&gt;
+Con &lt;em&gt;-p&lt;/em&gt; hacemos que se descarguen los enlaces requeridos (css, javascript), con &lt;em&gt;-k&lt;/em&gt; convertimos los enlaces dentro del html para visualización local (&lt;em&gt;-K&lt;/em&gt; copia de seguriad) y con &lt;em&gt;-E&lt;/em&gt; aseguramos que los ficheros descargados tengan extensión html …</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Mon, 22 Feb 2010 10:09:00 +0100</pubDate><guid isPermaLink="false">tag:pablocaro.es,2010-02-22:/descargar-una-web-para-visualizacion-local-con-wget</guid><category>Sin Categoría</category></item><item><title>Plone: Registrar pasos de importación con zcml</title><link>http://pablocaro.es/plone-registrar-pasos-de-importacion-con-zcml</link><description>
+        Registrar un paso de importación con xml el el profile, puede fallar cuando quitas el paquete del buildout.
+Un paso roto se que queda dentro de portal_setup_tool.
+
+En algunas versiones de plone esto da un error, haciendo imposible aplicar el perfil nunca más.
+
+En otras versiones (plone 3.2 hacia …</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Wed, 27 Jan 2010 04:38:00 +0100</pubDate><guid isPermaLink="false">tag:pablocaro.es,2010-01-27:/plone-registrar-pasos-de-importacion-con-zcml</guid><category>Sin Categoría</category></item><item><title>Descargar código de un repositorio publicado con gitweb</title><link>http://pablocaro.es/descargar-codigo-de-un-repositorio-publicado-con-gitweb</link><description>
+        &lt;p&gt;Quería probar un software disponible en la red (&lt;a href="http://www.perfect-sale.com/"&gt;Perfect Sale&lt;/a&gt;). Sabía que tenía que usar &lt;em&gt;git clone&lt;/em&gt; pero no la url. &lt;/p&gt;
+&lt;p&gt;
+No queda claro (al menos a mí) &lt;a href="http://git.hforge.org/?p=shop.git;a=tree"&gt;en el repositorio gitweb&lt;/a&gt; la url a usar.&lt;/p&gt;
+Al fin, encontré la solución en &lt;a href="http://gitweb.codeendeavor.com/"&gt;un repositorio mejor documentado&lt;/a&gt; (gracias).
+&lt;p&gt;El protocolo es …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Mon, 04 Jan 2010 14:31:00 +0100</pubDate><guid isPermaLink="false">tag:pablocaro.es,2010-01-04:/descargar-codigo-de-un-repositorio-publicado-con-gitweb</guid><category>Sin Categoría</category></item><item><title>Crear base de datos mysql a partir de un backup</title><link>http://pablocaro.es/crear-base-de-datos-mysql-a-partir-de-un-backup</link><description>
+        Primero crear la base de datos:
+&lt;pre lang="bash"&gt;
+pcaro@davinci$ mysql --user=root -p
+mysql&gt; show databases;
+mysql&gt; create database piwik;
+mysql&gt; GRANT ALL ON piwik.* TO pcaro@localhost IDENTIFIED BY "piwik"
+mysql&gt; show tables;
+&lt;/pre&gt;
+Luego restaurar el backup:
+&lt;pre lang="bash"&gt;
+mysql --user=root --pass=*** --host=localhost piwik &lt; piwik_Thursday.sql
+&lt;/pre&gt;
+Comprobar todo esta bien …</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Thu, 17 Dec 2009 05:06:00 +0100</pubDate><guid isPermaLink="false">tag:pablocaro.es,2009-12-17:/crear-base-de-datos-mysql-a-partir-de-un-backup</guid><category>Sistemas</category></item><item><title>Parcheando, parcheando ...</title><link>http://pablocaro.es/parcheando-parcheando</link><description>
+        Siempre tengo que buscar cómo usar patch. Como tengo un blog que se llama anotaciones pues apunto:
+&lt;pre lang="bash"&gt;$ patch -p1 &lt; baz.diff&lt;/pre&gt;
+Donde el número 1 viene de mirar en el fichero .diff y contar las barras "/" que hay antes que el directorio donde estoy. Por ejemplo si veo &lt;em&gt;/users/stephen …&lt;/em&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Wed, 16 Dec 2009 10:18:00 +0100</pubDate><guid isPermaLink="false">tag:pablocaro.es,2009-12-16:/parcheando-parcheando</guid><category>Sistemas</category><category>linux</category></item><item><title>Que las aplicaciones GTK+ luzcan mejor en kubuntu karmic</title><link>http://pablocaro.es/que-las-aplicaciones-gtk-luzcan-mejor-en-kubuntu-karmic</link><description>
+        Basta con seguir este &lt;a href="http://marcosaruj.com/archives/401" target="_blank"&gt;tutorial&lt;/a&gt;, que indica como instalar el tema &lt;a href="http://kde-look.org/content/show.php?action=content&amp;amp;content=103741&amp;amp;PHPSESSID=b084f440c2a6cc2a1644514b13fe591a" target="_blank"&gt;Oxygen-Molecule&lt;/a&gt;.
+    </description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Thu, 10 Dec 2009 06:32:00 +0100</pubDate><guid isPermaLink="false">tag:pablocaro.es,2009-12-10:/que-las-aplicaciones-gtk-luzcan-mejor-en-kubuntu-karmic</guid><category>Sistemas</category><category>linux</category></item><item><title>Añadir PPA desde la consola a ubuntu karmic</title><link>http://pablocaro.es/anadir-ppa-desde-la-consola-a-ubuntu-karmic</link><description>
+        Para añadir un PPA a ubuntu karmic desde la consola basta con:
+
+&lt;pre lang="bash"&gt;
+ sudo add-apt-repository ppa:kubuntu-ppa/ppa
+
+[sudo] password for pcaro:                                
+Executing: gpg --ignore-time-conflict --no-options --no-default-keyring --secret-keyring /etc/apt/secring.gpg --trustdb-name /etc/apt/trustdb.gpg --keyring /etc/apt/trusted.gpg --keyserver keyserver.ubuntu.com --recv E4DFEC907DEDA4B8A670E8042836CB0A8AC93F7A                                                                                  
+gpg: solicitando clave …&lt;/pre&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Wed, 09 Dec 2009 03:18:00 +0100</pubDate><guid isPermaLink="false">tag:pablocaro.es,2009-12-09:/anadir-ppa-desde-la-consola-a-ubuntu-karmic</guid><category>Sistemas</category><category>linux</category></item><item><title>Cambiar dpi en kde</title><link>http://pablocaro.es/cambiar-dpi-en-kde</link><description>
+        Siempre que reinstalo me encuentro con el mismo problema. No tengo el dpi estándar de 96, sino uno extraño de 113.
+&lt;pre lang="bash"&gt;pcaro@davinci$ xdpyinfo | grep resolutio
+  resolution:    113x113 dots per inch&lt;/pre&gt;
+Como resultado, muchas páginas webs no se visualizan correctamente.
+
+Para solucionarlo tengo que decirle al servidor X que arranque …</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Fri, 04 Dec 2009 05:35:00 +0100</pubDate><guid isPermaLink="false">tag:pablocaro.es,2009-12-04:/cambiar-dpi-en-kde</guid><category>Sistemas</category><category>linux</category></item><item><title>Actualizando postgres en debian y derivados</title><link>http://pablocaro.es/actualizando-postgres-en-debian-y-derivados</link><description>
+        Siempre que se habla de debian, se alaba su paquetería. Y yo estoy de acuerdo de que es uno de los puntos fuertes de la distribución. Hoy me refiero a la facilidad de tener instaladas y conviviendo felices varias versiones de la base de datos &lt;a href="http://www.postgresql.org/" target="_blank"&gt;postgres&lt;/a&gt;. Ya comenté esto en …</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Thu, 26 Nov 2009 05:19:00 +0100</pubDate><guid isPermaLink="false">tag:pablocaro.es,2009-11-26:/actualizando-postgres-en-debian-y-derivados</guid><category>Sistemas</category></item><item><title>Añadiendo lenguaje procedural a base de datos postgres: createlang</title><link>http://pablocaro.es/anadiendo-lenguaje-procedural-a-base-de-datos-postgres-createlang</link><description>
+        Postgres 8.3 incluye 4 &lt;a href="http://www.postgresql.org/docs/8.3/static/external-pl.html"&gt;lenguajes procedurales&lt;/a&gt; en la distribución y se pueden instalar más, pero hay que activarlos por base de datos.
+Para ello, hay varios métodos (lo clásico es &lt;a href="http://www.postgresql.org/docs/8.3/static/sql-createlanguage.html" target="_blank"&gt;create language&lt;/a&gt;) pero los más cómodo es usar &lt;a href="http://www.postgresql.org/docs/8.3/static/app-createlang.html"&gt;createlang&lt;/a&gt;.
+
+Usa &lt;a href="http://www.postgresql.org/docs/8.3/static/app-droplang.html"&gt;&lt;span class="APPLICATION"&gt;droplang&lt;/span&gt;&lt;/a&gt; para eliminar el lenguaje.
+    </description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Thu, 12 Nov 2009 05:20:00 +0100</pubDate><guid isPermaLink="false">tag:pablocaro.es,2009-11-12:/anadiendo-lenguaje-procedural-a-base-de-datos-postgres-createlang</guid><category>Sistemas</category></item><item><title>Colores desde web developer tools</title><link>http://pablocaro.es/colores-desde-web-developer-tools</link><description>
+        Últimamente uso tanto &lt;a href="http://getfirebug.com/"&gt;firebug&lt;/a&gt; que ni me acuerdo de las &lt;a href="https://addons.mozilla.org/en-US/firefox/addon/60"&gt;Web Developer Tools&lt;/a&gt;.
+Escribo esto para recordar que sigue siendo muy útil esta extensión. 
+Por ejemplo, puedo ver los colores (css) usados en una página web a través del menú &lt;em&gt;Información&lt;/em&gt;, seleccionando &lt;em&gt;Ver información del color&lt;/em&gt;.
+
+
+    </description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Tue, 10 Nov 2009 04:55:00 +0100</pubDate><guid isPermaLink="false">tag:pablocaro.es,2009-11-10:/colores-desde-web-developer-tools</guid><category>Programación</category><category>web</category></item><item><title>Que apache sirva el contenido de un fichero .py</title><link>http://pablocaro.es/que-apache-sirva-el-contenido-de-un-fichero-py</link><description>
+        Para que el servidor apache de &lt;a href="http://www.webfaction.com/" target="_blank"&gt;webfaction&lt;/a&gt; no intentara ejecutar los scripts python que dejo para la descarga en este blog, me creé un fichero &lt;a href="http://httpd.apache.org/docs/1.3/howto/htaccess.html"&gt;&lt;em&gt;.htaccess&lt;/em&gt;&lt;/a&gt; y dentro:
+&lt;pre&gt;
+removeHandler cgi-script .pl .py .cgi
+&lt;/pre&gt;
+    </description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Tue, 13 Oct 2009 05:36:00 +0200</pubDate><guid isPermaLink="false">tag:pablocaro.es,2009-10-13:/que-apache-sirva-el-contenido-de-un-fichero-py</guid><category>Sin Categoría</category></item><item><title>Cambiar pantalla anunciadora de kde: Ksplash theme generator</title><link>http://pablocaro.es/cambiar-pantalla-anunciadora-de-kde-ksplash-theme-generator</link><description>
+        Lo dicho en la nota anterior sobre &lt;a href="http://www.kde-apps.org/content/show.php/Kdm+theme+generator?content=102760"&gt;KDM Theme Generator&lt;/a&gt; aplica también para su aplicación hermana &lt;a href="http://www.kde-apps.org/content/show.php/Ksplash+theme+generator?content=104456" target="_blank"&gt;Ksplash theme generator&lt;/a&gt;
+    </description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Sun, 20 Sep 2009 08:22:00 +0200</pubDate><guid isPermaLink="false">tag:pablocaro.es,2009-09-20:/cambiar-pantalla-anunciadora-de-kde-ksplash-theme-generator</guid><category>Sin Categoría</category></item><item><title>Cambiar el aspecto de kdm: kdm theme generator</title><link>http://pablocaro.es/cambiar-el-aspecto-de-kdm-kdm-theme-generator</link><description>
+        &lt;a href="http://www.kde-apps.org/content/show.php/Kdm+theme+generator?content=102760"&gt; KDM Theme Generator&lt;/a&gt; es una de esas aplicaciones simples y sencillas (sin interfaz gráfica siquiera), con una utilidad concretísima pero que funciona tan bien que da gloria de usar.
+
+Siguiendo las instrucciones de instalación, te crea un tema para KDM basado en el tema plasma activo y tu fondo de …</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Sun, 20 Sep 2009 08:07:00 +0200</pubDate><guid isPermaLink="false">tag:pablocaro.es,2009-09-20:/cambiar-el-aspecto-de-kdm-kdm-theme-generator</guid><category>Sin Categoría</category></item><item><title>Cambiar la codificación de un fichero de texto</title><link>http://pablocaro.es/cambiar-la-codificacion-de-un-fichero-de-texto</link><description>
+        Una nota para recordar el comando &lt;a href="http://en.wikipedia.org/wiki/Iconv" target="_blank"&gt;iconv&lt;/a&gt;:
+&lt;pre lang="bash"&gt;
+iconv -f fromEncoding -t toEncoding inputFile &gt; outputFile
+&lt;/pre&gt;
+    </description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Mon, 27 Jul 2009 11:19:00 +0200</pubDate><guid isPermaLink="false">tag:pablocaro.es,2009-07-27:/cambiar-la-codificacion-de-un-fichero-de-texto</guid><category>Sistemas</category><category>linux</category></item><item><title>CSS: Estilos de selección de texto</title><link>http://pablocaro.es/css-estilos-de-seleccion-de-texto</link><description>
+        Una de esas declaraciones de CSS3 que ya aceptan muchos navegadores actuales es &lt;strong&gt;::selection&lt;/strong&gt;.
+Se puede utilizar así:
+&lt;pre lang="css"&gt;
+p::selection {
+	background: #ccaacc; /* Safari */
+	}
+p::-moz-selection {
+	background: #ccaacc; /* Firefox */
+}
+&lt;/pre&gt;
+    </description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Thu, 09 Jul 2009 03:57:00 +0200</pubDate><guid isPermaLink="false">tag:pablocaro.es,2009-07-09:/css-estilos-de-seleccion-de-texto</guid><category>Programación</category><category>web</category></item><item><title>Manejo de árboles en bases de datos</title><link>http://pablocaro.es/manejo-de-arboles-en-bases-de-datos</link><description>
+        Hay cuatro formas de guardar árboles en bases de datos relacionales:
+&lt;ol&gt;
+	&lt;li&gt;Adjacency List&lt;/li&gt;
+	&lt;li&gt;Materialized Paths&lt;/li&gt;
+	&lt;li&gt;Nested Sets o Modified Preorder Tree Traversal (MPTT)&lt;/li&gt;
+	&lt;li&gt;Nested intervals&lt;/li&gt;
+&lt;/ol&gt;
+Dejo unos enlaces:
+&lt;ul&gt;
+	&lt;li&gt;&lt;a href="http://www.dbazine.com/oracle/or-articles/tropashko4"&gt;Trees in SQL: Nested Sets and Materialized Path&lt;/a&gt; El articulo y el hombre de referencia&lt;/li&gt;
+	&lt;li&gt;&lt;a href="http://www.sitepoint.com/article/hierarchical-data-database/"&gt;Storing Hierarchical Data in a Database&lt;/a&gt; Todo …&lt;/li&gt;&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Tue, 07 Jul 2009 16:59:00 +0200</pubDate><guid isPermaLink="false">tag:pablocaro.es,2009-07-07:/manejo-de-arboles-en-bases-de-datos</guid><category>Sin Categoría</category></item><item><title>Mostrar el código de funciones en postgres</title><link>http://pablocaro.es/mostrar-el-codigo-de-funciones-en-postgres</link><description>
+        Puede resultar muy util ver el código de algún procedimiento almacenado en postgres. El código de a continuación tomado de &lt;a href="http://www.varlena.com/GeneralBits/39.php"&gt;Postgresql General Bits&lt;/a&gt; de A. Elein Mustain puede resultar muy útil. 
+&lt;pre lang="sql"&gt;
+create or replace view showfunctions as
+select
+l.lanname,
+t.typname || ' = ' || n.nspname || '.' ||
+    p.proname || '(' || pg_catalog.oidvectortypes(p.proargtypes …&lt;/pre&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Tue, 07 Jul 2009 11:18:00 +0200</pubDate><guid isPermaLink="false">tag:pablocaro.es,2009-07-07:/mostrar-el-codigo-de-funciones-en-postgres</guid><category>Sistemas</category></item><item><title>Instalar postgres 8.2 en jaunty</title><link>http://pablocaro.es/instalar-postgres-8-2-en-jaunty</link><description>
+        Postgres 8.3 no me permitía crear una base de datos con un encoding distinto a los instalados en mi maquina, y yo debía recuperar una copia de seguridad de una base de datos para la ampliación de unos trabajos que vienen  de antiguo.
+
+Si intentaba importar los datos fallaba …</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Tue, 30 Jun 2009 10:52:00 +0200</pubDate><guid isPermaLink="false">tag:pablocaro.es,2009-06-30:/instalar-postgres-8-2-en-jaunty</guid><category>Sistemas</category><category>linux</category></item><item><title>Listar las bases de datos postgres que tengo instaladas</title><link>http://pablocaro.es/listar-las-bases-de-datos-postgres-que-tengo-instaladas</link><description>
+        Para ello:
+
+&lt;pre lang="bash"&gt;
+pcaro@davinci$ sudo /etc/init.d/postgresql-8.3 start
+pcaro@davinci$ sudo su - postgres
+postgres@davinci:~$ psql -l
+&lt;/pre&gt;
+    </description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Mon, 29 Jun 2009 03:54:00 +0200</pubDate><guid isPermaLink="false">tag:pablocaro.es,2009-06-29:/listar-las-bases-de-datos-postgres-que-tengo-instaladas</guid><category>Sin Categoría</category></item><item><title>Un servidor web de bolsillo gracias a python</title><link>http://pablocaro.es/un-servidor-web-de-bolsillo-gracias-a-python</link><description>
+        Otra cosita para recordar.
+La forma más simple de servir unos ficheros vía web:
+&lt;pre lang="bash"&gt;python -m SimpleHTTPServer 8080&lt;/pre&gt;
+Nota: Antes usaba:
+&lt;pre lang="bash"&gt;python -c "import SimpleHTTPServer;SimpleHTTPServer.test()"&lt;/pre&gt;
+Pero no permite indicar el puerto y es más tedioso de escribir.
+    </description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Tue, 16 Jun 2009 10:31:00 +0200</pubDate><guid isPermaLink="false">tag:pablocaro.es,2009-06-16:/un-servidor-web-de-bolsillo-gracias-a-python</guid><category>Sin Categoría</category><category>python</category></item><item><title>Convertir filtros de kmail a filtros sieve</title><link>http://pablocaro.es/convertir-filtros-de-kmail-a-filtros-sieve</link><description>
+        No hace mucho que dejé de usar &lt;a title="pop" href="http://en.wikipedia.org/wiki/Post_Office_Protocol" target="_blank"&gt;POP&lt;/a&gt; en mis correos para pasarme al &lt;a title="imap" href="http://en.wikipedia.org/wiki/IMAP" target="_blank"&gt;IMAP&lt;/a&gt; desconectado de kmail con toda las ventaja que ello supone.
+
+Pero todavía seguía utilizando los mismos filtros en kmail que me ordenan los correos por carpeta. Con este sistema el filtrado se realiza una vez …</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Sat, 06 Jun 2009 14:13:00 +0200</pubDate><guid isPermaLink="false">tag:pablocaro.es,2009-06-06:/convertir-filtros-de-kmail-a-filtros-sieve</guid><category>Sistemas</category><category>python</category><category>linux</category></item><item><title>Contenedor de Floats: How to IE &amp; FF</title><link>http://pablocaro.es/contenedor-de-floats-how-to-ie-ff</link><description>
+        Espero no olvidar esto más así que dejo la notita.
+
+Si tienes un elemento (por ejemplo un div#padre), que contiene sólo flotantes (otros divs por ejemplo), no será capaz IE de calcular bien su tamaño (se ve muy claro con un background).
+
+Para que funcione con explorer y firefox …</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Thu, 21 May 2009 10:41:00 +0200</pubDate><guid isPermaLink="false">tag:pablocaro.es,2009-05-21:/contenedor-de-floats-how-to-ie-ff</guid><category>Programación</category><category>web</category></item><item><title>Comandos útiles en la consola de postgres (pgsql)</title><link>http://pablocaro.es/comandos-utiles-en-la-consola-de-postgres-pgsql</link><description>
+        Otra de las cosas que simpre olvido. Así que lo anoto.
+
+Para sacar el resultado de una consulta sql a un fichero desde el pgsql.
+&lt;ol&gt;
+	&lt;li&gt;\a&lt;/li&gt;
+	&lt;li&gt;\f ,&lt;/li&gt;
+	&lt;li&gt;\o /tmp/salida.csv&lt;/li&gt;
+	&lt;li&gt;select * from ...&lt;/li&gt;
+&lt;/ol&gt;
+Se trata de:
+&lt;ol&gt;
+	&lt;li&gt;Cambiar entre modo de salida alineado y sin alinear&lt;/li&gt;
+	&lt;li&gt;Definir separador de campos (en …&lt;/li&gt;&lt;/ol&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Mon, 30 Mar 2009 06:04:00 +0200</pubDate><guid isPermaLink="false">tag:pablocaro.es,2009-03-30:/comandos-utiles-en-la-consola-de-postgres-pgsql</guid><category>Sin Categoría</category></item><item><title>Cambiar ipython para copiar y pegar luego como doctest</title><link>http://pablocaro.es/cambiar-ipython-para-copiar-y-pegar-luego-como-doctest</link><description>
+        Otra de las ordenes que nunca recuerdo. Estando dentro de &lt;a title="ipython" href="http://ipython.scipy.org/moin/" target="_blank"&gt;ipython&lt;/a&gt; para cambiar el prompt de forma que luego sea fácil crear &lt;a title="doctest" href="http://docs.python.org/library/doctest.html" target="_blank"&gt;doctests&lt;/a&gt;:
+
+&lt;strong&gt;&lt;tt&gt;%doctest_mode&lt;/tt&gt;&lt;/strong&gt;
+
+Esto entra en  el modo doctest de ipython. También puede ayudar &lt;strong&gt;&lt;tt&gt;%history -tn&lt;/tt&gt;&lt;/strong&gt;&lt;tt&gt; para recordar los commandos introducidos previamente.
+&lt;/tt&gt;
+    </description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Mon, 02 Feb 2009 04:23:00 +0100</pubDate><guid isPermaLink="false">tag:pablocaro.es,2009-02-02:/cambiar-ipython-para-copiar-y-pegar-luego-como-doctest</guid><category>Sin Categoría</category><category>python</category></item><item><title>Importar claves gpg de repositorios ubuntu</title><link>http://pablocaro.es/importar-claves-gpg-de-repositorios-ubuntu</link><description>
+        Ante un error como este:
+
+W: GPG error: http://ppa.launchpad.net intrepid Release: The following signatures couldn't be verified because the public key is not available: NO_PUBKEY 3B81A3FBA47394CE
+
+Hay que importar las claves:
+&lt;pre&gt;gpg --keyserver keyserver.ubuntu.com --recv 3B81A3FBA47394CE
+gpg --export --armor 3B81A3FBA47394CE | sudo apt-key add -
+
+&lt;em&gt;UPDATE:&lt;/em&gt;
+&lt;em&gt;Corregido …&lt;/em&gt;&lt;/pre&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Sun, 01 Feb 2009 13:00:00 +0100</pubDate><guid isPermaLink="false">tag:pablocaro.es,2009-02-01:/importar-claves-gpg-de-repositorios-ubuntu</guid><category>Sistemas</category><category>linux</category></item><item><title>Formatear de la forma más fácil una tarjeta SD en ubuntu</title><link>http://pablocaro.es/formatear-de-la-forma-mas-facil-una-tarjeta-sd-en-ubuntu</link><description>
+        Otra anotación para recordar en un futuro. La forma más fácil de formatear una tarjeta SD es:
+&lt;ol&gt;
+	&lt;li&gt;Identificar el dispositivo (si esta montada la tarjeta lo ves con el comando mount por ejemplo).&lt;/li&gt;
+	&lt;li&gt;Si no lo tienes ya, instalar el paquete dosfstools.&lt;/li&gt;
+	&lt;li&gt;Ejecutar (con el dispositivo desmontado): &lt;strong&gt;sudo mkdosfs DISPOSITIVO …&lt;/strong&gt;&lt;/li&gt;&lt;/ol&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Fri, 30 Jan 2009 13:44:00 +0100</pubDate><guid isPermaLink="false">tag:pablocaro.es,2009-01-30:/formatear-de-la-forma-mas-facil-una-tarjeta-sd-en-ubuntu</guid><category>Sin Categoría</category></item><item><title>Siempre el último Dragonfly en Opera</title><link>http://pablocaro.es/siempre-el-ultimo-dragonfly-en-opera</link><description>
+        Para tener la versión de desarrollo de dragon fly en el opera basta con seguir la ruta:
+
+&lt;code&gt;about:config -&amp;gt; Developer Tools -&amp;gt; Developer Tools url&lt;/code&gt;
+
+Luego, introducir la url siguiente
+
+&lt;a href="http://dragonfly.opera.com/app/cutting-edge/"&gt;http://dragonfly.opera.com/app/cutting-edge/&lt;/a&gt;
+    </description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Fri, 30 Jan 2009 08:45:00 +0100</pubDate><guid isPermaLink="false">tag:pablocaro.es,2009-01-30:/siempre-el-ultimo-dragonfly-en-opera</guid><category>Programación</category></item><item><title>Feliz Navidad</title><link>http://pablocaro.es/feliz-navidad</link><description>
+        Ni árboles, ni reyes, ni trineos, simplemente eso,
+
+&lt;strong&gt;Feliz Navidad&lt;/strong&gt; de corazón para todos.
+    </description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Wed, 24 Dec 2008 05:38:00 +0100</pubDate><guid isPermaLink="false">tag:pablocaro.es,2008-12-24:/feliz-navidad</guid><category>Sin Categoría</category></item><item><title>La potencia de los permisos</title><link>http://pablocaro.es/la-potencia-de-los-permisos</link><description>
+        Recordar los comandos para controlar las listas de control de acceso en linux.
+
+&lt;code&gt;man setfacl
+man getfacl&lt;/code&gt;
+
+Tras "setfacl -m user:joe:rwx dir",  verás que ls -d dir muestra un signo + al final que indica que se están utilizado permisos ampliados.
+
+Si quieres saber más, el tío google te …</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Mon, 01 Dec 2008 14:06:00 +0100</pubDate><guid isPermaLink="false">tag:pablocaro.es,2008-12-01:/la-potencia-de-los-permisos</guid><category>Sistemas</category><category>linux</category></item><item><title>Usar find para detectar enlaces simbólicos rotos</title><link>http://pablocaro.es/usar-find-para-detectar-enlaces-simbolicos-rotos</link><description>
+        &lt;code&gt;for f in $(find /usr/local/bin -type l); do if [ ! -e "$f" ]; then &lt;a title="Echo command (not yet written)" class="new" href="http://howto.wikia.com/index.php?title=Echo_command&amp;amp;action=edit&amp;amp;redlink=1"&gt;echo&lt;/a&gt; $f; fi; done&lt;/code&gt;
+    </description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Thu, 20 Nov 2008 11:30:00 +0100</pubDate><guid isPermaLink="false">tag:pablocaro.es,2008-11-20:/usar-find-para-detectar-enlaces-simbolicos-rotos</guid><category>Sistemas</category><category>linux</category></item><item><title>¿Cómo hacer un "svn export" con git?</title><link>http://pablocaro.es/como-hacer-un-svn-export-con-git</link><description>
+        Si tienes que descargarte un árbol git pero sin los metadatos, porque por ejemplo sólo quieres el código para congerlarlo versionado en el subversion de tu proyecto, lo más fácil es:
+
+git clone {clone-url}
+
+rm -rf .gitignore .git
+    </description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Fri, 14 Nov 2008 05:04:00 +0100</pubDate><guid isPermaLink="false">tag:pablocaro.es,2008-11-14:/como-hacer-un-svn-export-con-git</guid><category>Programación</category></item><item><title>svn:ignore</title><link>http://pablocaro.es/svn-ignore</link><description>
+        Esta entrada  es para recordar los dos comandos:
+
+svn propedit svn:ignore ./some_path
+
+svn -R propset svn:ignore -F ../.svnignore .
+
+donde .svnignore contiene un patron por línea como *.pyc
+    </description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Thu, 13 Nov 2008 03:59:00 +0100</pubDate><guid isPermaLink="false">tag:pablocaro.es,2008-11-13:/svn-ignore</guid><category>Programación</category></item><item><title>Reproducir flash con Opera en Ubuntu</title><link>http://pablocaro.es/reproducir-flash-con-opera-en-ubuntu</link><description>
+        Traducción de un &lt;a href="http://www.pablocaro.es/Often times Opera cannot locate the flashplayer without your help. Here is what you can do. First, make sure that flash is installed and works with firefox. Once that is confirmed, open a terminal and cd into the hidden opera directory:  $ cd ~/.opera  Once in that directory you should see a file named pluginpath.ini...the name says it all. In the default setup there are entries which look likeOpera Preferences version 2.1  -- ; Do not edit this file while Opera is running ; This file is stored in UTF-8 encoding  [Paths] /usr/lib/opera/plugins=1 /usr/lib/mozilla/plugins=1 --  You should heed the warning given and exit Opera if it is still open. You now have a choice to make:  1.) set up the flash libraries in either of the two paths shown above or 2.) add another line to the pluginpath.ini file so that opera also checks the user's local mozilla libraries.    I will take the second approach first. Open a second terminal and move into the mozilla plugin directory.  $ cd ~/.mozilla/plugins/  Once there you should see (at least) two files whose names are flashplayer.xpt and libflashplayer.so. These are the files Opera requires to run flash files.  Suppose your username is qwerty. Add the following line to the end of the pluginpath.ini file in the ~/.opera directory:  /home/qwerty/.mozilla/plugins=1  Start opera again and you should have no trouble playing flash files. This solution works only for you and would need to be repeated for other users on the machine in question.   Note that option 1. will enable all users to use flash/opera. To do this you need to place the 2 flash files mentioned above in either /usr/lib/opera/plugins or /usr/lib/mozilla/plugins. You can do this by copying them directly using cp or by making symbolic links to the actual files stored in your ~/.mozilla/plugins dire" target="_blank"&gt;comentario.&lt;/a&gt;
+
+A menudo Opera no pude encontrar el reproductor de flas sin tu ayuda. Te mostramos lo que puedes hacer.
+
+Primero, asegurate que flash está instalado y funciona en firefox. Una vez confirmado, abre un terminal:
+$ cd ~/.opera
+
+En este directorio verás un archivo denominado pluginpath.ini …</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Wed, 12 Nov 2008 13:47:00 +0100</pubDate><guid isPermaLink="false">tag:pablocaro.es,2008-11-12:/reproducir-flash-con-opera-en-ubuntu</guid><category>Sin Categoría</category></item><item><title>Varios monitores en linux</title><link>http://pablocaro.es/varios-monitores-en-linux</link><description>
+        Esta anotación es sólo para comentar el comando xrandr que uso en kubuntu intrepid para trabajar con dos monitores.
+
+sudo xrandr --output VGA --auto
+sudo xrandr --output VGA --above LVDS
+    </description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Mon, 10 Nov 2008 03:27:00 +0100</pubDate><guid isPermaLink="false">tag:pablocaro.es,2008-11-10:/varios-monitores-en-linux</guid><category>Sistemas</category><category>linux</category></item><item><title>Compartir ficheros gracias a python</title><link>http://pablocaro.es/compartir-ficheros-gracias-a-python</link><description>
+        Para compartir de forma rápida unos ficheros vía web graias a python, lo más fácil es:
+&lt;pre&gt;python -c "import SimpleHTTPServer;SimpleHTTPServer.test()"&lt;/pre&gt;
+    </description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Sat, 08 Nov 2008 16:10:00 +0100</pubDate><guid isPermaLink="false">tag:pablocaro.es,2008-11-08:/compartir-ficheros-gracias-a-python</guid><category>Sin Categoría</category><category>python</category></item><item><title>Error con setuptools y subversion 1.5</title><link>http://pablocaro.es/error-con-setuptools-y-subversion-1-5</link><description>
+        La actual versión de &lt;a target="_blank" href="http://peak.telecommunity.com/DevCenter/setuptools"&gt;setuptools&lt;/a&gt; no se lleva bien el subversion 1.5 (también el actual en mi ubuntu).
+
+Normalmente acostumbro a usar &lt;a target="_blank" href="http://pypi.python.org/pypi/virtualenv"&gt;virtualenv&lt;/a&gt; y me he encontrado con el error:
+&lt;pre&gt;NameError: global name 'log' is not defined&lt;/pre&gt;
+Ya está arreglado en el desarrollo de setuptools. Una posible solución es …</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Sun, 14 Sep 2008 13:50:00 +0200</pubDate><guid isPermaLink="false">tag:pablocaro.es,2008-09-14:/error-con-setuptools-y-subversion-1-5</guid><category>Programación</category><category>python</category></item><item><title>Editores: Mostrar los números de linea en emacs y en jed</title><link>http://pablocaro.es/editores-mostrar-los-numeros-de-linea-en-emacs-y-en-jed</link><description>
+        Para evitar esos odiosos porcentajes cuandos editas un fichero (¿de verdad le sirven a alguien?) y poner en su lugar el número de la linea en que te encuentras dejo aquí la anotación.
+&lt;ol&gt;
+	&lt;li&gt;En emacs:&lt;/li&gt;
+&lt;pre&gt;;; ========== Enable Line and Column Numbering ==========
+;; Show line-number in the mode line
+(line-number-mode 1)
+;; Show column-number …&lt;/pre&gt;&lt;/ol&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Thu, 11 Sep 2008 16:24:00 +0200</pubDate><guid isPermaLink="false">tag:pablocaro.es,2008-09-11:/editores-mostrar-los-numeros-de-linea-en-emacs-y-en-jed</guid><category>Sin Categoría</category></item><item><title>Grabar CD de 800MB en linux</title><link>http://pablocaro.es/grabar-cd-de-800mb-en-linux</link><description>
+        Tenía que grabar unos datos. Eran 730MB aproximadamente, con un CD habitual (700MB) iba a ser imposible, pero tenía por ahí un CD philips de 90 minutos (800MB). Y teniendo ese CD ¿por qué usar un DVD que son más caros?
+Mi sorpresa llega cuando el k3b (que uso habitualmente …</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Wed, 23 Jul 2008 05:07:00 +0200</pubDate><guid isPermaLink="false">tag:pablocaro.es,2008-07-23:/grabar-cd-de-800mb-en-linux</guid><category>Sistemas</category></item></channel></rss>

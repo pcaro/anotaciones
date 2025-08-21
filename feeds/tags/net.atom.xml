@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Anotaciones por Pablo Caro - .net</title><link href="http://pablocaro.es/" rel="alternate"></link><link href="http://pablocaro.es/feeds/tags/net.atom.xml" rel="self"></link><id>http://pablocaro.es/</id><updated>2006-12-15T14:23:00+01:00</updated><subtitle>Anotaciones</subtitle><entry><title>Siempre la coma como símbolo decimal en un formulario .net</title><link href="http://pablocaro.es/siempre-la-coma-como-simbolo-decimal-en-un-formulario-net" rel="alternate"></link><published>2006-12-15T14:23:00+01:00</published><updated>2006-12-15T14:23:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2006-12-15:/siempre-la-coma-como-simbolo-decimal-en-un-formulario-net</id><summary type="html">
+        Entre los muchos lenguajes que me ha tocado codificar (únicamente no me arrepiento de hacerlo en &lt;a title="Python" href="http://www.python.org"&gt;python&lt;/a&gt;) se encuentra .net.
+
+Es una chusquería que me solicitó un cliente. Quería que en un formulario al pulsar el punto del teclado numérico la entrada fuera una coma (no dependiera de la configuración …</summary><content type="html">
+        Entre los muchos lenguajes que me ha tocado codificar (únicamente no me arrepiento de hacerlo en &lt;a title="Python" href="http://www.python.org"&gt;python&lt;/a&gt;) se encuentra .net.
+
+Es una chusquería que me solicitó un cliente. Quería que en un formulario al pulsar el punto del teclado numérico la entrada fuera una coma (no dependiera de la configuración de los locales en el windows). Puede llegar a ser muy útil.
+&lt;pre class="wiki"&gt;/**
+* En este formulario el simbolo decimal del teclado numerico siempre la comma
+*/
+protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+{
+if (keyData == Keys.Decimal)
+{
+SendKeys.Send(",");
+return true;
+}
+return base.ProcessCmdKey(ref msg, keyData);&lt;/pre&gt;
+&lt;pre class="wiki"&gt;}&lt;/pre&gt;
+    </content><category term="Sin Categoría"></category><category term=".net"></category></entry></feed>

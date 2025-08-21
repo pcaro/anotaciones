@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8"> 
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Pablo Caro" />
+        <meta name="copyright" content="Pablo Caro" />
+
+        <meta name="description" content="Combinando búsqueda vectorial y texto completo en SQLite usando Reciprocal Rank Fusion para obtener mejores resultados
+" />
+        <meta name="twitter:creator" content="@pcaro">
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="sqlite, búsqueda, vectores, fts, sql, Programación, " />
+
+<meta property="og:title" content="Búsqueda híbrida con SQLite: vector + texto completo "/>
+<meta property="og:url" content="http://pablocaro.es/busqueda-hibrida-sqlite-vector-texto" />
+<meta property="og:description" content="Combinando búsqueda vectorial y texto completo en SQLite usando Reciprocal Rank Fusion para obtener mejores resultados" />
+<meta property="og:site_name" content="Anotaciones por Pablo Caro" />
+<meta property="og:article:author" content="Pablo Caro" />
+<meta property="og:article:published_time" content="2024-10-06T11:43:00+02:00" />
+<meta name="twitter:title" content="Búsqueda híbrida con SQLite: vector + texto completo ">
+<meta name="twitter:description" content="Combinando búsqueda vectorial y texto completo en SQLite usando Reciprocal Rank Fusion para obtener mejores resultados">
+<meta property="og:image" content="http://pablocaro.es/theme/images/apple-touch-icon-152x152.png" />
+<meta name="twitter:image" content="http://pablocaro.es/theme/images/apple-touch-icon-152x152.png" >
+
+        <title>Búsqueda híbrida con SQLite: vector + texto completo  · Anotaciones por Pablo Caro
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="http://pablocaro.es/theme/css/pygments.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://pablocaro.es/theme/tipuesearch/tipuesearch.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://pablocaro.es/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://pablocaro.es/theme/css/custom.css" media="screen">
+        <link rel="shortcut icon" href="http://pablocaro.es/theme/images/favicon.ico" type="image/x-icon" type="image/png" />
+        <link rel="icon" href="http://pablocaro.es/theme/images/apple-touch-icon-152x152.png" type="image/png" />
+        <link rel="apple-touch-icon" href="http://pablocaro.es/theme/images/apple-touch-icon.png"  type="image/png" />
+        <link rel="apple-touch-icon" sizes="57x57" href="http://pablocaro.es/theme/images/apple-touch-icon-57x57.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="72x72" href="http://pablocaro.es/theme/images/apple-touch-icon-72x72.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="76x76" href="http://pablocaro.es/theme/images/apple-touch-icon-76x76.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="114x114" href="http://pablocaro.es/theme/images/apple-touch-icon-114x114.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="120x120" href="http://pablocaro.es/theme/images/apple-touch-icon-120x120.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="144x144" href="http://pablocaro.es/theme/images/apple-touch-icon-144x144.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="152x152" href="http://pablocaro.es/theme/images/apple-touch-icon-152x152.png" type="image/png" />
+        <link href="http://pablocaro.es/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Anotaciones por Pablo Caro - Full Atom Feed" />
+        <link href="http://pablocaro.es/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Anotaciones por Pablo Caro - Full RSS Feed" />
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+     })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-60035125-1', 'auto');
+    ga('send', 'pageview');
+</script>
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="http://pablocaro.es/"><span class=site-name><span style="color:#AA1032;">Anotaciones</span> <span style="color:darkblue;">por</span> <span style="color:black">Pablo Caro</span></span></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="http://pablocaro.es">Inicio</a></li>
+                            <li ><a href="http://pablocaro.es/categories.html">Categorías</a></li>
+                            <li ><a href="http://pablocaro.es/tags.html">Etiquetas</a></li>
+                            <li ><a href="http://pablocaro.es/archives.html">Archivos</a></li>
+                            <li><form class="navbar-search" action="http://pablocaro.es/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Búsqueda" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="http://pablocaro.es/busqueda-hibrida-sqlite-vector-texto"> Búsqueda híbrida con SQLite: vector + texto completo  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+        <div class="span8 offset2 article-content">
+
+            
+            <p>Simon Willison presenta una aproximación fascinante para combinar búsqueda vectorial y tradicional búsqueda de texto completo en SQLite, usando una técnica llamada <strong>Reciprocal Rank Fusion (RRF)</strong>.</p>
+<div class="section" id="el-problema-central">
+<h2>El problema central</h2>
+<p>Cuando tenemos búsquedas vectoriales (basadas en similitud semántica) y búsquedas de texto completo (FTS), cada una devuelve puntuaciones en escalas completamente diferentes:</p>
+<ul class="simple">
+<li>FTS devuelve puntuaciones de relevancia</li>
+<li>Búsqueda vectorial devuelve distancias de similitud</li>
+</ul>
+<p>¿Cómo combinar estos resultados de manera efectiva?</p>
+</div>
+<div class="section" id="la-solucion-reciprocal-rank-fusion">
+<h2>La solución: Reciprocal Rank Fusion</h2>
+<p>La técnica RRF evita comparar puntuaciones incompatibles y en su lugar se basa en el <strong>ranking</strong> de cada resultado dentro de su respectivo método de búsqueda.</p>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span>
+<span class="w">    </span><span class="n">content</span><span class="p">,</span>
+<span class="w">    </span><span class="mi">1</span><span class="p">.</span><span class="mi">0</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(:</span><span class="n">rrf_k</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="k">coalesce</span><span class="p">(</span><span class="n">fts_rank</span><span class="p">,</span><span class="w"> </span><span class="mi">999</span><span class="p">))</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">:</span><span class="n">fts_weight</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="mi">1</span><span class="p">.</span><span class="mi">0</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(:</span><span class="n">rrf_k</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="k">coalesce</span><span class="p">(</span><span class="n">vec_rank</span><span class="p">,</span><span class="w"> </span><span class="mi">999</span><span class="p">))</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">:</span><span class="n">vec_weight</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">combined_rank</span>
+<span class="k">FROM</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="c1">-- Subconsulta FTS con row_number()</span>
+<span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">row_number</span><span class="p">()</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="p">(</span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">rank</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">fts_rank</span>
+<span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">fts_search</span><span class="p">(:</span><span class="n">query</span><span class="p">)</span>
+<span class="p">)</span><span class="w"> </span><span class="n">fts</span>
+<span class="k">FULL</span><span class="w"> </span><span class="k">OUTER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="c1">-- Subconsulta vectorial con row_number()</span>
+<span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">row_number</span><span class="p">()</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="p">(</span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">distance</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">vec_rank</span>
+<span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">vector_search</span><span class="p">(:</span><span class="n">query</span><span class="p">,</span><span class="w"> </span><span class="p">:</span><span class="n">k</span><span class="p">)</span>
+<span class="p">)</span><span class="w"> </span><span class="n">vec</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">fts</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vec</span><span class="p">.</span><span class="n">id</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">combined_rank</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span>
+</pre></div>
+</div>
+<div class="section" id="ventajas-del-enfoque-hibrido">
+<h2>Ventajas del enfoque híbrido</h2>
+<ol class="arabic simple">
+<li><strong>Flexibilidad</strong>: Permite ajustar pesos entre FTS y búsqueda vectorial</li>
+<li><strong>Robustez</strong>: Los resultados pueden aparecer en uno o ambos métodos</li>
+<li><strong>Escalabilidad</strong>: No requiere normalización compleja de puntuaciones</li>
+<li><strong>Simplicidad</strong>: Una sola consulta SQL maneja toda la lógica</li>
+</ol>
+</div>
+<div class="section" id="sqlite-como-plataforma-unificada">
+<h2>SQLite como plataforma unificada</h2>
+<p>Con extensiones como <a class="reference external" href="https://github.com/asg017/sqlite-vec">sqlite-vec</a>, SQLite se convierte en una plataforma poderosa para:</p>
+<ul class="simple">
+<li>Búsqueda de texto completo (FTS5 nativo)</li>
+<li>Búsqueda vectorial de embeddings</li>
+<li>Combinación híbrida de ambas técnicas</li>
+</ul>
+<p>Esta aproximación democratiza las técnicas avanzadas de búsqueda, haciéndolas accesibles sin infraestructura compleja.</p>
+<p><em>Artículo original</em>: <a class="reference external" href="https://simonwillison.net/2024/Oct/4/hybrid-full-text-search-and-vector-search-with-sqlite/">Hybrid full-text search and vector search with SQLite</a></p>
+</div>
+
+            
+            <section>
+<p id="comment-message">¿Qué te parece? ¿Piensas que olvidé algo? ¿Poco claro? Deja abajo tus comentarios. </p>
+<div class="accordion" id="accordion2">
+    <div class="accordion-group">
+        <div class="accordion-heading">
+            <a class="accordion-toggle disqus-comment-count" data-toggle="collapse" data-parent="#accordion2"
+                href="http://pablocaro.es/busqueda-hibrida-sqlite-vector-texto#disqus_thread">
+                Comments
+            </a>
+        </div>
+        <div id="disqus_thread" class="accordion-body collapse">
+            <div class="accordion-inner">
+                <div class="comments">
+                    <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'anotaciones';
+        var disqus_identifier = 'http://pablocaro.es/busqueda-hibrida-sqlite-vector-texto';
+    var disqus_url = 'http://pablocaro.es/busqueda-hibrida-sqlite-vector-texto';
+
+    (function() {
+         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+         dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+     })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+
+            <hr/>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+            <h4>Publicado</h4>
+            <time pubdate="pubdate" datetime="2024-10-06T11:43:00+02:00">oct 6, 2024</time>
+            <h4>Categoría</h4>
+            <a class="category-link" href="http://pablocaro.es/categories.html#programacion-ref">Programación</a>
+            <h4>Tags</h4>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="http://pablocaro.es/tags.html#busqueda-ref">búsqueda
+                    <span>1</span>
+</a></li>
+                <li><a href="http://pablocaro.es/tags.html#fts-ref">fts
+                    <span>1</span>
+</a></li>
+                <li><a href="http://pablocaro.es/tags.html#sql-ref">sql
+                    <span>2</span>
+</a></li>
+                <li><a href="http://pablocaro.es/tags.html#sqlite-ref">sqlite
+                    <span>1</span>
+</a></li>
+                <li><a href="http://pablocaro.es/tags.html#vectores-ref">vectores
+                    <span>1</span>
+</a></li>
+            </ul>
+<h4>Contacta conmigo</h4>
+    <a href="http://twitter.com/pcaro" title="My Twitter Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-twitter sidebar-social-links"></i></a>
+    <a href="http://github.com/pcaro" title="My Github Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-github sidebar-social-links"></i></a>
+    <a href="https://www.linkedin.com/in/pcarorevuelta" title="My Linkedin Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-linkedin sidebar-social-links"></i></a>
+    <a href="https://www.facebook.com/pablo.carorevuelta" title="My Facebook Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-facebook sidebar-social-links"></i></a>
+    <a href="mailto:correo@pablocaro.es" title="My Email Address" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-envelope sidebar-social-links"></i></a>
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-subtitle"><span class="site-name"><span style="color:#AA1032;">Anotaciones</span> <span style="color:darkblue;">por</span> <span style="color:black">Pablo Caro</span></span> - Anotaciones</li>
+        <li class="elegant-license"><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"> Anotaciones</span> de <a xmlns:cc="http://creativecommons.org/ns#" href="http://pablocaro.es" property="cc:attributionName" rel="cc:attributionURL">Pablo Caro</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>.</li>
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a></li>
+    </ul>
+</div>
+</footer>            <script src="http://code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+            <script type="text/javascript">
+var disqus_shortname = 'anotaciones';
+(function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
+<script  language="javascript" type="text/javascript">
+function uncollapse() {
+    if (window.location.hash.match(/^#comment-\d+$/)) {
+        $('#disqus_thread').collapse('show');
+    }
+}
+</script>
+<script type="text/javascript" language="JavaScript">
+uncollapse();
+window.onhashchange=function(){
+    if (window.location.hash.match(/^#comment-\d+$/))
+        window.location.reload(true);
+}
+</script>
+<script>
+$('#disqus_thread').on('shown', function () {
+    var link = document.getElementsByClassName('accordion-toggle');
+    var old_innerHTML = link[0].innerHTML;
+    $(link[0]).fadeOut(500, function() {
+        $(this).text('Click here to hide comments').fadeIn(500);
+    });
+    $('#disqus_thread').on('hidden', function () {
+        $(link[0]).fadeOut(500, function() {
+            $(this).text(old_innerHTML).fadeIn(500);
+        });
+    })
+})
+</script>
+
+
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : http://oncrashreboot.com/pelican-elegant -->
+</html>

@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8"> 
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Pablo Caro" />
+        <meta name="copyright" content="Pablo Caro" />
+
+        <meta name="description" content="Workflow automatizado para crear documentación técnica usando Sphinx, Paver y Cog, eliminando tareas repetitivas y errores manuales en ejemplos de código
+" />
+        <meta name="twitter:creator" content="@pcaro">
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="sphinx, paver, cog, documentación, rst, automation, Documentación, " />
+
+<meta property="og:title" content="Documentación técnica con Sphinx, Paver y Cog "/>
+<meta property="og:url" content="http://pablocaro.es/documentacion-tecnica-sphinx-paver-cog" />
+<meta property="og:description" content="Workflow automatizado para crear documentación técnica usando Sphinx, Paver y Cog, eliminando tareas repetitivas y errores manuales en ejemplos de código" />
+<meta property="og:site_name" content="Anotaciones por Pablo Caro" />
+<meta property="og:article:author" content="Pablo Caro" />
+<meta property="og:article:published_time" content="2016-07-14T00:47:00+02:00" />
+<meta name="twitter:title" content="Documentación técnica con Sphinx, Paver y Cog ">
+<meta name="twitter:description" content="Workflow automatizado para crear documentación técnica usando Sphinx, Paver y Cog, eliminando tareas repetitivas y errores manuales en ejemplos de código">
+<meta property="og:image" content="http://pablocaro.es/theme/images/apple-touch-icon-152x152.png" />
+<meta name="twitter:image" content="http://pablocaro.es/theme/images/apple-touch-icon-152x152.png" >
+
+        <title>Documentación técnica con Sphinx, Paver y Cog  · Anotaciones por Pablo Caro
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="http://pablocaro.es/theme/css/pygments.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://pablocaro.es/theme/tipuesearch/tipuesearch.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://pablocaro.es/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://pablocaro.es/theme/css/custom.css" media="screen">
+        <link rel="shortcut icon" href="http://pablocaro.es/theme/images/favicon.ico" type="image/x-icon" type="image/png" />
+        <link rel="icon" href="http://pablocaro.es/theme/images/apple-touch-icon-152x152.png" type="image/png" />
+        <link rel="apple-touch-icon" href="http://pablocaro.es/theme/images/apple-touch-icon.png"  type="image/png" />
+        <link rel="apple-touch-icon" sizes="57x57" href="http://pablocaro.es/theme/images/apple-touch-icon-57x57.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="72x72" href="http://pablocaro.es/theme/images/apple-touch-icon-72x72.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="76x76" href="http://pablocaro.es/theme/images/apple-touch-icon-76x76.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="114x114" href="http://pablocaro.es/theme/images/apple-touch-icon-114x114.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="120x120" href="http://pablocaro.es/theme/images/apple-touch-icon-120x120.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="144x144" href="http://pablocaro.es/theme/images/apple-touch-icon-144x144.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="152x152" href="http://pablocaro.es/theme/images/apple-touch-icon-152x152.png" type="image/png" />
+        <link href="http://pablocaro.es/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Anotaciones por Pablo Caro - Full Atom Feed" />
+        <link href="http://pablocaro.es/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Anotaciones por Pablo Caro - Full RSS Feed" />
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+     })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-60035125-1', 'auto');
+    ga('send', 'pageview');
+</script>
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="http://pablocaro.es/"><span class=site-name><span style="color:#AA1032;">Anotaciones</span> <span style="color:darkblue;">por</span> <span style="color:black">Pablo Caro</span></span></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="http://pablocaro.es">Inicio</a></li>
+                            <li ><a href="http://pablocaro.es/categories.html">Categorías</a></li>
+                            <li ><a href="http://pablocaro.es/tags.html">Etiquetas</a></li>
+                            <li ><a href="http://pablocaro.es/archives.html">Archivos</a></li>
+                            <li><form class="navbar-search" action="http://pablocaro.es/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Búsqueda" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="http://pablocaro.es/documentacion-tecnica-sphinx-paver-cog"> Documentación técnica con Sphinx, Paver y Cog  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+        <div class="span8 offset2 article-content">
+
+            
+            <p><strong>Doug Hellmann</strong> presenta un workflow robusto para documentación técnica que elimina el trabajo manual repetitivo y los errores en ejemplos de código.</p>
+<h2 id="el-problema-a-resolver">El problema a resolver<a class="headerlink" href="#el-problema-a-resolver" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>"Automation is important for my sense of well being. I hate dealing with mundane repetitive tasks."</p>
+</blockquote>
+<p><strong>Desafíos comunes</strong>:
+- Mantener <strong>ejemplos de código actualizados</strong>
+- <strong>Múltiples formatos</strong> de salida (HTML, PDF, blog)
+- <strong>Tareas repetitivas</strong> de construcción y publicación
+- <strong>Errores de copy-paste</strong> en output de programas</p>
+<h2 id="la-solucion-trio-de-herramientas">La solución: Trio de herramientas<a class="headerlink" href="#la-solucion-trio-de-herramientas" title="Permanent link">&para;</a></h2>
+<h3 id="sphinx-motor-de-documentacion">Sphinx: Motor de documentación<a class="headerlink" href="#sphinx-motor-de-documentacion" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Conversión reStructuredText</strong> a múltiples formatos</li>
+<li><strong>Temas personalizables</strong> con Jinja templates</li>
+<li><strong>Generación automática</strong> de índices y referencias cruzadas</li>
+</ul>
+<h3 id="paver-automatizacion-de-builds">Paver: Automatización de builds<a class="headerlink" href="#paver-automatizacion-de-builds" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># pavement.py</span>
+<span class="nd">@task</span>
+<span class="k">def</span> <span class="nf">html</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Build HTML documentation&quot;&quot;&quot;</span>
+    <span class="n">call_task</span><span class="p">(</span><span class="s1">&#39;cog&#39;</span><span class="p">)</span>
+    <span class="n">sphinx_build</span><span class="p">(</span><span class="s1">&#39;html&#39;</span><span class="p">)</span>
+
+<span class="nd">@task</span>  
+<span class="k">def</span> <span class="nf">pdf</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Build PDF documentation&quot;&quot;&quot;</span>
+    <span class="n">call_task</span><span class="p">(</span><span class="s1">&#39;cog&#39;</span><span class="p">)</span>
+    <span class="n">sphinx_build</span><span class="p">(</span><span class="s1">&#39;latex&#39;</span><span class="p">)</span>
+    <span class="n">make_pdf</span><span class="p">()</span>
+</code></pre></div>
+
+<p><strong>Resuelve</strong>: Automatización de procesos repetitivos de construcción</p>
+<h3 id="cog-insercion-automatica-de-codigo">Cog: Inserción automática de código<a class="headerlink" href="#cog-insercion-automatica-de-codigo" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="p">..</span> <span class="ow">cog</span><span class="p">::</span>
+
+   import cog
+   import subprocess
+
+   result = subprocess.run([&#39;python&#39;, &#39;ejemplo.py&#39;], 
+                          capture_output=True, text=True)
+   cog.out(result.stdout)
+
+<span class="p">..</span> <span class="ow">cog</span><span class="p">::</span>
+</code></pre></div>
+
+<p><strong>Ventaja clave</strong>: El output de programas se <strong>actualiza automáticamente</strong> al regenerar la documentación.</p>
+<h2 id="workflow-de-produccion">Workflow de producción<a class="headerlink" href="#workflow-de-produccion" title="Permanent link">&para;</a></h2>
+<h3 id="1-escritura-en-restructuredtext">1. Escritura en reStructuredText<a class="headerlink" href="#1-escritura-en-restructuredtext" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="gh">Ejemplo de uso</span>
+<span class="gh">==============</span>
+
+Ejecutamos el script:
+
+<span class="p">..</span> <span class="ow">cog</span><span class="p">::</span>
+   cog.out(&quot;$ python mi_script.py\n&quot;)
+   result = subprocess.run([&#39;python&#39;, &#39;mi_script.py&#39;], 
+                          capture_output=True, text=True)
+   cog.out(result.stdout)
+<span class="p">..</span> <span class="ow">cog</span><span class="p">::</span>
+</code></pre></div>
+
+<h3 id="2-construccion-automatizada">2. Construcción automatizada<a class="headerlink" href="#2-construccion-automatizada" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Un solo comando para todo</span>
+paver<span class="w"> </span>html
+
+<span class="c1"># O para múltiples destinos</span>
+paver<span class="w"> </span>all_formats
+</code></pre></div>
+
+<h3 id="3-publicacion-multi-destino">3. Publicación multi-destino<a class="headerlink" href="#3-publicacion-multi-destino" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Python Module of the Week (PyMOTW)</strong></li>
+<li><strong>Blog personal</strong> </li>
+<li><strong>Sitio web del proyecto</strong></li>
+<li><strong>O'Reilly blog</strong></li>
+<li><strong>Documentación PDF</strong></li>
+</ul>
+<h2 id="ventajas-del-enfoque">Ventajas del enfoque<a class="headerlink" href="#ventajas-del-enfoque" title="Permanent link">&para;</a></h2>
+<h3 id="consistencia-garantizada">Consistencia garantizada<a class="headerlink" href="#consistencia-garantizada" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Ejemplos siempre actualizados</strong> con el código real</li>
+<li><strong>Formato uniforme</strong> across múltiples destinos</li>
+<li><strong>Sin errores de transcripción</strong> manual</li>
+</ul>
+<h3 id="eficiencia-maximizada">Eficiencia maximizada<a class="headerlink" href="#eficiencia-maximizada" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Un source, múltiples outputs</strong></li>
+<li><strong>Automatización completa</strong> del pipeline</li>
+<li><strong>Focus en contenido</strong>, no en proceso</li>
+</ul>
+<h3 id="mantenibilidad">Mantenibilidad<a class="headerlink" href="#mantenibilidad" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Cambios en una sola fuente</strong> se propagan automáticamente</li>
+<li><strong>Testing integrado</strong> de ejemplos de código</li>
+<li><strong>Versionado único</strong> para toda la documentación</li>
+</ul>
+<h2 id="implementacion-practica">Implementación práctica<a class="headerlink" href="#implementacion-practica" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="c1"># pavement.py completo</span>
+<span class="kn">from</span> <span class="nn">paver.easy</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span> <span class="nn">paver.doctools</span>
+
+<span class="nd">@task</span>
+<span class="k">def</span> <span class="nf">cog</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Run Cog to update code examples&quot;&quot;&quot;</span>
+    <span class="n">sh</span><span class="p">(</span><span class="s1">&#39;cog -r *.rst&#39;</span><span class="p">)</span>
+
+<span class="nd">@task</span>
+<span class="nd">@needs</span><span class="p">(</span><span class="s1">&#39;cog&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">html</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Build HTML docs&quot;&quot;&quot;</span>
+    <span class="n">paver</span><span class="o">.</span><span class="n">doctools</span><span class="o">.</span><span class="n">html</span><span class="p">()</span>
+
+<span class="nd">@task</span>
+<span class="nd">@needs</span><span class="p">(</span><span class="s1">&#39;cog&#39;</span><span class="p">)</span> 
+<span class="k">def</span> <span class="nf">blog_post</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Generate blog post version&quot;&quot;&quot;</span>
+    <span class="c1"># Custom blog formatting</span>
+    <span class="k">pass</span>
+</code></pre></div>
+
+<p>Este workflow representa la <strong>automatización inteligente</strong> de documentación técnica: escribes una vez, publicas en todas partes, siempre actualizado.</p>
+<p><em>Fuente original</em>: <a href="https://doughellmann.com/blog/2009/02/02/writing-technical-documentation-with-sphinx-paver-and-cog/">Doug Hellmann</a></p>
+            
+            <section>
+<p id="comment-message">¿Qué te parece? ¿Piensas que olvidé algo? ¿Poco claro? Deja abajo tus comentarios. </p>
+<div class="accordion" id="accordion2">
+    <div class="accordion-group">
+        <div class="accordion-heading">
+            <a class="accordion-toggle disqus-comment-count" data-toggle="collapse" data-parent="#accordion2"
+                href="http://pablocaro.es/documentacion-tecnica-sphinx-paver-cog#disqus_thread">
+                Comments
+            </a>
+        </div>
+        <div id="disqus_thread" class="accordion-body collapse">
+            <div class="accordion-inner">
+                <div class="comments">
+                    <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'anotaciones';
+        var disqus_identifier = 'http://pablocaro.es/documentacion-tecnica-sphinx-paver-cog';
+    var disqus_url = 'http://pablocaro.es/documentacion-tecnica-sphinx-paver-cog';
+
+    (function() {
+         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+         dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+     })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+
+            <hr/>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+            <h4>Publicado</h4>
+            <time pubdate="pubdate" datetime="2016-07-14T00:47:00+02:00">jul 14, 2016</time>
+            <h4>Categoría</h4>
+            <a class="category-link" href="http://pablocaro.es/categories.html#documentacion-ref">Documentación</a>
+            <h4>Tags</h4>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="http://pablocaro.es/tags.html#automation-ref">automation
+                    <span>1</span>
+</a></li>
+                <li><a href="http://pablocaro.es/tags.html#cog-ref">cog
+                    <span>1</span>
+</a></li>
+                <li><a href="http://pablocaro.es/tags.html#documentacion-ref">documentación
+                    <span>1</span>
+</a></li>
+                <li><a href="http://pablocaro.es/tags.html#paver-ref">paver
+                    <span>1</span>
+</a></li>
+                <li><a href="http://pablocaro.es/tags.html#rst-ref">rst
+                    <span>1</span>
+</a></li>
+                <li><a href="http://pablocaro.es/tags.html#sphinx-ref">sphinx
+                    <span>1</span>
+</a></li>
+            </ul>
+<h4>Contacta conmigo</h4>
+    <a href="http://twitter.com/pcaro" title="My Twitter Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-twitter sidebar-social-links"></i></a>
+    <a href="http://github.com/pcaro" title="My Github Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-github sidebar-social-links"></i></a>
+    <a href="https://www.linkedin.com/in/pcarorevuelta" title="My Linkedin Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-linkedin sidebar-social-links"></i></a>
+    <a href="https://www.facebook.com/pablo.carorevuelta" title="My Facebook Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-facebook sidebar-social-links"></i></a>
+    <a href="mailto:correo@pablocaro.es" title="My Email Address" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-envelope sidebar-social-links"></i></a>
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-subtitle"><span class="site-name"><span style="color:#AA1032;">Anotaciones</span> <span style="color:darkblue;">por</span> <span style="color:black">Pablo Caro</span></span> - Anotaciones</li>
+        <li class="elegant-license"><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"> Anotaciones</span> de <a xmlns:cc="http://creativecommons.org/ns#" href="http://pablocaro.es" property="cc:attributionName" rel="cc:attributionURL">Pablo Caro</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>.</li>
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a></li>
+    </ul>
+</div>
+</footer>            <script src="http://code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+            <script type="text/javascript">
+var disqus_shortname = 'anotaciones';
+(function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
+<script  language="javascript" type="text/javascript">
+function uncollapse() {
+    if (window.location.hash.match(/^#comment-\d+$/)) {
+        $('#disqus_thread').collapse('show');
+    }
+}
+</script>
+<script type="text/javascript" language="JavaScript">
+uncollapse();
+window.onhashchange=function(){
+    if (window.location.hash.match(/^#comment-\d+$/))
+        window.location.reload(true);
+}
+</script>
+<script>
+$('#disqus_thread').on('shown', function () {
+    var link = document.getElementsByClassName('accordion-toggle');
+    var old_innerHTML = link[0].innerHTML;
+    $(link[0]).fadeOut(500, function() {
+        $(this).text('Click here to hide comments').fadeIn(500);
+    });
+    $('#disqus_thread').on('hidden', function () {
+        $(link[0]).fadeOut(500, function() {
+            $(this).text(old_innerHTML).fadeIn(500);
+        });
+    })
+})
+</script>
+
+
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : http://oncrashreboot.com/pelican-elegant -->
+</html>

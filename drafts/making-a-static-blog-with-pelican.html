@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8"> 
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Nafiul Islam" />
+        <meta name="copyright" content="Nafiul Islam" />
+
+        <meta name="description" content="Think of this as a post on all the good features that Pelican has to offer. It shows you the best way to start your blog, write your content and change your blog to however you see fit.
+" />
+        <meta name="twitter:creator" content="@pcaro">
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="python, pelican, static-blog-generator, Programming, " />
+
+<meta property="og:title" content="Making a Static Blog with Pelican "/>
+<meta property="og:url" content="http://pablocaro.es/drafts/making-a-static-blog-with-pelican.html" />
+<meta property="og:description" content="Think of this as a post on all the good features that Pelican has to offer. It shows you the best way to start your blog, write your content and change your blog to however you see fit." />
+<meta property="og:site_name" content="Anotaciones por Pablo Caro" />
+<meta property="og:article:author" content="Nafiul Islam" />
+<meta property="og:article:published_time" content="2015-01-06T14:51:00+01:00" />
+<meta name="twitter:title" content="Making a Static Blog with Pelican ">
+<meta name="twitter:description" content="Think of this as a post on all the good features that Pelican has to offer. It shows you the best way to start your blog, write your content and change your blog to however you see fit.">
+<meta property="og:image" content="http://pablocaro.es/theme/images/apple-touch-icon-152x152.png" />
+<meta name="twitter:image" content="http://pablocaro.es/theme/images/apple-touch-icon-152x152.png" >
+
+        <title>Making a Static Blog with Pelican  · Anotaciones por Pablo Caro
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="http://pablocaro.es/theme/css/pygments.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://pablocaro.es/theme/tipuesearch/tipuesearch.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://pablocaro.es/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://pablocaro.es/theme/css/custom.css" media="screen">
+        <link rel="shortcut icon" href="http://pablocaro.es/theme/images/favicon.ico" type="image/x-icon" type="image/png" />
+        <link rel="icon" href="http://pablocaro.es/theme/images/apple-touch-icon-152x152.png" type="image/png" />
+        <link rel="apple-touch-icon" href="http://pablocaro.es/theme/images/apple-touch-icon.png"  type="image/png" />
+        <link rel="apple-touch-icon" sizes="57x57" href="http://pablocaro.es/theme/images/apple-touch-icon-57x57.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="72x72" href="http://pablocaro.es/theme/images/apple-touch-icon-72x72.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="76x76" href="http://pablocaro.es/theme/images/apple-touch-icon-76x76.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="114x114" href="http://pablocaro.es/theme/images/apple-touch-icon-114x114.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="120x120" href="http://pablocaro.es/theme/images/apple-touch-icon-120x120.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="144x144" href="http://pablocaro.es/theme/images/apple-touch-icon-144x144.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="152x152" href="http://pablocaro.es/theme/images/apple-touch-icon-152x152.png" type="image/png" />
+        <link href="http://pablocaro.es/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Anotaciones por Pablo Caro - Full Atom Feed" />
+        <link href="http://pablocaro.es/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Anotaciones por Pablo Caro - Full RSS Feed" />
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+     })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-60035125-1', 'auto');
+    ga('send', 'pageview');
+</script>
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="http://pablocaro.es/"><span class=site-name><span style="color:#AA1032;">Anotaciones</span> <span style="color:darkblue;">por</span> <span style="color:black">Pablo Caro</span></span></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="http://pablocaro.es">Inicio</a></li>
+                            <li ><a href="http://pablocaro.es/categories.html">Categorías</a></li>
+                            <li ><a href="http://pablocaro.es/tags.html">Etiquetas</a></li>
+                            <li ><a href="http://pablocaro.es/archives.html">Archivos</a></li>
+                            <li><form class="navbar-search" action="http://pablocaro.es/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Búsqueda" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="http://pablocaro.es/drafts/making-a-static-blog-with-pelican.html"> Making a Static Blog with Pelican  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+        <div class="span8 offset2 article-content">
+
+            
+            <div class="contents topic" id="table-of-contents">
+<p class="topic-title">Table of Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#getting-started" id="toc-entry-1">Getting Started</a><ul>
+<li><a class="reference internal" href="#installing-pelican" id="toc-entry-2">Installing Pelican</a></li>
+<li><a class="reference internal" href="#basic-setup" id="toc-entry-3">Basic Setup</a></li>
+<li><a class="reference internal" href="#your-first-post" id="toc-entry-4">Your First Post</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#automation" id="toc-entry-5">Automation</a><ul>
+<li><a class="reference internal" href="#vanilla-python" id="toc-entry-6">Vanilla Python</a></li>
+<li><a class="reference internal" href="#fabric" id="toc-entry-7">Fabric</a></li>
+<li><a class="reference internal" href="#fabric-alternatives" id="toc-entry-8">Fabric alternatives</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#themes" id="toc-entry-9">Themes</a><ul>
+<li><a class="reference internal" href="#using-a-theme" id="toc-entry-10">Using a Theme</a></li>
+<li><a class="reference internal" href="#creating-themes" id="toc-entry-11">Creating Themes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#settings" id="toc-entry-12">Settings</a><ul>
+<li><a class="reference internal" href="#the-two-settings-files" id="toc-entry-13">The Two Settings Files</a></li>
+<li><a class="reference internal" href="#how-settings-work" id="toc-entry-14">How Settings Work</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#writing-content" id="toc-entry-15">Writing Content</a></li>
+<li><a class="reference internal" href="#previewing-content" id="toc-entry-16">Previewing Content</a><ul>
+<li><a class="reference internal" href="#devserver" id="toc-entry-17">devserver</a></li>
+<li><a class="reference internal" href="#livereload" id="toc-entry-18">livereload</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#plugins" id="toc-entry-19">Plugins</a><ul>
+<li><a class="reference internal" href="#using-plugins" id="toc-entry-20">Using Plugins</a></li>
+<li><a class="reference internal" href="#creating-plugins" id="toc-entry-21">Creating Plugins</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#hosting-on-github-pages" id="toc-entry-22">Hosting on Github Pages</a><ul>
+<li><a class="reference internal" href="#creating-the-repo" id="toc-entry-23">Creating the repo</a></li>
+<li><a class="reference internal" href="#ghp-import" id="toc-entry-24">ghp-import</a></li>
+<li><a class="reference internal" href="#custom-domains" id="toc-entry-25">Custom domains</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#automating-publication" id="toc-entry-26">Automating Publication</a></li>
+<li><a class="reference internal" href="#acknowledgements" id="toc-entry-27">Acknowledgements</a></li>
+</ul>
+</div>
+<p>Pelican allows you to create a static blog. Most blog sites on the web are <em>dynamic</em> in the sense that the content of
+the site live in a database. In order to view a post on a blog, the server has to <em>query</em> the database, get the
+right content and then <em>convert</em> it into presentable HTML. However, in a static site, every page is pre-rendered
+by the static blog generator. This means that your <em>entire</em> blog can be uploaded to a server.</p>
+<p>Here's a non-exhaustive list of why a static blog generator is good:</p>
+<ul class="simple">
+<li><em>Cheap Scaling</em>: Pre-rendered static files can stand the onslaught of traffic if your
+post makes it to the top of hackernews or reddit very cheaply. No queries are being made.</li>
+<li><em>Any format</em>: You can use reStructuredText, Markdown etc. to write your posts.</li>
+<li><em>Host Anywhere</em>: Static sites can be hosted easily on github pages, Amazon S3 and even dropbox.</li>
+<li><em>Own Everything</em>: You have access to all your posts and all your themes. No company in the middle, just you and
+your content.</li>
+<li><em>Control</em>: Static site generators give you a lot of control over pretty much every aspect of your
+site through templates and plugins, allowing you to quickly add complex functionality not found in popular
+web blogging platforms.</li>
+<li><em>Update Issues</em>: If you are using wordpress, you <em>have</em> to update your software when a new version comes out; otherwise,
+you have a security risk. However, one can use the same version of a static blog generator indefinitely.</li>
+</ul>
+<p>Here's why pelican is a good choice in contrast with other generators: <a class="footnote-reference" href="#assumingpy" id="footnote-reference-1">[1]</a></p>
+<ul class="simple">
+<li><em>Plugins</em>: Pelican has a lot of plugins, that allow you to quickly add functionality.</li>
+<li><em>Hackable</em>: Extending pelican as well as altering its behaviour is simple.</li>
+<li><em>Themes</em>: Pelican has <em>a lot</em> of themes, and you can make your own.</li>
+<li><em>Multi-platform</em>: Works well on Windows, OSX and Linux. <a class="footnote-reference" href="#windows" id="footnote-reference-2">[2]</a></li>
+</ul>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+<p>I've been using Pelican as my static blog generator for the past year. Over this time,
+I have come to recognize its strengths and weaknesses. Pelican allows you to quickly get a themed site up and
+running in a matter of minutes. You can also choose to invest more time and create your own theme. In short, if you want
+a low hassle setup, its there and if you want a more custom site you can have that too.</p>
+<p>However, Pelican's initial setup barely scratches the surface of what's possible with this small yet powerful blog
+generator. It has many plugins too for quickly adding extra functionality, like the support of other
+document formats; <code>ipynb</code> and <code>asciidoc</code> for example. Plugins also allow you to support things
+like MathJax in your pages and embed disqus comments. <a class="footnote-reference" href="#plugins-1" id="footnote-reference-3">[3]</a></p>
+<div class="section" id="getting-started">
+<h2><a class="toc-backref" href="#toc-entry-1">Getting Started</a></h2>
+<p>Before diving in, I expect you to know a few basic things:</p>
+<ul class="simple">
+<li>How to use git</li>
+<li>How to use bash or your shell of choice</li>
+<li>How to use Python</li>
+</ul>
+<div class="section" id="installing-pelican">
+<h3><a class="toc-backref" href="#toc-entry-2">Installing Pelican</a></h3>
+<p>Installation is very simple:</p>
+<div class="highlight"><pre><span></span>$<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>pelican
+</pre></div>
+<p>Feel free to use virtualenv if you want to but its not required.</p>
+<p>Pelican works with both Python 2 and Python 3. However, I chose to use Python 2 because I use an automation tool called
+Fabric, which only supports python 2 (for the time being).</p>
+</div>
+<div class="section" id="basic-setup">
+<h3><a class="toc-backref" href="#toc-entry-3">Basic Setup</a></h3>
+<p>When first beginning with pelican, one can choose to use the pelican skeleton generator to create a basic structure
+using <code>pelican-quickstart</code>. <a class="footnote-reference" href="#problemsquickstart" id="footnote-reference-4">[4]</a></p>
+<div class="highlight"><pre><span></span>$<span class="w"> </span>pelican-quickstart
+Welcome<span class="w"> </span>to<span class="w"> </span>pelican-quickstart<span class="w"> </span>v3.5.0.
+
+This<span class="w"> </span>script<span class="w"> </span>will<span class="w"> </span><span class="nb">help</span><span class="w"> </span>you<span class="w"> </span>create<span class="w"> </span>a<span class="w"> </span>new<span class="w"> </span>Pelican-based<span class="w"> </span>website.
+
+Please<span class="w"> </span>answer<span class="w"> </span>the<span class="w"> </span>following<span class="w"> </span>questions<span class="w"> </span>so<span class="w"> </span>this<span class="w"> </span>script<span class="w"> </span>can<span class="w"> </span>generate<span class="w"> </span>the<span class="w"> </span>files
+needed<span class="w"> </span>by<span class="w"> </span>Pelican.
+
+
+&gt;<span class="w"> </span>Where<span class="w"> </span><span class="k">do</span><span class="w"> </span>you<span class="w"> </span>want<span class="w"> </span>to<span class="w"> </span>create<span class="w"> </span>your<span class="w"> </span>new<span class="w"> </span>web<span class="w"> </span>site?<span class="w"> </span><span class="o">[</span>.<span class="o">]</span>
+&gt;<span class="w"> </span>What<span class="w"> </span>will<span class="w"> </span>be<span class="w"> </span>the<span class="w"> </span>title<span class="w"> </span>of<span class="w"> </span>this<span class="w"> </span>web<span class="w"> </span>site?<span class="w"> </span>Test<span class="w"> </span>Site
+&gt;<span class="w"> </span>Who<span class="w"> </span>will<span class="w"> </span>be<span class="w"> </span>the<span class="w"> </span>author<span class="w"> </span>of<span class="w"> </span>this<span class="w"> </span>web<span class="w"> </span>site?<span class="w"> </span>Kevin<span class="w"> </span>Kevinson
+&gt;<span class="w"> </span>What<span class="w"> </span>will<span class="w"> </span>be<span class="w"> </span>the<span class="w"> </span>default<span class="w"> </span>language<span class="w"> </span>of<span class="w"> </span>this<span class="w"> </span>web<span class="w"> </span>site?<span class="w"> </span><span class="o">[</span>en<span class="o">]</span>
+&gt;<span class="w"> </span>Do<span class="w"> </span>you<span class="w"> </span>want<span class="w"> </span>to<span class="w"> </span>specify<span class="w"> </span>a<span class="w"> </span>URL<span class="w"> </span>prefix?<span class="w"> </span>e.g.,<span class="w"> </span>http://example.com<span class="w">   </span><span class="o">(</span>Y/n<span class="o">)</span><span class="w"> </span>n
+&gt;<span class="w"> </span>Do<span class="w"> </span>you<span class="w"> </span>want<span class="w"> </span>to<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>article<span class="w"> </span>pagination?<span class="w"> </span><span class="o">(</span>Y/n<span class="o">)</span>
+&gt;<span class="w"> </span>How<span class="w"> </span>many<span class="w"> </span>articles<span class="w"> </span>per<span class="w"> </span>page<span class="w"> </span><span class="k">do</span><span class="w"> </span>you<span class="w"> </span>want?<span class="w"> </span><span class="o">[</span><span class="m">10</span><span class="o">]</span><span class="w"> </span><span class="m">8</span>
+&gt;<span class="w"> </span>Do<span class="w"> </span>you<span class="w"> </span>want<span class="w"> </span>to<span class="w"> </span>generate<span class="w"> </span>a<span class="w"> </span>Fabfile/Makefile<span class="w"> </span>to<span class="w"> </span>automate<span class="w"> </span>generation<span class="w"> </span>and<span class="w"> </span>publishing?<span class="w"> </span><span class="o">(</span>Y/n<span class="o">)</span>
+&gt;<span class="w"> </span>Do<span class="w"> </span>you<span class="w"> </span>want<span class="w"> </span>an<span class="w"> </span>auto-reload<span class="w"> </span><span class="p">&amp;</span><span class="w"> </span>simpleHTTP<span class="w"> </span>script<span class="w"> </span>to<span class="w"> </span>assist<span class="w"> </span>with<span class="w"> </span>theme<span class="w"> </span>and<span class="w"> </span>site<span class="w"> </span>development?<span class="w"> </span><span class="o">(</span>Y/n<span class="o">)</span>
+&gt;<span class="w"> </span>Do<span class="w"> </span>you<span class="w"> </span>want<span class="w"> </span>to<span class="w"> </span>upload<span class="w"> </span>your<span class="w"> </span>website<span class="w"> </span>using<span class="w"> </span>FTP?<span class="w"> </span><span class="o">(</span>y/N<span class="o">)</span>
+&gt;<span class="w"> </span>Do<span class="w"> </span>you<span class="w"> </span>want<span class="w"> </span>to<span class="w"> </span>upload<span class="w"> </span>your<span class="w"> </span>website<span class="w"> </span>using<span class="w"> </span>SSH?<span class="w"> </span><span class="o">(</span>y/N<span class="o">)</span>
+&gt;<span class="w"> </span>Do<span class="w"> </span>you<span class="w"> </span>want<span class="w"> </span>to<span class="w"> </span>upload<span class="w"> </span>your<span class="w"> </span>website<span class="w"> </span>using<span class="w"> </span>Dropbox?<span class="w"> </span><span class="o">(</span>y/N<span class="o">)</span>
+&gt;<span class="w"> </span>Do<span class="w"> </span>you<span class="w"> </span>want<span class="w"> </span>to<span class="w"> </span>upload<span class="w"> </span>your<span class="w"> </span>website<span class="w"> </span>using<span class="w"> </span>S3?<span class="w"> </span><span class="o">(</span>y/N<span class="o">)</span>
+&gt;<span class="w"> </span>Do<span class="w"> </span>you<span class="w"> </span>want<span class="w"> </span>to<span class="w"> </span>upload<span class="w"> </span>your<span class="w"> </span>website<span class="w"> </span>using<span class="w"> </span>Rackspace<span class="w"> </span>Cloud<span class="w"> </span>Files?<span class="w"> </span><span class="o">(</span>y/N<span class="o">)</span>
+&gt;<span class="w"> </span>Do<span class="w"> </span>you<span class="w"> </span>want<span class="w"> </span>to<span class="w"> </span>upload<span class="w"> </span>your<span class="w"> </span>website<span class="w"> </span>using<span class="w"> </span>GitHub<span class="w"> </span>Pages?<span class="w"> </span><span class="o">(</span>y/N<span class="o">)</span>
+Done.<span class="w"> </span>Your<span class="w"> </span>new<span class="w"> </span>project<span class="w"> </span>is<span class="w"> </span>available<span class="w"> </span>at<span class="w"> </span>/Users/quazinafiulislam/Desktop/testingzone
+</pre></div>
+<p>There's no need to change much in the default quickstart wizard. Default values are indicated by <code>[default]</code>
+and <code>(y/N)</code>, where the capitalized letter is the default value. Just one thing to note here is URL prefix; don't
+set it right now, set it when you actually want to take your site online, and we will go over how to do that later
+in this tutorial.</p>
+</div>
+<div class="section" id="your-first-post">
+<h3><a class="toc-backref" href="#toc-entry-4">Your First Post</a></h3>
+<p>After <code>pelican-quickstart</code> is done, this is what the directory should look like:</p>
+<div class="highlight"><pre><span></span>.
+├── Makefile
+├── content/
+├── develop_server.sh
+├── fabfile.py
+├── output/
+├── pelicanconf.py
+└── publishconf.py
+</pre></div>
+<p>Pelican supports reStructuredText out of the box. If you want to use another format like markdown then just install it:</p>
+<div class="highlight"><pre><span></span>$<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>markdown
+</pre></div>
+<p>More uncommon formats will be discussed later. With this out of the way, we can create our first post inside the
+content folder. All our writing has to be inside the <code>content</code> folder, so we change our directory to the
+<code>content</code> folder:</p>
+<div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>content
+</pre></div>
+<p>My file is called <code>first_post.rst</code> and it looks like this:</p>
+<div class="highlight"><pre><span></span><span class="gh">first_post</span>
+<span class="gh">##########</span>
+
+<span class="nc">:date:</span> 2014-12-13 18:32
+<span class="nc">:category:</span> Test
+
+Hello World from Pelican!
+</pre></div>
+<p>Basically, all one needs is a category and a date. A markdown version of the same post would be:</p>
+<div class="highlight"><pre><span></span>Title: first_post
+Date: 2014-12-13 18:32
+Category: Test
+
+Hello world from Pelican!
+</pre></div>
+<p>This is what my project directory looks like now:</p>
+<div class="highlight"><pre><span></span>.
+├── Makefile
+├── content
+│   └── first_post.rst
+├── develop_server.sh
+├── fabfile.py
+├── pelicanconf.py
+├── pelicanconf.pyc
+└── publishconf.py
+</pre></div>
+<p>Now changing back to our project directory, we can start the development server, and see the generated blog post:</p>
+<div class="highlight"><pre><span></span>$<span class="w"> </span>make<span class="w"> </span>devserver
+</pre></div>
+<p>Once this is done, we should be able to see our post on <code>localhost:8000</code>:</p>
+<img alt="Our First post with pelican" class="align-center" src="/images/pelican_05.png" />
+<p>We can stop the server through:</p>
+<div class="highlight"><pre><span></span>$<span class="w"> </span>make<span class="w"> </span>stopserver
+</pre></div>
+</div>
+</div>
+<div class="section" id="automation">
+<h2><a class="toc-backref" href="#toc-entry-5">Automation</a></h2>
+<p>Although only a title, date and category are required for a post, pelican allows you to add a lot more information like
+tags, authors and much more. However, creating a new file with the right date and time can be time consuming,
+so we can use certain tools to automate the task for us.</p>
+<div class="section" id="vanilla-python">
+<h3><a class="toc-backref" href="#toc-entry-6">Vanilla Python</a></h3>
+<p>We can create simple scripts to automatically create our
+entries with the right date and time. Here is an example script that I use called <code>make_entry.py</code>:</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+
+<span class="n">TEMPLATE</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="si">{title}</span>
+<span class="si">{hashes}</span>
+
+<span class="s2">:date: </span><span class="si">{year}</span><span class="s2">-</span><span class="si">{month}</span><span class="s2">-</span><span class="si">{day}</span><span class="s2"> </span><span class="si">{hour}</span><span class="s2">:</span><span class="si">{minute:02d}</span>
+<span class="s2">:tags:</span>
+<span class="s2">:category:</span>
+<span class="s2">:slug: </span><span class="si">{slug}</span>
+<span class="s2">:summary:</span>
+<span class="s2">:status: draft</span>
+
+
+<span class="s2">&quot;&quot;&quot;</span>
+
+
+<span class="k">def</span> <span class="nf">make_entry</span><span class="p">(</span><span class="n">title</span><span class="p">):</span>
+    <span class="n">today</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">today</span><span class="p">()</span>
+    <span class="n">slug</span> <span class="o">=</span> <span class="n">title</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">)</span>
+    <span class="n">f_create</span> <span class="o">=</span> <span class="s2">&quot;content/</span><span class="si">{}</span><span class="s2">_</span><span class="si">{:0&gt;2}</span><span class="s2">_</span><span class="si">{:0&gt;2}</span><span class="s2">_</span><span class="si">{}</span><span class="s2">.rst&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+        <span class="n">today</span><span class="o">.</span><span class="n">year</span><span class="p">,</span> <span class="n">today</span><span class="o">.</span><span class="n">month</span><span class="p">,</span> <span class="n">today</span><span class="o">.</span><span class="n">day</span><span class="p">,</span> <span class="n">slug</span><span class="p">)</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">TEMPLATE</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="n">title</span><span class="p">,</span>
+                                <span class="n">hashes</span><span class="o">=</span><span class="s1">&#39;#&#39;</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">title</span><span class="p">),</span>
+                                <span class="n">year</span><span class="o">=</span><span class="n">today</span><span class="o">.</span><span class="n">year</span><span class="p">,</span>
+                                <span class="n">month</span><span class="o">=</span><span class="n">today</span><span class="o">.</span><span class="n">month</span><span class="p">,</span>
+                                <span class="n">day</span><span class="o">=</span><span class="n">today</span><span class="o">.</span><span class="n">day</span><span class="p">,</span>
+                                <span class="n">hour</span><span class="o">=</span><span class="n">today</span><span class="o">.</span><span class="n">hour</span><span class="p">,</span>
+                                <span class="n">minute</span><span class="o">=</span><span class="n">today</span><span class="o">.</span><span class="n">minute</span><span class="p">,</span>
+                                <span class="n">slug</span><span class="o">=</span><span class="n">slug</span><span class="p">)</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">f_create</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">w</span><span class="p">:</span>
+        <span class="n">w</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;File created -&gt; &quot;</span> <span class="o">+</span> <span class="n">f_create</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">make_entry</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span> <span class="s2">&quot;No title given&quot;</span>
+</pre></div>
+<p>With this, making a new file can be created like so:</p>
+<div class="highlight"><pre><span></span><span class="w"> </span>$<span class="w"> </span>python<span class="w"> </span>make_entry.py<span class="w"> </span><span class="s2">&quot;New Post&quot;</span>
+File<span class="w"> </span>created<span class="w"> </span>-&gt;<span class="w"> </span>content/2014_12_13_new-post.rst
+</pre></div>
+</div>
+<div class="section" id="fabric">
+<h3><a class="toc-backref" href="#toc-entry-7">Fabric</a></h3>
+<p><em>Jump to the next section if you're not using Python 2</em> <a class="footnote-reference" href="#fabpy3support" id="footnote-reference-5">[5]</a></p>
+<p>Using Vanilla Python is great, but imagine trying to make a script for <em>every single</em> task you need done. This would
+be a nightmare. Of course, one can keep using if-else statements to add more argument parameters but that is tiring
+and not very flexible (not to mention error prone). This is why one option to making scripts that can take in
+different parameters is to use a handy library called <a class="reference external" href="http://www.fabfile.org/">Fabric</a>.</p>
+<p>I use fabric for most of my tooling, since pelican already generates a <code>fabfile.py</code>. Getting a new
+command line function in fabric is very easy:</p>
+<ul class="simple">
+<li>If you don't have a <code>fabfile.py</code>, create one.</li>
+<li>Create a new function inside <code>fabfile.py</code></li>
+<li>Run the function like so: <code>fab do_something</code></li>
+<li>If the function has positional arguments, <code>fab do_something:True, False</code></li>
+<li>If the function has optional keyword arguments <code>fab do_something:kill_p=True, be_happy=False</code></li>
+</ul>
+<p>Installing Fabric is easy:</p>
+<div class="highlight"><pre><span></span>$<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>Fabric
+</pre></div>
+<p>The body of the function to make an entry is the same as before:</p>
+<div class="highlight"><pre><span></span><span class="c1"># TEMPLATE is declared before hand, and all the necessary imports made</span>
+<span class="k">def</span> <span class="nf">make_entry</span><span class="p">(</span><span class="n">title</span><span class="p">):</span>
+    <span class="n">today</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">today</span><span class="p">()</span>
+    <span class="n">slug</span> <span class="o">=</span> <span class="n">title</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">)</span>
+    <span class="n">f_create</span> <span class="o">=</span> <span class="s2">&quot;content/</span><span class="si">{}</span><span class="s2">_</span><span class="si">{:0&gt;2}</span><span class="s2">_</span><span class="si">{:0&gt;2}</span><span class="s2">_</span><span class="si">{}</span><span class="s2">.rst&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+        <span class="n">today</span><span class="o">.</span><span class="n">year</span><span class="p">,</span> <span class="n">today</span><span class="o">.</span><span class="n">month</span><span class="p">,</span> <span class="n">today</span><span class="o">.</span><span class="n">day</span><span class="p">,</span> <span class="n">slug</span><span class="p">)</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">TEMPLATE</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="n">title</span><span class="p">,</span>
+                                <span class="n">hashes</span><span class="o">=</span><span class="s1">&#39;#&#39;</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">title</span><span class="p">),</span>
+                                <span class="n">year</span><span class="o">=</span><span class="n">today</span><span class="o">.</span><span class="n">year</span><span class="p">,</span>
+                                <span class="n">month</span><span class="o">=</span><span class="n">today</span><span class="o">.</span><span class="n">month</span><span class="p">,</span>
+                                <span class="n">day</span><span class="o">=</span><span class="n">today</span><span class="o">.</span><span class="n">day</span><span class="p">,</span>
+                                <span class="n">hour</span><span class="o">=</span><span class="n">today</span><span class="o">.</span><span class="n">hour</span><span class="p">,</span>
+                                <span class="n">minute</span><span class="o">=</span><span class="n">today</span><span class="o">.</span><span class="n">minute</span><span class="p">,</span>
+                                <span class="n">slug</span><span class="o">=</span><span class="n">slug</span><span class="p">)</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">f_create</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">w</span><span class="p">:</span>
+        <span class="n">w</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;File created -&gt; &quot;</span> <span class="o">+</span> <span class="n">f_create</span><span class="p">)</span>
+</pre></div>
+<p>However, this time we can call it like so:</p>
+<div class="highlight"><pre><span></span>$<span class="w"> </span>fab<span class="w"> </span>make_entry:<span class="s2">&quot;New Post&quot;</span>
+</pre></div>
+</div>
+<div class="section" id="fabric-alternatives">
+<h3><a class="toc-backref" href="#toc-entry-8">Fabric alternatives</a></h3>
+<p>There are tonnes of alternatives that allow you to make a simple command line interface quickly:</p>
+<ul class="simple">
+<li><a class="reference external" href="http://click.pocoo.org/3/">Click</a> : A simple to use CLI by Armin Ronacher.</li>
+<li><a class="reference external" href="https://github.com/willyg302/clip.py">Clip</a> : Like click, but newer, and has more features</li>
+<li><a class="reference external" href="https://docs.python.org/3/library/argparse.html">Argparse</a> : This package comes with python by default. Its not
+the easiest to use package out there, but if you don't want to install a new package, then this should work fine.</li>
+</ul>
+<p>All three work with python 3.</p>
+</div>
+</div>
+<div class="section" id="themes">
+<h2><a class="toc-backref" href="#toc-entry-9">Themes</a></h2>
+<div class="section" id="using-a-theme">
+<h3><a class="toc-backref" href="#toc-entry-10">Using a Theme</a></h3>
+<p>Pelican has many themes to choose from its <a class="reference external" href="https://github.com/getpelican/pelican-themes">themes repository</a>. These
+are the steps:</p>
+<ul class="simple">
+<li>Clone a theme repo, or if you want clone the entire <a class="reference external" href="https://github.com/getpelican/pelican-themes">themes repository</a>.</li>
+<li>Inside <code>pelicancon.py</code> file, change the <code>THEME</code> variable, to the directory
+of your theme.</li>
+</ul>
+<p>On a side note, if you're looking for a place where you can view a screenshot of all the different themes,
+<a class="reference external" href="http://ptd.pronoiac.org/">this</a> site has nice screen-shots of each.</p>
+<p>For example, if you wanted to use the <a class="reference external" href="https://github.com/kplaube/maggner-pelican">maggner-pelican</a> theme:</p>
+<ul class="simple">
+<li>Clone it into your project directory, <code>git clone https://github.com/kplaube/maggner-pelican.git</code></li>
+<li>Change the <code>THEME</code> variable to <code>'maggner-pelican'</code> and you're done :)</li>
+</ul>
+</div>
+<div class="section" id="creating-themes">
+<h3><a class="toc-backref" href="#toc-entry-11">Creating Themes</a></h3>
+<p>Creating themes in Pelican is well documented in their documentation about <a class="reference external" href="http://docs.getpelican.com/en/3.5.0/themes.html">theme creation</a>. Although creating themes
+is beyond the scope of this post (because there's a lot that could be said), here are a few pointers:</p>
+<ul class="simple">
+<li>Target one format, if you try to create a theme for multiple formats like both rst and md, you're doing to run
+into a lot of issues.</li>
+<li>Using preprocessors can be more effective than using raw css since they allow you create a single css file and provides
+you with a lot more flexibility.</li>
+<li>If you wish to embed disqus or google comments or other third party dynamic content, then I suggest that you use
+separate include files instead of plugins.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="settings">
+<h2><a class="toc-backref" href="#toc-entry-12">Settings</a></h2>
+<div class="section" id="the-two-settings-files">
+<h3><a class="toc-backref" href="#toc-entry-13">The Two Settings Files</a></h3>
+<p>By default, pelican comes with both a <code>pelicanconf.py</code> and <code>publishconf.py</code>. When you are writing content
+and wish to see a preview, the settings in <code>pelicanconf.py</code> are used. When you choose to publish, for example to
+github or some other place, the settings in <code>pelicanconf.py</code> and <code>publishconf.py</code> are used as
+<code>pelicanconf.py</code> is imported in [&gt;1] below:</p>
+<div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
+<span class="c1"># -*- coding: utf-8 -*- #</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">unicode_literals</span>
+
+<span class="c1"># This file is only used if you use `make publish` or</span>
+<span class="c1"># explicitly specify it as your config file.</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">curdir</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">pelicanconf</span> <span class="kn">import</span> <span class="o">*</span>  <span class="c1"># 1</span>
+
+<span class="p">(</span><span class="o">...</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="section" id="how-settings-work">
+<h3><a class="toc-backref" href="#toc-entry-14">How Settings Work</a></h3>
+<p>By convention all settings are capitalized:</p>
+<div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
+<span class="c1"># -*- coding: utf-8 -*- #</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">unicode_literals</span>
+
+<span class="n">AUTHOR</span> <span class="o">=</span> <span class="sa">u</span><span class="s1">&#39;Nafiul Islam&#39;</span>
+<span class="n">SITENAME</span> <span class="o">=</span> <span class="sa">u</span><span class="s1">&#39;fUNNY bLOG&#39;</span>
+<span class="n">SITEURL</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+</pre></div>
+<p>If we take a look in the default theme, they are used like so:</p>
+<div class="highlight"><pre><span></span><span class="cp">{%</span> <span class="k">if</span> <span class="nv">DISQUS_SITENAME</span> <span class="k">and</span> <span class="nv">SITEURL</span> <span class="k">and</span> <span class="nv">article.status</span> <span class="o">!=</span> <span class="s2">&quot;draft&quot;</span> <span class="cp">%}</span>
+<span class="x">&lt;div class=&quot;comments&quot;&gt;</span>
+<span class="x">&lt;h2&gt;Comments !&lt;/h2&gt;</span>
+<span class="x">&lt;div id=&quot;disqus_thread&quot;&gt;&lt;/div&gt;</span>
+<span class="x">&lt;script type=&quot;text/javascript&quot;&gt;</span>
+<span class="x">var disqus_shortname = &#39;</span><span class="cp">{{</span> <span class="nv">DISQUS_SITENAME</span> <span class="cp">}}</span><span class="x">&#39;;</span>
+<span class="x">var disqus_identifier = &#39;</span><span class="cp">{{</span> <span class="nv">article.url</span> <span class="cp">}}</span><span class="x">&#39;;</span>
+<span class="x">var disqus_url = &#39;</span><span class="cp">{{</span> <span class="nv">SITEURL</span> <span class="cp">}}</span><span class="x">/</span><span class="cp">{{</span> <span class="nv">article.url</span> <span class="cp">}}</span><span class="x">&#39;;</span>
+<span class="x">(function() {</span>
+<span class="x">var dsq = document.createElement(&#39;script&#39;); dsq.type = &#39;text/javascript&#39;; dsq.async = true;</span>
+<span class="x">(...)</span>
+</pre></div>
+<p>Here, <code>SITEURL</code> AND <code>DISQUS_SITENAME</code> are both settings that are described in either <code>pelicanconf.py</code>
+or <code>publishconf.py</code>. They appear as variables inside the jinja template. <a class="footnote-reference" href="#notmyideaarticlehtml" id="footnote-reference-6">[6]</a></p>
+<p>Most settings that we put into our settings files are used in the theme, however, some settings like
+<code>DEFAULT_PAGINATION</code> are used to determine other things.</p>
+</div>
+</div>
+<div class="section" id="writing-content">
+<h2><a class="toc-backref" href="#toc-entry-15">Writing Content</a></h2>
+<p>Pelican supports reStructuredText as its default document format. However, there is also support for markdown, ipython
+notebook, asciidoc and probably much more. To write in any of these formats, one needs to install the plugin associated
+with the file extension, such as <a class="reference external" href="https://github.com/getpelican/pelican-plugins/tree/master/asciidoc_reader">asciidoc_reader</a>
+for the asciidoc format and <a class="reference external" href="https://github.com/danielfrg/pelican-ipynb">pelican-ipynb</a> for the ipython notebook
+format. <a class="footnote-reference" href="#notallpluginsarefound" id="footnote-reference-7">[7]</a></p>
+<p>I would suggest reStructuredText, since it has the most features and can
+offer many ways to extend the syntax with features such as directives and interpreted roles. For example, reStructuredText
+supports footnotes out of the box, whereas if one were to use markdown, one would need to install a separate plugin and
+attach it to pelican. <a class="footnote-reference" href="#footnotesrst" id="footnote-reference-8">[8]</a></p>
+<p>However, pelican has many third party plugins for markdown documents as well so if you prefer using markdown, then
+please do so, I only recommend reStructuredText because its easy to extend.</p>
+</div>
+<div class="section" id="previewing-content">
+<h2><a class="toc-backref" href="#toc-entry-16">Previewing Content</a></h2>
+<div class="section" id="devserver">
+<h3><a class="toc-backref" href="#toc-entry-17">devserver</a></h3>
+<p>The default way to see a preview of the generated blog is to use <code>make devserver</code>, this regenerates your blog
+every time that you change your <code>content</code> folder. This option is a horrible way to preview your blog for a couple
+of reasons:</p>
+<ul class="simple">
+<li>You need to hit the refresh button in your browser to see the changes after a save. This can often get tiring.</li>
+<li><code>make devserver</code> runs two processes in background for no good reason, the processes log data into the console
+anyways, so why not just have a tool that generates your content and terminates when you hit [k:ctrl] + [k:C] ?</li>
+<li>Furthermore, in the transformation from your chosen format to html, if you hit an error, the daemon that keeps
+transforming your files to html also stops, and the error is often buried deep inside the logs</li>
+</ul>
+</div>
+<div class="section" id="livereload">
+<h3><a class="toc-backref" href="#toc-entry-18">livereload</a></h3>
+<p>We need a solution that does two things for us:</p>
+<ul class="simple">
+<li>Allows us to see live previews on each save without having to refresh the browser.</li>
+<li>Does not stop unexpectedly from an error.</li>
+<li>Has an easy to use CLI</li>
+</ul>
+<p>The solution is to use a neat little package called <code>livereload</code> and can be installed through:</p>
+<div class="highlight"><pre><span></span>$<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>livereload
+</pre></div>
+<p>Once this has been installed, we need to install the livereload plugin for our respective browser. For example in chrome:</p>
+<img alt="Searching for the livereload extension" class="align-center" src="/images/pelican_01.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<img alt="Installing the right plugin" class="align-center" src="/images/pelican_02.png" />
+<p>In firefox, we head over to addons.mozilla.org and search for <code>livereload</code>:</p>
+<img alt="Installing on Firefox" class="align-center" src="/images/pelican_03.png" />
+<p>Once this has been installed, we need to run the livereload server. I do this by adding an extra function to my <code>fabfile.py</code> file:</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">livereload</span>
+
+<span class="k">def</span> <span class="nf">live_build</span><span class="p">(</span><span class="n">port</span><span class="o">=</span><span class="mi">8080</span><span class="p">):</span>
+
+    <span class="n">local</span><span class="p">(</span><span class="s1">&#39;make clean&#39;</span><span class="p">)</span>  <span class="c1"># 1</span>
+    <span class="n">local</span><span class="p">(</span><span class="s1">&#39;make html&#39;</span><span class="p">)</span>  <span class="c1"># 2</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="s1">&#39;output&#39;</span><span class="p">)</span>  <span class="c1"># 3</span>
+    <span class="n">server</span> <span class="o">=</span> <span class="n">livereload</span><span class="o">.</span><span class="n">Server</span><span class="p">()</span>  <span class="c1"># 4</span>
+    <span class="n">server</span><span class="o">.</span><span class="n">watch</span><span class="p">(</span><span class="s1">&#39;../content/*.rst&#39;</span><span class="p">,</span>  <span class="c1"># 5</span>
+        <span class="n">livereload</span><span class="o">.</span><span class="n">shell</span><span class="p">(</span><span class="s1">&#39;pelican -s ../pelicanconf.py -o ../output&#39;</span><span class="p">))</span>  <span class="c1"># 6</span>
+    <span class="n">server</span><span class="o">.</span><span class="n">watch</span><span class="p">(</span><span class="s1">&#39;../naffy/&#39;</span><span class="p">,</span>  <span class="c1"># 7</span>
+        <span class="n">livereload</span><span class="o">.</span><span class="n">shell</span><span class="p">(</span><span class="s1">&#39;pelican -s ../pelicanconf.py -o ../output&#39;</span><span class="p">))</span>  <span class="c1"># 8</span>
+    <span class="n">server</span><span class="o">.</span><span class="n">watch</span><span class="p">(</span><span class="s1">&#39;*.html&#39;</span><span class="p">)</span>  <span class="c1"># 9</span>
+    <span class="n">server</span><span class="o">.</span><span class="n">watch</span><span class="p">(</span><span class="s1">&#39;*.css&#39;</span><span class="p">)</span>  <span class="c1"># 10</span>
+    <span class="n">server</span><span class="o">.</span><span class="n">serve</span><span class="p">(</span><span class="n">liveport</span><span class="o">=</span><span class="mi">35729</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="n">port</span><span class="p">)</span>  <span class="c1"># 11</span>
+</pre></div>
+<p>We have a lot to explain here so lets begin with [&gt;1] and [&gt;2]. In both [&gt;1] and [&gt;2], we use the <code>local</code> function
+from fabric. <code>local</code> allows us to run shell commands like <code>cd</code>. In this case, we are using the <code>make</code>
+command because pelican comes with a Makefile. If we involve <code>make help</code> from the command line in our project
+directory, we get the following:</p>
+<div class="highlight"><pre><span></span>$<span class="w"> </span>make<span class="w"> </span><span class="nb">help</span>
+Makefile<span class="w"> </span><span class="k">for</span><span class="w"> </span>a<span class="w"> </span>pelican<span class="w"> </span>Web<span class="w"> </span>site
+
+Usage:
+<span class="w">   </span>make<span class="w"> </span>html<span class="w">                        </span><span class="o">(</span>re<span class="o">)</span>generate<span class="w"> </span>the<span class="w"> </span>web<span class="w"> </span>site
+<span class="w">   </span>make<span class="w"> </span>clean<span class="w">                       </span>remove<span class="w"> </span>the<span class="w"> </span>generated<span class="w"> </span>files
+</pre></div>
+<p>So, in [&gt;1] we clean out output folder, and in [&gt;2] we generate our html files from our content.</p>
+<p>In [&gt;3], we change the directory to our newly created output folder and in [&gt;4] we create an instance
+of the <code>livereload</code> server. In [&gt;5], we use the <code>server.watch</code> function to watch all the <code>rst</code> files
+since my content is written in reStructuredText. We can change this to <code>../content/*.md</code> for markdown files for
+example.</p>
+<p><code>server.watch</code> had one required argument and two optional arguments. The first argument is <code>filepath</code>,
+the second is <code>func</code>, a function that you run every time watched files are changed.
+The last argument is <code>delay</code>, which delays function execution. <a class="footnote-reference" href="#livereload-1" id="footnote-reference-9">[9]</a></p>
+<p>In [&gt;6], we specify the function to be run as <code>livereload.shell('pelican -s ../pelicanconf.py -o ../output')</code>.
+The <code>shell</code> function from <code>livereload</code> allows us to run shell functions every time a watched file is changed.
+In this case, we ask pelican to remake our html files. Why was <code>make html</code> not used here? This is because the
+<code>make</code> command looks for a Makefile and we are right now in our output directory.</p>
+<p>In [&gt;7], the server is directed to watch the &quot;naffy&quot; directory. The &quot;naffy&quot; directory is the directory that
+houses my theme; if any change is made to my theme, livereload refreshes the server. Replace &quot;naffy&quot; with whatever
+folder you are housing your theme in. If you're using the default theme, then do not add [&gt;7] and [&gt;8]. [&gt;8] is the
+same as [&gt;6], we just rebuild the html.</p>
+<p>In [&gt;9] and [&gt;10], the server is further instructed to watch html and css files that change within the output directory.</p>
+<p>Finally in [&gt;11], we tell livereload to serve on port <code>35729</code>. This is the default port for the livereload plugin <a class="footnote-reference" href="#chromedoesntwork" id="footnote-reference-10">[10]</a>.
+The <code>port</code> variable is the port of the server serving the files, the <code>liveport</code> variable is a port that
+livereload uses to make changes directly to the HTML file.</p>
+<img alt="Livereload plugin preferences on FireFox" class="align-center" src="/images/pelican_04.png" />
+</div>
+</div>
+<div class="section" id="plugins">
+<h2><a class="toc-backref" href="#toc-entry-19">Plugins</a></h2>
+<div class="section" id="using-plugins">
+<h3><a class="toc-backref" href="#toc-entry-20">Using Plugins</a></h3>
+<p>Most plugins in pelican tell you how to install them. For example, the <a class="reference external" href="https://github.com/getpelican/pelican-plugins/tree/master/render_math">render_math</a> plugin allows you to embed math
+inside your posts. Here's the basic gist of what you need to do in order to install them:</p>
+<ul class="simple">
+<li>Download the plugin package into your plugins folder, which is set inside your <code>pelicanconf.py</code> file in the
+<code>PLUGIN_PATHS</code> variable.</li>
+<li>Then append the name of your plugin package inside your <code>pelicanconf.py</code> file. <a class="footnote-reference" href="#settingspy" id="footnote-reference-11">[11]</a></li>
+<li>Follow any other additional instructions that your plugin might have.</li>
+</ul>
+<p>If just adding the name does not work, then one might consider adding <code>&lt;plugin_name&gt;.&lt;plugin_file&gt;</code>. <a class="footnote-reference" href="#pluginsimport" id="footnote-reference-12">[12]</a></p>
+</div>
+<div class="section" id="creating-plugins">
+<h3><a class="toc-backref" href="#toc-entry-21">Creating Plugins</a></h3>
+<p>Creating plugins in pelican basically means that you create a function to do your processing. You then register that
+function as a plugin. Creating plugins is
+<a class="reference external" href="http://docs.getpelican.com/en/latest/plugins.html#how-to-create-plugins">well documented</a> and an example of creating
+a reader is given.</p>
+<p>In my use of pelican, more often than not, I've needed to create plugins that are process text in a given document, not
+add support for new document formats. So, I'll show you how I created a plugin for adding keyboard keys like [k:alt]
+and [k:⌘] .</p>
+<p>I like to create my plugins as packages, but you can create them as simple files as well. So, inside our plugins folder,
+create a new package, and inside the package, we create a new file for the plugin:</p>
+<div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>plugins<span class="w">  </span><span class="c1"># Or whatever your plugins folder is called</span>
+$<span class="w"> </span>mkdir<span class="w"> </span>keyboard
+$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>keyboard
+$<span class="w"> </span>touch<span class="w"> </span>__init__.py<span class="w"> </span>kb.py
+$<span class="w"> </span>ls
+__init__.py<span class="w"> </span>kb.py
+</pre></div>
+<p>Inside <code>kb.py</code>, we can need a function that modifies existing code, and a function that registers the function:</p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pelican</span> <span class="kn">import</span> <span class="n">signals</span>
+
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">re</span>
+
+<span class="n">logging</span><span class="o">.</span><span class="n">Logger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">content_object_init</span><span class="p">(</span><span class="n">instance</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Provides the key plugin, make sure that you have Keys.css, http://michaelhue.com/keyscss/</span>
+<span class="sd">    imported inside your HTML. How to use:</span>
+
+<span class="sd">        So you hit [kb:CTRL] + [kb:ALT] + [kb:DEL] when in doubt</span>
+
+<span class="sd">    Note, that light keyboard keys are enabled by default.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">instance</span><span class="o">.</span><span class="n">_content</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># 1</span>
+        <span class="n">content</span> <span class="o">=</span> <span class="n">instance</span><span class="o">.</span><span class="n">_content</span>
+        <span class="n">new_content</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\[kb:(.+?)\]&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;&lt;kbd class=&quot;light&quot;&gt;\1&lt;/kbd&gt;&#39;</span><span class="p">,</span> <span class="n">content</span><span class="p">)</span>  <span class="c1"># 2</span>
+        <span class="n">instance</span><span class="o">.</span><span class="n">_content</span> <span class="o">=</span> <span class="n">new_content</span>
+        <span class="k">return</span> <span class="n">instance</span>
+
+
+<span class="k">def</span> <span class="nf">register</span><span class="p">():</span>
+    <span class="n">signals</span><span class="o">.</span><span class="n">content_object_init</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">content_object_init</span><span class="p">)</span>  <span class="c1"># 3</span>
+</pre></div>
+<p>In [&gt;1], we check if the article, page or blog post in question has content; essentially does it have a body. If we
+don't have a body, then we skip this object. In [&gt;2], replace  with the corresponding stylized version, so that typing
+<code>[kb:alt]</code> will give you [k:alt] .</p>
+<p>In [&gt;3], we register the function with pelican. Registering this plugin is simple, inside <code>pelicanconf.py</code>, we
+merely append to the list of <code>PLUGINS</code>:</p>
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="n">PLUGINS</span> <span class="o">+=</span> <span class="p">[</span><span class="s1">&#39;keyboard.kb&#39;</span><span class="p">]</span>
+<span class="p">(</span><span class="o">...</span><span class="p">)</span>
+</pre></div>
+<p>I used <a class="reference external" href="http://michaelhue.com/keyscss/">key.css</a> to style my keys, and I simply added the css file to my theme's
+<code>article.html</code>.</p>
+<p>Once can create far more interesting plugins than the one I've shown, by looking at the plugin repository for
+more interesting plugins or even reading the documentation (although its not exhaustive in its explanations).</p>
+</div>
+</div>
+<div class="section" id="hosting-on-github-pages">
+<h2><a class="toc-backref" href="#toc-entry-22">Hosting on Github Pages</a></h2>
+<p>Github is the best way to host your static blog. Some notable sites which get a substantial amount of traffic are
+hosted on github like <a class="reference external" href="http://getbootstrap.com/">Bootstrap</a>, <a class="reference external" href="http://yeoman.io/">Yeoman</a>,
+<a class="reference external" href="https://jakevdp.github.io/">Pythonic Perambulations</a> are hosted on github pages. If you don't have a github
+account, creating one is simple and quick.</p>
+<div class="section" id="creating-the-repo">
+<h3><a class="toc-backref" href="#toc-entry-23">Creating the repo</a></h3>
+<p>In order to get a site name like <code>username.github.io</code>, one needs to create a repo with that name on github,
+set the visibility to public and do not initialize with anything, you want an empty repo that you can push to.</p>
+</div>
+<div class="section" id="ghp-import">
+<h3><a class="toc-backref" href="#toc-entry-24">ghp-import</a></h3>
+<p><code>ghp-import</code> is a simple plugin that allows you to easily push your content to a github repo. You can install it
+using pip:</p>
+<div class="highlight"><pre><span></span>$<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>ghp-import
+</pre></div>
+<p>There are two steps to doing this:</p>
+<div class="highlight"><pre><span></span>$<span class="w"> </span>ghp-import<span class="w"> </span>output
+$<span class="w"> </span>git<span class="w"> </span>push<span class="w"> </span>git@github.com:&lt;username&gt;/&lt;username&gt;.github.io.git<span class="w"> </span>gh-pages:master
+</pre></div>
+<p>This will push the files in your <code>output</code> folder directly to the master branch of the <code>&lt;username&gt;.github.io</code>
+repository. It may take some time initially, but you will be able to see your fully generated blog on this domain.</p>
+</div>
+<div class="section" id="custom-domains">
+<h3><a class="toc-backref" href="#toc-entry-25">Custom domains</a></h3>
+<p>In order to get your own top level domain like I have with <code>nafiulis.me</code>, you simply need to add a <code>CNAME</code>
+file with your domain. The <code>CNAME</code> file must me located <em>inside</em> your output directory and must only have the
+domain name. My <code>CNAME</code> file looks like this:</p>
+<div class="highlight"><pre><span></span>nafiulis.me
+</pre></div>
+<p>The <code>CNAME</code> file must be included when you are pushing to your github repo.</p>
+<p>Once this is done, you need to link your domain up with github, and this is wonderfully explained in this
+<a class="reference external" href="http://davidensinger.com/2013/03/setting-the-dns-for-github-pages-on-namecheap/">article</a></p>
+</div>
+</div>
+<div class="section" id="automating-publication">
+<h2><a class="toc-backref" href="#toc-entry-26">Automating Publication</a></h2>
+<p>I use fabric to automate my publication, I just have two functions to do this:</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">enter_dns_file</span><span class="p">():</span>  <span class="c1"># 1</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;output/CNAME&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;nafiulis.me&#39;</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">github</span><span class="p">(</span><span class="n">publish_drafts</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span> <span class="c1"># 2</span>
+
+    <span class="k">try</span><span class="p">:</span>  <span class="c1"># 3</span>
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s1">&#39;output/drafts&#39;</span><span class="p">):</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">publish_drafts</span><span class="p">:</span>
+                <span class="n">local</span><span class="p">(</span><span class="s1">&#39;rm -rf output/drafts&#39;</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+        <span class="k">pass</span>
+
+    <span class="n">local</span><span class="p">(</span><span class="s1">&#39;ghp-import output&#39;</span><span class="p">)</span>  <span class="c1"># 4</span>
+    <span class="n">local</span><span class="p">(</span><span class="s1">&#39;git push&#39;</span>
+          <span class="s1">&#39;git@github.com:&lt;username&gt;/&lt;username&gt;.github.io.git</span>
+          <span class="s1">&#39;gh-pages:master&#39;</span><span class="p">)</span> <span class="c1"># 5</span>
+    <span class="n">local</span><span class="p">(</span><span class="s1">&#39;rm -rf output&#39;</span><span class="p">)</span>  <span class="c1"># 6</span>
+</pre></div>
+<p>In [&gt;1], the function <code>enter_dns_file</code> is used to insert the <code>CNAME</code> file into the output folder before
+pushing to github because in [&gt;6], we delete the entire output folder.</p>
+<p>In [&gt;2], the <code>github</code> function is used to publish the content of the output folder to our github repo, with the
+option of publishing drafts which is <code>False</code> by default. The <code>try-catch</code> block in [&gt;3] is there to check if
+we have any drafts in the first place, and if the <code>publish_drafts</code> variable is <code>True</code>, then we publish them.</p>
+<p>From [&gt;4] to [&gt;5], we push the content to the repository. Replace <code>&lt;username&gt;</code> with your username.</p>
+</div>
+<div class="section" id="acknowledgements">
+<h2><a class="toc-backref" href="#toc-entry-27">Acknowledgements</a></h2>
+<p>I would like to thank <strong>Ashwini Chaudhury</strong>, <strong>Karan Sikka</strong>, <strong>Mahmud Ridwan</strong>, <strong>Sahib bin Mahboob</strong> and
+<strong>Keiron Pizzey</strong> for proofreading this article before publication.</p>
+<hr class="docutils" />
+<table class="docutils footnote" frame="void" id="assumingpy" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#footnote-reference-1">[1]</a></td><td>Assuming that you are proficient in Python.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="windows" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#footnote-reference-2">[2]</a></td><td>Don't use virtualenv, just use your base python when using windows. If using Windows,
+make sure that you have 2.7.9 or 3.4.2, both of which have &quot;ensurepip&quot;.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="plugins-1" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#footnote-reference-3">[3]</a></td><td><div class="first last line-block">
+<div class="line">Pelican has its own plugin repository on github. Please note however, that some plugins are defunct and are not supported by newer versions of pelican.</div>
+<div class="line"><a class="reference external" href="https://github.com/getpelican/pelican-plugins">https://github.com/getpelican/pelican-plugins</a></div>
+</div>
+</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="problemsquickstart" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#footnote-reference-4">[4]</a></td><td>If you cannot access this, restart your virtualenv if you are currently in one. Otherwise use restart your shell.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="fabpy3support" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#footnote-reference-5">[5]</a></td><td><div class="first last line-block">
+<div class="line">Check out the wall of superpowers if this has changed</div>
+<div class="line"><a class="reference external" href="http://python3wos.appspot.com/">http://python3wos.appspot.com/</a></div>
+</div>
+</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="notmyideaarticlehtml" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#footnote-reference-6">[6]</a></td><td><div class="first last line-block">
+<div class="line">This piece of code is taken from the default theme that comes with pelican called &quot;notmyidea&quot;</div>
+<div class="line"><a class="reference external" href="https://github.com/getpelican/pelican/blob/3.5.0/pelican/themes/notmyidea/templates/article.html#L17">https://github.com/getpelican/pelican/blob/3.5.0/pelican/themes/notmyidea/templates/article.html#L17</a></div>
+</div>
+</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="notallpluginsarefound" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#footnote-reference-7">[7]</a></td><td>The ipython notebook plugin is one example of a plugin that you can't find on the official plugin
+repository. This may be, because the plugin does not support the newest version, Pelican 3.5, since
+the plugin says that it required pelican 3.4 to function.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="footnotesrst" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#footnote-reference-8">[8]</a></td><td><div class="first last line-block">
+<div class="line">reStructuredText also allows for more versatile footnotes as well. <a class="reference external" href="http://docutils.sourceforge.net/docs/user/rst/quickstart.html">Check out their quickstart guide</a>.</div>
+</div>
+</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="livereload-1" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#footnote-reference-9">[9]</a></td><td><a class="reference external" href="https://livereload.readthedocs.org/en/latest/#shell">Livereload has documentation on the server class on its documentation website</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="chromedoesntwork" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#footnote-reference-10">[10]</a></td><td>I cannot find the same options for chrome, hence I use firefox to see live builds of the generated site</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="settingspy" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#footnote-reference-11">[11]</a></td><td>In some documentation regarding plugins, the pelicanconf.py file is called settings.py.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="pluginsimport" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#footnote-reference-12">[12]</a></td><td>Sometimes, Pelican packages do not import the functions necessary inside their <code>__init__.py</code>
+file. In this case you import one of the plugins's files. In most cases it is the file with a
+<code>register</code> method.</td></tr>
+</tbody>
+</table>
+</div>
+
+            
+            
+            <hr/>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+            <h4>Publicado</h4>
+            <time pubdate="pubdate" datetime="2015-01-06T14:51:00+01:00">ene 6, 2015</time>
+            <h4>Categoría</h4>
+            <a class="category-link" href="http://pablocaro.es/categories.html#programming-ref">Programming</a>
+            <h4>Tags</h4>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="http://pablocaro.es/tags.html#pelican-ref">pelican
+</a></li>
+                <li><a href="http://pablocaro.es/tags.html#python-ref">python
+                    <span>20</span>
+</a></li>
+                <li><a href="http://pablocaro.es/tags.html#static-blog-generator-ref">static-blog-generator
+</a></li>
+            </ul>
+<h4>Contacta conmigo</h4>
+    <a href="http://twitter.com/pcaro" title="My Twitter Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-twitter sidebar-social-links"></i></a>
+    <a href="http://github.com/pcaro" title="My Github Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-github sidebar-social-links"></i></a>
+    <a href="https://www.linkedin.com/in/pcarorevuelta" title="My Linkedin Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-linkedin sidebar-social-links"></i></a>
+    <a href="https://www.facebook.com/pablo.carorevuelta" title="My Facebook Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-facebook sidebar-social-links"></i></a>
+    <a href="mailto:correo@pablocaro.es" title="My Email Address" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-envelope sidebar-social-links"></i></a>
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-subtitle"><span class="site-name"><span style="color:#AA1032;">Anotaciones</span> <span style="color:darkblue;">por</span> <span style="color:black">Pablo Caro</span></span> - Anotaciones</li>
+        <li class="elegant-license"><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"> Anotaciones</span> de <a xmlns:cc="http://creativecommons.org/ns#" href="http://pablocaro.es" property="cc:attributionName" rel="cc:attributionURL">Pablo Caro</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>.</li>
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a></li>
+    </ul>
+</div>
+</footer>            <script src="http://code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+    
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : http://oncrashreboot.com/pelican-elegant -->
+</html>

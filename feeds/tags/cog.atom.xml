@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Anotaciones por Pablo Caro - cog</title><link href="http://pablocaro.es/" rel="alternate"></link><link href="http://pablocaro.es/feeds/tags/cog.atom.xml" rel="self"></link><id>http://pablocaro.es/</id><updated>2016-07-14T00:47:00+02:00</updated><subtitle>Anotaciones</subtitle><entry><title>Documentación técnica con Sphinx, Paver y Cog</title><link href="http://pablocaro.es/documentacion-tecnica-sphinx-paver-cog" rel="alternate"></link><published>2016-07-14T00:47:00+02:00</published><updated>2016-07-14T00:47:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2016-07-14:/documentacion-tecnica-sphinx-paver-cog</id><summary type="html">&lt;p&gt;Workflow automatizado para crear documentación técnica usando Sphinx, Paver y Cog, eliminando tareas repetitivas y errores manuales en ejemplos de código&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;strong&gt;Doug Hellmann&lt;/strong&gt; presenta un workflow robusto para documentación técnica que elimina el trabajo manual repetitivo y los errores en ejemplos de código.&lt;/p&gt;
+&lt;h2 id="el-problema-a-resolver"&gt;El problema a resolver&lt;a class="headerlink" href="#el-problema-a-resolver" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;"Automation is important for my sense of well being. I hate dealing with mundane repetitive tasks."&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Desafíos comunes&lt;/strong&gt;:
+- Mantener &lt;strong&gt;ejemplos de código actualizados&lt;/strong&gt;
+- &lt;strong&gt;Múltiples formatos&lt;/strong&gt; de salida (HTML, PDF, blog)
+- &lt;strong&gt;Tareas repetitivas&lt;/strong&gt; de construcción y publicación
+- &lt;strong&gt;Errores de copy-paste&lt;/strong&gt; en output de programas&lt;/p&gt;
+&lt;h2 id="la-solucion-trio-de-herramientas"&gt;La solución: Trio de herramientas&lt;a class="headerlink" href="#la-solucion-trio-de-herramientas" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="sphinx-motor-de-documentacion"&gt;Sphinx: Motor de documentación&lt;a class="headerlink" href="#sphinx-motor-de-documentacion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Conversión reStructuredText&lt;/strong&gt; a múltiples formatos&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Temas personalizables&lt;/strong&gt; con Jinja templates&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Generación automática&lt;/strong&gt; de índices y referencias cruzadas&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="paver-automatizacion-de-builds"&gt;Paver: Automatización de builds&lt;a class="headerlink" href="#paver-automatizacion-de-builds" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# pavement.py&lt;/span&gt;
+&lt;span class="nd"&gt;@task&lt;/span&gt;
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;html&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Build HTML documentation&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="n"&gt;call_task&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;cog&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;sphinx_build&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;html&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="nd"&gt;@task&lt;/span&gt;  
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;pdf&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Build PDF documentation&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="n"&gt;call_task&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;cog&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;sphinx_build&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;latex&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;make_pdf&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Resuelve&lt;/strong&gt;: Automatización de procesos repetitivos de construcción&lt;/p&gt;
+&lt;h3 id="cog-insercion-automatica-de-codigo"&gt;Cog: Inserción automática de código&lt;a class="headerlink" href="#cog-insercion-automatica-de-codigo" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;..&lt;/span&gt; &lt;span class="ow"&gt;cog&lt;/span&gt;&lt;span class="p"&gt;::&lt;/span&gt;
+
+   import cog
+   import subprocess
+
+   result = subprocess.run([&amp;#39;python&amp;#39;, &amp;#39;ejemplo.py&amp;#39;], 
+                          capture_output=True, text=True)
+   cog.out(result.stdout)
+
+&lt;span class="p"&gt;..&lt;/span&gt; &lt;span class="ow"&gt;cog&lt;/span&gt;&lt;span class="p"&gt;::&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Ventaja clave&lt;/strong&gt;: El output de programas se &lt;strong&gt;actualiza automáticamente&lt;/strong&gt; al regenerar la documentación.&lt;/p&gt;
+&lt;h2 id="workflow-de-produccion"&gt;Workflow de producción&lt;a class="headerlink" href="#workflow-de-produccion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="1-escritura-en-restructuredtext"&gt;1. Escritura en reStructuredText&lt;a class="headerlink" href="#1-escritura-en-restructuredtext" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="gh"&gt;Ejemplo de uso&lt;/span&gt;
+&lt;span class="gh"&gt;==============&lt;/span&gt;
+
+Ejecutamos el script:
+
+&lt;span class="p"&gt;..&lt;/span&gt; &lt;span class="ow"&gt;cog&lt;/span&gt;&lt;span class="p"&gt;::&lt;/span&gt;
+   cog.out(&amp;quot;$ python mi_script.py\n&amp;quot;)
+   result = subprocess.run([&amp;#39;python&amp;#39;, &amp;#39;mi_script.py&amp;#39;], 
+                          capture_output=True, text=True)
+   cog.out(result.stdout)
+&lt;span class="p"&gt;..&lt;/span&gt; &lt;span class="ow"&gt;cog&lt;/span&gt;&lt;span class="p"&gt;::&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id="2-construccion-automatizada"&gt;2. Construcción automatizada&lt;a class="headerlink" href="#2-construccion-automatizada" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Un solo comando para todo&lt;/span&gt;
+paver&lt;span class="w"&gt; &lt;/span&gt;html
+
+&lt;span class="c1"&gt;# O para múltiples destinos&lt;/span&gt;
+paver&lt;span class="w"&gt; &lt;/span&gt;all_formats
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id="3-publicacion-multi-destino"&gt;3. Publicación multi-destino&lt;a class="headerlink" href="#3-publicacion-multi-destino" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Python Module of the Week (PyMOTW)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Blog personal&lt;/strong&gt; &lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Sitio web del proyecto&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;O'Reilly blog&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Documentación PDF&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="ventajas-del-enfoque"&gt;Ventajas del enfoque&lt;a class="headerlink" href="#ventajas-del-enfoque" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="consistencia-garantizada"&gt;Consistencia garantizada&lt;a class="headerlink" href="#consistencia-garantizada" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Ejemplos siempre actualizados&lt;/strong&gt; con el código real&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Formato uniforme&lt;/strong&gt; across múltiples destinos&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Sin errores de transcripción&lt;/strong&gt; manual&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="eficiencia-maximizada"&gt;Eficiencia maximizada&lt;a class="headerlink" href="#eficiencia-maximizada" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Un source, múltiples outputs&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Automatización completa&lt;/strong&gt; del pipeline&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Focus en contenido&lt;/strong&gt;, no en proceso&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="mantenibilidad"&gt;Mantenibilidad&lt;a class="headerlink" href="#mantenibilidad" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Cambios en una sola fuente&lt;/strong&gt; se propagan automáticamente&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Testing integrado&lt;/strong&gt; de ejemplos de código&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Versionado único&lt;/strong&gt; para toda la documentación&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="implementacion-practica"&gt;Implementación práctica&lt;a class="headerlink" href="#implementacion-practica" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# pavement.py completo&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;paver.easy&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;paver.doctools&lt;/span&gt;
+
+&lt;span class="nd"&gt;@task&lt;/span&gt;
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;cog&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Run Cog to update code examples&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="n"&gt;sh&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;cog -r *.rst&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="nd"&gt;@task&lt;/span&gt;
+&lt;span class="nd"&gt;@needs&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;cog&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;html&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Build HTML docs&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="n"&gt;paver&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;doctools&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;html&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+
+&lt;span class="nd"&gt;@task&lt;/span&gt;
+&lt;span class="nd"&gt;@needs&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;cog&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; 
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;blog_post&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Generate blog post version&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="c1"&gt;# Custom blog formatting&lt;/span&gt;
+    &lt;span class="k"&gt;pass&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Este workflow representa la &lt;strong&gt;automatización inteligente&lt;/strong&gt; de documentación técnica: escribes una vez, publicas en todas partes, siempre actualizado.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Fuente original&lt;/em&gt;: &lt;a href="https://doughellmann.com/blog/2009/02/02/writing-technical-documentation-with-sphinx-paver-and-cog/"&gt;Doug Hellmann&lt;/a&gt;&lt;/p&gt;</content><category term="Documentación"></category><category term="sphinx"></category><category term="paver"></category><category term="cog"></category><category term="documentación"></category><category term="rst"></category><category term="automation"></category></entry></feed>

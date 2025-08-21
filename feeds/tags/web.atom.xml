@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Anotaciones por Pablo Caro - web</title><link href="http://pablocaro.es/" rel="alternate"></link><link href="http://pablocaro.es/feeds/tags/web.atom.xml" rel="self"></link><id>http://pablocaro.es/</id><updated>2010-04-28T03:33:00+02:00</updated><subtitle>Anotaciones</subtitle><entry><title>Completar mientras se depura en zope</title><link href="http://pablocaro.es/completar-mientras-se-depura-en-zope" rel="alternate"></link><published>2010-04-28T03:33:00+02:00</published><updated>2010-04-28T03:33:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2010-04-28:/completar-mientras-se-depura-en-zope</id><content type="html">
+        Siempre tengo que buscar esto en google, para esto tengo el blog:
+
+&lt;pre lang="bash"&gt;
+$ bin/instance debug
+&lt;/pre&gt;
+
+&lt;pre lang="python"&gt;
+&gt;&gt;&gt; import readline, rlcompleter
+&gt;&gt;&gt; readline.parse_and_bind('tab: complete')
+&gt;&gt;&gt; app.
+Display all 760 possibilities? (y or n)
+&gt;&gt;&gt; 
+&lt;/pre&gt;
+    </content><category term="Programación"></category><category term="web"></category></entry><entry><title>Colores desde web developer tools</title><link href="http://pablocaro.es/colores-desde-web-developer-tools" rel="alternate"></link><published>2009-11-10T04:55:00+01:00</published><updated>2009-11-10T04:55:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2009-11-10:/colores-desde-web-developer-tools</id><content type="html">
+        Últimamente uso tanto &lt;a href="http://getfirebug.com/"&gt;firebug&lt;/a&gt; que ni me acuerdo de las &lt;a href="https://addons.mozilla.org/en-US/firefox/addon/60"&gt;Web Developer Tools&lt;/a&gt;.
+Escribo esto para recordar que sigue siendo muy útil esta extensión. 
+Por ejemplo, puedo ver los colores (css) usados en una página web a través del menú &lt;em&gt;Información&lt;/em&gt;, seleccionando &lt;em&gt;Ver información del color&lt;/em&gt;.
+
+
+    </content><category term="Programación"></category><category term="web"></category></entry><entry><title>CSS: Estilos de selección de texto</title><link href="http://pablocaro.es/css-estilos-de-seleccion-de-texto" rel="alternate"></link><published>2009-07-09T03:57:00+02:00</published><updated>2009-07-09T03:57:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2009-07-09:/css-estilos-de-seleccion-de-texto</id><content type="html">
+        Una de esas declaraciones de CSS3 que ya aceptan muchos navegadores actuales es &lt;strong&gt;::selection&lt;/strong&gt;.
+Se puede utilizar así:
+&lt;pre lang="css"&gt;
+p::selection {
+	background: #ccaacc; /* Safari */
+	}
+p::-moz-selection {
+	background: #ccaacc; /* Firefox */
+}
+&lt;/pre&gt;
+    </content><category term="Programación"></category><category term="web"></category></entry><entry><title>Contenedor de Floats: How to IE &amp; FF</title><link href="http://pablocaro.es/contenedor-de-floats-how-to-ie-ff" rel="alternate"></link><published>2009-05-21T10:41:00+02:00</published><updated>2009-05-21T10:41:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2009-05-21:/contenedor-de-floats-how-to-ie-ff</id><summary type="html">
+        Espero no olvidar esto más así que dejo la notita.
+
+Si tienes un elemento (por ejemplo un div#padre), que contiene sólo flotantes (otros divs por ejemplo), no será capaz IE de calcular bien su tamaño (se ve muy claro con un background).
+
+Para que funcione con explorer y firefox …</summary><content type="html">
+        Espero no olvidar esto más así que dejo la notita.
+
+Si tienes un elemento (por ejemplo un div#padre), que contiene sólo flotantes (otros divs por ejemplo), no será capaz IE de calcular bien su tamaño (se ve muy claro con un background).
+
+Para que funcione con explorer y firefox la regla es ponerle al elemento contenedor las reglas css:
+
+&lt;pre lang="css"&gt;
+div#padre {
+  overflow: hidden;
+  zoom:1;
+}
+&lt;/pre&gt;
+
+la regla del zoom es para aplicar el hasLayout en el ie6. No es estándar y es mejor ponerla en un condicional para este navegador.
+
+Nota personal: Pablo olvida el div con el clear:both que en este caso no es solución.
+
+    </content><category term="Programación"></category><category term="web"></category></entry></feed>

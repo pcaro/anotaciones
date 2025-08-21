@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8"> 
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Pablo Caro" />
+        <meta name="copyright" content="Pablo Caro" />
+
+        <meta name="description" content="Métodos y herramientas para descubrir dispositivos activos en redes locales usando nmap, arp-scan, netdiscover y otras técnicas de reconocimiento
+" />
+        <meta name="twitter:creator" content="@pcaro">
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="nmap, network-discovery, arp-scan, netdiscover, seguridad, Seguridad, " />
+
+<meta property="og:title" content="Cómo encontrar hosts vivos en tu red local "/>
+<meta property="og:url" content="http://pablocaro.es/encontrar-hosts-vivos-red" />
+<meta property="og:description" content="Métodos y herramientas para descubrir dispositivos activos en redes locales usando nmap, arp-scan, netdiscover y otras técnicas de reconocimiento" />
+<meta property="og:site_name" content="Anotaciones por Pablo Caro" />
+<meta property="og:article:author" content="Pablo Caro" />
+<meta property="og:article:published_time" content="2016-06-27T07:59:00+02:00" />
+<meta name="twitter:title" content="Cómo encontrar hosts vivos en tu red local ">
+<meta name="twitter:description" content="Métodos y herramientas para descubrir dispositivos activos en redes locales usando nmap, arp-scan, netdiscover y otras técnicas de reconocimiento">
+<meta property="og:image" content="http://pablocaro.es/theme/images/apple-touch-icon-152x152.png" />
+<meta name="twitter:image" content="http://pablocaro.es/theme/images/apple-touch-icon-152x152.png" >
+
+        <title>Cómo encontrar hosts vivos en tu red local  · Anotaciones por Pablo Caro
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="http://pablocaro.es/theme/css/pygments.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://pablocaro.es/theme/tipuesearch/tipuesearch.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://pablocaro.es/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://pablocaro.es/theme/css/custom.css" media="screen">
+        <link rel="shortcut icon" href="http://pablocaro.es/theme/images/favicon.ico" type="image/x-icon" type="image/png" />
+        <link rel="icon" href="http://pablocaro.es/theme/images/apple-touch-icon-152x152.png" type="image/png" />
+        <link rel="apple-touch-icon" href="http://pablocaro.es/theme/images/apple-touch-icon.png"  type="image/png" />
+        <link rel="apple-touch-icon" sizes="57x57" href="http://pablocaro.es/theme/images/apple-touch-icon-57x57.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="72x72" href="http://pablocaro.es/theme/images/apple-touch-icon-72x72.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="76x76" href="http://pablocaro.es/theme/images/apple-touch-icon-76x76.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="114x114" href="http://pablocaro.es/theme/images/apple-touch-icon-114x114.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="120x120" href="http://pablocaro.es/theme/images/apple-touch-icon-120x120.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="144x144" href="http://pablocaro.es/theme/images/apple-touch-icon-144x144.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="152x152" href="http://pablocaro.es/theme/images/apple-touch-icon-152x152.png" type="image/png" />
+        <link href="http://pablocaro.es/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Anotaciones por Pablo Caro - Full Atom Feed" />
+        <link href="http://pablocaro.es/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Anotaciones por Pablo Caro - Full RSS Feed" />
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+     })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-60035125-1', 'auto');
+    ga('send', 'pageview');
+</script>
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="http://pablocaro.es/"><span class=site-name><span style="color:#AA1032;">Anotaciones</span> <span style="color:darkblue;">por</span> <span style="color:black">Pablo Caro</span></span></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="http://pablocaro.es">Inicio</a></li>
+                            <li ><a href="http://pablocaro.es/categories.html">Categorías</a></li>
+                            <li ><a href="http://pablocaro.es/tags.html">Etiquetas</a></li>
+                            <li ><a href="http://pablocaro.es/archives.html">Archivos</a></li>
+                            <li><form class="navbar-search" action="http://pablocaro.es/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Búsqueda" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="http://pablocaro.es/encontrar-hosts-vivos-red"> Cómo encontrar hosts vivos en tu red local  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+        <div class="span8 offset2 article-content">
+
+            
+            <p>Descubrir <strong>qué dispositivos están activos</strong> en tu red local es una tarea fundamental para administradores de red y profesionales de seguridad. Estas son las técnicas más efectivas.</p>
+<h2 id="nmap-la-herramienta-principal">Nmap: La herramienta principal<a class="headerlink" href="#nmap-la-herramienta-principal" title="Permanent link">&para;</a></h2>
+<h3 id="escaneo-basico-de-hosts">Escaneo básico de hosts<a class="headerlink" href="#escaneo-basico-de-hosts" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Ping scan simple</span>
+nmap<span class="w"> </span>-sn<span class="w"> </span><span class="m">192</span>.168.1.1/24
+
+<span class="c1"># Escaneo con puertos TCP específicos</span>
+nmap<span class="w"> </span>-sP<span class="w"> </span>-PS22,3389<span class="w"> </span><span class="m">192</span>.168.1.1/24
+
+<span class="c1"># Escaneo UDP para dispositivos especiales</span>
+nmap<span class="w"> </span>-sP<span class="w"> </span>-PU161<span class="w"> </span><span class="m">192</span>.168.1.1/24
+</code></pre></div>
+
+<p><strong>-sn</strong>: Solo descubrimiento de hosts, sin escaneo de puertos<br>
+<strong>-PS</strong>: TCP SYN discovery en puertos específicos<br>
+<strong>-PU</strong>: UDP discovery (útil para dispositivos embebidos)</p>
+<h3 id="escaneos-mas-exhaustivos">Escaneos más exhaustivos<a class="headerlink" href="#escaneos-mas-exhaustivos" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Escaneo completo con detección de OS</span>
+nmap<span class="w"> </span>-A<span class="w"> </span><span class="m">192</span>.168.1.1/24
+
+<span class="c1"># Escaneo TCP Connect (menos intrusivo)</span>
+nmap<span class="w"> </span>-sT<span class="w"> </span><span class="m">192</span>.168.1.1/24
+
+<span class="c1"># Bypass de firewall con fragmentación</span>
+nmap<span class="w"> </span>-f<span class="w"> </span>-sS<span class="w"> </span><span class="m">192</span>.168.1.1/24
+</code></pre></div>
+
+<h2 id="herramientas-alternativas">Herramientas alternativas<a class="headerlink" href="#herramientas-alternativas" title="Permanent link">&para;</a></h2>
+<h3 id="arp-scan-basado-en-arp">arp-scan: Basado en ARP<a class="headerlink" href="#arp-scan-basado-en-arp" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Escaneo de subred local</span>
+arp-scan<span class="w"> </span><span class="m">192</span>.168.12.0/24
+
+<span class="c1"># Con interfaz específica</span>
+arp-scan<span class="w"> </span>-I<span class="w"> </span>eth0<span class="w"> </span><span class="m">172</span>.16.17.0/24
+
+<span class="c1"># Scan local simplificado</span>
+arp-scan<span class="w"> </span>-l
+</code></pre></div>
+
+<p><strong>Ventaja</strong>: Funciona incluso con firewalls estrictos</p>
+<h3 id="netdiscover-descubrimiento-pasivoactivo">netdiscover: Descubrimiento pasivo/activo<a class="headerlink" href="#netdiscover-descubrimiento-pasivoactivo" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Descubrimiento activo</span>
+netdiscover<span class="w"> </span>-r<span class="w"> </span><span class="m">172</span>.16.17.0/24
+
+<span class="c1"># Modo pasivo (solo escucha)</span>
+netdiscover<span class="w"> </span>-p
+
+<span class="c1"># Fast mode</span>
+netdiscover<span class="w"> </span>-f<span class="w"> </span>-r<span class="w"> </span><span class="m">192</span>.168.1.0/24
+</code></pre></div>
+
+<h3 id="fing-scanner-movil">fing: Scanner móvil<a class="headerlink" href="#fing-scanner-movil" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Escaneo rápido</span>
+fing<span class="w"> </span>-r<span class="w"> </span><span class="m">1</span>
+
+<span class="c1"># Con detalles del fabricante</span>
+fing<span class="w"> </span>-o<span class="w"> </span>table,csv
+</code></pre></div>
+
+<h2 id="verificacion-post-escaneo">Verificación post-escaneo<a class="headerlink" href="#verificacion-post-escaneo" title="Permanent link">&para;</a></h2>
+<h3 id="revisar-tabla-arp">Revisar tabla ARP<a class="headerlink" href="#revisar-tabla-arp" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Ver tabla ARP actual</span>
+arp<span class="w"> </span>-a<span class="w"> </span>-n
+
+<span class="c1"># En sistemas modernos</span>
+ip<span class="w"> </span>neigh<span class="w"> </span>show
+
+<span class="c1"># Limpiar y reescanear</span>
+sudo<span class="w"> </span>arp<span class="w"> </span>-d<span class="w"> </span>-a
+ping<span class="w"> </span>-c<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">192</span>.168.1.<span class="o">{</span><span class="m">1</span>..254<span class="o">}</span>
+arp<span class="w"> </span>-a
+</code></pre></div>
+
+<h2 id="tecnicas-avanzadas">Técnicas avanzadas<a class="headerlink" href="#tecnicas-avanzadas" title="Permanent link">&para;</a></h2>
+<h3 id="wireshark-para-analisis-pasivo">Wireshark para análisis pasivo<a class="headerlink" href="#wireshark-para-analisis-pasivo" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Capturar tráfico en la interfaz de red</li>
+<li>Filtrar por ARP: <code>arp</code></li>
+<li>Analizar broadcast traffic</li>
+<li>Identificar dispositivos por patrones de tráfico</li>
+</ol>
+<h3 id="scripts-de-automatizacion">Scripts de automatización<a class="headerlink" href="#scripts-de-automatizacion" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+<span class="c1"># Scan completo de red local</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Escaneando red...&quot;</span>
+nmap<span class="w"> </span>-sn<span class="w"> </span><span class="k">$(</span>ip<span class="w"> </span>route<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-E<span class="w"> </span><span class="s2">&quot;^192|^10|^172&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{print $1}&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-1<span class="k">)</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Verificando ARP...&quot;</span>
+arp<span class="w"> </span>-a<span class="w"> </span>-n<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-v<span class="w"> </span><span class="s2">&quot;incomplete&quot;</span>
+</code></pre></div>
+
+<h2 id="consideraciones-importantes">Consideraciones importantes<a class="headerlink" href="#consideraciones-importantes" title="Permanent link">&para;</a></h2>
+<h3 id="limitaciones-por-firewall">Limitaciones por firewall<a class="headerlink" href="#limitaciones-por-firewall" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Algunos dispositivos</strong> bloquean ping/ICMP</li>
+<li><strong>Firewalls corporativos</strong> pueden filtrar escaneos</li>
+<li><strong>Diferentes puertos</strong> pueden revelar dispositivos "ocultos"</li>
+</ul>
+<h3 id="consideraciones-legales">Consideraciones legales<a class="headerlink" href="#consideraciones-legales" title="Permanent link">&para;</a></h3>
+<p>⚠️ <strong>Autorización necesaria</strong>: Solo escanea redes propias<br>
+⚠️ <strong>Políticas corporativas</strong>: Verifica antes de escanear en entornos empresariales</p>
+<h3 id="optimizacion-por-tipo-de-red">Optimización por tipo de red<a class="headerlink" href="#optimizacion-por-tipo-de-red" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Red doméstica (routers, IoT)</span>
+nmap<span class="w"> </span>-sn<span class="w"> </span>--min-rate<span class="w"> </span><span class="m">1000</span><span class="w"> </span><span class="m">192</span>.168.1.1/24
+
+<span class="c1"># Red corporativa (servidores, estaciones)</span>
+nmap<span class="w"> </span>-sP<span class="w"> </span>-PS80,443,22,3389<span class="w"> </span><span class="m">10</span>.0.0.0/8
+
+<span class="c1"># Red industrial (dispositivos embebidos)</span>
+nmap<span class="w"> </span>-sP<span class="w"> </span>-PU161,502<span class="w"> </span><span class="m">172</span>.16.0.0/12
+</code></pre></div>
+
+<p>La <strong>combinación de múltiples técnicas</strong> proporciona el panorama más completo de dispositivos activos en tu red.</p>
+<p><em>Fuente original</em>: <a href="http://security.stackexchange.com/questions/36198/how-to-find-live-hosts-on-my-network">Information Security Stack Exchange</a></p>
+            
+            <section>
+<p id="comment-message">¿Qué te parece? ¿Piensas que olvidé algo? ¿Poco claro? Deja abajo tus comentarios. </p>
+<div class="accordion" id="accordion2">
+    <div class="accordion-group">
+        <div class="accordion-heading">
+            <a class="accordion-toggle disqus-comment-count" data-toggle="collapse" data-parent="#accordion2"
+                href="http://pablocaro.es/encontrar-hosts-vivos-red#disqus_thread">
+                Comments
+            </a>
+        </div>
+        <div id="disqus_thread" class="accordion-body collapse">
+            <div class="accordion-inner">
+                <div class="comments">
+                    <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'anotaciones';
+        var disqus_identifier = 'http://pablocaro.es/encontrar-hosts-vivos-red';
+    var disqus_url = 'http://pablocaro.es/encontrar-hosts-vivos-red';
+
+    (function() {
+         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+         dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+     })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+
+            <hr/>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+            <h4>Publicado</h4>
+            <time pubdate="pubdate" datetime="2016-06-27T07:59:00+02:00">jun 27, 2016</time>
+            <h4>Categoría</h4>
+            <a class="category-link" href="http://pablocaro.es/categories.html#seguridad-ref">Seguridad</a>
+            <h4>Tags</h4>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="http://pablocaro.es/tags.html#arp-scan-ref">arp-scan
+                    <span>1</span>
+</a></li>
+                <li><a href="http://pablocaro.es/tags.html#netdiscover-ref">netdiscover
+                    <span>1</span>
+</a></li>
+                <li><a href="http://pablocaro.es/tags.html#network-discovery-ref">network-discovery
+                    <span>1</span>
+</a></li>
+                <li><a href="http://pablocaro.es/tags.html#nmap-ref">nmap
+                    <span>1</span>
+</a></li>
+                <li><a href="http://pablocaro.es/tags.html#seguridad-ref">seguridad
+                    <span>2</span>
+</a></li>
+            </ul>
+<h4>Contacta conmigo</h4>
+    <a href="http://twitter.com/pcaro" title="My Twitter Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-twitter sidebar-social-links"></i></a>
+    <a href="http://github.com/pcaro" title="My Github Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-github sidebar-social-links"></i></a>
+    <a href="https://www.linkedin.com/in/pcarorevuelta" title="My Linkedin Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-linkedin sidebar-social-links"></i></a>
+    <a href="https://www.facebook.com/pablo.carorevuelta" title="My Facebook Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-facebook sidebar-social-links"></i></a>
+    <a href="mailto:correo@pablocaro.es" title="My Email Address" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-envelope sidebar-social-links"></i></a>
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-subtitle"><span class="site-name"><span style="color:#AA1032;">Anotaciones</span> <span style="color:darkblue;">por</span> <span style="color:black">Pablo Caro</span></span> - Anotaciones</li>
+        <li class="elegant-license"><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"> Anotaciones</span> de <a xmlns:cc="http://creativecommons.org/ns#" href="http://pablocaro.es" property="cc:attributionName" rel="cc:attributionURL">Pablo Caro</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>.</li>
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a></li>
+    </ul>
+</div>
+</footer>            <script src="http://code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+            <script type="text/javascript">
+var disqus_shortname = 'anotaciones';
+(function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
+<script  language="javascript" type="text/javascript">
+function uncollapse() {
+    if (window.location.hash.match(/^#comment-\d+$/)) {
+        $('#disqus_thread').collapse('show');
+    }
+}
+</script>
+<script type="text/javascript" language="JavaScript">
+uncollapse();
+window.onhashchange=function(){
+    if (window.location.hash.match(/^#comment-\d+$/))
+        window.location.reload(true);
+}
+</script>
+<script>
+$('#disqus_thread').on('shown', function () {
+    var link = document.getElementsByClassName('accordion-toggle');
+    var old_innerHTML = link[0].innerHTML;
+    $(link[0]).fadeOut(500, function() {
+        $(this).text('Click here to hide comments').fadeIn(500);
+    });
+    $('#disqus_thread').on('hidden', function () {
+        $(link[0]).fadeOut(500, function() {
+            $(this).text(old_innerHTML).fadeIn(500);
+        });
+    })
+})
+</script>
+
+
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : http://oncrashreboot.com/pelican-elegant -->
+</html>

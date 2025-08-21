@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Anotaciones por Pablo Caro - Sin Categoría</title><link href="http://pablocaro.es/" rel="alternate"></link><link href="http://pablocaro.es/feeds/categories/sin-categoria.atom.xml" rel="self"></link><id>http://pablocaro.es/</id><updated>2013-03-25T11:01:00+01:00</updated><subtitle>Anotaciones</subtitle><entry><title>A vueltas con suse</title><link href="http://pablocaro.es/a-vueltas-con-suse" rel="alternate"></link><published>2013-03-25T11:01:00+01:00</published><updated>2013-03-25T11:01:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2013-03-25:/a-vueltas-con-suse</id><content type="html">
+        Algunos comandos de zypper para recordar:
+
+Para borrar un paquete y también las dependencias:
+&lt;pre lang="bash"&gt;
+zypper remove  --clean-deps packate
+&lt;/pre&gt;
+
+Listar paquetes huérfanos:
+&lt;pre lang="bash"&gt;
+LC_ALL=C zypper se -s | fgrep '(System Packages)'
+&lt;/pre&gt;
+
+    </content><category term="Sin Categoría"></category></entry><entry><title>Cambiar de lugar un virtualenv</title><link href="http://pablocaro.es/cambiar-de-lugar-un-virtualenv" rel="alternate"></link><published>2012-10-24T03:15:00+02:00</published><updated>2012-10-24T03:15:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2012-10-24:/cambiar-de-lugar-un-virtualenv</id><content type="html">
+        La opción --relocate no funciona bien.
+
+Lo mejor es usar &lt;a href="https://github.com/fireteam/virtualenv-tools"&gt;virtualenv-tools&lt;/a&gt;.
+    </content><category term="Sin Categoría"></category><category term="python"></category></entry><entry><title>Diccionario de español para komodo edit</title><link href="http://pablocaro.es/diccionario-de-espanol-para-komodo-edit" rel="alternate"></link><published>2011-06-13T07:41:00+02:00</published><updated>2011-06-13T07:41:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2011-06-13:/diccionario-de-espanol-para-komodo-edit</id><content type="html">
+        Para instalarlo se siguen &lt;a href="http://community.activestate.com/faq/how-do-i-install-new-dictionaries-spell-checking#comment-4059" target="_blank"&gt;estas instrucciones&lt;/a&gt; descargando previamente &lt;a href="https://addons.mozilla.org/es-ES/firefox/addon/spanish-spain-dictionary/" target="_blank"&gt;el addon&lt;/a&gt;.
+
+No he probado a ver si funciona en el perfil de usuario, pero eso estaría mejor.
+    </content><category term="Sin Categoría"></category></entry><entry><title>21/3</title><link href="http://pablocaro.es/21-3" rel="alternate"></link><published>2011-03-22T02:35:00+01:00</published><updated>2011-03-22T02:35:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2011-03-22:/21-3</id><summary type="html">
+        Han pasado ya&lt;a title="día síndrome down" href="http://www.abc.es/20110321/comunidad-castillaleon/abcp-mundial-sindrome-down-20110321.html"&gt; tres días 21&lt;/a&gt; en lo que llevamos de año. Ayer, fue un día de &lt;a href="http://www.eldiariomontanes.es/v/20110322/sociedad/destacados/jovenes-sindrome-down-exigen-20110322.html"&gt;reivindicaciones&lt;/a&gt;, para exigir la visibilidad necesaria y el respecto que esta sociedad &lt;a href="http://www.elpais.com/articulo/sociedad/Inhabilitado/dueno/pub/echo/jovenes/Down/elpepisoc/20110311elpepisoc_13/Tes"&gt;todavía niega&lt;/a&gt;. Cuando en el día de hoy se habla de &lt;a href="http://www.elpais.com/articulo/internacional/disputas/participacion/OTAN/dividen/aliados/elpepuint/20110322elpepuint_6/Tes"&gt;guerra&lt;/a&gt; y &lt;a href="http://www.elpais.com/articulo/internacional/tecnicos/reanundan/trabajos/Fukushima/elpepuint/20110322elpepuint_5/Tes"&gt;emisiones radiactivas&lt;/a&gt;, yo he aprendido en este último …</summary><content type="html">
+        Han pasado ya&lt;a title="día síndrome down" href="http://www.abc.es/20110321/comunidad-castillaleon/abcp-mundial-sindrome-down-20110321.html"&gt; tres días 21&lt;/a&gt; en lo que llevamos de año. Ayer, fue un día de &lt;a href="http://www.eldiariomontanes.es/v/20110322/sociedad/destacados/jovenes-sindrome-down-exigen-20110322.html"&gt;reivindicaciones&lt;/a&gt;, para exigir la visibilidad necesaria y el respecto que esta sociedad &lt;a href="http://www.elpais.com/articulo/sociedad/Inhabilitado/dueno/pub/echo/jovenes/Down/elpepisoc/20110311elpepisoc_13/Tes"&gt;todavía niega&lt;/a&gt;. Cuando en el día de hoy se habla de &lt;a href="http://www.elpais.com/articulo/internacional/disputas/participacion/OTAN/dividen/aliados/elpepuint/20110322elpepuint_6/Tes"&gt;guerra&lt;/a&gt; y &lt;a href="http://www.elpais.com/articulo/internacional/tecnicos/reanundan/trabajos/Fukushima/elpepuint/20110322elpepuint_5/Tes"&gt;emisiones radiactivas&lt;/a&gt;, yo he aprendido en este último año, que si gobernaran ellos no habría guerras, y que la sonrisa de un niño con el síndrome radia felicidad a Tera &lt;a href="http://es.wikipedia.org/wiki/Sievert"&gt;Sieverts&lt;/a&gt; por segundo. No se se afectará a la tiroides, pero os aseguro que se nota en el corazón.
+    </content><category term="Sin Categoría"></category></entry><entry><title>Añadiendo un repositio PPA en karmic</title><link href="http://pablocaro.es/anadiendo-un-repositio-ppa-en-karmic" rel="alternate"></link><published>2011-02-23T07:22:00+01:00</published><updated>2011-02-23T07:22:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2011-02-23:/anadiendo-un-repositio-ppa-en-karmic</id><content type="html">
+        Este comandito te añade sola la fuente (ojo, en el directorio /etc/apt/sources.list.d) y pide las claves:
+&lt;pre lang="bash"&gt;sudo add-apt-repository ppa:chromium-daily&lt;/pre&gt;
+    </content><category term="Sin Categoría"></category></entry><entry><title>Descargar una web para visualización local con wget</title><link href="http://pablocaro.es/descargar-una-web-para-visualizacion-local-con-wget" rel="alternate"></link><published>2010-02-22T10:09:00+01:00</published><updated>2010-02-22T10:09:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2010-02-22:/descargar-una-web-para-visualizacion-local-con-wget</id><summary type="html">
+        El comando es
+&lt;pre lang="bash"&gt;$ wget -E -H -k -K -p  http://www.google.es&lt;/pre&gt;
+Con &lt;em&gt;-p&lt;/em&gt; hacemos que se descarguen los enlaces requeridos (css, javascript), con &lt;em&gt;-k&lt;/em&gt; convertimos los enlaces dentro del html para visualización local (&lt;em&gt;-K&lt;/em&gt; copia de seguriad) y con &lt;em&gt;-E&lt;/em&gt; aseguramos que los ficheros descargados tengan extensión html …</summary><content type="html">
+        El comando es
+&lt;pre lang="bash"&gt;$ wget -E -H -k -K -p  http://www.google.es&lt;/pre&gt;
+Con &lt;em&gt;-p&lt;/em&gt; hacemos que se descarguen los enlaces requeridos (css, javascript), con &lt;em&gt;-k&lt;/em&gt; convertimos los enlaces dentro del html para visualización local (&lt;em&gt;-K&lt;/em&gt; copia de seguriad) y con &lt;em&gt;-E&lt;/em&gt; aseguramos que los ficheros descargados tengan extensión html para la visualización en local.
+    </content><category term="Sin Categoría"></category></entry><entry><title>Plone: Registrar pasos de importación con zcml</title><link href="http://pablocaro.es/plone-registrar-pasos-de-importacion-con-zcml" rel="alternate"></link><published>2010-01-27T04:38:00+01:00</published><updated>2010-01-27T04:38:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2010-01-27:/plone-registrar-pasos-de-importacion-con-zcml</id><summary type="html">
+        Registrar un paso de importación con xml el el profile, puede fallar cuando quitas el paquete del buildout.
+Un paso roto se que queda dentro de portal_setup_tool.
+
+En algunas versiones de plone esto da un error, haciendo imposible aplicar el perfil nunca más.
+
+En otras versiones (plone 3.2 hacia …</summary><content type="html">
+        Registrar un paso de importación con xml el el profile, puede fallar cuando quitas el paquete del buildout.
+Un paso roto se que queda dentro de portal_setup_tool.
+
+En algunas versiones de plone esto da un error, haciendo imposible aplicar el perfil nunca más.
+
+En otras versiones (plone 3.2 hacia arriba) sólo da un warning.
+&lt;pre&gt;
+&lt;configure xmlns="http://namespaces.zope.org/zope" xmlns:gs="http://namespaces.zope.org/genericsetup" xmlns:five="http://namespaces.zope.org/five" i18n_domain="poi"&gt; 
+  &lt;gs:importstep name="poi_various" title="Poi various import handlers" description="" handler="Products.Poi.setuphandlers.import_various"&gt; 
+    &lt;depends name="catalog" /&gt; 
+  &lt;/gs:importstep&gt; 
+&lt;/configure&gt; 
+&lt;/pre&gt;
+
+Esto es una traducción de un correo de Mauris Van Rees
+    </content><category term="Sin Categoría"></category></entry><entry><title>Descargar código de un repositorio publicado con gitweb</title><link href="http://pablocaro.es/descargar-codigo-de-un-repositorio-publicado-con-gitweb" rel="alternate"></link><published>2010-01-04T14:31:00+01:00</published><updated>2010-01-04T14:31:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2010-01-04:/descargar-codigo-de-un-repositorio-publicado-con-gitweb</id><summary type="html">
+        &lt;p&gt;Quería probar un software disponible en la red (&lt;a href="http://www.perfect-sale.com/"&gt;Perfect Sale&lt;/a&gt;). Sabía que tenía que usar &lt;em&gt;git clone&lt;/em&gt; pero no la url. &lt;/p&gt;
+&lt;p&gt;
+No queda claro (al menos a mí) &lt;a href="http://git.hforge.org/?p=shop.git;a=tree"&gt;en el repositorio gitweb&lt;/a&gt; la url a usar.&lt;/p&gt;
+Al fin, encontré la solución en &lt;a href="http://gitweb.codeendeavor.com/"&gt;un repositorio mejor documentado&lt;/a&gt; (gracias).
+&lt;p&gt;El protocolo es …&lt;/p&gt;</summary><content type="html">
+        &lt;p&gt;Quería probar un software disponible en la red (&lt;a href="http://www.perfect-sale.com/"&gt;Perfect Sale&lt;/a&gt;). Sabía que tenía que usar &lt;em&gt;git clone&lt;/em&gt; pero no la url. &lt;/p&gt;
+&lt;p&gt;
+No queda claro (al menos a mí) &lt;a href="http://git.hforge.org/?p=shop.git;a=tree"&gt;en el repositorio gitweb&lt;/a&gt; la url a usar.&lt;/p&gt;
+Al fin, encontré la solución en &lt;a href="http://gitweb.codeendeavor.com/"&gt;un repositorio mejor documentado&lt;/a&gt; (gracias).
+&lt;p&gt;El protocolo es git y la url no incluye ese "projects" que vemos en el rastro de migas. Lo anoto para no volver a perder el tiempo otra vez.&lt;/p&gt;
+&lt;p&gt;Así que para el proyecto citado la orden queda así:&lt;/p&gt;
+&lt;pre lang="bash"&gt;
+$ git clone git://git.hforge.org/shop.git
+&lt;/pre&gt;
+
+    </content><category term="Sin Categoría"></category></entry><entry><title>Que apache sirva el contenido de un fichero .py</title><link href="http://pablocaro.es/que-apache-sirva-el-contenido-de-un-fichero-py" rel="alternate"></link><published>2009-10-13T05:36:00+02:00</published><updated>2009-10-13T05:36:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2009-10-13:/que-apache-sirva-el-contenido-de-un-fichero-py</id><content type="html">
+        Para que el servidor apache de &lt;a href="http://www.webfaction.com/" target="_blank"&gt;webfaction&lt;/a&gt; no intentara ejecutar los scripts python que dejo para la descarga en este blog, me creé un fichero &lt;a href="http://httpd.apache.org/docs/1.3/howto/htaccess.html"&gt;&lt;em&gt;.htaccess&lt;/em&gt;&lt;/a&gt; y dentro:
+&lt;pre&gt;
+removeHandler cgi-script .pl .py .cgi
+&lt;/pre&gt;
+    </content><category term="Sin Categoría"></category></entry><entry><title>Cambiar pantalla anunciadora de kde: Ksplash theme generator</title><link href="http://pablocaro.es/cambiar-pantalla-anunciadora-de-kde-ksplash-theme-generator" rel="alternate"></link><published>2009-09-20T08:22:00+02:00</published><updated>2009-09-20T08:22:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2009-09-20:/cambiar-pantalla-anunciadora-de-kde-ksplash-theme-generator</id><content type="html">
+        Lo dicho en la nota anterior sobre &lt;a href="http://www.kde-apps.org/content/show.php/Kdm+theme+generator?content=102760"&gt;KDM Theme Generator&lt;/a&gt; aplica también para su aplicación hermana &lt;a href="http://www.kde-apps.org/content/show.php/Ksplash+theme+generator?content=104456" target="_blank"&gt;Ksplash theme generator&lt;/a&gt;
+    </content><category term="Sin Categoría"></category></entry><entry><title>Cambiar el aspecto de kdm: kdm theme generator</title><link href="http://pablocaro.es/cambiar-el-aspecto-de-kdm-kdm-theme-generator" rel="alternate"></link><published>2009-09-20T08:07:00+02:00</published><updated>2009-09-20T08:07:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2009-09-20:/cambiar-el-aspecto-de-kdm-kdm-theme-generator</id><summary type="html">
+        &lt;a href="http://www.kde-apps.org/content/show.php/Kdm+theme+generator?content=102760"&gt; KDM Theme Generator&lt;/a&gt; es una de esas aplicaciones simples y sencillas (sin interfaz gráfica siquiera), con una utilidad concretísima pero que funciona tan bien que da gloria de usar.
+
+Siguiendo las instrucciones de instalación, te crea un tema para KDM basado en el tema plasma activo y tu fondo de …</summary><content type="html">
+        &lt;a href="http://www.kde-apps.org/content/show.php/Kdm+theme+generator?content=102760"&gt; KDM Theme Generator&lt;/a&gt; es una de esas aplicaciones simples y sencillas (sin interfaz gráfica siquiera), con una utilidad concretísima pero que funciona tan bien que da gloria de usar.
+
+Siguiendo las instrucciones de instalación, te crea un tema para KDM basado en el tema plasma activo y tu fondo de escritorio actual. De esta forma tan simple mejorarás visualmente el arranque de tu kde.
+    </content><category term="Sin Categoría"></category></entry><entry><title>Manejo de árboles en bases de datos</title><link href="http://pablocaro.es/manejo-de-arboles-en-bases-de-datos" rel="alternate"></link><published>2009-07-07T16:59:00+02:00</published><updated>2009-07-07T16:59:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2009-07-07:/manejo-de-arboles-en-bases-de-datos</id><summary type="html">
+        Hay cuatro formas de guardar árboles en bases de datos relacionales:
+&lt;ol&gt;
+	&lt;li&gt;Adjacency List&lt;/li&gt;
+	&lt;li&gt;Materialized Paths&lt;/li&gt;
+	&lt;li&gt;Nested Sets o Modified Preorder Tree Traversal (MPTT)&lt;/li&gt;
+	&lt;li&gt;Nested intervals&lt;/li&gt;
+&lt;/ol&gt;
+Dejo unos enlaces:
+&lt;ul&gt;
+	&lt;li&gt;&lt;a href="http://www.dbazine.com/oracle/or-articles/tropashko4"&gt;Trees in SQL: Nested Sets and Materialized Path&lt;/a&gt; El articulo y el hombre de referencia&lt;/li&gt;
+	&lt;li&gt;&lt;a href="http://www.sitepoint.com/article/hierarchical-data-database/"&gt;Storing Hierarchical Data in a Database&lt;/a&gt; Todo …&lt;/li&gt;&lt;/ul&gt;</summary><content type="html">
+        Hay cuatro formas de guardar árboles en bases de datos relacionales:
+&lt;ol&gt;
+	&lt;li&gt;Adjacency List&lt;/li&gt;
+	&lt;li&gt;Materialized Paths&lt;/li&gt;
+	&lt;li&gt;Nested Sets o Modified Preorder Tree Traversal (MPTT)&lt;/li&gt;
+	&lt;li&gt;Nested intervals&lt;/li&gt;
+&lt;/ol&gt;
+Dejo unos enlaces:
+&lt;ul&gt;
+	&lt;li&gt;&lt;a href="http://www.dbazine.com/oracle/or-articles/tropashko4"&gt;Trees in SQL: Nested Sets and Materialized Path&lt;/a&gt; El articulo y el hombre de referencia&lt;/li&gt;
+	&lt;li&gt;&lt;a href="http://www.sitepoint.com/article/hierarchical-data-database/"&gt;Storing Hierarchical Data in a Database&lt;/a&gt; Todo muy clarito con muy buenos ejemplos&lt;/li&gt;
+	&lt;li&gt;&lt;a href="http://http://dev.mysql.com/tech-resources/articles/hierarchical-data.html"&gt;Mysql: datos jerárquicos&lt;/a&gt; Explicación clara y general&lt;/li&gt;
+	&lt;li&gt;&lt;a href="http://www.ibstaff.net/fmartinez/?p=18"&gt; Materialized Path + Nested Sets &lt;/a&gt; Una forma de mezclar estos dos metodos&lt;/li&gt;
+&lt;/ul&gt;
+Algunas implentacionaciones:
+&lt;ul&gt;
+	&lt;li&gt;&lt;a href="http://sqlamp.angri.ru/"&gt;sqlamp — Materialized Path for SQLAlchemy&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href="http://code.google.com/p/django-treebeard/"&gt;Django Treebeard&lt;/a&gt; Adjacency List, Materialized Path y Nested Sets para django&lt;/li&gt;
+	&lt;li&gt;&lt;a href="http://code.google.com/p/django-mptt/"&gt;django-mptt&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+    </content><category term="Sin Categoría"></category></entry><entry><title>Listar las bases de datos postgres que tengo instaladas</title><link href="http://pablocaro.es/listar-las-bases-de-datos-postgres-que-tengo-instaladas" rel="alternate"></link><published>2009-06-29T03:54:00+02:00</published><updated>2009-06-29T03:54:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2009-06-29:/listar-las-bases-de-datos-postgres-que-tengo-instaladas</id><content type="html">
+        Para ello:
+
+&lt;pre lang="bash"&gt;
+pcaro@davinci$ sudo /etc/init.d/postgresql-8.3 start
+pcaro@davinci$ sudo su - postgres
+postgres@davinci:~$ psql -l
+&lt;/pre&gt;
+    </content><category term="Sin Categoría"></category></entry><entry><title>Un servidor web de bolsillo gracias a python</title><link href="http://pablocaro.es/un-servidor-web-de-bolsillo-gracias-a-python" rel="alternate"></link><published>2009-06-16T10:31:00+02:00</published><updated>2009-06-16T10:31:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2009-06-16:/un-servidor-web-de-bolsillo-gracias-a-python</id><content type="html">
+        Otra cosita para recordar.
+La forma más simple de servir unos ficheros vía web:
+&lt;pre lang="bash"&gt;python -m SimpleHTTPServer 8080&lt;/pre&gt;
+Nota: Antes usaba:
+&lt;pre lang="bash"&gt;python -c "import SimpleHTTPServer;SimpleHTTPServer.test()"&lt;/pre&gt;
+Pero no permite indicar el puerto y es más tedioso de escribir.
+    </content><category term="Sin Categoría"></category><category term="python"></category></entry><entry><title>Comandos útiles en la consola de postgres (pgsql)</title><link href="http://pablocaro.es/comandos-utiles-en-la-consola-de-postgres-pgsql" rel="alternate"></link><published>2009-03-30T06:04:00+02:00</published><updated>2009-03-30T06:04:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2009-03-30:/comandos-utiles-en-la-consola-de-postgres-pgsql</id><summary type="html">
+        Otra de las cosas que simpre olvido. Así que lo anoto.
+
+Para sacar el resultado de una consulta sql a un fichero desde el pgsql.
+&lt;ol&gt;
+	&lt;li&gt;\a&lt;/li&gt;
+	&lt;li&gt;\f ,&lt;/li&gt;
+	&lt;li&gt;\o /tmp/salida.csv&lt;/li&gt;
+	&lt;li&gt;select * from ...&lt;/li&gt;
+&lt;/ol&gt;
+Se trata de:
+&lt;ol&gt;
+	&lt;li&gt;Cambiar entre modo de salida alineado y sin alinear&lt;/li&gt;
+	&lt;li&gt;Definir separador de campos (en …&lt;/li&gt;&lt;/ol&gt;</summary><content type="html">
+        Otra de las cosas que simpre olvido. Así que lo anoto.
+
+Para sacar el resultado de una consulta sql a un fichero desde el pgsql.
+&lt;ol&gt;
+	&lt;li&gt;\a&lt;/li&gt;
+	&lt;li&gt;\f ,&lt;/li&gt;
+	&lt;li&gt;\o /tmp/salida.csv&lt;/li&gt;
+	&lt;li&gt;select * from ...&lt;/li&gt;
+&lt;/ol&gt;
+Se trata de:
+&lt;ol&gt;
+	&lt;li&gt;Cambiar entre modo de salida alineado y sin alinear&lt;/li&gt;
+	&lt;li&gt;Definir separador de campos (en el ejemplo a una coma)&lt;/li&gt;
+	&lt;li&gt;Envíar resultados de consultas a archivo&lt;/li&gt;
+	&lt;li&gt;Ejecutar la consulta&lt;/li&gt;
+&lt;/ol&gt;
+    </content><category term="Sin Categoría"></category></entry><entry><title>Cambiar ipython para copiar y pegar luego como doctest</title><link href="http://pablocaro.es/cambiar-ipython-para-copiar-y-pegar-luego-como-doctest" rel="alternate"></link><published>2009-02-02T04:23:00+01:00</published><updated>2009-02-02T04:23:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2009-02-02:/cambiar-ipython-para-copiar-y-pegar-luego-como-doctest</id><content type="html">
+        Otra de las ordenes que nunca recuerdo. Estando dentro de &lt;a title="ipython" href="http://ipython.scipy.org/moin/" target="_blank"&gt;ipython&lt;/a&gt; para cambiar el prompt de forma que luego sea fácil crear &lt;a title="doctest" href="http://docs.python.org/library/doctest.html" target="_blank"&gt;doctests&lt;/a&gt;:
+
+&lt;strong&gt;&lt;tt&gt;%doctest_mode&lt;/tt&gt;&lt;/strong&gt;
+
+Esto entra en  el modo doctest de ipython. También puede ayudar &lt;strong&gt;&lt;tt&gt;%history -tn&lt;/tt&gt;&lt;/strong&gt;&lt;tt&gt; para recordar los commandos introducidos previamente.
+&lt;/tt&gt;
+    </content><category term="Sin Categoría"></category><category term="python"></category></entry><entry><title>Formatear de la forma más fácil una tarjeta SD en ubuntu</title><link href="http://pablocaro.es/formatear-de-la-forma-mas-facil-una-tarjeta-sd-en-ubuntu" rel="alternate"></link><published>2009-01-30T13:44:00+01:00</published><updated>2009-01-30T13:44:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2009-01-30:/formatear-de-la-forma-mas-facil-una-tarjeta-sd-en-ubuntu</id><summary type="html">
+        Otra anotación para recordar en un futuro. La forma más fácil de formatear una tarjeta SD es:
+&lt;ol&gt;
+	&lt;li&gt;Identificar el dispositivo (si esta montada la tarjeta lo ves con el comando mount por ejemplo).&lt;/li&gt;
+	&lt;li&gt;Si no lo tienes ya, instalar el paquete dosfstools.&lt;/li&gt;
+	&lt;li&gt;Ejecutar (con el dispositivo desmontado): &lt;strong&gt;sudo mkdosfs DISPOSITIVO …&lt;/strong&gt;&lt;/li&gt;&lt;/ol&gt;</summary><content type="html">
+        Otra anotación para recordar en un futuro. La forma más fácil de formatear una tarjeta SD es:
+&lt;ol&gt;
+	&lt;li&gt;Identificar el dispositivo (si esta montada la tarjeta lo ves con el comando mount por ejemplo).&lt;/li&gt;
+	&lt;li&gt;Si no lo tienes ya, instalar el paquete dosfstools.&lt;/li&gt;
+	&lt;li&gt;Ejecutar (con el dispositivo desmontado): &lt;strong&gt;sudo mkdosfs DISPOSITIVO&lt;/strong&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+    </content><category term="Sin Categoría"></category></entry><entry><title>Feliz Navidad</title><link href="http://pablocaro.es/feliz-navidad" rel="alternate"></link><published>2008-12-24T05:38:00+01:00</published><updated>2008-12-24T05:38:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2008-12-24:/feliz-navidad</id><content type="html">
+        Ni árboles, ni reyes, ni trineos, simplemente eso,
+
+&lt;strong&gt;Feliz Navidad&lt;/strong&gt; de corazón para todos.
+    </content><category term="Sin Categoría"></category></entry><entry><title>Reproducir flash con Opera en Ubuntu</title><link href="http://pablocaro.es/reproducir-flash-con-opera-en-ubuntu" rel="alternate"></link><published>2008-11-12T13:47:00+01:00</published><updated>2008-11-12T13:47:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2008-11-12:/reproducir-flash-con-opera-en-ubuntu</id><summary type="html">
+        Traducción de un &lt;a href="http://www.pablocaro.es/Often times Opera cannot locate the flashplayer without your help. Here is what you can do. First, make sure that flash is installed and works with firefox. Once that is confirmed, open a terminal and cd into the hidden opera directory:  $ cd ~/.opera  Once in that directory you should see a file named pluginpath.ini...the name says it all. In the default setup there are entries which look likeOpera Preferences version 2.1  -- ; Do not edit this file while Opera is running ; This file is stored in UTF-8 encoding  [Paths] /usr/lib/opera/plugins=1 /usr/lib/mozilla/plugins=1 --  You should heed the warning given and exit Opera if it is still open. You now have a choice to make:  1.) set up the flash libraries in either of the two paths shown above or 2.) add another line to the pluginpath.ini file so that opera also checks the user's local mozilla libraries.    I will take the second approach first. Open a second terminal and move into the mozilla plugin directory.  $ cd ~/.mozilla/plugins/  Once there you should see (at least) two files whose names are flashplayer.xpt and libflashplayer.so. These are the files Opera requires to run flash files.  Suppose your username is qwerty. Add the following line to the end of the pluginpath.ini file in the ~/.opera directory:  /home/qwerty/.mozilla/plugins=1  Start opera again and you should have no trouble playing flash files. This solution works only for you and would need to be repeated for other users on the machine in question.   Note that option 1. will enable all users to use flash/opera. To do this you need to place the 2 flash files mentioned above in either /usr/lib/opera/plugins or /usr/lib/mozilla/plugins. You can do this by copying them directly using cp or by making symbolic links to the actual files stored in your ~/.mozilla/plugins dire" target="_blank"&gt;comentario.&lt;/a&gt;
+
+A menudo Opera no pude encontrar el reproductor de flas sin tu ayuda. Te mostramos lo que puedes hacer.
+
+Primero, asegurate que flash está instalado y funciona en firefox. Una vez confirmado, abre un terminal:
+$ cd ~/.opera
+
+En este directorio verás un archivo denominado pluginpath.ini …</summary><content type="html">
+        Traducción de un &lt;a href="http://www.pablocaro.es/Often times Opera cannot locate the flashplayer without your help. Here is what you can do. First, make sure that flash is installed and works with firefox. Once that is confirmed, open a terminal and cd into the hidden opera directory:  $ cd ~/.opera  Once in that directory you should see a file named pluginpath.ini...the name says it all. In the default setup there are entries which look likeOpera Preferences version 2.1  -- ; Do not edit this file while Opera is running ; This file is stored in UTF-8 encoding  [Paths] /usr/lib/opera/plugins=1 /usr/lib/mozilla/plugins=1 --  You should heed the warning given and exit Opera if it is still open. You now have a choice to make:  1.) set up the flash libraries in either of the two paths shown above or 2.) add another line to the pluginpath.ini file so that opera also checks the user's local mozilla libraries.    I will take the second approach first. Open a second terminal and move into the mozilla plugin directory.  $ cd ~/.mozilla/plugins/  Once there you should see (at least) two files whose names are flashplayer.xpt and libflashplayer.so. These are the files Opera requires to run flash files.  Suppose your username is qwerty. Add the following line to the end of the pluginpath.ini file in the ~/.opera directory:  /home/qwerty/.mozilla/plugins=1  Start opera again and you should have no trouble playing flash files. This solution works only for you and would need to be repeated for other users on the machine in question.   Note that option 1. will enable all users to use flash/opera. To do this you need to place the 2 flash files mentioned above in either /usr/lib/opera/plugins or /usr/lib/mozilla/plugins. You can do this by copying them directly using cp or by making symbolic links to the actual files stored in your ~/.mozilla/plugins dire" target="_blank"&gt;comentario.&lt;/a&gt;
+
+A menudo Opera no pude encontrar el reproductor de flas sin tu ayuda. Te mostramos lo que puedes hacer.
+
+Primero, asegurate que flash está instalado y funciona en firefox. Una vez confirmado, abre un terminal:
+$ cd ~/.opera
+
+En este directorio verás un archivo denominado pluginpath.ini... el nombre lo dice todo.
+
+En la configuración por defecto, están las entradas:
+
+--
+; Do not edit this file while Opera is running
+; This file is stored in UTF-8 encoding
+
+[Paths]
+/usr/lib/opera/plugins=1
+/usr/lib/mozilla/plugins=1
+--
+
+Deberías tener en cuente el aviso y cerrar tu Opera si todavía lo tienes abierto (usa firefox o imprime para ver esta página) A partir de ahora tienes dos opciones:
+
+Configurar las librerías flash en cualquiera de las dos rutas indicadas arriba o
+Añadir otra línea a pluginpath.ini file  de forma que opera también encuentre las librerías del directorio local del usuario que usa mozilla.
+
+Usaremos la segunda aproximación. Abre una segunda consola y cambia al directorio de plugins de mozilla.
+
+$ cd ~/.mozilla/plugins/
+
+Una vez aquí, deberías ver (al menos) dos archivos cuyos nombres son fashplayer.xpt y libflashplayer.so. Son los archivos que Opera necesita para ejecutar flash.
+
+Supongamos que tu nombre de usuario es "qwerty". Añade la siguiente linea al final del archivo pluginpath.ini en el directorio ~/.opera:
+
+/home/qwerty/.mozilla/plugins=1
+
+Arranca opera de nuevo y no deberías de tener problemas con flash. Esta solución funciona sólo para tí y necesetaría ser repetida para todos los usuarios de la máquina en cuestion.
+
+Date cuenta que la opción número 1. habilita a TODOS los usuarios para usar flash en opera. Para hacer esto necesitas colocar los dos archivos mencionados arriba en /usr/lib/opera/plugins o /usr/lib/mozilla/plugins. Pudes hacer esto directamente copiándolos usando cp or creando enlaces simbólicos a losby making symbolic links a los archivos en en tu directorio ~/.mozilla/plugins. En este último caso cuida de los permisos.
+    </content><category term="Sin Categoría"></category></entry><entry><title>Compartir ficheros gracias a python</title><link href="http://pablocaro.es/compartir-ficheros-gracias-a-python" rel="alternate"></link><published>2008-11-08T16:10:00+01:00</published><updated>2008-11-08T16:10:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2008-11-08:/compartir-ficheros-gracias-a-python</id><content type="html">
+        Para compartir de forma rápida unos ficheros vía web graias a python, lo más fácil es:
+&lt;pre&gt;python -c "import SimpleHTTPServer;SimpleHTTPServer.test()"&lt;/pre&gt;
+    </content><category term="Sin Categoría"></category><category term="python"></category></entry><entry><title>Editores: Mostrar los números de linea en emacs y en jed</title><link href="http://pablocaro.es/editores-mostrar-los-numeros-de-linea-en-emacs-y-en-jed" rel="alternate"></link><published>2008-09-11T16:24:00+02:00</published><updated>2008-09-11T16:24:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2008-09-11:/editores-mostrar-los-numeros-de-linea-en-emacs-y-en-jed</id><summary type="html">
+        Para evitar esos odiosos porcentajes cuandos editas un fichero (¿de verdad le sirven a alguien?) y poner en su lugar el número de la linea en que te encuentras dejo aquí la anotación.
+&lt;ol&gt;
+	&lt;li&gt;En emacs:&lt;/li&gt;
+&lt;pre&gt;;; ========== Enable Line and Column Numbering ==========
+;; Show line-number in the mode line
+(line-number-mode 1)
+;; Show column-number …&lt;/pre&gt;&lt;/ol&gt;</summary><content type="html">
+        Para evitar esos odiosos porcentajes cuandos editas un fichero (¿de verdad le sirven a alguien?) y poner en su lugar el número de la linea en que te encuentras dejo aquí la anotación.
+&lt;ol&gt;
+	&lt;li&gt;En emacs:&lt;/li&gt;
+&lt;pre&gt;;; ========== Enable Line and Column Numbering ==========
+;; Show line-number in the mode line
+(line-number-mode 1)
+;; Show column-number in the mode line
+(column-number-mode 1)&lt;/pre&gt;
+	&lt;li&gt;En jed:&lt;/li&gt;
+&lt;pre&gt;LINENUMBERS = 2&lt;/pre&gt;
+&lt;/ol&gt;
+    </content><category term="Sin Categoría"></category></entry><entry><title>¿Qué ejecutas tu desde la consola?</title><link href="http://pablocaro.es/que-ejecutas-tu-desde-la-consola" rel="alternate"></link><published>2008-04-13T14:00:00+02:00</published><updated>2008-04-13T14:00:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2008-04-13:/que-ejecutas-tu-desde-la-consola</id><summary type="html">
+&lt;p&gt;
+        Un meme para ver que ejecutas desde la consola:
+&lt;/p&gt;
+&lt;pre&gt;
+pcaro@davinci$ history|awk '{a[$2]++} END{for(i in a){printf "%5d\t%s\n",a[i],i}}'|sort -rn|head
+95   sudo
+71   ls
+67   cd
+33   svn
+29   dentro
+24   clear
+18   ssh
+15   i2e-cli
+14   ps
+13 …&lt;/pre&gt;</summary><content type="html">
+&lt;p&gt;
+        Un meme para ver que ejecutas desde la consola:
+&lt;/p&gt;
+&lt;pre&gt;
+pcaro@davinci$ history|awk '{a[$2]++} END{for(i in a){printf "%5d\t%s\n",a[i],i}}'|sort -rn|head
+95   sudo
+71   ls
+67   cd
+33   svn
+29   dentro
+24   clear
+18   ssh
+15   i2e-cli
+14   ps
+13   man
+&lt;/pre&gt;
+&lt;p&gt;
+A notar que dentro es un script que tengo para hacer un grep -r filtrando algunos resultados.i2e-cli es un diccionario.
+&lt;/p&gt;
+    </content><category term="Sin Categoría"></category></entry><entry><title>Timing en "psql" la consola de postgres</title><link href="http://pablocaro.es/timing-en-psql-la-consola-de-postgres" rel="alternate"></link><published>2008-03-31T03:25:00+02:00</published><updated>2008-03-31T03:25:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2008-03-31:/timing-en-psql-la-consola-de-postgres</id><content type="html">
+        Recordar:
+&lt;pre&gt;timing&lt;/pre&gt;
+También podemos utilizar para más información "explain analyze":
+&lt;pre&gt;EXPLAIN ANALYZE select ...&lt;/pre&gt;
+    </content><category term="Sin Categoría"></category></entry><entry><title>Continuar con una descarga</title><link href="http://pablocaro.es/continuar-con-una-descarga" rel="alternate"></link><published>2008-01-27T08:37:00+01:00</published><updated>2008-01-27T08:37:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2008-01-27:/continuar-con-una-descarga</id><content type="html">
+        &lt;code&gt;scp&lt;/code&gt; no permite continuar con copias que se cortan, pero lo permite rsync. El comando para recordar es:
+
+&lt;code&gt;alias scpresume="rsync --partial --progress --rsh=ssh"&lt;/code&gt;Eso claro, siempre que tengas  &lt;code&gt;rsync&lt;/code&gt;
+    </content><category term="Sin Categoría"></category></entry><entry><title>ubuntu, wordpress, php5 y mysql</title><link href="http://pablocaro.es/ubuntu-wordpress-php5-y-mysql" rel="alternate"></link><published>2007-11-25T06:03:00+01:00</published><updated>2007-11-25T06:03:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2007-11-25:/ubuntu-wordpress-php5-y-mysql</id><summary type="html">
+        Configurando un wordpress local para pruebas (con lighttpd), me encuentro con el siguiente error:
+
+&lt;code&gt;Your PHP installation appears to be missing the MySQL which is required for WordPress.&lt;/code&gt;
+
+Sabía que php5 no tiene incluido el soporte para mysql pero para mi sorpresa en mi ubuntu yo sí tenía instalado el …</summary><content type="html">
+        Configurando un wordpress local para pruebas (con lighttpd), me encuentro con el siguiente error:
+
+&lt;code&gt;Your PHP installation appears to be missing the MySQL which is required for WordPress.&lt;/code&gt;
+
+Sabía que php5 no tiene incluido el soporte para mysql pero para mi sorpresa en mi ubuntu yo sí tenía instalado el paquete adecuado.
+
+El problema es que no estaba activado. Por si les pasa a otros y para recordarlo en un futuro, la cosa se arregló con:
+
+&lt;code&gt;sudo dpkg-reconfigure php5-mysql&lt;/code&gt;
+
+y el pertinente reinicio del servidor:
+
+&lt;code&gt;sudo /etc/init.d/lighttpd restart&lt;/code&gt;
+    </content><category term="Sin Categoría"></category></entry><entry><title>Para aprender javascript</title><link href="http://pablocaro.es/para-aprender-javascript" rel="alternate"></link><published>2007-11-01T14:01:00+01:00</published><updated>2007-11-01T14:01:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2007-11-01:/para-aprender-javascript</id><summary type="html">
+        Para aprender una tecnología todos conocemos &lt;a target="_blank" href="http://www.pablocaro.es/www.google.com"&gt;nuestro punto de referencia.&lt;/a&gt; Pero "El Buscador" no es punto de partida más recomendable para aprender javascript. Existen cientos, miles, millones, de tutoriales donde aprender mal javascript. No hablo de aprender las palabras clave y las sentencias de control. Para eso te vale cualquiera …</summary><content type="html">
+        Para aprender una tecnología todos conocemos &lt;a target="_blank" href="http://www.pablocaro.es/www.google.com"&gt;nuestro punto de referencia.&lt;/a&gt; Pero "El Buscador" no es punto de partida más recomendable para aprender javascript. Existen cientos, miles, millones, de tutoriales donde aprender mal javascript. No hablo de aprender las palabras clave y las sentencias de control. Para eso te vale cualquiera. Hablo de  aprender los conceptos clave detrás del lenguaje y su implicación explicada de forma práctica.
+
+Para no perder el tiempo y comprender de verdad el lenguaje incomprendido hay que acudir a:
+&lt;ul&gt;
+	&lt;li&gt;&lt;a title="Mastering JavaScript — concept and resource guide" rel="bookmark" target="_blank" href="http://blog.reindel.com/2007/10/16/mastering-javascript-concept-and-resource-guide/"&gt;Mastering JavaScript — concept and resource guide&lt;/a&gt; gracias a Brian Reindel&lt;/li&gt;
+	&lt;li&gt;Las presentaciones de &lt;a target="_blank" href="http://javascript.crockford.com/"&gt;Douglas Crockford&lt;/a&gt;. Los vídeos están recopilados &lt;a target="_blank" href="http://101out.com/jss.php"&gt;en este enlace&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+    </content><category term="Sin Categoría"></category><category term="javascript"></category></entry><entry><title>¡Que práctico es python!: svnrevisions.py</title><link href="http://pablocaro.es/que-practico-es-python-svnrevisions-py" rel="alternate"></link><published>2007-04-10T09:55:00+02:00</published><updated>2007-04-10T09:55:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2007-04-10:/que-practico-es-python-svnrevisions-py</id><summary type="html">
+        Pongo a continuación un script rápido que hice hace ya un tiempo. En ese momento estaba realizando un backport de código y de forma sucia realicé varios
+&lt;pre&gt;svn up -rTAL&lt;/pre&gt;
+De esa forma y con unos pequeños cambios obtuve el cambio que necesitaba. Pero después de un rato no recordaba …</summary><content type="html">
+        Pongo a continuación un script rápido que hice hace ya un tiempo. En ese momento estaba realizando un backport de código y de forma sucia realicé varios
+&lt;pre&gt;svn up -rTAL&lt;/pre&gt;
+De esa forma y con unos pequeños cambios obtuve el cambio que necesitaba. Pero después de un rato no recordaba que fichero cambié exactamente y a qué revisiones. Un poquito de &lt;a title="ipython" href="http://ipython.scipy.org/moin/About"&gt;terminal&lt;/a&gt; y listo.
+
+Se que es sucio, que podría usar las librerías de python para subversion, etc. Pero se hizo de forma rápida y funciona.
+
+El funcionamiento se puede ver en el código fuente, pero pongo una ayudita:
+&lt;pre lang="bash"&gt;
+$ python svnrevisions.py
+$ python svnrevisions.py 123
+$ python svnrevisions.py ALL
+&lt;/pre&gt;
+Aquí dejo el código: &lt;a href="https://github.com/pcaro/little_scripts/blob/master/svnrevisions.py"&gt;svnrevisions&lt;/a&gt;
+    </content><category term="Sin Categoría"></category><category term="python"></category></entry><entry><title>Siempre la coma como símbolo decimal en un formulario .net</title><link href="http://pablocaro.es/siempre-la-coma-como-simbolo-decimal-en-un-formulario-net" rel="alternate"></link><published>2006-12-15T14:23:00+01:00</published><updated>2006-12-15T14:23:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2006-12-15:/siempre-la-coma-como-simbolo-decimal-en-un-formulario-net</id><summary type="html">
+        Entre los muchos lenguajes que me ha tocado codificar (únicamente no me arrepiento de hacerlo en &lt;a title="Python" href="http://www.python.org"&gt;python&lt;/a&gt;) se encuentra .net.
+
+Es una chusquería que me solicitó un cliente. Quería que en un formulario al pulsar el punto del teclado numérico la entrada fuera una coma (no dependiera de la configuración …</summary><content type="html">
+        Entre los muchos lenguajes que me ha tocado codificar (únicamente no me arrepiento de hacerlo en &lt;a title="Python" href="http://www.python.org"&gt;python&lt;/a&gt;) se encuentra .net.
+
+Es una chusquería que me solicitó un cliente. Quería que en un formulario al pulsar el punto del teclado numérico la entrada fuera una coma (no dependiera de la configuración de los locales en el windows). Puede llegar a ser muy útil.
+&lt;pre class="wiki"&gt;/**
+* En este formulario el simbolo decimal del teclado numerico siempre la comma
+*/
+protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+{
+if (keyData == Keys.Decimal)
+{
+SendKeys.Send(",");
+return true;
+}
+return base.ProcessCmdKey(ref msg, keyData);&lt;/pre&gt;
+&lt;pre class="wiki"&gt;}&lt;/pre&gt;
+    </content><category term="Sin Categoría"></category><category term=".net"></category></entry><entry><title>Corrector ortográfico de firefox 2.0 en castellano</title><link href="http://pablocaro.es/corrector-ortografico-de-firefox-2-0-en-castellano" rel="alternate"></link><published>2006-11-14T07:18:00+01:00</published><updated>2006-11-14T07:18:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2006-11-14:/corrector-ortografico-de-firefox-2-0-en-castellano</id><content type="html">
+        En la url escribir:
+
+about:config
+
+Filtras las propiedades por "dic".
+
+Y estableces el valor de la propiedad "spellchecker.dictionary" a es_ES.
+    </content><category term="Sin Categoría"></category></entry><entry><title>Primera anotación de prueba</title><link href="http://pablocaro.es/primera-anotacion-de-prueba" rel="alternate"></link><published>2006-10-10T09:55:00+02:00</published><updated>2006-10-10T09:55:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2006-10-10:/primera-anotacion-de-prueba</id><summary type="html">
+        Como todo blog que comienza, es de obligado cumplimiento una primera entrada "sólo para probar".
+En la primera entrada además del maravilloso lorem ipsum aprovecho para felicitar al autor del tema
+que estoy probando a priori: Orange Dream de Buddha.
+Por cierto que luego veré si puedo traducir esto :-D …</summary><content type="html">
+        Como todo blog que comienza, es de obligado cumplimiento una primera entrada "sólo para probar".
+En la primera entrada además del maravilloso lorem ipsum aprovecho para felicitar al autor del tema
+que estoy probando a priori: Orange Dream de Buddha.
+Por cierto que luego veré si puedo traducir esto :-D
+
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Quisque vel quam. Morbi quis dolor. Pellentesque accumsan imperdiet tellus. Suspendisse eleifend, ante eu ullamcorper interdum, magna quam mattis tellus, ullamcorper pellentesque massa nibh laoreet tellus. Ut posuere risus eget massa rhoncus tincidunt. Integer commodo malesuada metus. Sed lacus urna, feugiat ut, lobortis id, pharetra quis, sem. Morbi vehicula, orci sed imperdiet viverra, magna tortor tincidunt erat, nec ultrices erat diam non nulla. Vivamus nulla. Cras ligula turpis, lacinia eu, elementum quis, facilisis vel, tortor. Vivamus venenatis tempor elit. Mauris in dui. Curabitur libero libero, ultrices id, lacinia nec, pellentesque eget, risus.
+
+Curabitur suscipit. Proin iaculis nisi ac ligula. Donec semper. Aliquam mauris nunc, tincidunt a, rhoncus consequat, fringilla quis, nunc. Duis facilisis pede eu orci. Praesent auctor nunc ut metus porta dignissim. Pellentesque posuere lectus. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Suspendisse vestibulum quam non lectus. Maecenas odio. Curabitur mollis vehicula erat. Sed pulvinar, lorem id malesuada ultricies, velit tortor volutpat orci, eu porta dolor lacus eu nunc. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. Mauris ultricies magna mollis turpis. Proin ac ante nec mauris pulvinar accumsan. Donec euismod iaculis orci. Mauris tempor porttitor urna. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;
+    </content><category term="Sin Categoría"></category></entry></feed>

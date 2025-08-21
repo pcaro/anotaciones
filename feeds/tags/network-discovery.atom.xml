@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Anotaciones por Pablo Caro - network-discovery</title><link href="http://pablocaro.es/" rel="alternate"></link><link href="http://pablocaro.es/feeds/tags/network-discovery.atom.xml" rel="self"></link><id>http://pablocaro.es/</id><updated>2016-06-27T07:59:00+02:00</updated><subtitle>Anotaciones</subtitle><entry><title>Cómo encontrar hosts vivos en tu red local</title><link href="http://pablocaro.es/encontrar-hosts-vivos-red" rel="alternate"></link><published>2016-06-27T07:59:00+02:00</published><updated>2016-06-27T07:59:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2016-06-27:/encontrar-hosts-vivos-red</id><summary type="html">&lt;p&gt;Métodos y herramientas para descubrir dispositivos activos en redes locales usando nmap, arp-scan, netdiscover y otras técnicas de reconocimiento&lt;/p&gt;</summary><content type="html">&lt;p&gt;Descubrir &lt;strong&gt;qué dispositivos están activos&lt;/strong&gt; en tu red local es una tarea fundamental para administradores de red y profesionales de seguridad. Estas son las técnicas más efectivas.&lt;/p&gt;
+&lt;h2 id="nmap-la-herramienta-principal"&gt;Nmap: La herramienta principal&lt;a class="headerlink" href="#nmap-la-herramienta-principal" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="escaneo-basico-de-hosts"&gt;Escaneo básico de hosts&lt;a class="headerlink" href="#escaneo-basico-de-hosts" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Ping scan simple&lt;/span&gt;
+nmap&lt;span class="w"&gt; &lt;/span&gt;-sn&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;192&lt;/span&gt;.168.1.1/24
+
+&lt;span class="c1"&gt;# Escaneo con puertos TCP específicos&lt;/span&gt;
+nmap&lt;span class="w"&gt; &lt;/span&gt;-sP&lt;span class="w"&gt; &lt;/span&gt;-PS22,3389&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;192&lt;/span&gt;.168.1.1/24
+
+&lt;span class="c1"&gt;# Escaneo UDP para dispositivos especiales&lt;/span&gt;
+nmap&lt;span class="w"&gt; &lt;/span&gt;-sP&lt;span class="w"&gt; &lt;/span&gt;-PU161&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;192&lt;/span&gt;.168.1.1/24
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;-sn&lt;/strong&gt;: Solo descubrimiento de hosts, sin escaneo de puertos&lt;br&gt;
+&lt;strong&gt;-PS&lt;/strong&gt;: TCP SYN discovery en puertos específicos&lt;br&gt;
+&lt;strong&gt;-PU&lt;/strong&gt;: UDP discovery (útil para dispositivos embebidos)&lt;/p&gt;
+&lt;h3 id="escaneos-mas-exhaustivos"&gt;Escaneos más exhaustivos&lt;a class="headerlink" href="#escaneos-mas-exhaustivos" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Escaneo completo con detección de OS&lt;/span&gt;
+nmap&lt;span class="w"&gt; &lt;/span&gt;-A&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;192&lt;/span&gt;.168.1.1/24
+
+&lt;span class="c1"&gt;# Escaneo TCP Connect (menos intrusivo)&lt;/span&gt;
+nmap&lt;span class="w"&gt; &lt;/span&gt;-sT&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;192&lt;/span&gt;.168.1.1/24
+
+&lt;span class="c1"&gt;# Bypass de firewall con fragmentación&lt;/span&gt;
+nmap&lt;span class="w"&gt; &lt;/span&gt;-f&lt;span class="w"&gt; &lt;/span&gt;-sS&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;192&lt;/span&gt;.168.1.1/24
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="herramientas-alternativas"&gt;Herramientas alternativas&lt;a class="headerlink" href="#herramientas-alternativas" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="arp-scan-basado-en-arp"&gt;arp-scan: Basado en ARP&lt;a class="headerlink" href="#arp-scan-basado-en-arp" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Escaneo de subred local&lt;/span&gt;
+arp-scan&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;192&lt;/span&gt;.168.12.0/24
+
+&lt;span class="c1"&gt;# Con interfaz específica&lt;/span&gt;
+arp-scan&lt;span class="w"&gt; &lt;/span&gt;-I&lt;span class="w"&gt; &lt;/span&gt;eth0&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;172&lt;/span&gt;.16.17.0/24
+
+&lt;span class="c1"&gt;# Scan local simplificado&lt;/span&gt;
+arp-scan&lt;span class="w"&gt; &lt;/span&gt;-l
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Ventaja&lt;/strong&gt;: Funciona incluso con firewalls estrictos&lt;/p&gt;
+&lt;h3 id="netdiscover-descubrimiento-pasivoactivo"&gt;netdiscover: Descubrimiento pasivo/activo&lt;a class="headerlink" href="#netdiscover-descubrimiento-pasivoactivo" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Descubrimiento activo&lt;/span&gt;
+netdiscover&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;172&lt;/span&gt;.16.17.0/24
+
+&lt;span class="c1"&gt;# Modo pasivo (solo escucha)&lt;/span&gt;
+netdiscover&lt;span class="w"&gt; &lt;/span&gt;-p
+
+&lt;span class="c1"&gt;# Fast mode&lt;/span&gt;
+netdiscover&lt;span class="w"&gt; &lt;/span&gt;-f&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;192&lt;/span&gt;.168.1.0/24
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id="fing-scanner-movil"&gt;fing: Scanner móvil&lt;a class="headerlink" href="#fing-scanner-movil" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Escaneo rápido&lt;/span&gt;
+fing&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Con detalles del fabricante&lt;/span&gt;
+fing&lt;span class="w"&gt; &lt;/span&gt;-o&lt;span class="w"&gt; &lt;/span&gt;table,csv
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="verificacion-post-escaneo"&gt;Verificación post-escaneo&lt;a class="headerlink" href="#verificacion-post-escaneo" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="revisar-tabla-arp"&gt;Revisar tabla ARP&lt;a class="headerlink" href="#revisar-tabla-arp" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Ver tabla ARP actual&lt;/span&gt;
+arp&lt;span class="w"&gt; &lt;/span&gt;-a&lt;span class="w"&gt; &lt;/span&gt;-n
+
+&lt;span class="c1"&gt;# En sistemas modernos&lt;/span&gt;
+ip&lt;span class="w"&gt; &lt;/span&gt;neigh&lt;span class="w"&gt; &lt;/span&gt;show
+
+&lt;span class="c1"&gt;# Limpiar y reescanear&lt;/span&gt;
+sudo&lt;span class="w"&gt; &lt;/span&gt;arp&lt;span class="w"&gt; &lt;/span&gt;-d&lt;span class="w"&gt; &lt;/span&gt;-a
+ping&lt;span class="w"&gt; &lt;/span&gt;-c&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;192&lt;/span&gt;.168.1.&lt;span class="o"&gt;{&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;..254&lt;span class="o"&gt;}&lt;/span&gt;
+arp&lt;span class="w"&gt; &lt;/span&gt;-a
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="tecnicas-avanzadas"&gt;Técnicas avanzadas&lt;a class="headerlink" href="#tecnicas-avanzadas" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="wireshark-para-analisis-pasivo"&gt;Wireshark para análisis pasivo&lt;a class="headerlink" href="#wireshark-para-analisis-pasivo" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;Capturar tráfico en la interfaz de red&lt;/li&gt;
+&lt;li&gt;Filtrar por ARP: &lt;code&gt;arp&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Analizar broadcast traffic&lt;/li&gt;
+&lt;li&gt;Identificar dispositivos por patrones de tráfico&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id="scripts-de-automatizacion"&gt;Scripts de automatización&lt;a class="headerlink" href="#scripts-de-automatizacion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="ch"&gt;#!/bin/bash&lt;/span&gt;
+&lt;span class="c1"&gt;# Scan completo de red local&lt;/span&gt;
+&lt;span class="nb"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Escaneando red...&amp;quot;&lt;/span&gt;
+nmap&lt;span class="w"&gt; &lt;/span&gt;-sn&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;ip&lt;span class="w"&gt; &lt;/span&gt;route&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;grep&lt;span class="w"&gt; &lt;/span&gt;-E&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;^192|^10|^172&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;awk&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;{print $1}&amp;#39;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;head&lt;span class="w"&gt; &lt;/span&gt;-1&lt;span class="k"&gt;)&lt;/span&gt;
+&lt;span class="nb"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Verificando ARP...&amp;quot;&lt;/span&gt;
+arp&lt;span class="w"&gt; &lt;/span&gt;-a&lt;span class="w"&gt; &lt;/span&gt;-n&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;grep&lt;span class="w"&gt; &lt;/span&gt;-v&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;incomplete&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="consideraciones-importantes"&gt;Consideraciones importantes&lt;a class="headerlink" href="#consideraciones-importantes" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="limitaciones-por-firewall"&gt;Limitaciones por firewall&lt;a class="headerlink" href="#limitaciones-por-firewall" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Algunos dispositivos&lt;/strong&gt; bloquean ping/ICMP&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Firewalls corporativos&lt;/strong&gt; pueden filtrar escaneos&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Diferentes puertos&lt;/strong&gt; pueden revelar dispositivos "ocultos"&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="consideraciones-legales"&gt;Consideraciones legales&lt;a class="headerlink" href="#consideraciones-legales" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;⚠️ &lt;strong&gt;Autorización necesaria&lt;/strong&gt;: Solo escanea redes propias&lt;br&gt;
+⚠️ &lt;strong&gt;Políticas corporativas&lt;/strong&gt;: Verifica antes de escanear en entornos empresariales&lt;/p&gt;
+&lt;h3 id="optimizacion-por-tipo-de-red"&gt;Optimización por tipo de red&lt;a class="headerlink" href="#optimizacion-por-tipo-de-red" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Red doméstica (routers, IoT)&lt;/span&gt;
+nmap&lt;span class="w"&gt; &lt;/span&gt;-sn&lt;span class="w"&gt; &lt;/span&gt;--min-rate&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;1000&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;192&lt;/span&gt;.168.1.1/24
+
+&lt;span class="c1"&gt;# Red corporativa (servidores, estaciones)&lt;/span&gt;
+nmap&lt;span class="w"&gt; &lt;/span&gt;-sP&lt;span class="w"&gt; &lt;/span&gt;-PS80,443,22,3389&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;10&lt;/span&gt;.0.0.0/8
+
+&lt;span class="c1"&gt;# Red industrial (dispositivos embebidos)&lt;/span&gt;
+nmap&lt;span class="w"&gt; &lt;/span&gt;-sP&lt;span class="w"&gt; &lt;/span&gt;-PU161,502&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;172&lt;/span&gt;.16.0.0/12
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;La &lt;strong&gt;combinación de múltiples técnicas&lt;/strong&gt; proporciona el panorama más completo de dispositivos activos en tu red.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Fuente original&lt;/em&gt;: &lt;a href="http://security.stackexchange.com/questions/36198/how-to-find-live-hosts-on-my-network"&gt;Information Security Stack Exchange&lt;/a&gt;&lt;/p&gt;</content><category term="Seguridad"></category><category term="nmap"></category><category term="network-discovery"></category><category term="arp-scan"></category><category term="netdiscover"></category><category term="seguridad"></category></entry></feed>

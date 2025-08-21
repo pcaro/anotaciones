@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Anotaciones por Pablo Caro - ip-real</title><link href="http://pablocaro.es/" rel="alternate"></link><link href="http://pablocaro.es/feeds/tags/ip-real.atom.xml" rel="self"></link><id>http://pablocaro.es/</id><updated>2015-10-21T23:05:00+02:00</updated><subtitle>Anotaciones</subtitle><entry><title>Nginx: Configurar X-Forwarded-For en reverse proxy</title><link href="http://pablocaro.es/nginx-x-forwarded-for-reverse-proxy" rel="alternate"></link><published>2015-10-21T23:05:00+02:00</published><updated>2015-10-21T23:05:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2015-10-21:/nginx-x-forwarded-for-reverse-proxy</id><summary type="html">&lt;p&gt;Cómo configurar Nginx para pasar la IP real del cliente a servidores backend usando el header X-Forwarded-For en configuraciones de reverse proxy&lt;/p&gt;</summary><content type="html">&lt;p&gt;Cuando usas &lt;strong&gt;Nginx como reverse proxy&lt;/strong&gt;, necesitas que el servidor backend vea la &lt;strong&gt;IP real del cliente&lt;/strong&gt;, no la IP del proxy. El header &lt;code&gt;X-Forwarded-For&lt;/code&gt; resuelve este problema.&lt;/p&gt;
+&lt;h2 id="el-problema"&gt;El problema&lt;a class="headerlink" href="#el-problema" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Sin configuración, el servidor backend solo ve la IP del proxy Nginx, perdiendo información crucial sobre el cliente real para:
+- &lt;strong&gt;Logs de acceso&lt;/strong&gt; precisos
+- &lt;strong&gt;Geolocalización&lt;/strong&gt; correcta&lt;br&gt;
+- &lt;strong&gt;Rate limiting&lt;/strong&gt; por IP real
+- &lt;strong&gt;Análisis de tráfico&lt;/strong&gt; fidedignos&lt;/p&gt;
+&lt;h2 id="solucion-1-ip-simple"&gt;Solución 1: IP simple&lt;a class="headerlink" href="#solucion-1-ip-simple" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;proxy_set_header&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;X-Forwarded-For&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;$remote_addr&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Uso&lt;/strong&gt;: Cuando Nginx es el único proxy en la cadena.&lt;br&gt;
+&lt;strong&gt;Resultado&lt;/strong&gt;: Header contiene solo la IP del cliente original.&lt;/p&gt;
+&lt;h2 id="solucion-2-cadena-de-ips"&gt;Solución 2: Cadena de IPs&lt;a class="headerlink" href="#solucion-2-cadena-de-ips" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;proxy_set_header&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;X-Forwarded-For&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;$proxy_add_x_forwarded_for&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Uso&lt;/strong&gt;: Cuando hay múltiples proxies en la cadena.&lt;br&gt;
+&lt;strong&gt;Resultado&lt;/strong&gt;: Conserva IPs existentes y añade la actual.&lt;/p&gt;
+&lt;h2 id="configuracion-practica"&gt;Configuración práctica&lt;a class="headerlink" href="#configuracion-practica" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;server&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="kn"&gt;listen&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;80&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="kn"&gt;server_name&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;example.com&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="kn"&gt;location&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;/&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="kn"&gt;proxy_pass&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;http://backend-server&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="kn"&gt;proxy_set_header&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;Host&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;$host&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="kn"&gt;proxy_set_header&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;X-Real-IP&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;$remote_addr&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="kn"&gt;proxy_set_header&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;X-Forwarded-For&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;$proxy_add_x_forwarded_for&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="kn"&gt;proxy_set_header&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;X-Forwarded-Proto&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;$scheme&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="headers-relacionados"&gt;Headers relacionados&lt;a class="headerlink" href="#headers-relacionados" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;X-Real-IP&lt;/strong&gt;: IP del cliente más reciente&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;X-Forwarded-For&lt;/strong&gt;: Cadena completa de IPs&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;X-Forwarded-Proto&lt;/strong&gt;: Protocolo original (http/https)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Host&lt;/strong&gt;: Hostname original&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="verificacion"&gt;Verificación&lt;a class="headerlink" href="#verificacion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# En el servidor backend, verifica los headers&lt;/span&gt;
+tail&lt;span class="w"&gt; &lt;/span&gt;-f&lt;span class="w"&gt; &lt;/span&gt;/var/log/apache2/access.log
+&lt;span class="c1"&gt;# O en tu aplicación&lt;/span&gt;
+&lt;span class="nb"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;$_SERVER&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;HTTP_X_FORWARDED_FOR&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="consideraciones-de-seguridad"&gt;Consideraciones de seguridad&lt;a class="headerlink" href="#consideraciones-de-seguridad" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;⚠️ &lt;strong&gt;Importante&lt;/strong&gt;: Los headers X-Forwarded-* pueden ser falsificados por clientes. En entornos de producción, asegúrate de que solo tu proxy los establezca.&lt;/p&gt;
+&lt;p&gt;Esta configuración es esencial para mantener &lt;strong&gt;trazabilidad completa&lt;/strong&gt; en arquitecturas con reverse proxy.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Fuente original&lt;/em&gt;: &lt;a href="http://www.networkinghowtos.com/howto/set-the-x-forwarded-for-header-on-a-nginx-reverse-proxy-setup/"&gt;Networking How To's&lt;/a&gt;&lt;/p&gt;</content><category term="DevOps"></category><category term="nginx"></category><category term="reverse-proxy"></category><category term="x-forwarded-for"></category><category term="ip-real"></category><category term="configuración"></category></entry></feed>

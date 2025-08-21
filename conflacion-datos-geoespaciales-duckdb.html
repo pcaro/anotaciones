@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8"> 
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Pablo Caro" />
+        <meta name="copyright" content="Pablo Caro" />
+
+        <meta name="description" content="Técnicas avanzadas para integrar fuentes de datos geoespaciales usando DuckDB, H3, Ollama y modelos de embeddings
+" />
+        <meta name="twitter:creator" content="@pcaro">
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="duckdb, geoespacial, embeddings, ollama, h3, Programación, " />
+
+<meta property="og:title" content="Conflación de datos geoespaciales con DuckDB y embeddings "/>
+<meta property="og:url" content="http://pablocaro.es/conflacion-datos-geoespaciales-duckdb" />
+<meta property="og:description" content="Técnicas avanzadas para integrar fuentes de datos geoespaciales usando DuckDB, H3, Ollama y modelos de embeddings" />
+<meta property="og:site_name" content="Anotaciones por Pablo Caro" />
+<meta property="og:article:author" content="Pablo Caro" />
+<meta property="og:article:published_time" content="2024-10-01T07:12:00+02:00" />
+<meta name="twitter:title" content="Conflación de datos geoespaciales con DuckDB y embeddings ">
+<meta name="twitter:description" content="Técnicas avanzadas para integrar fuentes de datos geoespaciales usando DuckDB, H3, Ollama y modelos de embeddings">
+<meta property="og:image" content="http://pablocaro.es/theme/images/apple-touch-icon-152x152.png" />
+<meta name="twitter:image" content="http://pablocaro.es/theme/images/apple-touch-icon-152x152.png" >
+
+        <title>Conflación de datos geoespaciales con DuckDB y embeddings  · Anotaciones por Pablo Caro
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="http://pablocaro.es/theme/css/pygments.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://pablocaro.es/theme/tipuesearch/tipuesearch.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://pablocaro.es/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://pablocaro.es/theme/css/custom.css" media="screen">
+        <link rel="shortcut icon" href="http://pablocaro.es/theme/images/favicon.ico" type="image/x-icon" type="image/png" />
+        <link rel="icon" href="http://pablocaro.es/theme/images/apple-touch-icon-152x152.png" type="image/png" />
+        <link rel="apple-touch-icon" href="http://pablocaro.es/theme/images/apple-touch-icon.png"  type="image/png" />
+        <link rel="apple-touch-icon" sizes="57x57" href="http://pablocaro.es/theme/images/apple-touch-icon-57x57.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="72x72" href="http://pablocaro.es/theme/images/apple-touch-icon-72x72.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="76x76" href="http://pablocaro.es/theme/images/apple-touch-icon-76x76.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="114x114" href="http://pablocaro.es/theme/images/apple-touch-icon-114x114.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="120x120" href="http://pablocaro.es/theme/images/apple-touch-icon-120x120.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="144x144" href="http://pablocaro.es/theme/images/apple-touch-icon-144x144.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="152x152" href="http://pablocaro.es/theme/images/apple-touch-icon-152x152.png" type="image/png" />
+        <link href="http://pablocaro.es/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Anotaciones por Pablo Caro - Full Atom Feed" />
+        <link href="http://pablocaro.es/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Anotaciones por Pablo Caro - Full RSS Feed" />
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+     })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-60035125-1', 'auto');
+    ga('send', 'pageview');
+</script>
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="http://pablocaro.es/"><span class=site-name><span style="color:#AA1032;">Anotaciones</span> <span style="color:darkblue;">por</span> <span style="color:black">Pablo Caro</span></span></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="http://pablocaro.es">Inicio</a></li>
+                            <li ><a href="http://pablocaro.es/categories.html">Categorías</a></li>
+                            <li ><a href="http://pablocaro.es/tags.html">Etiquetas</a></li>
+                            <li ><a href="http://pablocaro.es/archives.html">Archivos</a></li>
+                            <li><form class="navbar-search" action="http://pablocaro.es/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Búsqueda" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="http://pablocaro.es/conflacion-datos-geoespaciales-duckdb"> Conflación de datos geoespaciales con DuckDB y embeddings  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+        <div class="span8 offset2 article-content">
+
+            
+            <p>Drew Breunig presenta un fascinante caso práctico de <strong>conflación de datos geoespaciales</strong>: el proceso de identificar y unir registros similares de fuentes diferentes.</p>
+<div class="section" id="el-reto-integrar-datos-de-restaurantes">
+<h2>El reto: Integrar datos de restaurantes</h2>
+<p>El objetivo era conectar dos fuentes de datos:</p>
+<ul class="simple">
+<li><strong>Inspecciones de restaurantes</strong> del condado de Alameda</li>
+<li><strong>Datos de lugares</strong> de Overture Maps Foundation</li>
+</ul>
+<p>Dos datasets con información similar pero estructurada de forma diferente.</p>
+</div>
+<div class="section" id="herramientas-del-stack-moderno">
+<h2>Herramientas del stack moderno</h2>
+<dl class="docutils">
+<dt><strong>DuckDB como motor principal</strong></dt>
+<dd><ul class="first last simple">
+<li><strong>Staging y consultas</strong> de grandes volúmenes de datos</li>
+<li>Soporte nativo para formatos geoespaciales</li>
+<li>Performance excepcional para análisis exploratorio</li>
+</ul>
+</dd>
+</dl>
+<p><strong>H3 para agrupación espacial</strong></p>
+<div class="highlight"><pre><span></span><span class="c1">-- Agrupar lugares cercanos usando hexágonos H3</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">h3_cell_to_lat_lng</span><span class="p">(</span><span class="n">h3_latlng_to_cell</span><span class="p">(</span><span class="n">lat</span><span class="p">,</span><span class="w"> </span><span class="n">lng</span><span class="p">,</span><span class="w"> </span><span class="mi">9</span><span class="p">))</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">h3_9</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">places</span>
+</pre></div>
+<dl class="docutils">
+<dt><strong>Ollama para embeddings locales</strong></dt>
+<dd><ul class="first last simple">
+<li>Framework de ML ejecutándose localmente</li>
+<li>Generación de embeddings contextuales</li>
+<li>Sin dependencia de APIs externas</li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="tres-enfoques-de-matching">
+<h2>Tres enfoques de matching</h2>
+<dl class="docutils">
+<dt><strong>1. Matching exacto por nombre</strong></dt>
+<dd><ul class="first last simple">
+<li><strong>Resultado</strong>: ~31% de coincidencias</li>
+<li><strong>Limitaciones</strong>: Nombres de cadenas, números de unidad en direcciones</li>
+</ul>
+</dd>
+</dl>
+<p><strong>2. Similitud de strings (Jaro-Winkler)</strong></p>
+<div class="highlight"><pre><span></span><span class="c1">-- Comparación combinando nombre y dirección</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">jaro_winkler_similarity</span><span class="p">(</span><span class="n">name1</span><span class="p">,</span><span class="w"> </span><span class="n">name2</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="mi">8</span>
+<span class="w">  </span><span class="k">AND</span><span class="w"> </span><span class="n">levenshtein</span><span class="p">(</span><span class="n">address1</span><span class="p">,</span><span class="w"> </span><span class="n">address2</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">5</span>
+</pre></div>
+<ul class="simple">
+<li><strong>Resultado</strong>: ~68% de coincidencias</li>
+<li><strong>Desventaja</strong>: SQL complejo con muchas reglas condicionales</li>
+</ul>
+<p><strong>3. Matching basado en embeddings</strong></p>
+<div class="highlight"><pre><span></span><span class="c1"># Generar descripción contextual</span>
+<span class="n">description</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2"> at </span><span class="si">{</span><span class="n">address</span><span class="si">}</span><span class="s2"> in </span><span class="si">{</span><span class="n">city</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="n">embedding</span> <span class="o">=</span> <span class="n">ollama</span><span class="o">.</span><span class="n">embeddings</span><span class="p">(</span><span class="n">description</span><span class="p">)</span>
+</pre></div>
+<ul class="simple">
+<li><strong>Resultado</strong>: ~71% de coincidencias</li>
+<li><strong>Ventajas</strong>: Pipeline más simple, mayor flexibilidad</li>
+<li><strong>Desventaja</strong>: Mayor tiempo de procesamiento</li>
+</ul>
+</div>
+<div class="section" id="insights-clave">
+<h2>Insights clave</h2>
+<ol class="arabic simple">
+<li><strong>No existe la bala de plata</strong> - cada método tiene fortalezas específicas</li>
+<li><strong>Las herramientas locales son poderosas</strong> - DuckDB + Ollama permiten análisis sofisticados sin cloud</li>
+<li><strong>Los embeddings son prometedores</strong> - especialmente para casos con contexto complejo</li>
+<li><strong>La conflación requiere iteración</strong> - combinar múltiples técnicas mejora los resultados</li>
+</ol>
+</div>
+<div class="section" id="el-futuro-de-la-integracion-de-datos">
+<h2>El futuro de la integración de datos</h2>
+<p>Este trabajo muestra cómo las herramientas modernas democratizan técnicas que antes requerían infraestructura compleja. La combinación de:</p>
+<ul class="simple">
+<li><strong>Bases de datos analíticas</strong> (DuckDB)</li>
+<li><strong>Índices espaciales</strong> (H3)</li>
+<li><strong>ML local</strong> (Ollama)</li>
+</ul>
+<p>...abre nuevas posibilidades para la integración inteligente de datos.</p>
+<p><em>Artículo original</em>: <a class="reference external" href="https://www.dbreunig.com/2024/09/27/conflating-overture-points-of-interests-with-duckdb-ollama-and-more.html">Conflating Overture Places Using DuckDB, Ollama, Embeddings, and More</a></p>
+</div>
+
+            
+            <section>
+<p id="comment-message">¿Qué te parece? ¿Piensas que olvidé algo? ¿Poco claro? Deja abajo tus comentarios. </p>
+<div class="accordion" id="accordion2">
+    <div class="accordion-group">
+        <div class="accordion-heading">
+            <a class="accordion-toggle disqus-comment-count" data-toggle="collapse" data-parent="#accordion2"
+                href="http://pablocaro.es/conflacion-datos-geoespaciales-duckdb#disqus_thread">
+                Comments
+            </a>
+        </div>
+        <div id="disqus_thread" class="accordion-body collapse">
+            <div class="accordion-inner">
+                <div class="comments">
+                    <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'anotaciones';
+        var disqus_identifier = 'http://pablocaro.es/conflacion-datos-geoespaciales-duckdb';
+    var disqus_url = 'http://pablocaro.es/conflacion-datos-geoespaciales-duckdb';
+
+    (function() {
+         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+         dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+     })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+
+            <hr/>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+            <h4>Publicado</h4>
+            <time pubdate="pubdate" datetime="2024-10-01T07:12:00+02:00">oct 1, 2024</time>
+            <h4>Categoría</h4>
+            <a class="category-link" href="http://pablocaro.es/categories.html#programacion-ref">Programación</a>
+            <h4>Tags</h4>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="http://pablocaro.es/tags.html#duckdb-ref">duckdb
+                    <span>1</span>
+</a></li>
+                <li><a href="http://pablocaro.es/tags.html#embeddings-ref">embeddings
+                    <span>1</span>
+</a></li>
+                <li><a href="http://pablocaro.es/tags.html#geoespacial-ref">geoespacial
+                    <span>1</span>
+</a></li>
+                <li><a href="http://pablocaro.es/tags.html#h3-ref">h3
+                    <span>1</span>
+</a></li>
+                <li><a href="http://pablocaro.es/tags.html#ollama-ref">ollama
+                    <span>1</span>
+</a></li>
+            </ul>
+<h4>Contacta conmigo</h4>
+    <a href="http://twitter.com/pcaro" title="My Twitter Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-twitter sidebar-social-links"></i></a>
+    <a href="http://github.com/pcaro" title="My Github Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-github sidebar-social-links"></i></a>
+    <a href="https://www.linkedin.com/in/pcarorevuelta" title="My Linkedin Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-linkedin sidebar-social-links"></i></a>
+    <a href="https://www.facebook.com/pablo.carorevuelta" title="My Facebook Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-facebook sidebar-social-links"></i></a>
+    <a href="mailto:correo@pablocaro.es" title="My Email Address" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-envelope sidebar-social-links"></i></a>
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-subtitle"><span class="site-name"><span style="color:#AA1032;">Anotaciones</span> <span style="color:darkblue;">por</span> <span style="color:black">Pablo Caro</span></span> - Anotaciones</li>
+        <li class="elegant-license"><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"> Anotaciones</span> de <a xmlns:cc="http://creativecommons.org/ns#" href="http://pablocaro.es" property="cc:attributionName" rel="cc:attributionURL">Pablo Caro</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>.</li>
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a></li>
+    </ul>
+</div>
+</footer>            <script src="http://code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+            <script type="text/javascript">
+var disqus_shortname = 'anotaciones';
+(function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
+<script  language="javascript" type="text/javascript">
+function uncollapse() {
+    if (window.location.hash.match(/^#comment-\d+$/)) {
+        $('#disqus_thread').collapse('show');
+    }
+}
+</script>
+<script type="text/javascript" language="JavaScript">
+uncollapse();
+window.onhashchange=function(){
+    if (window.location.hash.match(/^#comment-\d+$/))
+        window.location.reload(true);
+}
+</script>
+<script>
+$('#disqus_thread').on('shown', function () {
+    var link = document.getElementsByClassName('accordion-toggle');
+    var old_innerHTML = link[0].innerHTML;
+    $(link[0]).fadeOut(500, function() {
+        $(this).text('Click here to hide comments').fadeIn(500);
+    });
+    $('#disqus_thread').on('hidden', function () {
+        $(link[0]).fadeOut(500, function() {
+            $(this).text(old_innerHTML).fadeIn(500);
+        });
+    })
+})
+</script>
+
+
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : http://oncrashreboot.com/pelican-elegant -->
+</html>

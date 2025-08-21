@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Anotaciones por Pablo Caro - hardware</title><link href="http://pablocaro.es/" rel="alternate"></link><link href="http://pablocaro.es/feeds/tags/hardware.atom.xml" rel="self"></link><id>http://pablocaro.es/</id><updated>2016-07-13T20:28:00+02:00</updated><subtitle>Anotaciones</subtitle><entry><title>Determinar slots de RAM en uso en Linux</title><link href="http://pablocaro.es/determinar-slots-ram-uso-linux" rel="alternate"></link><published>2016-07-13T20:28:00+02:00</published><updated>2016-07-13T20:28:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2016-07-13:/determinar-slots-ram-uso-linux</id><summary type="html">&lt;p&gt;Comandos de Linux para determinar cuántos slots de RAM están ocupados y su capacidad usando dmidecode, lshw y técnicas de inspección de hardware&lt;/p&gt;</summary><content type="html">&lt;p&gt;¿Cuántos &lt;strong&gt;slots de RAM tienes ocupados&lt;/strong&gt; y cuántos libres? Linux proporciona herramientas para inspeccionar la configuración de memoria sin abrir el ordenador.&lt;/p&gt;
+&lt;h2 id="dmidecode-la-herramienta-principal"&gt;dmidecode: La herramienta principal&lt;a class="headerlink" href="#dmidecode-la-herramienta-principal" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="informacion-basica-de-memoria"&gt;Información básica de memoria&lt;a class="headerlink" href="#informacion-basica-de-memoria" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Ver toda la información de memoria&lt;/span&gt;
+sudo&lt;span class="w"&gt; &lt;/span&gt;dmidecode&lt;span class="w"&gt; &lt;/span&gt;-t&lt;span class="w"&gt; &lt;/span&gt;memory
+
+&lt;span class="c1"&gt;# Tipo específico de memoria (tabla 16)&lt;/span&gt;
+sudo&lt;span class="w"&gt; &lt;/span&gt;dmidecode&lt;span class="w"&gt; &lt;/span&gt;-t&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;16&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Solo los tamaños instalados&lt;/span&gt;
+sudo&lt;span class="w"&gt; &lt;/span&gt;dmidecode&lt;span class="w"&gt; &lt;/span&gt;-t&lt;span class="w"&gt; &lt;/span&gt;memory&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;grep&lt;span class="w"&gt; &lt;/span&gt;-i&lt;span class="w"&gt; &lt;/span&gt;size
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Salida típica&lt;/strong&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;Size&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;8192&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;MB&lt;/span&gt;
+&lt;span class="n"&gt;Size&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;8192&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;MB&lt;/span&gt;
+&lt;span class="n"&gt;Size&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;No&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Module&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Installed&lt;/span&gt;
+&lt;span class="n"&gt;Size&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;No&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Module&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Installed&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id="informacion-detallada-por-slot"&gt;Información detallada por slot&lt;a class="headerlink" href="#informacion-detallada-por-slot" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Información granular de cada slot (tabla 17)&lt;/span&gt;
+sudo&lt;span class="w"&gt; &lt;/span&gt;dmidecode&lt;span class="w"&gt; &lt;/span&gt;-t&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;17&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Resumen compacto&lt;/span&gt;
+sudo&lt;span class="w"&gt; &lt;/span&gt;dmidecode&lt;span class="w"&gt; &lt;/span&gt;-t&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;17&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;grep&lt;span class="w"&gt; &lt;/span&gt;-E&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;(Size|Locator|Speed|Type:)&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Información proporcionada&lt;/strong&gt;:
+- &lt;strong&gt;Locator&lt;/strong&gt;: Identificador físico del slot (DIMM_A1, DIMM_B1, etc.)
+- &lt;strong&gt;Size&lt;/strong&gt;: Capacidad instalada o "No Module Installed"
+- &lt;strong&gt;Type&lt;/strong&gt;: DDR3, DDR4, etc.
+- &lt;strong&gt;Speed&lt;/strong&gt;: Velocidad en MT/s&lt;/p&gt;
+&lt;h2 id="lshw-alternativa-con-formato-estructurado"&gt;lshw: Alternativa con formato estructurado&lt;a class="headerlink" href="#lshw-alternativa-con-formato-estructurado" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Información de memoria con lshw&lt;/span&gt;
+sudo&lt;span class="w"&gt; &lt;/span&gt;lshw&lt;span class="w"&gt; &lt;/span&gt;-class&lt;span class="w"&gt; &lt;/span&gt;memory
+
+&lt;span class="c1"&gt;# Solo memoria física (sin caché)&lt;/span&gt;
+sudo&lt;span class="w"&gt; &lt;/span&gt;lshw&lt;span class="w"&gt; &lt;/span&gt;-class&lt;span class="w"&gt; &lt;/span&gt;memory&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;grep&lt;span class="w"&gt; &lt;/span&gt;-A&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;10&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;System Memory&amp;quot;&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Formato más compacto&lt;/span&gt;
+sudo&lt;span class="w"&gt; &lt;/span&gt;lshw&lt;span class="w"&gt; &lt;/span&gt;-short&lt;span class="w"&gt; &lt;/span&gt;-class&lt;span class="w"&gt; &lt;/span&gt;memory
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="scripts-utiles-para-analisis"&gt;Scripts útiles para análisis&lt;a class="headerlink" href="#scripts-utiles-para-analisis" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="contador-de-slots-ocupados"&gt;Contador de slots ocupados&lt;a class="headerlink" href="#contador-de-slots-ocupados" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="ch"&gt;#!/bin/bash&lt;/span&gt;
+&lt;span class="nb"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;=== Análisis de slots de RAM ===&amp;quot;&lt;/span&gt;
+&lt;span class="nv"&gt;TOTAL_SLOTS&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;dmidecode&lt;span class="w"&gt; &lt;/span&gt;-t&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;17&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;grep&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Size:&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;wc&lt;span class="w"&gt; &lt;/span&gt;-l&lt;span class="k"&gt;)&lt;/span&gt;
+&lt;span class="nv"&gt;OCCUPIED_SLOTS&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;dmidecode&lt;span class="w"&gt; &lt;/span&gt;-t&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;17&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;grep&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Size:&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;grep&lt;span class="w"&gt; &lt;/span&gt;-v&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;No Module&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;wc&lt;span class="w"&gt; &lt;/span&gt;-l&lt;span class="k"&gt;)&lt;/span&gt;
+&lt;span class="nv"&gt;FREE_SLOTS&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;$((&lt;/span&gt;&lt;span class="nv"&gt;TOTAL_SLOTS&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;OCCUPIED_SLOTS&lt;/span&gt;&lt;span class="k"&gt;))&lt;/span&gt;
+
+&lt;span class="nb"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Slots totales: &lt;/span&gt;&lt;span class="nv"&gt;$TOTAL_SLOTS&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+&lt;span class="nb"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Slots ocupados: &lt;/span&gt;&lt;span class="nv"&gt;$OCCUPIED_SLOTS&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;
+&lt;span class="nb"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Slots libres: &lt;/span&gt;&lt;span class="nv"&gt;$FREE_SLOTS&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id="resumen-detallado"&gt;Resumen detallado&lt;a class="headerlink" href="#resumen-detallado" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="ch"&gt;#!/bin/bash&lt;/span&gt;
+&lt;span class="nb"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;=== Configuración actual de RAM ===&amp;quot;&lt;/span&gt;
+sudo&lt;span class="w"&gt; &lt;/span&gt;dmidecode&lt;span class="w"&gt; &lt;/span&gt;-t&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;17&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;awk&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;
+&lt;span class="s1"&gt;/Memory Device/,/^$/ {&lt;/span&gt;
+&lt;span class="s1"&gt;    if(/Locator:/) locator=$2&lt;/span&gt;
+&lt;span class="s1"&gt;    if(/Size:/ &amp;amp;&amp;amp; !/No Module/) {&lt;/span&gt;
+&lt;span class="s1"&gt;        size=$2&amp;quot; &amp;quot;$3&lt;/span&gt;
+&lt;span class="s1"&gt;        print locator&amp;quot;: &amp;quot;size&lt;/span&gt;
+&lt;span class="s1"&gt;    }&lt;/span&gt;
+&lt;span class="s1"&gt;    if(/Size:.*No Module/) print locator&amp;quot;: Vacío&amp;quot;&lt;/span&gt;
+&lt;span class="s1"&gt;}&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="informacion-adicional-util"&gt;Información adicional útil&lt;a class="headerlink" href="#informacion-adicional-util" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="capacidad-maxima-soportada"&gt;Capacidad máxima soportada&lt;a class="headerlink" href="#capacidad-maxima-soportada" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Máxima capacidad total&lt;/span&gt;
+sudo&lt;span class="w"&gt; &lt;/span&gt;dmidecode&lt;span class="w"&gt; &lt;/span&gt;-t&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;16&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;grep&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Maximum Capacity&amp;quot;&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Número máximo de dispositivos&lt;/span&gt;
+sudo&lt;span class="w"&gt; &lt;/span&gt;dmidecode&lt;span class="w"&gt; &lt;/span&gt;-t&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;16&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;grep&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Number Of Devices&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id="verificacion-de-velocidad-y-tipo"&gt;Verificación de velocidad y tipo&lt;a class="headerlink" href="#verificacion-de-velocidad-y-tipo" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Velocidad configurada&lt;/span&gt;
+sudo&lt;span class="w"&gt; &lt;/span&gt;dmidecode&lt;span class="w"&gt; &lt;/span&gt;-t&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;17&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;grep&lt;span class="w"&gt; &lt;/span&gt;-E&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;(Speed|Configured)&amp;quot;&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Tipo de memoria&lt;/span&gt;
+sudo&lt;span class="w"&gt; &lt;/span&gt;dmidecode&lt;span class="w"&gt; &lt;/span&gt;-t&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;17&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;grep&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Type:&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;grep&lt;span class="w"&gt; &lt;/span&gt;-v&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Error&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="ejemplo-de-salida-interpretada"&gt;Ejemplo de salida interpretada&lt;a class="headerlink" href="#ejemplo-de-salida-interpretada" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$&lt;span class="w"&gt; &lt;/span&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;dmidecode&lt;span class="w"&gt; &lt;/span&gt;-t&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;17&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;grep&lt;span class="w"&gt; &lt;/span&gt;-E&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;(Locator|Size|Type:)&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;head&lt;span class="w"&gt; &lt;/span&gt;-12
+
+Locator:&lt;span class="w"&gt; &lt;/span&gt;DIMM_A1
+Size:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;8192&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;MB&lt;span class="w"&gt;  &lt;/span&gt;
+Type:&lt;span class="w"&gt; &lt;/span&gt;DDR4
+
+Locator:&lt;span class="w"&gt; &lt;/span&gt;DIMM_A2
+Size:&lt;span class="w"&gt; &lt;/span&gt;No&lt;span class="w"&gt; &lt;/span&gt;Module&lt;span class="w"&gt; &lt;/span&gt;Installed
+Type:&lt;span class="w"&gt; &lt;/span&gt;Unknown
+
+Locator:&lt;span class="w"&gt; &lt;/span&gt;DIMM_B1&lt;span class="w"&gt;  &lt;/span&gt;
+Size:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;8192&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;MB
+Type:&lt;span class="w"&gt; &lt;/span&gt;DDR4
+
+Locator:&lt;span class="w"&gt; &lt;/span&gt;DIMM_B2
+Size:&lt;span class="w"&gt; &lt;/span&gt;No&lt;span class="w"&gt; &lt;/span&gt;Module&lt;span class="w"&gt; &lt;/span&gt;Installed
+Type:&lt;span class="w"&gt; &lt;/span&gt;Unknown
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Interpretación&lt;/strong&gt;: 
+- 4 slots totales (DIMM_A1, A2, B1, B2)
+- 2 slots ocupados con 8GB DDR4 cada uno
+- 2 slots libres disponibles&lt;/p&gt;
+&lt;h2 id="limitaciones-importantes"&gt;Limitaciones importantes&lt;a class="headerlink" href="#limitaciones-importantes" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;⚠️ &lt;strong&gt;Precisión&lt;/strong&gt;: Las herramientas de línea de comandos pueden no reflejar perfectamente el hardware físico&lt;/p&gt;
+&lt;p&gt;⚠️ &lt;strong&gt;Privilegios&lt;/strong&gt;: Se requieren permisos de root para acceder a información DMI&lt;/p&gt;
+&lt;p&gt;⚠️ &lt;strong&gt;Compatibilidad&lt;/strong&gt;: Algunos sistemas embebidos pueden no proporcionar información completa&lt;/p&gt;
+&lt;p&gt;Para &lt;strong&gt;máxima certeza&lt;/strong&gt;, la inspección física sigue siendo recomendable, pero estas herramientas proporcionan información suficientemente precisa para la mayoría de casos.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Fuente original&lt;/em&gt;: &lt;a href="http://unix.stackexchange.com/questions/33249/how-to-determine-the-amount-of-ram-slots-in-use"&gt;Unix &amp;amp; Linux Stack Exchange&lt;/a&gt;&lt;/p&gt;</content><category term="Linux"></category><category term="linux"></category><category term="ram"></category><category term="dmidecode"></category><category term="lshw"></category><category term="hardware"></category><category term="memoria"></category></entry></feed>

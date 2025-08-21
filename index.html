@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8"> 
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Pablo Caro" />
+        <meta name="copyright" content="Pablo Caro" />
+
+        <meta name="description" content="Mi nombre es Pablo Caro — un ingeniero de software. Soy pcaro en Github y en twitter. Construyo software de todo tipo. Este es mi blog personal." />
+        <meta name="twitter:creator" content="@pcaro">
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta property="og:title" content="Construyendo sofware de forma innovadora"/>
+<meta name="twitter:title" content="Construyendo sofware de forma innovadora">
+<meta property="og:url" content="http://pablocaro.es" />
+<meta property="og:description" content="Mi nombre es Pablo Caro — un ingeniero de software. Soy pcaro en Github y en twitter. Construyo software de todo tipo. Este es mi blog personal." />
+<meta name="twitter:description" content="Mi nombre es Pablo Caro — un ingeniero de software. Soy pcaro en Github y en twitter. Construyo software de todo tipo. Este es mi blog personal.">
+<meta property="og:site_name" content="Anotaciones por Pablo Caro" />
+<meta property="og:article:author" content="Pablo Caro" />
+<meta property="og:image" content="http://pablocaro.es/theme/images/apple-touch-icon-152x152.png" />
+<meta name="twitter:image" content="http://pablocaro.es/theme/images/apple-touch-icon-152x152.png" >
+        <title>Anotaciones por Pablo Caro
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="http://pablocaro.es/theme/css/pygments.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://pablocaro.es/theme/tipuesearch/tipuesearch.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://pablocaro.es/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://pablocaro.es/theme/css/custom.css" media="screen">
+        <link rel="shortcut icon" href="http://pablocaro.es/theme/images/favicon.ico" type="image/x-icon" type="image/png" />
+        <link rel="icon" href="http://pablocaro.es/theme/images/apple-touch-icon-152x152.png" type="image/png" />
+        <link rel="apple-touch-icon" href="http://pablocaro.es/theme/images/apple-touch-icon.png"  type="image/png" />
+        <link rel="apple-touch-icon" sizes="57x57" href="http://pablocaro.es/theme/images/apple-touch-icon-57x57.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="72x72" href="http://pablocaro.es/theme/images/apple-touch-icon-72x72.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="76x76" href="http://pablocaro.es/theme/images/apple-touch-icon-76x76.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="114x114" href="http://pablocaro.es/theme/images/apple-touch-icon-114x114.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="120x120" href="http://pablocaro.es/theme/images/apple-touch-icon-120x120.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="144x144" href="http://pablocaro.es/theme/images/apple-touch-icon-144x144.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="152x152" href="http://pablocaro.es/theme/images/apple-touch-icon-152x152.png" type="image/png" />
+        <link href="http://pablocaro.es/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Anotaciones por Pablo Caro - Full Atom Feed" />
+        <link href="http://pablocaro.es/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Anotaciones por Pablo Caro - Full RSS Feed" />
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+     })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-60035125-1', 'auto');
+    ga('send', 'pageview');
+</script>
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="http://pablocaro.es/"><span class=site-name><span style="color:#AA1032;">Anotaciones</span> <span style="color:darkblue;">por</span> <span style="color:black">Pablo Caro</span></span></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li  class="active"><a href="http://pablocaro.es">Inicio</a></li>
+                            <li ><a href="http://pablocaro.es/categories.html">Categorías</a></li>
+                            <li ><a href="http://pablocaro.es/tags.html">Etiquetas</a></li>
+                            <li ><a href="http://pablocaro.es/archives.html">Archivos</a></li>
+                            <li><form class="navbar-search" action="http://pablocaro.es/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Búsqueda" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<div class="row-fluid">
+    <header class="page-header span12">
+    <h1><a href="http://pablocaro.es">Construyendo sofware de forma innovadora</a></h1>
+    </header>
+
+    <div class="row-fluid">
+        <div class="span8">
+            <header>
+            <h1 id="about-me">Sobre mí</h1>
+            </header>
+            <div class="article-content">
+                <div itemscope itemtype="http://schema.org/Person">
+       <p>Mi nombre es <span itemprop="name">Pablo Caro</span>.
+       Soy <a href="https://github.com/pcaro/" title="Perfil en github" itemprop="url"><span itemprop="nickname">pcaro</span></a> en Github
+       igual que en Twitter (<a href="https://twitter.com/pcaro/" title="Perfil en Twitter" itemprop="url">@pcaro</a>).
+       Puedes contactar conmigo por <a href="mailto:correo@pablocaro.es" title="email" itemprop="email">email</a>.</p>
+
+       <p>En este blog llamado <strong>Anotaciones</strong> voy apuntando las notas que
+       no quiero que ocupen espacio en mi cabeza. Principalmente recetas de python y linux.</p>
+
+       <p>Como desarrollador trabajo tanto para instuciones públicas como privadas, y
+       no tengo problemas para habituarme a nuevos lenguajes o frameworks. Siempre me mantengo
+       receptivo para trabajar con nuevas tecnologías. Ahora centrado en proyectos de acompañamiento tecnológico y
+       growth hacking. A menudo colaboro con proyectos de sofware libre y siempre estoy dispuesto
+       a predicar a favor del opensource.</p>
+
+       <p>En la parte más personal soy un hombre felizmente casado con dos hijos maravillosos
+       que vive en Sevilla aunque no leeras mucho de ellos por aquí ya que también resguardo mucho mi privacidad.</p>
+       </div>
+            </div>
+        </div>
+
+        <div class="span4">
+            <header>
+            <h1 id="my-projects">Mis proyectos</h1>
+            </header>
+            <ul class="list-all-articles">
+                <li>
+                <a href="https://github.com/pcaro/trac2rst" title="trac2rst">trac2rst</a> <span class="proj-desc">I use trac2rst to help me in the task to pass documentacion from trac to sphinx</span>
+                </li>
+            </ul>
+            <ul class="list-all-articles">
+                <li>
+                <a href="https://github.com/pcaro/openerp-snippets" title="Openerp Snippets">Openerp Snippets</a> <span class="proj-desc">A sublime package which includes a bunch of handy snippets for doing OpenERp development</span>
+                </li>
+            </ul>
+            <ul class="list-all-articles">
+                <li>
+                <a href="https://github.com/pcaro/lynx-theme" title="Lynx Theme">Lynx Theme</a> <span class="proj-desc">This is a theme for the Sphinx documentation generator</span>
+                </li>
+            </ul>
+            <ul class="list-all-articles">
+                <li>
+                <a href="https://github.com/pcaro/little_scripts" title="Little Scripts">Little Scripts</a> <span class="proj-desc">Little simple utilities or alias. Most of them are not mine.</span>
+                </li>
+            </ul>
+            <ul class="list-all-articles">
+                <li>
+                <a href="https://github.com/pcaro/dotfiles" title="dotfiles">dotfiles</a> <span class="proj-desc">Configuration files.</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="row-fluid">
+        <div class="span12">
+            <header>
+            <h1 id="recent-posts">Anotaciones recientes <a id="allposts" href="http://pablocaro.es/archives.html">todas las anotaciones</a></h1>
+            </header>
+        <div class="recent-posts">
+            <article>
+                <a href="http://pablocaro.es/como-uso-git-worktrees">Cómo uso git worktrees para trabajo concurrente  </a>
+                <section>
+                    anotado en
+                <a href="http://pablocaro.es/categories.html#programacion-ref">Programación</a>
+                <div class="recent-posts-time">
+                <time pubdate="pubdate" datetime="2025-07-23T06:12:00+02:00">mié 23 julio 2025</time>
+                </div>
+                </section>
+            </article>
+            <article>
+                <a href="http://pablocaro.es/busqueda-hibrida-sqlite-vector-texto">Búsqueda híbrida con SQLite: vector + texto completo  </a>
+                <section>
+                    anotado en
+                <a href="http://pablocaro.es/categories.html#programacion-ref">Programación</a>
+                <div class="recent-posts-time">
+                <time pubdate="pubdate" datetime="2024-10-06T11:43:00+02:00">dom 06 octubre 2024</time>
+                </div>
+                </section>
+            </article>
+            <article>
+                <a href="http://pablocaro.es/conflacion-datos-geoespaciales-duckdb">Conflación de datos geoespaciales con DuckDB y embeddings  </a>
+                <section>
+                    anotado en
+                <a href="http://pablocaro.es/categories.html#programacion-ref">Programación</a>
+                <div class="recent-posts-time">
+                <time pubdate="pubdate" datetime="2024-10-01T07:12:00+02:00">mar 01 octubre 2024</time>
+                </div>
+                </section>
+            </article>
+            <article>
+                <a href="http://pablocaro.es/httpx-cliente-http-moderno-python">HTTPX: Cliente HTTP moderno para Python  </a>
+                <section>
+                    anotado en
+                <a href="http://pablocaro.es/categories.html#programacion-ref">Programación</a>
+                <div class="recent-posts-time">
+                <time pubdate="pubdate" datetime="2024-09-23T00:07:00+02:00">lun 23 septiembre 2024</time>
+                </div>
+                </section>
+            </article>
+            <article>
+                <a href="http://pablocaro.es/server-sent-events-comunicacion-tiempo-real">Server-Sent Events: Comunicación en tiempo real simplificada  </a>
+                <section>
+                    anotado en
+                <a href="http://pablocaro.es/categories.html#programacion-ref">Programación</a>
+                <div class="recent-posts-time">
+                <time pubdate="pubdate" datetime="2024-09-23T00:01:00+02:00">lun 23 septiembre 2024</time>
+                </div>
+                </section>
+            </article>
+            <article>
+                <a href="http://pablocaro.es/una-de-versiones">Una de versiones  </a>
+                <section>
+                    anotado en
+                <a href="http://pablocaro.es/categories.html#progamacion-ref">Progamación</a>
+                <div class="recent-posts-time">
+                <time pubdate="pubdate" datetime="2017-05-01T18:04:00+02:00">lun 01 mayo 2017</time>
+                </div>
+                </section>
+            </article>
+            <article>
+                <a href="http://pablocaro.es/mobaxterm-mucho-más-que-un-cliente-ssh">MobaXterm. Mucho más que un cliente ssh  </a>
+                <section>
+                    anotado en
+                <a href="http://pablocaro.es/categories.html#trucos-ref">Trucos</a>
+                <div class="recent-posts-time">
+                <time pubdate="pubdate" datetime="2017-04-11T14:07:00+02:00">mar 11 abril 2017</time>
+                </div>
+                </section>
+            </article>
+            <article>
+                <a href="http://pablocaro.es/posterazor-crear-posters-grandes">PosteRazor: Crea pósters gigantes desde cualquier imagen  </a>
+                <section>
+                    anotado en
+                <a href="http://pablocaro.es/categories.html#herramientas-ref">Herramientas</a>
+                <div class="recent-posts-time">
+                <time pubdate="pubdate" datetime="2017-02-24T20:06:00+01:00">vie 24 febrero 2017</time>
+                </div>
+                </section>
+            </article>
+            <article>
+                <a href="http://pablocaro.es/gmail_correo_no_leido_solo_en_principal">Correo no leído en pestaña principal de gmail  </a>
+                <section>
+                    anotado en
+                <a href="http://pablocaro.es/categories.html#trucos-ref">Trucos</a>
+                <div class="recent-posts-time">
+                <time pubdate="pubdate" datetime="2016-07-28T18:00:00+02:00">jue 28 julio 2016</time>
+                </div>
+                </section>
+            </article>
+            <article>
+                <a href="http://pablocaro.es/documentacion-tecnica-sphinx-paver-cog">Documentación técnica con Sphinx, Paver y Cog  </a>
+                <section>
+                    anotado en
+                <a href="http://pablocaro.es/categories.html#documentacion-ref">Documentación</a>
+                <div class="recent-posts-time">
+                <time pubdate="pubdate" datetime="2016-07-14T00:47:00+02:00">jue 14 julio 2016</time>
+                </div>
+                </section>
+            </article>
+        </div>
+        </div>
+    </div>
+</div>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-subtitle"><span class="site-name"><span style="color:#AA1032;">Anotaciones</span> <span style="color:darkblue;">por</span> <span style="color:black">Pablo Caro</span></span> - Anotaciones</li>
+        <li class="elegant-license"><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"> Anotaciones</span> de <a xmlns:cc="http://creativecommons.org/ns#" href="http://pablocaro.es" property="cc:attributionName" rel="cc:attributionURL">Pablo Caro</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>.</li>
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a></li>
+    </ul>
+</div>
+</footer>        <script src="http://code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : http://oncrashreboot.com/pelican-elegant -->
+</html>

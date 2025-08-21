@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Anotaciones por Pablo Caro - postgresql</title><link href="http://pablocaro.es/" rel="alternate"></link><link href="http://pablocaro.es/feeds/tags/postgresql.atom.xml" rel="self"></link><id>http://pablocaro.es/</id><updated>2015-03-02T08:26:00+01:00</updated><subtitle>Anotaciones</subtitle><entry><title>pgcli el descubrimiento de hoy</title><link href="http://pablocaro.es/pgcli-el-descubrimiento-de-hoy" rel="alternate"></link><published>2015-03-02T08:26:00+01:00</published><updated>2015-03-02T08:26:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2015-03-02:/pgcli-el-descubrimiento-de-hoy</id><summary type="html">&lt;p class="first last"&gt;postresql command line&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;Leyendo mis feeds RSS acabo de dar con una herramienta muy útil. Se trata de &lt;a class="reference external" href="http://pgcli.com/"&gt;pgcli&lt;/a&gt; que no es más que una
+interfaz de línea de comandos para Postgres con autocompletado y resaltado de sintáxis.
+Como soy de usar la consola con las bases de datos, y postgres siempre es mi primera elección,
+me biene de perlas. with auto-completion and syntax highlighting&lt;/p&gt;
+&lt;p&gt;Yo recommiendo instalarla mediante &lt;a class="reference external" href="https://github.com/mitsuhiko/pipsi"&gt;pipsi&lt;/a&gt;.&lt;/p&gt;
+</content><category term="Programación"></category><category term="postgresql"></category></entry></feed>
