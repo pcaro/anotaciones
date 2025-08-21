@@ -10,44 +10,48 @@ Getting up and running
 
 The steps below will get you up and running with a local development environment. We assume you have the following installed:
 
-* pip
-* virtualenv
+* uv (https://docs.astral.sh/uv/)
 
-First make sure to create and activate a virtualenv_, then open a terminal at the project root and install the requirements for local development::
+First install dependencies using uv::
 
-    $ pip install -r requirements.txt
-
+    $ uv sync
 
 Then download theme and plugins::
 
     git clone https://github.com/pcaro/pelican-elegant.git
     git clone https://github.com/getpelican/pelican-plugins.git plugins
 
+**Development Commands**
 
-**Develop**
-For develop, use::
+Build the site::
 
-    $ fab develop
+    $ uv run invoke build
 
-**Live reloading**
+Develop with local server::
 
-If you'd like to take advantage of live reloading you can do so with the included fabric task. Make sure requirements are installed and virtualenv activated. Then, in the project root run::
+    $ uv run invoke develop
 
-    $ fab develop_live
+Live reloading (recommended for development)::
 
+    $ uv run invoke develop-live
 
-To get live reloading to work you'll probably need to install an `appropriate browser extension`_
+Build for production::
 
-** Production and github pages **
-To send to github pages, first regenerate in production mode (create feeds for example)::
+    $ uv run invoke production
 
-    $ fab production sent_to_githubpages
+**Publishing**
+
+The site is automatically deployed to GitHub Pages when you push to the master branch using GitHub Actions.
+
+For manual publishing::
+
+    $ uv run invoke publish
 
 **New entries**
 
-I have a *write* task too. Use it::
+Create a new post::
 
-    $ fab write:"un titulo"
+    $ uv run invoke write "título del post"
 
 And a new file (restructured text) is created with de actual date and contents like::
 

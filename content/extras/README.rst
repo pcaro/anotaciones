@@ -1,6 +1,9 @@
 Anotaciones. Blog de Pablo Caro
 ===============================
 
+:date: 2020-01-01
+:status: hidden
+
 This are my blog output (anotaciones_) for use in gitpages.
 
 Content (blog is pelican_) is in anotaciones_repo_
