@@ -68,7 +68,7 @@ RELATIVE_URLS = True
 # THEME = 'pelican-themes/mg'
 # THEME = 'pelican-themes/Just-Read'  # Un buen punto de partida. Necesita cosas de elegant
 # THEME = 'pelican-themes/svbhack'
-THEME = "pelican-elegant"  # Requiere atribucion
+THEME = "flex"
 
 SITEMAP = {
     "format": "xml",
