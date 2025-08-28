@@ -35,16 +35,11 @@ jobs:
       - name: Install dependencies
         run: uv sync
 
-      - name: Setup theme and plugins
+      - name: Setup plugins
         run: |
-          if [ ! -d "pelican-elegant" ]; then
-            git clone https://github.com/pcaro/pelican-elegant.git
-          fi
           if [ ! -d "plugins" ]; then
             git clone https://github.com/getpelican/pelican-plugins.git plugins
           fi
-          # Debug: check if theme was cloned correctly
-          ls -la pelican-elegant/ || echo "Theme directory not found"
 
       - name: Build with Pelican
         run: |
