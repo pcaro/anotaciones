@@ -80,7 +80,11 @@ SITEMAP = {
 TYPOGRIFY = True
 DEFAULT_PAGINATION = False
 
-PLUGINS = []
+PLUGINS = [
+    'sitemap',
+    'neighbors',
+    'related_posts'
+]
 MARKDOWN = {
     "extension_configs": {
         "markdown.extensions.codehilite": {"css_class": "highlight"},
