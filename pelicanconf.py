@@ -93,9 +93,19 @@ MARKDOWN = {
     },
     "output_format": "html5",
 }
-DIRECT_TEMPLATES = ["index", "tags", "categories", "archives", "search", "404"]
-TAG_SAVE_AS = ""
-CATEGORY_SAVE_AS = ""
+DIRECT_TEMPLATES = ["index", "tags", "categories", "archives"]
+
+# Enable tag and category pages for Flex
+TAG_SAVE_AS = "tag/{slug}.html"
+TAG_URL = "tag/{slug}.html"
+TAGS_SAVE_AS = "tags.html"
+TAGS_URL = "tags.html"
+
+CATEGORY_SAVE_AS = "category/{slug}.html"
+CATEGORY_URL = "category/{slug}.html"
+CATEGORIES_SAVE_AS = "categories.html" 
+CATEGORIES_URL = "categories.html"
+
 AUTHOR_SAVE_AS = ""
 USE_SHORTCUT_ICONS = True
 
