@@ -95,21 +95,30 @@ CATEGORY_SAVE_AS = ""
 AUTHOR_SAVE_AS = ""
 USE_SHORTCUT_ICONS = True
 
-# Elegant Labels (Spanish translations)
-SOCIAL_PROFILE_LABEL = "Contacta conmigo"
-RELATED_POSTS_LABEL = "Continúa leyendo"
-SHARE_POST_INTRO = "¿Te gustó esta anotación? Compártela en:"
-COMMENTS_INTRO = (
-    "¿Qué te parece? ¿Piensas que olvidé algo? ¿Poco claro? Deja abajo tus comentarios."
-)
+# Flex theme configuration
+SITETITLE = "Anotaciones"
+SITELOGO = "/images/profile.png"  # Optional: add a logo image
+FAVICON = "/images/favicon.ico"   # Optional: add a favicon
 
-# Additional Spanish labels for Elegant theme
-ARCHIVES_LABEL = "Archivo"
-CATEGORIES_LABEL = "Categorías"
-TAGS_LABEL = "Etiquetas"
-SEARCH_LABEL = "Buscar"
-RECENT_POSTS_LABEL = "Entradas recientes"
-ABOUT_ME = "Sobre mí"
+# Browser tab title
+BROWSER_COLOR = "#333333"
+PYGMENTS_STYLE = "github"
+
+# Footer
+COPYRIGHT_YEAR = 2025
+CC_LICENSE = {
+    "name": "Creative Commons Attribution-ShareAlike",
+    "version": "3.0",
+    "slug": "by-sa"
+}
+
+# Flex theme menu
+MAIN_MENU = True
+MENUITEMS = (
+    ("Archivo", "/archives.html"),
+    ("Categorías", "/categories.html"),
+    ("Etiquetas", "/tags.html"),
+)
 
 # Mailchimp
 # EMAIL_SUBSCRIPTION_LABEL = u'Get Monthly Updates'
