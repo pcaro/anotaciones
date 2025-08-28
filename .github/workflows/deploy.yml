@@ -55,6 +55,7 @@ jobs:
           print('SITEURL:', repr(SITEURL))
           print('OUTPUT_PATH:', OUTPUT_PATH if 'OUTPUT_PATH' in globals() else 'Not set')
           print('THEME:', THEME)
+          print('Flex theme installed via pip')
           "
           
           # Build with more verbose output
