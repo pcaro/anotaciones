@@ -21,6 +21,7 @@ dependencies = [
     "livereload==2.6.3",
     "ghp-import==2.1.0",
     "six==1.17.0",
+    "pelican-theme-flex==2.4.0",
 ]
 
 [tool.uv]
