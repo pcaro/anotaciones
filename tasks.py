@@ -114,9 +114,7 @@ def develop_live(c, port=7000):
             self.watch("../content/", rebuild)
             self.watch("../pelicanconf.py", rebuild)
 
-            theme_path = Path("../pelican-elegant")
-            if theme_path.exists():
-                self.watch(str(theme_path), rebuild)
+            # Flex theme is installed via pip, no need to watch theme files
 
             # Start the custom HTTP server
             with socketserver.TCPServer(("", port), HTMLRewriteHandler) as httpd:
