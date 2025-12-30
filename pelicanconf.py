@@ -68,7 +68,7 @@ RELATIVE_URLS = True
 # THEME = 'pelican-themes/mg'
 # THEME = 'pelican-themes/Just-Read'  # Un buen punto de partida. Necesita cosas de elegant
 # THEME = 'pelican-themes/svbhack'
-THEME = "pelican-elegant"  # Requiere atribucion
+THEME = "themes/Flex"
 
 SITEMAP = {
     "format": "xml",
@@ -80,7 +80,11 @@ SITEMAP = {
 TYPOGRIFY = True
 DEFAULT_PAGINATION = False
 
-PLUGINS = []
+PLUGINS = [
+    'sitemap',
+    'neighbors',
+    'related_posts'
+]
 MARKDOWN = {
     "extension_configs": {
         "markdown.extensions.codehilite": {"css_class": "highlight"},
@@ -89,27 +93,46 @@ MARKDOWN = {
     },
     "output_format": "html5",
 }
-DIRECT_TEMPLATES = ["index", "tags", "categories", "archives", "search", "404"]
-TAG_SAVE_AS = ""
-CATEGORY_SAVE_AS = ""
+DIRECT_TEMPLATES = ["index", "tags", "categories", "archives"]
+
+# Enable tag and category pages for Flex
+TAG_SAVE_AS = "tag/{slug}.html"
+TAG_URL = "tag/{slug}.html"
+TAGS_SAVE_AS = "tags.html"
+TAGS_URL = "tags.html"
+
+CATEGORY_SAVE_AS = "category/{slug}.html"
+CATEGORY_URL = "category/{slug}.html"
+CATEGORIES_SAVE_AS = "categories.html" 
+CATEGORIES_URL = "categories.html"
+
 AUTHOR_SAVE_AS = ""
 USE_SHORTCUT_ICONS = True
 
-# Elegant Labels (Spanish translations)
-SOCIAL_PROFILE_LABEL = "Contacta conmigo"
-RELATED_POSTS_LABEL = "Continúa leyendo"
-SHARE_POST_INTRO = "¿Te gustó esta anotación? Compártela en:"
-COMMENTS_INTRO = (
-    "¿Qué te parece? ¿Piensas que olvidé algo? ¿Poco claro? Deja abajo tus comentarios."
-)
+# Flex theme configuration
+SITETITLE = "Anotaciones"
+SITELOGO = "/images/profile.png"  # Optional: add a logo image
+FAVICON = "/images/favicon.ico"   # Optional: add a favicon
 
-# Additional Spanish labels for Elegant theme
-ARCHIVES_LABEL = "Archivo"
-CATEGORIES_LABEL = "Categorías"
-TAGS_LABEL = "Etiquetas"
-SEARCH_LABEL = "Buscar"
-RECENT_POSTS_LABEL = "Entradas recientes"
-ABOUT_ME = "Sobre mí"
+# Browser tab title
+BROWSER_COLOR = "#333333"
+PYGMENTS_STYLE = "github"
+
+# Footer
+COPYRIGHT_YEAR = 2025
+CC_LICENSE = {
+    "name": "Creative Commons Attribution-ShareAlike",
+    "version": "3.0",
+    "slug": "by-sa"
+}
+
+# Flex theme menu
+MAIN_MENU = True
+MENUITEMS = (
+    ("Archivo", "/archives.html"),
+    ("Categorías", "/categories.html"),
+    ("Etiquetas", "/tags.html"),
+)
 
 # Mailchimp
 # EMAIL_SUBSCRIPTION_LABEL = u'Get Monthly Updates'

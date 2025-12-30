@@ -21,7 +21,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          submodules: true
+          submodules: recursive
           fetch-depth: 0
 
       - name: Install uv
@@ -35,17 +35,31 @@ jobs:
       - name: Install dependencies
         run: uv sync
 
-      - name: Setup theme and plugins
+      - name: Setup plugins
         run: |
-          if [ ! -d "pelican-elegant" ]; then
-            git clone https://github.com/pcaro/pelican-elegant.git
-          fi
           if [ ! -d "plugins" ]; then
             git clone https://github.com/getpelican/pelican-plugins.git plugins
           fi
 
       - name: Build with Pelican
-        run: uv run pelican -s publishconf.py
+        run: |
+          # Debug: Show Python version and environment
+          uv run python --version
+          uv run python -c "import sys; print('Python path:', sys.path)"
+          
+          # Debug: Check publishconf.py values
+          uv run python -c "
+          import sys
+          sys.path.append('.')
+          from publishconf import *
+          print('SITEURL:', repr(SITEURL))
+          print('OUTPUT_PATH:', OUTPUT_PATH if 'OUTPUT_PATH' in globals() else 'Not set')
+          print('THEME:', THEME)
+          print('Flex theme installed via pip')
+          "
+          
+          # Build with more verbose output
+          uv run pelican -s publishconf.py -v
 
       - name: Setup Pages
         uses: actions/configure-pages@v5

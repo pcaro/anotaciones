@@ -13,6 +13,11 @@ from pelicanconf import *
 SITEURL = "http://pablocaro.es"
 RELATIVE_URLS = False
 
+# Ensure output goes to correct directory for GitHub Actions
+OUTPUT_PATH = "output"
+
+# Keep the original SITENAME from pelicanconf.py
+
 # Following items are often useful when publishing
 
 DISQUS_SITENAME = "anotaciones"
