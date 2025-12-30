@@ -2,9 +2,8 @@
 # -*- coding: utf-8 -*- #
 
 AUTHOR = "Pablo Caro"
-SITENAME = """<span style="color:#AA1032;">Anotaciones</span> <span style="color:darkblue;">por</span> <span style="color:black">Pablo Caro</span>"""
-# SITENAME = 'Anotaciones de Pablo Caro'
-SITEURL = ""
+SITENAME = 'Anotaciones por Pablo Caro'
+SITEURL = "https://pablocaro.es"
 
 ARTICLE_PATH = "articles/"
 PATH = "content"
@@ -63,7 +62,7 @@ DEFAULT_PAGINATION = 5
 PLUGIN_PATHS = ["plugins", "plugins/tipue_search/pelican/plugins"]
 
 # Uncomment following line if you want document-relative URLs when developing
-RELATIVE_URLS = True
+RELATIVE_URLS = False
 
 # THEME = 'pelican-themes/mg'
 # THEME = 'pelican-themes/Just-Read'  # Un buen punto de partida. Necesita cosas de elegant
