@@ -78,6 +78,7 @@ The site is automatically deployed to [GitHub Pages](https://pages.github.com/) 
     *   `pelicanconf.py`: Main Pelican configuration (for both development and production).
     *   `publishconf.py`: (Optional) Overrides `pelicanconf.py` settings specifically for production builds (currently empty as all settings are consolidated in `pelicanconf.py`).
 *   **Local Development**: `uv run invoke develop-live` is recommended for immediate feedback.
+*   **Build Verification**: Always run a local build and verify it works correctly before committing to avoid breaking the automated deployment.
 *   **Asset Paths**: Ensure `SITEURL` in `pelicanconf.py` is set correctly to the root domain (`https://pablocaro.es`) and `RELATIVE_URLS = False` for production builds to avoid path issues. Static assets are managed under the `themes/Flex/static/` and `content/images/` directories.
 
 ## Troubleshooting
