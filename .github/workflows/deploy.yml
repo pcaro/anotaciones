@@ -3,6 +3,8 @@ name: Deploy Pelican site to Pages
 on:
   push:
     branches: ["master"]
+  pull_request:
+    branches: ["master"]
   workflow_dispatch:
 
 permissions:
