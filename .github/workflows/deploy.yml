@@ -1,4 +1,4 @@
-name: Deploy Pelican site to Pages
+name: Build and Deploy to gh-pages
 
 on:
   push:
@@ -6,16 +6,13 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-concurrency:
-  group: "pages"
-  cancel-in-progress: false
+  contents: write
 
 jobs:
-  build:
+  build-and-deploy:
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+      cancel-in-progress: true
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -42,40 +39,11 @@ jobs:
           fi
 
       - name: Build with Pelican
-        run: |
-          # Debug: Show Python version and environment
-          uv run python --version
-          uv run python -c "import sys; print('Python path:', sys.path)"
-          
-          # Debug: Check publishconf.py values
-          uv run python -c "
-          import sys
-          sys.path.append('.')
-          from publishconf import *
-          print('SITEURL:', repr(SITEURL))
-          print('OUTPUT_PATH:', OUTPUT_PATH if 'OUTPUT_PATH' in globals() else 'Not set')
-          print('THEME:', THEME)
-          print('Flex theme installed via pip')
-          "
-          
-          # Build with more verbose output
-          uv run pelican -s publishconf.py -v
+        run: uv run pelican -s publishconf.py -v
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: './output'
-
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
       - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./output
+          # The CNAME file is handled by the Pelican build, so it will be in the output directory.
