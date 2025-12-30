@@ -5,7 +5,7 @@ Búsqueda híbrida con SQLite: vector + texto completo
 :tags: sqlite, búsqueda, vectores, fts, sql
 :lang: es
 :category: Programación
-:slug: busqueda-hibrida-sqlite-vector-texto
+:slug: busqueda-hibrida-sqlite-vector-texto-rrf
 :summary: Combinando búsqueda vectorial y texto completo en SQLite usando Reciprocal Rank Fusion para obtener mejores resultados
 
 La búsqueda es una funcionalidad fundamental en muchas aplicaciones, pero a menudo nos enfrentamos a dos tipos principales: la búsqueda tradicional por texto completo (Full-Text Search o FTS) y la búsqueda por similitud vectorial. Cada una tiene sus fortalezas: FTS es excelente para la relevancia basada en palabras clave, mientras que la búsqueda vectorial permite encontrar ítems semánticamente similares. La clave está en cómo combinar ambas de forma efectiva.
