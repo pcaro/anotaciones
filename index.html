@@ -1,279 +1,2880 @@
+
 <!DOCTYPE html>
-<html lang="en-US">
-    <head>
-        <meta charset="utf-8"> 
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="author" content="Pablo Caro" />
-        <meta name="copyright" content="Pablo Caro" />
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
 
-        <meta name="description" content="Mi nombre es Pablo Caro — un ingeniero de software. Soy pcaro en Github y en twitter. Construyo software de todo tipo. Este es mi blog personal." />
-        <meta name="twitter:creator" content="@pcaro">
-        <meta property="og:type" content="article" />
-        <meta name="twitter:card" content="summary">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
 
-<meta property="og:title" content="Construyendo sofware de forma innovadora"/>
-<meta name="twitter:title" content="Construyendo sofware de forma innovadora">
-<meta property="og:url" content="http://pablocaro.es" />
-<meta property="og:description" content="Mi nombre es Pablo Caro — un ingeniero de software. Soy pcaro en Github y en twitter. Construyo software de todo tipo. Este es mi blog personal." />
-<meta name="twitter:description" content="Mi nombre es Pablo Caro — un ingeniero de software. Soy pcaro en Github y en twitter. Construyo software de todo tipo. Este es mi blog personal.">
-<meta property="og:site_name" content="Anotaciones por Pablo Caro" />
-<meta property="og:article:author" content="Pablo Caro" />
-<meta property="og:image" content="http://pablocaro.es/theme/images/apple-touch-icon-152x152.png" />
-<meta name="twitter:image" content="http://pablocaro.es/theme/images/apple-touch-icon-152x152.png" >
-        <title>Anotaciones por Pablo Caro
-</title>
-        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
-        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="http://pablocaro.es/theme/css/pygments.css" media="screen">
-        <link rel="stylesheet" type="text/css" href="http://pablocaro.es/theme/tipuesearch/tipuesearch.css" media="screen">
-        <link rel="stylesheet" type="text/css" href="http://pablocaro.es/theme/css/elegant.css" media="screen">
-        <link rel="stylesheet" type="text/css" href="http://pablocaro.es/theme/css/custom.css" media="screen">
-        <link rel="shortcut icon" href="http://pablocaro.es/theme/images/favicon.ico" type="image/x-icon" type="image/png" />
-        <link rel="icon" href="http://pablocaro.es/theme/images/apple-touch-icon-152x152.png" type="image/png" />
-        <link rel="apple-touch-icon" href="http://pablocaro.es/theme/images/apple-touch-icon.png"  type="image/png" />
-        <link rel="apple-touch-icon" sizes="57x57" href="http://pablocaro.es/theme/images/apple-touch-icon-57x57.png" type="image/png" />
-        <link rel="apple-touch-icon" sizes="72x72" href="http://pablocaro.es/theme/images/apple-touch-icon-72x72.png" type="image/png" />
-        <link rel="apple-touch-icon" sizes="76x76" href="http://pablocaro.es/theme/images/apple-touch-icon-76x76.png" type="image/png" />
-        <link rel="apple-touch-icon" sizes="114x114" href="http://pablocaro.es/theme/images/apple-touch-icon-114x114.png" type="image/png" />
-        <link rel="apple-touch-icon" sizes="120x120" href="http://pablocaro.es/theme/images/apple-touch-icon-120x120.png" type="image/png" />
-        <link rel="apple-touch-icon" sizes="144x144" href="http://pablocaro.es/theme/images/apple-touch-icon-144x144.png" type="image/png" />
-        <link rel="apple-touch-icon" sizes="152x152" href="http://pablocaro.es/theme/images/apple-touch-icon-152x152.png" type="image/png" />
-        <link href="http://pablocaro.es/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Anotaciones por Pablo Caro - Full Atom Feed" />
-        <link href="http://pablocaro.es/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Anotaciones por Pablo Caro - Full RSS Feed" />
-<script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-     })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-    ga('create', 'UA-60035125-1', 'auto');
-    ga('send', 'pageview');
+    <link rel="stylesheet" type="text/css" href="http://pablocaro.es/theme/stylesheet/style.min.css">
+
+
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+          href="http://pablocaro.es/theme/pygments/github.min.css">
+
+
+
+  <link rel="stylesheet" type="text/css" href="http://pablocaro.es/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="http://pablocaro.es/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="http://pablocaro.es/theme/font-awesome/css/solid.css">
+
+
+  <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#333333">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#333333">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Microsoft EDGE -->
+  <meta name="msapplication-TileColor" content="#333333">
+
+  <link href="http://pablocaro.es/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="<span style="color:#AA1032;">Anotaciones</span> <span style="color:darkblue;">por</span> <span style="color:black">Pablo Caro</span> Atom">
+
+  <link href="http://pablocaro.es/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="<span style="color:#AA1032;">Anotaciones</span> <span style="color:darkblue;">por</span> <span style="color:black">Pablo Caro</span> RSS">
+
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-60035125-1', 'auto');
+  ga('send', 'pageview');
 </script>
-    </head>
-    <body>
-        <div id="content-sans-footer">
-        <div class="navbar navbar-static-top">
-            <div class="navbar-inner">
-                <div class="container-fluid">
-                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </a>
-                    <a class="brand" href="http://pablocaro.es/"><span class=site-name><span style="color:#AA1032;">Anotaciones</span> <span style="color:darkblue;">por</span> <span style="color:black">Pablo Caro</span></span></a>
-                    <div class="nav-collapse collapse">
-                        <ul class="nav pull-right top-menu">
-                            <li  class="active"><a href="http://pablocaro.es">Inicio</a></li>
-                            <li ><a href="http://pablocaro.es/categories.html">Categorías</a></li>
-                            <li ><a href="http://pablocaro.es/tags.html">Etiquetas</a></li>
-                            <li ><a href="http://pablocaro.es/archives.html">Archivos</a></li>
-                            <li><form class="navbar-search" action="http://pablocaro.es/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Búsqueda" name="q" id="tipue_search_input"></form></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="container-fluid">
-            <div class="row-fluid">
-                <div class="span1"></div>
-                <div class="span10">
-<div class="row-fluid">
-    <header class="page-header span12">
-    <h1><a href="http://pablocaro.es">Construyendo sofware de forma innovadora</a></h1>
-    </header>
 
-    <div class="row-fluid">
-        <div class="span8">
-            <header>
-            <h1 id="about-me">Sobre mí</h1>
-            </header>
-            <div class="article-content">
-                <div itemscope itemtype="http://schema.org/Person">
-       <p>Mi nombre es <span itemprop="name">Pablo Caro</span>.
-       Soy <a href="https://github.com/pcaro/" title="Perfil en github" itemprop="url"><span itemprop="nickname">pcaro</span></a> en Github
-       igual que en Twitter (<a href="https://twitter.com/pcaro/" title="Perfil en Twitter" itemprop="url">@pcaro</a>).
-       Puedes contactar conmigo por <a href="mailto:correo@pablocaro.es" title="email" itemprop="email">email</a>.</p>
 
-       <p>En este blog llamado <strong>Anotaciones</strong> voy apuntando las notas que
-       no quiero que ocupen espacio en mi cabeza. Principalmente recetas de python y linux.</p>
 
-       <p>Como desarrollador trabajo tanto para instuciones públicas como privadas, y
-       no tengo problemas para habituarme a nuevos lenguajes o frameworks. Siempre me mantengo
-       receptivo para trabajar con nuevas tecnologías. Ahora centrado en proyectos de acompañamiento tecnológico y
-       growth hacking. A menudo colaboro con proyectos de sofware libre y siempre estoy dispuesto
-       a predicar a favor del opensource.</p>
 
-       <p>En la parte más personal soy un hombre felizmente casado con dos hijos maravillosos
-       que vive en Sevilla aunque no leeras mucho de ellos por aquí ya que también resguardo mucho mi privacidad.</p>
-       </div>
-            </div>
-        </div>
 
-        <div class="span4">
-            <header>
-            <h1 id="my-projects">Mis proyectos</h1>
-            </header>
-            <ul class="list-all-articles">
-                <li>
-                <a href="https://github.com/pcaro/trac2rst" title="trac2rst">trac2rst</a> <span class="proj-desc">I use trac2rst to help me in the task to pass documentacion from trac to sphinx</span>
-                </li>
-            </ul>
-            <ul class="list-all-articles">
-                <li>
-                <a href="https://github.com/pcaro/openerp-snippets" title="Openerp Snippets">Openerp Snippets</a> <span class="proj-desc">A sublime package which includes a bunch of handy snippets for doing OpenERp development</span>
-                </li>
-            </ul>
-            <ul class="list-all-articles">
-                <li>
-                <a href="https://github.com/pcaro/lynx-theme" title="Lynx Theme">Lynx Theme</a> <span class="proj-desc">This is a theme for the Sphinx documentation generator</span>
-                </li>
-            </ul>
-            <ul class="list-all-articles">
-                <li>
-                <a href="https://github.com/pcaro/little_scripts" title="Little Scripts">Little Scripts</a> <span class="proj-desc">Little simple utilities or alias. Most of them are not mine.</span>
-                </li>
-            </ul>
-            <ul class="list-all-articles">
-                <li>
-                <a href="https://github.com/pcaro/dotfiles" title="dotfiles">dotfiles</a> <span class="proj-desc">Configuration files.</span>
-                </li>
-            </ul>
-        </div>
-    </div>
 
-    <div class="row-fluid">
-        <div class="span12">
-            <header>
-            <h1 id="recent-posts">Anotaciones recientes <a id="allposts" href="http://pablocaro.es/archives.html">todas las anotaciones</a></h1>
-            </header>
-        <div class="recent-posts">
-            <article>
-                <a href="http://pablocaro.es/como-uso-git-worktrees">Cómo uso git worktrees para trabajo concurrente  </a>
-                <section>
-                    anotado en
-                <a href="http://pablocaro.es/categories.html#programacion-ref">Programación</a>
-                <div class="recent-posts-time">
-                <time pubdate="pubdate" datetime="2025-07-23T06:12:00+02:00">mié 23 julio 2025</time>
-                </div>
-                </section>
-            </article>
-            <article>
-                <a href="http://pablocaro.es/busqueda-hibrida-sqlite-vector-texto">Búsqueda híbrida con SQLite: vector + texto completo  </a>
-                <section>
-                    anotado en
-                <a href="http://pablocaro.es/categories.html#programacion-ref">Programación</a>
-                <div class="recent-posts-time">
-                <time pubdate="pubdate" datetime="2024-10-06T11:43:00+02:00">dom 06 octubre 2024</time>
-                </div>
-                </section>
-            </article>
-            <article>
-                <a href="http://pablocaro.es/conflacion-datos-geoespaciales-duckdb">Conflación de datos geoespaciales con DuckDB y embeddings  </a>
-                <section>
-                    anotado en
-                <a href="http://pablocaro.es/categories.html#programacion-ref">Programación</a>
-                <div class="recent-posts-time">
-                <time pubdate="pubdate" datetime="2024-10-01T07:12:00+02:00">mar 01 octubre 2024</time>
-                </div>
-                </section>
-            </article>
-            <article>
-                <a href="http://pablocaro.es/httpx-cliente-http-moderno-python">HTTPX: Cliente HTTP moderno para Python  </a>
-                <section>
-                    anotado en
-                <a href="http://pablocaro.es/categories.html#programacion-ref">Programación</a>
-                <div class="recent-posts-time">
-                <time pubdate="pubdate" datetime="2024-09-23T00:07:00+02:00">lun 23 septiembre 2024</time>
-                </div>
-                </section>
-            </article>
-            <article>
-                <a href="http://pablocaro.es/server-sent-events-comunicacion-tiempo-real">Server-Sent Events: Comunicación en tiempo real simplificada  </a>
-                <section>
-                    anotado en
-                <a href="http://pablocaro.es/categories.html#programacion-ref">Programación</a>
-                <div class="recent-posts-time">
-                <time pubdate="pubdate" datetime="2024-09-23T00:01:00+02:00">lun 23 septiembre 2024</time>
-                </div>
-                </section>
-            </article>
-            <article>
-                <a href="http://pablocaro.es/una-de-versiones">Una de versiones  </a>
-                <section>
-                    anotado en
-                <a href="http://pablocaro.es/categories.html#progamacion-ref">Progamación</a>
-                <div class="recent-posts-time">
-                <time pubdate="pubdate" datetime="2017-05-01T18:04:00+02:00">lun 01 mayo 2017</time>
-                </div>
-                </section>
-            </article>
-            <article>
-                <a href="http://pablocaro.es/mobaxterm-mucho-más-que-un-cliente-ssh">MobaXterm. Mucho más que un cliente ssh  </a>
-                <section>
-                    anotado en
-                <a href="http://pablocaro.es/categories.html#trucos-ref">Trucos</a>
-                <div class="recent-posts-time">
-                <time pubdate="pubdate" datetime="2017-04-11T14:07:00+02:00">mar 11 abril 2017</time>
-                </div>
-                </section>
-            </article>
-            <article>
-                <a href="http://pablocaro.es/posterazor-crear-posters-grandes">PosteRazor: Crea pósters gigantes desde cualquier imagen  </a>
-                <section>
-                    anotado en
-                <a href="http://pablocaro.es/categories.html#herramientas-ref">Herramientas</a>
-                <div class="recent-posts-time">
-                <time pubdate="pubdate" datetime="2017-02-24T20:06:00+01:00">vie 24 febrero 2017</time>
-                </div>
-                </section>
-            </article>
-            <article>
-                <a href="http://pablocaro.es/gmail_correo_no_leido_solo_en_principal">Correo no leído en pestaña principal de gmail  </a>
-                <section>
-                    anotado en
-                <a href="http://pablocaro.es/categories.html#trucos-ref">Trucos</a>
-                <div class="recent-posts-time">
-                <time pubdate="pubdate" datetime="2016-07-28T18:00:00+02:00">jue 28 julio 2016</time>
-                </div>
-                </section>
-            </article>
-            <article>
-                <a href="http://pablocaro.es/documentacion-tecnica-sphinx-paver-cog">Documentación técnica con Sphinx, Paver y Cog  </a>
-                <section>
-                    anotado en
-                <a href="http://pablocaro.es/categories.html#documentacion-ref">Documentación</a>
-                <div class="recent-posts-time">
-                <time pubdate="pubdate" datetime="2016-07-14T00:47:00+02:00">jue 14 julio 2016</time>
-                </div>
-                </section>
-            </article>
-        </div>
-        </div>
-    </div>
-</div>
-                </div>
-                <div class="span1"></div>
-            </div>
-        </div>
-        <div id="push"></div>
-    </div>
-<footer>
-<div id="footer">
-    <ul class="footer-content">
-        <li class="elegant-subtitle"><span class="site-name"><span style="color:#AA1032;">Anotaciones</span> <span style="color:darkblue;">por</span> <span style="color:black">Pablo Caro</span></span> - Anotaciones</li>
-        <li class="elegant-license"><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"> Anotaciones</span> de <a xmlns:cc="http://creativecommons.org/ns#" href="http://pablocaro.es" property="cc:attributionName" rel="cc:attributionURL">Pablo Caro</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>.</li>
-        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a></li>
+ 
+
+    <meta name="author" content="Pablo Caro" />
+    <meta name="description" content="" />
+  <meta property="og:site_name" content="<span style="color:#AA1032;">Anotaciones</span> <span style="color:darkblue;">por</span> <span style="color:black">Pablo Caro</span>"/>
+  <meta property="og:type" content="blog"/>
+  <meta property="og:title" content="<span style="color:#AA1032;">Anotaciones</span> <span style="color:darkblue;">por</span> <span style="color:black">Pablo Caro</span>"/>
+  <meta property="og:description" content=""/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="http://pablocaro.es"/>
+  <meta property="og:image" content="/images/profile.png">
+
+  <title><span style="color:#AA1032;">Anotaciones</span> <span style="color:darkblue;">por</span> <span style="color:black">Pablo Caro</span></title>
+
+
+</head>
+<body class="light-theme">
+
+<aside>
+  <div>
+    <a href="http://pablocaro.es/">
+      <img src="/images/profile.png" alt="Anotaciones" title="Anotaciones">
+    </a>
+
+    <h1>
+      <a href="http://pablocaro.es/">Anotaciones</a>
+    </h1>
+
+    <p>Anotaciones</p>
+
+
+    <nav>
+      <ul class="list">
+
+
+
+          <li>
+            <a target="_self" href="http://getpelican.com/" >Pelican</a>
+          </li>
+          <li>
+            <a target="_self" href="http://python.org/" >Python.org</a>
+          </li>
+          <li>
+            <a target="_self" href="http://jinja.pocoo.org/" >Jinja2</a>
+          </li>
+          <li>
+            <a target="_self" href="#" >You can modify those links in your config file</a>
+          </li>
+      </ul>
+    </nav>
+
+    <ul class="social">
+      <li>
+        <a class="sc-Twitter"
+           href="http://twitter.com/pcaro"
+           target="_blank">
+          <i class="fa-brands fa-Twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Github"
+           href="http://github.com/pcaro"
+           target="_blank">
+          <i class="fa-brands fa-Github"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Linkedin"
+           href="https://www.linkedin.com/in/pcarorevuelta"
+           target="_blank">
+          <i class="fa-brands fa-Linkedin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Facebook"
+           href="https://www.facebook.com/pablo.carorevuelta"
+           target="_blank">
+          <i class="fa-brands fa-Facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Email"
+           href="mailto:correo@pablocaro.es"
+           target="_blank">
+          <i class="fa-brands fa-Email"></i>
+        </a>
+      </li>
     </ul>
+  </div>
+
+</aside>
+  <main>
+
+<nav>
+  <a href="http://pablocaro.es/">Home</a>
+
+  <a href="/archives.html">Archivo</a>
+  <a href="/categories.html">Categorías</a>
+  <a href="/tags.html">Etiquetas</a>
+
+  <a href="http://pablocaro.es/feeds/all.atom.xml">Atom</a>
+
+  <a href="http://pablocaro.es/feeds/all.rss.xml">RSS</a>
+</nav>
+
+
+
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/como-uso-git-worktrees#como-uso-git-worktrees">Cómo uso git worktrees para trabajo concurrente</a></h2>
+    <p>
+      Posted on Wed 23 July 2025 in <a href="http://pablocaro.es/category/programacion.html">Programación</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/git.html">git</a>,              <a href="http://pablocaro.es/tag/worktrees.html">worktrees</a>,              <a href="http://pablocaro.es/tag/flujo-trabajo.html">flujo-trabajo</a>,              <a href="http://pablocaro.es/tag/productividad.html">productividad</a>
+    </p>
+  </header>
+  <div>
+      <div><p class="first last">Un enfoque práctico para usar git worktrees y maximizar la productividad con múltiples contextos de trabajo simultáneos</p>
 </div>
-</footer>        <script src="http://code.jquery.com/jquery.min.js"></script>
-        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
-        <script>
-            function validateForm(query)
-            {
-                return (query.length > 0);
-            }
-        </script>
-    </body>
-    <!-- Theme: Elegant built for Pelican
-    License : http://oncrashreboot.com/pelican-elegant -->
+        <br>
+        <a class="btn"
+           href="http://pablocaro.es/como-uso-git-worktrees#como-uso-git-worktrees">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/busqueda-hibrida-sqlite-vector-texto#busqueda-hibrida-sqlite-vector-texto">Búsqueda híbrida con SQLite: vector + texto completo</a></h2>
+    <p>
+      Posted on Sun 06 October 2024 in <a href="http://pablocaro.es/category/programacion.html">Programación</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/sqlite.html">sqlite</a>,              <a href="http://pablocaro.es/tag/busqueda.html">búsqueda</a>,              <a href="http://pablocaro.es/tag/vectores.html">vectores</a>,              <a href="http://pablocaro.es/tag/fts.html">fts</a>,              <a href="http://pablocaro.es/tag/sql.html">sql</a>
+    </p>
+  </header>
+  <div>
+      <div><p class="first last">Combinando búsqueda vectorial y texto completo en SQLite usando Reciprocal Rank Fusion para obtener mejores resultados</p>
+</div>
+        <br>
+        <a class="btn"
+           href="http://pablocaro.es/busqueda-hibrida-sqlite-vector-texto#busqueda-hibrida-sqlite-vector-texto">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/conflacion-datos-geoespaciales-duckdb#conflacion-datos-geoespaciales-duckdb">Conflación de datos geoespaciales con DuckDB y embeddings</a></h2>
+    <p>
+      Posted on Tue 01 October 2024 in <a href="http://pablocaro.es/category/programacion.html">Programación</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/duckdb.html">duckdb</a>,              <a href="http://pablocaro.es/tag/geoespacial.html">geoespacial</a>,              <a href="http://pablocaro.es/tag/embeddings.html">embeddings</a>,              <a href="http://pablocaro.es/tag/ollama.html">ollama</a>,              <a href="http://pablocaro.es/tag/h3.html">h3</a>
+    </p>
+  </header>
+  <div>
+      <div><p class="first last">Técnicas avanzadas para integrar fuentes de datos geoespaciales usando DuckDB, H3, Ollama y modelos de embeddings</p>
+</div>
+        <br>
+        <a class="btn"
+           href="http://pablocaro.es/conflacion-datos-geoespaciales-duckdb#conflacion-datos-geoespaciales-duckdb">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/httpx-cliente-http-moderno-python#httpx-cliente-http-moderno-python">HTTPX: Cliente HTTP moderno para Python</a></h2>
+    <p>
+      Posted on Mon 23 September 2024 in <a href="http://pablocaro.es/category/programacion.html">Programación</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/python.html">python</a>,              <a href="http://pablocaro.es/tag/http.html">http</a>,              <a href="http://pablocaro.es/tag/httpx.html">httpx</a>,              <a href="http://pablocaro.es/tag/async.html">async</a>,              <a href="http://pablocaro.es/tag/requests.html">requests</a>
+    </p>
+  </header>
+  <div>
+      <div><p class="first last">HTTPX emerge como el sucesor natural de requests, ofreciendo soporte async, HTTP/2 y una API moderna para aplicaciones Python contemporáneas</p>
+</div>
+        <br>
+        <a class="btn"
+           href="http://pablocaro.es/httpx-cliente-http-moderno-python#httpx-cliente-http-moderno-python">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/server-sent-events-comunicacion-tiempo-real#server-sent-events-comunicacion-tiempo-real">Server-Sent Events: Comunicación en tiempo real simplificada</a></h2>
+    <p>
+      Posted on Mon 23 September 2024 in <a href="http://pablocaro.es/category/programacion.html">Programación</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/javascript.html">javascript</a>,              <a href="http://pablocaro.es/tag/sse.html">sse</a>,              <a href="http://pablocaro.es/tag/tiempo-real.html">tiempo-real</a>,              <a href="http://pablocaro.es/tag/web-apis.html">web-apis</a>
+    </p>
+  </header>
+  <div>
+      <div><p>Server-Sent Events ofrece una alternativa simple y eficiente a WebSockets para comunicación unidireccional servidor-cliente en aplicaciones web</p></div>
+        <br>
+        <a class="btn"
+           href="http://pablocaro.es/server-sent-events-comunicacion-tiempo-real#server-sent-events-comunicacion-tiempo-real">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/una-de-versiones#una-de-versiones">Una de versiones</a></h2>
+    <p>
+      Posted on Mon 01 May 2017 in <a href="http://pablocaro.es/category/progamacion.html">Progamación</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/python.html">python</a>
+    </p>
+  </header>
+  <div>
+      <div></div>
+        <br>
+        <a class="btn"
+           href="http://pablocaro.es/una-de-versiones#una-de-versiones">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/mobaxterm-mucho-más-que-un-cliente-ssh#mobaxterm-mucho-más-que-un-cliente-ssh">MobaXterm. Mucho más que un cliente ssh</a></h2>
+    <p>
+      Posted on Tue 11 April 2017 in <a href="http://pablocaro.es/category/trucos.html">Trucos</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/linux.html">linux</a>
+    </p>
+  </header>
+  <div>
+      <div></div>
+        <br>
+        <a class="btn"
+           href="http://pablocaro.es/mobaxterm-mucho-más-que-un-cliente-ssh#mobaxterm-mucho-más-que-un-cliente-ssh">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/posterazor-crear-posters-grandes#posterazor-crear-posters-grandes">PosteRazor: Crea pósters gigantes desde cualquier imagen</a></h2>
+    <p>
+      Posted on Fri 24 February 2017 in <a href="http://pablocaro.es/category/herramientas.html">Herramientas</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/posterazor.html">posterazor</a>,              <a href="http://pablocaro.es/tag/impresion.html">impresión</a>,              <a href="http://pablocaro.es/tag/posters.html">pósters</a>,              <a href="http://pablocaro.es/tag/diy.html">diy</a>,              <a href="http://pablocaro.es/tag/herramientas.html">herramientas</a>
+    </p>
+  </header>
+  <div>
+      <div><p>PosteRazor convierte cualquier imagen en un póster gigante dividiendo la imagen en páginas imprimibles que puedes ensamblar</p></div>
+        <br>
+        <a class="btn"
+           href="http://pablocaro.es/posterazor-crear-posters-grandes#posterazor-crear-posters-grandes">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/gmail_correo_no_leido_solo_en_principal#gmail_correo_no_leido_solo_en_principal">Correo no leído en pestaña principal de gmail</a></h2>
+    <p>
+      Posted on Thu 28 July 2016 in <a href="http://pablocaro.es/category/trucos.html">Trucos</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/linux.html">linux</a>
+    </p>
+  </header>
+  <div>
+      <div><p>Lo de siempre, otra nota recordatoria.</p>
+<p>Si filtras el correo en gmail por no leído (<code>is:unread</code>), obtienes todo el correo no leído,
+que en mi caso siempre incluye cientos de notificaciones, social, promociones o foros que no suele ser lo que busco.</p>
+<p>Para buscar los correos no leídos <em>de …</em></p></div>
+        <br>
+        <a class="btn"
+           href="http://pablocaro.es/gmail_correo_no_leido_solo_en_principal#gmail_correo_no_leido_solo_en_principal">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/documentacion-tecnica-sphinx-paver-cog#documentacion-tecnica-sphinx-paver-cog">Documentación técnica con Sphinx, Paver y Cog</a></h2>
+    <p>
+      Posted on Thu 14 July 2016 in <a href="http://pablocaro.es/category/documentacion.html">Documentación</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/sphinx.html">sphinx</a>,              <a href="http://pablocaro.es/tag/paver.html">paver</a>,              <a href="http://pablocaro.es/tag/cog.html">cog</a>,              <a href="http://pablocaro.es/tag/documentacion.html">documentación</a>,              <a href="http://pablocaro.es/tag/rst.html">rst</a>,              <a href="http://pablocaro.es/tag/automation.html">automation</a>
+    </p>
+  </header>
+  <div>
+      <div><p>Workflow automatizado para crear documentación técnica usando Sphinx, Paver y Cog, eliminando tareas repetitivas y errores manuales en ejemplos de código</p></div>
+        <br>
+        <a class="btn"
+           href="http://pablocaro.es/documentacion-tecnica-sphinx-paver-cog#documentacion-tecnica-sphinx-paver-cog">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/determinar-slots-ram-uso-linux#determinar-slots-ram-uso-linux">Determinar slots de RAM en uso en Linux</a></h2>
+    <p>
+      Posted on Wed 13 July 2016 in <a href="http://pablocaro.es/category/linux.html">Linux</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/linux.html">linux</a>,              <a href="http://pablocaro.es/tag/ram.html">ram</a>,              <a href="http://pablocaro.es/tag/dmidecode.html">dmidecode</a>,              <a href="http://pablocaro.es/tag/lshw.html">lshw</a>,              <a href="http://pablocaro.es/tag/hardware.html">hardware</a>,              <a href="http://pablocaro.es/tag/memoria.html">memoria</a>
+    </p>
+  </header>
+  <div>
+      <div><p>Comandos de Linux para determinar cuántos slots de RAM están ocupados y su capacidad usando dmidecode, lshw y técnicas de inspección de hardware</p></div>
+        <br>
+        <a class="btn"
+           href="http://pablocaro.es/determinar-slots-ram-uso-linux#determinar-slots-ram-uso-linux">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/introduccion-trading-alta-frecuencia#introduccion-trading-alta-frecuencia">Introducción a los sistemas de trading de alta frecuencia</a></h2>
+    <p>
+      Posted on Mon 27 June 2016 in <a href="http://pablocaro.es/category/finanzas.html">Finanzas</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/trading.html">trading</a>,              <a href="http://pablocaro.es/tag/hft.html">hft</a>,              <a href="http://pablocaro.es/tag/high-frequency.html">high-frequency</a>,              <a href="http://pablocaro.es/tag/algoritmos.html">algoritmos</a>,              <a href="http://pablocaro.es/tag/finanzas.html">finanzas</a>
+    </p>
+  </header>
+  <div>
+      <div><p>Conceptos fundamentales sobre los sistemas de trading de alta frecuencia (HFT), programas que ejecutan miles de operaciones por día en fracciones de segundo</p></div>
+        <br>
+        <a class="btn"
+           href="http://pablocaro.es/introduccion-trading-alta-frecuencia#introduccion-trading-alta-frecuencia">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/encontrar-hosts-vivos-red#encontrar-hosts-vivos-red">Cómo encontrar hosts vivos en tu red local</a></h2>
+    <p>
+      Posted on Mon 27 June 2016 in <a href="http://pablocaro.es/category/seguridad.html">Seguridad</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/nmap.html">nmap</a>,              <a href="http://pablocaro.es/tag/network-discovery.html">network-discovery</a>,              <a href="http://pablocaro.es/tag/arp-scan.html">arp-scan</a>,              <a href="http://pablocaro.es/tag/netdiscover.html">netdiscover</a>,              <a href="http://pablocaro.es/tag/seguridad.html">seguridad</a>
+    </p>
+  </header>
+  <div>
+      <div><p>Métodos y herramientas para descubrir dispositivos activos en redes locales usando nmap, arp-scan, netdiscover y otras técnicas de reconocimiento</p></div>
+        <br>
+        <a class="btn"
+           href="http://pablocaro.es/encontrar-hosts-vivos-red#encontrar-hosts-vivos-red">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/herramientas-desarrolladores-linea-comandos#herramientas-desarrolladores-linea-comandos">Potentes herramientas para desarrolladores desde línea de comandos</a></h2>
+    <p>
+      Posted on Tue 07 June 2016 in <a href="http://pablocaro.es/category/herramientas.html">Herramientas</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/cli.html">cli</a>,              <a href="http://pablocaro.es/tag/herramientas.html">herramientas</a>,              <a href="http://pablocaro.es/tag/desarrollo.html">desarrollo</a>,              <a href="http://pablocaro.es/tag/networking.html">networking</a>,              <a href="http://pablocaro.es/tag/testing.html">testing</a>
+    </p>
+  </header>
+  <div>
+      <div><p>Colección de herramientas de línea de comandos esenciales para desarrolladores: curl, ngrep, netcat, sshuttle, siege y mitmproxy</p></div>
+        <br>
+        <a class="btn"
+           href="http://pablocaro.es/herramientas-desarrolladores-linea-comandos#herramientas-desarrolladores-linea-comandos">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/sysdig-seguridad-cloud-nativa#sysdig-seguridad-cloud-nativa">Sysdig: Plataforma de seguridad cloud-nativa con IA</a></h2>
+    <p>
+      Posted on Wed 10 February 2016 in <a href="http://pablocaro.es/category/herramientas.html">Herramientas</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/sysdig.html">sysdig</a>,              <a href="http://pablocaro.es/tag/seguridad.html">seguridad</a>,              <a href="http://pablocaro.es/tag/cloud.html">cloud</a>,              <a href="http://pablocaro.es/tag/kubernetes.html">kubernetes</a>,              <a href="http://pablocaro.es/tag/falco.html">falco</a>
+    </p>
+  </header>
+  <div>
+      <div><p>Sysdig ofrece una plataforma de seguridad integral para entornos cloud-nativos que combina IA, visibilidad en tiempo real e innovación open source</p></div>
+        <br>
+        <a class="btn"
+           href="http://pablocaro.es/sysdig-seguridad-cloud-nativa#sysdig-seguridad-cloud-nativa">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/python-generadores-repetibles#python-generadores-repetibles">Python: Crear generadores repetibles (repeating generators)</a></h2>
+    <p>
+      Posted on Tue 09 February 2016 in <a href="http://pablocaro.es/category/python.html">Python</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/python.html">python</a>,              <a href="http://pablocaro.es/tag/generadores.html">generadores</a>,              <a href="http://pablocaro.es/tag/itertools.html">itertools</a>,              <a href="http://pablocaro.es/tag/decoradores.html">decoradores</a>,              <a href="http://pablocaro.es/tag/yield.html">yield</a>
+    </p>
+  </header>
+  <div>
+      <div><p>Técnicas en Python para crear generadores que se pueden iterar múltiples veces, superando la limitación de "una sola vez" de los generadores estándar</p></div>
+        <br>
+        <a class="btn"
+           href="http://pablocaro.es/python-generadores-repetibles#python-generadores-repetibles">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/boton_central_firefox#boton_central_firefox">Botón central en firefox</a></h2>
+    <p>
+      Posted on Fri 01 January 2016 in <a href="http://pablocaro.es/category/sistemas.html">Sistemas</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/linux.html">linux</a>
+    </p>
+  </header>
+  <div>
+      <div><p class="first last">Que firefox deje de abrir la url pegada con el botón central del ratón</p>
+</div>
+        <br>
+        <a class="btn"
+           href="http://pablocaro.es/boton_central_firefox#boton_central_firefox">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/bootstrap-dropdown-enlaces-horizontal#bootstrap-dropdown-enlaces-horizontal">Bootstrap: Dos enlaces en la misma fila en dropdown</a></h2>
+    <p>
+      Posted on Tue 15 December 2015 in <a href="http://pablocaro.es/category/frontend.html">Frontend</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/bootstrap.html">bootstrap</a>,              <a href="http://pablocaro.es/tag/css.html">css</a>,              <a href="http://pablocaro.es/tag/dropdown.html">dropdown</a>,              <a href="http://pablocaro.es/tag/flexbox.html">flexbox</a>,              <a href="http://pablocaro.es/tag/html.html">html</a>
+    </p>
+  </header>
+  <div>
+      <div><p>Técnica CSS para colocar dos enlaces en la misma fila horizontal dentro de un menú dropdown de Bootstrap usando flexbox</p></div>
+        <br>
+        <a class="btn"
+           href="http://pablocaro.es/bootstrap-dropdown-enlaces-horizontal#bootstrap-dropdown-enlaces-horizontal">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/galen-framework-testing-responsive#galen-framework-testing-responsive">Galen Framework: Testing automatizado para diseño responsive</a></h2>
+    <p>
+      Posted on Fri 13 November 2015 in <a href="http://pablocaro.es/category/testing.html">Testing</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/galen.html">galen</a>,              <a href="http://pablocaro.es/tag/testing.html">testing</a>,              <a href="http://pablocaro.es/tag/responsive.html">responsive</a>,              <a href="http://pablocaro.es/tag/layout.html">layout</a>,              <a href="http://pablocaro.es/tag/selenium.html">selenium</a>
+    </p>
+  </header>
+  <div>
+      <div><p>Galen Framework simplifica el testing automatizado de layouts responsivos verificando la posición y apariencia de elementos across different dispositivos</p></div>
+        <br>
+        <a class="btn"
+           href="http://pablocaro.es/galen-framework-testing-responsive#galen-framework-testing-responsive">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/historia-x-forwarded-for-x-real-ip#historia-x-forwarded-for-x-real-ip">La historia detrás de X-Forwarded-For y X-Real-IP</a></h2>
+    <p>
+      Posted on Wed 21 October 2015 in <a href="http://pablocaro.es/category/redes.html">Redes</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/headers.html">headers</a>,              <a href="http://pablocaro.es/tag/x-forwarded-for.html">x-forwarded-for</a>,              <a href="http://pablocaro.es/tag/x-real-ip.html">x-real-ip</a>,              <a href="http://pablocaro.es/tag/proxy.html">proxy</a>,              <a href="http://pablocaro.es/tag/nginx.html">nginx</a>
+    </p>
+  </header>
+  <div>
+      <div><p>Análisis de los headers X-Forwarded-For y X-Real-IP, sus orígenes, diferencias y cómo determinar la IP real del cliente en arquitecturas con múltiples proxies</p></div>
+        <br>
+        <a class="btn"
+           href="http://pablocaro.es/historia-x-forwarded-for-x-real-ip#historia-x-forwarded-for-x-real-ip">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/nginx-x-forwarded-for-reverse-proxy#nginx-x-forwarded-for-reverse-proxy">Nginx: Configurar X-Forwarded-For en reverse proxy</a></h2>
+    <p>
+      Posted on Wed 21 October 2015 in <a href="http://pablocaro.es/category/devops.html">DevOps</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/nginx.html">nginx</a>,              <a href="http://pablocaro.es/tag/reverse-proxy.html">reverse-proxy</a>,              <a href="http://pablocaro.es/tag/x-forwarded-for.html">x-forwarded-for</a>,              <a href="http://pablocaro.es/tag/ip-real.html">ip-real</a>,              <a href="http://pablocaro.es/tag/configuracion.html">configuración</a>
+    </p>
+  </header>
+  <div>
+      <div><p>Cómo configurar Nginx para pasar la IP real del cliente a servidores backend usando el header X-Forwarded-For en configuraciones de reverse proxy</p></div>
+        <br>
+        <a class="btn"
+           href="http://pablocaro.es/nginx-x-forwarded-for-reverse-proxy#nginx-x-forwarded-for-reverse-proxy">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/sql-select-rows-max-value#sql-select-rows-max-value">SQL: Seleccionar filas con valor máximo por grupo</a></h2>
+    <p>
+      Posted on Wed 21 October 2015 in <a href="http://pablocaro.es/category/sql.html">SQL</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/sql.html">sql</a>,              <a href="http://pablocaro.es/tag/mysql.html">mysql</a>,              <a href="http://pablocaro.es/tag/consultas.html">consultas</a>,              <a href="http://pablocaro.es/tag/window-functions.html">window-functions</a>,              <a href="http://pablocaro.es/tag/joins.html">joins</a>
+    </p>
+  </header>
+  <div>
+      <div><p>Técnicas SQL para seleccionar filas completas con el valor máximo de una columna dentro de grupos, comparando rendimiento de subqueries, joins y window functions</p></div>
+        <br>
+        <a class="btn"
+           href="http://pablocaro.es/sql-select-rows-max-value#sql-select-rows-max-value">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/repetiendo-una-función-con-hilos#repetiendo-una-función-con-hilos">Repitiendo una función con hilos</a></h2>
+    <p>
+      Posted on Sun 03 May 2015 in <a href="http://pablocaro.es/category/programacion.html">Programación</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/python.html">python</a>
+    </p>
+  </header>
+  <div>
+      <div><p class="first last">Vamos a utilizar hilos en python para ejecutar periodicamente una función</p>
+</div>
+        <br>
+        <a class="btn"
+           href="http://pablocaro.es/repetiendo-una-función-con-hilos#repetiendo-una-función-con-hilos">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/instalar-insync-en-opensuse#instalar-insync-en-opensuse">Instalar InSync en Opensuse</a></h2>
+    <p>
+      Posted on Mon 20 April 2015 in <a href="http://pablocaro.es/category/sistemas.html">Sistemas</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/django.html">django</a>,              <a href="http://pablocaro.es/tag/python.html">python</a>
+    </p>
+  </header>
+  <div>
+      <div></div>
+        <br>
+        <a class="btn"
+           href="http://pablocaro.es/instalar-insync-en-opensuse#instalar-insync-en-opensuse">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/nethogs-ver-ancho-de-banda-consumido#nethogs-ver-ancho-de-banda-consumido">NetHogs ver ancho de banda consumido</a></h2>
+    <p>
+      Posted on Thu 16 April 2015 in <a href="http://pablocaro.es/category/sistemas.html">Sistemas</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/linux.html">linux</a>
+    </p>
+  </header>
+  <div>
+      <div><p>Para medir el ancho de banda que estoy utilizando en este momento utilizo NetHogs</p>
+<p>Por defecto busca una interfaz de red llamada &quot;eth0&quot; si no la encuenta se queja así:</p>
+<pre class="literal-block">
+ioctl failed while establishing local IP for selected device eth0. You may specify the device on the command line.
+</pre>
+<p>Puedes …</p></div>
+        <br>
+        <a class="btn"
+           href="http://pablocaro.es/nethogs-ver-ancho-de-banda-consumido#nethogs-ver-ancho-de-banda-consumido">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/cierra-google-code#cierra-google-code">Cierra Google Code</a></h2>
+    <p>
+      Posted on Fri 13 March 2015 in <a href="http://pablocaro.es/category/programacion.html">Programación</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/python.html">python</a>
+    </p>
+  </header>
+  <div>
+      <div><p>Lo dicho, Google anunció el cierre de Google Code.</p>
+<p>Hoy mismo recibí el correo avisandome (tenía un proyecto de prueba alojado allí) de que podía mover
+mis proyectos de forma simple a <a class="reference external" href="http://github.com">github</a>, el repositorio de facto hoy en día del software libre
+(lo siento por <a class="reference external" href="https://bitbucket.org/pcaro">bitbucket</a> y sobre todo …</p></div>
+        <br>
+        <a class="btn"
+           href="http://pablocaro.es/cierra-google-code#cierra-google-code">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/pgcli-el-descubrimiento-de-hoy#pgcli-el-descubrimiento-de-hoy">pgcli el descubrimiento de hoy</a></h2>
+    <p>
+      Posted on Mon 02 March 2015 in <a href="http://pablocaro.es/category/programacion.html">Programación</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/postgresql.html">postgresql</a>
+    </p>
+  </header>
+  <div>
+      <div><p class="first last">postresql command line</p>
+</div>
+        <br>
+        <a class="btn"
+           href="http://pablocaro.es/pgcli-el-descubrimiento-de-hoy#pgcli-el-descubrimiento-de-hoy">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/reactivando-el-blog#reactivando-el-blog">Reactivando el blog</a></h2>
+    <p>
+      Posted on Fri 20 February 2015 in <a href="http://pablocaro.es/category/personal.html">Personal</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/python.html">python</a>
+    </p>
+  </header>
+  <div>
+      <div><p class="first last">Ya estoy de nuevo escribiendo.</p>
+</div>
+        <br>
+        <a class="btn"
+           href="http://pablocaro.es/reactivando-el-blog#reactivando-el-blog">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/decorador-vista-ajax#decorador-vista-ajax">Decorador vista ajax</a></h2>
+    <p>
+      Posted on Fri 21 November 2014 in <a href="http://pablocaro.es/category/programacion.html">Programación</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/python.html">python</a>,              <a href="http://pablocaro.es/tag/django.html">django</a>
+    </p>
+  </header>
+  <div>
+      <div><p>Para obligar que una vista <a class="reference external" href="https://www.djangoproject.com/">django</a> sea llamada sólo mediante llamamas AJAX.</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">ajax_required</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    AJAX request required decorator</span>
+<span class="sd">    use it in your views:</span>
+
+<span class="sd">    @ajax_required</span>
+<span class="sd">    def my_view(request):</span>
+<span class="sd">        ....</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">wrap</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">request</span><span class="o">.</span><span class="n">is_ajax</span><span class="p">():</span>
+            <span class="k">return</span> <span class="n">HttpResponseBadRequest</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">f</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="n">wrap</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="vm">__doc__</span>
+    <span class="n">wrap</span><span class="o">.</span><span class="vm">__name__ …</span></pre></div></div>
+        <br>
+        <a class="btn"
+           href="http://pablocaro.es/decorador-vista-ajax#decorador-vista-ajax">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/funcion-generica-para-usar-como-upload_to#funcion-generica-para-usar-como-upload_to">Función genérica para usar como upload_to</a></h2>
+    <p>
+      Posted on Sat 11 October 2014 in <a href="http://pablocaro.es/category/programacion.html">Programación</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/django.html">django</a>,              <a href="http://pablocaro.es/tag/python.html">python</a>
+    </p>
+  </header>
+  <div>
+      <div><p>Los FileField en django necesitan ana función <a class="reference external" href="https://docs.djangoproject.com/en/1.7/ref/models/fields/#django.db.models.FileField.upload_to">upload_to</a> que determine donde se subirá el fichero.
+Yo suelo tener en <code>utils.py</code> una función genérica que los deja en una subcarpeta con el nombre del modelo.</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+
+<span class="k">def</span> <span class="nf">generic_upload_to</span><span class="p">(</span><span class="n">instance</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Generic `upload_to` function for models.FileField and models.ImageField …</span></pre></div></div>
+        <br>
+        <a class="btn"
+           href="http://pablocaro.es/funcion-generica-para-usar-como-upload_to#funcion-generica-para-usar-como-upload_to">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/enlaces-en-listado-de-objectos#enlaces-en-listado-de-objectos">Django: enlaces en listado de objectos</a></h2>
+    <p>
+      Posted on Wed 21 May 2014 in <a href="http://pablocaro.es/category/programacion.html">Programación</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/django.html">django</a>,              <a href="http://pablocaro.es/tag/python.html">python</a>
+    </p>
+  </header>
+  <div>
+      <div><p>En mis proyectos suelo usar enlaces a elementos relacionados en el change_list del admin.</p>
+<div class="contents topic" id="ficheros">
+<p class="topic-title">Ficheros</p>
+<ul class="simple">
+<li><a class="reference internal" href="#utils-py" id="toc-entry-1">utils.py</a></li>
+<li><a class="reference internal" href="#admin-py" id="toc-entry-2">admin.py</a></li>
+</ul>
+</div>
+<div class="section" id="utils-py">
+<h2><a class="toc-backref" href="#toc-entry-1">utils.py</a></h2>
+<p>Tengo esto en <code>utils.py</code></p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">admin</span>
+<span class="kn">from</span> <span class="nn">django.contrib.contenttypes.models</span> <span class="kn">import</span> <span class="n">ContentType</span>
+<span class="kn">from</span> <span class="nn">django.core</span> <span class="kn">import</span> <span class="n">urlresolvers</span>
+<span class="kn">from</span> <span class="nn">django.utils.datastructures</span> <span class="kn">import</span> <span class="n">SortedDict</span>
+<span class="kn">from …</span></pre></div></div></div>
+        <br>
+        <a class="btn"
+           href="http://pablocaro.es/enlaces-en-listado-de-objectos#enlaces-en-listado-de-objectos">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/settings-vars-processor#settings-vars-processor">Settings vars processor</a></h2>
+    <p>
+      Posted on Wed 08 January 2014 in <a href="http://pablocaro.es/category/programacion.html">Programación</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/python.html">python</a>,              <a href="http://pablocaro.es/tag/django.html">django</a>
+    </p>
+  </header>
+  <div>
+      <div><p>Lo suelo usar durante el principio de los proyectos.</p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.conf</span> <span class="kn">import</span> <span class="n">settings</span> <span class="k">as</span> <span class="n">django_settings</span>
+<span class="kn">from</span> <span class="nn">django.core.exceptions</span> <span class="kn">import</span> <span class="n">ImproperlyConfigured</span>
+
+
+<span class="k">def</span> <span class="nf">settings</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Adds the settings specified in settings.TEMPLATE_VISIBLE_SETTINGS to</span>
+<span class="sd">    the request context.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">new_settings</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="n">django_settings</span><span class="o">.</span><span class="n">TEMPLATE_VISIBLE_SETTINGS</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">new_settings</span><span class="p">[</span><span class="n">attr</span><span class="p">]</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">django_settings</span><span class="p">,</span> <span class="n">attr</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">AttributeError …</span></pre></div></div>
+        <br>
+        <a class="btn"
+           href="http://pablocaro.es/settings-vars-processor#settings-vars-processor">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/pyinotify-ejecutar-comando-cuando-se-modifica-un-fichero#pyinotify-ejecutar-comando-cuando-se-modifica-un-fichero">pyinotify: Ejecutar comando cuando se modifica un fichero</a></h2>
+    <p>
+      Posted on Wed 03 April 2013 in <a href="http://pablocaro.es/category/sistemas.html">Sistemas</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/python.html">python</a>,              <a href="http://pablocaro.es/tag/linux.html">linux</a>
+    </p>
+  </header>
+  <div>
+      <div>
+        Ya he comentado por aquí un comando <em>when-changed</em>.
+
+Ahora anoto otra alternativa, esta vez python. Se trata de pyinotify.
+
+Yo lo uso para generar la documentación de sphinx mientras estoy escribiendo:
+
+<pre lang="bash">
+python -m pyinotify -r -c "make html" -e IN_MODIFY source
+</pre>
+    </div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/a-vueltas-con-suse#a-vueltas-con-suse">A vueltas con suse</a></h2>
+    <p>
+      Posted on Mon 25 March 2013 in <a href="http://pablocaro.es/category/sin-categoria.html">Sin Categoría</a>
+
+
+    </p>
+  </header>
+  <div>
+      <div>
+        Algunos comandos de zypper para recordar:
+
+Para borrar un paquete y también las dependencias:
+<pre lang="bash">
+zypper remove  --clean-deps packate
+</pre>
+
+Listar paquetes huérfanos:
+<pre lang="bash">
+LC_ALL=C zypper se -s | fgrep '(System Packages)'
+</pre>
+
+    </div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/paso-de-ubuntu-a-suse#paso-de-ubuntu-a-suse">Paso de ubuntu a suse</a></h2>
+    <p>
+      Posted on Fri 01 February 2013 in <a href="http://pablocaro.es/category/sistemas.html">Sistemas</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/linux.html">linux</a>
+    </p>
+  </header>
+  <div>
+      <div>
+        En mi nuevo portátil del trabajo he pasado de Ubuntu a OpenSuse. Una distribución muy estable y sobre todo con el mejor soporte de KDE.
+
+Pero hay una cuantas cosas que nunca recuerdo. Como este blog se llama anotaciones...
+
+<table width="100%">
+<tbody>
+<tr>
+<th>Debian</th>
+<th>OpenSuse</th>
+</tr>
+<tr>
+<td>dpkg -S fichero</td>
+<td>rpm -q -f fichero</td>
+</tr>
+<tr>
+<td>dpkg -L …</td></tr></tbody></table></div>
+        <br>
+        <a class="btn"
+           href="http://pablocaro.es/paso-de-ubuntu-a-suse#paso-de-ubuntu-a-suse">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/reducir-recursos-de-kde#reducir-recursos-de-kde">reducir recursos de KDE</a></h2>
+    <p>
+      Posted on Wed 24 October 2012 in <a href="http://pablocaro.es/category/sistemas.html">Sistemas</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/linux.html">linux</a>
+    </p>
+  </header>
+  <div>
+      <div>
+        Mágnifica entrada que explica como acelerar un poco tu sistema kde:
+
+<a href="http://parduslife.com/2011/02/17/como-acelerar-el-entorno-de-escritorio-plasma-de-la-kde-sc/">http://parduslife.com/2011/02/17/como-acelerar-el-entorno-de-escritorio-plasma-de-la-kde-sc/</a>
+
+No uso akonadi y siempre he querido pararlo. Así no tienes que hacer un
+<pre lang="bash">akonadictl stop</pre>
+tras arrancar.
+
+&nbsp;
+
+<a href="http://mschlander.wordpress.com/2011/08/18/disable-akonadi-in-kde-sc-4-7/">http://mschlander.wordpress.com/2011/08/18/disable-akonadi-in-kde-sc-4-7/</a>
+
+&nbsp;
+
+&nbsp;
+    </div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/cambiar-de-lugar-un-virtualenv#cambiar-de-lugar-un-virtualenv">Cambiar de lugar un virtualenv</a></h2>
+    <p>
+      Posted on Wed 24 October 2012 in <a href="http://pablocaro.es/category/sin-categoria.html">Sin Categoría</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/python.html">python</a>
+    </p>
+  </header>
+  <div>
+      <div>
+        La opción --relocate no funciona bien.
+
+Lo mejor es usar <a href="https://github.com/fireteam/virtualenv-tools">virtualenv-tools</a>.
+    </div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/depurando-tomcat#depurando-tomcat">Depurando Tomcat</a></h2>
+    <p>
+      Posted on Wed 24 October 2012 in <a href="http://pablocaro.es/category/programacion.html">Programación</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/java.html">java</a>
+    </p>
+  </header>
+  <div>
+      <div>
+        Se usa Java Platform Debuging Architecture JPDA
+
+<a href="https://confluence.sakaiproject.org/display/BOOT/Setting+Up+Tomcat+For+Remote+Debugging">https://confluence.sakaiproject.org/display/BOOT/Setting+Up+Tomcat+For+Remote+Debugging</a>
+    </div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/importar-clave-gpg-kgpg-que-gran-programa#importar-clave-gpg-kgpg-que-gran-programa">Importar clave gpg. kgpg que gran programa</a></h2>
+    <p>
+      Posted on Wed 24 October 2012 in <a href="http://pablocaro.es/category/sistemas.html">Sistemas</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/linux.html">linux</a>
+    </p>
+  </header>
+  <div>
+      <div>
+    <pre lang="bash">
+        gpg --keyserver pgp.rediris.es --search-keys erevilla@yaco.es
+
+gpg: buscando «erevilla@yaco.es» de hkp servidor pgp.rediris.es
+(1) Ernesto Revilla Derksen (Yaco)
+1024 bit DSA key 3E455F5A, creado: 2009-09-16
+Keys 1-1 of 1 for "erevilla@yaco.es". Introduzca número(s), O)tro, o F)in &gt; 1
+gpg …</pre></div>
+        <br>
+        <a class="btn"
+           href="http://pablocaro.es/importar-clave-gpg-kgpg-que-gran-programa#importar-clave-gpg-kgpg-que-gran-programa">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/traducciones-y-apt#traducciones-y-apt">Traducciones y APT</a></h2>
+    <p>
+      Posted on Wed 24 October 2012 in <a href="http://pablocaro.es/category/sistemas.html">Sistemas</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/linux.html">linux</a>
+    </p>
+  </header>
+  <div>
+      <div>
+    <p>
+        <a href="http://mindref.blogspot.com.es/2012/10/apt-translations.html">http://mindref.blogspot.com.es/2012/10/apt-translations.html</a>
+<a href="http://manpages.ubuntu.com/manpages/natty/man5/apt.conf.5.html">http://manpages.ubuntu.com/manpages/natty/man5/apt.conf.5.html</a>
+    </p>
+    </div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/mostrar-usuarios-y-roles-existentes-en-postgres#mostrar-usuarios-y-roles-existentes-en-postgres">Mostrar Usuarios  y roles existentes en postgres</a></h2>
+    <p>
+      Posted on Wed 24 October 2012 in <a href="http://pablocaro.es/category/sistemas.html">Sistemas</a>
+
+
+    </p>
+  </header>
+  <div>
+      <div>
+        Se utiliza <strong>\du</strong>
+<pre lang="bash">$ sudo su - postgres
+$ psql 
+postgres=# \du
+                           List of roles
+ Role name |                   Attributes                   | Member of 
+-----------+------------------------------------------------+-----------
+ openerp   | Superuser, Create role, Create DB, Replication | {}
+ postgres  | Superuser, Create role, Create DB, Replication | {}
+
+postgres=#</pre>
+    </div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/uso-practico-de-ngrep#uso-practico-de-ngrep">Uso práctico de ngrep</a></h2>
+    <p>
+      Posted on Wed 12 September 2012 in <a href="http://pablocaro.es/category/sistemas.html">Sistemas</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/linux.html">linux</a>
+    </p>
+  </header>
+  <div>
+      <div>
+        Ejemplo de uso común de <strong>ngrep</strong>:
+<pre class="bash" lang="bash">sudo ngrep -d any port 80 -W byline</pre>
+Esto es para examinar lo que circula por el puerto 80.
+    </div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/autorelad-en-plone#autorelad-en-plone">Autorelad en plone</a></h2>
+    <p>
+      Posted on Fri 27 July 2012 in <a href="http://pablocaro.es/category/programacion.html">Programación</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/zope.html">zope</a>
+    </p>
+  </header>
+  <div>
+      <div>
+        Otro recordatorio.
+
+Para recargar mientras desarrollo una browserview en plone:
+<pre lang="bash">$ when-changed.py *.py -c wget -q -O /dev/null  \
+http://admin:admin@localhost:8080/@@reload?action=code</pre>
+Basta pues con usar <a title="when-changed" href="https://github.com/joh/when-changed">when-changed</a> y <a href="http://pypi.python.org/pypi/plone.reload/">plone.reload</a>
+
+Se que existen extensiones  para el navegador  que recargan una  pestaña cuando cambia un fichero …</div>
+        <br>
+        <a class="btn"
+           href="http://pablocaro.es/autorelad-en-plone#autorelad-en-plone">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/virtualbox-actualizar-las-guest-additions-en-maquinas-ubuntu#virtualbox-actualizar-las-guest-additions-en-maquinas-ubuntu">virtualbox: Actualizar las Guest Additions en máquinas ubuntu</a></h2>
+    <p>
+      Posted on Wed 24 August 2011 in <a href="http://pablocaro.es/category/sistemas.html">Sistemas</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/linux.html">linux</a>
+    </p>
+  </header>
+  <div>
+      <div>
+        Si usas <a href="http://vagrantup.com/">vagrant</a> para gestionar máquinas virtuales con <a href="http://www.virtualbox.org/">virtualbox</a>, un buen lugar para obtener boxes es <a href="http://www.vagrantbox.es/">vagrantboxes</a>.
+
+Pero a veces la versión que traen de las Guest Additions no coincide con el virtualbox que tienes (en mi caso el último). Vagrant se queja y puede ocasionar problemas.
+
+Lo más simple …</div>
+        <br>
+        <a class="btn"
+           href="http://pablocaro.es/virtualbox-actualizar-las-guest-additions-en-maquinas-ubuntu#virtualbox-actualizar-las-guest-additions-en-maquinas-ubuntu">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/cambiar-mapa-de-teclado-en-linux#cambiar-mapa-de-teclado-en-linux">Cambiar mapa de teclado en linux</a></h2>
+    <p>
+      Posted on Wed 24 August 2011 in <a href="http://pablocaro.es/category/sistemas.html">Sistemas</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/linux.html">linux</a>
+    </p>
+  </header>
+  <div>
+      <div>
+        Siempre olvido esto:
+<pre lang="bash">sudo keymap es</pre>
+    </div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/deshabilitar-autocompletado-en-vim#deshabilitar-autocompletado-en-vim">Deshabilitar autocompletado en vim</a></h2>
+    <p>
+      Posted on Mon 20 June 2011 in <a href="http://pablocaro.es/category/sistemas.html">Sistemas</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/linux.html">linux</a>
+    </p>
+  </header>
+  <div>
+      <div>
+        Uso poco vim, sólo cuando en servidores no tengo jed.
+
+Para pegar texto en el fichero actual sin que te haga un horrible indentado en cascada:
+<pre>:setlocal noautoindent
+:setlocal nocindent
+:setlocal nosmartindent
+:setlocal indentexpr=</pre>
+O su equivalente:
+<pre>:setl noai nocin nosi inde=</pre>
+Referencia: <a href="http://vim.wikia.com/wiki/How_to_stop_auto_indenting">http://vim.wikia.com/wiki/How_to_stop_auto_indenting </a>
+    </div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/diccionario-de-espanol-para-komodo-edit#diccionario-de-espanol-para-komodo-edit">Diccionario de español para komodo edit</a></h2>
+    <p>
+      Posted on Mon 13 June 2011 in <a href="http://pablocaro.es/category/sin-categoria.html">Sin Categoría</a>
+
+
+    </p>
+  </header>
+  <div>
+      <div>
+        Para instalarlo se siguen <a href="http://community.activestate.com/faq/how-do-i-install-new-dictionaries-spell-checking#comment-4059" target="_blank">estas instrucciones</a> descargando previamente <a href="https://addons.mozilla.org/es-ES/firefox/addon/spanish-spain-dictionary/" target="_blank">el addon</a>.
+
+No he probado a ver si funciona en el perfil de usuario, pero eso estaría mejor.
+    </div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/21-3#21-3">21/3</a></h2>
+    <p>
+      Posted on Tue 22 March 2011 in <a href="http://pablocaro.es/category/sin-categoria.html">Sin Categoría</a>
+
+
+    </p>
+  </header>
+  <div>
+      <div>
+        Han pasado ya<a title="día síndrome down" href="http://www.abc.es/20110321/comunidad-castillaleon/abcp-mundial-sindrome-down-20110321.html"> tres días 21</a> en lo que llevamos de año. Ayer, fue un día de <a href="http://www.eldiariomontanes.es/v/20110322/sociedad/destacados/jovenes-sindrome-down-exigen-20110322.html">reivindicaciones</a>, para exigir la visibilidad necesaria y el respecto que esta sociedad <a href="http://www.elpais.com/articulo/sociedad/Inhabilitado/dueno/pub/echo/jovenes/Down/elpepisoc/20110311elpepisoc_13/Tes">todavía niega</a>. Cuando en el día de hoy se habla de <a href="http://www.elpais.com/articulo/internacional/disputas/participacion/OTAN/dividen/aliados/elpepuint/20110322elpepuint_6/Tes">guerra</a> y <a href="http://www.elpais.com/articulo/internacional/tecnicos/reanundan/trabajos/Fukushima/elpepuint/20110322elpepuint_5/Tes">emisiones radiactivas</a>, yo he aprendido en este último …</div>
+        <br>
+        <a class="btn"
+           href="http://pablocaro.es/21-3#21-3">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/scp-con-compresion#scp-con-compresion">scp con compresión</a></h2>
+    <p>
+      Posted on Fri 04 March 2011 in <a href="http://pablocaro.es/category/programacion.html">Programación</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/linux.html">linux</a>,              <a href="http://pablocaro.es/tag/zope.html">zope</a>
+    </p>
+  </header>
+  <div>
+      <div>
+        La mejor forma de descargar una zodb:
+<pre lang="bash">scp -C -o CompressionLevel=9 user@yoursite.com:~/plonefolder/zinstance/var/filestorage/Data.fs .</pre>
+Leído en: <a href="http://blog.mfabrik.com/2011/03/02/scp-file-copy-with-on-line-compression/">http://blog.mfabrik.com/2011/03/02/scp-file-copy-with-on-line-compression/</a>
+    </div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/actualizar-mercurial-usando-ppa-en-ubuntu#actualizar-mercurial-usando-ppa-en-ubuntu">Actualizar Mercurial usando ppa en ubuntu</a></h2>
+    <p>
+      Posted on Fri 25 February 2011 in <a href="http://pablocaro.es/category/sistemas.html">Sistemas</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/linux.html">linux</a>
+    </p>
+  </header>
+  <div>
+      <div>
+        Existen tres PPA para mercurial:
+<a rel="nofollow" href="https://launchpad.net/~mercurial-ppa/+archive/releases">https://launchpad.net/~mercurial-ppa/+archive/releases</a> (última release, actualmente 1.7.5-0ppa1~maverick1)
+<a rel="nofollow" href="https://launchpad.net/~mercurial-ppa/+archive/stable-snapshots">https://launchpad.net/~mercurial-ppa/+archive/stable-snapshots</a> (snapshots de la rama estable, actualmente ﻿1.7.5+2-5fc7c84ed9b0-0ppa1~maverick1)
+<a rel="nofollow" href="https://launchpad.net/~mercurial-ppa/+archive/snapshots">https://launchpad.net/~mercurial-ppa/+archive/snapshots</a> (snapshots de lo último, actualmente 1.8~1.7 …</div>
+        <br>
+        <a class="btn"
+           href="http://pablocaro.es/actualizar-mercurial-usando-ppa-en-ubuntu#actualizar-mercurial-usando-ppa-en-ubuntu">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/anadiendo-un-repositio-ppa-en-karmic#anadiendo-un-repositio-ppa-en-karmic">Añadiendo un repositio PPA en karmic</a></h2>
+    <p>
+      Posted on Wed 23 February 2011 in <a href="http://pablocaro.es/category/sin-categoria.html">Sin Categoría</a>
+
+
+    </p>
+  </header>
+  <div>
+      <div>
+        Este comandito te añade sola la fuente (ojo, en el directorio /etc/apt/sources.list.d) y pide las claves:
+<pre lang="bash">sudo add-apt-repository ppa:chromium-daily</pre>
+    </div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/dos-pantallas-al-inicio-de-kdm#dos-pantallas-al-inicio-de-kdm">Dos pantallas al inicio de kdm</a></h2>
+    <p>
+      Posted on Tue 01 February 2011 in <a href="http://pablocaro.es/category/sistemas.html">Sistemas</a>
+
+
+    </p>
+  </header>
+  <div>
+      <div>
+        Para que ya el mismo kdm se ejecute con dos pantallas basta con poner la configuración deseada (usando <a title="xrandr" href="http://www.x.org/wiki/Projects/XRandR" target="_blank">xrandr</a>) en el fichero ﻿<strong>/etc/kde4/kdm/Xsetup</strong>. Por ejemplo, en mi caso uso dos pantallas en la oficina de modo que ese fichero contiene:
+<pre lang="bash">INT="LVDS1"
+EXT="VGA1"
+xrandr -q | grep …</pre></div>
+        <br>
+        <a class="btn"
+           href="http://pablocaro.es/dos-pantallas-al-inicio-de-kdm#dos-pantallas-al-inicio-de-kdm">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/zen-coding-y-komodo-edit#zen-coding-y-komodo-edit">Zen Coding y komodo edit</a></h2>
+    <p>
+      Posted on Fri 15 October 2010 in <a href="http://pablocaro.es/category/programacion.html">Programación</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/zope.html">zope</a>
+    </p>
+  </header>
+  <div>
+      <div>
+        Mi editor favorito <a href="http://www.activestate.com/komodo-edit" target="_blank">Komodo Edit</a> tiene un plugin de <a href="http://code.google.com/p/zen-coding/" target="_blank">Zen Coding </a>y este funciona muy bien también con plantillas zpt. Por ejemplo:
+
+Así una expresión como la siguente
+<pre lang="css">
+dl>tal:rep[tal:repeat]>dt+dd
+</pre>
+Se convierte en el siguiente trozo de html con los nesesarios tabstops:
+<pre lang="css">
+<dl>
+    <tal:rep tal:repeat="">
+        <dt></dt>
+        <dd></dd>
+    </tal:rep>
+</dl></pre>
+Muy pero que …</div>
+        <br>
+        <a class="btn"
+           href="http://pablocaro.es/zen-coding-y-komodo-edit#zen-coding-y-komodo-edit">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/progreso-en-un-reindexado-de-zope#progreso-en-un-reindexado-de-zope">Progreso en un reindexado de zope</a></h2>
+    <p>
+      Posted on Sat 18 September 2010 in <a href="http://pablocaro.es/category/programacion.html">Programación</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/zope.html">zope</a>
+    </p>
+  </header>
+  <div>
+      <div>
+        Visto en el producto contentleadimage:
+<pre lang="python">from Products.ZCatalog.ProgressHandler import ZLogHandler
+ctool.reindexIndex(['hasContentLeadImage'], portal.REQUEST, pghandler=ZLogHandler())</pre>
+Esto muestra un progreso en la consola si estás ejecutando  en primer plano.
+    </div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/zope-y-noatime#zope-y-noatime">Zope y noatime</a></h2>
+    <p>
+      Posted on Sun 25 July 2010 in <a href="http://pablocaro.es/category/programacion.html">Programación</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/zope.html">zope</a>
+    </p>
+  </header>
+  <div>
+      <div>
+        Una fácil mejora para el rendimiento de un zope con problemas de acceso a disco es<a href="http://tldp.org/LDP/solrhe/Securing-Optimizing-Linux-RH-Edition-v1.3/chap6sec73.html"> no actualizar la fecha de último acceso</a> al fichero de la base de datos Data.fs:
+
+<pre lang="bash">
+chattr -R +A Data.fs
+</pre>
+
+Simple y efectivo.
+    </div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/subversion-anadiendo-contenido-a-un-directorio-sin-descargarlo#subversion-anadiendo-contenido-a-un-directorio-sin-descargarlo">Subversion: Añadiendo contenido a un directorio sin descargarlo</a></h2>
+    <p>
+      Posted on Fri 16 July 2010 in <a href="http://pablocaro.es/category/programacion.html">Programación</a>
+
+
+    </p>
+  </header>
+  <div>
+      <div>
+        Caso práctico. Tengo un directorio <em>dev</em> dentro del subversión con un montón de código con sus correspondientes ramas de <code>trunk</code>, <code>branches</code>, <code>tags</code>, etc. Quiero añadir un nuevo producto pero no descargar todo ese enorme directorio <em>dev</em>:
+<pre lang="bash">svn co --depth empty https://repositorio/dev dev
+cp loquesea nuevo_producto
+svn add loquesea …</pre></div>
+        <br>
+        <a class="btn"
+           href="http://pablocaro.es/subversion-anadiendo-contenido-a-un-directorio-sin-descargarlo#subversion-anadiendo-contenido-a-un-directorio-sin-descargarlo">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/restaurando-objectos-plone-borrados#restaurando-objectos-plone-borrados">Restaurando objectos plone borrados</a></h2>
+    <p>
+      Posted on Wed 14 July 2010 in <a href="http://pablocaro.es/category/programacion.html">Programación</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/zope.html">zope</a>
+    </p>
+  </header>
+  <div>
+      <div>
+        Para esas situaciones donde no funciona el undo, la salvación se llama <a href="http://pypi.python.org/pypi/dm.historical">dm.historical</a>
+
+Un claro ejemplo en <a href="http://www.zopyx.de/blog/restoring-an-older-state-of-arbitrary-zope-objects" target="_blank">esta entrada</a> del Blog de Andreas Jung
+    </div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/opciones-tipicas-rsync#opciones-tipicas-rsync">Opciones típicas rsync</a></h2>
+    <p>
+      Posted on Thu 08 July 2010 in <a href="http://pablocaro.es/category/sistemas.html">Sistemas</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/linux.html">linux</a>
+    </p>
+  </header>
+  <div>
+      <div>
+        Para usar un rsync como un scp (pero con las ventajas de rsync como que puedo parar y continuar después):
+<pre lang="bash">rsync -azPrv -e 'ssh' usuario@host:/path/to/folder /path/to/destination</pre>
+    </div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/completar-mientras-se-depura-en-zope#completar-mientras-se-depura-en-zope">Completar mientras se depura en zope</a></h2>
+    <p>
+      Posted on Wed 28 April 2010 in <a href="http://pablocaro.es/category/programacion.html">Programación</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/web.html">web</a>
+    </p>
+  </header>
+  <div>
+      <div>
+        Siempre tengo que buscar esto en google, para esto tengo el blog:
+
+<pre lang="bash">
+$ bin/instance debug
+</pre>
+
+<pre lang="python">
+>>> import readline, rlcompleter
+>>> readline.parse_and_bind('tab: complete')
+>>> app.
+Display all 760 possibilities? (y or n)
+>>> 
+</pre>
+    </div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/kbabel-es-lokalize-en-kde4#kbabel-es-lokalize-en-kde4">Kbabel es Lokalize en kde4</a></h2>
+    <p>
+      Posted on Thu 25 March 2010 in <a href="http://pablocaro.es/category/programacion.html">Programación</a>
+
+
+    </p>
+  </header>
+  <div>
+      <div>
+        Ya era la segunda vez que no encontraba el maravilloso <a href="http://kbabel.kde.org/" target="_blank">kbabel</a> y es que en kde4 su sucesor se llama <a href="http://userbase.kde.org/Lokalize" target="_blank">lokalize</a>
+    </div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/descargar-una-web-para-visualizacion-local-con-wget#descargar-una-web-para-visualizacion-local-con-wget">Descargar una web para visualización local con wget</a></h2>
+    <p>
+      Posted on Mon 22 February 2010 in <a href="http://pablocaro.es/category/sin-categoria.html">Sin Categoría</a>
+
+
+    </p>
+  </header>
+  <div>
+      <div>
+        El comando es
+<pre lang="bash">$ wget -E -H -k -K -p  http://www.google.es</pre>
+Con <em>-p</em> hacemos que se descarguen los enlaces requeridos (css, javascript), con <em>-k</em> convertimos los enlaces dentro del html para visualización local (<em>-K</em> copia de seguriad) y con <em>-E</em> aseguramos que los ficheros descargados tengan extensión html …</div>
+        <br>
+        <a class="btn"
+           href="http://pablocaro.es/descargar-una-web-para-visualizacion-local-con-wget#descargar-una-web-para-visualizacion-local-con-wget">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/plone-registrar-pasos-de-importacion-con-zcml#plone-registrar-pasos-de-importacion-con-zcml">Plone: Registrar pasos de importación con zcml</a></h2>
+    <p>
+      Posted on Wed 27 January 2010 in <a href="http://pablocaro.es/category/sin-categoria.html">Sin Categoría</a>
+
+
+    </p>
+  </header>
+  <div>
+      <div>
+        Registrar un paso de importación con xml el el profile, puede fallar cuando quitas el paquete del buildout.
+Un paso roto se que queda dentro de portal_setup_tool.
+
+En algunas versiones de plone esto da un error, haciendo imposible aplicar el perfil nunca más.
+
+En otras versiones (plone 3.2 hacia …</div>
+        <br>
+        <a class="btn"
+           href="http://pablocaro.es/plone-registrar-pasos-de-importacion-con-zcml#plone-registrar-pasos-de-importacion-con-zcml">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/descargar-codigo-de-un-repositorio-publicado-con-gitweb#descargar-codigo-de-un-repositorio-publicado-con-gitweb">Descargar código de un repositorio publicado con gitweb</a></h2>
+    <p>
+      Posted on Mon 04 January 2010 in <a href="http://pablocaro.es/category/sin-categoria.html">Sin Categoría</a>
+
+
+    </p>
+  </header>
+  <div>
+      <div>
+        <p>Quería probar un software disponible en la red (<a href="http://www.perfect-sale.com/">Perfect Sale</a>). Sabía que tenía que usar <em>git clone</em> pero no la url. </p>
+<p>
+No queda claro (al menos a mí) <a href="http://git.hforge.org/?p=shop.git;a=tree">en el repositorio gitweb</a> la url a usar.</p>
+Al fin, encontré la solución en <a href="http://gitweb.codeendeavor.com/">un repositorio mejor documentado</a> (gracias).
+<p>El protocolo es …</p></div>
+        <br>
+        <a class="btn"
+           href="http://pablocaro.es/descargar-codigo-de-un-repositorio-publicado-con-gitweb#descargar-codigo-de-un-repositorio-publicado-con-gitweb">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/crear-base-de-datos-mysql-a-partir-de-un-backup#crear-base-de-datos-mysql-a-partir-de-un-backup">Crear base de datos mysql a partir de un backup </a></h2>
+    <p>
+      Posted on Thu 17 December 2009 in <a href="http://pablocaro.es/category/sistemas.html">Sistemas</a>
+
+
+    </p>
+  </header>
+  <div>
+      <div>
+        Primero crear la base de datos:
+<pre lang="bash">
+pcaro@davinci$ mysql --user=root -p
+mysql> show databases;
+mysql> create database piwik;
+mysql> GRANT ALL ON piwik.* TO pcaro@localhost IDENTIFIED BY "piwik"
+mysql> show tables;
+</pre>
+Luego restaurar el backup:
+<pre lang="bash">
+mysql --user=root --pass=*** --host=localhost piwik < piwik_Thursday.sql
+</pre>
+Comprobar todo esta bien …</div>
+        <br>
+        <a class="btn"
+           href="http://pablocaro.es/crear-base-de-datos-mysql-a-partir-de-un-backup#crear-base-de-datos-mysql-a-partir-de-un-backup">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/parcheando-parcheando#parcheando-parcheando">Parcheando, parcheando ...</a></h2>
+    <p>
+      Posted on Wed 16 December 2009 in <a href="http://pablocaro.es/category/sistemas.html">Sistemas</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/linux.html">linux</a>
+    </p>
+  </header>
+  <div>
+      <div>
+        Siempre tengo que buscar cómo usar patch. Como tengo un blog que se llama anotaciones pues apunto:
+<pre lang="bash">$ patch -p1 < baz.diff</pre>
+Donde el número 1 viene de mirar en el fichero .diff y contar las barras "/" que hay antes que el directorio donde estoy. Por ejemplo si veo <em>/users/stephen …</em></div>
+        <br>
+        <a class="btn"
+           href="http://pablocaro.es/parcheando-parcheando#parcheando-parcheando">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/que-las-aplicaciones-gtk-luzcan-mejor-en-kubuntu-karmic#que-las-aplicaciones-gtk-luzcan-mejor-en-kubuntu-karmic">Que las aplicaciones GTK+ luzcan mejor en kubuntu karmic</a></h2>
+    <p>
+      Posted on Thu 10 December 2009 in <a href="http://pablocaro.es/category/sistemas.html">Sistemas</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/linux.html">linux</a>
+    </p>
+  </header>
+  <div>
+      <div>
+        Basta con seguir este <a href="http://marcosaruj.com/archives/401" target="_blank">tutorial</a>, que indica como instalar el tema <a href="http://kde-look.org/content/show.php?action=content&amp;content=103741&amp;PHPSESSID=b084f440c2a6cc2a1644514b13fe591a" target="_blank">Oxygen-Molecule</a>.
+    </div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/anadir-ppa-desde-la-consola-a-ubuntu-karmic#anadir-ppa-desde-la-consola-a-ubuntu-karmic">Añadir PPA desde la consola a ubuntu karmic</a></h2>
+    <p>
+      Posted on Wed 09 December 2009 in <a href="http://pablocaro.es/category/sistemas.html">Sistemas</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/linux.html">linux</a>
+    </p>
+  </header>
+  <div>
+      <div>
+        Para añadir un PPA a ubuntu karmic desde la consola basta con:
+
+<pre lang="bash">
+ sudo add-apt-repository ppa:kubuntu-ppa/ppa
+
+[sudo] password for pcaro:                                
+Executing: gpg --ignore-time-conflict --no-options --no-default-keyring --secret-keyring /etc/apt/secring.gpg --trustdb-name /etc/apt/trustdb.gpg --keyring /etc/apt/trusted.gpg --keyserver keyserver.ubuntu.com --recv E4DFEC907DEDA4B8A670E8042836CB0A8AC93F7A                                                                                  
+gpg: solicitando clave …</pre></div>
+        <br>
+        <a class="btn"
+           href="http://pablocaro.es/anadir-ppa-desde-la-consola-a-ubuntu-karmic#anadir-ppa-desde-la-consola-a-ubuntu-karmic">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/cambiar-dpi-en-kde#cambiar-dpi-en-kde">Cambiar dpi en kde</a></h2>
+    <p>
+      Posted on Fri 04 December 2009 in <a href="http://pablocaro.es/category/sistemas.html">Sistemas</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/linux.html">linux</a>
+    </p>
+  </header>
+  <div>
+      <div>
+        Siempre que reinstalo me encuentro con el mismo problema. No tengo el dpi estándar de 96, sino uno extraño de 113.
+<pre lang="bash">pcaro@davinci$ xdpyinfo | grep resolutio
+  resolution:    113x113 dots per inch</pre>
+Como resultado, muchas páginas webs no se visualizan correctamente.
+
+Para solucionarlo tengo que decirle al servidor X que arranque …</div>
+        <br>
+        <a class="btn"
+           href="http://pablocaro.es/cambiar-dpi-en-kde#cambiar-dpi-en-kde">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/actualizando-postgres-en-debian-y-derivados#actualizando-postgres-en-debian-y-derivados">Actualizando postgres en debian y derivados</a></h2>
+    <p>
+      Posted on Thu 26 November 2009 in <a href="http://pablocaro.es/category/sistemas.html">Sistemas</a>
+
+
+    </p>
+  </header>
+  <div>
+      <div>
+        Siempre que se habla de debian, se alaba su paquetería. Y yo estoy de acuerdo de que es uno de los puntos fuertes de la distribución. Hoy me refiero a la facilidad de tener instaladas y conviviendo felices varias versiones de la base de datos <a href="http://www.postgresql.org/" target="_blank">postgres</a>. Ya comenté esto en …</div>
+        <br>
+        <a class="btn"
+           href="http://pablocaro.es/actualizando-postgres-en-debian-y-derivados#actualizando-postgres-en-debian-y-derivados">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/anadiendo-lenguaje-procedural-a-base-de-datos-postgres-createlang#anadiendo-lenguaje-procedural-a-base-de-datos-postgres-createlang">Añadiendo lenguaje procedural a base de datos postgres: createlang</a></h2>
+    <p>
+      Posted on Thu 12 November 2009 in <a href="http://pablocaro.es/category/sistemas.html">Sistemas</a>
+
+
+    </p>
+  </header>
+  <div>
+      <div>
+        Postgres 8.3 incluye 4 <a href="http://www.postgresql.org/docs/8.3/static/external-pl.html">lenguajes procedurales</a> en la distribución y se pueden instalar más, pero hay que activarlos por base de datos.
+Para ello, hay varios métodos (lo clásico es <a href="http://www.postgresql.org/docs/8.3/static/sql-createlanguage.html" target="_blank">create language</a>) pero los más cómodo es usar <a href="http://www.postgresql.org/docs/8.3/static/app-createlang.html">createlang</a>.
+
+Usa <a href="http://www.postgresql.org/docs/8.3/static/app-droplang.html"><span class="APPLICATION">droplang</span></a> para eliminar el lenguaje.
+    </div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/colores-desde-web-developer-tools#colores-desde-web-developer-tools">Colores desde web developer tools</a></h2>
+    <p>
+      Posted on Tue 10 November 2009 in <a href="http://pablocaro.es/category/programacion.html">Programación</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/web.html">web</a>
+    </p>
+  </header>
+  <div>
+      <div>
+        Últimamente uso tanto <a href="http://getfirebug.com/">firebug</a> que ni me acuerdo de las <a href="https://addons.mozilla.org/en-US/firefox/addon/60">Web Developer Tools</a>.
+Escribo esto para recordar que sigue siendo muy útil esta extensión. 
+Por ejemplo, puedo ver los colores (css) usados en una página web a través del menú <em>Información</em>, seleccionando <em>Ver información del color</em>.
+
+
+    </div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/que-apache-sirva-el-contenido-de-un-fichero-py#que-apache-sirva-el-contenido-de-un-fichero-py">Que apache sirva el contenido de un fichero .py</a></h2>
+    <p>
+      Posted on Tue 13 October 2009 in <a href="http://pablocaro.es/category/sin-categoria.html">Sin Categoría</a>
+
+
+    </p>
+  </header>
+  <div>
+      <div>
+        Para que el servidor apache de <a href="http://www.webfaction.com/" target="_blank">webfaction</a> no intentara ejecutar los scripts python que dejo para la descarga en este blog, me creé un fichero <a href="http://httpd.apache.org/docs/1.3/howto/htaccess.html"><em>.htaccess</em></a> y dentro:
+<pre>
+removeHandler cgi-script .pl .py .cgi
+</pre>
+    </div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/cambiar-pantalla-anunciadora-de-kde-ksplash-theme-generator#cambiar-pantalla-anunciadora-de-kde-ksplash-theme-generator">Cambiar pantalla anunciadora de kde: Ksplash theme generator</a></h2>
+    <p>
+      Posted on Sun 20 September 2009 in <a href="http://pablocaro.es/category/sin-categoria.html">Sin Categoría</a>
+
+
+    </p>
+  </header>
+  <div>
+      <div>
+        Lo dicho en la nota anterior sobre <a href="http://www.kde-apps.org/content/show.php/Kdm+theme+generator?content=102760">KDM Theme Generator</a> aplica también para su aplicación hermana <a href="http://www.kde-apps.org/content/show.php/Ksplash+theme+generator?content=104456" target="_blank">Ksplash theme generator</a>
+    </div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/cambiar-el-aspecto-de-kdm-kdm-theme-generator#cambiar-el-aspecto-de-kdm-kdm-theme-generator">Cambiar el aspecto de kdm: kdm theme generator</a></h2>
+    <p>
+      Posted on Sun 20 September 2009 in <a href="http://pablocaro.es/category/sin-categoria.html">Sin Categoría</a>
+
+
+    </p>
+  </header>
+  <div>
+      <div>
+        <a href="http://www.kde-apps.org/content/show.php/Kdm+theme+generator?content=102760"> KDM Theme Generator</a> es una de esas aplicaciones simples y sencillas (sin interfaz gráfica siquiera), con una utilidad concretísima pero que funciona tan bien que da gloria de usar.
+
+Siguiendo las instrucciones de instalación, te crea un tema para KDM basado en el tema plasma activo y tu fondo de …</div>
+        <br>
+        <a class="btn"
+           href="http://pablocaro.es/cambiar-el-aspecto-de-kdm-kdm-theme-generator#cambiar-el-aspecto-de-kdm-kdm-theme-generator">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/cambiar-la-codificacion-de-un-fichero-de-texto#cambiar-la-codificacion-de-un-fichero-de-texto">Cambiar la codificación de un fichero de texto</a></h2>
+    <p>
+      Posted on Mon 27 July 2009 in <a href="http://pablocaro.es/category/sistemas.html">Sistemas</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/linux.html">linux</a>
+    </p>
+  </header>
+  <div>
+      <div>
+        Una nota para recordar el comando <a href="http://en.wikipedia.org/wiki/Iconv" target="_blank">iconv</a>:
+<pre lang="bash">
+iconv -f fromEncoding -t toEncoding inputFile > outputFile
+</pre>
+    </div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/css-estilos-de-seleccion-de-texto#css-estilos-de-seleccion-de-texto">CSS: Estilos de selección de texto</a></h2>
+    <p>
+      Posted on Thu 09 July 2009 in <a href="http://pablocaro.es/category/programacion.html">Programación</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/web.html">web</a>
+    </p>
+  </header>
+  <div>
+      <div>
+        Una de esas declaraciones de CSS3 que ya aceptan muchos navegadores actuales es <strong>::selection</strong>.
+Se puede utilizar así:
+<pre lang="css">
+p::selection {
+	background: #ccaacc; /* Safari */
+	}
+p::-moz-selection {
+	background: #ccaacc; /* Firefox */
+}
+</pre>
+    </div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/manejo-de-arboles-en-bases-de-datos#manejo-de-arboles-en-bases-de-datos">Manejo de árboles en bases de datos</a></h2>
+    <p>
+      Posted on Tue 07 July 2009 in <a href="http://pablocaro.es/category/sin-categoria.html">Sin Categoría</a>
+
+
+    </p>
+  </header>
+  <div>
+      <div>
+        Hay cuatro formas de guardar árboles en bases de datos relacionales:
+<ol>
+	<li>Adjacency List</li>
+	<li>Materialized Paths</li>
+	<li>Nested Sets o Modified Preorder Tree Traversal (MPTT)</li>
+	<li>Nested intervals</li>
+</ol>
+Dejo unos enlaces:
+<ul>
+	<li><a href="http://www.dbazine.com/oracle/or-articles/tropashko4">Trees in SQL: Nested Sets and Materialized Path</a> El articulo y el hombre de referencia</li>
+	<li><a href="http://www.sitepoint.com/article/hierarchical-data-database/">Storing Hierarchical Data in a Database</a> Todo …</li></ul></div>
+        <br>
+        <a class="btn"
+           href="http://pablocaro.es/manejo-de-arboles-en-bases-de-datos#manejo-de-arboles-en-bases-de-datos">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/mostrar-el-codigo-de-funciones-en-postgres#mostrar-el-codigo-de-funciones-en-postgres">Mostrar el código de funciones en postgres</a></h2>
+    <p>
+      Posted on Tue 07 July 2009 in <a href="http://pablocaro.es/category/sistemas.html">Sistemas</a>
+
+
+    </p>
+  </header>
+  <div>
+      <div>
+        Puede resultar muy util ver el código de algún procedimiento almacenado en postgres. El código de a continuación tomado de <a href="http://www.varlena.com/GeneralBits/39.php">Postgresql General Bits</a> de A. Elein Mustain puede resultar muy útil. 
+<pre lang="sql">
+create or replace view showfunctions as
+select
+l.lanname,
+t.typname || ' = ' || n.nspname || '.' ||
+    p.proname || '(' || pg_catalog.oidvectortypes(p.proargtypes …</pre></div>
+        <br>
+        <a class="btn"
+           href="http://pablocaro.es/mostrar-el-codigo-de-funciones-en-postgres#mostrar-el-codigo-de-funciones-en-postgres">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/instalar-postgres-8-2-en-jaunty#instalar-postgres-8-2-en-jaunty">Instalar postgres 8.2 en jaunty</a></h2>
+    <p>
+      Posted on Tue 30 June 2009 in <a href="http://pablocaro.es/category/sistemas.html">Sistemas</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/linux.html">linux</a>
+    </p>
+  </header>
+  <div>
+      <div>
+        Postgres 8.3 no me permitía crear una base de datos con un encoding distinto a los instalados en mi maquina, y yo debía recuperar una copia de seguridad de una base de datos para la ampliación de unos trabajos que vienen  de antiguo.
+
+Si intentaba importar los datos fallaba …</div>
+        <br>
+        <a class="btn"
+           href="http://pablocaro.es/instalar-postgres-8-2-en-jaunty#instalar-postgres-8-2-en-jaunty">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/listar-las-bases-de-datos-postgres-que-tengo-instaladas#listar-las-bases-de-datos-postgres-que-tengo-instaladas">Listar las bases de datos postgres que tengo instaladas</a></h2>
+    <p>
+      Posted on Mon 29 June 2009 in <a href="http://pablocaro.es/category/sin-categoria.html">Sin Categoría</a>
+
+
+    </p>
+  </header>
+  <div>
+      <div>
+        Para ello:
+
+<pre lang="bash">
+pcaro@davinci$ sudo /etc/init.d/postgresql-8.3 start
+pcaro@davinci$ sudo su - postgres
+postgres@davinci:~$ psql -l
+</pre>
+    </div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/un-servidor-web-de-bolsillo-gracias-a-python#un-servidor-web-de-bolsillo-gracias-a-python">Un servidor web de bolsillo gracias a python</a></h2>
+    <p>
+      Posted on Tue 16 June 2009 in <a href="http://pablocaro.es/category/sin-categoria.html">Sin Categoría</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/python.html">python</a>
+    </p>
+  </header>
+  <div>
+      <div>
+        Otra cosita para recordar.
+La forma más simple de servir unos ficheros vía web:
+<pre lang="bash">python -m SimpleHTTPServer 8080</pre>
+Nota: Antes usaba:
+<pre lang="bash">python -c "import SimpleHTTPServer;SimpleHTTPServer.test()"</pre>
+Pero no permite indicar el puerto y es más tedioso de escribir.
+    </div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/convertir-filtros-de-kmail-a-filtros-sieve#convertir-filtros-de-kmail-a-filtros-sieve">Convertir filtros de kmail a filtros sieve</a></h2>
+    <p>
+      Posted on Sat 06 June 2009 in <a href="http://pablocaro.es/category/sistemas.html">Sistemas</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/python.html">python</a>,              <a href="http://pablocaro.es/tag/linux.html">linux</a>
+    </p>
+  </header>
+  <div>
+      <div>
+        No hace mucho que dejé de usar <a title="pop" href="http://en.wikipedia.org/wiki/Post_Office_Protocol" target="_blank">POP</a> en mis correos para pasarme al <a title="imap" href="http://en.wikipedia.org/wiki/IMAP" target="_blank">IMAP</a> desconectado de kmail con toda las ventaja que ello supone.
+
+Pero todavía seguía utilizando los mismos filtros en kmail que me ordenan los correos por carpeta. Con este sistema el filtrado se realiza una vez …</div>
+        <br>
+        <a class="btn"
+           href="http://pablocaro.es/convertir-filtros-de-kmail-a-filtros-sieve#convertir-filtros-de-kmail-a-filtros-sieve">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/contenedor-de-floats-how-to-ie-ff#contenedor-de-floats-how-to-ie-ff">Contenedor de Floats: How to IE & FF</a></h2>
+    <p>
+      Posted on Thu 21 May 2009 in <a href="http://pablocaro.es/category/programacion.html">Programación</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/web.html">web</a>
+    </p>
+  </header>
+  <div>
+      <div>
+        Espero no olvidar esto más así que dejo la notita.
+
+Si tienes un elemento (por ejemplo un div#padre), que contiene sólo flotantes (otros divs por ejemplo), no será capaz IE de calcular bien su tamaño (se ve muy claro con un background).
+
+Para que funcione con explorer y firefox …</div>
+        <br>
+        <a class="btn"
+           href="http://pablocaro.es/contenedor-de-floats-how-to-ie-ff#contenedor-de-floats-how-to-ie-ff">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/comandos-utiles-en-la-consola-de-postgres-pgsql#comandos-utiles-en-la-consola-de-postgres-pgsql">Comandos útiles en la consola de postgres (pgsql)</a></h2>
+    <p>
+      Posted on Mon 30 March 2009 in <a href="http://pablocaro.es/category/sin-categoria.html">Sin Categoría</a>
+
+
+    </p>
+  </header>
+  <div>
+      <div>
+        Otra de las cosas que simpre olvido. Así que lo anoto.
+
+Para sacar el resultado de una consulta sql a un fichero desde el pgsql.
+<ol>
+	<li>\a</li>
+	<li>\f ,</li>
+	<li>\o /tmp/salida.csv</li>
+	<li>select * from ...</li>
+</ol>
+Se trata de:
+<ol>
+	<li>Cambiar entre modo de salida alineado y sin alinear</li>
+	<li>Definir separador de campos (en …</li></ol></div>
+        <br>
+        <a class="btn"
+           href="http://pablocaro.es/comandos-utiles-en-la-consola-de-postgres-pgsql#comandos-utiles-en-la-consola-de-postgres-pgsql">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/cambiar-ipython-para-copiar-y-pegar-luego-como-doctest#cambiar-ipython-para-copiar-y-pegar-luego-como-doctest">Cambiar ipython para copiar y pegar luego como doctest</a></h2>
+    <p>
+      Posted on Mon 02 February 2009 in <a href="http://pablocaro.es/category/sin-categoria.html">Sin Categoría</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/python.html">python</a>
+    </p>
+  </header>
+  <div>
+      <div>
+        Otra de las ordenes que nunca recuerdo. Estando dentro de <a title="ipython" href="http://ipython.scipy.org/moin/" target="_blank">ipython</a> para cambiar el prompt de forma que luego sea fácil crear <a title="doctest" href="http://docs.python.org/library/doctest.html" target="_blank">doctests</a>:
+
+<strong><tt>%doctest_mode</tt></strong>
+
+Esto entra en  el modo doctest de ipython. También puede ayudar <strong><tt>%history -tn</tt></strong><tt> para recordar los commandos introducidos previamente.
+</tt>
+    </div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/importar-claves-gpg-de-repositorios-ubuntu#importar-claves-gpg-de-repositorios-ubuntu">Importar claves gpg de repositorios ubuntu</a></h2>
+    <p>
+      Posted on Sun 01 February 2009 in <a href="http://pablocaro.es/category/sistemas.html">Sistemas</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/linux.html">linux</a>
+    </p>
+  </header>
+  <div>
+      <div>
+        Ante un error como este:
+
+W: GPG error: http://ppa.launchpad.net intrepid Release: The following signatures couldn't be verified because the public key is not available: NO_PUBKEY 3B81A3FBA47394CE
+
+Hay que importar las claves:
+<pre>gpg --keyserver keyserver.ubuntu.com --recv 3B81A3FBA47394CE
+gpg --export --armor 3B81A3FBA47394CE | sudo apt-key add -
+
+<em>UPDATE:</em>
+<em>Corregido …</em></pre></div>
+        <br>
+        <a class="btn"
+           href="http://pablocaro.es/importar-claves-gpg-de-repositorios-ubuntu#importar-claves-gpg-de-repositorios-ubuntu">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/formatear-de-la-forma-mas-facil-una-tarjeta-sd-en-ubuntu#formatear-de-la-forma-mas-facil-una-tarjeta-sd-en-ubuntu">Formatear de la forma más fácil una tarjeta SD en ubuntu</a></h2>
+    <p>
+      Posted on Fri 30 January 2009 in <a href="http://pablocaro.es/category/sin-categoria.html">Sin Categoría</a>
+
+
+    </p>
+  </header>
+  <div>
+      <div>
+        Otra anotación para recordar en un futuro. La forma más fácil de formatear una tarjeta SD es:
+<ol>
+	<li>Identificar el dispositivo (si esta montada la tarjeta lo ves con el comando mount por ejemplo).</li>
+	<li>Si no lo tienes ya, instalar el paquete dosfstools.</li>
+	<li>Ejecutar (con el dispositivo desmontado): <strong>sudo mkdosfs DISPOSITIVO …</strong></li></ol></div>
+        <br>
+        <a class="btn"
+           href="http://pablocaro.es/formatear-de-la-forma-mas-facil-una-tarjeta-sd-en-ubuntu#formatear-de-la-forma-mas-facil-una-tarjeta-sd-en-ubuntu">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/siempre-el-ultimo-dragonfly-en-opera#siempre-el-ultimo-dragonfly-en-opera">Siempre el último Dragonfly en Opera</a></h2>
+    <p>
+      Posted on Fri 30 January 2009 in <a href="http://pablocaro.es/category/programacion.html">Programación</a>
+
+
+    </p>
+  </header>
+  <div>
+      <div>
+        Para tener la versión de desarrollo de dragon fly en el opera basta con seguir la ruta:
+
+<code>about:config -&gt; Developer Tools -&gt; Developer Tools url</code>
+
+Luego, introducir la url siguiente
+
+<a href="http://dragonfly.opera.com/app/cutting-edge/">http://dragonfly.opera.com/app/cutting-edge/</a>
+    </div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/feliz-navidad#feliz-navidad">Feliz Navidad</a></h2>
+    <p>
+      Posted on Wed 24 December 2008 in <a href="http://pablocaro.es/category/sin-categoria.html">Sin Categoría</a>
+
+
+    </p>
+  </header>
+  <div>
+      <div>
+        Ni árboles, ni reyes, ni trineos, simplemente eso,
+
+<strong>Feliz Navidad</strong> de corazón para todos.
+    </div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/la-potencia-de-los-permisos#la-potencia-de-los-permisos">La potencia de los permisos</a></h2>
+    <p>
+      Posted on Mon 01 December 2008 in <a href="http://pablocaro.es/category/sistemas.html">Sistemas</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/linux.html">linux</a>
+    </p>
+  </header>
+  <div>
+      <div>
+        Recordar los comandos para controlar las listas de control de acceso en linux.
+
+<code>man setfacl
+man getfacl</code>
+
+Tras "setfacl -m user:joe:rwx dir",  verás que ls -d dir muestra un signo + al final que indica que se están utilizado permisos ampliados.
+
+Si quieres saber más, el tío google te …</div>
+        <br>
+        <a class="btn"
+           href="http://pablocaro.es/la-potencia-de-los-permisos#la-potencia-de-los-permisos">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/usar-find-para-detectar-enlaces-simbolicos-rotos#usar-find-para-detectar-enlaces-simbolicos-rotos">Usar find para detectar enlaces simbólicos rotos</a></h2>
+    <p>
+      Posted on Thu 20 November 2008 in <a href="http://pablocaro.es/category/sistemas.html">Sistemas</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/linux.html">linux</a>
+    </p>
+  </header>
+  <div>
+      <div>
+        <code>for f in $(find /usr/local/bin -type l); do if [ ! -e "$f" ]; then <a title="Echo command (not yet written)" class="new" href="http://howto.wikia.com/index.php?title=Echo_command&amp;action=edit&amp;redlink=1">echo</a> $f; fi; done</code>
+    </div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/como-hacer-un-svn-export-con-git#como-hacer-un-svn-export-con-git">¿Cómo hacer un "svn export" con git?</a></h2>
+    <p>
+      Posted on Fri 14 November 2008 in <a href="http://pablocaro.es/category/programacion.html">Programación</a>
+
+
+    </p>
+  </header>
+  <div>
+      <div>
+        Si tienes que descargarte un árbol git pero sin los metadatos, porque por ejemplo sólo quieres el código para congerlarlo versionado en el subversion de tu proyecto, lo más fácil es:
+
+git clone {clone-url}
+
+rm -rf .gitignore .git
+    </div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/svn-ignore#svn-ignore">svn:ignore</a></h2>
+    <p>
+      Posted on Thu 13 November 2008 in <a href="http://pablocaro.es/category/programacion.html">Programación</a>
+
+
+    </p>
+  </header>
+  <div>
+      <div>
+        Esta entrada  es para recordar los dos comandos:
+
+svn propedit svn:ignore ./some_path
+
+svn -R propset svn:ignore -F ../.svnignore .
+
+donde .svnignore contiene un patron por línea como *.pyc
+    </div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/reproducir-flash-con-opera-en-ubuntu#reproducir-flash-con-opera-en-ubuntu">Reproducir flash con Opera en Ubuntu</a></h2>
+    <p>
+      Posted on Wed 12 November 2008 in <a href="http://pablocaro.es/category/sin-categoria.html">Sin Categoría</a>
+
+
+    </p>
+  </header>
+  <div>
+      <div>
+        Traducción de un <a href="http://www.pablocaro.es/Often times Opera cannot locate the flashplayer without your help. Here is what you can do. First, make sure that flash is installed and works with firefox. Once that is confirmed, open a terminal and cd into the hidden opera directory:  $ cd ~/.opera  Once in that directory you should see a file named pluginpath.ini...the name says it all. In the default setup there are entries which look likeOpera Preferences version 2.1  -- ; Do not edit this file while Opera is running ; This file is stored in UTF-8 encoding  [Paths] /usr/lib/opera/plugins=1 /usr/lib/mozilla/plugins=1 --  You should heed the warning given and exit Opera if it is still open. You now have a choice to make:  1.) set up the flash libraries in either of the two paths shown above or 2.) add another line to the pluginpath.ini file so that opera also checks the user's local mozilla libraries.    I will take the second approach first. Open a second terminal and move into the mozilla plugin directory.  $ cd ~/.mozilla/plugins/  Once there you should see (at least) two files whose names are flashplayer.xpt and libflashplayer.so. These are the files Opera requires to run flash files.  Suppose your username is qwerty. Add the following line to the end of the pluginpath.ini file in the ~/.opera directory:  /home/qwerty/.mozilla/plugins=1  Start opera again and you should have no trouble playing flash files. This solution works only for you and would need to be repeated for other users on the machine in question.   Note that option 1. will enable all users to use flash/opera. To do this you need to place the 2 flash files mentioned above in either /usr/lib/opera/plugins or /usr/lib/mozilla/plugins. You can do this by copying them directly using cp or by making symbolic links to the actual files stored in your ~/.mozilla/plugins dire" target="_blank">comentario.</a>
+
+A menudo Opera no pude encontrar el reproductor de flas sin tu ayuda. Te mostramos lo que puedes hacer.
+
+Primero, asegurate que flash está instalado y funciona en firefox. Una vez confirmado, abre un terminal:
+$ cd ~/.opera
+
+En este directorio verás un archivo denominado pluginpath.ini …</div>
+        <br>
+        <a class="btn"
+           href="http://pablocaro.es/reproducir-flash-con-opera-en-ubuntu#reproducir-flash-con-opera-en-ubuntu">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/varios-monitores-en-linux#varios-monitores-en-linux">Varios monitores en linux</a></h2>
+    <p>
+      Posted on Mon 10 November 2008 in <a href="http://pablocaro.es/category/sistemas.html">Sistemas</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/linux.html">linux</a>
+    </p>
+  </header>
+  <div>
+      <div>
+        Esta anotación es sólo para comentar el comando xrandr que uso en kubuntu intrepid para trabajar con dos monitores.
+
+sudo xrandr --output VGA --auto
+sudo xrandr --output VGA --above LVDS
+    </div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/compartir-ficheros-gracias-a-python#compartir-ficheros-gracias-a-python">Compartir ficheros gracias a python</a></h2>
+    <p>
+      Posted on Sat 08 November 2008 in <a href="http://pablocaro.es/category/sin-categoria.html">Sin Categoría</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/python.html">python</a>
+    </p>
+  </header>
+  <div>
+      <div>
+        Para compartir de forma rápida unos ficheros vía web graias a python, lo más fácil es:
+<pre>python -c "import SimpleHTTPServer;SimpleHTTPServer.test()"</pre>
+    </div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/error-con-setuptools-y-subversion-1-5#error-con-setuptools-y-subversion-1-5">Error con setuptools y subversion 1.5</a></h2>
+    <p>
+      Posted on Sun 14 September 2008 in <a href="http://pablocaro.es/category/programacion.html">Programación</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/python.html">python</a>
+    </p>
+  </header>
+  <div>
+      <div>
+        La actual versión de <a target="_blank" href="http://peak.telecommunity.com/DevCenter/setuptools">setuptools</a> no se lleva bien el subversion 1.5 (también el actual en mi ubuntu).
+
+Normalmente acostumbro a usar <a target="_blank" href="http://pypi.python.org/pypi/virtualenv">virtualenv</a> y me he encontrado con el error:
+<pre>NameError: global name 'log' is not defined</pre>
+Ya está arreglado en el desarrollo de setuptools. Una posible solución es …</div>
+        <br>
+        <a class="btn"
+           href="http://pablocaro.es/error-con-setuptools-y-subversion-1-5#error-con-setuptools-y-subversion-1-5">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/editores-mostrar-los-numeros-de-linea-en-emacs-y-en-jed#editores-mostrar-los-numeros-de-linea-en-emacs-y-en-jed">Editores: Mostrar los números de linea en emacs y en jed</a></h2>
+    <p>
+      Posted on Thu 11 September 2008 in <a href="http://pablocaro.es/category/sin-categoria.html">Sin Categoría</a>
+
+
+    </p>
+  </header>
+  <div>
+      <div>
+        Para evitar esos odiosos porcentajes cuandos editas un fichero (¿de verdad le sirven a alguien?) y poner en su lugar el número de la linea en que te encuentras dejo aquí la anotación.
+<ol>
+	<li>En emacs:</li>
+<pre>;; ========== Enable Line and Column Numbering ==========
+;; Show line-number in the mode line
+(line-number-mode 1)
+;; Show column-number …</pre></ol></div>
+        <br>
+        <a class="btn"
+           href="http://pablocaro.es/editores-mostrar-los-numeros-de-linea-en-emacs-y-en-jed#editores-mostrar-los-numeros-de-linea-en-emacs-y-en-jed">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/grabar-cd-de-800mb-en-linux#grabar-cd-de-800mb-en-linux">Grabar CD de 800MB en linux</a></h2>
+    <p>
+      Posted on Wed 23 July 2008 in <a href="http://pablocaro.es/category/sistemas.html">Sistemas</a>
+
+
+    </p>
+  </header>
+  <div>
+      <div>
+        Tenía que grabar unos datos. Eran 730MB aproximadamente, con un CD habitual (700MB) iba a ser imposible, pero tenía por ahí un CD philips de 90 minutos (800MB). Y teniendo ese CD ¿por qué usar un DVD que son más caros?
+Mi sorpresa llega cuando el k3b (que uso habitualmente …</div>
+        <br>
+        <a class="btn"
+           href="http://pablocaro.es/grabar-cd-de-800mb-en-linux#grabar-cd-de-800mb-en-linux">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/buscando-una-fuente-para-escribir-codigo#buscando-una-fuente-para-escribir-codigo">Buscando una fuente para escribir código</a></h2>
+    <p>
+      Posted on Tue 22 July 2008 in <a href="http://pablocaro.es/category/programacion.html">Programación</a>
+
+
+    </p>
+  </header>
+  <div>
+      <div>
+        Varios enlaces interesantes sobre este tema.
+<ul>
+	<li><a target="_blank" href="http://www.lowing.org/fonts/">Monospace/Fixed Width Programmer's Fonts</a>. (Actualización de <a target="_blank" href="http://www.kuro5hin.org/story/2004/12/6/11739/5249">Finding the Best Programmer's Font</a>).</li>
+	<li><a target="_blank" href="http://www.quickonlinetips.com/archives/2006/11/best-programming-fonts-for-easier-coding-and-readability/">Best Programming Fonts for Easy Coding and Readability</a>.</li>
+	<li><a target="_blank" href="http://www.briankotek.com/blog/index.cfm/2008/4/3/Development-Tip-Change-Your-Coding-Font">Development Tip: Change Your Coding Font</a>.</li>
+	<li><a target="_blank" href="http://www.codinghorror.com/blog/archives/000969.html">Revisiting Programming Fonts</a>.</li>
+</ul>
+Personalmente, la Bitstream Vera Sans Mono, me parece una fuente bastante aceptable. Me gusta mucho …</div>
+        <br>
+        <a class="btn"
+           href="http://pablocaro.es/buscando-una-fuente-para-escribir-codigo#buscando-una-fuente-para-escribir-codigo">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/mi-wordle#mi-wordle">Mi wordle</a></h2>
+    <p>
+      Posted on Fri 13 June 2008 in <a href="http://pablocaro.es/category/personal.html">Personal</a>
+
+
+    </p>
+  </header>
+  <div>
+      <div>
+        Siguiendo una cadena,aquí tenéis mi wordle a partir de mis enlaces de del.icio.us:
+<a title="Wordle: pcaro del.icio.us" href="http://wordle.net/gallery/pcaro_del_icio_us"><img style="border: 1px solid #dddddd; padding: 4px" src="http://wordle.net/thumb/pcaro_del_icio_us" /></a>
+
+¿Cómo es el tuyo?
+    </div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/convertir-disco-vmware#convertir-disco-vmware">Convertir disco vmware</a></h2>
+    <p>
+      Posted on Sun 11 May 2008 in <a href="http://pablocaro.es/category/sistemas.html">Sistemas</a>
+
+
+    </p>
+  </header>
+  <div>
+      <div>
+    <pre lang="bash">
+pcaro@davinci$ vmware-vdiskmanager -r Windows\ XP\ Professional.vmdk -t 0 WindowsXPProfessionalUnico.vmdk
+Creating disk 'WindowsXPProfessionalUnico.vmdk'
+Convert: 100% done.
+Virtual disk conversion successful.
+    </pre>
+    </div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/que-ejecutas-tu-desde-la-consola#que-ejecutas-tu-desde-la-consola">¿Qué ejecutas tu desde la consola?</a></h2>
+    <p>
+      Posted on Sun 13 April 2008 in <a href="http://pablocaro.es/category/sin-categoria.html">Sin Categoría</a>
+
+
+    </p>
+  </header>
+  <div>
+      <div>
+<p>
+        Un meme para ver que ejecutas desde la consola:
+</p>
+<pre>
+pcaro@davinci$ history|awk '{a[$2]++} END{for(i in a){printf "%5d\t%s\n",a[i],i}}'|sort -rn|head
+95   sudo
+71   ls
+67   cd
+33   svn
+29   dentro
+24   clear
+18   ssh
+15   i2e-cli
+14   ps
+13 …</pre></div>
+        <br>
+        <a class="btn"
+           href="http://pablocaro.es/que-ejecutas-tu-desde-la-consola#que-ejecutas-tu-desde-la-consola">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/mas-comandos-a-recordar#mas-comandos-a-recordar">Más comandos a recordar</a></h2>
+    <p>
+      Posted on Wed 09 April 2008 in <a href="http://pablocaro.es/category/sistemas.html">Sistemas</a>
+
+
+    </p>
+  </header>
+  <div>
+      <div>
+        Otra nota para que no se me vuelvan a olvidar algunos de los super-mini-comandos unix.
+<ul>
+	<li>Para desconectar un programa de la consola desde la que se está ejecutando y no pare por ejemplo si muere la conexión ssh, hay que usar <code>disown</code>.  Es una de esas <a target="_blank" href="http://www.faqs.org/docs/bashman/bashref_79.html">herramientas para control de …</a></li></ul></div>
+        <br>
+        <a class="btn"
+           href="http://pablocaro.es/mas-comandos-a-recordar#mas-comandos-a-recordar">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/timing-en-psql-la-consola-de-postgres#timing-en-psql-la-consola-de-postgres">Timing en "psql" la consola de postgres</a></h2>
+    <p>
+      Posted on Mon 31 March 2008 in <a href="http://pablocaro.es/category/sin-categoria.html">Sin Categoría</a>
+
+
+    </p>
+  </header>
+  <div>
+      <div>
+        Recordar:
+<pre>timing</pre>
+También podemos utilizar para más información "explain analyze":
+<pre>EXPLAIN ANALYZE select ...</pre>
+    </div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/ejecutar-comandos-en-python#ejecutar-comandos-en-python">Ejecutar comandos en python</a></h2>
+    <p>
+      Posted on Tue 04 March 2008 in <a href="http://pablocaro.es/category/programacion.html">Programación</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/python.html">python</a>
+    </p>
+  </header>
+  <div>
+      <div>
+        Hago a menudo pequeños scripts en python. Y muchas de las veces necesito ejecutar algún comando del sistema.
+
+Habitualmente importaba el módulo <code>os</code> y llamaba a alguna de sus funciones (las popen).
+
+Pero en general no hace falta importar os. Existe un módulo llamado <a target="_blank" title="commands" href="http://docs.python.org/lib/module-commands.html"><code>commands</code></a><code> </code>(sólo para unix) que permite …</div>
+        <br>
+        <a class="btn"
+           href="http://pablocaro.es/ejecutar-comandos-en-python#ejecutar-comandos-en-python">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/rendimiento-y-monitorizacion-de-procesos-en-windows#rendimiento-y-monitorizacion-de-procesos-en-windows">Rendimiento y Monitorización de procesos en windows</a></h2>
+    <p>
+      Posted on Tue 12 February 2008 in <a href="http://pablocaro.es/category/sistemas.html">Sistemas</a>
+
+
+    </p>
+  </header>
+  <div>
+      <div>
+        Prácticamente nunca uso windows, y por trabajo, cuando tengo que hacerlo es para ver errores. Resulta útil ver los procesos. Para no olvidarme como simpre dejo mi nota aquí:
+<ul>
+	<li>Para ver el rendimiento del sistema, Monitor de rendimiento: Incio, ejecutar: <strong>perfmon</strong></li>
+	<li>Un buen<a href="http://technet.microsoft.com/es-es/sysinternals/bb896645(en-us).aspx" target="_blank" title="monitor procesos"> monitor de procesos</a> se encuentra entres las …</li></ul></div>
+        <br>
+        <a class="btn"
+           href="http://pablocaro.es/rendimiento-y-monitorizacion-de-procesos-en-windows#rendimiento-y-monitorizacion-de-procesos-en-windows">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/continuar-con-una-descarga#continuar-con-una-descarga">Continuar con una descarga</a></h2>
+    <p>
+      Posted on Sun 27 January 2008 in <a href="http://pablocaro.es/category/sin-categoria.html">Sin Categoría</a>
+
+
+    </p>
+  </header>
+  <div>
+      <div>
+        <code>scp</code> no permite continuar con copias que se cortan, pero lo permite rsync. El comando para recordar es:
+
+<code>alias scpresume="rsync --partial --progress --rsh=ssh"</code>Eso claro, siempre que tengas  <code>rsync</code>
+    </div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/ubuntu-wordpress-php5-y-mysql#ubuntu-wordpress-php5-y-mysql">ubuntu, wordpress, php5 y mysql</a></h2>
+    <p>
+      Posted on Sun 25 November 2007 in <a href="http://pablocaro.es/category/sin-categoria.html">Sin Categoría</a>
+
+
+    </p>
+  </header>
+  <div>
+      <div>
+        Configurando un wordpress local para pruebas (con lighttpd), me encuentro con el siguiente error:
+
+<code>Your PHP installation appears to be missing the MySQL which is required for WordPress.</code>
+
+Sabía que php5 no tiene incluido el soporte para mysql pero para mi sorpresa en mi ubuntu yo sí tenía instalado el …</div>
+        <br>
+        <a class="btn"
+           href="http://pablocaro.es/ubuntu-wordpress-php5-y-mysql#ubuntu-wordpress-php5-y-mysql">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/para-aprender-javascript#para-aprender-javascript">Para aprender javascript</a></h2>
+    <p>
+      Posted on Thu 01 November 2007 in <a href="http://pablocaro.es/category/sin-categoria.html">Sin Categoría</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/javascript.html">javascript</a>
+    </p>
+  </header>
+  <div>
+      <div>
+        Para aprender una tecnología todos conocemos <a target="_blank" href="http://www.pablocaro.es/www.google.com">nuestro punto de referencia.</a> Pero "El Buscador" no es punto de partida más recomendable para aprender javascript. Existen cientos, miles, millones, de tutoriales donde aprender mal javascript. No hablo de aprender las palabras clave y las sentencias de control. Para eso te vale cualquiera …</div>
+        <br>
+        <a class="btn"
+           href="http://pablocaro.es/para-aprender-javascript#para-aprender-javascript">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/knetworkmanager#knetworkmanager">Knetworkmanager</a></h2>
+    <p>
+      Posted on Sat 06 October 2007 in <a href="http://pablocaro.es/category/sistemas.html">Sistemas</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/linux.html">linux</a>
+    </p>
+  </header>
+  <div>
+      <div>
+        Ahora una de esas entradas para que me sirva de recordatorio.
+
+Habitualmente estoy acostumbrado, cuando voy a un lugar y me dan conexión wifi, a configurarla a mano en /etc/network/interfaces.
+
+Esto hace que deje de funcionar el knetwormanager. Indica "configuración manual de red". Para que vuelva a tomar …</div>
+        <br>
+        <a class="btn"
+           href="http://pablocaro.es/knetworkmanager#knetworkmanager">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/mi-nueva-camara#mi-nueva-camara">Mi nueva cámara</a></h2>
+    <p>
+      Posted on Sat 25 August 2007 in <a href="http://pablocaro.es/category/personal.html">Personal</a>
+
+
+    </p>
+  </header>
+  <div>
+      <div>
+        Me acabo de compar una cámara digital compacta. No soy muy dado a fotos pero ya hora de tener una cámara digital.
+
+La elegida ha sido una <a target="_blank" title="Panasonic DMC-FX10" href="http://www.pablocaro.es/Panasonic%20DMC-FX10">Panasonic DMC-FX10</a> de 6 Mpx y lentes Leica.
+
+La prueba de fuego la ha tenido en Granada. Es el peor sito para una …</div>
+        <br>
+        <a class="btn"
+           href="http://pablocaro.es/mi-nueva-camara#mi-nueva-camara">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/que-practico-es-python-svnrevisions-py#que-practico-es-python-svnrevisions-py">¡Que práctico es python!: svnrevisions.py</a></h2>
+    <p>
+      Posted on Tue 10 April 2007 in <a href="http://pablocaro.es/category/sin-categoria.html">Sin Categoría</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/python.html">python</a>
+    </p>
+  </header>
+  <div>
+      <div>
+        Pongo a continuación un script rápido que hice hace ya un tiempo. En ese momento estaba realizando un backport de código y de forma sucia realicé varios
+<pre>svn up -rTAL</pre>
+De esa forma y con unos pequeños cambios obtuve el cambio que necesitaba. Pero después de un rato no recordaba …</div>
+        <br>
+        <a class="btn"
+           href="http://pablocaro.es/que-practico-es-python-svnrevisions-py#que-practico-es-python-svnrevisions-py">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/error-al-grabar-cds-con-k3b#error-al-grabar-cds-con-k3b">Error al grabar CDs con k3b</a></h2>
+    <p>
+      Posted on Mon 18 December 2006 in <a href="http://pablocaro.es/category/sistemas.html">Sistemas</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/linux.html">linux</a>
+    </p>
+  </header>
+  <div>
+      <div>
+        Tengo un  Dell latitude D610 y kubuntu edgy.
+
+Desde dapper siempre me ha ocurrido un error al copiar cds con k3b. El problema es que no tengo acceso al dispositivo /dev/sg0
+
+con <strike>sudo chown /dev/sg0 root:cdrom</strike> sudo root:cdrom /dev/sg0 lo soluciono (doy grupo cdrom a …</div>
+        <br>
+        <a class="btn"
+           href="http://pablocaro.es/error-al-grabar-cds-con-k3b#error-al-grabar-cds-con-k3b">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/siempre-la-coma-como-simbolo-decimal-en-un-formulario-net#siempre-la-coma-como-simbolo-decimal-en-un-formulario-net">Siempre la coma como símbolo decimal en un formulario .net</a></h2>
+    <p>
+      Posted on Fri 15 December 2006 in <a href="http://pablocaro.es/category/sin-categoria.html">Sin Categoría</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/net.html">.net</a>
+    </p>
+  </header>
+  <div>
+      <div>
+        Entre los muchos lenguajes que me ha tocado codificar (únicamente no me arrepiento de hacerlo en <a title="Python" href="http://www.python.org">python</a>) se encuentra .net.
+
+Es una chusquería que me solicitó un cliente. Quería que en un formulario al pulsar el punto del teclado numérico la entrada fuera una coma (no dependiera de la configuración …</div>
+        <br>
+        <a class="btn"
+           href="http://pablocaro.es/siempre-la-coma-como-simbolo-decimal-en-un-formulario-net#siempre-la-coma-como-simbolo-decimal-en-un-formulario-net">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/corrector-ortografico-de-firefox-2-0-en-castellano#corrector-ortografico-de-firefox-2-0-en-castellano">Corrector ortográfico de firefox 2.0 en castellano</a></h2>
+    <p>
+      Posted on Tue 14 November 2006 in <a href="http://pablocaro.es/category/sin-categoria.html">Sin Categoría</a>
+
+
+    </p>
+  </header>
+  <div>
+      <div>
+        En la url escribir:
+
+about:config
+
+Filtras las propiedades por "dic".
+
+Y estableces el valor de la propiedad "spellchecker.dictionary" a es_ES.
+    </div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/primera-anotacion-de-prueba#primera-anotacion-de-prueba">Primera anotación de prueba</a></h2>
+    <p>
+      Posted on Tue 10 October 2006 in <a href="http://pablocaro.es/category/sin-categoria.html">Sin Categoría</a>
+
+
+    </p>
+  </header>
+  <div>
+      <div>
+        Como todo blog que comienza, es de obligado cumplimiento una primera entrada "sólo para probar".
+En la primera entrada además del maravilloso lorem ipsum aprovecho para felicitar al autor del tema
+que estoy probando a priori: Orange Dream de Buddha.
+Por cierto que luego veré si puedo traducir esto :-D …</div>
+        <br>
+        <a class="btn"
+           href="http://pablocaro.es/primera-anotacion-de-prueba#primera-anotacion-de-prueba">
+          Continue reading
+        </a>
+  </div>
+</article>
+
+
+
+
+<footer>
+<p>
+  &copy; 2025  - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/3.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/3.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " <span style="color:#AA1032;">Anotaciones</span> <span style="color:darkblue;">por</span> <span style="color:black">Pablo Caro</span> ",
+  "url" : "http://pablocaro.es",
+  "image": "/images/profile.png",
+  "description": ""
+}
+</script>
+</body>
 </html>

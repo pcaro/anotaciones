@@ -1,0 +1,677 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="http://pablocaro.es/theme/stylesheet/style.min.css">
+
+
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+          href="http://pablocaro.es/theme/pygments/github.min.css">
+
+
+
+  <link rel="stylesheet" type="text/css" href="http://pablocaro.es/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="http://pablocaro.es/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="http://pablocaro.es/theme/font-awesome/css/solid.css">
+
+
+  <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#333333">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#333333">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Microsoft EDGE -->
+  <meta name="msapplication-TileColor" content="#333333">
+
+  <link href="http://pablocaro.es/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="<span style="color:#AA1032;">Anotaciones</span> <span style="color:darkblue;">por</span> <span style="color:black">Pablo Caro</span> Atom">
+
+  <link href="http://pablocaro.es/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="<span style="color:#AA1032;">Anotaciones</span> <span style="color:darkblue;">por</span> <span style="color:black">Pablo Caro</span> RSS">
+
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-60035125-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+ 
+
+    <meta name="author" content="Pablo Caro" />
+    <meta name="description" content="" />
+  <meta property="og:site_name" content="<span style="color:#AA1032;">Anotaciones</span> <span style="color:darkblue;">por</span> <span style="color:black">Pablo Caro</span>"/>
+  <meta property="og:type" content="blog"/>
+  <meta property="og:title" content="<span style="color:#AA1032;">Anotaciones</span> <span style="color:darkblue;">por</span> <span style="color:black">Pablo Caro</span>"/>
+  <meta property="og:description" content=""/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="http://pablocaro.es"/>
+  <meta property="og:image" content="/images/profile.png">
+
+  <title><span style="color:#AA1032;">Anotaciones</span> <span style="color:darkblue;">por</span> <span style="color:black">Pablo Caro</span> &ndash; Tag python</title>
+
+
+</head>
+<body class="light-theme">
+
+<aside>
+  <div>
+    <a href="http://pablocaro.es/">
+      <img src="/images/profile.png" alt="Anotaciones" title="Anotaciones">
+    </a>
+
+    <h1>
+      <a href="http://pablocaro.es/">Anotaciones</a>
+    </h1>
+
+    <p>Anotaciones</p>
+
+
+    <nav>
+      <ul class="list">
+
+
+
+          <li>
+            <a target="_self" href="http://getpelican.com/" >Pelican</a>
+          </li>
+          <li>
+            <a target="_self" href="http://python.org/" >Python.org</a>
+          </li>
+          <li>
+            <a target="_self" href="http://jinja.pocoo.org/" >Jinja2</a>
+          </li>
+          <li>
+            <a target="_self" href="#" >You can modify those links in your config file</a>
+          </li>
+      </ul>
+    </nav>
+
+    <ul class="social">
+      <li>
+        <a class="sc-Twitter"
+           href="http://twitter.com/pcaro"
+           target="_blank">
+          <i class="fa-brands fa-Twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Github"
+           href="http://github.com/pcaro"
+           target="_blank">
+          <i class="fa-brands fa-Github"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Linkedin"
+           href="https://www.linkedin.com/in/pcarorevuelta"
+           target="_blank">
+          <i class="fa-brands fa-Linkedin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Facebook"
+           href="https://www.facebook.com/pablo.carorevuelta"
+           target="_blank">
+          <i class="fa-brands fa-Facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Email"
+           href="mailto:correo@pablocaro.es"
+           target="_blank">
+          <i class="fa-brands fa-Email"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+</aside>
+  <main>
+
+<nav>
+  <a href="http://pablocaro.es/">Home</a>
+
+  <a href="/archives.html">Archivo</a>
+  <a href="/categories.html">Categorías</a>
+  <a href="/tags.html">Etiquetas</a>
+
+  <a href="http://pablocaro.es/feeds/all.atom.xml">Atom</a>
+
+  <a href="http://pablocaro.es/feeds/all.rss.xml">RSS</a>
+</nav>
+
+
+
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/httpx-cliente-http-moderno-python#httpx-cliente-http-moderno-python">HTTPX: Cliente HTTP moderno para Python</a></h2>
+    <p>
+      Posted on Mon 23 September 2024 in <a href="http://pablocaro.es/category/programacion.html">Programación</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/python.html">python</a>,              <a href="http://pablocaro.es/tag/http.html">http</a>,              <a href="http://pablocaro.es/tag/httpx.html">httpx</a>,              <a href="http://pablocaro.es/tag/async.html">async</a>,              <a href="http://pablocaro.es/tag/requests.html">requests</a>
+    </p>
+  </header>
+  <div>
+      <div><p class="first last">HTTPX emerge como el sucesor natural de requests, ofreciendo soporte async, HTTP/2 y una API moderna para aplicaciones Python contemporáneas</p>
+</div>
+        <br>
+        <a class="btn"
+           href="http://pablocaro.es/httpx-cliente-http-moderno-python#httpx-cliente-http-moderno-python">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/una-de-versiones#una-de-versiones">Una de versiones</a></h2>
+    <p>
+      Posted on Mon 01 May 2017 in <a href="http://pablocaro.es/category/progamacion.html">Progamación</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/python.html">python</a>
+    </p>
+  </header>
+  <div>
+      <div></div>
+        <br>
+        <a class="btn"
+           href="http://pablocaro.es/una-de-versiones#una-de-versiones">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/python-generadores-repetibles#python-generadores-repetibles">Python: Crear generadores repetibles (repeating generators)</a></h2>
+    <p>
+      Posted on Tue 09 February 2016 in <a href="http://pablocaro.es/category/python.html">Python</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/python.html">python</a>,              <a href="http://pablocaro.es/tag/generadores.html">generadores</a>,              <a href="http://pablocaro.es/tag/itertools.html">itertools</a>,              <a href="http://pablocaro.es/tag/decoradores.html">decoradores</a>,              <a href="http://pablocaro.es/tag/yield.html">yield</a>
+    </p>
+  </header>
+  <div>
+      <div><p>Técnicas en Python para crear generadores que se pueden iterar múltiples veces, superando la limitación de "una sola vez" de los generadores estándar</p></div>
+        <br>
+        <a class="btn"
+           href="http://pablocaro.es/python-generadores-repetibles#python-generadores-repetibles">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/repetiendo-una-función-con-hilos#repetiendo-una-función-con-hilos">Repitiendo una función con hilos</a></h2>
+    <p>
+      Posted on Sun 03 May 2015 in <a href="http://pablocaro.es/category/programacion.html">Programación</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/python.html">python</a>
+    </p>
+  </header>
+  <div>
+      <div><p class="first last">Vamos a utilizar hilos en python para ejecutar periodicamente una función</p>
+</div>
+        <br>
+        <a class="btn"
+           href="http://pablocaro.es/repetiendo-una-función-con-hilos#repetiendo-una-función-con-hilos">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/instalar-insync-en-opensuse#instalar-insync-en-opensuse">Instalar InSync en Opensuse</a></h2>
+    <p>
+      Posted on Mon 20 April 2015 in <a href="http://pablocaro.es/category/sistemas.html">Sistemas</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/django.html">django</a>,              <a href="http://pablocaro.es/tag/python.html">python</a>
+    </p>
+  </header>
+  <div>
+      <div></div>
+        <br>
+        <a class="btn"
+           href="http://pablocaro.es/instalar-insync-en-opensuse#instalar-insync-en-opensuse">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/cierra-google-code#cierra-google-code">Cierra Google Code</a></h2>
+    <p>
+      Posted on Fri 13 March 2015 in <a href="http://pablocaro.es/category/programacion.html">Programación</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/python.html">python</a>
+    </p>
+  </header>
+  <div>
+      <div><p>Lo dicho, Google anunció el cierre de Google Code.</p>
+<p>Hoy mismo recibí el correo avisandome (tenía un proyecto de prueba alojado allí) de que podía mover
+mis proyectos de forma simple a <a class="reference external" href="http://github.com">github</a>, el repositorio de facto hoy en día del software libre
+(lo siento por <a class="reference external" href="https://bitbucket.org/pcaro">bitbucket</a> y sobre todo …</p></div>
+        <br>
+        <a class="btn"
+           href="http://pablocaro.es/cierra-google-code#cierra-google-code">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/reactivando-el-blog#reactivando-el-blog">Reactivando el blog</a></h2>
+    <p>
+      Posted on Fri 20 February 2015 in <a href="http://pablocaro.es/category/personal.html">Personal</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/python.html">python</a>
+    </p>
+  </header>
+  <div>
+      <div><p class="first last">Ya estoy de nuevo escribiendo.</p>
+</div>
+        <br>
+        <a class="btn"
+           href="http://pablocaro.es/reactivando-el-blog#reactivando-el-blog">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/decorador-vista-ajax#decorador-vista-ajax">Decorador vista ajax</a></h2>
+    <p>
+      Posted on Fri 21 November 2014 in <a href="http://pablocaro.es/category/programacion.html">Programación</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/python.html">python</a>,              <a href="http://pablocaro.es/tag/django.html">django</a>
+    </p>
+  </header>
+  <div>
+      <div><p>Para obligar que una vista <a class="reference external" href="https://www.djangoproject.com/">django</a> sea llamada sólo mediante llamamas AJAX.</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">ajax_required</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    AJAX request required decorator</span>
+<span class="sd">    use it in your views:</span>
+
+<span class="sd">    @ajax_required</span>
+<span class="sd">    def my_view(request):</span>
+<span class="sd">        ....</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">wrap</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">request</span><span class="o">.</span><span class="n">is_ajax</span><span class="p">():</span>
+            <span class="k">return</span> <span class="n">HttpResponseBadRequest</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">f</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="n">wrap</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="vm">__doc__</span>
+    <span class="n">wrap</span><span class="o">.</span><span class="vm">__name__ …</span></pre></div></div>
+        <br>
+        <a class="btn"
+           href="http://pablocaro.es/decorador-vista-ajax#decorador-vista-ajax">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/funcion-generica-para-usar-como-upload_to#funcion-generica-para-usar-como-upload_to">Función genérica para usar como upload_to</a></h2>
+    <p>
+      Posted on Sat 11 October 2014 in <a href="http://pablocaro.es/category/programacion.html">Programación</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/django.html">django</a>,              <a href="http://pablocaro.es/tag/python.html">python</a>
+    </p>
+  </header>
+  <div>
+      <div><p>Los FileField en django necesitan ana función <a class="reference external" href="https://docs.djangoproject.com/en/1.7/ref/models/fields/#django.db.models.FileField.upload_to">upload_to</a> que determine donde se subirá el fichero.
+Yo suelo tener en <code>utils.py</code> una función genérica que los deja en una subcarpeta con el nombre del modelo.</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+
+<span class="k">def</span> <span class="nf">generic_upload_to</span><span class="p">(</span><span class="n">instance</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Generic `upload_to` function for models.FileField and models.ImageField …</span></pre></div></div>
+        <br>
+        <a class="btn"
+           href="http://pablocaro.es/funcion-generica-para-usar-como-upload_to#funcion-generica-para-usar-como-upload_to">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/enlaces-en-listado-de-objectos#enlaces-en-listado-de-objectos">Django: enlaces en listado de objectos</a></h2>
+    <p>
+      Posted on Wed 21 May 2014 in <a href="http://pablocaro.es/category/programacion.html">Programación</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/django.html">django</a>,              <a href="http://pablocaro.es/tag/python.html">python</a>
+    </p>
+  </header>
+  <div>
+      <div><p>En mis proyectos suelo usar enlaces a elementos relacionados en el change_list del admin.</p>
+<div class="contents topic" id="ficheros">
+<p class="topic-title">Ficheros</p>
+<ul class="simple">
+<li><a class="reference internal" href="#utils-py" id="toc-entry-1">utils.py</a></li>
+<li><a class="reference internal" href="#admin-py" id="toc-entry-2">admin.py</a></li>
+</ul>
+</div>
+<div class="section" id="utils-py">
+<h2><a class="toc-backref" href="#toc-entry-1">utils.py</a></h2>
+<p>Tengo esto en <code>utils.py</code></p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">admin</span>
+<span class="kn">from</span> <span class="nn">django.contrib.contenttypes.models</span> <span class="kn">import</span> <span class="n">ContentType</span>
+<span class="kn">from</span> <span class="nn">django.core</span> <span class="kn">import</span> <span class="n">urlresolvers</span>
+<span class="kn">from</span> <span class="nn">django.utils.datastructures</span> <span class="kn">import</span> <span class="n">SortedDict</span>
+<span class="kn">from …</span></pre></div></div></div>
+        <br>
+        <a class="btn"
+           href="http://pablocaro.es/enlaces-en-listado-de-objectos#enlaces-en-listado-de-objectos">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/settings-vars-processor#settings-vars-processor">Settings vars processor</a></h2>
+    <p>
+      Posted on Wed 08 January 2014 in <a href="http://pablocaro.es/category/programacion.html">Programación</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/python.html">python</a>,              <a href="http://pablocaro.es/tag/django.html">django</a>
+    </p>
+  </header>
+  <div>
+      <div><p>Lo suelo usar durante el principio de los proyectos.</p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.conf</span> <span class="kn">import</span> <span class="n">settings</span> <span class="k">as</span> <span class="n">django_settings</span>
+<span class="kn">from</span> <span class="nn">django.core.exceptions</span> <span class="kn">import</span> <span class="n">ImproperlyConfigured</span>
+
+
+<span class="k">def</span> <span class="nf">settings</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Adds the settings specified in settings.TEMPLATE_VISIBLE_SETTINGS to</span>
+<span class="sd">    the request context.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">new_settings</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="n">django_settings</span><span class="o">.</span><span class="n">TEMPLATE_VISIBLE_SETTINGS</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">new_settings</span><span class="p">[</span><span class="n">attr</span><span class="p">]</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">django_settings</span><span class="p">,</span> <span class="n">attr</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">AttributeError …</span></pre></div></div>
+        <br>
+        <a class="btn"
+           href="http://pablocaro.es/settings-vars-processor#settings-vars-processor">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/pyinotify-ejecutar-comando-cuando-se-modifica-un-fichero#pyinotify-ejecutar-comando-cuando-se-modifica-un-fichero">pyinotify: Ejecutar comando cuando se modifica un fichero</a></h2>
+    <p>
+      Posted on Wed 03 April 2013 in <a href="http://pablocaro.es/category/sistemas.html">Sistemas</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/python.html">python</a>,              <a href="http://pablocaro.es/tag/linux.html">linux</a>
+    </p>
+  </header>
+  <div>
+      <div>
+        Ya he comentado por aquí un comando <em>when-changed</em>.
+
+Ahora anoto otra alternativa, esta vez python. Se trata de pyinotify.
+
+Yo lo uso para generar la documentación de sphinx mientras estoy escribiendo:
+
+<pre lang="bash">
+python -m pyinotify -r -c "make html" -e IN_MODIFY source
+</pre>
+    </div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/cambiar-de-lugar-un-virtualenv#cambiar-de-lugar-un-virtualenv">Cambiar de lugar un virtualenv</a></h2>
+    <p>
+      Posted on Wed 24 October 2012 in <a href="http://pablocaro.es/category/sin-categoria.html">Sin Categoría</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/python.html">python</a>
+    </p>
+  </header>
+  <div>
+      <div>
+        La opción --relocate no funciona bien.
+
+Lo mejor es usar <a href="https://github.com/fireteam/virtualenv-tools">virtualenv-tools</a>.
+    </div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/un-servidor-web-de-bolsillo-gracias-a-python#un-servidor-web-de-bolsillo-gracias-a-python">Un servidor web de bolsillo gracias a python</a></h2>
+    <p>
+      Posted on Tue 16 June 2009 in <a href="http://pablocaro.es/category/sin-categoria.html">Sin Categoría</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/python.html">python</a>
+    </p>
+  </header>
+  <div>
+      <div>
+        Otra cosita para recordar.
+La forma más simple de servir unos ficheros vía web:
+<pre lang="bash">python -m SimpleHTTPServer 8080</pre>
+Nota: Antes usaba:
+<pre lang="bash">python -c "import SimpleHTTPServer;SimpleHTTPServer.test()"</pre>
+Pero no permite indicar el puerto y es más tedioso de escribir.
+    </div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/convertir-filtros-de-kmail-a-filtros-sieve#convertir-filtros-de-kmail-a-filtros-sieve">Convertir filtros de kmail a filtros sieve</a></h2>
+    <p>
+      Posted on Sat 06 June 2009 in <a href="http://pablocaro.es/category/sistemas.html">Sistemas</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/python.html">python</a>,              <a href="http://pablocaro.es/tag/linux.html">linux</a>
+    </p>
+  </header>
+  <div>
+      <div>
+        No hace mucho que dejé de usar <a title="pop" href="http://en.wikipedia.org/wiki/Post_Office_Protocol" target="_blank">POP</a> en mis correos para pasarme al <a title="imap" href="http://en.wikipedia.org/wiki/IMAP" target="_blank">IMAP</a> desconectado de kmail con toda las ventaja que ello supone.
+
+Pero todavía seguía utilizando los mismos filtros en kmail que me ordenan los correos por carpeta. Con este sistema el filtrado se realiza una vez …</div>
+        <br>
+        <a class="btn"
+           href="http://pablocaro.es/convertir-filtros-de-kmail-a-filtros-sieve#convertir-filtros-de-kmail-a-filtros-sieve">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/cambiar-ipython-para-copiar-y-pegar-luego-como-doctest#cambiar-ipython-para-copiar-y-pegar-luego-como-doctest">Cambiar ipython para copiar y pegar luego como doctest</a></h2>
+    <p>
+      Posted on Mon 02 February 2009 in <a href="http://pablocaro.es/category/sin-categoria.html">Sin Categoría</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/python.html">python</a>
+    </p>
+  </header>
+  <div>
+      <div>
+        Otra de las ordenes que nunca recuerdo. Estando dentro de <a title="ipython" href="http://ipython.scipy.org/moin/" target="_blank">ipython</a> para cambiar el prompt de forma que luego sea fácil crear <a title="doctest" href="http://docs.python.org/library/doctest.html" target="_blank">doctests</a>:
+
+<strong><tt>%doctest_mode</tt></strong>
+
+Esto entra en  el modo doctest de ipython. También puede ayudar <strong><tt>%history -tn</tt></strong><tt> para recordar los commandos introducidos previamente.
+</tt>
+    </div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/compartir-ficheros-gracias-a-python#compartir-ficheros-gracias-a-python">Compartir ficheros gracias a python</a></h2>
+    <p>
+      Posted on Sat 08 November 2008 in <a href="http://pablocaro.es/category/sin-categoria.html">Sin Categoría</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/python.html">python</a>
+    </p>
+  </header>
+  <div>
+      <div>
+        Para compartir de forma rápida unos ficheros vía web graias a python, lo más fácil es:
+<pre>python -c "import SimpleHTTPServer;SimpleHTTPServer.test()"</pre>
+    </div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/error-con-setuptools-y-subversion-1-5#error-con-setuptools-y-subversion-1-5">Error con setuptools y subversion 1.5</a></h2>
+    <p>
+      Posted on Sun 14 September 2008 in <a href="http://pablocaro.es/category/programacion.html">Programación</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/python.html">python</a>
+    </p>
+  </header>
+  <div>
+      <div>
+        La actual versión de <a target="_blank" href="http://peak.telecommunity.com/DevCenter/setuptools">setuptools</a> no se lleva bien el subversion 1.5 (también el actual en mi ubuntu).
+
+Normalmente acostumbro a usar <a target="_blank" href="http://pypi.python.org/pypi/virtualenv">virtualenv</a> y me he encontrado con el error:
+<pre>NameError: global name 'log' is not defined</pre>
+Ya está arreglado en el desarrollo de setuptools. Una posible solución es …</div>
+        <br>
+        <a class="btn"
+           href="http://pablocaro.es/error-con-setuptools-y-subversion-1-5#error-con-setuptools-y-subversion-1-5">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/ejecutar-comandos-en-python#ejecutar-comandos-en-python">Ejecutar comandos en python</a></h2>
+    <p>
+      Posted on Tue 04 March 2008 in <a href="http://pablocaro.es/category/programacion.html">Programación</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/python.html">python</a>
+    </p>
+  </header>
+  <div>
+      <div>
+        Hago a menudo pequeños scripts en python. Y muchas de las veces necesito ejecutar algún comando del sistema.
+
+Habitualmente importaba el módulo <code>os</code> y llamaba a alguna de sus funciones (las popen).
+
+Pero en general no hace falta importar os. Existe un módulo llamado <a target="_blank" title="commands" href="http://docs.python.org/lib/module-commands.html"><code>commands</code></a><code> </code>(sólo para unix) que permite …</div>
+        <br>
+        <a class="btn"
+           href="http://pablocaro.es/ejecutar-comandos-en-python#ejecutar-comandos-en-python">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://pablocaro.es/que-practico-es-python-svnrevisions-py#que-practico-es-python-svnrevisions-py">¡Que práctico es python!: svnrevisions.py</a></h2>
+    <p>
+      Posted on Tue 10 April 2007 in <a href="http://pablocaro.es/category/sin-categoria.html">Sin Categoría</a>
+
+          &#8226; Tagged with
+              <a href="http://pablocaro.es/tag/python.html">python</a>
+    </p>
+  </header>
+  <div>
+      <div>
+        Pongo a continuación un script rápido que hice hace ya un tiempo. En ese momento estaba realizando un backport de código y de forma sucia realicé varios
+<pre>svn up -rTAL</pre>
+De esa forma y con unos pequeños cambios obtuve el cambio que necesitaba. Pero después de un rato no recordaba …</div>
+        <br>
+        <a class="btn"
+           href="http://pablocaro.es/que-practico-es-python-svnrevisions-py#que-practico-es-python-svnrevisions-py">
+          Continue reading
+        </a>
+  </div>
+</article>
+
+
+
+
+<footer>
+<p>
+  &copy; 2025  - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/3.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/3.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " <span style="color:#AA1032;">Anotaciones</span> <span style="color:darkblue;">por</span> <span style="color:black">Pablo Caro</span> ",
+  "url" : "http://pablocaro.es",
+  "image": "/images/profile.png",
+  "description": ""
+}
+</script>
+</body>
+</html>
