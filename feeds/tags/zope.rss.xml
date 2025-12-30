@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>Anotaciones por Pablo Caro - zope</title><link>http://pablocaro.es/</link><description>Anotaciones</description><lastBuildDate>Fri, 27 Jul 2012 04:38:00 +0200</lastBuildDate><item><title>Autorelad en plone</title><link>http://pablocaro.es/autorelad-en-plone</link><description>
+<rss version="2.0"><channel><title>Anotaciones por Pablo Caro - zope</title><link>https://pablocaro.es/</link><description>Anotaciones</description><lastBuildDate>Fri, 27 Jul 2012 04:38:00 +0200</lastBuildDate><item><title>Autorelad en plone</title><link>https://pablocaro.es/autorelad-en-plone</link><description>
         Otro recordatorio.
 
 Para recargar mientras desarrollo una browserview en plone:
@@ -7,11 +7,11 @@ Para recargar mientras desarrollo una browserview en plone:
 http://admin:admin@localhost:8080/@@reload?action=code&lt;/pre&gt;
 Basta pues con usar &lt;a title="when-changed" href="https://github.com/joh/when-changed"&gt;when-changed&lt;/a&gt; y &lt;a href="http://pypi.python.org/pypi/plone.reload/"&gt;plone.reload&lt;/a&gt;
 
-Se que existen extensiones  para el navegador  que recargan una  pestaña cuando cambia un fichero …</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Fri, 27 Jul 2012 04:38:00 +0200</pubDate><guid isPermaLink="false">tag:pablocaro.es,2012-07-27:/autorelad-en-plone</guid><category>Programación</category><category>zope</category></item><item><title>scp con compresión</title><link>http://pablocaro.es/scp-con-compresion</link><description>
+Se que existen extensiones  para el navegador  que recargan una  pestaña cuando cambia un fichero …</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Fri, 27 Jul 2012 04:38:00 +0200</pubDate><guid isPermaLink="false">tag:pablocaro.es,2012-07-27:/autorelad-en-plone</guid><category>Programación</category><category>zope</category></item><item><title>scp con compresión</title><link>https://pablocaro.es/scp-con-compresion</link><description>
         La mejor forma de descargar una zodb:
 &lt;pre lang="bash"&gt;scp -C -o CompressionLevel=9 user@yoursite.com:~/plonefolder/zinstance/var/filestorage/Data.fs .&lt;/pre&gt;
 Leído en: &lt;a href="http://blog.mfabrik.com/2011/03/02/scp-file-copy-with-on-line-compression/"&gt;http://blog.mfabrik.com/2011/03/02/scp-file-copy-with-on-line-compression/&lt;/a&gt;
-    </description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Fri, 04 Mar 2011 03:49:00 +0100</pubDate><guid isPermaLink="false">tag:pablocaro.es,2011-03-04:/scp-con-compresion</guid><category>Programación</category><category>linux</category><category>zope</category></item><item><title>Zen Coding y komodo edit</title><link>http://pablocaro.es/zen-coding-y-komodo-edit</link><description>
+    </description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Fri, 04 Mar 2011 03:49:00 +0100</pubDate><guid isPermaLink="false">tag:pablocaro.es,2011-03-04:/scp-con-compresion</guid><category>Programación</category><category>linux</category><category>zope</category></item><item><title>Zen Coding y komodo edit</title><link>https://pablocaro.es/zen-coding-y-komodo-edit</link><description>
         Mi editor favorito &lt;a href="http://www.activestate.com/komodo-edit" target="_blank"&gt;Komodo Edit&lt;/a&gt; tiene un plugin de &lt;a href="http://code.google.com/p/zen-coding/" target="_blank"&gt;Zen Coding &lt;/a&gt;y este funciona muy bien también con plantillas zpt. Por ejemplo:
 
 Así una expresión como la siguente
@@ -26,12 +26,12 @@ Se convierte en el siguiente trozo de html con los nesesarios tabstops:
         &lt;dd&gt;&lt;/dd&gt;
     &lt;/tal:rep&gt;
 &lt;/dl&gt;&lt;/pre&gt;
-Muy pero que …</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Fri, 15 Oct 2010 14:41:00 +0200</pubDate><guid isPermaLink="false">tag:pablocaro.es,2010-10-15:/zen-coding-y-komodo-edit</guid><category>Programación</category><category>zope</category></item><item><title>Progreso en un reindexado de zope</title><link>http://pablocaro.es/progreso-en-un-reindexado-de-zope</link><description>
+Muy pero que …</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Fri, 15 Oct 2010 14:41:00 +0200</pubDate><guid isPermaLink="false">tag:pablocaro.es,2010-10-15:/zen-coding-y-komodo-edit</guid><category>Programación</category><category>zope</category></item><item><title>Progreso en un reindexado de zope</title><link>https://pablocaro.es/progreso-en-un-reindexado-de-zope</link><description>
         Visto en el producto contentleadimage:
 &lt;pre lang="python"&gt;from Products.ZCatalog.ProgressHandler import ZLogHandler
 ctool.reindexIndex(['hasContentLeadImage'], portal.REQUEST, pghandler=ZLogHandler())&lt;/pre&gt;
 Esto muestra un progreso en la consola si estás ejecutando  en primer plano.
-    </description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Sat, 18 Sep 2010 06:06:00 +0200</pubDate><guid isPermaLink="false">tag:pablocaro.es,2010-09-18:/progreso-en-un-reindexado-de-zope</guid><category>Programación</category><category>zope</category></item><item><title>Zope y noatime</title><link>http://pablocaro.es/zope-y-noatime</link><description>
+    </description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Sat, 18 Sep 2010 06:06:00 +0200</pubDate><guid isPermaLink="false">tag:pablocaro.es,2010-09-18:/progreso-en-un-reindexado-de-zope</guid><category>Programación</category><category>zope</category></item><item><title>Zope y noatime</title><link>https://pablocaro.es/zope-y-noatime</link><description>
         Una fácil mejora para el rendimiento de un zope con problemas de acceso a disco es&lt;a href="http://tldp.org/LDP/solrhe/Securing-Optimizing-Linux-RH-Edition-v1.3/chap6sec73.html"&gt; no actualizar la fecha de último acceso&lt;/a&gt; al fichero de la base de datos Data.fs:
 
 &lt;pre lang="bash"&gt;
@@ -39,7 +39,7 @@ chattr -R +A Data.fs
 &lt;/pre&gt;
 
 Simple y efectivo.
-    </description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Sun, 25 Jul 2010 05:33:00 +0200</pubDate><guid isPermaLink="false">tag:pablocaro.es,2010-07-25:/zope-y-noatime</guid><category>Programación</category><category>zope</category></item><item><title>Restaurando objectos plone borrados</title><link>http://pablocaro.es/restaurando-objectos-plone-borrados</link><description>
+    </description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Sun, 25 Jul 2010 05:33:00 +0200</pubDate><guid isPermaLink="false">tag:pablocaro.es,2010-07-25:/zope-y-noatime</guid><category>Programación</category><category>zope</category></item><item><title>Restaurando objectos plone borrados</title><link>https://pablocaro.es/restaurando-objectos-plone-borrados</link><description>
         Para esas situaciones donde no funciona el undo, la salvación se llama &lt;a href="http://pypi.python.org/pypi/dm.historical"&gt;dm.historical&lt;/a&gt;
 
 Un claro ejemplo en &lt;a href="http://www.zopyx.de/blog/restoring-an-older-state-of-arbitrary-zope-objects" target="_blank"&gt;esta entrada&lt;/a&gt; del Blog de Andreas Jung

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>Anotaciones por Pablo Caro - web</title><link>http://pablocaro.es/</link><description>Anotaciones</description><lastBuildDate>Wed, 28 Apr 2010 03:33:00 +0200</lastBuildDate><item><title>Completar mientras se depura en zope</title><link>http://pablocaro.es/completar-mientras-se-depura-en-zope</link><description>
+<rss version="2.0"><channel><title>Anotaciones por Pablo Caro - web</title><link>https://pablocaro.es/</link><description>Anotaciones</description><lastBuildDate>Wed, 28 Apr 2010 03:33:00 +0200</lastBuildDate><item><title>Completar mientras se depura en zope</title><link>https://pablocaro.es/completar-mientras-se-depura-en-zope</link><description>
         Siempre tengo que buscar esto en google, para esto tengo el blog:
 
 &lt;pre lang="bash"&gt;
@@ -13,13 +13,13 @@ $ bin/instance debug
 Display all 760 possibilities? (y or n)
 &gt;&gt;&gt; 
 &lt;/pre&gt;
-    </description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Wed, 28 Apr 2010 03:33:00 +0200</pubDate><guid isPermaLink="false">tag:pablocaro.es,2010-04-28:/completar-mientras-se-depura-en-zope</guid><category>Programación</category><category>web</category></item><item><title>Colores desde web developer tools</title><link>http://pablocaro.es/colores-desde-web-developer-tools</link><description>
+    </description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Wed, 28 Apr 2010 03:33:00 +0200</pubDate><guid isPermaLink="false">tag:pablocaro.es,2010-04-28:/completar-mientras-se-depura-en-zope</guid><category>Programación</category><category>web</category></item><item><title>Colores desde web developer tools</title><link>https://pablocaro.es/colores-desde-web-developer-tools</link><description>
         Últimamente uso tanto &lt;a href="http://getfirebug.com/"&gt;firebug&lt;/a&gt; que ni me acuerdo de las &lt;a href="https://addons.mozilla.org/en-US/firefox/addon/60"&gt;Web Developer Tools&lt;/a&gt;.
 Escribo esto para recordar que sigue siendo muy útil esta extensión. 
 Por ejemplo, puedo ver los colores (css) usados en una página web a través del menú &lt;em&gt;Información&lt;/em&gt;, seleccionando &lt;em&gt;Ver información del color&lt;/em&gt;.
 
 
-    </description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Tue, 10 Nov 2009 04:55:00 +0100</pubDate><guid isPermaLink="false">tag:pablocaro.es,2009-11-10:/colores-desde-web-developer-tools</guid><category>Programación</category><category>web</category></item><item><title>CSS: Estilos de selección de texto</title><link>http://pablocaro.es/css-estilos-de-seleccion-de-texto</link><description>
+    </description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Tue, 10 Nov 2009 04:55:00 +0100</pubDate><guid isPermaLink="false">tag:pablocaro.es,2009-11-10:/colores-desde-web-developer-tools</guid><category>Programación</category><category>web</category></item><item><title>CSS: Estilos de selección de texto</title><link>https://pablocaro.es/css-estilos-de-seleccion-de-texto</link><description>
         Una de esas declaraciones de CSS3 que ya aceptan muchos navegadores actuales es &lt;strong&gt;::selection&lt;/strong&gt;.
 Se puede utilizar así:
 &lt;pre lang="css"&gt;
@@ -30,7 +30,7 @@ p::-moz-selection {
 	background: #ccaacc; /* Firefox */
 }
 &lt;/pre&gt;
-    </description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Thu, 09 Jul 2009 03:57:00 +0200</pubDate><guid isPermaLink="false">tag:pablocaro.es,2009-07-09:/css-estilos-de-seleccion-de-texto</guid><category>Programación</category><category>web</category></item><item><title>Contenedor de Floats: How to IE &amp; FF</title><link>http://pablocaro.es/contenedor-de-floats-how-to-ie-ff</link><description>
+    </description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Pablo Caro</dc:creator><pubDate>Thu, 09 Jul 2009 03:57:00 +0200</pubDate><guid isPermaLink="false">tag:pablocaro.es,2009-07-09:/css-estilos-de-seleccion-de-texto</guid><category>Programación</category><category>web</category></item><item><title>Contenedor de Floats: How to IE &amp; FF</title><link>https://pablocaro.es/contenedor-de-floats-how-to-ie-ff</link><description>
         Espero no olvidar esto más así que dejo la notita.
 
 Si tienes un elemento (por ejemplo un div#padre), que contiene sólo flotantes (otros divs por ejemplo), no será capaz IE de calcular bien su tamaño (se ve muy claro con un background).
