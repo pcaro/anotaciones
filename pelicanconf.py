@@ -110,8 +110,8 @@ USE_SHORTCUT_ICONS = True
 
 # Flex theme configuration
 SITETITLE = "Anotaciones"
-SITELOGO = "/images/profile.png"  # Optional: add a logo image
-FAVICON = "/images/favicon.ico"   # Optional: add a favicon
+SITELOGO = "/theme/img/profile.png"  # Optional: add a logo image
+FAVICON = "/theme/img/favicon.ico"   # Optional: add a favicon
 
 # Browser tab title
 BROWSER_COLOR = "#333333"
