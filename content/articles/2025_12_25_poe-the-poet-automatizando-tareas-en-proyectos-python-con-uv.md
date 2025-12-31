@@ -21,27 +21,27 @@ La integración de Poe the Poet en un proyecto que usa `uv` es sencilla:
 1.  **Añadir `poethepoet` a tus dependencias de desarrollo:**
     Primero, asegúrate de que `poethepoet` esté incluido en tu grupo de dependencias de desarrollo (por ejemplo, `dev`) en `pyproject.toml`.
 
-    ```toml
-    [project]
-    # ... otras configuraciones del proyecto ...
+```toml
+[project]
+# ... otras configuraciones del proyecto ...
 
-    [tool.uv]
-    dev-dependencies = [
-        "black",
-        "ruff",
-        "poethepoet>=0.38.0", # Añade Poe the Poet aquí
-    ]
-    ```
+[tool.uv]
+dev-dependencies = [
+    "black",
+    "ruff",
+    "poethepoet>=0.38.0", # Añade Poe the Poet aquí
+]
+```
 
 2.  **Definir tareas personalizadas:**
     Luego, puedes añadir una sección `[tool.poe.tasks]` en tu `pyproject.toml` para definir tus comandos personalizados.
 
-    ```toml
-    [tool.poe.tasks]
-    docs = "sphinx-build -M html docs docs/_build"
-    livehtml = "sphinx-autobuild -b html docs docs/_build"
-    cog = "cog -r docs/*.md"
-    ```
+```toml
+[tool.poe.tasks]
+docs = "sphinx-build -M html docs docs/_build"
+livehtml = "sphinx-autobuild -b html docs docs/_build"
+cog = "cog -r docs/*.md"
+```
 
 ## Ejecutando Tareas con `uv run`
 
