@@ -58,24 +58,28 @@
  
 
 <meta name="author" content="Pablo Caro" />
-<meta name="description" content="Otra de las ordenes que nunca recuerdo. Estando dentro de ipython para cambiar el prompt de forma que luego sea fácil crear doctests: %doctest_mode Esto entra en el modo doctest de ipython. También puede ayudar %history -tn para recordar los commandos introducidos previamente." />
-<meta name="keywords" content="python">
+<meta name="description" content="Descubre cómo Poe the Poet te permite definir y ejecutar comandos personalizados directamente desde tu pyproject.toml, optimizando tu flujo de trabajo en entornos uv." />
+<meta name="keywords" content="python, uv, poethepoet, automatizacion, pyproject.toml">
 
 
   <meta property="og:site_name" content="Anotaciones por Pablo Caro"/>
-  <meta property="og:title" content="Cambiar ipython para copiar y pegar luego como doctest"/>
-  <meta property="og:description" content="Otra de las ordenes que nunca recuerdo. Estando dentro de ipython para cambiar el prompt de forma que luego sea fácil crear doctests: %doctest_mode Esto entra en el modo doctest de ipython. También puede ayudar %history -tn para recordar los commandos introducidos previamente."/>
+  <meta property="og:title" content="Poe the Poet: Automatizando tareas en proyectos Python con uv"/>
+  <meta property="og:description" content="Descubre cómo Poe the Poet te permite definir y ejecutar comandos personalizados directamente desde tu pyproject.toml, optimizando tu flujo de trabajo en entornos uv."/>
   <meta property="og:locale" content="en_US"/>
-  <meta property="og:url" content="https://pablocaro.es/cambiar-ipython-para-copiar-y-pegar-luego-como-doctest"/>
+  <meta property="og:url" content="https://pablocaro.es/poe-the-poet-automatizando-tareas-en-proyectos-python-con-uv"/>
   <meta property="og:type" content="article"/>
-  <meta property="article:published_time" content="2009-02-02 04:23:00+01:00"/>
+  <meta property="article:published_time" content="2025-12-25 11:00:00+01:00"/>
   <meta property="article:modified_time" content=""/>
   <meta property="article:author" content="https://pablocaro.es/author/pablo-caro.html">
-  <meta property="article:section" content="Sin Categoría"/>
+  <meta property="article:section" content="Programación"/>
   <meta property="article:tag" content="python"/>
+  <meta property="article:tag" content="uv"/>
+  <meta property="article:tag" content="poethepoet"/>
+  <meta property="article:tag" content="automatizacion"/>
+  <meta property="article:tag" content="pyproject.toml"/>
   <meta property="og:image" content="/theme/img/profile.png">
 
-  <title>Anotaciones por Pablo Caro &ndash; Cambiar ipython para copiar y pegar luego como doctest</title>
+  <title>Anotaciones por Pablo Caro &ndash; Poe the Poet: Automatizando tareas en proyectos Python con uv</title>
 
 
 </head>
@@ -171,49 +175,93 @@
 <article class="single">
   <header>
       
-    <h1 id="cambiar-ipython-para-copiar-y-pegar-luego-como-doctest">Cambiar ipython para copiar y pegar luego como doctest</h1>
+    <h1 id="poe-the-poet-automatizando-tareas-en-proyectos-python-con-uv">Poe the Poet: Automatizando tareas en proyectos Python con uv</h1>
     <p>
-      Posted on Mon 02 February 2009 in <a href="https://pablocaro.es/category/sin-categoria.html">Sin Categoría</a>
+      Posted on Thu 25 December 2025 in <a href="https://pablocaro.es/category/programacion.html">Programación</a>
 
     </p>
   </header>
 
 
   <div>
-    
-        Otra de las ordenes que nunca recuerdo. Estando dentro de <a title="ipython" href="http://ipython.scipy.org/moin/" target="_blank">ipython</a> para cambiar el prompt de forma que luego sea fácil crear <a title="doctest" href="http://docs.python.org/library/doctest.html" target="_blank">doctests</a>:
+    <p>La gestión de proyectos Python a menudo implica la ejecución de diversas tareas personalizadas, desde la construcción de documentación hasta la ejecución de tests o scripts auxiliares. Si bien <code>uv</code> ha simplificado enormemente la gestión de dependencias, la forma de integrar y ejecutar estos comandos directamente desde <code>pyproject.toml</code> ha sido un punto de debate. Aquí es donde <strong>Poe the Poet</strong> emerge como una solución elegante y efectiva.</p>
+<h2 id="que-es-poe-the-poet">¿Qué es Poe the Poet?<a class="headerlink" href="#que-es-poe-the-poet" title="Permanent link">&para;</a></h2>
+<p>Poe the Poet es una herramienta que permite definir "scripts" o "tareas" personalizadas directamente en tu archivo <code>pyproject.toml</code>. Estas tareas pueden ser cualquier comando que quieras ejecutar en el contexto de tu entorno Python, haciendo que la automatización del flujo de trabajo sea mucho más limpia y centralizada. Resuelve el problema de tener que recurrir a <code>Makefile</code> u otros scripts externos para tareas específicas del proyecto.</p>
+<h2 id="como-usar-poe-the-poet-con-uv">Cómo Usar Poe the Poet con uv<a class="headerlink" href="#como-usar-poe-the-poet-con-uv" title="Permanent link">&para;</a></h2>
+<p>La integración de Poe the Poet en un proyecto que usa <code>uv</code> es sencilla:</p>
+<ol>
+<li>
+<p><strong>Añadir <code>poethepoet</code> a tus dependencias de desarrollo:</strong>
+    Primero, asegúrate de que <code>poethepoet</code> esté incluido en tu grupo de dependencias de desarrollo (por ejemplo, <code>dev</code>) en <code>pyproject.toml</code>.</p>
+<p>```toml
+[project]</p>
+<h1 id="otras-configuraciones-del-proyecto">... otras configuraciones del proyecto ...<a class="headerlink" href="#otras-configuraciones-del-proyecto" title="Permanent link">&para;</a></h1>
+<p>[tool.uv]
+dev-dependencies = [
+    "black",
+    "ruff",
+    "poethepoet&gt;=0.38.0", # Añade Poe the Poet aquí
+]
+```</p>
+</li>
+<li>
+<p><strong>Definir tareas personalizadas:</strong>
+    Luego, puedes añadir una sección <code>[tool.poe.tasks]</code> en tu <code>pyproject.toml</code> para definir tus comandos personalizados.</p>
+<p><code>toml
+[tool.poe.tasks]
+docs = "sphinx-build -M html docs docs/_build"
+livehtml = "sphinx-autobuild -b html docs docs/_build"
+cog = "cog -r docs/*.md"</code></p>
+</li>
+</ol>
+<h2 id="ejecutando-tareas-con-uv-run">Ejecutando Tareas con <code>uv run</code><a class="headerlink" href="#ejecutando-tareas-con-uv-run" title="Permanent link">&para;</a></h2>
+<p>Una vez que Poe the Poet está configurado y tus tareas están definidas, puedes ejecutarlas fácilmente usando <code>uv run</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Para construir la documentación</span>
+uv<span class="w"> </span>run<span class="w"> </span>poe<span class="w"> </span>docs
 
-<strong><tt>%doctest_mode</tt></strong>
+<span class="c1"># Para el servidor de previsualización en vivo</span>
+uv<span class="w"> </span>run<span class="w"> </span>poe<span class="w"> </span>livehtml
 
-Esto entra en  el modo doctest de ipython. También puede ayudar <strong><tt>%history -tn</tt></strong><tt> para recordar los commandos introducidos previamente.
-</tt>
-    
+<span class="c1"># Para ejecutar el comando &#39;cog&#39;</span>
+uv<span class="w"> </span>run<span class="w"> </span>poe<span class="w"> </span>cog
+</code></pre></div>
+
+<h2 id="beneficios">Beneficios<a class="headerlink" href="#beneficios" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Centralización:</strong> Todas tus tareas personalizadas viven en <code>pyproject.toml</code>, junto a tus dependencias.</li>
+<li><strong>Integración con <code>uv</code>:</strong> Las tareas se ejecutan en el entorno virtual gestionado por <code>uv</code>, asegurando que todas las herramientas necesarias estén disponibles.</li>
+<li><strong>Simplificación:</strong> Evita la necesidad de <code>Makefile</code> o scripts bash complejos para tareas comunes.</li>
+<li><strong>Consistencia:</strong> Promueve un flujo de trabajo más consistente y fácil de compartir entre colaboradores.</li>
+</ul>
+<p>Poe the Poet ofrece una forma robusta y elegante de extender las capacidades de <code>uv</code> para la automatización de tareas en proyectos Python, mejorando la experiencia de desarrollo.</p>
+<p><em>Artículo original</em>: <a href="https://simonwillison.net/2025/Dec/16/poe-the-poet/#atom-everything">Poe the Poet - Simon Willison's Weblog</a></p>
   </div>
   <div class="tag-cloud">
     <p>
       <a href="https://pablocaro.es/tag/python.html">python</a>
+      <a href="https://pablocaro.es/tag/uv.html">uv</a>
+      <a href="https://pablocaro.es/tag/poethepoet.html">poethepoet</a>
+      <a href="https://pablocaro.es/tag/automatizacion.html">automatizacion</a>
+      <a href="https://pablocaro.es/tag/pyprojecttoml.html">pyproject.toml</a>
     </p>
   </div>
 
 
 
   <div class="neighbors">
-    <a class="btn float-left" href="https://pablocaro.es/importar-claves-gpg-de-repositorios-ubuntu" title="Importar claves gpg de repositorios ubuntu">
+    <a class="btn float-left" href="https://pablocaro.es/como-uso-git-worktrees" title="Cómo uso git worktrees para trabajo concurrente">
       <i class="fa fa-angle-left"></i> Previous Post
-    </a>
-    <a class="btn float-right" href="https://pablocaro.es/comandos-utiles-en-la-consola-de-postgres-pgsql" title="Comandos útiles en la consola de postgres (pgsql)">
-      Next Post <i class="fa fa-angle-right"></i>
     </a>
   </div>
 
   <div class="related-posts">
     <h4>You might enjoy</h4>
     <ul class="related-posts">
-      <li><a href="https://pablocaro.es/poe-the-poet-automatizando-tareas-en-proyectos-python-con-uv">Poe the Poet: Automatizando tareas en proyectos Python con uv</a></li>
       <li><a href="https://pablocaro.es/httpx-cliente-http-moderno-python">HTTPX: Cliente HTTP moderno para Python</a></li>
       <li><a href="https://pablocaro.es/una-de-versiones">Una de versiones</a></li>
       <li><a href="https://pablocaro.es/python-generadores-repetibles">Python: Crear generadores repetibles (repeating generators)</a></li>
       <li><a href="https://pablocaro.es/repetiendo-una-función-con-hilos">Repitiendo una función con hilos</a></li>
+      <li><a href="https://pablocaro.es/instalar-insync-en-opensuse">Instalar InSync en Opensuse</a></li>
     </ul>
   </div>
 

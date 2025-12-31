@@ -1,5 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Anotaciones por Pablo Caro</title><link href="https://pablocaro.es/" rel="alternate"></link><link href="https://pablocaro.es/feeds/all.atom.xml" rel="self"></link><id>https://pablocaro.es/</id><updated>2025-07-23T06:12:00+02:00</updated><subtitle>Anotaciones</subtitle><entry><title>Cómo uso git worktrees para trabajo concurrente</title><link href="https://pablocaro.es/como-uso-git-worktrees" rel="alternate"></link><published>2025-07-23T06:12:00+02:00</published><updated>2025-07-23T06:12:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2025-07-23:/como-uso-git-worktrees</id><summary type="html">&lt;p class="first last"&gt;Un enfoque práctico para usar git worktrees y maximizar la productividad con múltiples contextos de trabajo simultáneos&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Anotaciones por Pablo Caro</title><link href="https://pablocaro.es/" rel="alternate"></link><link href="https://pablocaro.es/feeds/all.atom.xml" rel="self"></link><id>https://pablocaro.es/</id><updated>2025-12-25T11:00:00+01:00</updated><subtitle>Anotaciones</subtitle><entry><title>Poe the Poet: Automatizando tareas en proyectos Python con uv</title><link href="https://pablocaro.es/poe-the-poet-automatizando-tareas-en-proyectos-python-con-uv" rel="alternate"></link><published>2025-12-25T11:00:00+01:00</published><updated>2025-12-25T11:00:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2025-12-25:/poe-the-poet-automatizando-tareas-en-proyectos-python-con-uv</id><summary type="html">&lt;p&gt;Descubre cómo Poe the Poet te permite definir y ejecutar comandos personalizados directamente desde tu pyproject.toml, optimizando tu flujo de trabajo en entornos uv.&lt;/p&gt;</summary><content type="html">&lt;p&gt;La gestión de proyectos Python a menudo implica la ejecución de diversas tareas personalizadas, desde la construcción de documentación hasta la ejecución de tests o scripts auxiliares. Si bien &lt;code&gt;uv&lt;/code&gt; ha simplificado enormemente la gestión de dependencias, la forma de integrar y ejecutar estos comandos directamente desde &lt;code&gt;pyproject.toml&lt;/code&gt; ha sido un punto de debate. Aquí es donde &lt;strong&gt;Poe the Poet&lt;/strong&gt; emerge como una solución elegante y efectiva.&lt;/p&gt;
+&lt;h2 id="que-es-poe-the-poet"&gt;¿Qué es Poe the Poet?&lt;a class="headerlink" href="#que-es-poe-the-poet" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Poe the Poet es una herramienta que permite definir "scripts" o "tareas" personalizadas directamente en tu archivo &lt;code&gt;pyproject.toml&lt;/code&gt;. Estas tareas pueden ser cualquier comando que quieras ejecutar en el contexto de tu entorno Python, haciendo que la automatización del flujo de trabajo sea mucho más limpia y centralizada. Resuelve el problema de tener que recurrir a &lt;code&gt;Makefile&lt;/code&gt; u otros scripts externos para tareas específicas del proyecto.&lt;/p&gt;
+&lt;h2 id="como-usar-poe-the-poet-con-uv"&gt;Cómo Usar Poe the Poet con uv&lt;a class="headerlink" href="#como-usar-poe-the-poet-con-uv" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;La integración de Poe the Poet en un proyecto que usa &lt;code&gt;uv&lt;/code&gt; es sencilla:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Añadir &lt;code&gt;poethepoet&lt;/code&gt; a tus dependencias de desarrollo:&lt;/strong&gt;
+    Primero, asegúrate de que &lt;code&gt;poethepoet&lt;/code&gt; esté incluido en tu grupo de dependencias de desarrollo (por ejemplo, &lt;code&gt;dev&lt;/code&gt;) en &lt;code&gt;pyproject.toml&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;```toml
+[project]&lt;/p&gt;
+&lt;h1 id="otras-configuraciones-del-proyecto"&gt;... otras configuraciones del proyecto ...&lt;a class="headerlink" href="#otras-configuraciones-del-proyecto" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;[tool.uv]
+dev-dependencies = [
+    "black",
+    "ruff",
+    "poethepoet&amp;gt;=0.38.0", # Añade Poe the Poet aquí
+]
+```&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Definir tareas personalizadas:&lt;/strong&gt;
+    Luego, puedes añadir una sección &lt;code&gt;[tool.poe.tasks]&lt;/code&gt; en tu &lt;code&gt;pyproject.toml&lt;/code&gt; para definir tus comandos personalizados.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;toml
+[tool.poe.tasks]
+docs = "sphinx-build -M html docs docs/_build"
+livehtml = "sphinx-autobuild -b html docs docs/_build"
+cog = "cog -r docs/*.md"&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="ejecutando-tareas-con-uv-run"&gt;Ejecutando Tareas con &lt;code&gt;uv run&lt;/code&gt;&lt;a class="headerlink" href="#ejecutando-tareas-con-uv-run" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Una vez que Poe the Poet está configurado y tus tareas están definidas, puedes ejecutarlas fácilmente usando &lt;code&gt;uv run&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Para construir la documentación&lt;/span&gt;
+uv&lt;span class="w"&gt; &lt;/span&gt;run&lt;span class="w"&gt; &lt;/span&gt;poe&lt;span class="w"&gt; &lt;/span&gt;docs
+
+&lt;span class="c1"&gt;# Para el servidor de previsualización en vivo&lt;/span&gt;
+uv&lt;span class="w"&gt; &lt;/span&gt;run&lt;span class="w"&gt; &lt;/span&gt;poe&lt;span class="w"&gt; &lt;/span&gt;livehtml
+
+&lt;span class="c1"&gt;# Para ejecutar el comando &amp;#39;cog&amp;#39;&lt;/span&gt;
+uv&lt;span class="w"&gt; &lt;/span&gt;run&lt;span class="w"&gt; &lt;/span&gt;poe&lt;span class="w"&gt; &lt;/span&gt;cog
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="beneficios"&gt;Beneficios&lt;a class="headerlink" href="#beneficios" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Centralización:&lt;/strong&gt; Todas tus tareas personalizadas viven en &lt;code&gt;pyproject.toml&lt;/code&gt;, junto a tus dependencias.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Integración con &lt;code&gt;uv&lt;/code&gt;:&lt;/strong&gt; Las tareas se ejecutan en el entorno virtual gestionado por &lt;code&gt;uv&lt;/code&gt;, asegurando que todas las herramientas necesarias estén disponibles.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Simplificación:&lt;/strong&gt; Evita la necesidad de &lt;code&gt;Makefile&lt;/code&gt; o scripts bash complejos para tareas comunes.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Consistencia:&lt;/strong&gt; Promueve un flujo de trabajo más consistente y fácil de compartir entre colaboradores.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Poe the Poet ofrece una forma robusta y elegante de extender las capacidades de &lt;code&gt;uv&lt;/code&gt; para la automatización de tareas en proyectos Python, mejorando la experiencia de desarrollo.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Artículo original&lt;/em&gt;: &lt;a href="https://simonwillison.net/2025/Dec/16/poe-the-poet/#atom-everything"&gt;Poe the Poet - Simon Willison's Weblog&lt;/a&gt;&lt;/p&gt;</content><category term="Programación"></category><category term="python"></category><category term="uv"></category><category term="poethepoet"></category><category term="automatizacion"></category><category term="pyproject.toml"></category></entry><entry><title>Cómo uso git worktrees para trabajo concurrente</title><link href="https://pablocaro.es/como-uso-git-worktrees" rel="alternate"></link><published>2025-07-23T06:12:00+02:00</published><updated>2025-07-23T06:12:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2025-07-23:/como-uso-git-worktrees</id><summary type="html">&lt;p class="first last"&gt;Un enfoque práctico para usar git worktrees y maximizar la productividad con múltiples contextos de trabajo simultáneos&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;Aleksey Kladov comparte su enfoque único para usar git worktrees, que va más allá del simple cambio de ramas y se convierte en una metodología completa para el trabajo concurrente.&lt;/p&gt;
 &lt;img alt="Estructura de worktrees" class="align-center" src="https://matklad.github.io/images/worktree-structure.png" /&gt;
 &lt;div class="section" id="la-filosofia-central"&gt;
@@ -2905,15 +2955,4 @@ Ya está arreglado en el desarrollo de setuptools. Una posible solución es:
 	&lt;li&gt;En jed:&lt;/li&gt;
 &lt;pre&gt;LINENUMBERS = 2&lt;/pre&gt;
 &lt;/ol&gt;
-    </content><category term="Sin Categoría"></category></entry><entry><title>Grabar CD de 800MB en linux</title><link href="https://pablocaro.es/grabar-cd-de-800mb-en-linux" rel="alternate"></link><published>2008-07-23T05:07:00+02:00</published><updated>2008-07-23T05:07:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2008-07-23:/grabar-cd-de-800mb-en-linux</id><summary type="html">
-        Tenía que grabar unos datos. Eran 730MB aproximadamente, con un CD habitual (700MB) iba a ser imposible, pero tenía por ahí un CD philips de 90 minutos (800MB). Y teniendo ese CD ¿por qué usar un DVD que son más caros?
-Mi sorpresa llega cuando el k3b (que uso habitualmente …</summary><content type="html">
-        Tenía que grabar unos datos. Eran 730MB aproximadamente, con un CD habitual (700MB) iba a ser imposible, pero tenía por ahí un CD philips de 90 minutos (800MB). Y teniendo ese CD ¿por qué usar un DVD que son más caros?
-Mi sorpresa llega cuando el k3b (que uso habitualmente) se niega a grabar, ¡por falta de espacio! a pesar de que le indico (graicias google) que use el modo DAO en la interfaz. Total que a grabar desde la consola :-D
-
-Aquí dejo el comandito como anotación para tenerlo de cerca la próxima vez:
-&lt;pre&gt;cdrecord -dev=/dev/scd0 -v -overburn -dao -speed=4 -data -eject /tmp/LaBodademiNovia.iso&lt;/pre&gt;
-La opción necesaria además de "DAO" es "overburn". Podéis ver como cdrecord sí reconoce todo el tamaño del disco como indica la línea:
-&lt;pre&gt;Total size:      810 MB (80:18.14) = 361361 sectors&lt;/pre&gt;
-&lt;em&gt;ACTUALIZACIÓN:  &lt;/em&gt;Ahora veo una opción en las preferencias de k3b para pervitir el sobregrabado. Si es que k3b no me podía fallar :-D
-    </content><category term="Sistemas"></category></entry></feed>
+    </content><category term="Sin Categoría"></category></entry></feed>
