@@ -58,24 +58,29 @@
  
 
 <meta name="author" content="Pablo Caro" />
-<meta name="description" content="Esta anotación es sólo para comentar el comando xrandr que uso en kubuntu intrepid para trabajar con dos monitores. sudo xrandr --output VGA --auto sudo xrandr --output VGA --above LVDS" />
-<meta name="keywords" content="linux">
+<meta name="description" content="Comprende los diferentes estados de conexión TCP reportados por netstat y ss, desde el establecimiento hasta la terminación, para un mejor diagnóstico de red." />
+<meta name="keywords" content="linux, redes, tcp, netstat, ss, sistemas">
 
 
   <meta property="og:site_name" content="Anotaciones por Pablo Caro"/>
-  <meta property="og:title" content="Varios monitores en linux"/>
-  <meta property="og:description" content="Esta anotación es sólo para comentar el comando xrandr que uso en kubuntu intrepid para trabajar con dos monitores. sudo xrandr --output VGA --auto sudo xrandr --output VGA --above LVDS"/>
+  <meta property="og:title" content="Estados de Conexión TCP en GNU/Linux: netstat y ss"/>
+  <meta property="og:description" content="Comprende los diferentes estados de conexión TCP reportados por netstat y ss, desde el establecimiento hasta la terminación, para un mejor diagnóstico de red."/>
   <meta property="og:locale" content="en_US"/>
-  <meta property="og:url" content="https://pablocaro.es/varios-monitores-en-linux"/>
+  <meta property="og:url" content="https://pablocaro.es/estados-conexion-tcp-netstat-ss"/>
   <meta property="og:type" content="article"/>
-  <meta property="article:published_time" content="2008-11-10 03:27:00+01:00"/>
+  <meta property="article:published_time" content="2025-12-25 13:30:00+01:00"/>
   <meta property="article:modified_time" content=""/>
   <meta property="article:author" content="https://pablocaro.es/author/pablo-caro.html">
   <meta property="article:section" content="Sistemas"/>
   <meta property="article:tag" content="linux"/>
+  <meta property="article:tag" content="redes"/>
+  <meta property="article:tag" content="tcp"/>
+  <meta property="article:tag" content="netstat"/>
+  <meta property="article:tag" content="ss"/>
+  <meta property="article:tag" content="sistemas"/>
   <meta property="og:image" content="/theme/img/profile.png">
 
-  <title>Anotaciones por Pablo Caro &ndash; Varios monitores en linux</title>
+  <title>Anotaciones por Pablo Caro &ndash; Estados de Conexión TCP en GNU/Linux: netstat y ss</title>
 
 
 </head>
@@ -171,47 +176,78 @@
 <article class="single">
   <header>
       
-    <h1 id="varios-monitores-en-linux">Varios monitores en linux</h1>
+    <h1 id="estados-conexion-tcp-netstat-ss">Estados de Conexión TCP en GNU/Linux: netstat y ss</h1>
     <p>
-      Posted on Mon 10 November 2008 in <a href="https://pablocaro.es/category/sistemas.html">Sistemas</a>
+      Posted on Thu 25 December 2025 in <a href="https://pablocaro.es/category/sistemas.html">Sistemas</a>
 
     </p>
   </header>
 
 
   <div>
-    
-        Esta anotación es sólo para comentar el comando xrandr que uso en kubuntu intrepid para trabajar con dos monitores.
+    <p>En el mundo de GNU/Linux, herramientas como <code>netstat</code> y <code>ss</code> son indispensables para monitorizar y diagnosticar el estado de las conexiones de red en nuestros sistemas. Para interpretar correctamente su salida, es fundamental entender los diferentes estados por los que atraviesa una conexión TCP. Esta entrada explora esos estados, desde el establecimiento hasta la terminación de una conexión.</p>
+<h2 id="fases-de-una-conexion-tcp">Fases de una Conexión TCP<a class="headerlink" href="#fases-de-una-conexion-tcp" title="Permanent link">&para;</a></h2>
+<p>Una conexión TCP se gestiona a través de tres fases principales:</p>
+<ol>
+<li><strong>Establecimiento de la Conexión</strong>: Un proceso de reconocimiento (handshake) de varios pasos que inicia la conexión.</li>
+<li><strong>Transferencia de Datos</strong>: Una vez establecida, los datos se envían entre los dos puntos finales.</li>
+<li><strong>Terminación de la Conexión</strong>: Cierra la conexión y libera los recursos asociados.</li>
+</ol>
+<p>Durante estas fases, el socket de Internet (el punto final local de la comunicación) experimenta una serie de cambios de estado.</p>
+<h2 id="estados-del-socket-tcp-explicados">Estados del Socket TCP Explicados<a class="headerlink" href="#estados-del-socket-tcp-explicados" title="Permanent link">&para;</a></h2>
+<p>Aquí se detallan los estados más comunes que puedes encontrar al listar conexiones con <code>netstat</code> o <code>ss</code>:</p>
+<ul>
+<li><strong>ESTABLISHED</strong>: La conexión TCP está establecida y lista para transferir datos. Este es el estado deseado para una conexión activa.</li>
+<li><strong>SYN_SENT</strong>: El socket local ha enviado un paquete SYN al servidor remoto y está esperando una respuesta SYN-ACK. Indica que se está intentando establecer una conexión.</li>
+<li><strong>SYN_RECV</strong>: El servidor ha recibido un paquete SYN de un cliente y ha respondido con un SYN-ACK, esperando ahora un ACK del cliente. Es parte del handshake de tres vías.</li>
+<li><strong>FIN_WAIT1</strong>: El socket local ha cerrado su lado de la conexión y ha enviado un paquete FIN, esperando un ACK del par remoto. La conexión se está cerrando activamente.</li>
+<li><strong>FIN_WAIT2</strong>: El socket local ha recibido el ACK a su FIN, pero aún está esperando un paquete FIN del par remoto para cerrar completamente la conexión.</li>
+<li><strong>TIME_WAIT</strong>: El socket ha esperado después de cerrar la conexión para asegurarse de que todos los paquetes han sido transmitidos y recibidos por ambos lados, y para permitir que los paquetes duplicados se extingan en la red. Es un estado de espera necesario antes de liberar completamente los recursos.</li>
+<li><strong>CLOSE</strong>: El socket no está en uso y no hay conexión.</li>
+<li><strong>CLOSE_WAIT</strong>: El par remoto ha cerrado su lado de la conexión (ha enviado un FIN y ha sido ACKed), y el socket local está esperando que la aplicación local cierre su propio lado.</li>
+<li><strong>LAST_ACK</strong>: El socket local ha enviado su FIN al par remoto, y está esperando el ACK final del par remoto. Esto sucede después de un <code>CLOSE_WAIT</code>.</li>
+<li><strong>LISTEN</strong>: El socket está a la espera de conexiones entrantes. Solo se ve con las opciones <code>--listening (-l)</code> o <code>--all (-a)</code> de <code>netstat</code>/<code>ss</code>.</li>
+<li><strong>CLOSING</strong>: Ambos lados de la conexión han intentado cerrarse simultáneamente, y el socket local está en el proceso de enviar/recibir FIN y ACK.</li>
+<li><strong>UNKNOWN</strong>: El estado del socket es desconocido o no se puede determinar.</li>
+</ul>
+<h2 id="herramientas-netstat-y-ss">Herramientas: <code>netstat</code> y <code>ss</code><a class="headerlink" href="#herramientas-netstat-y-ss" title="Permanent link">&para;</a></h2>
+<p>Puedes ver estos estados utilizando comandos como:</p>
+<div class="highlight"><pre><span></span><code>netstat<span class="w"> </span>-tn<span class="w">   </span><span class="c1"># Muestra conexiones TCP, sin resolución de nombres (-n)</span>
+ss<span class="w"> </span>-tn<span class="w">        </span><span class="c1"># Versión moderna y más rápida de netstat</span>
+</code></pre></div>
 
-sudo xrandr --output VGA --auto
-sudo xrandr --output VGA --above LVDS
-    
+<p>La opción <code>-t</code> filtra para conexiones TCP y <code>-n</code> evita la resolución de nombres, lo que acelera la salida y muestra las IPs directamente.</p>
+<h2 id="conclusion">Conclusión<a class="headerlink" href="#conclusion" title="Permanent link">&para;</a></h2>
+<p>Entender los estados de conexión TCP es vital para diagnosticar problemas de red, identificar procesos que no responden o que están atascados, y comprender cómo se comportan las aplicaciones en términos de conectividad. Saber qué significa cada estado te permite depurar problemas de forma más efectiva en tu sistema GNU/Linux.</p>
+<p><em>Artículo original</em>: <a href="https://www.ochobitshacenunbyte.com/2020/11/07/tipos-de-conexiones-en-netstat-y-ss-explicadas/">Tipos de Conexiones en netstat y ss Explicadas</a></p>
   </div>
   <div class="tag-cloud">
     <p>
       <a href="https://pablocaro.es/tag/linux.html">linux</a>
+      <a href="https://pablocaro.es/tag/redes.html">redes</a>
+      <a href="https://pablocaro.es/tag/tcp.html">tcp</a>
+      <a href="https://pablocaro.es/tag/netstat.html">netstat</a>
+      <a href="https://pablocaro.es/tag/ss.html">ss</a>
+      <a href="https://pablocaro.es/tag/sistemas.html">sistemas</a>
     </p>
   </div>
 
 
 
   <div class="neighbors">
-    <a class="btn float-left" href="https://pablocaro.es/compartir-ficheros-gracias-a-python" title="Compartir ficheros gracias a python">
+    <a class="btn float-left" href="https://pablocaro.es/reduce-ruido-logs-python" title="Reduce el Ruido en tus Logs de Python: Un enfoque inteligente">
       <i class="fa fa-angle-left"></i> Previous Post
-    </a>
-    <a class="btn float-right" href="https://pablocaro.es/reproducir-flash-con-opera-en-ubuntu" title="Reproducir flash con Opera en Ubuntu">
-      Next Post <i class="fa fa-angle-right"></i>
     </a>
   </div>
 
   <div class="related-posts">
     <h4>You might enjoy</h4>
     <ul class="related-posts">
-      <li><a href="https://pablocaro.es/estados-conexion-tcp-netstat-ss">Estados de Conexión TCP en GNU/Linux: netstat y ss</a></li>
       <li><a href="https://pablocaro.es/kitty-acceso-rapido">Kitty como terminal de acceso rápido: La comodidad de un desplegable</a></li>
       <li><a href="https://pablocaro.es/de-yakuake-a-kitty">De Yakuake a Kitty: Mi transición a un terminal moderno</a></li>
       <li><a href="https://pablocaro.es/mobaxterm-mucho-más-que-un-cliente-ssh">MobaXterm. Mucho más que un cliente ssh</a></li>
       <li><a href="https://pablocaro.es/gmail_correo_no_leido_solo_en_principal">Correo no leído en pestaña principal de gmail</a></li>
+      <li><a href="https://pablocaro.es/determinar-slots-ram-uso-linux">Determinar slots de RAM en uso en Linux</a></li>
     </ul>
   </div>
 

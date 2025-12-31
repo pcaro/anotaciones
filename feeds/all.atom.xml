@@ -1,5 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Anotaciones por Pablo Caro</title><link href="https://pablocaro.es/" rel="alternate"></link><link href="https://pablocaro.es/feeds/all.atom.xml" rel="self"></link><id>https://pablocaro.es/</id><updated>2025-12-25T13:00:00+01:00</updated><subtitle>Anotaciones</subtitle><entry><title>Reduce el Ruido en tus Logs de Python: Un enfoque inteligente</title><link href="https://pablocaro.es/reduce-ruido-logs-python" rel="alternate"></link><published>2025-12-25T13:00:00+01:00</published><updated>2025-12-25T13:00:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2025-12-25:/reduce-ruido-logs-python</id><summary type="html">&lt;p&gt;Aprende a configurar el módulo &lt;code&gt;logging&lt;/code&gt; de Python para evitar la sobrecarga de mensajes de librerías de terceros, manteniendo tus logs limpios y útiles.&lt;/p&gt;</summary><content type="html">&lt;p&gt;El módulo &lt;code&gt;logging&lt;/code&gt; de Python es una herramienta poderosa, pero puede convertirse rápidamente en una fuente de "ruido" cuando las librerías de terceros inundan tus logs con mensajes que no son relevantes para la depuración de tu aplicación. Mantener los logs limpios es crucial para identificar problemas de forma eficiente y comprender el comportamiento real de tu código.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Anotaciones por Pablo Caro</title><link href="https://pablocaro.es/" rel="alternate"></link><link href="https://pablocaro.es/feeds/all.atom.xml" rel="self"></link><id>https://pablocaro.es/</id><updated>2025-12-25T13:30:00+01:00</updated><subtitle>Anotaciones</subtitle><entry><title>Estados de Conexión TCP en GNU/Linux: netstat y ss</title><link href="https://pablocaro.es/estados-conexion-tcp-netstat-ss" rel="alternate"></link><published>2025-12-25T13:30:00+01:00</published><updated>2025-12-25T13:30:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2025-12-25:/estados-conexion-tcp-netstat-ss</id><summary type="html">&lt;p&gt;Comprende los diferentes estados de conexión TCP reportados por netstat y ss, desde el establecimiento hasta la terminación, para un mejor diagnóstico de red.&lt;/p&gt;</summary><content type="html">&lt;p&gt;En el mundo de GNU/Linux, herramientas como &lt;code&gt;netstat&lt;/code&gt; y &lt;code&gt;ss&lt;/code&gt; son indispensables para monitorizar y diagnosticar el estado de las conexiones de red en nuestros sistemas. Para interpretar correctamente su salida, es fundamental entender los diferentes estados por los que atraviesa una conexión TCP. Esta entrada explora esos estados, desde el establecimiento hasta la terminación de una conexión.&lt;/p&gt;
+&lt;h2 id="fases-de-una-conexion-tcp"&gt;Fases de una Conexión TCP&lt;a class="headerlink" href="#fases-de-una-conexion-tcp" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Una conexión TCP se gestiona a través de tres fases principales:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Establecimiento de la Conexión&lt;/strong&gt;: Un proceso de reconocimiento (handshake) de varios pasos que inicia la conexión.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Transferencia de Datos&lt;/strong&gt;: Una vez establecida, los datos se envían entre los dos puntos finales.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Terminación de la Conexión&lt;/strong&gt;: Cierra la conexión y libera los recursos asociados.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Durante estas fases, el socket de Internet (el punto final local de la comunicación) experimenta una serie de cambios de estado.&lt;/p&gt;
+&lt;h2 id="estados-del-socket-tcp-explicados"&gt;Estados del Socket TCP Explicados&lt;a class="headerlink" href="#estados-del-socket-tcp-explicados" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Aquí se detallan los estados más comunes que puedes encontrar al listar conexiones con &lt;code&gt;netstat&lt;/code&gt; o &lt;code&gt;ss&lt;/code&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;ESTABLISHED&lt;/strong&gt;: La conexión TCP está establecida y lista para transferir datos. Este es el estado deseado para una conexión activa.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;SYN_SENT&lt;/strong&gt;: El socket local ha enviado un paquete SYN al servidor remoto y está esperando una respuesta SYN-ACK. Indica que se está intentando establecer una conexión.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;SYN_RECV&lt;/strong&gt;: El servidor ha recibido un paquete SYN de un cliente y ha respondido con un SYN-ACK, esperando ahora un ACK del cliente. Es parte del handshake de tres vías.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;FIN_WAIT1&lt;/strong&gt;: El socket local ha cerrado su lado de la conexión y ha enviado un paquete FIN, esperando un ACK del par remoto. La conexión se está cerrando activamente.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;FIN_WAIT2&lt;/strong&gt;: El socket local ha recibido el ACK a su FIN, pero aún está esperando un paquete FIN del par remoto para cerrar completamente la conexión.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;TIME_WAIT&lt;/strong&gt;: El socket ha esperado después de cerrar la conexión para asegurarse de que todos los paquetes han sido transmitidos y recibidos por ambos lados, y para permitir que los paquetes duplicados se extingan en la red. Es un estado de espera necesario antes de liberar completamente los recursos.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;CLOSE&lt;/strong&gt;: El socket no está en uso y no hay conexión.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;CLOSE_WAIT&lt;/strong&gt;: El par remoto ha cerrado su lado de la conexión (ha enviado un FIN y ha sido ACKed), y el socket local está esperando que la aplicación local cierre su propio lado.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;LAST_ACK&lt;/strong&gt;: El socket local ha enviado su FIN al par remoto, y está esperando el ACK final del par remoto. Esto sucede después de un &lt;code&gt;CLOSE_WAIT&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;LISTEN&lt;/strong&gt;: El socket está a la espera de conexiones entrantes. Solo se ve con las opciones &lt;code&gt;--listening (-l)&lt;/code&gt; o &lt;code&gt;--all (-a)&lt;/code&gt; de &lt;code&gt;netstat&lt;/code&gt;/&lt;code&gt;ss&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;CLOSING&lt;/strong&gt;: Ambos lados de la conexión han intentado cerrarse simultáneamente, y el socket local está en el proceso de enviar/recibir FIN y ACK.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;UNKNOWN&lt;/strong&gt;: El estado del socket es desconocido o no se puede determinar.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="herramientas-netstat-y-ss"&gt;Herramientas: &lt;code&gt;netstat&lt;/code&gt; y &lt;code&gt;ss&lt;/code&gt;&lt;a class="headerlink" href="#herramientas-netstat-y-ss" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Puedes ver estos estados utilizando comandos como:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;netstat&lt;span class="w"&gt; &lt;/span&gt;-tn&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="c1"&gt;# Muestra conexiones TCP, sin resolución de nombres (-n)&lt;/span&gt;
+ss&lt;span class="w"&gt; &lt;/span&gt;-tn&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="c1"&gt;# Versión moderna y más rápida de netstat&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;La opción &lt;code&gt;-t&lt;/code&gt; filtra para conexiones TCP y &lt;code&gt;-n&lt;/code&gt; evita la resolución de nombres, lo que acelera la salida y muestra las IPs directamente.&lt;/p&gt;
+&lt;h2 id="conclusion"&gt;Conclusión&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Entender los estados de conexión TCP es vital para diagnosticar problemas de red, identificar procesos que no responden o que están atascados, y comprender cómo se comportan las aplicaciones en términos de conectividad. Saber qué significa cada estado te permite depurar problemas de forma más efectiva en tu sistema GNU/Linux.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Artículo original&lt;/em&gt;: &lt;a href="https://www.ochobitshacenunbyte.com/2020/11/07/tipos-de-conexiones-en-netstat-y-ss-explicadas/"&gt;Tipos de Conexiones en netstat y ss Explicadas&lt;/a&gt;&lt;/p&gt;</content><category term="Sistemas"></category><category term="linux"></category><category term="redes"></category><category term="tcp"></category><category term="netstat"></category><category term="ss"></category><category term="sistemas"></category></entry><entry><title>Reduce el Ruido en tus Logs de Python: Un enfoque inteligente</title><link href="https://pablocaro.es/reduce-ruido-logs-python" rel="alternate"></link><published>2025-12-25T13:00:00+01:00</published><updated>2025-12-25T13:00:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2025-12-25:/reduce-ruido-logs-python</id><summary type="html">&lt;p&gt;Aprende a configurar el módulo &lt;code&gt;logging&lt;/code&gt; de Python para evitar la sobrecarga de mensajes de librerías de terceros, manteniendo tus logs limpios y útiles.&lt;/p&gt;</summary><content type="html">&lt;p&gt;El módulo &lt;code&gt;logging&lt;/code&gt; de Python es una herramienta poderosa, pero puede convertirse rápidamente en una fuente de "ruido" cuando las librerías de terceros inundan tus logs con mensajes que no son relevantes para la depuración de tu aplicación. Mantener los logs limpios es crucial para identificar problemas de forma eficiente y comprender el comportamiento real de tu código.&lt;/p&gt;
 &lt;h2 id="el-problema-con-basicconfig"&gt;El Problema con &lt;code&gt;basicConfig()&lt;/code&gt;&lt;a class="headerlink" href="#el-problema-con-basicconfig" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Muchos desarrolladores Python comienzan a usar &lt;code&gt;logging&lt;/code&gt; con &lt;code&gt;logging.basicConfig()&lt;/code&gt;. Si bien es conveniente, esta función configura el "root logger" (logger raíz) de tu aplicación. El problema es que &lt;strong&gt;todos los loggers de tu aplicación, incluidas las librerías de terceros, son hijos del logger raíz&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;Esto significa que si configuras el logger raíz a nivel &lt;code&gt;DEBUG&lt;/code&gt;, empezarás a ver mensajes de depuración de todas las librerías que uses, lo cual puede ser abrumador y ocultar la información verdaderamente importante de tu propio código.&lt;/p&gt;
@@ -3030,51 +3064,4 @@ svn propedit svn:ignore ./some_path
 svn -R propset svn:ignore -F ../.svnignore .
 
 donde .svnignore contiene un patron por línea como *.pyc
-    </content><category term="Programación"></category></entry><entry><title>Reproducir flash con Opera en Ubuntu</title><link href="https://pablocaro.es/reproducir-flash-con-opera-en-ubuntu" rel="alternate"></link><published>2008-11-12T13:47:00+01:00</published><updated>2008-11-12T13:47:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2008-11-12:/reproducir-flash-con-opera-en-ubuntu</id><summary type="html">
-        Traducción de un &lt;a href="http://www.pablocaro.es/Often times Opera cannot locate the flashplayer without your help. Here is what you can do. First, make sure that flash is installed and works with firefox. Once that is confirmed, open a terminal and cd into the hidden opera directory:  $ cd ~/.opera  Once in that directory you should see a file named pluginpath.ini...the name says it all. In the default setup there are entries which look likeOpera Preferences version 2.1  -- ; Do not edit this file while Opera is running ; This file is stored in UTF-8 encoding  [Paths] /usr/lib/opera/plugins=1 /usr/lib/mozilla/plugins=1 --  You should heed the warning given and exit Opera if it is still open. You now have a choice to make:  1.) set up the flash libraries in either of the two paths shown above or 2.) add another line to the pluginpath.ini file so that opera also checks the user's local mozilla libraries.    I will take the second approach first. Open a second terminal and move into the mozilla plugin directory.  $ cd ~/.mozilla/plugins/  Once there you should see (at least) two files whose names are flashplayer.xpt and libflashplayer.so. These are the files Opera requires to run flash files.  Suppose your username is qwerty. Add the following line to the end of the pluginpath.ini file in the ~/.opera directory:  /home/qwerty/.mozilla/plugins=1  Start opera again and you should have no trouble playing flash files. This solution works only for you and would need to be repeated for other users on the machine in question.   Note that option 1. will enable all users to use flash/opera. To do this you need to place the 2 flash files mentioned above in either /usr/lib/opera/plugins or /usr/lib/mozilla/plugins. You can do this by copying them directly using cp or by making symbolic links to the actual files stored in your ~/.mozilla/plugins dire" target="_blank"&gt;comentario.&lt;/a&gt;
-
-A menudo Opera no pude encontrar el reproductor de flas sin tu ayuda. Te mostramos lo que puedes hacer.
-
-Primero, asegurate que flash está instalado y funciona en firefox. Una vez confirmado, abre un terminal:
-$ cd ~/.opera
-
-En este directorio verás un archivo denominado pluginpath.ini …</summary><content type="html">
-        Traducción de un &lt;a href="http://www.pablocaro.es/Often times Opera cannot locate the flashplayer without your help. Here is what you can do. First, make sure that flash is installed and works with firefox. Once that is confirmed, open a terminal and cd into the hidden opera directory:  $ cd ~/.opera  Once in that directory you should see a file named pluginpath.ini...the name says it all. In the default setup there are entries which look likeOpera Preferences version 2.1  -- ; Do not edit this file while Opera is running ; This file is stored in UTF-8 encoding  [Paths] /usr/lib/opera/plugins=1 /usr/lib/mozilla/plugins=1 --  You should heed the warning given and exit Opera if it is still open. You now have a choice to make:  1.) set up the flash libraries in either of the two paths shown above or 2.) add another line to the pluginpath.ini file so that opera also checks the user's local mozilla libraries.    I will take the second approach first. Open a second terminal and move into the mozilla plugin directory.  $ cd ~/.mozilla/plugins/  Once there you should see (at least) two files whose names are flashplayer.xpt and libflashplayer.so. These are the files Opera requires to run flash files.  Suppose your username is qwerty. Add the following line to the end of the pluginpath.ini file in the ~/.opera directory:  /home/qwerty/.mozilla/plugins=1  Start opera again and you should have no trouble playing flash files. This solution works only for you and would need to be repeated for other users on the machine in question.   Note that option 1. will enable all users to use flash/opera. To do this you need to place the 2 flash files mentioned above in either /usr/lib/opera/plugins or /usr/lib/mozilla/plugins. You can do this by copying them directly using cp or by making symbolic links to the actual files stored in your ~/.mozilla/plugins dire" target="_blank"&gt;comentario.&lt;/a&gt;
-
-A menudo Opera no pude encontrar el reproductor de flas sin tu ayuda. Te mostramos lo que puedes hacer.
-
-Primero, asegurate que flash está instalado y funciona en firefox. Una vez confirmado, abre un terminal:
-$ cd ~/.opera
-
-En este directorio verás un archivo denominado pluginpath.ini... el nombre lo dice todo.
-
-En la configuración por defecto, están las entradas:
-
---
-; Do not edit this file while Opera is running
-; This file is stored in UTF-8 encoding
-
-[Paths]
-/usr/lib/opera/plugins=1
-/usr/lib/mozilla/plugins=1
---
-
-Deberías tener en cuente el aviso y cerrar tu Opera si todavía lo tienes abierto (usa firefox o imprime para ver esta página) A partir de ahora tienes dos opciones:
-
-Configurar las librerías flash en cualquiera de las dos rutas indicadas arriba o
-Añadir otra línea a pluginpath.ini file  de forma que opera también encuentre las librerías del directorio local del usuario que usa mozilla.
-
-Usaremos la segunda aproximación. Abre una segunda consola y cambia al directorio de plugins de mozilla.
-
-$ cd ~/.mozilla/plugins/
-
-Una vez aquí, deberías ver (al menos) dos archivos cuyos nombres son fashplayer.xpt y libflashplayer.so. Son los archivos que Opera necesita para ejecutar flash.
-
-Supongamos que tu nombre de usuario es "qwerty". Añade la siguiente linea al final del archivo pluginpath.ini en el directorio ~/.opera:
-
-/home/qwerty/.mozilla/plugins=1
-
-Arranca opera de nuevo y no deberías de tener problemas con flash. Esta solución funciona sólo para tí y necesetaría ser repetida para todos los usuarios de la máquina en cuestion.
-
-Date cuenta que la opción número 1. habilita a TODOS los usuarios para usar flash en opera. Para hacer esto necesitas colocar los dos archivos mencionados arriba en /usr/lib/opera/plugins o /usr/lib/mozilla/plugins. Pudes hacer esto directamente copiándolos usando cp or creando enlaces simbólicos a losby making symbolic links a los archivos en en tu directorio ~/.mozilla/plugins. En este último caso cuida de los permisos.
-    </content><category term="Sin Categoría"></category></entry></feed>
+    </content><category term="Programación"></category></entry></feed>
