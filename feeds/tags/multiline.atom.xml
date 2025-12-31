@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Anotaciones por Pablo Caro - multiline</title><link href="https://pablocaro.es/" rel="alternate"></link><link href="https://pablocaro.es/feeds/tags/multiline.atom.xml" rel="self"></link><id>https://pablocaro.es/</id><updated>2025-12-25T16:10:00+01:00</updated><subtitle>Anotaciones</subtitle><entry><title>YAML Multilínea: Entendiendo y probando cadenas de texto complejas</title><link href="https://pablocaro.es/yaml-multilinea-cadenas-complejas" rel="alternate"></link><published>2025-12-25T16:10:00+01:00</published><updated>2025-12-25T16:10:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2025-12-25:/yaml-multilinea-cadenas-complejas</id><summary type="html">&lt;p&gt;Explora las opciones de YAML para manejar cadenas de texto multilínea de forma efectiva, con una demo interactiva que te permite probarlas en tiempo real.&lt;/p&gt;</summary><content type="html">&lt;p&gt;YAML se ha convertido en el formato de facto para la configuración en muchos proyectos, desde Kubernetes hasta scripts de CI/CD. Una de sus funcionalidades más potentes, y a veces confusas, es la gestión de &lt;strong&gt;cadenas de texto multilínea&lt;/strong&gt;. Afortunadamente, existe una herramienta interactiva excepcional para dominar este aspecto: &lt;a href="https://yaml-multiline.info/"&gt;yaml-multiline.info&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id="formatos-para-cadenas-multilinea-en-yaml"&gt;Formatos para Cadenas Multilínea en YAML&lt;a class="headerlink" href="#formatos-para-cadenas-multilinea-en-yaml" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;YAML ofrece principalmente dos enfoques para definir cadenas que abarcan varias líneas:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Escalares de Flujo (Flow Scalars)&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Son cadenas simples, a menudo entrecomilladas (&lt;code&gt;'...'&lt;/code&gt; o &lt;code&gt;"..."&lt;/code&gt;) o sin comillas.&lt;/li&gt;
+&lt;li&gt;Ignoran indentaciones y, por defecto, reemplazan los saltos de línea con espacios.&lt;/li&gt;
+&lt;li&gt;Las cadenas con comillas dobles permiten usar secuencias de escape como &lt;code&gt;\n&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Escalares de Bloque (Block Scalars)&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Ofrecen un control mucho más preciso sobre los saltos de línea y la indentación.&lt;/li&gt;
+&lt;li&gt;Se indican con un carácter especial al inicio de la línea donde comienza la cadena.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="claves-para-cadenas-multilinea-en-bloque"&gt;Claves para Cadenas Multilínea en Bloque&lt;a class="headerlink" href="#claves-para-cadenas-multilinea-en-bloque" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Los dos indicadores de estilo más importantes para escalares de bloque son:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;|&lt;/code&gt; (Estilo Literal)&lt;/strong&gt;: Mantiene todos los saltos de línea y la indentación tal cual. Es ideal para bloques de texto donde el formato es crucial (ej. código, mensajes largos).
+    &lt;code&gt;yaml
+    literal_string: |
+      Esta es una línea.
+      Esta es otra.
+        Con su propia indentación.&lt;/code&gt;
+    Resultado: "Esta es una línea.\nEsta es otra.\n  Con su propia indentación.\n"&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;&amp;gt;&lt;/code&gt; (Estilo Plegado/Folded)&lt;/strong&gt;: Reemplaza los saltos de línea con espacios, uniendo las líneas en una sola. Solo los saltos de línea dobles (líneas en blanco) o las líneas con mayor indentación se conservan como saltos de línea. Es útil para párrafos largos.
+    &lt;code&gt;yaml
+    folded_string: &amp;gt;
+      Esta es una cadena
+      plegada en varias líneas.
+      Mantendrá el formato de párrafo.&lt;/code&gt;
+    Resultado: "Esta es una cadena plegada en varias líneas. Mantendrá el formato de párrafo.\n"&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Además de esto, existen indicadores de "chomping" (&lt;code&gt;-&lt;/code&gt; para eliminar saltos de línea finales, &lt;code&gt;+&lt;/code&gt; para mantenerlos, o el comportamiento por defecto) y de indentación que ofrecen aún más control.&lt;/p&gt;
+&lt;h2 id="demo-en-tiempo-real"&gt;¡Demo en Tiempo Real!&lt;a class="headerlink" href="#demo-en-tiempo-real" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Lo que hace a &lt;a href="https://yaml-multiline.info/"&gt;yaml-multiline.info&lt;/a&gt; una herramienta invaluable es su &lt;strong&gt;demo interactiva&lt;/strong&gt;. Puedes probar diferentes sintaxis YAML en tiempo real y ver cómo se interpreta la cadena resultante. Es la mejor manera de entender visualmente cómo funcionan los estilos literal y plegado, y cómo los indicadores de chomping y la indentación afectan el resultado final.&lt;/p&gt;
+&lt;h2 id="conclusion"&gt;Conclusión&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Entender cómo manejar cadenas multilínea en YAML no solo mejora la legibilidad de tus archivos de configuración, sino que también previene errores inesperados. La demo en tiempo real de &lt;code&gt;yaml-multiline.info&lt;/code&gt; es un recurso fantástico para cualquier persona que trabaje regularmente con YAML y quiera dominar este aspecto.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Sitio web&lt;/em&gt;: &lt;a href="https://yaml-multiline.info/"&gt;&lt;code&gt;yaml-multiline.info&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;</content><category term="Herramientas"></category><category term="yaml"></category><category term="configuracion"></category><category term="desarrollo"></category><category term="herramientas"></category><category term="multiline"></category><category term="strings"></category></entry></feed>
