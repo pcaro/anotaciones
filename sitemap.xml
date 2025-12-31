@@ -5,29 +5,36 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://pablocaro.es/</loc>
-<lastmod>2025-12-31T00:30:43-00:00</lastmod>
+<lastmod>2025-12-31T00:56:59-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://pablocaro.es/tags.html</loc>
-<lastmod>2025-12-31T00:30:43-00:00</lastmod>
+<lastmod>2025-12-31T00:56:59-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://pablocaro.es/categories.html</loc>
-<lastmod>2025-12-31T00:30:43-00:00</lastmod>
+<lastmod>2025-12-31T00:56:59-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://pablocaro.es/archives.html</loc>
-<lastmod>2025-12-31T00:30:43-00:00</lastmod>
+<lastmod>2025-12-31T00:56:59-00:00</lastmod>
 <changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://pablocaro.es/reduce-ruido-logs-python</loc>
+<lastmod>2025-12-25T13:00:00+01:00</lastmod>
+<changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
@@ -936,7 +943,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://pablocaro.es/category/programacion.html</loc>
-<lastmod>2025-12-25T11:00:00+00:09</lastmod>
+<lastmod>2025-12-25T13:00:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -993,6 +1000,41 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>https://pablocaro.es/category/trucos.html</loc>
 <lastmod>2017-04-11T14:07:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://pablocaro.es/tag/python.html</loc>
+<lastmod>2025-12-25T13:00:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://pablocaro.es/tag/logging.html</loc>
+<lastmod>2025-12-25T13:00:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://pablocaro.es/tag/logs.html</loc>
+<lastmod>2025-12-25T13:00:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://pablocaro.es/tag/depuracion.html</loc>
+<lastmod>2025-12-25T13:00:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://pablocaro.es/tag/desarrollo.html</loc>
+<lastmod>2025-12-25T13:00:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -1056,13 +1098,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>https://pablocaro.es/tag/herramientas.html</loc>
 <lastmod>2025-12-25T12:00:00+00:09</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>https://pablocaro.es/tag/python.html</loc>
-<lastmod>2025-12-25T11:00:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -1419,13 +1454,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://pablocaro.es/tag/cli.html</loc>
-<lastmod>2016-06-07T11:36:00+00:09</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>https://pablocaro.es/tag/desarrollo.html</loc>
 <lastmod>2016-06-07T11:36:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>

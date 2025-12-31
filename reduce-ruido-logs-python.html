@@ -1,0 +1,312 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/stylesheet/style.min.css">
+
+
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+          href="https://pablocaro.es/theme/pygments/github.min.css">
+
+
+
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/font-awesome/css/solid.css">
+
+
+  <link rel="shortcut icon" href="/theme/img/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/theme/img/favicon.ico" type="image/x-icon">
+
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#333333">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#333333">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Microsoft EDGE -->
+  <meta name="msapplication-TileColor" content="#333333">
+
+  <link href="https://pablocaro.es/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Anotaciones por Pablo Caro Atom">
+
+  <link href="https://pablocaro.es/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Anotaciones por Pablo Caro RSS">
+
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-60035125-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Pablo Caro" />
+<meta name="description" content="Aprende a configurar el módulo logging de Python para evitar la sobrecarga de mensajes de librerías de terceros, manteniendo tus logs limpios y útiles." />
+<meta name="keywords" content="python, logging, logs, depuracion, desarrollo">
+
+
+  <meta property="og:site_name" content="Anotaciones por Pablo Caro"/>
+  <meta property="og:title" content="Reduce el Ruido en tus Logs de Python: Un enfoque inteligente"/>
+  <meta property="og:description" content="Aprende a configurar el módulo logging de Python para evitar la sobrecarga de mensajes de librerías de terceros, manteniendo tus logs limpios y útiles."/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://pablocaro.es/reduce-ruido-logs-python"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2025-12-25 13:00:00+01:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://pablocaro.es/author/pablo-caro.html">
+  <meta property="article:section" content="Programación"/>
+  <meta property="article:tag" content="python"/>
+  <meta property="article:tag" content="logging"/>
+  <meta property="article:tag" content="logs"/>
+  <meta property="article:tag" content="depuracion"/>
+  <meta property="article:tag" content="desarrollo"/>
+  <meta property="og:image" content="/theme/img/profile.png">
+
+  <title>Anotaciones por Pablo Caro &ndash; Reduce el Ruido en tus Logs de Python: Un enfoque inteligente</title>
+
+
+</head>
+<body class="light-theme">
+
+<aside>
+  <div>
+    <a href="https://pablocaro.es/">
+      <img src="/theme/img/profile.png" alt="Anotaciones" title="Anotaciones">
+    </a>
+
+    <h1>
+      <a href="https://pablocaro.es/">Anotaciones</a>
+    </h1>
+
+    <p>Anotaciones</p>
+
+
+    <nav>
+      <ul class="list">
+
+
+
+          <li>
+            <a target="_self" href="http://getpelican.com/" >Pelican</a>
+          </li>
+          <li>
+            <a target="_self" href="http://python.org/" >Python.org</a>
+          </li>
+          <li>
+            <a target="_self" href="http://jinja.pocoo.org/" >Jinja2</a>
+          </li>
+          <li>
+            <a target="_self" href="#" >You can modify those links in your config file</a>
+          </li>
+      </ul>
+    </nav>
+
+    <ul class="social">
+      <li>
+        <a class="sc-Twitter"
+           href="http://twitter.com/pcaro"
+           target="_blank">
+          <i class="fa-brands fa-Twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Github"
+           href="http://github.com/pcaro"
+           target="_blank">
+          <i class="fa-brands fa-Github"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Linkedin"
+           href="https://www.linkedin.com/in/pcarorevuelta"
+           target="_blank">
+          <i class="fa-brands fa-Linkedin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Facebook"
+           href="https://www.facebook.com/pablo.carorevuelta"
+           target="_blank">
+          <i class="fa-brands fa-Facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Email"
+           href="mailto:correo@pablocaro.es"
+           target="_blank">
+          <i class="fa-brands fa-Email"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+</aside>
+  <main>
+
+<nav>
+  <a href="https://pablocaro.es/">Home</a>
+
+  <a href="/archives.html">Archivo</a>
+  <a href="/categories.html">Categorías</a>
+  <a href="/tags.html">Etiquetas</a>
+
+  <a href="https://pablocaro.es/feeds/all.atom.xml">Atom</a>
+
+  <a href="https://pablocaro.es/feeds/all.rss.xml">RSS</a>
+</nav>
+
+<article class="single">
+  <header>
+      
+    <h1 id="reduce-ruido-logs-python">Reduce el Ruido en tus Logs de Python: Un enfoque inteligente</h1>
+    <p>
+      Posted on Thu 25 December 2025 in <a href="https://pablocaro.es/category/programacion.html">Programación</a>
+
+    </p>
+  </header>
+
+
+  <div>
+    <p>El módulo <code>logging</code> de Python es una herramienta poderosa, pero puede convertirse rápidamente en una fuente de "ruido" cuando las librerías de terceros inundan tus logs con mensajes que no son relevantes para la depuración de tu aplicación. Mantener los logs limpios es crucial para identificar problemas de forma eficiente y comprender el comportamiento real de tu código.</p>
+<h2 id="el-problema-con-basicconfig">El Problema con <code>basicConfig()</code><a class="headerlink" href="#el-problema-con-basicconfig" title="Permanent link">&para;</a></h2>
+<p>Muchos desarrolladores Python comienzan a usar <code>logging</code> con <code>logging.basicConfig()</code>. Si bien es conveniente, esta función configura el "root logger" (logger raíz) de tu aplicación. El problema es que <strong>todos los loggers de tu aplicación, incluidas las librerías de terceros, son hijos del logger raíz</strong>.</p>
+<p>Esto significa que si configuras el logger raíz a nivel <code>DEBUG</code>, empezarás a ver mensajes de depuración de todas las librerías que uses, lo cual puede ser abrumador y ocultar la información verdaderamente importante de tu propio código.</p>
+<h2 id="la-solucion-recomendada-configuracion-granular">La Solución Recomendada: Configuración Granular<a class="headerlink" href="#la-solucion-recomendada-configuracion-granular" title="Permanent link">&para;</a></h2>
+<p>Para evitar esta sobrecarga, la estrategia consiste en tomar un control más granular de los niveles de logging.</p>
+<ol>
+<li>
+<p><strong>Nombra tus Loggers:</strong>
+    Sigue la buena práctica de crear un logger específico para cada módulo de tu aplicación utilizando <code>logging.getLogger(__name__)</code>. Esto crea una jerarquía de loggers que puedes controlar individualmente.</p>
+<p>```python</p>
+<h1 id="mi_modulopy">mi_modulo.py<a class="headerlink" href="#mi_modulopy" title="Permanent link">&para;</a></h1>
+<p>import logging
+logger = logging.getLogger(<strong>name</strong>)</p>
+<p>def mi_funcion():
+    logger.info("Mi función se está ejecutando.")
+    logger.debug("Mensaje de depuración en mi función.")
+```</p>
+</li>
+<li>
+<p><strong>Configura Niveles en Loggers Específicos de la Aplicación:</strong>
+    En lugar de modificar el logger raíz, establece el nivel de logging en el logger de nivel más alto de tu propia aplicación. Esto permite que tus módulos registren mensajes a niveles detallados (por ejemplo, <code>DEBUG</code>), mientras que las librerías de terceros (que seguirán siendo hijos del logger raíz no configurado, o con una configuración por defecto menos verbosa) solo mostrarán mensajes más críticos (por ejemplo, <code>WARNING</code> o <code>ERROR</code>).</p>
+<p>```python</p>
+<h1 id="mainpy-o-tu-punto-de-entrada-principal">main.py (o tu punto de entrada principal)<a class="headerlink" href="#mainpy-o-tu-punto-de-entrada-principal" title="Permanent link">&para;</a></h1>
+<p>import logging
+from mi_paquete.mi_modulo import mi_funcion</p>
+<h1 id="crea-un-logger-para-tu-aplicacion-principal">Crea un logger para tu aplicación principal<a class="headerlink" href="#crea-un-logger-para-tu-aplicacion-principal" title="Permanent link">&para;</a></h1>
+<p>app_logger = logging.getLogger('mi_paquete') # O el nombre de tu paquete principal
+app_logger.setLevel(logging.DEBUG)</p>
+<h1 id="crea-un-handler-para-la-salida-por-ejemplo-a-consola">Crea un handler para la salida (por ejemplo, a consola)<a class="headerlink" href="#crea-un-handler-para-la-salida-por-ejemplo-a-consola" title="Permanent link">&para;</a></h1>
+<p>handler = logging.StreamHandler()
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+handler.setFormatter(formatter)</p>
+<h1 id="anade-el-handler-al-logger-de-tu-aplicacion">Añade el handler al logger de tu aplicación<a class="headerlink" href="#anade-el-handler-al-logger-de-tu-aplicacion" title="Permanent link">&para;</a></h1>
+<p>app_logger.addHandler(handler)</p>
+<h1 id="ahora-el-logger-raiz-y-sus-hijos-las-librerias-no-se-veran-afectados-directamente">Ahora, el logger raíz (y sus hijos, las librerías) no se verán afectados directamente<a class="headerlink" href="#ahora-el-logger-raiz-y-sus-hijos-las-librerias-no-se-veran-afectados-directamente" title="Permanent link">&para;</a></h1>
+<h1 id="puedes-controlar-el-nivel-de-librerias-especificas-si-lo-necesitas">Puedes controlar el nivel de librerías específicas si lo necesitas<a class="headerlink" href="#puedes-controlar-el-nivel-de-librerias-especificas-si-lo-necesitas" title="Permanent link">&para;</a></h1>
+<p>logging.getLogger('requests').setLevel(logging.WARNING) # Ejemplo para una librería</p>
+<p>mi_funcion()
+```</p>
+</li>
+</ol>
+<h2 id="consejo-avanzado-gestion-de-dependencias-propias">Consejo Avanzado: Gestión de Dependencias Propias<a class="headerlink" href="#consejo-avanzado-gestion-de-dependencias-propias" title="Permanent link">&para;</a></h2>
+<p>Para proyectos con múltiples módulos internos o dependencias de "primera parte" (que tú mismo desarrollas), puedes envolver <code>getLogger()</code> para que siempre prefije el nombre del logger con el de tu organización o proyecto (por ejemplo, <code>ORG_NAME.mi_modulo</code>). Esto te permite controlar el nivel de logging de todo un conjunto de loggers internos de forma más sencilla.</p>
+<h2 id="conclusion">Conclusión<a class="headerlink" href="#conclusion" title="Permanent link">&para;</a></h2>
+<p>Reducir el ruido en tus logs no solo los hace más legibles, sino también más fiables como herramienta de depuración. Al adoptar un enfoque granular en la configuración de <code>logging</code> de Python, aseguras que la información crítica de tu aplicación no se pierda entre un mar de mensajes de librerías de terceros.</p>
+<p><em>Artículo original</em>: <a href="https://sinclairtarget.com/blog/2024/03/how-to-make-your-logs-less-noisy-in-python/">How to Make Your Logs Less Noisy in Python | Sinclair Target</a></p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="https://pablocaro.es/tag/python.html">python</a>
+      <a href="https://pablocaro.es/tag/logging.html">logging</a>
+      <a href="https://pablocaro.es/tag/logs.html">logs</a>
+      <a href="https://pablocaro.es/tag/depuracion.html">depuracion</a>
+      <a href="https://pablocaro.es/tag/desarrollo.html">desarrollo</a>
+    </p>
+  </div>
+
+
+
+  <div class="neighbors">
+    <a class="btn float-left" href="https://pablocaro.es/kitty-acceso-rapido" title="Kitty como terminal de acceso rápido: La comodidad de un desplegable">
+      <i class="fa fa-angle-left"></i> Previous Post
+    </a>
+  </div>
+
+  <div class="related-posts">
+    <h4>You might enjoy</h4>
+    <ul class="related-posts">
+      <li><a href="https://pablocaro.es/poe-the-poet-automatizando-tareas-en-proyectos-python-con-uv">Poe the Poet: Automatizando tareas en proyectos Python con uv</a></li>
+      <li><a href="https://pablocaro.es/httpx-cliente-http-moderno-python">HTTPX: Cliente HTTP moderno para Python</a></li>
+      <li><a href="https://pablocaro.es/una-de-versiones">Una de versiones</a></li>
+      <li><a href="https://pablocaro.es/python-generadores-repetibles">Python: Crear generadores repetibles (repeating generators)</a></li>
+      <li><a href="https://pablocaro.es/repetiendo-una-función-con-hilos">Repitiendo una función con hilos</a></li>
+    </ul>
+  </div>
+
+
+
+<!-- Disqus -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'anotaciones';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>
+    Please enable JavaScript to view comments.
+</noscript>
+<!-- End Disqus -->
+</article>
+
+<footer>
+<p>
+  &copy; 2025  - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/3.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/3.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Anotaciones por Pablo Caro ",
+  "url" : "https://pablocaro.es",
+  "image": "/theme/img/profile.png",
+  "description": ""
+}
+</script>
+</body>
+</html>
