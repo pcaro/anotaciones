@@ -190,30 +190,30 @@
 <h2 id="como-usar-poe-the-poet-con-uv">Cómo Usar Poe the Poet con uv<a class="headerlink" href="#como-usar-poe-the-poet-con-uv" title="Permanent link">&para;</a></h2>
 <p>La integración de Poe the Poet en un proyecto que usa <code>uv</code> es sencilla:</p>
 <ol>
-<li>
-<p><strong>Añadir <code>poethepoet</code> a tus dependencias de desarrollo:</strong>
-    Primero, asegúrate de que <code>poethepoet</code> esté incluido en tu grupo de dependencias de desarrollo (por ejemplo, <code>dev</code>) en <code>pyproject.toml</code>.</p>
-<p>```toml
-[project]</p>
-<h1 id="otras-configuraciones-del-proyecto">... otras configuraciones del proyecto ...<a class="headerlink" href="#otras-configuraciones-del-proyecto" title="Permanent link">&para;</a></h1>
-<p>[tool.uv]
-dev-dependencies = [
-    "black",
-    "ruff",
-    "poethepoet&gt;=0.38.0", # Añade Poe the Poet aquí
-]
-```</p>
-</li>
-<li>
-<p><strong>Definir tareas personalizadas:</strong>
-    Luego, puedes añadir una sección <code>[tool.poe.tasks]</code> en tu <code>pyproject.toml</code> para definir tus comandos personalizados.</p>
-<p><code>toml
-[tool.poe.tasks]
-docs = "sphinx-build -M html docs docs/_build"
-livehtml = "sphinx-autobuild -b html docs docs/_build"
-cog = "cog -r docs/*.md"</code></p>
-</li>
+<li><strong>Añadir <code>poethepoet</code> a tus dependencias de desarrollo:</strong>
+    Primero, asegúrate de que <code>poethepoet</code> esté incluido en tu grupo de dependencias de desarrollo (por ejemplo, <code>dev</code>) en <code>pyproject.toml</code>.</li>
 </ol>
+<div class="highlight"><pre><span></span><code><span class="k">[project]</span>
+<span class="c1"># ... otras configuraciones del proyecto ...</span>
+
+<span class="k">[tool.uv]</span>
+<span class="n">dev-dependencies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s2">&quot;black&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;ruff&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;poethepoet&gt;=0.38.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1"># Añade Poe the Poet aquí</span>
+<span class="p">]</span>
+</code></pre></div>
+
+<ol>
+<li><strong>Definir tareas personalizadas:</strong>
+    Luego, puedes añadir una sección <code>[tool.poe.tasks]</code> en tu <code>pyproject.toml</code> para definir tus comandos personalizados.</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="k">[tool.poe.tasks]</span>
+<span class="n">docs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;sphinx-build -M html docs docs/_build&quot;</span>
+<span class="n">livehtml</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;sphinx-autobuild -b html docs docs/_build&quot;</span>
+<span class="n">cog</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;cog -r docs/*.md&quot;</span>
+</code></pre></div>
+
 <h2 id="ejecutando-tareas-con-uv-run">Ejecutando Tareas con <code>uv run</code><a class="headerlink" href="#ejecutando-tareas-con-uv-run" title="Permanent link">&para;</a></h2>
 <p>Una vez que Poe the Poet está configurado y tus tareas están definidas, puedes ejecutarlas fácilmente usando <code>uv run</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># Para construir la documentación</span>
