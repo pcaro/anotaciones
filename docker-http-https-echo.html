@@ -58,28 +58,30 @@
  
 
 <meta name="author" content="Pablo Caro" />
-<meta name="description" content="PosteRazor convierte cualquier imagen en un póster gigante dividiendo la imagen en páginas imprimibles que puedes ensamblar" />
-<meta name="keywords" content="posterazor, impresión, pósters, diy, herramientas">
+<meta name="description" content="mendhak/docker-http-https-echo es un contenedor Docker simple que facilita la depuración de configuraciones de red, proxies y balanceadores de carga." />
+<meta name="keywords" content="docker, http, https, depuracion, redes, herramientas, contenedores">
 
 
   <meta property="og:site_name" content="Anotaciones por Pablo Caro"/>
-  <meta property="og:title" content="PosteRazor: Crea pósters gigantes desde cualquier imagen"/>
-  <meta property="og:description" content="PosteRazor convierte cualquier imagen en un póster gigante dividiendo la imagen en páginas imprimibles que puedes ensamblar"/>
+  <meta property="og:title" content="`docker-http-https-echo`: Una herramienta esencial para depuración de red"/>
+  <meta property="og:description" content="mendhak/docker-http-https-echo es un contenedor Docker simple que facilita la depuración de configuraciones de red, proxies y balanceadores de carga."/>
   <meta property="og:locale" content="en_US"/>
-  <meta property="og:url" content="https://pablocaro.es/posterazor-crear-posters-grandes"/>
+  <meta property="og:url" content="https://pablocaro.es/docker-http-https-echo"/>
   <meta property="og:type" content="article"/>
-  <meta property="article:published_time" content="2017-02-24 20:06:00+01:00"/>
+  <meta property="article:published_time" content="2025-12-25 14:15:00+01:00"/>
   <meta property="article:modified_time" content=""/>
   <meta property="article:author" content="https://pablocaro.es/author/pablo-caro.html">
   <meta property="article:section" content="Herramientas"/>
-  <meta property="article:tag" content="posterazor"/>
-  <meta property="article:tag" content="impresión"/>
-  <meta property="article:tag" content="pósters"/>
-  <meta property="article:tag" content="diy"/>
+  <meta property="article:tag" content="docker"/>
+  <meta property="article:tag" content="http"/>
+  <meta property="article:tag" content="https"/>
+  <meta property="article:tag" content="depuracion"/>
+  <meta property="article:tag" content="redes"/>
   <meta property="article:tag" content="herramientas"/>
+  <meta property="article:tag" content="contenedores"/>
   <meta property="og:image" content="/theme/img/profile.png">
 
-  <title>Anotaciones por Pablo Caro &ndash; PosteRazor: Crea pósters gigantes desde cualquier imagen</title>
+  <title>Anotaciones por Pablo Caro &ndash; `docker-http-https-echo`: Una herramienta esencial para depuración de red</title>
 
 
 </head>
@@ -175,71 +177,83 @@
 <article class="single">
   <header>
       
-    <h1 id="posterazor-crear-posters-grandes">PosteRazor: Crea pósters gigantes desde cualquier imagen</h1>
+    <h1 id="docker-http-https-echo">`docker-http-https-echo`: Una herramienta esencial para depuración de red</h1>
     <p>
-      Posted on Fri 24 February 2017 in <a href="https://pablocaro.es/category/herramientas.html">Herramientas</a>
+      Posted on Thu 25 December 2025 in <a href="https://pablocaro.es/category/herramientas.html">Herramientas</a>
 
     </p>
   </header>
 
 
   <div>
-    <p><strong>PosteRazor</strong> es una herramienta gratuita y open source que resuelve un problema cotidiano: <strong>¿cómo imprimir una imagen grande cuando solo tienes una impresora doméstica?</strong></p>
-<h2 id="que-hace-posterazor">¿Qué hace PosteRazor?<a class="headerlink" href="#que-hace-posterazor" title="Permanent link">&para;</a></h2>
-<p>PosteRazor toma una imagen raster y la <strong>"corta" en piezas</strong> que después pueden imprimirse y ensamblarse para formar un póster completo. Convierte una sola imagen en un documento PDF multipágina listo para imprimir.</p>
-<h2 id="caracteristicas-principales">Características principales<a class="headerlink" href="#caracteristicas-principales" title="Permanent link">&para;</a></h2>
+    <p>En el complejo mundo de las aplicaciones distribuidas, la depuración de problemas de red, proxies, balanceadores de carga o reglas de firewall puede ser una tarea ardua. Necesitamos una forma simple de verificar qué está recibiendo un servidor. Aquí es donde una herramienta como <code>mendhak/docker-http-https-echo</code> se vuelve indispensable.</p>
+<h2 id="que-es-mendhakdocker-http-https-echo">¿Qué es <code>mendhak/docker-http-https-echo</code>?<a class="headerlink" href="#que-es-mendhakdocker-http-https-echo" title="Permanent link">&para;</a></h2>
+<p>Es un contenedor Docker extremadamente ligero y simple que funciona como un servidor HTTP y HTTPS de "eco". Su función principal es <strong>responder a cualquier solicitud HTTP o HTTPS con una descripción detallada de la propia solicitud</strong>. Esto incluye:</p>
 <ul>
-<li><strong>Interfaz tipo asistente</strong> con 5 pasos sencillos</li>
-<li><strong>Multiplataforma</strong>: Windows, macOS, Linux</li>
-<li><strong>Versión web</strong> disponible via WebAssembly</li>
-<li><strong>Completamente gratuito</strong> y open source</li>
+<li>Cabeceras de la solicitud (headers).</li>
+<li>Método HTTP (GET, POST, PUT, etc.).</li>
+<li>URL y parámetros de la solicitud.</li>
+<li>Cuerpo de la solicitud (body).</li>
+<li>Dirección IP remota del cliente.</li>
+<li>Información del TLS/SSL (si es HTTPS).</li>
 </ul>
-<h2 id="casos-de-uso-ideales">Casos de uso ideales<a class="headerlink" href="#casos-de-uso-ideales" title="Permanent link">&para;</a></h2>
+<h2 id="por-que-es-util">¿Por qué es útil?<a class="headerlink" href="#por-que-es-util" title="Permanent link">&para;</a></h2>
+<p>Este tipo de servidor de eco es invaluable para una variedad de escenarios de depuración:</p>
 <ul>
-<li><strong>Pósters decorativos</strong> para casa, escuela u oficina</li>
-<li><strong>Proyectos DIY</strong> de decoración</li>
-<li><strong>Imprimir imágenes gigantes</strong> que exceden el tamaño de página estándar</li>
-<li><strong>Presentaciones visuales</strong> de gran formato</li>
+<li><strong>Depuración de Proxies y Balanceadores de Carga</strong>: Verifica si un proxy inverso o un balanceador de carga está reescribiendo cabeceras, modificando URLs o pasando el cuerpo de la solicitud como esperas.</li>
+<li><strong>Reglas de Firewall y Seguridad</strong>: Confirma que el tráfico está llegando al destino correcto y que no está siendo bloqueado o alterado.</li>
+<li><strong>Inspección de Cabeceras HTTP/HTTPS</strong>: Útil para ver exactamente qué cabeceras envía tu cliente o una aplicación específica.</li>
+<li><strong>Pruebas de Integración</strong>: Un objetivo predecible para pruebas automáticas de cómo diferentes servicios se comunican a través de HTTP/HTTPS.</li>
+<li><strong>Diagnóstico de Contenido Mixto</strong>: Puedes usarlo para verificar si los recursos HTTP se están cargando correctamente en un contexto HTTPS.</li>
 </ul>
-<h2 id="como-funciona">¿Cómo funciona?<a class="headerlink" href="#como-funciona" title="Permanent link">&para;</a></h2>
-<ol>
-<li>Cargas tu imagen</li>
-<li>Seleccionas el tamaño del póster deseado</li>
-<li>Configuras el formato de página de tu impresora</li>
-<li>PosteRazor calcula la división automáticamente</li>
-<li>Generas el PDF e imprimes cada página</li>
-</ol>
-<h2 id="la-solucion-perfecta">La solución perfecta<a class="headerlink" href="#la-solucion-perfecta" title="Permanent link">&para;</a></h2>
-<p>PosteRazor democratiza la creación de pósters grandes. Ya no necesitas servicios de impresión costosos - <strong>con cualquier impresora doméstica puedes crear pósters del tamaño que quieras</strong>.</p>
-<p><em>Sitio oficial</em>: <a href="https://posterazor.sourceforge.io/">PosteRazor</a></p>
+<h2 id="como-usarlo">Cómo Usarlo<a class="headerlink" href="#como-usarlo" title="Permanent link">&para;</a></h2>
+<p>Su uso es directo a través de Docker:</p>
+<h3 id="para-http-puerto-8080">Para HTTP (puerto 8080)<a class="headerlink" href="#para-http-puerto-8080" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>-p<span class="w"> </span><span class="m">8080</span>:8080<span class="w"> </span>mendhak/http-https-echo
+</code></pre></div>
+
+<p>Luego, puedes acceder a <code>http://localhost:8080</code> con tu navegador o <code>curl</code>:</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>http://localhost:8080/path?query<span class="o">=</span>value<span class="w"> </span>-H<span class="w"> </span><span class="s2">&quot;X-Custom-Header: test&quot;</span>
+</code></pre></div>
+
+<h3 id="para-https-puerto-8443">Para HTTPS (puerto 8443)<a class="headerlink" href="#para-https-puerto-8443" title="Permanent link">&para;</a></h3>
+<p>Para usar HTTPS, debes mapear el puerto HTTPS del contenedor. La imagen ya viene con un certificado autofirmado para pruebas.</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>-p<span class="w"> </span><span class="m">8443</span>:8443<span class="w"> </span>mendhak/http-https-echo
+</code></pre></div>
+
+<p>Accede a <code>https://localhost:8443</code> (es posible que tu navegador te advierta sobre el certificado autofirmado).</p>
+<h2 id="conclusion">Conclusión<a class="headerlink" href="#conclusion" title="Permanent link">&para;</a></h2>
+<p><code>mendhak/docker-http-https-echo</code> es una de esas herramientas simples pero increíblemente útiles que todo desarrollador y operador de sistemas debería tener a mano. Facilita la comprensión de los flujos de red y acelera la depuración de problemas de conectividad en cualquier entorno basado en contenedores.</p>
+<p><em>Repositorio original</em>: <a href="https://github.com/mendhak/docker-http-https-echo">mendhak/docker-http-https-echo en GitHub</a></p>
   </div>
   <div class="tag-cloud">
     <p>
-      <a href="https://pablocaro.es/tag/posterazor.html">posterazor</a>
-      <a href="https://pablocaro.es/tag/impresion.html">impresión</a>
-      <a href="https://pablocaro.es/tag/posters.html">pósters</a>
-      <a href="https://pablocaro.es/tag/diy.html">diy</a>
+      <a href="https://pablocaro.es/tag/docker.html">docker</a>
+      <a href="https://pablocaro.es/tag/http.html">http</a>
+      <a href="https://pablocaro.es/tag/https.html">https</a>
+      <a href="https://pablocaro.es/tag/depuracion.html">depuracion</a>
+      <a href="https://pablocaro.es/tag/redes.html">redes</a>
       <a href="https://pablocaro.es/tag/herramientas.html">herramientas</a>
+      <a href="https://pablocaro.es/tag/contenedores.html">contenedores</a>
     </p>
   </div>
 
 
 
   <div class="neighbors">
-    <a class="btn float-left" href="https://pablocaro.es/gmail_correo_no_leido_solo_en_principal" title="Correo no leído en pestaña principal de gmail">
+    <a class="btn float-left" href="https://pablocaro.es/kubegres-postgresql-kubernetes" title="Kubegres: Gestión simplificada de PostgreSQL en Kubernetes">
       <i class="fa fa-angle-left"></i> Previous Post
-    </a>
-    <a class="btn float-right" href="https://pablocaro.es/mobaxterm-mucho-más-que-un-cliente-ssh" title="MobaXterm. Mucho más que un cliente ssh">
-      Next Post <i class="fa fa-angle-right"></i>
     </a>
   </div>
 
   <div class="related-posts">
     <h4>You might enjoy</h4>
     <ul class="related-posts">
-      <li><a href="https://pablocaro.es/docker-http-https-echo">`docker-http-https-echo`: Una herramienta esencial para depuración de red</a></li>
+      <li><a href="https://pablocaro.es/httpx-cliente-http-moderno-python">HTTPX: Cliente HTTP moderno para Python</a></li>
+      <li><a href="https://pablocaro.es/reduce-ruido-logs-python">Reduce el Ruido en tus Logs de Python: Un enfoque inteligente</a></li>
+      <li><a href="https://pablocaro.es/estados-conexion-tcp-netstat-ss">Estados de Conexión TCP en GNU/Linux: netstat y ss</a></li>
       <li><a href="https://pablocaro.es/de-yakuake-a-kitty">De Yakuake a Kitty: Mi transición a un terminal moderno</a></li>
-      <li><a href="https://pablocaro.es/herramientas-desarrolladores-linea-comandos">Potentes herramientas para desarrolladores desde línea de comandos</a></li>
+      <li><a href="https://pablocaro.es/posterazor-crear-posters-grandes">PosteRazor: Crea pósters gigantes desde cualquier imagen</a></li>
     </ul>
   </div>
 

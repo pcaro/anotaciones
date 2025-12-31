@@ -1,5 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Anotaciones por Pablo Caro</title><link href="https://pablocaro.es/" rel="alternate"></link><link href="https://pablocaro.es/feeds/all.atom.xml" rel="self"></link><id>https://pablocaro.es/</id><updated>2025-12-25T14:00:00+01:00</updated><subtitle>Anotaciones</subtitle><entry><title>Kubegres: Gestión simplificada de PostgreSQL en Kubernetes</title><link href="https://pablocaro.es/kubegres-postgresql-kubernetes" rel="alternate"></link><published>2025-12-25T14:00:00+01:00</published><updated>2025-12-25T14:00:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2025-12-25:/kubegres-postgresql-kubernetes</id><summary type="html">&lt;p&gt;Descubre Kubegres, un operador de Kubernetes que simplifica la implementación y gestión de clusters PostgreSQL altamente disponibles y escalables.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Desplegar y gestionar bases de datos relacionales en Kubernetes puede ser un desafío. Aunque los contenedores y la orquestación ofrecen flexibilidad, la persistencia de datos, la alta disponibilidad y las copias de seguridad de una base de datos como PostgreSQL requieren una consideración cuidadosa. Aquí es donde &lt;strong&gt;Kubegres&lt;/strong&gt; entra en juego.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Anotaciones por Pablo Caro</title><link href="https://pablocaro.es/" rel="alternate"></link><link href="https://pablocaro.es/feeds/all.atom.xml" rel="self"></link><id>https://pablocaro.es/</id><updated>2025-12-25T14:15:00+01:00</updated><subtitle>Anotaciones</subtitle><entry><title>`docker-http-https-echo`: Una herramienta esencial para depuración de red</title><link href="https://pablocaro.es/docker-http-https-echo" rel="alternate"></link><published>2025-12-25T14:15:00+01:00</published><updated>2025-12-25T14:15:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2025-12-25:/docker-http-https-echo</id><summary type="html">&lt;p&gt;&lt;code&gt;mendhak/docker-http-https-echo&lt;/code&gt; es un contenedor Docker simple que facilita la depuración de configuraciones de red, proxies y balanceadores de carga.&lt;/p&gt;</summary><content type="html">&lt;p&gt;En el complejo mundo de las aplicaciones distribuidas, la depuración de problemas de red, proxies, balanceadores de carga o reglas de firewall puede ser una tarea ardua. Necesitamos una forma simple de verificar qué está recibiendo un servidor. Aquí es donde una herramienta como &lt;code&gt;mendhak/docker-http-https-echo&lt;/code&gt; se vuelve indispensable.&lt;/p&gt;
+&lt;h2 id="que-es-mendhakdocker-http-https-echo"&gt;¿Qué es &lt;code&gt;mendhak/docker-http-https-echo&lt;/code&gt;?&lt;a class="headerlink" href="#que-es-mendhakdocker-http-https-echo" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Es un contenedor Docker extremadamente ligero y simple que funciona como un servidor HTTP y HTTPS de "eco". Su función principal es &lt;strong&gt;responder a cualquier solicitud HTTP o HTTPS con una descripción detallada de la propia solicitud&lt;/strong&gt;. Esto incluye:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Cabeceras de la solicitud (headers).&lt;/li&gt;
+&lt;li&gt;Método HTTP (GET, POST, PUT, etc.).&lt;/li&gt;
+&lt;li&gt;URL y parámetros de la solicitud.&lt;/li&gt;
+&lt;li&gt;Cuerpo de la solicitud (body).&lt;/li&gt;
+&lt;li&gt;Dirección IP remota del cliente.&lt;/li&gt;
+&lt;li&gt;Información del TLS/SSL (si es HTTPS).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="por-que-es-util"&gt;¿Por qué es útil?&lt;a class="headerlink" href="#por-que-es-util" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Este tipo de servidor de eco es invaluable para una variedad de escenarios de depuración:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Depuración de Proxies y Balanceadores de Carga&lt;/strong&gt;: Verifica si un proxy inverso o un balanceador de carga está reescribiendo cabeceras, modificando URLs o pasando el cuerpo de la solicitud como esperas.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Reglas de Firewall y Seguridad&lt;/strong&gt;: Confirma que el tráfico está llegando al destino correcto y que no está siendo bloqueado o alterado.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Inspección de Cabeceras HTTP/HTTPS&lt;/strong&gt;: Útil para ver exactamente qué cabeceras envía tu cliente o una aplicación específica.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Pruebas de Integración&lt;/strong&gt;: Un objetivo predecible para pruebas automáticas de cómo diferentes servicios se comunican a través de HTTP/HTTPS.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Diagnóstico de Contenido Mixto&lt;/strong&gt;: Puedes usarlo para verificar si los recursos HTTP se están cargando correctamente en un contexto HTTPS.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="como-usarlo"&gt;Cómo Usarlo&lt;a class="headerlink" href="#como-usarlo" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Su uso es directo a través de Docker:&lt;/p&gt;
+&lt;h3 id="para-http-puerto-8080"&gt;Para HTTP (puerto 8080)&lt;a class="headerlink" href="#para-http-puerto-8080" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;docker&lt;span class="w"&gt; &lt;/span&gt;run&lt;span class="w"&gt; &lt;/span&gt;-p&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;8080&lt;/span&gt;:8080&lt;span class="w"&gt; &lt;/span&gt;mendhak/http-https-echo
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Luego, puedes acceder a &lt;code&gt;http://localhost:8080&lt;/code&gt; con tu navegador o &lt;code&gt;curl&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;curl&lt;span class="w"&gt; &lt;/span&gt;http://localhost:8080/path?query&lt;span class="o"&gt;=&lt;/span&gt;value&lt;span class="w"&gt; &lt;/span&gt;-H&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;X-Custom-Header: test&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id="para-https-puerto-8443"&gt;Para HTTPS (puerto 8443)&lt;a class="headerlink" href="#para-https-puerto-8443" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Para usar HTTPS, debes mapear el puerto HTTPS del contenedor. La imagen ya viene con un certificado autofirmado para pruebas.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;docker&lt;span class="w"&gt; &lt;/span&gt;run&lt;span class="w"&gt; &lt;/span&gt;-p&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;8443&lt;/span&gt;:8443&lt;span class="w"&gt; &lt;/span&gt;mendhak/http-https-echo
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Accede a &lt;code&gt;https://localhost:8443&lt;/code&gt; (es posible que tu navegador te advierta sobre el certificado autofirmado).&lt;/p&gt;
+&lt;h2 id="conclusion"&gt;Conclusión&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;mendhak/docker-http-https-echo&lt;/code&gt; es una de esas herramientas simples pero increíblemente útiles que todo desarrollador y operador de sistemas debería tener a mano. Facilita la comprensión de los flujos de red y acelera la depuración de problemas de conectividad en cualquier entorno basado en contenedores.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Repositorio original&lt;/em&gt;: &lt;a href="https://github.com/mendhak/docker-http-https-echo"&gt;mendhak/docker-http-https-echo en GitHub&lt;/a&gt;&lt;/p&gt;</content><category term="Herramientas"></category><category term="docker"></category><category term="http"></category><category term="https"></category><category term="depuracion"></category><category term="redes"></category><category term="herramientas"></category><category term="contenedores"></category></entry><entry><title>Kubegres: Gestión simplificada de PostgreSQL en Kubernetes</title><link href="https://pablocaro.es/kubegres-postgresql-kubernetes" rel="alternate"></link><published>2025-12-25T14:00:00+01:00</published><updated>2025-12-25T14:00:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2025-12-25:/kubegres-postgresql-kubernetes</id><summary type="html">&lt;p&gt;Descubre Kubegres, un operador de Kubernetes que simplifica la implementación y gestión de clusters PostgreSQL altamente disponibles y escalables.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Desplegar y gestionar bases de datos relacionales en Kubernetes puede ser un desafío. Aunque los contenedores y la orquestación ofrecen flexibilidad, la persistencia de datos, la alta disponibilidad y las copias de seguridad de una base de datos como PostgreSQL requieren una consideración cuidadosa. Aquí es donde &lt;strong&gt;Kubegres&lt;/strong&gt; entra en juego.&lt;/p&gt;
 &lt;h2 id="que-es-kubegres"&gt;¿Qué es Kubegres?&lt;a class="headerlink" href="#que-es-kubegres" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Kubegres es un &lt;strong&gt;operador de Kubernetes&lt;/strong&gt; que permite implementar y gestionar clusters PostgreSQL en Kubernetes de forma sencilla y eficiente. Un operador es una aplicación que extiende las funcionalidades de Kubernetes, automatizando tareas operacionales complejas que normalmente requieren intervención manual.&lt;/p&gt;
 &lt;h2 id="por-que-usar-kubegres"&gt;¿Por qué usar Kubegres?&lt;a class="headerlink" href="#por-que-usar-kubegres" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
@@ -3085,10 +3123,4 @@ Tras "setfacl -m user:joe:rwx dir",  verás que ls -d dir muestra un signo + al 
 Si quieres saber más, el tío google te lo dirá.
     </content><category term="Sistemas"></category><category term="linux"></category></entry><entry><title>Usar find para detectar enlaces simbólicos rotos</title><link href="https://pablocaro.es/usar-find-para-detectar-enlaces-simbolicos-rotos" rel="alternate"></link><published>2008-11-20T11:30:00+01:00</published><updated>2008-11-20T11:30:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2008-11-20:/usar-find-para-detectar-enlaces-simbolicos-rotos</id><content type="html">
         &lt;code&gt;for f in $(find /usr/local/bin -type l); do if [ ! -e "$f" ]; then &lt;a title="Echo command (not yet written)" class="new" href="http://howto.wikia.com/index.php?title=Echo_command&amp;amp;action=edit&amp;amp;redlink=1"&gt;echo&lt;/a&gt; $f; fi; done&lt;/code&gt;
-    </content><category term="Sistemas"></category><category term="linux"></category></entry><entry><title>¿Cómo hacer un "svn export" con git?</title><link href="https://pablocaro.es/como-hacer-un-svn-export-con-git" rel="alternate"></link><published>2008-11-14T05:04:00+01:00</published><updated>2008-11-14T05:04:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2008-11-14:/como-hacer-un-svn-export-con-git</id><content type="html">
-        Si tienes que descargarte un árbol git pero sin los metadatos, porque por ejemplo sólo quieres el código para congerlarlo versionado en el subversion de tu proyecto, lo más fácil es:
-
-git clone {clone-url}
-
-rm -rf .gitignore .git
-    </content><category term="Programación"></category></entry></feed>
+    </content><category term="Sistemas"></category><category term="linux"></category></entry></feed>
