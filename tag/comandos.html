@@ -57,25 +57,17 @@
 
  
 
-<meta name="author" content="Pablo Caro" />
-<meta name="description" content="Postgres 8.3 no me permitía crear una base de datos con un encoding distinto a los instalados en mi maquina, y yo debía recuperar una copia de seguridad de una base de datos para la ampliación de unos trabajos que vienen de antiguo. Si intentaba importar los datos fallaba …" />
-<meta name="keywords" content="linux">
-
-
+    <meta name="author" content="Pablo Caro" />
+    <meta name="description" content="" />
   <meta property="og:site_name" content="Anotaciones por Pablo Caro"/>
-  <meta property="og:title" content="Instalar postgres 8.2 en jaunty"/>
-  <meta property="og:description" content="Postgres 8.3 no me permitía crear una base de datos con un encoding distinto a los instalados en mi maquina, y yo debía recuperar una copia de seguridad de una base de datos para la ampliación de unos trabajos que vienen de antiguo. Si intentaba importar los datos fallaba …"/>
+  <meta property="og:type" content="blog"/>
+  <meta property="og:title" content="Anotaciones por Pablo Caro"/>
+  <meta property="og:description" content=""/>
   <meta property="og:locale" content="en_US"/>
-  <meta property="og:url" content="https://pablocaro.es/instalar-postgres-8-2-en-jaunty"/>
-  <meta property="og:type" content="article"/>
-  <meta property="article:published_time" content="2009-06-30 10:52:00+02:00"/>
-  <meta property="article:modified_time" content=""/>
-  <meta property="article:author" content="https://pablocaro.es/author/pablo-caro.html">
-  <meta property="article:section" content="Sistemas"/>
-  <meta property="article:tag" content="linux"/>
+  <meta property="og:url" content="https://pablocaro.es"/>
   <meta property="og:image" content="/theme/img/profile.png">
 
-  <title>Anotaciones por Pablo Caro &ndash; Instalar postgres 8.2 en jaunty</title>
+  <title>Anotaciones por Pablo Caro &ndash; Tag comandos</title>
 
 
 </head>
@@ -168,98 +160,30 @@
   <a href="https://pablocaro.es/feeds/all.rss.xml">RSS</a>
 </nav>
 
-<article class="single">
-  <header>
-      
-    <h1 id="instalar-postgres-8-2-en-jaunty">Instalar postgres 8.2 en jaunty</h1>
-    <p>
-      Posted on Tue 30 June 2009 in <a href="https://pablocaro.es/category/sistemas.html">Sistemas</a>
 
+
+<article>
+  <header>
+    <h2><a href="https://pablocaro.es/ver-archivos-paquete-rpm#ver-archivos-paquete-rpm">Cómo ver los archivos de un paquete RPM en Linux</a></h2>
+    <p>
+      Posted on Thu 25 December 2025 in <a href="https://pablocaro.es/category/sistemas.html">Sistemas</a>
+
+          &#8226; Tagged with
+              <a href="https://pablocaro.es/tag/linux.html">linux</a>,              <a href="https://pablocaro.es/tag/rpm.html">rpm</a>,              <a href="https://pablocaro.es/tag/paquetes.html">paquetes</a>,              <a href="https://pablocaro.es/tag/comandos.html">comandos</a>,              <a href="https://pablocaro.es/tag/sistemas.html">sistemas</a>,              <a href="https://pablocaro.es/tag/administracion.html">administración</a>,              <a href="https://pablocaro.es/tag/dnf.html">dnf</a>,              <a href="https://pablocaro.es/tag/yum.html">yum</a>
     </p>
   </header>
-
-
   <div>
-    
-        Postgres 8.3 no me permitía crear una base de datos con un encoding distinto a los instalados en mi maquina, y yo debía recuperar una copia de seguridad de una base de datos para la ampliación de unos trabajos que vienen  de antiguo.
-
-Si intentaba importar los datos fallaba por el encoding:
-<pre>
-# createdb base_datos  -O owner ; 
-# pg_restore -F c -d base_datos   viernes-27-feb-2009.dump
-pg_restore: [archiver (db)] COPY failed: ERROR:  secuencia de bytes no válida para codificación «UTF8»: 0xa2
-</pre>
-
-Y además no me dejaba crear la base de datos con el encoding correcto:
-<pre>
-postgres@davinci$ createdb  base_datos -E latin1
-createdb: falló la creación de la base de datos:
-ERROR:  la codificación LATIN1 no coincide con la configuración regional del servidor es_ES.UTF-8
-DETAIL:  La configuración regional LC_CTYPE del servidor requiere la codificación UTF8.
-</pre>
-
-Para poder seguir adelante dos alternativas:<a href="http://softwarelibre.org.bo/wiki/postgresqlutf8tolatin1"> cambiar el encoding de mi base de datos</a> (no podía porque tengo otras bases de datos) o instalar postgres 8.2 (debian y derivados permiten tener varios postgres a la vez por paquetería)
-
-De esta forma que me dispuse a descargar los paquetes de haunty: <a href="http://packages.ubuntu.com/hardy/i386/postgresql-8.2/download">postgresql-8.2</a> y<a href="http://packages.ubuntu.com/hardy/i386/postgresql-client-8.2/download"> postgresql-client-8.2</a>
-
-Una vez descargados los paquetes bastó:
-<pre>
-pcaro@davinci$ sudo dpkg -i postgresql-client-8.2_8.2.7-1_i386.deb
-pcaro@davinci$ sudo dpkg -i postgresql-8.2_8.2.7-1_i386.deb
-sudo aptitude hold postgresql-client-8.2
-sudo aptitude hold postgresql-8.2
-</pre>
-
-Luego puedes configurar los postgres para que escuchen en distintos puertos o, si solo lo necesitas de forma temporal como yo, simplemente parar el 8.3 y levantar el 8.2 cuando sea necesario.
-
-PD: Gracias a Antonio por la ayuda.
-    
+      <div><p>Guía rápida para inspeccionar el contenido de paquetes RPM y determinar qué paquetes poseen determinados archivos en tu sistema Linux.</p></div>
+        <br>
+        <a class="btn"
+           href="https://pablocaro.es/ver-archivos-paquete-rpm#ver-archivos-paquete-rpm">
+          Continue reading
+        </a>
   </div>
-  <div class="tag-cloud">
-    <p>
-      <a href="https://pablocaro.es/tag/linux.html">linux</a>
-    </p>
-  </div>
-
-
-
-  <div class="neighbors">
-    <a class="btn float-left" href="https://pablocaro.es/listar-las-bases-de-datos-postgres-que-tengo-instaladas" title="Listar las bases de datos postgres que tengo instaladas">
-      <i class="fa fa-angle-left"></i> Previous Post
-    </a>
-    <a class="btn float-right" href="https://pablocaro.es/mostrar-el-codigo-de-funciones-en-postgres" title="Mostrar el código de funciones en postgres">
-      Next Post <i class="fa fa-angle-right"></i>
-    </a>
-  </div>
-
-  <div class="related-posts">
-    <h4>You might enjoy</h4>
-    <ul class="related-posts">
-      <li><a href="https://pablocaro.es/ver-archivos-paquete-rpm">Cómo ver los archivos de un paquete RPM en Linux</a></li>
-      <li><a href="https://pablocaro.es/kooha-captura-pantalla-linux">Kooha: Captura de pantalla sencilla y elegante en Linux</a></li>
-      <li><a href="https://pablocaro.es/direnv-gestion-entornos">`direnv`: Gestiona tus entornos de desarrollo de forma inteligente</a></li>
-      <li><a href="https://pablocaro.es/estados-conexion-tcp-netstat-ss">Estados de Conexión TCP en GNU/Linux: netstat y ss</a></li>
-      <li><a href="https://pablocaro.es/kitty-acceso-rapido">Kitty como terminal de acceso rápido: La comodidad de un desplegable</a></li>
-    </ul>
-  </div>
-
-
-
-<!-- Disqus -->
-<div id="disqus_thread"></div>
-<script type="text/javascript">
-    var disqus_shortname = 'anotaciones';
-    (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-</script>
-<noscript>
-    Please enable JavaScript to view comments.
-</noscript>
-<!-- End Disqus -->
 </article>
+
+
+
 
 <footer>
 <p>

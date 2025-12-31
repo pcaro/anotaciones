@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Anotaciones por Pablo Caro - yum</title><link href="https://pablocaro.es/" rel="alternate"></link><link href="https://pablocaro.es/feeds/tags/yum.atom.xml" rel="self"></link><id>https://pablocaro.es/</id><updated>2025-12-25T15:15:00+01:00</updated><subtitle>Anotaciones</subtitle><entry><title>Cómo ver los archivos de un paquete RPM en Linux</title><link href="https://pablocaro.es/ver-archivos-paquete-rpm" rel="alternate"></link><published>2025-12-25T15:15:00+01:00</published><updated>2025-12-25T15:15:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2025-12-25:/ver-archivos-paquete-rpm</id><summary type="html">&lt;p&gt;Guía rápida para inspeccionar el contenido de paquetes RPM y determinar qué paquetes poseen determinados archivos en tu sistema Linux.&lt;/p&gt;</summary><content type="html">&lt;p&gt;En sistemas Linux basados en RPM (como Red Hat, CentOS, Fedora, openSUSE), es común interactuar con paquetes en formato &lt;code&gt;.rpm&lt;/code&gt;. A menudo, necesitamos saber qué archivos contiene un paquete antes de instalarlo, o qué paquete es el responsable de un archivo específico ya instalado en el sistema. Para ello, la herramienta &lt;code&gt;rpm&lt;/code&gt; nos ofrece varias opciones útiles.&lt;/p&gt;
+&lt;h2 id="1-listar-archivos-de-un-paquete-rpm-sin-instalar"&gt;1. Listar Archivos de un Paquete RPM sin Instalar&lt;a class="headerlink" href="#1-listar-archivos-de-un-paquete-rpm-sin-instalar" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Si tienes un archivo &lt;code&gt;.rpm&lt;/code&gt; descargado y quieres ver qué archivos instalará (y dónde) sin necesidad de instalarlo, puedes usar la opción &lt;code&gt;-qlp&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;rpm&lt;span class="w"&gt; &lt;/span&gt;-qlp&lt;span class="w"&gt; &lt;/span&gt;nombre_del_paquete.rpm
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;-q&lt;/code&gt;: Modo de consulta (query).&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;-l&lt;/code&gt;: Lista los archivos (list files).&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;-p&lt;/code&gt;: Consulta un paquete (package file) en lugar de uno instalado.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Ejemplo:&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;rpm&lt;span class="w"&gt; &lt;/span&gt;-qlp&lt;span class="w"&gt; &lt;/span&gt;nginx-1.20.1-1.el8.x86_64.rpm
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="2-encontrar-el-paquete-dueno-de-un-archivo-instalado"&gt;2. Encontrar el Paquete Dueño de un Archivo Instalado&lt;a class="headerlink" href="#2-encontrar-el-paquete-dueno-de-un-archivo-instalado" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Si encuentras un archivo en tu sistema y quieres saber a qué paquete RPM pertenece (útil para depuración o para saber si puedes borrarlo de forma segura), usa la opción &lt;code&gt;-qf&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;rpm&lt;span class="w"&gt; &lt;/span&gt;-qf&lt;span class="w"&gt; &lt;/span&gt;/ruta/al/archivo
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Ejemplo:&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;rpm&lt;span class="w"&gt; &lt;/span&gt;-qf&lt;span class="w"&gt; &lt;/span&gt;/etc/nginx/nginx.conf
+&lt;span class="c1"&gt;# Salida esperada: nginx-1.20.1-1.el8.x86_64&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="3-obtener-informacion-detallada-de-un-paquete"&gt;3. Obtener Información Detallada de un Paquete&lt;a class="headerlink" href="#3-obtener-informacion-detallada-de-un-paquete" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Para ver información completa sobre un paquete (versión, descripción, dependencias, etc.), ya sea instalado o un archivo &lt;code&gt;.rpm&lt;/code&gt;, puedes usar &lt;code&gt;-qi&lt;/code&gt; (para paquetes instalados) o &lt;code&gt;-qip&lt;/code&gt; (para archivos de paquete):&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;rpm&lt;span class="w"&gt; &lt;/span&gt;-qi&lt;span class="w"&gt; &lt;/span&gt;nombre_del_paquete_instalado
+&lt;span class="c1"&gt;# Ejemplo: rpm -qi nginx&lt;/span&gt;
+
+rpm&lt;span class="w"&gt; &lt;/span&gt;-qip&lt;span class="w"&gt; &lt;/span&gt;nombre_del_paquete.rpm
+&lt;span class="c1"&gt;# Ejemplo: rpm -qip nginx-1.20.1-1.el8.x86_64.rpm&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="conclusion"&gt;Conclusión&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Dominar estas sencillas opciones del comando &lt;code&gt;rpm&lt;/code&gt; te proporciona un control mucho mayor sobre los paquetes y archivos de tu sistema Linux, facilitando la administración y la depuración. Son herramientas esenciales para cualquier administrador de sistemas o desarrollador que trabaje con distribuciones basadas en RPM.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Artículo original&lt;/em&gt;: &lt;a href="https://comulinux.blogspot.com/2010/04/como-ver-los-archivos-de-un-paquete-rpm.html"&gt;Cómo Ver los Archivos de un Paquete RPM o Deb&lt;/a&gt;&lt;/p&gt;</content><category term="Sistemas"></category><category term="linux"></category><category term="rpm"></category><category term="paquetes"></category><category term="comandos"></category><category term="sistemas"></category><category term="administración"></category><category term="dnf"></category><category term="yum"></category></entry></feed>
