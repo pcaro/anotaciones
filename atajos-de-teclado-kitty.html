@@ -58,29 +58,28 @@
  
 
 <meta name="author" content="Pablo Caro" />
-<meta name="description" content="Explorando las razones y beneficios de cambiar de Yakuake a Kitty para una experiencia de terminal más potente y personalizable." />
-<meta name="keywords" content="kitty, yakuake, terminal, linux, productividad, herramientas">
+<meta name="description" content="Una guía rápida a los atajos de teclado más útiles de Kitty para optimizar tu flujo de trabajo en la línea de comandos." />
+<meta name="keywords" content="kitty, terminal, atajos, teclado, productividad">
 
 
   <meta property="og:site_name" content="Anotaciones por Pablo Caro"/>
-  <meta property="og:title" content="De Yakuake a Kitty: Mi transición a un terminal moderno"/>
-  <meta property="og:description" content="Explorando las razones y beneficios de cambiar de Yakuake a Kitty para una experiencia de terminal más potente y personalizable."/>
+  <meta property="og:title" content="Atajos de teclado esenciales en Kitty: Dominando tu terminal"/>
+  <meta property="og:description" content="Una guía rápida a los atajos de teclado más útiles de Kitty para optimizar tu flujo de trabajo en la línea de comandos."/>
   <meta property="og:locale" content="en_US"/>
-  <meta property="og:url" content="https://pablocaro.es/de-yakuake-a-kitty"/>
+  <meta property="og:url" content="https://pablocaro.es/atajos-de-teclado-kitty"/>
   <meta property="og:type" content="article"/>
-  <meta property="article:published_time" content="2025-12-25 12:00:00+01:00"/>
+  <meta property="article:published_time" content="2025-12-25 12:15:00+01:00"/>
   <meta property="article:modified_time" content=""/>
   <meta property="article:author" content="https://pablocaro.es/author/pablo-caro.html">
   <meta property="article:section" content="Sistemas"/>
   <meta property="article:tag" content="kitty"/>
-  <meta property="article:tag" content="yakuake"/>
   <meta property="article:tag" content="terminal"/>
-  <meta property="article:tag" content="linux"/>
+  <meta property="article:tag" content="atajos"/>
+  <meta property="article:tag" content="teclado"/>
   <meta property="article:tag" content="productividad"/>
-  <meta property="article:tag" content="herramientas"/>
   <meta property="og:image" content="/theme/img/profile.png">
 
-  <title>Anotaciones por Pablo Caro &ndash; De Yakuake a Kitty: Mi transición a un terminal moderno</title>
+  <title>Anotaciones por Pablo Caro &ndash; Atajos de teclado esenciales en Kitty: Dominando tu terminal</title>
 
 
 </head>
@@ -176,7 +175,7 @@
 <article class="single">
   <header>
       
-    <h1 id="de-yakuake-a-kitty">De Yakuake a Kitty: Mi transición a un terminal moderno</h1>
+    <h1 id="atajos-de-teclado-kitty">Atajos de teclado esenciales en Kitty: Dominando tu terminal</h1>
     <p>
       Posted on Thu 25 December 2025 in <a href="https://pablocaro.es/category/sistemas.html">Sistemas</a>
 
@@ -185,51 +184,77 @@
 
 
   <div>
-    <p>Durante años, <strong>Yakuake</strong> ha sido mi terminal de cabecera en entornos de escritorio KDE. Su comodidad de acceso rápido, desplegándose y ocultándose con una simple pulsación de tecla, es innegable. Sin embargo, en mi búsqueda constante de optimización y rendimiento, decidí explorar alternativas, y <strong>Kitty</strong> emergió como una opción destacada.</p>
-<h2 id="por-que-el-cambio">¿Por qué el cambio?<a class="headerlink" href="#por-que-el-cambio" title="Permanent link">&para;</a></h2>
-<p>Aunque Yakuake es excelente en su nicho, Kitty ofrece una serie de ventajas que se alinean mejor con las demandas de un flujo de trabajo moderno y exigente:</p>
-<ol>
-<li><strong>Rendimiento Acelerado por GPU</strong>: Kitty está diseñado para aprovechar la tarjeta gráfica, lo que resulta en un renderizado de texto extremadamente rápido y fluido, especialmente noticeable en terminales con mucho scroll o salida de datos intensa.</li>
-<li><strong>Multiplexación Integrada</strong>: A diferencia de Yakuake, que se basa en sesiones de pestañas/ventanas tradicionales, Kitty incorpora su propio sistema de multiplexación (similar a <code>tmux</code> o <code>screen</code>) que permite dividir ventanas, crear pestañas y organizar paneles de forma nativa y eficiente.</li>
-<li><strong>Configurabilidad Extensa</strong>: <code>kitty.conf</code> permite una personalización profunda, desde atajos de teclado hasta la apariencia, temas y comportamiento.</li>
-<li><strong>Soporte Moderno</strong>: Excelente soporte para Wayland (el futuro de Linux en el escritorio), ligaduras de fuentes (como las de Fira Code), y un ecosistema de "kittens" (scripts y funcionalidades extendidas).</li>
-<li><strong>Cross-platform</strong>: Aunque mi uso principal es en Linux, la capacidad de tener una experiencia de terminal consistente en diferentes sistemas operativos es un plus.</li>
-</ol>
-<h2 id="adaptandose-a-kitty">Adaptándose a Kitty<a class="headerlink" href="#adaptandose-a-kitty" title="Permanent link">&para;</a></h2>
-<p>La transición requirió ajustar algunas costumbres, principalmente la forma de gestionar las sesiones y el acceso rápido. Sin embargo, las ventajas superan con creces la curva de aprendizaje inicial. La velocidad, la fluidez y la potencia de las características integradas de Kitty lo convierten en una herramienta indispensable para mi día a día.</p>
-<p>Configurar Kitty es un proceso sencillo a través de su archivo <code>kitty.conf</code>, donde se definen todos los aspectos del terminal. Exploraremos más sobre su configuración y atajos de teclado en próximas entradas.</p>
-<p>Si buscas llevar tu experiencia de terminal al siguiente nivel, la migración a Kitty es un paso que recomiendo encarecidamente.</p>
+    <p><strong>Kitty</strong> es un terminal que brilla por su rendimiento y su gran capacidad de personalización, pero donde realmente se potencia es en su interfaz controlada por teclado. Dominar sus atajos te permitirá navegar, gestionar y manipular tus sesiones de terminal con una eficiencia asombrosa.</p>
+<h2 id="descubre-tus-atajos-show_shortcuts">Descubre tus atajos: <code>show_shortcuts</code><a class="headerlink" href="#descubre-tus-atajos-show_shortcuts" title="Permanent link">&para;</a></h2>
+<p>La forma más rápida de conocer todos los atajos de teclado configurados en tu instancia de Kitty es usando su propia funcionalidad:</p>
+<div class="highlight"><pre><span></span><code>kitty<span class="w"> </span>+kitten<span class="w"> </span>show_shortcuts
+</code></pre></div>
+
+<p>Esto abrirá una ventana interactiva donde podrás ver todos los atajos, tanto los predeterminados como los personalizados en tu <code>kitty.conf</code>.</p>
+<h2 id="atajos-esenciales-para-el-dia-a-dia">Atajos Esenciales para el Día a Día<a class="headerlink" href="#atajos-esenciales-para-el-dia-a-dia" title="Permanent link">&para;</a></h2>
+<p>Aquí te presento algunos de los atajos más útiles y que más te ayudarán a optimizar tu flujo de trabajo:</p>
+<h3 id="gestion-de-ventanas-y-splits-paneles">Gestión de Ventanas y Splits (Paneles)<a class="headerlink" href="#gestion-de-ventanas-y-splits-paneles" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>ctrl+shift+enter</code>: Abre una nueva ventana de Kitty.</li>
+<li><code>ctrl+shift+w</code>: Cierra la ventana actual de Kitty.</li>
+<li><code>ctrl+shift+o</code>: Divide la ventana actual verticalmente (nuevo panel a la derecha).</li>
+<li><code>ctrl+shift+e</code>: Divide la ventana actual horizontalmente (nuevo panel abajo).</li>
+<li><code>ctrl+shift+f</code>: Alterna entre paneles divididos (focus).</li>
+<li><code>ctrl+shift+[</code> / <code>ctrl+shift+]</code>: Navega entre paneles (izquierda/derecha).</li>
+<li><code>ctrl+shift+alt+[</code> / <code>ctrl+shift+alt+]</code>: Mueve el panel activo (izquierda/derecha).</li>
+</ul>
+<h3 id="gestion-de-pestanas">Gestión de Pestañas<a class="headerlink" href="#gestion-de-pestanas" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>ctrl+shift+t</code>: Abre una nueva pestaña.</li>
+<li><code>ctrl+shift+q</code>: Cierra la pestaña actual.</li>
+<li><code>ctrl+shift+.</code>: Mueve a la siguiente pestaña.</li>
+<li><code>ctrl+shift+,</code>: Mueve a la pestaña anterior.</li>
+<li><code>ctrl+shift+alt+.</code>: Mueve la pestaña actual a la derecha.</li>
+<li><code>ctrl+shift+alt+,</code>: Mueve la pestaña actual a la izquierda.</li>
+</ul>
+<h3 id="copiar-y-pegar">Copiar y Pegar<a class="headerlink" href="#copiar-y-pegar" title="Permanent link">&para;</a></h3>
+<p>Kitty tiene su propia implementación de copiar/pegar, que puede ser más fiable que la del sistema cuando trabajas en entornos remotos o con multiplexores:</p>
+<ul>
+<li><code>ctrl+shift+c</code>: Copia el texto seleccionado al portapapeles del sistema.</li>
+<li><code>ctrl+shift+v</code>: Pega el texto del portapapeles del sistema.</li>
+</ul>
+<h3 id="control-de-fuentes-y-apariencia">Control de Fuentes y Apariencia<a class="headerlink" href="#control-de-fuentes-y-apariencia" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>ctrl+shift+=</code> (o <code>+</code>): Aumenta el tamaño de la fuente.</li>
+<li><code>ctrl+shift+-</code>: Disminuye el tamaño de la fuente.</li>
+<li><code>ctrl+shift+backspace</code>: Restablece el tamaño de la fuente al valor predeterminado.</li>
+<li><code>ctrl+shift+k</code>: Entra en modo "scrollback" (para buscar o seleccionar texto histórico).</li>
+</ul>
+<h2 id="personalizando-tus-atajos-en-kittyconf">Personalizando tus Atajos en <code>kitty.conf</code><a class="headerlink" href="#personalizando-tus-atajos-en-kittyconf" title="Permanent link">&para;</a></h2>
+<p>Puedes añadir o modificar atajos de teclado en tu archivo de configuración <code>~/.config/kitty/kitty.conf</code> usando la directiva <code>map</code>. Por ejemplo, para mapear <code>F1</code> para un script personalizado:</p>
+<div class="highlight"><pre><span></span><code><span class="nx">map</span><span class="w"> </span><span class="nx">f1</span><span class="w"> </span><span class="nx">launch</span><span class="w"> </span><span class="o">--</span><span class="k">type</span><span class="p">=</span><span class="nx">overlay</span><span class="w"> </span><span class="nx">bash</span><span class="w"> </span><span class="o">-</span><span class="nx">c</span><span class="w"> </span><span class="s">&quot;my_custom_script.sh&quot;</span>
+</code></pre></div>
+
+<p>Dominar estos atajos transformará tu interacción con la terminal, haciéndola más fluida e intuitiva. ¡Experimenta y personaliza Kitty para que se adapte perfectamente a tu estilo de trabajo!</p>
   </div>
   <div class="tag-cloud">
     <p>
       <a href="https://pablocaro.es/tag/kitty.html">kitty</a>
-      <a href="https://pablocaro.es/tag/yakuake.html">yakuake</a>
       <a href="https://pablocaro.es/tag/terminal.html">terminal</a>
-      <a href="https://pablocaro.es/tag/linux.html">linux</a>
+      <a href="https://pablocaro.es/tag/atajos.html">atajos</a>
+      <a href="https://pablocaro.es/tag/teclado.html">teclado</a>
       <a href="https://pablocaro.es/tag/productividad.html">productividad</a>
-      <a href="https://pablocaro.es/tag/herramientas.html">herramientas</a>
     </p>
   </div>
 
 
 
   <div class="neighbors">
-    <a class="btn float-left" href="https://pablocaro.es/poe-the-poet-automatizando-tareas-en-proyectos-python-con-uv" title="Poe the Poet: Automatizando tareas en proyectos Python con uv">
+    <a class="btn float-left" href="https://pablocaro.es/de-yakuake-a-kitty" title="De Yakuake a Kitty: Mi transición a un terminal moderno">
       <i class="fa fa-angle-left"></i> Previous Post
-    </a>
-    <a class="btn float-right" href="https://pablocaro.es/atajos-de-teclado-kitty" title="Atajos de teclado esenciales en Kitty: Dominando tu terminal">
-      Next Post <i class="fa fa-angle-right"></i>
     </a>
   </div>
 
   <div class="related-posts">
     <h4>You might enjoy</h4>
     <ul class="related-posts">
-      <li><a href="https://pablocaro.es/atajos-de-teclado-kitty">Atajos de teclado esenciales en Kitty: Dominando tu terminal</a></li>
-      <li><a href="https://pablocaro.es/mobaxterm-mucho-más-que-un-cliente-ssh">MobaXterm. Mucho más que un cliente ssh</a></li>
-      <li><a href="https://pablocaro.es/gmail_correo_no_leido_solo_en_principal">Correo no leído en pestaña principal de gmail</a></li>
-      <li><a href="https://pablocaro.es/determinar-slots-ram-uso-linux">Determinar slots de RAM en uso en Linux</a></li>
-      <li><a href="https://pablocaro.es/boton_central_firefox">Botón central en firefox</a></li>
+      <li><a href="https://pablocaro.es/de-yakuake-a-kitty">De Yakuake a Kitty: Mi transición a un terminal moderno</a></li>
+      <li><a href="https://pablocaro.es/como-uso-git-worktrees">Cómo uso git worktrees para trabajo concurrente</a></li>
     </ul>
   </div>
 

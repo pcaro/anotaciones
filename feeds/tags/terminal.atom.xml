@@ -1,5 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Anotaciones por Pablo Caro - terminal</title><link href="https://pablocaro.es/" rel="alternate"></link><link href="https://pablocaro.es/feeds/tags/terminal.atom.xml" rel="self"></link><id>https://pablocaro.es/</id><updated>2025-12-25T12:00:00+01:00</updated><subtitle>Anotaciones</subtitle><entry><title>De Yakuake a Kitty: Mi transición a un terminal moderno</title><link href="https://pablocaro.es/de-yakuake-a-kitty" rel="alternate"></link><published>2025-12-25T12:00:00+01:00</published><updated>2025-12-25T12:00:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2025-12-25:/de-yakuake-a-kitty</id><summary type="html">&lt;p&gt;Explorando las razones y beneficios de cambiar de Yakuake a Kitty para una experiencia de terminal más potente y personalizable.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Durante años, &lt;strong&gt;Yakuake&lt;/strong&gt; ha sido mi terminal de cabecera en entornos de escritorio KDE. Su comodidad de acceso rápido, desplegándose y ocultándose con una simple pulsación de tecla, es innegable. Sin embargo, en mi búsqueda constante de optimización y rendimiento, decidí explorar alternativas, y &lt;strong&gt;Kitty&lt;/strong&gt; emergió como una opción destacada.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Anotaciones por Pablo Caro - terminal</title><link href="https://pablocaro.es/" rel="alternate"></link><link href="https://pablocaro.es/feeds/tags/terminal.atom.xml" rel="self"></link><id>https://pablocaro.es/</id><updated>2025-12-25T12:15:00+01:00</updated><subtitle>Anotaciones</subtitle><entry><title>Atajos de teclado esenciales en Kitty: Dominando tu terminal</title><link href="https://pablocaro.es/atajos-de-teclado-kitty" rel="alternate"></link><published>2025-12-25T12:15:00+01:00</published><updated>2025-12-25T12:15:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2025-12-25:/atajos-de-teclado-kitty</id><summary type="html">&lt;p&gt;Una guía rápida a los atajos de teclado más útiles de Kitty para optimizar tu flujo de trabajo en la línea de comandos.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;strong&gt;Kitty&lt;/strong&gt; es un terminal que brilla por su rendimiento y su gran capacidad de personalización, pero donde realmente se potencia es en su interfaz controlada por teclado. Dominar sus atajos te permitirá navegar, gestionar y manipular tus sesiones de terminal con una eficiencia asombrosa.&lt;/p&gt;
+&lt;h2 id="descubre-tus-atajos-show_shortcuts"&gt;Descubre tus atajos: &lt;code&gt;show_shortcuts&lt;/code&gt;&lt;a class="headerlink" href="#descubre-tus-atajos-show_shortcuts" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;La forma más rápida de conocer todos los atajos de teclado configurados en tu instancia de Kitty es usando su propia funcionalidad:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;kitty&lt;span class="w"&gt; &lt;/span&gt;+kitten&lt;span class="w"&gt; &lt;/span&gt;show_shortcuts
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Esto abrirá una ventana interactiva donde podrás ver todos los atajos, tanto los predeterminados como los personalizados en tu &lt;code&gt;kitty.conf&lt;/code&gt;.&lt;/p&gt;
+&lt;h2 id="atajos-esenciales-para-el-dia-a-dia"&gt;Atajos Esenciales para el Día a Día&lt;a class="headerlink" href="#atajos-esenciales-para-el-dia-a-dia" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Aquí te presento algunos de los atajos más útiles y que más te ayudarán a optimizar tu flujo de trabajo:&lt;/p&gt;
+&lt;h3 id="gestion-de-ventanas-y-splits-paneles"&gt;Gestión de Ventanas y Splits (Paneles)&lt;a class="headerlink" href="#gestion-de-ventanas-y-splits-paneles" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+enter&lt;/code&gt;: Abre una nueva ventana de Kitty.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+w&lt;/code&gt;: Cierra la ventana actual de Kitty.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+o&lt;/code&gt;: Divide la ventana actual verticalmente (nuevo panel a la derecha).&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+e&lt;/code&gt;: Divide la ventana actual horizontalmente (nuevo panel abajo).&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+f&lt;/code&gt;: Alterna entre paneles divididos (focus).&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+[&lt;/code&gt; / &lt;code&gt;ctrl+shift+]&lt;/code&gt;: Navega entre paneles (izquierda/derecha).&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+alt+[&lt;/code&gt; / &lt;code&gt;ctrl+shift+alt+]&lt;/code&gt;: Mueve el panel activo (izquierda/derecha).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="gestion-de-pestanas"&gt;Gestión de Pestañas&lt;a class="headerlink" href="#gestion-de-pestanas" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+t&lt;/code&gt;: Abre una nueva pestaña.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+q&lt;/code&gt;: Cierra la pestaña actual.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+.&lt;/code&gt;: Mueve a la siguiente pestaña.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+,&lt;/code&gt;: Mueve a la pestaña anterior.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+alt+.&lt;/code&gt;: Mueve la pestaña actual a la derecha.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+alt+,&lt;/code&gt;: Mueve la pestaña actual a la izquierda.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="copiar-y-pegar"&gt;Copiar y Pegar&lt;a class="headerlink" href="#copiar-y-pegar" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Kitty tiene su propia implementación de copiar/pegar, que puede ser más fiable que la del sistema cuando trabajas en entornos remotos o con multiplexores:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+c&lt;/code&gt;: Copia el texto seleccionado al portapapeles del sistema.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+v&lt;/code&gt;: Pega el texto del portapapeles del sistema.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="control-de-fuentes-y-apariencia"&gt;Control de Fuentes y Apariencia&lt;a class="headerlink" href="#control-de-fuentes-y-apariencia" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+=&lt;/code&gt; (o &lt;code&gt;+&lt;/code&gt;): Aumenta el tamaño de la fuente.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+-&lt;/code&gt;: Disminuye el tamaño de la fuente.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+backspace&lt;/code&gt;: Restablece el tamaño de la fuente al valor predeterminado.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+k&lt;/code&gt;: Entra en modo "scrollback" (para buscar o seleccionar texto histórico).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="personalizando-tus-atajos-en-kittyconf"&gt;Personalizando tus Atajos en &lt;code&gt;kitty.conf&lt;/code&gt;&lt;a class="headerlink" href="#personalizando-tus-atajos-en-kittyconf" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Puedes añadir o modificar atajos de teclado en tu archivo de configuración &lt;code&gt;~/.config/kitty/kitty.conf&lt;/code&gt; usando la directiva &lt;code&gt;map&lt;/code&gt;. Por ejemplo, para mapear &lt;code&gt;F1&lt;/code&gt; para un script personalizado:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nx"&gt;map&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;f1&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;launch&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="k"&gt;type&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;&lt;span class="nx"&gt;overlay&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;bash&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nx"&gt;c&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;my_custom_script.sh&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Dominar estos atajos transformará tu interacción con la terminal, haciéndola más fluida e intuitiva. ¡Experimenta y personaliza Kitty para que se adapte perfectamente a tu estilo de trabajo!&lt;/p&gt;</content><category term="Sistemas"></category><category term="kitty"></category><category term="terminal"></category><category term="atajos"></category><category term="teclado"></category><category term="productividad"></category></entry><entry><title>De Yakuake a Kitty: Mi transición a un terminal moderno</title><link href="https://pablocaro.es/de-yakuake-a-kitty" rel="alternate"></link><published>2025-12-25T12:00:00+01:00</published><updated>2025-12-25T12:00:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2025-12-25:/de-yakuake-a-kitty</id><summary type="html">&lt;p&gt;Explorando las razones y beneficios de cambiar de Yakuake a Kitty para una experiencia de terminal más potente y personalizable.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Durante años, &lt;strong&gt;Yakuake&lt;/strong&gt; ha sido mi terminal de cabecera en entornos de escritorio KDE. Su comodidad de acceso rápido, desplegándose y ocultándose con una simple pulsación de tecla, es innegable. Sin embargo, en mi búsqueda constante de optimización y rendimiento, decidí explorar alternativas, y &lt;strong&gt;Kitty&lt;/strong&gt; emergió como una opción destacada.&lt;/p&gt;
 &lt;h2 id="por-que-el-cambio"&gt;¿Por qué el cambio?&lt;a class="headerlink" href="#por-que-el-cambio" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Aunque Yakuake es excelente en su nicho, Kitty ofrece una serie de ventajas que se alinean mejor con las demandas de un flujo de trabajo moderno y exigente:&lt;/p&gt;
 &lt;ol&gt;
