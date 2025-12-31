@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Anotaciones por Pablo Caro - open-source</title><link href="https://pablocaro.es/" rel="alternate"></link><link href="https://pablocaro.es/feeds/tags/open-source.atom.xml" rel="self"></link><id>https://pablocaro.es/</id><updated>2025-12-25T15:00:00+01:00</updated><subtitle>Anotaciones</subtitle><entry><title>Kooha: Captura de pantalla sencilla y elegante en Linux</title><link href="https://pablocaro.es/kooha-captura-pantalla-linux" rel="alternate"></link><published>2025-12-25T15:00:00+01:00</published><updated>2025-12-25T15:00:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2025-12-25:/kooha-captura-pantalla-linux</id><summary type="html">&lt;p&gt;Descubre Kooha, una aplicación de grabación de pantalla minimalista para Linux que combina facilidad de uso con funcionalidades esenciales.&lt;/p&gt;</summary><content type="html">&lt;p&gt;En Linux, la necesidad de grabar la pantalla de forma sencilla y eficiente es común, ya sea para crear tutoriales, presentaciones, reportes de bugs o simplemente compartir una experiencia. Aunque existen muchas herramientas, &lt;strong&gt;Kooha&lt;/strong&gt; destaca por su enfoque minimalista y su interfaz de usuario intuitiva, basada en GTK.&lt;/p&gt;
+&lt;h2 id="que-es-kooha"&gt;¿Qué es Kooha?&lt;a class="headerlink" href="#que-es-kooha" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Kooha es una aplicación de grabación de pantalla gratuita y de código abierto, diseñada específicamente para entornos de escritorio Linux. Su objetivo principal es ofrecer una experiencia de usuario sin complicaciones, enfocándose en las funcionalidades esenciales de una grabadora de pantalla.&lt;/p&gt;
+&lt;h2 id="por-que-elegir-kooha"&gt;¿Por qué elegir Kooha?&lt;a class="headerlink" href="#por-que-elegir-kooha" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Facilidad de Uso&lt;/strong&gt;: Su interfaz es clara y directa. No hay menús complejos ni opciones abrumadoras, lo que la hace ideal para usuarios de todos los niveles.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Diseño Minimalista&lt;/strong&gt;: Se integra perfectamente con el aspecto de GNOME y otros entornos GTK, ofreciendo una experiencia visual limpia y agradable.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Funcionalidades Clave&lt;/strong&gt;: A pesar de su simplicidad, incluye todas las opciones necesarias para la mayoría de las tareas de grabación.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Código Abierto&lt;/strong&gt;: Al ser open-source, se beneficia de la comunidad y permite a los usuarios inspeccionar y contribuir al código.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="caracteristicas-principales"&gt;Características Principales&lt;a class="headerlink" href="#caracteristicas-principales" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Grabación de Pantalla Completa&lt;/strong&gt;: Captura todo lo que ocurre en tu monitor.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Grabación de Ventana Específica&lt;/strong&gt;: Elige una aplicación o ventana en particular para grabar.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Grabación de Área Seleccionada&lt;/strong&gt;: Define un área rectangular en tu pantalla para la captura.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Grabación de Audio&lt;/strong&gt;: Incluye audio desde tu micrófono.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Grabación de Webcam&lt;/strong&gt;: Integra la imagen de tu cámara web en la grabación.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Formatos Comunes&lt;/strong&gt;: Soporte para formatos populares como WebM y MP4.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Opciones de Calidad&lt;/strong&gt;: Ajustes para la tasa de fotogramas (FPS) y la calidad del video.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="instalacion"&gt;Instalación&lt;a class="headerlink" href="#instalacion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;La forma más recomendada de instalar Kooha es a través de Flatpak, lo que asegura que obtendrás la última versión y todas las dependencias necesarias:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;flatpak&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;flathub&lt;span class="w"&gt; &lt;/span&gt;com.github.SeaDve.Kooha
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;También puede estar disponible en los repositorios de algunas distribuciones Linux o como paquete Snap.&lt;/p&gt;
+&lt;h2 id="conclusion"&gt;Conclusión&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Kooha es la herramienta perfecta para quienes buscan una solución de grabación de pantalla en Linux que sea potente sin ser complicada. Su elegancia y sencillez la convierten en una excelente adición al arsenal de productividad de cualquier usuario de Linux.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Repositorio oficial&lt;/em&gt;: &lt;a href="https://github.com/SeaDve/Kooha"&gt;SeaDve/Kooha en GitHub&lt;/a&gt;&lt;/p&gt;</content><category term="Herramientas"></category><category term="linux"></category><category term="kooha"></category><category term="screen-recorder"></category><category term="productividad"></category><category term="herramientas"></category><category term="open-source"></category></entry></feed>
