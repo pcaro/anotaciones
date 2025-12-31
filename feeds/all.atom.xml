@@ -1,5 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Anotaciones por Pablo Caro</title><link href="https://pablocaro.es/" rel="alternate"></link><link href="https://pablocaro.es/feeds/all.atom.xml" rel="self"></link><id>https://pablocaro.es/</id><updated>2025-12-25T12:15:00+01:00</updated><subtitle>Anotaciones</subtitle><entry><title>Atajos de teclado esenciales en Kitty: Dominando tu terminal</title><link href="https://pablocaro.es/atajos-de-teclado-kitty" rel="alternate"></link><published>2025-12-25T12:15:00+01:00</published><updated>2025-12-25T12:15:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2025-12-25:/atajos-de-teclado-kitty</id><summary type="html">&lt;p&gt;Una guía rápida a los atajos de teclado más útiles de Kitty para optimizar tu flujo de trabajo en la línea de comandos.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;strong&gt;Kitty&lt;/strong&gt; es un terminal que brilla por su rendimiento y su gran capacidad de personalización, pero donde realmente se potencia es en su interfaz controlada por teclado. Dominar sus atajos te permitirá navegar, gestionar y manipular tus sesiones de terminal con una eficiencia asombrosa.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Anotaciones por Pablo Caro</title><link href="https://pablocaro.es/" rel="alternate"></link><link href="https://pablocaro.es/feeds/all.atom.xml" rel="self"></link><id>https://pablocaro.es/</id><updated>2025-12-25T12:30:00+01:00</updated><subtitle>Anotaciones</subtitle><entry><title>Kitty como terminal de acceso rápido: La comodidad de un desplegable</title><link href="https://pablocaro.es/kitty-acceso-rapido" rel="alternate"></link><published>2025-12-25T12:30:00+01:00</published><updated>2025-12-25T12:30:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2025-12-25:/kitty-acceso-rapido</id><summary type="html">&lt;p&gt;Configura Kitty para un acceso instantáneo y eficiente, combinando la potencia de un terminal moderno con la conveniencia de un desplegable.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Una de las características más apreciadas de terminales como Yakuake o Guake es su capacidad para aparecer y desaparecer instantáneamente con una sola pulsación de tecla, ofreciendo un acceso rápido sin interrumpir el flujo de trabajo. &lt;strong&gt;Kitty&lt;/strong&gt;, el terminal acelerado por GPU, también puede replicar y mejorar esta experiencia, combinando su potencia con la comodidad de un terminal desplegable.&lt;/p&gt;
+&lt;h2 id="el-concepto-del-terminal-desplegable"&gt;El Concepto del Terminal Desplegable&lt;a class="headerlink" href="#el-concepto-del-terminal-desplegable" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;La idea es simple: un terminal que reside en segundo plano y se muestra u oculta a demanda. Esto es especialmente útil para comandos rápidos, monitoreo o cualquier tarea que requiera una interacción breve con la línea de comandos.&lt;/p&gt;
+&lt;h2 id="kitty-para-acceso-rapido"&gt;Kitty para Acceso Rápido&lt;a class="headerlink" href="#kitty-para-acceso-rapido" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Kitty no tiene una función de "desplegable" nativa como Yakuake, pero su flexibilidad y capacidades de scripting permiten configurarlo para este propósito. La clave reside en:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Instancias de Kitty dedicadas:&lt;/strong&gt; Puedes lanzar una instancia de Kitty en un "daemon" o en segundo plano, lista para ser activada.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Control remoto:&lt;/strong&gt; Kitty ofrece un protocolo de control remoto (&lt;code&gt;kitty @&lt;/code&gt;) que permite interactuar con instancias ya abiertas.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Gestor de ventanas:&lt;/strong&gt; Usar las reglas de tu gestor de ventanas (KDE, Gnome, i3, Sway, etc.) para asignar una tecla de acceso rápido que muestre u oculte la ventana de Kitty.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id="configuracion-de-ejemplo"&gt;Configuración de Ejemplo&lt;a class="headerlink" href="#configuracion-de-ejemplo" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Aquí tienes un enfoque conceptual para lograr un terminal de acceso rápido con Kitty y un gestor de ventanas (por ejemplo, con &lt;code&gt;xdotool&lt;/code&gt; para entornos Xorg, o funciones similares en Wayland):&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Lanzar Kitty en segundo plano:&lt;/strong&gt;
+    Puedes tener una instancia de Kitty que se inicie automáticamente con tu sesión y que esté configurada para ser "flotante" y con un tamaño específico.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Script de alternancia (toggle):&lt;/strong&gt;
+    Crear un pequeño script que compruebe si la ventana de Kitty "siempre visible" está activa y, si lo está, la oculte; si no lo está, la muestre.&lt;/p&gt;
+&lt;p&gt;```bash&lt;/p&gt;
+&lt;h1 id="binbash"&gt;!/bin/bash&lt;a class="headerlink" href="#binbash" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;KITTY_CLASS="kitty-dropdown" # Una clase personalizada para la ventana de Kitty
+KITTY_ID=$(xdotool search --class "$KITTY_CLASS" | head -n 1)&lt;/p&gt;
+&lt;p&gt;if [ -z "$KITTY_ID" ]; then
+    # Si no existe, lanzarla
+    kitty --class "$KITTY_CLASS" &amp;amp;
+else
+    # Si existe, alternar visibilidad
+    if xdotool getwindowfocus getwindowpid | grep -q "$(xdotool getwindowpid "$KITTY_ID")"; then
+        xdotool windowminimize "$KITTY_ID"
+    else
+        xdotool windowmap "$KITTY_ID" # Mostrar la ventana
+        xdotool windowraise "$KITTY_ID" # Asegurarse de que esté al frente
+        xdotool windowfocus "$KITTY_ID" # Darle el foco
+    fi
+fi
+```&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Atajo de teclado en tu gestor de ventanas:&lt;/strong&gt;
+    Asigna una tecla global (por ejemplo, &lt;code&gt;F12&lt;/code&gt;) para ejecutar este script.&lt;/p&gt;
+&lt;p&gt;```&lt;/p&gt;
+&lt;h1 id="ejemplo-en-configi3config-o-similar"&gt;Ejemplo en ~/.config/i3/config o similar&lt;a class="headerlink" href="#ejemplo-en-configi3config-o-similar" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;bindsym $mod+F12 exec --no-startup-id /path/to/your/toggle-kitty-dropdown.sh
+```&lt;/p&gt;
+&lt;p&gt;Y en tu &lt;code&gt;kitty.conf&lt;/code&gt;, puedes configurar la instancia de Kitty para que tenga la clase específica y una posición/tamaño adecuados:&lt;/p&gt;
+&lt;p&gt;```&lt;/p&gt;
+&lt;h1 id="kittyconf-configuracion-para-la-instancia-dropdown"&gt;kitty.conf (configuración para la instancia dropdown)&lt;a class="headerlink" href="#kittyconf-configuracion-para-la-instancia-dropdown" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;window_class_members kitty-dropdown
+initial_window_width 80%
+initial_window_height 40%
+window_border_width 0&lt;/p&gt;
+&lt;h1 id="otras-configuraciones-de-apariencia"&gt;... otras configuraciones de apariencia ...&lt;a class="headerlink" href="#otras-configuraciones-de-apariencia" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;```&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Este método te proporciona la rapidez y comodidad de un terminal desplegable, pero con toda la potencia y personalización que Kitty ofrece. ¡Es lo mejor de ambos mundos!&lt;/p&gt;</content><category term="Sistemas"></category><category term="kitty"></category><category term="terminal"></category><category term="acceso-rapido"></category><category term="productividad"></category><category term="linux"></category><category term="atajos"></category></entry><entry><title>Atajos de teclado esenciales en Kitty: Dominando tu terminal</title><link href="https://pablocaro.es/atajos-de-teclado-kitty" rel="alternate"></link><published>2025-12-25T12:15:00+01:00</published><updated>2025-12-25T12:15:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2025-12-25:/atajos-de-teclado-kitty</id><summary type="html">&lt;p&gt;Una guía rápida a los atajos de teclado más útiles de Kitty para optimizar tu flujo de trabajo en la línea de comandos.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;strong&gt;Kitty&lt;/strong&gt; es un terminal que brilla por su rendimiento y su gran capacidad de personalización, pero donde realmente se potencia es en su interfaz controlada por teclado. Dominar sus atajos te permitirá navegar, gestionar y manipular tus sesiones de terminal con una eficiencia asombrosa.&lt;/p&gt;
 &lt;h2 id="descubre-tus-atajos-show_shortcuts"&gt;Descubre tus atajos: &lt;code&gt;show_shortcuts&lt;/code&gt;&lt;a class="headerlink" href="#descubre-tus-atajos-show_shortcuts" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;La forma más rápida de conocer todos los atajos de teclado configurados en tu instancia de Kitty es usando su propia funcionalidad:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;kitty&lt;span class="w"&gt; &lt;/span&gt;+kitten&lt;span class="w"&gt; &lt;/span&gt;show_shortcuts
@@ -2979,7 +3036,4 @@ Date cuenta que la opción número 1. habilita a TODOS los usuarios para usar fl
 
 sudo xrandr --output VGA --auto
 sudo xrandr --output VGA --above LVDS
-    </content><category term="Sistemas"></category><category term="linux"></category></entry><entry><title>Compartir ficheros gracias a python</title><link href="https://pablocaro.es/compartir-ficheros-gracias-a-python" rel="alternate"></link><published>2008-11-08T16:10:00+01:00</published><updated>2008-11-08T16:10:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2008-11-08:/compartir-ficheros-gracias-a-python</id><content type="html">
-        Para compartir de forma rápida unos ficheros vía web graias a python, lo más fácil es:
-&lt;pre&gt;python -c "import SimpleHTTPServer;SimpleHTTPServer.test()"&lt;/pre&gt;
-    </content><category term="Sin Categoría"></category><category term="python"></category></entry></feed>
+    </content><category term="Sistemas"></category><category term="linux"></category></entry></feed>

@@ -58,24 +58,29 @@
  
 
 <meta name="author" content="Pablo Caro" />
-<meta name="description" content="Existen tres PPA para mercurial: https://launchpad.net/~mercurial-ppa/+archive/releases (última release, actualmente 1.7.5-0ppa1~maverick1) https://launchpad.net/~mercurial-ppa/+archive/stable-snapshots (snapshots de la rama estable, actualmente ﻿1.7.5+2-5fc7c84ed9b0-0ppa1~maverick1) https://launchpad.net/~mercurial-ppa/+archive/snapshots (snapshots de lo último, actualmente 1.8~1.7 …" />
-<meta name="keywords" content="linux">
+<meta name="description" content="Configura Kitty para un acceso instantáneo y eficiente, combinando la potencia de un terminal moderno con la conveniencia de un desplegable." />
+<meta name="keywords" content="kitty, terminal, acceso-rapido, productividad, linux, atajos">
 
 
   <meta property="og:site_name" content="Anotaciones por Pablo Caro"/>
-  <meta property="og:title" content="Actualizar Mercurial usando ppa en ubuntu"/>
-  <meta property="og:description" content="Existen tres PPA para mercurial: https://launchpad.net/~mercurial-ppa/+archive/releases (última release, actualmente 1.7.5-0ppa1~maverick1) https://launchpad.net/~mercurial-ppa/+archive/stable-snapshots (snapshots de la rama estable, actualmente ﻿1.7.5+2-5fc7c84ed9b0-0ppa1~maverick1) https://launchpad.net/~mercurial-ppa/+archive/snapshots (snapshots de lo último, actualmente 1.8~1.7 …"/>
+  <meta property="og:title" content="Kitty como terminal de acceso rápido: La comodidad de un desplegable"/>
+  <meta property="og:description" content="Configura Kitty para un acceso instantáneo y eficiente, combinando la potencia de un terminal moderno con la conveniencia de un desplegable."/>
   <meta property="og:locale" content="en_US"/>
-  <meta property="og:url" content="https://pablocaro.es/actualizar-mercurial-usando-ppa-en-ubuntu"/>
+  <meta property="og:url" content="https://pablocaro.es/kitty-acceso-rapido"/>
   <meta property="og:type" content="article"/>
-  <meta property="article:published_time" content="2011-02-25 05:12:00+01:00"/>
+  <meta property="article:published_time" content="2025-12-25 12:30:00+01:00"/>
   <meta property="article:modified_time" content=""/>
   <meta property="article:author" content="https://pablocaro.es/author/pablo-caro.html">
   <meta property="article:section" content="Sistemas"/>
+  <meta property="article:tag" content="kitty"/>
+  <meta property="article:tag" content="terminal"/>
+  <meta property="article:tag" content="acceso-rapido"/>
+  <meta property="article:tag" content="productividad"/>
   <meta property="article:tag" content="linux"/>
+  <meta property="article:tag" content="atajos"/>
   <meta property="og:image" content="/theme/img/profile.png">
 
-  <title>Anotaciones por Pablo Caro &ndash; Actualizar Mercurial usando ppa en ubuntu</title>
+  <title>Anotaciones por Pablo Caro &ndash; Kitty como terminal de acceso rápido: La comodidad de un desplegable</title>
 
 
 </head>
@@ -171,53 +176,101 @@
 <article class="single">
   <header>
       
-    <h1 id="actualizar-mercurial-usando-ppa-en-ubuntu">Actualizar Mercurial usando ppa en ubuntu</h1>
+    <h1 id="kitty-acceso-rapido">Kitty como terminal de acceso rápido: La comodidad de un desplegable</h1>
     <p>
-      Posted on Fri 25 February 2011 in <a href="https://pablocaro.es/category/sistemas.html">Sistemas</a>
+      Posted on Thu 25 December 2025 in <a href="https://pablocaro.es/category/sistemas.html">Sistemas</a>
 
     </p>
   </header>
 
 
   <div>
-    
-        Existen tres PPA para mercurial:
-<a rel="nofollow" href="https://launchpad.net/~mercurial-ppa/+archive/releases">https://launchpad.net/~mercurial-ppa/+archive/releases</a> (última release, actualmente 1.7.5-0ppa1~maverick1)
-<a rel="nofollow" href="https://launchpad.net/~mercurial-ppa/+archive/stable-snapshots">https://launchpad.net/~mercurial-ppa/+archive/stable-snapshots</a> (snapshots de la rama estable, actualmente ﻿1.7.5+2-5fc7c84ed9b0-0ppa1~maverick1)
-<a rel="nofollow" href="https://launchpad.net/~mercurial-ppa/+archive/snapshots">https://launchpad.net/~mercurial-ppa/+archive/snapshots</a> (snapshots de lo último, actualmente 1.8~1.7.5+4-8f5c865b7b4a-0ppa1~maverick1)
-
-Como decía en la última anotación para añadir el PPA basta con:
-<pre class="bash">$ sudo add-apt-repository ppa:mercurial-ppa/stable-snapshots
-$ sudo aptitude update
-$ sudo aptitude  install Mercurial</pre>
-&nbsp;
-    
+    <p>Una de las características más apreciadas de terminales como Yakuake o Guake es su capacidad para aparecer y desaparecer instantáneamente con una sola pulsación de tecla, ofreciendo un acceso rápido sin interrumpir el flujo de trabajo. <strong>Kitty</strong>, el terminal acelerado por GPU, también puede replicar y mejorar esta experiencia, combinando su potencia con la comodidad de un terminal desplegable.</p>
+<h2 id="el-concepto-del-terminal-desplegable">El Concepto del Terminal Desplegable<a class="headerlink" href="#el-concepto-del-terminal-desplegable" title="Permanent link">&para;</a></h2>
+<p>La idea es simple: un terminal que reside en segundo plano y se muestra u oculta a demanda. Esto es especialmente útil para comandos rápidos, monitoreo o cualquier tarea que requiera una interacción breve con la línea de comandos.</p>
+<h2 id="kitty-para-acceso-rapido">Kitty para Acceso Rápido<a class="headerlink" href="#kitty-para-acceso-rapido" title="Permanent link">&para;</a></h2>
+<p>Kitty no tiene una función de "desplegable" nativa como Yakuake, pero su flexibilidad y capacidades de scripting permiten configurarlo para este propósito. La clave reside en:</p>
+<ol>
+<li><strong>Instancias de Kitty dedicadas:</strong> Puedes lanzar una instancia de Kitty en un "daemon" o en segundo plano, lista para ser activada.</li>
+<li><strong>Control remoto:</strong> Kitty ofrece un protocolo de control remoto (<code>kitty @</code>) que permite interactuar con instancias ya abiertas.</li>
+<li><strong>Gestor de ventanas:</strong> Usar las reglas de tu gestor de ventanas (KDE, Gnome, i3, Sway, etc.) para asignar una tecla de acceso rápido que muestre u oculte la ventana de Kitty.</li>
+</ol>
+<h3 id="configuracion-de-ejemplo">Configuración de Ejemplo<a class="headerlink" href="#configuracion-de-ejemplo" title="Permanent link">&para;</a></h3>
+<p>Aquí tienes un enfoque conceptual para lograr un terminal de acceso rápido con Kitty y un gestor de ventanas (por ejemplo, con <code>xdotool</code> para entornos Xorg, o funciones similares en Wayland):</p>
+<ol>
+<li>
+<p><strong>Lanzar Kitty en segundo plano:</strong>
+    Puedes tener una instancia de Kitty que se inicie automáticamente con tu sesión y que esté configurada para ser "flotante" y con un tamaño específico.</p>
+</li>
+<li>
+<p><strong>Script de alternancia (toggle):</strong>
+    Crear un pequeño script que compruebe si la ventana de Kitty "siempre visible" está activa y, si lo está, la oculte; si no lo está, la muestre.</p>
+<p>```bash</p>
+<h1 id="binbash">!/bin/bash<a class="headerlink" href="#binbash" title="Permanent link">&para;</a></h1>
+<p>KITTY_CLASS="kitty-dropdown" # Una clase personalizada para la ventana de Kitty
+KITTY_ID=$(xdotool search --class "$KITTY_CLASS" | head -n 1)</p>
+<p>if [ -z "$KITTY_ID" ]; then
+    # Si no existe, lanzarla
+    kitty --class "$KITTY_CLASS" &amp;
+else
+    # Si existe, alternar visibilidad
+    if xdotool getwindowfocus getwindowpid | grep -q "$(xdotool getwindowpid "$KITTY_ID")"; then
+        xdotool windowminimize "$KITTY_ID"
+    else
+        xdotool windowmap "$KITTY_ID" # Mostrar la ventana
+        xdotool windowraise "$KITTY_ID" # Asegurarse de que esté al frente
+        xdotool windowfocus "$KITTY_ID" # Darle el foco
+    fi
+fi
+```</p>
+</li>
+<li>
+<p><strong>Atajo de teclado en tu gestor de ventanas:</strong>
+    Asigna una tecla global (por ejemplo, <code>F12</code>) para ejecutar este script.</p>
+<p>```</p>
+<h1 id="ejemplo-en-configi3config-o-similar">Ejemplo en ~/.config/i3/config o similar<a class="headerlink" href="#ejemplo-en-configi3config-o-similar" title="Permanent link">&para;</a></h1>
+<p>bindsym $mod+F12 exec --no-startup-id /path/to/your/toggle-kitty-dropdown.sh
+```</p>
+<p>Y en tu <code>kitty.conf</code>, puedes configurar la instancia de Kitty para que tenga la clase específica y una posición/tamaño adecuados:</p>
+<p>```</p>
+<h1 id="kittyconf-configuracion-para-la-instancia-dropdown">kitty.conf (configuración para la instancia dropdown)<a class="headerlink" href="#kittyconf-configuracion-para-la-instancia-dropdown" title="Permanent link">&para;</a></h1>
+<p>window_class_members kitty-dropdown
+initial_window_width 80%
+initial_window_height 40%
+window_border_width 0</p>
+<h1 id="otras-configuraciones-de-apariencia">... otras configuraciones de apariencia ...<a class="headerlink" href="#otras-configuraciones-de-apariencia" title="Permanent link">&para;</a></h1>
+<p>```</p>
+</li>
+</ol>
+<p>Este método te proporciona la rapidez y comodidad de un terminal desplegable, pero con toda la potencia y personalización que Kitty ofrece. ¡Es lo mejor de ambos mundos!</p>
   </div>
   <div class="tag-cloud">
     <p>
+      <a href="https://pablocaro.es/tag/kitty.html">kitty</a>
+      <a href="https://pablocaro.es/tag/terminal.html">terminal</a>
+      <a href="https://pablocaro.es/tag/acceso-rapido.html">acceso-rapido</a>
+      <a href="https://pablocaro.es/tag/productividad.html">productividad</a>
       <a href="https://pablocaro.es/tag/linux.html">linux</a>
+      <a href="https://pablocaro.es/tag/atajos.html">atajos</a>
     </p>
   </div>
 
 
 
   <div class="neighbors">
-    <a class="btn float-left" href="https://pablocaro.es/anadiendo-un-repositio-ppa-en-karmic" title="Añadiendo un repositio PPA en karmic">
+    <a class="btn float-left" href="https://pablocaro.es/atajos-de-teclado-kitty" title="Atajos de teclado esenciales en Kitty: Dominando tu terminal">
       <i class="fa fa-angle-left"></i> Previous Post
-    </a>
-    <a class="btn float-right" href="https://pablocaro.es/scp-con-compresion" title="scp con compresión">
-      Next Post <i class="fa fa-angle-right"></i>
     </a>
   </div>
 
   <div class="related-posts">
     <h4>You might enjoy</h4>
     <ul class="related-posts">
-      <li><a href="https://pablocaro.es/kitty-acceso-rapido">Kitty como terminal de acceso rápido: La comodidad de un desplegable</a></li>
+      <li><a href="https://pablocaro.es/atajos-de-teclado-kitty">Atajos de teclado esenciales en Kitty: Dominando tu terminal</a></li>
       <li><a href="https://pablocaro.es/de-yakuake-a-kitty">De Yakuake a Kitty: Mi transición a un terminal moderno</a></li>
+      <li><a href="https://pablocaro.es/como-uso-git-worktrees">Cómo uso git worktrees para trabajo concurrente</a></li>
       <li><a href="https://pablocaro.es/mobaxterm-mucho-más-que-un-cliente-ssh">MobaXterm. Mucho más que un cliente ssh</a></li>
       <li><a href="https://pablocaro.es/gmail_correo_no_leido_solo_en_principal">Correo no leído en pestaña principal de gmail</a></li>
-      <li><a href="https://pablocaro.es/determinar-slots-ram-uso-linux">Determinar slots de RAM en uso en Linux</a></li>
     </ul>
   </div>
 
