@@ -58,24 +58,29 @@
  
 
 <meta name="author" content="Pablo Caro" />
-<meta name="description" content="Lo de siempre, otra nota recordatoria. Si filtras el correo en gmail por no leído (is:unread), obtienes todo el correo no leído, que en mi caso siempre incluye cientos de notificaciones, social, promociones o foros que no suele ser lo que busco. Para buscar los correos no leídos de …" />
-<meta name="keywords" content="linux">
+<meta name="description" content="Explorando las razones y beneficios de cambiar de Yakuake a Kitty para una experiencia de terminal más potente y personalizable." />
+<meta name="keywords" content="kitty, yakuake, terminal, linux, productividad, herramientas">
 
 
   <meta property="og:site_name" content="Anotaciones por Pablo Caro"/>
-  <meta property="og:title" content="Correo no leído en pestaña principal de gmail"/>
-  <meta property="og:description" content="Lo de siempre, otra nota recordatoria. Si filtras el correo en gmail por no leído (is:unread), obtienes todo el correo no leído, que en mi caso siempre incluye cientos de notificaciones, social, promociones o foros que no suele ser lo que busco. Para buscar los correos no leídos de …"/>
+  <meta property="og:title" content="De Yakuake a Kitty: Mi transición a un terminal moderno"/>
+  <meta property="og:description" content="Explorando las razones y beneficios de cambiar de Yakuake a Kitty para una experiencia de terminal más potente y personalizable."/>
   <meta property="og:locale" content="en_US"/>
-  <meta property="og:url" content="https://pablocaro.es/gmail_correo_no_leido_solo_en_principal"/>
+  <meta property="og:url" content="https://pablocaro.es/de-yakuake-a-kitty"/>
   <meta property="og:type" content="article"/>
-  <meta property="article:published_time" content="2016-07-28 18:00:00+02:00"/>
+  <meta property="article:published_time" content="2025-12-25 12:00:00+01:00"/>
   <meta property="article:modified_time" content=""/>
   <meta property="article:author" content="https://pablocaro.es/author/pablo-caro.html">
-  <meta property="article:section" content="Trucos"/>
+  <meta property="article:section" content="Sistemas"/>
+  <meta property="article:tag" content="kitty"/>
+  <meta property="article:tag" content="yakuake"/>
+  <meta property="article:tag" content="terminal"/>
   <meta property="article:tag" content="linux"/>
+  <meta property="article:tag" content="productividad"/>
+  <meta property="article:tag" content="herramientas"/>
   <meta property="og:image" content="/theme/img/profile.png">
 
-  <title>Anotaciones por Pablo Caro &ndash; Correo no leído en pestaña principal de gmail</title>
+  <title>Anotaciones por Pablo Caro &ndash; De Yakuake a Kitty: Mi transición a un terminal moderno</title>
 
 
 </head>
@@ -171,46 +176,54 @@
 <article class="single">
   <header>
       
-    <h1 id="gmail_correo_no_leido_solo_en_principal">Correo no leído en pestaña principal de gmail</h1>
+    <h1 id="de-yakuake-a-kitty">De Yakuake a Kitty: Mi transición a un terminal moderno</h1>
     <p>
-      Posted on Thu 28 July 2016 in <a href="https://pablocaro.es/category/trucos.html">Trucos</a>
+      Posted on Thu 25 December 2025 in <a href="https://pablocaro.es/category/sistemas.html">Sistemas</a>
 
     </p>
   </header>
 
 
   <div>
-    <p>Lo de siempre, otra nota recordatoria.</p>
-<p>Si filtras el correo en gmail por no leído (<code>is:unread</code>), obtienes todo el correo no leído,
-que en mi caso siempre incluye cientos de notificaciones, social, promociones o foros que no suele ser lo que busco.</p>
-<p>Para buscar los correos no leídos <em>de la pestaña Principal</em> la consulta a realizar es esta:</p>
-<pre class="literal-block">
-is:inbox -category:(updates OR promotions OR social OR forums) is:unread
-</pre>
-
+    <p>Durante años, <strong>Yakuake</strong> ha sido mi terminal de cabecera en entornos de escritorio KDE. Su comodidad de acceso rápido, desplegándose y ocultándose con una simple pulsación de tecla, es innegable. Sin embargo, en mi búsqueda constante de optimización y rendimiento, decidí explorar alternativas, y <strong>Kitty</strong> emergió como una opción destacada.</p>
+<h2 id="por-que-el-cambio">¿Por qué el cambio?<a class="headerlink" href="#por-que-el-cambio" title="Permanent link">&para;</a></h2>
+<p>Aunque Yakuake es excelente en su nicho, Kitty ofrece una serie de ventajas que se alinean mejor con las demandas de un flujo de trabajo moderno y exigente:</p>
+<ol>
+<li><strong>Rendimiento Acelerado por GPU</strong>: Kitty está diseñado para aprovechar la tarjeta gráfica, lo que resulta en un renderizado de texto extremadamente rápido y fluido, especialmente noticeable en terminales con mucho scroll o salida de datos intensa.</li>
+<li><strong>Multiplexación Integrada</strong>: A diferencia de Yakuake, que se basa en sesiones de pestañas/ventanas tradicionales, Kitty incorpora su propio sistema de multiplexación (similar a <code>tmux</code> o <code>screen</code>) que permite dividir ventanas, crear pestañas y organizar paneles de forma nativa y eficiente.</li>
+<li><strong>Configurabilidad Extensa</strong>: <code>kitty.conf</code> permite una personalización profunda, desde atajos de teclado hasta la apariencia, temas y comportamiento.</li>
+<li><strong>Soporte Moderno</strong>: Excelente soporte para Wayland (el futuro de Linux en el escritorio), ligaduras de fuentes (como las de Fira Code), y un ecosistema de "kittens" (scripts y funcionalidades extendidas).</li>
+<li><strong>Cross-platform</strong>: Aunque mi uso principal es en Linux, la capacidad de tener una experiencia de terminal consistente en diferentes sistemas operativos es un plus.</li>
+</ol>
+<h2 id="adaptandose-a-kitty">Adaptándose a Kitty<a class="headerlink" href="#adaptandose-a-kitty" title="Permanent link">&para;</a></h2>
+<p>La transición requirió ajustar algunas costumbres, principalmente la forma de gestionar las sesiones y el acceso rápido. Sin embargo, las ventajas superan con creces la curva de aprendizaje inicial. La velocidad, la fluidez y la potencia de las características integradas de Kitty lo convierten en una herramienta indispensable para mi día a día.</p>
+<p>Configurar Kitty es un proceso sencillo a través de su archivo <code>kitty.conf</code>, donde se definen todos los aspectos del terminal. Exploraremos más sobre su configuración y atajos de teclado en próximas entradas.</p>
+<p>Si buscas llevar tu experiencia de terminal al siguiente nivel, la migración a Kitty es un paso que recomiendo encarecidamente.</p>
   </div>
   <div class="tag-cloud">
     <p>
+      <a href="https://pablocaro.es/tag/kitty.html">kitty</a>
+      <a href="https://pablocaro.es/tag/yakuake.html">yakuake</a>
+      <a href="https://pablocaro.es/tag/terminal.html">terminal</a>
       <a href="https://pablocaro.es/tag/linux.html">linux</a>
+      <a href="https://pablocaro.es/tag/productividad.html">productividad</a>
+      <a href="https://pablocaro.es/tag/herramientas.html">herramientas</a>
     </p>
   </div>
 
 
 
   <div class="neighbors">
-    <a class="btn float-left" href="https://pablocaro.es/documentacion-tecnica-sphinx-paver-cog" title="Documentación técnica con Sphinx, Paver y Cog">
+    <a class="btn float-left" href="https://pablocaro.es/poe-the-poet-automatizando-tareas-en-proyectos-python-con-uv" title="Poe the Poet: Automatizando tareas en proyectos Python con uv">
       <i class="fa fa-angle-left"></i> Previous Post
-    </a>
-    <a class="btn float-right" href="https://pablocaro.es/posterazor-crear-posters-grandes" title="PosteRazor: Crea pósters gigantes desde cualquier imagen">
-      Next Post <i class="fa fa-angle-right"></i>
     </a>
   </div>
 
   <div class="related-posts">
     <h4>You might enjoy</h4>
     <ul class="related-posts">
-      <li><a href="https://pablocaro.es/de-yakuake-a-kitty">De Yakuake a Kitty: Mi transición a un terminal moderno</a></li>
       <li><a href="https://pablocaro.es/mobaxterm-mucho-más-que-un-cliente-ssh">MobaXterm. Mucho más que un cliente ssh</a></li>
+      <li><a href="https://pablocaro.es/gmail_correo_no_leido_solo_en_principal">Correo no leído en pestaña principal de gmail</a></li>
       <li><a href="https://pablocaro.es/determinar-slots-ram-uso-linux">Determinar slots de RAM en uso en Linux</a></li>
       <li><a href="https://pablocaro.es/boton_central_firefox">Botón central en firefox</a></li>
       <li><a href="https://pablocaro.es/nethogs-ver-ancho-de-banda-consumido">NetHogs ver ancho de banda consumido</a></li>
