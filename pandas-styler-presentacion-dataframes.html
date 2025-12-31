@@ -58,25 +58,28 @@
  
 
 <meta name="author" content="Pablo Caro" />
-<meta name="description" content="Los FileField en django necesitan ana función upload_to que determine donde se subirá el fichero. Yo suelo tener en utils.py una función genérica que los deja en una subcarpeta con el nombre del modelo. import os def generic_upload_to(instance, filename): &#34;&#34;&#34; Generic `upload_to` function for models.FileField and models.ImageField …" />
-<meta name="keywords" content="django, python">
+<meta name="description" content="Descubre cómo el objeto Styler de Pandas te permite aplicar formato condicional y estilos CSS a tus DataFrames para una mejor visualización y presentación de datos." />
+<meta name="keywords" content="pandas, python, data-science, visualizacion, estilo">
 
 
   <meta property="og:site_name" content="Anotaciones por Pablo Caro"/>
-  <meta property="og:title" content="Función genérica para usar como upload_to"/>
-  <meta property="og:description" content="Los FileField en django necesitan ana función upload_to que determine donde se subirá el fichero. Yo suelo tener en utils.py una función genérica que los deja en una subcarpeta con el nombre del modelo. import os def generic_upload_to(instance, filename): &#34;&#34;&#34; Generic `upload_to` function for models.FileField and models.ImageField …"/>
+  <meta property="og:title" content="Pandas Styler: Mejora la presentación de tus DataFrames"/>
+  <meta property="og:description" content="Descubre cómo el objeto Styler de Pandas te permite aplicar formato condicional y estilos CSS a tus DataFrames para una mejor visualización y presentación de datos."/>
   <meta property="og:locale" content="en_US"/>
-  <meta property="og:url" content="https://pablocaro.es/funcion-generica-para-usar-como-upload_to"/>
+  <meta property="og:url" content="https://pablocaro.es/pandas-styler-presentacion-dataframes"/>
   <meta property="og:type" content="article"/>
-  <meta property="article:published_time" content="2014-10-11 11:02:00+02:00"/>
+  <meta property="article:published_time" content="2025-12-25 15:55:00+01:00"/>
   <meta property="article:modified_time" content=""/>
   <meta property="article:author" content="https://pablocaro.es/author/pablo-caro.html">
   <meta property="article:section" content="Programación"/>
-  <meta property="article:tag" content="django"/>
+  <meta property="article:tag" content="pandas"/>
   <meta property="article:tag" content="python"/>
+  <meta property="article:tag" content="data-science"/>
+  <meta property="article:tag" content="visualizacion"/>
+  <meta property="article:tag" content="estilo"/>
   <meta property="og:image" content="/theme/img/profile.png">
 
-  <title>Anotaciones por Pablo Caro &ndash; Función genérica para usar como upload_to</title>
+  <title>Anotaciones por Pablo Caro &ndash; Pandas Styler: Mejora la presentación de tus DataFrames</title>
 
 
 </head>
@@ -172,59 +175,55 @@
 <article class="single">
   <header>
       
-    <h1 id="funcion-generica-para-usar-como-upload_to">Función genérica para usar como upload_to</h1>
+    <h1 id="pandas-styler-presentacion-dataframes">Pandas Styler: Mejora la presentación de tus DataFrames</h1>
     <p>
-      Posted on Sat 11 October 2014 in <a href="https://pablocaro.es/category/programacion.html">Programación</a>
+      Posted on Thu 25 December 2025 in <a href="https://pablocaro.es/category/programacion.html">Programación</a>
 
     </p>
   </header>
 
 
   <div>
-    <p>Los FileField en django necesitan ana función <a class="reference external" href="https://docs.djangoproject.com/en/1.7/ref/models/fields/#django.db.models.FileField.upload_to">upload_to</a> que determine donde se subirá el fichero.
-Yo suelo tener en <code>utils.py</code> una función genérica que los deja en una subcarpeta con el nombre del modelo.</p>
-<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
-
-<span class="k">def</span> <span class="nf">generic_upload_to</span><span class="p">(</span><span class="n">instance</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Generic `upload_to` function for models.FileField and models.ImageField</span>
-<span class="sd">    which uploads files to `&lt;app_label&gt;/&lt;model_name&gt;/&lt;file_name&gt;`.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">instance</span><span class="o">.</span><span class="n">_meta</span><span class="o">.</span><span class="n">app_label</span><span class="p">,</span> <span class="n">instance</span><span class="o">.</span><span class="n">_meta</span><span class="o">.</span><span class="n">model_name</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
-</pre></div>
-<p>El uso el previsible:</p>
-<div class="highlight"><pre><span></span><span class="n">featured_image</span> <span class="o">=</span> <span class="n">ImageField</span><span class="p">(</span><span class="n">upload_to</span><span class="o">=</span><span class="n">generic_upload_to</span><span class="p">,</span>
-                            <span class="n">verbose_name</span><span class="o">=</span><span class="s1">&#39;Imagen Destacada (770x490)&#39;</span><span class="p">,</span>
-                            <span class="n">max_length</span><span class="o">=</span><span class="mi">250</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</pre></div>
-
+    <p>Cuando trabajamos con datos en Python, los DataFrames de Pandas son nuestra herramienta principal. Sin embargo, su presentación por defecto en consolas o notebooks puede ser muy básica. Aquí es donde el objeto <strong><code>Styler</code> de Pandas</strong> se convierte en un aliado fundamental para transformar DataFrames simples en tablas visualmente atractivas e informativas.</p>
+<h2 id="que-es-pandas-styler">¿Qué es Pandas <code>Styler</code>?<a class="headerlink" href="#que-es-pandas-styler" title="Permanent link">&para;</a></h2>
+<p>El objeto <code>Styler</code> te permite aplicar formato condicional y estilos CSS directamente a tus DataFrames de Pandas. Con él, puedes resaltar patrones, enfatizar valores importantes y mejorar la legibilidad sin necesidad de exportar los datos a otra herramienta.</p>
+<h2 id="funcionalidades-clave">Funcionalidades Clave<a class="headerlink" href="#funcionalidades-clave" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Formato Condicional</strong>: Resalta celdas, filas o columnas basándose en condiciones definidas por ti (e.g., valores por encima de un umbral, duplicados, etc.).</li>
+<li><strong>Estilos CSS</strong>: Aplica estilos CSS como colores de fondo, fuentes, bordes o alineaciones para personalizar la apariencia.</li>
+<li><strong>Estilos Predefinidos</strong>: Incluye métodos como <code>background_gradient()</code> para aplicar gradientes de color que visualicen la distribución de valores.</li>
+<li><strong>Integración con Excel</strong>: Mantiene los estilos al exportar DataFrames a archivos Excel, facilitando reportes profesionales.</li>
+</ul>
+<h2 id="conclusion">Conclusión<a class="headerlink" href="#conclusion" title="Permanent link">&para;</a></h2>
+<p>El objeto <code>Styler</code> de Pandas es una herramienta sencilla pero potente para llevar la presentación de tus datos al siguiente nivel. Con unas pocas líneas de código, puedes hacer que tus DataFrames no solo sean una fuente de datos, sino también una herramienta de comunicación efectiva.</p>
+<p><em>Artículo original</em>: <a href="https://pbpython.com/styling-pandas.html">Stylin' with Pandas | Practical Business Python</a></p>
   </div>
   <div class="tag-cloud">
     <p>
-      <a href="https://pablocaro.es/tag/django.html">django</a>
+      <a href="https://pablocaro.es/tag/pandas.html">pandas</a>
       <a href="https://pablocaro.es/tag/python.html">python</a>
+      <a href="https://pablocaro.es/tag/data-science.html">data-science</a>
+      <a href="https://pablocaro.es/tag/visualizacion.html">visualizacion</a>
+      <a href="https://pablocaro.es/tag/estilo.html">estilo</a>
     </p>
   </div>
 
 
 
   <div class="neighbors">
-    <a class="btn float-left" href="https://pablocaro.es/enlaces-en-listado-de-objectos" title="Django: enlaces en listado de objectos">
+    <a class="btn float-left" href="https://pablocaro.es/fresh-editor-terminal" title="`fresh`: Mi editor de terminal preferido para el día a día">
       <i class="fa fa-angle-left"></i> Previous Post
-    </a>
-    <a class="btn float-right" href="https://pablocaro.es/decorador-vista-ajax" title="Decorador vista ajax">
-      Next Post <i class="fa fa-angle-right"></i>
     </a>
   </div>
 
   <div class="related-posts">
     <h4>You might enjoy</h4>
     <ul class="related-posts">
-      <li><a href="https://pablocaro.es/instalar-insync-en-opensuse">Instalar InSync en Opensuse</a></li>
-      <li><a href="https://pablocaro.es/decorador-vista-ajax">Decorador vista ajax</a></li>
-      <li><a href="https://pablocaro.es/enlaces-en-listado-de-objectos">Django: enlaces en listado de objectos</a></li>
-      <li><a href="https://pablocaro.es/settings-vars-processor">Settings vars processor</a></li>
-      <li><a href="https://pablocaro.es/pandas-styler-presentacion-dataframes">Pandas Styler: Mejora la presentación de tus DataFrames</a></li>
+      <li><a href="https://pablocaro.es/reduce-ruido-logs-python">Reduce el Ruido en tus Logs de Python: Un enfoque inteligente</a></li>
+      <li><a href="https://pablocaro.es/poe-the-poet-automatizando-tareas-en-proyectos-python-con-uv">Poe the Poet: Automatizando tareas en proyectos Python con uv</a></li>
+      <li><a href="https://pablocaro.es/httpx-cliente-http-moderno-python">HTTPX: Cliente HTTP moderno para Python</a></li>
+      <li><a href="https://pablocaro.es/una-de-versiones">Una de versiones</a></li>
+      <li><a href="https://pablocaro.es/python-generadores-repetibles">Python: Crear generadores repetibles (repeating generators)</a></li>
     </ul>
   </div>
 
