@@ -59,7 +59,8 @@ SOCIAL = (
 )
 
 DEFAULT_PAGINATION = 5
-PLUGIN_PATHS = ["plugins", "plugins/tipue_search/pelican/plugins"]
+
+PLUGIN_PATHS = ["plugins"]
 
 # Uncomment following line if you want document-relative URLs when developing
 RELATIVE_URLS = False
@@ -82,8 +83,12 @@ DEFAULT_PAGINATION = False
 PLUGINS = [
     'sitemap',
     'neighbors',
-    'related_posts'
+    'related_posts',
+    'search',
 ]
+
+STORK_VERSION = "1.6.0"
+
 MARKDOWN = {
     "extension_configs": {
         "markdown.extensions.codehilite": {"css_class": "highlight"},
@@ -92,7 +97,7 @@ MARKDOWN = {
     },
     "output_format": "html5",
 }
-DIRECT_TEMPLATES = ["index", "tags", "categories", "archives"]
+DIRECT_TEMPLATES = ["index", "tags", "categories", "archives", "search"]
 
 # Enable tag and category pages for Flex
 TAG_SAVE_AS = "tag/{slug}.html"
