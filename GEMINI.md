@@ -53,6 +53,24 @@ All common tasks are automated using `invoke` (defined in `tasks.py`).
     uv run invoke develop-live
     ```
 
+*   **Run server on specific port**:
+    ```bash
+    uv run invoke serve --port 7000
+    ```
+
+*   **Stop a running development server**:
+    ```bash
+    # Find and kill process using port (e.g., 7000)
+    lsof -ti:7000 | xargs kill
+
+    # Or manually
+    lsof -ti:7000  # Get PID
+    kill <PID>     # Kill the process
+
+    # Force kill if needed
+    kill -9 <PID>
+    ```
+
 *   **Build for production**:
     ```bash
     uv run invoke production
