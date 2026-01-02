@@ -3,7 +3,7 @@
 
 AUTHOR = "Pablo Caro"
 SITENAME = "Anotaciones por Pablo Caro"
-SITEURL = "https://pablocaro.es"
+SITEURL = ""  # Empty for development, set in publishconf.py for production
 
 ARTICLE_PATH = "articles/"
 PATH = "content"
@@ -44,7 +44,6 @@ LINKS = (
     ("@pcaro at X.com", "http://x.com/pcaro"),
     ("Python.org", "http://python.org/"),
     ("Jinja2", "http://jinja.pocoo.org/"),
-
 )
 
 GITHUB_URL = "http://github.com/pcaro"

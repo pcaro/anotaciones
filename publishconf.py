@@ -10,7 +10,8 @@ import sys
 sys.path.append(os.curdir)
 from pelicanconf import *
 
-
+# Production SITEURL
+SITEURL = "https://pablocaro.es"
 
 # Ensure output goes to correct directory for GitHub Actions
 OUTPUT_PATH = "output"
