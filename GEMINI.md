@@ -71,6 +71,17 @@ The site is automatically deployed to [GitHub Pages](https://pages.github.com/) 
 *   **Workflow File**: `.github/workflows/deploy.yml`
 *   **Deployment Method**: The workflow builds the site and pushes the output to a `gh-pages` branch. GitHub Pages is configured to serve content from this `gh-pages` branch.
 
+### CI/CD Pipeline Steps
+
+1. **Checkout**: Clone repository with submodules
+2. **Setup**: Install `uv` and Python dependencies
+3. **Install Pelican plugins**: Clone pelican-plugins if not present
+4. **Install Stork**: Download Stork v1.6.0 binary for search indexing
+5. **Build**: Run Pelican with production config
+6. **Deploy**: Push output to `gh-pages` branch
+
+**Important**: Stork CLI must be installed in CI environment for the search plugin to work. The workflow downloads the binary from `https://files.stork-search.net/releases/v1.6.0/stork-ubuntu-20-04`.
+
 ## Development Conventions
 
 *   **Content Format**: Blog posts are written in reStructuredText (`.rst`) or Markdown (`.md`).
