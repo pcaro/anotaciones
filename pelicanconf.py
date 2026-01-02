@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*- #
 
 AUTHOR = "Pablo Caro"
-SITENAME = 'Anotaciones por Pablo Caro'
+SITENAME = "Anotaciones por Pablo Caro"
 SITEURL = "https://pablocaro.es"
 
 ARTICLE_PATH = "articles/"
@@ -41,10 +41,10 @@ AUTHOR_FEED_RSS = None
 
 # Blogroll
 LINKS = (
-    ("Pelican", "http://getpelican.com/"),
+    ("@pcaro at X.com", "http://x.com/pcaro"),
     ("Python.org", "http://python.org/"),
     ("Jinja2", "http://jinja.pocoo.org/"),
-    ("You can modify those links in your config file", "#"),
+
 )
 
 GITHUB_URL = "http://github.com/pcaro"
@@ -81,10 +81,10 @@ TYPOGRIFY = True
 DEFAULT_PAGINATION = False
 
 PLUGINS = [
-    'sitemap',
-    'neighbors',
-    'related_posts',
-    'search',
+    "sitemap",
+    "neighbors",
+    "related_posts",
+    "search",
 ]
 
 STORK_VERSION = "1.6.0"
@@ -107,7 +107,7 @@ TAGS_URL = "tags.html"
 
 CATEGORY_SAVE_AS = "category/{slug}.html"
 CATEGORY_URL = "category/{slug}.html"
-CATEGORIES_SAVE_AS = "categories.html" 
+CATEGORIES_SAVE_AS = "categories.html"
 CATEGORIES_URL = "categories.html"
 
 AUTHOR_SAVE_AS = ""
@@ -116,7 +116,7 @@ USE_SHORTCUT_ICONS = True
 # Flex theme configuration
 SITETITLE = "Anotaciones"
 SITELOGO = "/theme/img/profile.png"  # Optional: add a logo image
-FAVICON = "/theme/img/favicon.ico"   # Optional: add a favicon
+FAVICON = "/theme/img/favicon.ico"  # Optional: add a favicon
 
 # Browser tab title
 BROWSER_COLOR = "#333333"
@@ -127,7 +127,7 @@ COPYRIGHT_YEAR = 2025
 CC_LICENSE = {
     "name": "Creative Commons Attribution-ShareAlike",
     "version": "3.0",
-    "slug": "by-sa"
+    "slug": "by-sa",
 }
 
 # Flex theme menu
@@ -136,6 +136,7 @@ MENUITEMS = (
     ("Archivo", "/archives.html"),
     ("Categorías", "/categories.html"),
     ("Etiquetas", "/tags.html"),
+    ("Búsqueda", "/search.html"),
 )
 
 # Mailchimp
@@ -178,8 +179,7 @@ PROJECTS = [
     {
         "name": "Little Scripts",
         "url": "https://github.com/pcaro/little_scripts",
-        "description": "Little simple utilities or alias."
-        " Most of them are not mine.",
+        "description": "Little simple utilities or alias. Most of them are not mine.",
     },
     {
         "name": "dotfiles",
