@@ -1,0 +1,668 @@
+[input]
+html_selector = "main"
+base_directory = "/home/runner/work/anotaciones/anotaciones/output"
+
+[[input.files]]
+path = "yaml-multilinea-cadenas-complejas.html"
+url = "/yaml-multilinea-cadenas-complejas"
+title = "YAML Multilínea: Entendiendo y probando cadenas de texto complejas"
+
+[[input.files]]
+path = "pandas-styler-presentacion-dataframes.html"
+url = "/pandas-styler-presentacion-dataframes"
+title = "Pandas Styler: Mejora la presentación de tus DataFrames"
+
+[[input.files]]
+path = "fresh-editor-terminal.html"
+url = "/fresh-editor-terminal"
+title = "`fresh`: Mi editor de terminal preferido para el día a día"
+
+[[input.files]]
+path = "ver-archivos-paquete-rpm.html"
+url = "/ver-archivos-paquete-rpm"
+title = "Cómo ver los archivos de un paquete RPM en Linux"
+
+[[input.files]]
+path = "kooha-captura-pantalla-linux.html"
+url = "/kooha-captura-pantalla-linux"
+title = "Kooha: Captura de pantalla sencilla y elegante en Linux"
+
+[[input.files]]
+path = "open-evidence-plataforma-medica.html"
+url = "/open-evidence-plataforma-medica"
+title = "OpenEvidence: La plataforma líder en información médica para profesionales"
+
+[[input.files]]
+path = "direnv-gestion-entornos.html"
+url = "/direnv-gestion-entornos"
+title = "`direnv`: Gestiona tus entornos de desarrollo de forma inteligente"
+
+[[input.files]]
+path = "docker-http-https-echo.html"
+url = "/docker-http-https-echo"
+title = "`docker-http-https-echo`: Una herramienta esencial para depuración de red"
+
+[[input.files]]
+path = "kubegres-postgresql-kubernetes.html"
+url = "/kubegres-postgresql-kubernetes"
+title = "Kubegres: Gestión simplificada de PostgreSQL en Kubernetes"
+
+[[input.files]]
+path = "estados-conexion-tcp-netstat-ss.html"
+url = "/estados-conexion-tcp-netstat-ss"
+title = "Estados de Conexión TCP en GNU/Linux: netstat y ss"
+
+[[input.files]]
+path = "reduce-ruido-logs-python.html"
+url = "/reduce-ruido-logs-python"
+title = "Reduce el Ruido en tus Logs de Python: Un enfoque inteligente"
+
+[[input.files]]
+path = "kitty-acceso-rapido.html"
+url = "/kitty-acceso-rapido"
+title = "Kitty como terminal de acceso rápido: La comodidad de un desplegable"
+
+[[input.files]]
+path = "atajos-de-teclado-kitty.html"
+url = "/atajos-de-teclado-kitty"
+title = "Atajos de teclado esenciales en Kitty: Dominando tu terminal"
+
+[[input.files]]
+path = "de-yakuake-a-kitty.html"
+url = "/de-yakuake-a-kitty"
+title = "De Yakuake a Kitty: Mi transición a un terminal moderno"
+
+[[input.files]]
+path = "poe-the-poet-automatizando-tareas-en-proyectos-python-con-uv.html"
+url = "/poe-the-poet-automatizando-tareas-en-proyectos-python-con-uv"
+title = "Poe the Poet: Automatizando tareas en proyectos Python con uv"
+
+[[input.files]]
+path = "como-uso-git-worktrees.html"
+url = "/como-uso-git-worktrees"
+title = "Cómo uso git worktrees para trabajo concurrente"
+
+[[input.files]]
+path = "busqueda-hibrida-sqlite-vector-texto.html"
+url = "/busqueda-hibrida-sqlite-vector-texto"
+title = "Búsqueda híbrida con SQLite: vector + texto completo"
+
+[[input.files]]
+path = "conflacion-datos-geoespaciales-duckdb.html"
+url = "/conflacion-datos-geoespaciales-duckdb"
+title = "Conflación de datos geoespaciales con DuckDB y embeddings"
+
+[[input.files]]
+path = "httpx-cliente-http-moderno-python.html"
+url = "/httpx-cliente-http-moderno-python"
+title = "HTTPX: Cliente HTTP moderno para Python"
+
+[[input.files]]
+path = "server-sent-events-comunicacion-tiempo-real.html"
+url = "/server-sent-events-comunicacion-tiempo-real"
+title = "Server-Sent Events: Comunicación en tiempo real simplificada"
+
+[[input.files]]
+path = "una-de-versiones.html"
+url = "/una-de-versiones"
+title = "Una de versiones"
+
+[[input.files]]
+path = "mobaxterm-mucho-más-que-un-cliente-ssh.html"
+url = "/mobaxterm-mucho-más-que-un-cliente-ssh"
+title = "MobaXterm. Mucho más que un cliente ssh"
+
+[[input.files]]
+path = "posterazor-crear-posters-grandes.html"
+url = "/posterazor-crear-posters-grandes"
+title = "PosteRazor: Crea pósters gigantes desde cualquier imagen"
+
+[[input.files]]
+path = "gmail_correo_no_leido_solo_en_principal.html"
+url = "/gmail_correo_no_leido_solo_en_principal"
+title = "Correo no leído en pestaña principal de gmail"
+
+[[input.files]]
+path = "documentacion-tecnica-sphinx-paver-cog.html"
+url = "/documentacion-tecnica-sphinx-paver-cog"
+title = "Documentación técnica con Sphinx, Paver y Cog"
+
+[[input.files]]
+path = "determinar-slots-ram-uso-linux.html"
+url = "/determinar-slots-ram-uso-linux"
+title = "Determinar slots de RAM en uso en Linux"
+
+[[input.files]]
+path = "introduccion-trading-alta-frecuencia.html"
+url = "/introduccion-trading-alta-frecuencia"
+title = "Introducción a los sistemas de trading de alta frecuencia"
+
+[[input.files]]
+path = "encontrar-hosts-vivos-red.html"
+url = "/encontrar-hosts-vivos-red"
+title = "Cómo encontrar hosts vivos en tu red local"
+
+[[input.files]]
+path = "herramientas-desarrolladores-linea-comandos.html"
+url = "/herramientas-desarrolladores-linea-comandos"
+title = "Potentes herramientas para desarrolladores desde línea de comandos"
+
+[[input.files]]
+path = "sysdig-seguridad-cloud-nativa.html"
+url = "/sysdig-seguridad-cloud-nativa"
+title = "Sysdig: Plataforma de seguridad cloud-nativa con IA"
+
+[[input.files]]
+path = "python-generadores-repetibles.html"
+url = "/python-generadores-repetibles"
+title = "Python: Crear generadores repetibles (repeating generators)"
+
+[[input.files]]
+path = "boton_central_firefox.html"
+url = "/boton_central_firefox"
+title = "Botón central en firefox"
+
+[[input.files]]
+path = "bootstrap-dropdown-enlaces-horizontal.html"
+url = "/bootstrap-dropdown-enlaces-horizontal"
+title = "Bootstrap: Dos enlaces en la misma fila en dropdown"
+
+[[input.files]]
+path = "galen-framework-testing-responsive.html"
+url = "/galen-framework-testing-responsive"
+title = "Galen Framework: Testing automatizado para diseño responsive"
+
+[[input.files]]
+path = "historia-x-forwarded-for-x-real-ip.html"
+url = "/historia-x-forwarded-for-x-real-ip"
+title = "La historia detrás de X-Forwarded-For y X-Real-IP"
+
+[[input.files]]
+path = "nginx-x-forwarded-for-reverse-proxy.html"
+url = "/nginx-x-forwarded-for-reverse-proxy"
+title = "Nginx: Configurar X-Forwarded-For en reverse proxy"
+
+[[input.files]]
+path = "sql-select-rows-max-value.html"
+url = "/sql-select-rows-max-value"
+title = "SQL: Seleccionar filas con valor máximo por grupo"
+
+[[input.files]]
+path = "repetiendo-una-función-con-hilos.html"
+url = "/repetiendo-una-función-con-hilos"
+title = "Repitiendo una función con hilos"
+
+[[input.files]]
+path = "instalar-insync-en-opensuse.html"
+url = "/instalar-insync-en-opensuse"
+title = "Instalar InSync en Opensuse"
+
+[[input.files]]
+path = "nethogs-ver-ancho-de-banda-consumido.html"
+url = "/nethogs-ver-ancho-de-banda-consumido"
+title = "NetHogs ver ancho de banda consumido"
+
+[[input.files]]
+path = "cierra-google-code.html"
+url = "/cierra-google-code"
+title = "Cierra Google Code"
+
+[[input.files]]
+path = "pgcli-el-descubrimiento-de-hoy.html"
+url = "/pgcli-el-descubrimiento-de-hoy"
+title = "pgcli el descubrimiento de hoy"
+
+[[input.files]]
+path = "reactivando-el-blog.html"
+url = "/reactivando-el-blog"
+title = "Reactivando el blog"
+
+[[input.files]]
+path = "decorador-vista-ajax.html"
+url = "/decorador-vista-ajax"
+title = "Decorador vista ajax"
+
+[[input.files]]
+path = "funcion-generica-para-usar-como-upload_to.html"
+url = "/funcion-generica-para-usar-como-upload_to"
+title = "Función genérica para usar como upload_to"
+
+[[input.files]]
+path = "enlaces-en-listado-de-objectos.html"
+url = "/enlaces-en-listado-de-objectos"
+title = "Django: enlaces en listado de objectos"
+
+[[input.files]]
+path = "settings-vars-processor.html"
+url = "/settings-vars-processor"
+title = "Settings vars processor"
+
+[[input.files]]
+path = "pyinotify-ejecutar-comando-cuando-se-modifica-un-fichero.html"
+url = "/pyinotify-ejecutar-comando-cuando-se-modifica-un-fichero"
+title = "pyinotify: Ejecutar comando cuando se modifica un fichero"
+
+[[input.files]]
+path = "a-vueltas-con-suse.html"
+url = "/a-vueltas-con-suse"
+title = "A vueltas con suse"
+
+[[input.files]]
+path = "paso-de-ubuntu-a-suse.html"
+url = "/paso-de-ubuntu-a-suse"
+title = "Paso de ubuntu a suse"
+
+[[input.files]]
+path = "reducir-recursos-de-kde.html"
+url = "/reducir-recursos-de-kde"
+title = "reducir recursos de KDE"
+
+[[input.files]]
+path = "cambiar-de-lugar-un-virtualenv.html"
+url = "/cambiar-de-lugar-un-virtualenv"
+title = "Cambiar de lugar un virtualenv"
+
+[[input.files]]
+path = "depurando-tomcat.html"
+url = "/depurando-tomcat"
+title = "Depurando Tomcat"
+
+[[input.files]]
+path = "importar-clave-gpg-kgpg-que-gran-programa.html"
+url = "/importar-clave-gpg-kgpg-que-gran-programa"
+title = "Importar clave gpg. kgpg que gran programa"
+
+[[input.files]]
+path = "traducciones-y-apt.html"
+url = "/traducciones-y-apt"
+title = "Traducciones y APT"
+
+[[input.files]]
+path = "mostrar-usuarios-y-roles-existentes-en-postgres.html"
+url = "/mostrar-usuarios-y-roles-existentes-en-postgres"
+title = "Mostrar Usuarios y roles existentes en postgres"
+
+[[input.files]]
+path = "uso-practico-de-ngrep.html"
+url = "/uso-practico-de-ngrep"
+title = "Uso práctico de ngrep"
+
+[[input.files]]
+path = "autorelad-en-plone.html"
+url = "/autorelad-en-plone"
+title = "Autorelad en plone"
+
+[[input.files]]
+path = "virtualbox-actualizar-las-guest-additions-en-maquinas-ubuntu.html"
+url = "/virtualbox-actualizar-las-guest-additions-en-maquinas-ubuntu"
+title = "virtualbox: Actualizar las Guest Additions en máquinas ubuntu"
+
+[[input.files]]
+path = "cambiar-mapa-de-teclado-en-linux.html"
+url = "/cambiar-mapa-de-teclado-en-linux"
+title = "Cambiar mapa de teclado en linux"
+
+[[input.files]]
+path = "deshabilitar-autocompletado-en-vim.html"
+url = "/deshabilitar-autocompletado-en-vim"
+title = "Deshabilitar autocompletado en vim"
+
+[[input.files]]
+path = "diccionario-de-espanol-para-komodo-edit.html"
+url = "/diccionario-de-espanol-para-komodo-edit"
+title = "Diccionario de español para komodo edit"
+
+[[input.files]]
+path = "21-3.html"
+url = "/21-3"
+title = "21/3"
+
+[[input.files]]
+path = "scp-con-compresion.html"
+url = "/scp-con-compresion"
+title = "scp con compresión"
+
+[[input.files]]
+path = "actualizar-mercurial-usando-ppa-en-ubuntu.html"
+url = "/actualizar-mercurial-usando-ppa-en-ubuntu"
+title = "Actualizar Mercurial usando ppa en ubuntu"
+
+[[input.files]]
+path = "anadiendo-un-repositio-ppa-en-karmic.html"
+url = "/anadiendo-un-repositio-ppa-en-karmic"
+title = "Añadiendo un repositio PPA en karmic"
+
+[[input.files]]
+path = "dos-pantallas-al-inicio-de-kdm.html"
+url = "/dos-pantallas-al-inicio-de-kdm"
+title = "Dos pantallas al inicio de kdm"
+
+[[input.files]]
+path = "zen-coding-y-komodo-edit.html"
+url = "/zen-coding-y-komodo-edit"
+title = "Zen Coding y komodo edit"
+
+[[input.files]]
+path = "progreso-en-un-reindexado-de-zope.html"
+url = "/progreso-en-un-reindexado-de-zope"
+title = "Progreso en un reindexado de zope"
+
+[[input.files]]
+path = "zope-y-noatime.html"
+url = "/zope-y-noatime"
+title = "Zope y noatime"
+
+[[input.files]]
+path = "subversion-anadiendo-contenido-a-un-directorio-sin-descargarlo.html"
+url = "/subversion-anadiendo-contenido-a-un-directorio-sin-descargarlo"
+title = "Subversion: Añadiendo contenido a un directorio sin descargarlo"
+
+[[input.files]]
+path = "restaurando-objectos-plone-borrados.html"
+url = "/restaurando-objectos-plone-borrados"
+title = "Restaurando objectos plone borrados"
+
+[[input.files]]
+path = "opciones-tipicas-rsync.html"
+url = "/opciones-tipicas-rsync"
+title = "Opciones típicas rsync"
+
+[[input.files]]
+path = "completar-mientras-se-depura-en-zope.html"
+url = "/completar-mientras-se-depura-en-zope"
+title = "Completar mientras se depura en zope"
+
+[[input.files]]
+path = "kbabel-es-lokalize-en-kde4.html"
+url = "/kbabel-es-lokalize-en-kde4"
+title = "Kbabel es Lokalize en kde4"
+
+[[input.files]]
+path = "descargar-una-web-para-visualizacion-local-con-wget.html"
+url = "/descargar-una-web-para-visualizacion-local-con-wget"
+title = "Descargar una web para visualización local con wget"
+
+[[input.files]]
+path = "plone-registrar-pasos-de-importacion-con-zcml.html"
+url = "/plone-registrar-pasos-de-importacion-con-zcml"
+title = "Plone: Registrar pasos de importación con zcml"
+
+[[input.files]]
+path = "descargar-codigo-de-un-repositorio-publicado-con-gitweb.html"
+url = "/descargar-codigo-de-un-repositorio-publicado-con-gitweb"
+title = "Descargar código de un repositorio publicado con gitweb"
+
+[[input.files]]
+path = "crear-base-de-datos-mysql-a-partir-de-un-backup.html"
+url = "/crear-base-de-datos-mysql-a-partir-de-un-backup"
+title = "Crear base de datos mysql a partir de un backup"
+
+[[input.files]]
+path = "parcheando-parcheando.html"
+url = "/parcheando-parcheando"
+title = "Parcheando, parcheando ..."
+
+[[input.files]]
+path = "que-las-aplicaciones-gtk-luzcan-mejor-en-kubuntu-karmic.html"
+url = "/que-las-aplicaciones-gtk-luzcan-mejor-en-kubuntu-karmic"
+title = "Que las aplicaciones GTK+ luzcan mejor en kubuntu karmic"
+
+[[input.files]]
+path = "anadir-ppa-desde-la-consola-a-ubuntu-karmic.html"
+url = "/anadir-ppa-desde-la-consola-a-ubuntu-karmic"
+title = "Añadir PPA desde la consola a ubuntu karmic"
+
+[[input.files]]
+path = "cambiar-dpi-en-kde.html"
+url = "/cambiar-dpi-en-kde"
+title = "Cambiar dpi en kde"
+
+[[input.files]]
+path = "actualizando-postgres-en-debian-y-derivados.html"
+url = "/actualizando-postgres-en-debian-y-derivados"
+title = "Actualizando postgres en debian y derivados"
+
+[[input.files]]
+path = "anadiendo-lenguaje-procedural-a-base-de-datos-postgres-createlang.html"
+url = "/anadiendo-lenguaje-procedural-a-base-de-datos-postgres-createlang"
+title = "Añadiendo lenguaje procedural a base de datos postgres: createlang"
+
+[[input.files]]
+path = "colores-desde-web-developer-tools.html"
+url = "/colores-desde-web-developer-tools"
+title = "Colores desde web developer tools"
+
+[[input.files]]
+path = "que-apache-sirva-el-contenido-de-un-fichero-py.html"
+url = "/que-apache-sirva-el-contenido-de-un-fichero-py"
+title = "Que apache sirva el contenido de un fichero .py"
+
+[[input.files]]
+path = "cambiar-pantalla-anunciadora-de-kde-ksplash-theme-generator.html"
+url = "/cambiar-pantalla-anunciadora-de-kde-ksplash-theme-generator"
+title = "Cambiar pantalla anunciadora de kde: Ksplash theme generator"
+
+[[input.files]]
+path = "cambiar-el-aspecto-de-kdm-kdm-theme-generator.html"
+url = "/cambiar-el-aspecto-de-kdm-kdm-theme-generator"
+title = "Cambiar el aspecto de kdm: kdm theme generator"
+
+[[input.files]]
+path = "cambiar-la-codificacion-de-un-fichero-de-texto.html"
+url = "/cambiar-la-codificacion-de-un-fichero-de-texto"
+title = "Cambiar la codificación de un fichero de texto"
+
+[[input.files]]
+path = "css-estilos-de-seleccion-de-texto.html"
+url = "/css-estilos-de-seleccion-de-texto"
+title = "CSS: Estilos de selección de texto"
+
+[[input.files]]
+path = "manejo-de-arboles-en-bases-de-datos.html"
+url = "/manejo-de-arboles-en-bases-de-datos"
+title = "Manejo de árboles en bases de datos"
+
+[[input.files]]
+path = "mostrar-el-codigo-de-funciones-en-postgres.html"
+url = "/mostrar-el-codigo-de-funciones-en-postgres"
+title = "Mostrar el código de funciones en postgres"
+
+[[input.files]]
+path = "instalar-postgres-8-2-en-jaunty.html"
+url = "/instalar-postgres-8-2-en-jaunty"
+title = "Instalar postgres 8.2 en jaunty"
+
+[[input.files]]
+path = "listar-las-bases-de-datos-postgres-que-tengo-instaladas.html"
+url = "/listar-las-bases-de-datos-postgres-que-tengo-instaladas"
+title = "Listar las bases de datos postgres que tengo instaladas"
+
+[[input.files]]
+path = "un-servidor-web-de-bolsillo-gracias-a-python.html"
+url = "/un-servidor-web-de-bolsillo-gracias-a-python"
+title = "Un servidor web de bolsillo gracias a python"
+
+[[input.files]]
+path = "convertir-filtros-de-kmail-a-filtros-sieve.html"
+url = "/convertir-filtros-de-kmail-a-filtros-sieve"
+title = "Convertir filtros de kmail a filtros sieve"
+
+[[input.files]]
+path = "contenedor-de-floats-how-to-ie-ff.html"
+url = "/contenedor-de-floats-how-to-ie-ff"
+title = "Contenedor de Floats: How to IE & FF"
+
+[[input.files]]
+path = "comandos-utiles-en-la-consola-de-postgres-pgsql.html"
+url = "/comandos-utiles-en-la-consola-de-postgres-pgsql"
+title = "Comandos útiles en la consola de postgres (pgsql)"
+
+[[input.files]]
+path = "cambiar-ipython-para-copiar-y-pegar-luego-como-doctest.html"
+url = "/cambiar-ipython-para-copiar-y-pegar-luego-como-doctest"
+title = "Cambiar ipython para copiar y pegar luego como doctest"
+
+[[input.files]]
+path = "importar-claves-gpg-de-repositorios-ubuntu.html"
+url = "/importar-claves-gpg-de-repositorios-ubuntu"
+title = "Importar claves gpg de repositorios ubuntu"
+
+[[input.files]]
+path = "formatear-de-la-forma-mas-facil-una-tarjeta-sd-en-ubuntu.html"
+url = "/formatear-de-la-forma-mas-facil-una-tarjeta-sd-en-ubuntu"
+title = "Formatear de la forma más fácil una tarjeta SD en ubuntu"
+
+[[input.files]]
+path = "siempre-el-ultimo-dragonfly-en-opera.html"
+url = "/siempre-el-ultimo-dragonfly-en-opera"
+title = "Siempre el último Dragonfly en Opera"
+
+[[input.files]]
+path = "feliz-navidad.html"
+url = "/feliz-navidad"
+title = "Feliz Navidad"
+
+[[input.files]]
+path = "la-potencia-de-los-permisos.html"
+url = "/la-potencia-de-los-permisos"
+title = "La potencia de los permisos"
+
+[[input.files]]
+path = "usar-find-para-detectar-enlaces-simbolicos-rotos.html"
+url = "/usar-find-para-detectar-enlaces-simbolicos-rotos"
+title = "Usar find para detectar enlaces simbólicos rotos"
+
+[[input.files]]
+path = "como-hacer-un-svn-export-con-git.html"
+url = "/como-hacer-un-svn-export-con-git"
+title = "¿Cómo hacer un \\\"svn export\\\" con git?"
+
+[[input.files]]
+path = "svn-ignore.html"
+url = "/svn-ignore"
+title = "svn:ignore"
+
+[[input.files]]
+path = "reproducir-flash-con-opera-en-ubuntu.html"
+url = "/reproducir-flash-con-opera-en-ubuntu"
+title = "Reproducir flash con Opera en Ubuntu"
+
+[[input.files]]
+path = "varios-monitores-en-linux.html"
+url = "/varios-monitores-en-linux"
+title = "Varios monitores en linux"
+
+[[input.files]]
+path = "compartir-ficheros-gracias-a-python.html"
+url = "/compartir-ficheros-gracias-a-python"
+title = "Compartir ficheros gracias a python"
+
+[[input.files]]
+path = "error-con-setuptools-y-subversion-1-5.html"
+url = "/error-con-setuptools-y-subversion-1-5"
+title = "Error con setuptools y subversion 1.5"
+
+[[input.files]]
+path = "editores-mostrar-los-numeros-de-linea-en-emacs-y-en-jed.html"
+url = "/editores-mostrar-los-numeros-de-linea-en-emacs-y-en-jed"
+title = "Editores: Mostrar los números de linea en emacs y en jed"
+
+[[input.files]]
+path = "grabar-cd-de-800mb-en-linux.html"
+url = "/grabar-cd-de-800mb-en-linux"
+title = "Grabar CD de 800MB en linux"
+
+[[input.files]]
+path = "buscando-una-fuente-para-escribir-codigo.html"
+url = "/buscando-una-fuente-para-escribir-codigo"
+title = "Buscando una fuente para escribir código"
+
+[[input.files]]
+path = "mi-wordle.html"
+url = "/mi-wordle"
+title = "Mi wordle"
+
+[[input.files]]
+path = "convertir-disco-vmware.html"
+url = "/convertir-disco-vmware"
+title = "Convertir disco vmware"
+
+[[input.files]]
+path = "que-ejecutas-tu-desde-la-consola.html"
+url = "/que-ejecutas-tu-desde-la-consola"
+title = "¿Qué ejecutas tu desde la consola?"
+
+[[input.files]]
+path = "mas-comandos-a-recordar.html"
+url = "/mas-comandos-a-recordar"
+title = "Más comandos a recordar"
+
+[[input.files]]
+path = "timing-en-psql-la-consola-de-postgres.html"
+url = "/timing-en-psql-la-consola-de-postgres"
+title = "Timing en \\\"psql\\\" la consola de postgres"
+
+[[input.files]]
+path = "ejecutar-comandos-en-python.html"
+url = "/ejecutar-comandos-en-python"
+title = "Ejecutar comandos en python"
+
+[[input.files]]
+path = "rendimiento-y-monitorizacion-de-procesos-en-windows.html"
+url = "/rendimiento-y-monitorizacion-de-procesos-en-windows"
+title = "Rendimiento y Monitorización de procesos en windows"
+
+[[input.files]]
+path = "continuar-con-una-descarga.html"
+url = "/continuar-con-una-descarga"
+title = "Continuar con una descarga"
+
+[[input.files]]
+path = "ubuntu-wordpress-php5-y-mysql.html"
+url = "/ubuntu-wordpress-php5-y-mysql"
+title = "ubuntu, wordpress, php5 y mysql"
+
+[[input.files]]
+path = "para-aprender-javascript.html"
+url = "/para-aprender-javascript"
+title = "Para aprender javascript"
+
+[[input.files]]
+path = "knetworkmanager.html"
+url = "/knetworkmanager"
+title = "Knetworkmanager"
+
+[[input.files]]
+path = "mi-nueva-camara.html"
+url = "/mi-nueva-camara"
+title = "Mi nueva cámara"
+
+[[input.files]]
+path = "que-practico-es-python-svnrevisions-py.html"
+url = "/que-practico-es-python-svnrevisions-py"
+title = "¡Que práctico es python!: svnrevisions.py"
+
+[[input.files]]
+path = "error-al-grabar-cds-con-k3b.html"
+url = "/error-al-grabar-cds-con-k3b"
+title = "Error al grabar CDs con k3b"
+
+[[input.files]]
+path = "siempre-la-coma-como-simbolo-decimal-en-un-formulario-net.html"
+url = "/siempre-la-coma-como-simbolo-decimal-en-un-formulario-net"
+title = "Siempre la coma como símbolo decimal en un formulario .net"
+
+[[input.files]]
+path = "corrector-ortografico-de-firefox-2-0-en-castellano.html"
+url = "/corrector-ortografico-de-firefox-2-0-en-castellano"
+title = "Corrector ortográfico de firefox 2.0 en castellano"
+
+[[input.files]]
+path = "primera-anotacion-de-prueba.html"
+url = "/primera-anotacion-de-prueba"
+title = "Primera anotación de prueba"
+
+[[input.files]]
+path = "reactivando-el-blog-en.html"
+url = "/reactivando-el-blog-en.html"
+title = "Blogging again"

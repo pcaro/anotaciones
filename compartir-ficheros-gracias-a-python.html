@@ -17,6 +17,9 @@
           href="https://pablocaro.es/theme/pygments/github.min.css">
 
 
+  <link rel="stylesheet"
+        type="text/css"
+        href="https://pablocaro.es/theme/stork/stork.css" />
 
   <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/font-awesome/css/fontawesome.css">
   <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/font-awesome/css/brands.css">
@@ -93,6 +96,10 @@
 
     <p>Anotaciones</p>
 
+    <div class="stork">
+      <input class="stork-input" type="text" autocomplete="off" name="q" data-stork="sitesearch" placeholder="Search..." onclick="loadStorkIndex()"/>
+      <div class="stork-output" data-stork="sitesearch-output"></div>
+    </div>
 
     <nav>
       <ul class="list">
@@ -100,16 +107,13 @@
 
 
           <li>
-            <a target="_self" href="http://getpelican.com/" >Pelican</a>
+            <a target="_self" href="http://x.com/pcaro" >@pcaro at X.com</a>
           </li>
           <li>
             <a target="_self" href="http://python.org/" >Python.org</a>
           </li>
           <li>
             <a target="_self" href="http://jinja.pocoo.org/" >Jinja2</a>
-          </li>
-          <li>
-            <a target="_self" href="#" >You can modify those links in your config file</a>
           </li>
       </ul>
     </nav>
@@ -162,6 +166,7 @@
   <a href="/archives.html">Archivo</a>
   <a href="/categories.html">Categorías</a>
   <a href="/tags.html">Etiquetas</a>
+  <a href="/search.html">Búsqueda</a>
 
   <a href="https://pablocaro.es/feeds/all.atom.xml">Atom</a>
 
@@ -259,6 +264,12 @@ Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a 
   "image": "/theme/img/profile.png",
   "description": ""
 }
-</script>
+</script>  <script>
+    window.loadStorkIndex = function () {
+      stork.register("sitesearch", "https://pablocaro.es/search-index.st", { showProgress: false });
+    }
+  </script>
+  <script src="https://files.stork-search.net/releases/v1.6.0/stork.js"></script>
+
 </body>
 </html>
