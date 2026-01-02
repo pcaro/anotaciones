@@ -313,12 +313,23 @@ Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a 
   "image": "/theme/img/profile.png",
   "description": ""
 }
-</script>  <script>
+</script>  <script src="https://files.stork-search.net/releases/v1.6.0/stork.js"></script>
+  <script>
+    window.storkIndexLoaded = false;
     window.loadStorkIndex = function () {
+      if (window.storkIndexLoaded) {
+        return;
+      }
+      if (typeof stork === 'undefined') {
+        console.error('Stork is not loaded yet, retrying...');
+        setTimeout(window.loadStorkIndex, 100);
+        return;
+      }
       stork.register("sitesearch", "https://pablocaro.es/search-index.st", { showProgress: false });
+      stork.register("sitesearch-page", "https://pablocaro.es/search-index.st", { showProgress: false });
+      window.storkIndexLoaded = true;
     }
   </script>
-  <script src="https://files.stork-search.net/releases/v1.6.0/stork.js"></script>
 
 </body>
 </html>

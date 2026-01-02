@@ -171,8 +171,8 @@
   </header>
 
   <div class="stork-wrapper-dark">
-    <input data-stork="sitesearch" class="stork-input" placeholder="Search articles..." />
-    <div data-stork="sitesearch-output" class="stork-output"></div>
+    <input class="stork-input" type="text" autocomplete="off" name="q" data-stork="sitesearch-page" placeholder="Search articles..." onclick="loadStorkIndex()" />
+    <div class="stork-output" data-stork="sitesearch-page-output"></div>
   </div>
 </article>
 
@@ -204,18 +204,23 @@ Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a 
   "image": "/theme/img/profile.png",
   "description": ""
 }
-</script>  <script>
+</script>  <script src="https://files.stork-search.net/releases/v1.6.0/stork.js"></script>
+  <script>
+    window.storkIndexLoaded = false;
     window.loadStorkIndex = function () {
+      if (window.storkIndexLoaded) {
+        return;
+      }
+      if (typeof stork === 'undefined') {
+        console.error('Stork is not loaded yet, retrying...');
+        setTimeout(window.loadStorkIndex, 100);
+        return;
+      }
       stork.register("sitesearch", "https://pablocaro.es/search-index.st", { showProgress: false });
+      stork.register("sitesearch-page", "https://pablocaro.es/search-index.st", { showProgress: false });
+      window.storkIndexLoaded = true;
     }
   </script>
-  <script src="https://files.stork-search.net/releases/v1.6.0/stork.js"></script>
 
-<script>
-  // Load Stork index when page loads (not onclick)
-  if (typeof loadStorkIndex === 'function') {
-    loadStorkIndex();
-  }
-</script>
 </body>
 </html>

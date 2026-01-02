@@ -1,28 +1,134 @@
 /* Custom Stork Search Styles for Flex Theme */
 
-/* Search input styling */
-.stork-wrapper-dark .stork-input,
-.stork-wrapper .stork-input {
+/* Input container positioning */
+.stork,
+.stork-wrapper-dark {
+    position: relative;
+}
+
+/* Sidebar search input styling (compact) */
+.stork .stork-input {
     background-color: #2d3748;
-    border: 2px solid #4a5568;
+    border: 1px solid #4a5568;
     color: #e2e8f0;
-    padding: 12px 16px;
-    font-size: 16px;
-    border-radius: 8px;
-    width: 100%;
+    padding: 6px 28px 6px 10px;
+    font-size: 13px;
+    border-radius: 4px;
+    width: 90%;
     transition: border-color 0.3s ease;
 }
 
-.stork-wrapper-dark .stork-input:focus,
-.stork-wrapper .stork-input:focus {
+.stork .stork-input:focus {
     outline: none;
     border-color: #63b3ed;
     background-color: #1a202c;
 }
 
-/* Results container */
-.stork-wrapper-dark .stork-output,
-.stork-wrapper .stork-output {
+/* Search page input styling (larger) */
+.stork-wrapper-dark .stork-input {
+    background-color: #2d3748;
+    border: 2px solid #4a5568;
+    color: #e2e8f0;
+    padding: 14px 50px 14px 18px;
+    font-size: 18px;
+    border-radius: 8px;
+    width: 100%;
+    transition: border-color 0.3s ease;
+}
+
+.stork-wrapper-dark .stork-input:focus {
+    outline: none;
+    border-color: #63b3ed;
+    background-color: #1a202c;
+}
+
+/* Close button styling - Sidebar (compact) */
+.stork .stork-close-button {
+    position: absolute;
+    right: calc(10% + 4px);
+    top: 3px;
+    width: 20px;
+    height: 20px;
+    background-color: #4a5568;
+    border: none;
+    border-radius: 3px;
+    color: #e2e8f0;
+    font-size: 14px;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    padding: 0;
+    z-index: 10;
+}
+
+.stork .stork-close-button:hover {
+    background-color: #fc8181;
+    color: #1a202c;
+}
+
+/* Close button styling - Search page (larger) */
+.stork-wrapper-dark .stork-close-button {
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    width: 32px;
+    height: 32px;
+    background-color: #4a5568;
+    border: none;
+    border-radius: 6px;
+    color: #e2e8f0;
+    font-size: 20px;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    padding: 0;
+}
+
+.stork-wrapper-dark .stork-close-button:hover {
+    background-color: #fc8181;
+    color: #1a202c;
+    transform: scale(1.05);
+}
+
+/* Sidebar results container (compact) */
+.stork .stork-output {
+    background-color: #1a202c;
+    border: 1px solid #4a5568;
+    border-radius: 6px;
+    margin-top: 8px;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+/* Sidebar results message (compact) */
+.stork .stork-message {
+    padding: 8px 12px;
+    margin: 0;
+    font-size: 12px;
+    color: #a0aec0;
+    border-bottom: 1px solid #2d3748;
+}
+
+/* Remove bullets from sidebar results */
+.stork .stork-results {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* Hide empty output containers */
+.stork .stork-output:empty {
+    display: none;
+}
+
+/* Search page results container (larger) */
+.stork-wrapper-dark .stork-output {
     background-color: #1a202c;
     border: 1px solid #4a5568;
     border-radius: 8px;
@@ -31,54 +137,128 @@
     overflow-y: auto;
 }
 
-/* Individual result items */
-.stork-wrapper-dark .stork-result,
-.stork-wrapper .stork-result {
-    padding: 16px;
+/* Search page results message (larger) */
+.stork-wrapper-dark .stork-message {
+    padding: 12px 18px;
+    margin: 0;
+    font-size: 14px;
+    color: #a0aec0;
+    border-bottom: 1px solid #2d3748;
+}
+
+/* Remove bullets from search page results */
+.stork-wrapper-dark .stork-results {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* Hide empty output containers */
+.stork-wrapper-dark .stork-output:empty {
+    display: none;
+}
+
+/* Sidebar result items (compact) */
+.stork .stork-result {
+    padding: 10px 12px;
     border-bottom: 1px solid #2d3748;
     transition: background-color 0.2s ease;
 }
 
-.stork-wrapper-dark .stork-result:hover,
-.stork-wrapper .stork-result:hover {
+.stork .stork-result:hover {
     background-color: #2d3748;
 }
 
-.stork-wrapper-dark .stork-result:last-child,
-.stork-wrapper .stork-result:last-child {
+.stork .stork-result:last-child {
     border-bottom: none;
 }
 
-/* Result title */
-.stork-wrapper-dark .stork-title,
-.stork-wrapper .stork-title {
+/* Search page result items (larger) */
+.stork-wrapper-dark .stork-result {
+    padding: 18px;
+    border-bottom: 1px solid #2d3748;
+    transition: background-color 0.2s ease;
+}
+
+.stork-wrapper-dark .stork-result:hover {
+    background-color: #2d3748;
+}
+
+.stork-wrapper-dark .stork-result:last-child {
+    border-bottom: none;
+}
+
+/* Sidebar result title (smaller) */
+.stork .stork-title {
     color: #63b3ed !important;
-    font-size: 18px;
+    font-size: 15px;
     font-weight: 600;
-    margin-bottom: 8px;
+    margin: 0 0 4px 0;
     text-decoration: none;
 }
 
-.stork-wrapper-dark .stork-title:hover,
-.stork-wrapper .stork-title:hover {
+.stork .stork-title:hover {
     color: #90cdf4 !important;
     text-decoration: underline;
 }
 
-/* Result excerpt/description */
-.stork-wrapper-dark .stork-excerpt,
-.stork-wrapper .stork-excerpt {
+/* Search page result title (larger) */
+.stork-wrapper-dark .stork-title {
+    color: #63b3ed !important;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0 0 6px 0;
+    text-decoration: none;
+}
+
+.stork-wrapper-dark .stork-title:hover {
+    color: #90cdf4 !important;
+    text-decoration: underline;
+}
+
+/* Sidebar excerpt container (compact) */
+.stork .stork-excerpt-container {
+    margin-top: 6px;
+}
+
+/* Sidebar result excerpt (smaller) */
+.stork .stork-excerpt {
     color: #cbd5e0 !important;
-    font-size: 14px;
-    line-height: 1.6;
+    font-size: 12px;
+    line-height: 1.4;
+    margin: 0;
+    padding: 0;
+}
+
+/* Remove extra spacing between multiple excerpts */
+.stork .stork-excerpt + .stork-excerpt {
     margin-top: 4px;
 }
 
-/* Highlighted search terms */
+/* Search page excerpt container */
+.stork-wrapper-dark .stork-excerpt-container {
+    margin-top: 8px;
+}
+
+/* Search page result excerpt (larger) */
+.stork-wrapper-dark .stork-excerpt {
+    color: #cbd5e0 !important;
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
+/* Remove extra spacing between multiple excerpts */
+.stork-wrapper-dark .stork-excerpt + .stork-excerpt {
+    margin-top: 6px;
+}
+
+/* Highlighted search terms (shared) */
+.stork .stork-highlight,
+.stork mark,
 .stork-wrapper-dark .stork-highlight,
-.stork-wrapper .stork-highlight,
-.stork-wrapper-dark mark,
-.stork-wrapper mark {
+.stork-wrapper-dark mark {
     background-color: #f6ad55 !important;
     color: #1a202c !important;
     padding: 2px 4px;
@@ -86,27 +266,41 @@
     font-weight: 600;
 }
 
-/* Loading state */
-.stork-wrapper-dark .stork-loading,
-.stork-wrapper .stork-loading {
+/* Sidebar loading/error states (compact) */
+.stork .stork-loading {
     color: #a0aec0;
-    padding: 20px;
+    padding: 12px;
     text-align: center;
+    font-size: 13px;
 }
 
-/* No results message */
-.stork-wrapper-dark .stork-error,
-.stork-wrapper .stork-error,
-.stork-wrapper-dark .stork-no-results,
-.stork-wrapper .stork-no-results {
+.stork .stork-error,
+.stork .stork-no-results {
     color: #fc8181;
-    padding: 20px;
+    padding: 12px;
     text-align: center;
+    font-size: 13px;
 }
 
-/* Progress bar */
-.stork-wrapper-dark .stork-progress,
-.stork-wrapper .stork-progress {
+/* Search page loading/error states (larger) */
+.stork-wrapper-dark .stork-loading {
+    color: #a0aec0;
+    padding: 24px;
+    text-align: center;
+    font-size: 15px;
+}
+
+.stork-wrapper-dark .stork-error,
+.stork-wrapper-dark .stork-no-results {
+    color: #fc8181;
+    padding: 24px;
+    text-align: center;
+    font-size: 15px;
+}
+
+/* Progress bar (shared) */
+.stork .stork-progress,
+.stork-wrapper-dark .stork-progress {
     background-color: #2d3748;
     height: 4px;
     border-radius: 2px;
@@ -114,52 +308,52 @@
     margin-top: 8px;
 }
 
-.stork-wrapper-dark .stork-progress-bar,
-.stork-wrapper .stork-progress-bar {
+.stork .stork-progress-bar,
+.stork-wrapper-dark .stork-progress-bar {
     background-color: #63b3ed;
     height: 100%;
     transition: width 0.3s ease;
 }
 
-/* Attribution/powered by */
-.stork-wrapper-dark .stork-attribution,
-.stork-wrapper .stork-attribution {
+/* Attribution (shared) */
+.stork .stork-attribution,
+.stork-wrapper-dark .stork-attribution {
     color: #718096;
-    font-size: 12px;
+    font-size: 11px;
     text-align: center;
-    padding: 12px;
+    padding: 10px;
     border-top: 1px solid #2d3748;
 }
 
-.stork-wrapper-dark .stork-attribution a,
-.stork-wrapper .stork-attribution a {
+.stork .stork-attribution a,
+.stork-wrapper-dark .stork-attribution a {
     color: #63b3ed;
     text-decoration: none;
 }
 
-.stork-wrapper-dark .stork-attribution a:hover,
-.stork-wrapper .stork-attribution a:hover {
+.stork .stork-attribution a:hover,
+.stork-wrapper-dark .stork-attribution a:hover {
     text-decoration: underline;
 }
 
-/* Scrollbar styling for results */
-.stork-wrapper-dark .stork-output::-webkit-scrollbar,
-.stork-wrapper .stork-output::-webkit-scrollbar {
+/* Scrollbar styling for results (shared) */
+.stork .stork-output::-webkit-scrollbar,
+.stork-wrapper-dark .stork-output::-webkit-scrollbar {
     width: 8px;
 }
 
-.stork-wrapper-dark .stork-output::-webkit-scrollbar-track,
-.stork-wrapper .stork-output::-webkit-scrollbar-track {
+.stork .stork-output::-webkit-scrollbar-track,
+.stork-wrapper-dark .stork-output::-webkit-scrollbar-track {
     background: #2d3748;
 }
 
-.stork-wrapper-dark .stork-output::-webkit-scrollbar-thumb,
-.stork-wrapper .stork-output::-webkit-scrollbar-thumb {
+.stork .stork-output::-webkit-scrollbar-thumb,
+.stork-wrapper-dark .stork-output::-webkit-scrollbar-thumb {
     background: #4a5568;
     border-radius: 4px;
 }
 
-.stork-wrapper-dark .stork-output::-webkit-scrollbar-thumb:hover,
-.stork-wrapper .stork-output::-webkit-scrollbar-thumb:hover {
+.stork .stork-output::-webkit-scrollbar-thumb:hover,
+.stork-wrapper-dark .stork-output::-webkit-scrollbar-thumb:hover {
     background: #718096;
 }
