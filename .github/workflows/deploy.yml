@@ -38,6 +38,13 @@ jobs:
             git clone https://github.com/getpelican/pelican-plugins.git plugins
           fi
 
+      - name: Install Stork
+        run: |
+          wget https://files.stork-search.net/releases/v1.6.0/stork-ubuntu-20-04 -O /tmp/stork
+          chmod +x /tmp/stork
+          sudo mv /tmp/stork /usr/local/bin/stork
+          stork --version
+
       - name: Build with Pelican
         run: uv run pelican -s publishconf.py -v
 
