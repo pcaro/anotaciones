@@ -13,7 +13,7 @@ jobs:
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
       cancel-in-progress: true
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -38,12 +38,22 @@ jobs:
             git clone https://github.com/getpelican/pelican-plugins.git plugins
           fi
 
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Cache Stork binary
+        id: cache-stork
+        uses: actions/cache@v4
+        with:
+          path: ~/.cargo/bin/stork
+          key: stork-${{ runner.os }}-1.6.0
+
       - name: Install Stork
-        run: |
-          wget https://files.stork-search.net/releases/v1.6.0/stork-ubuntu-20-04 -O /tmp/stork
-          chmod +x /tmp/stork
-          sudo mv /tmp/stork /usr/local/bin/stork
-          stork --version
+        if: steps.cache-stork.outputs.cache-hit != 'true'
+        run: cargo install stork-search --locked --version 1.6.0
+
+      - name: Verify Stork installation
+        run: stork --version
 
       - name: Build with Pelican
         run: uv run pelican -s publishconf.py -v
