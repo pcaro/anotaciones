@@ -46,15 +46,18 @@ def serve(c, port=7000):
 
     os.chdir("output_dev")
     with socketserver.TCPServer(("", port), HTMLHandler) as httpd:
-        print(f"Serving on http://localhost:{port}")
-        httpd.serve_forever()
+        print(f"Serving on http://localhost:{port}", flush=True)
+        try:
+            httpd.serve_forever()
+        except KeyboardInterrupt:
+            pass
 
 
 @task
 def develop(c, port=7000):
     """Build and serve the site for development"""
     build(c)
-    print(f"Serving on http://localhost:{port}")
+    print(f"Serving on http://localhost:{port}", flush=True)
     serve(c, port)
 
 
