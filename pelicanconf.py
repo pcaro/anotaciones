@@ -84,7 +84,52 @@ PLUGINS = [
     "neighbors",
     "related_posts",
     "search",
+    "i18n_subsites",
 ]
+
+# I18N
+JINJA_ENVIRONMENT = {"extensions": ["jinja2.ext.i18n"]}
+I18N_TEMPLATES_LANG = "en"
+I18N_UNTRANSLATED_ARTICLES = "remove"
+I18N_UNTRANSLATED_PAGES = "remove"
+I18N_SUBSITES = {
+    "en": {
+        "SITENAME": "Annotations by Pablo Caro",
+        "SITESUBTITLE": "Annotations",
+        "LOCALE": "en_US.UTF-8",
+        "THEME_STATIC_DIR": "theme",
+        "THEME_STATIC_PATHS": ["static"],
+        "MENUITEMS": (
+            ("Archives", "/en/archives.html"),
+            ("Categories", "/en/categories.html"),
+            ("Tags", "/en/tags.html"),
+            ("Search", "/en/search.html"),
+        ),
+        "SITESUBTITLE": "Annotations",
+        "SITE_DESCRIPTION": "My name is Pablo Caro — a software engineer. I am pcaro on Github and twitter. I build software of all kinds. This is my personal blog.",
+        "LANDING_PAGE_ABOUT": {
+            "title": "Building software innovatively",
+            "details": """<div itemscope itemtype="http://schema.org/Person">
+       <p>My name is <span itemprop="name">Pablo Caro</span>.
+       I am <a href="https://github.com/pcaro/" title="Github profile" itemprop="url"><span itemprop="nickname">pcaro</span></a> on Github
+       as well as on Twitter (<a href="https://twitter.com/pcaro/" title="Twitter profile" itemprop="url">@pcaro</a>).
+       You can contact me via <a href="mailto:correo@pablocaro.es" title="email" itemprop="email">email</a>.</p>
+
+       <p>In this blog called <strong>Annotations</strong> I write down notes that
+       I don't want to occupy space in my head. Mainly Python and Linux recipes.</p>
+
+       <p>As a developer I work for both public and private institutions, and
+       I have no problem getting used to new languages or frameworks. I always keep
+       receptive to working with new technologies. Now focused on technology accompaniment projects and
+       growth hacking. I often collaborate with open source software projects and I am always willing
+       to preach in favor of opensource.</p>
+
+       <p>On the more personal side I am a happily married man with two wonderful children
+       living in Seville although you won't read much about them here as I also guard my privacy very much.</p>
+       </div>""",
+        },
+    }
+}
 
 STORK_VERSION = "1.6.0"
 
