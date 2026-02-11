@@ -60,17 +60,27 @@
 
  
 
-    <meta name="author" content="Pablo Caro" />
-    <meta name="description" content="" />
+<meta name="author" content="Pablo Caro" />
+<meta name="description" content="Instala binarios directamente desde releases de GitHub de forma sencilla con gah." />
+<meta name="keywords" content="linux, herramientas, cli">
+
+
   <meta property="og:site_name" content="Anotaciones por Pablo Caro"/>
-  <meta property="og:type" content="blog"/>
-  <meta property="og:title" content="Anotaciones por Pablo Caro"/>
-  <meta property="og:description" content=""/>
+  <meta property="og:title" content="Gestionando instalaciones desde GitHub con gah"/>
+  <meta property="og:description" content="Instala binarios directamente desde releases de GitHub de forma sencilla con gah."/>
   <meta property="og:locale" content="en_US"/>
-  <meta property="og:url" content="https://pablocaro.es"/>
+  <meta property="og:url" content="https://pablocaro.es/gestionando-instalaciones-desde-github-con-gah"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2026-02-11 20:23:00+01:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://pablocaro.es/author/pablo-caro.html">
+  <meta property="article:section" content="Linux"/>
+  <meta property="article:tag" content="linux"/>
+  <meta property="article:tag" content="herramientas"/>
+  <meta property="article:tag" content="cli"/>
   <meta property="og:image" content="/theme/img/profile.png">
 
-  <title>Anotaciones por Pablo Caro &ndash; Category Linux</title>
+  <title>Anotaciones por Pablo Caro &ndash; Gestionando instalaciones desde GitHub con gah</title>
 
 
 </head>
@@ -165,51 +175,82 @@
   <a href="https://pablocaro.es/feeds/all.rss.xml">RSS</a>
 </nav>
 
-
-
-<article>
+<article class="single">
   <header>
-    <h2><a href="https://pablocaro.es/gestionando-instalaciones-desde-github-con-gah#gestionando-instalaciones-desde-github-con-gah">Gestionando instalaciones desde GitHub con gah</a></h2>
+      
+    <h1 id="gestionando-instalaciones-desde-github-con-gah">Gestionando instalaciones desde GitHub con gah</h1>
     <p>
       Posted on Wed 11 February 2026 in <a href="https://pablocaro.es/category/linux.html">Linux</a>
 
-          &#8226; Tagged with
-              <a href="https://pablocaro.es/tag/linux.html">linux</a>,              <a href="https://pablocaro.es/tag/herramientas.html">herramientas</a>,              <a href="https://pablocaro.es/tag/cli.html">cli</a>
     </p>
   </header>
+
+
   <div>
-      <div><p class="first last">Instala binarios directamente desde releases de GitHub de forma sencilla con gah.</p>
+    <p><a class="reference external" href="https://github.com/get-gah/gah">gah</a> es una herramienta que facilita la instalación de programas que distribuyen sus binarios a través de releases de GitHub. Es una alternativa ligera cuando no quieres depender del gestor de paquetes de tu distribución o cuando necesitas una versión más reciente.</p>
+<div class="section" id="instalacion">
+<h2>Instalación</h2>
+<p>Para instalar <strong>gah</strong>, puedes usar el siguiente script oficial:</p>
+<div class="highlight"><pre><span></span>bash<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://raw.githubusercontent.com/get-gah/gah/refs/heads/master/tools/install.sh<span class="k">)</span><span class="s2">&quot;</span>
+</pre></div>
 </div>
-        <br>
-        <a class="btn"
-           href="https://pablocaro.es/gestionando-instalaciones-desde-github-con-gah#gestionando-instalaciones-desde-github-con-gah">
-          Continue reading
-        </a>
+<div class="section" id="uso">
+<h2>Uso</h2>
+<p>Una vez instalado, usarlo es muy directo. Aquí tienes un par de ejemplos que he usado recientemente para instalar herramientas populares escritas en Rust:</p>
+<p>Para instalar <cite>fd</cite> (una alternativa rápida a <tt class="docutils literal">find</tt>):</p>
+<div class="highlight"><pre><span></span>gah<span class="w"> </span>install<span class="w"> </span>sharkdp/fd
+</pre></div>
+<p>Para instalar <cite>ripgrep</cite> (una alternativa rápida a <tt class="docutils literal">grep</tt>):</p>
+<div class="highlight"><pre><span></span>gah<span class="w"> </span>install<span class="w"> </span>BurntSushi/ripgrep
+</pre></div>
+<p>Gah se encarga de descargar el asset correcto para tu arquitectura, descomprimirlo y colocarlo en tu path.</p>
+</div>
+
   </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://pablocaro.es/determinar-slots-ram-uso-linux#determinar-slots-ram-uso-linux">Determinar slots de RAM en uso en Linux</a></h2>
+  <div class="tag-cloud">
     <p>
-      Posted on Wed 13 July 2016 in <a href="https://pablocaro.es/category/linux.html">Linux</a>
-
-          &#8226; Tagged with
-              <a href="https://pablocaro.es/tag/linux.html">linux</a>,              <a href="https://pablocaro.es/tag/ram.html">ram</a>,              <a href="https://pablocaro.es/tag/dmidecode.html">dmidecode</a>,              <a href="https://pablocaro.es/tag/lshw.html">lshw</a>,              <a href="https://pablocaro.es/tag/hardware.html">hardware</a>,              <a href="https://pablocaro.es/tag/memoria.html">memoria</a>
+      <a href="https://pablocaro.es/tag/linux.html">linux</a>
+      <a href="https://pablocaro.es/tag/herramientas.html">herramientas</a>
+      <a href="https://pablocaro.es/tag/cli.html">cli</a>
     </p>
-  </header>
-  <div>
-      <div><p>Comandos de Linux para determinar cuántos slots de RAM están ocupados y su capacidad usando dmidecode, lshw y técnicas de inspección de hardware</p></div>
-        <br>
-        <a class="btn"
-           href="https://pablocaro.es/determinar-slots-ram-uso-linux#determinar-slots-ram-uso-linux">
-          Continue reading
-        </a>
   </div>
+
+
+
+  <div class="neighbors">
+    <a class="btn float-left" href="https://pablocaro.es/yaml-multilinea-cadenas-complejas" title="YAML Multilínea: Entendiendo y probando cadenas de texto complejas">
+      <i class="fa fa-angle-left"></i> Previous Post
+    </a>
+  </div>
+
+  <div class="related-posts">
+    <h4>You might enjoy</h4>
+    <ul class="related-posts">
+      <li><a href="https://pablocaro.es/fresh-editor-terminal">`fresh`: Mi editor de terminal preferido para el día a día</a></li>
+      <li><a href="https://pablocaro.es/kooha-captura-pantalla-linux">Kooha: Captura de pantalla sencilla y elegante en Linux</a></li>
+      <li><a href="https://pablocaro.es/direnv-gestion-entornos">`direnv`: Gestiona tus entornos de desarrollo de forma inteligente</a></li>
+      <li><a href="https://pablocaro.es/de-yakuake-a-kitty">De Yakuake a Kitty: Mi transición a un terminal moderno</a></li>
+      <li><a href="https://pablocaro.es/herramientas-desarrolladores-linea-comandos">Potentes herramientas para desarrolladores desde línea de comandos</a></li>
+    </ul>
+  </div>
+
+
+
+<!-- Disqus -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'anotaciones';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>
+    Please enable JavaScript to view comments.
+</noscript>
+<!-- End Disqus -->
 </article>
-
-
-
 
 <footer>
 <p>

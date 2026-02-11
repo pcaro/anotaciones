@@ -5,36 +5,43 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://pablocaro.es/</loc>
-<lastmod>2026-01-02T22:07:30-00:00</lastmod>
+<lastmod>2026-02-11T19:41:52-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://pablocaro.es/tags.html</loc>
-<lastmod>2026-01-02T22:07:30-00:00</lastmod>
+<lastmod>2026-02-11T19:41:52-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://pablocaro.es/categories.html</loc>
-<lastmod>2026-01-02T22:07:30-00:00</lastmod>
+<lastmod>2026-02-11T19:41:52-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://pablocaro.es/archives.html</loc>
-<lastmod>2026-01-02T22:07:30-00:00</lastmod>
+<lastmod>2026-02-11T19:41:52-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://pablocaro.es/search.html</loc>
-<lastmod>2026-01-02T22:07:30-00:00</lastmod>
+<lastmod>2026-02-11T19:41:52-00:00</lastmod>
 <changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://pablocaro.es/gestionando-instalaciones-desde-github-con-gah</loc>
+<lastmod>2026-02-11T20:23:00+01:00</lastmod>
+<changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
@@ -999,7 +1006,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://pablocaro.es/category/linux.html</loc>
-<lastmod>2016-07-13T20:28:00+00:09</lastmod>
+<lastmod>2026-02-11T20:23:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -1082,6 +1089,27 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+<loc>https://pablocaro.es/tag/linux.html</loc>
+<lastmod>2026-02-11T20:23:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://pablocaro.es/tag/herramientas.html</loc>
+<lastmod>2026-02-11T20:23:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://pablocaro.es/tag/cli.html</loc>
+<lastmod>2026-02-11T20:23:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
 <loc>https://pablocaro.es/tag/yaml.html</loc>
 <lastmod>2025-12-25T16:10:00+00:09</lastmod>
 <changefreq>daily</changefreq>
@@ -1097,13 +1125,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://pablocaro.es/tag/desarrollo.html</loc>
-<lastmod>2025-12-25T16:10:00+00:09</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>https://pablocaro.es/tag/herramientas.html</loc>
 <lastmod>2025-12-25T16:10:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
@@ -1181,20 +1202,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://pablocaro.es/tag/productividad.html</loc>
-<lastmod>2025-12-25T15:45:00+00:09</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>https://pablocaro.es/tag/linux.html</loc>
-<lastmod>2025-12-25T15:45:00+00:09</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>https://pablocaro.es/tag/cli.html</loc>
 <lastmod>2025-12-25T15:45:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>

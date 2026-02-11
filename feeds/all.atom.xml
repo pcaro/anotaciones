@@ -1,5 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Anotaciones por Pablo Caro</title><link href="https://pablocaro.es/" rel="alternate"></link><link href="https://pablocaro.es/feeds/all.atom.xml" rel="self"></link><id>https://pablocaro.es/</id><updated>2025-12-25T16:10:00+01:00</updated><subtitle>Anotaciones</subtitle><entry><title>YAML Multilínea: Entendiendo y probando cadenas de texto complejas</title><link href="https://pablocaro.es/yaml-multilinea-cadenas-complejas" rel="alternate"></link><published>2025-12-25T16:10:00+01:00</published><updated>2025-12-25T16:10:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2025-12-25:/yaml-multilinea-cadenas-complejas</id><summary type="html">&lt;p&gt;Explora las opciones de YAML para manejar cadenas de texto multilínea de forma efectiva, con una demo interactiva que te permite probarlas en tiempo real.&lt;/p&gt;</summary><content type="html">&lt;p&gt;YAML se ha convertido en el formato de facto para la configuración en muchos proyectos, desde Kubernetes hasta scripts de CI/CD. Una de sus funcionalidades más potentes, y a veces confusas, es la gestión de &lt;strong&gt;cadenas de texto multilínea&lt;/strong&gt;. Afortunadamente, existe una herramienta interactiva excepcional para dominar este aspecto: &lt;a href="https://yaml-multiline.info/"&gt;yaml-multiline.info&lt;/a&gt;.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Anotaciones por Pablo Caro</title><link href="https://pablocaro.es/" rel="alternate"></link><link href="https://pablocaro.es/feeds/all.atom.xml" rel="self"></link><id>https://pablocaro.es/</id><updated>2026-02-11T20:23:00+01:00</updated><subtitle>Anotaciones</subtitle><entry><title>Gestionando instalaciones desde GitHub con gah</title><link href="https://pablocaro.es/gestionando-instalaciones-desde-github-con-gah" rel="alternate"></link><published>2026-02-11T20:23:00+01:00</published><updated>2026-02-11T20:23:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-02-11:/gestionando-instalaciones-desde-github-con-gah</id><summary type="html">&lt;p class="first last"&gt;Instala binarios directamente desde releases de GitHub de forma sencilla con gah.&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;&lt;a class="reference external" href="https://github.com/get-gah/gah"&gt;gah&lt;/a&gt; es una herramienta que facilita la instalación de programas que distribuyen sus binarios a través de releases de GitHub. Es una alternativa ligera cuando no quieres depender del gestor de paquetes de tu distribución o cuando necesitas una versión más reciente.&lt;/p&gt;
+&lt;div class="section" id="instalacion"&gt;
+&lt;h2&gt;Instalación&lt;/h2&gt;
+&lt;p&gt;Para instalar &lt;strong&gt;gah&lt;/strong&gt;, puedes usar el siguiente script oficial:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;bash&lt;span class="w"&gt; &lt;/span&gt;-c&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;curl&lt;span class="w"&gt; &lt;/span&gt;-fsSL&lt;span class="w"&gt; &lt;/span&gt;https://raw.githubusercontent.com/get-gah/gah/refs/heads/master/tools/install.sh&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="uso"&gt;
+&lt;h2&gt;Uso&lt;/h2&gt;
+&lt;p&gt;Una vez instalado, usarlo es muy directo. Aquí tienes un par de ejemplos que he usado recientemente para instalar herramientas populares escritas en Rust:&lt;/p&gt;
+&lt;p&gt;Para instalar &lt;cite&gt;fd&lt;/cite&gt; (una alternativa rápida a &lt;tt class="docutils literal"&gt;find&lt;/tt&gt;):&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;gah&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;sharkdp/fd
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Para instalar &lt;cite&gt;ripgrep&lt;/cite&gt; (una alternativa rápida a &lt;tt class="docutils literal"&gt;grep&lt;/tt&gt;):&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;gah&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;BurntSushi/ripgrep
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Gah se encarga de descargar el asset correcto para tu arquitectura, descomprimirlo y colocarlo en tu path.&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="Linux"></category><category term="linux"></category><category term="herramientas"></category><category term="cli"></category></entry><entry><title>YAML Multilínea: Entendiendo y probando cadenas de texto complejas</title><link href="https://pablocaro.es/yaml-multilinea-cadenas-complejas" rel="alternate"></link><published>2025-12-25T16:10:00+01:00</published><updated>2025-12-25T16:10:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2025-12-25:/yaml-multilinea-cadenas-complejas</id><summary type="html">&lt;p&gt;Explora las opciones de YAML para manejar cadenas de texto multilínea de forma efectiva, con una demo interactiva que te permite probarlas en tiempo real.&lt;/p&gt;</summary><content type="html">&lt;p&gt;YAML se ha convertido en el formato de facto para la configuración en muchos proyectos, desde Kubernetes hasta scripts de CI/CD. Una de sus funcionalidades más potentes, y a veces confusas, es la gestión de &lt;strong&gt;cadenas de texto multilínea&lt;/strong&gt;. Afortunadamente, existe una herramienta interactiva excepcional para dominar este aspecto: &lt;a href="https://yaml-multiline.info/"&gt;yaml-multiline.info&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id="formatos-para-cadenas-multilinea-en-yaml"&gt;Formatos para Cadenas Multilínea en YAML&lt;a class="headerlink" href="#formatos-para-cadenas-multilinea-en-yaml" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;YAML ofrece principalmente dos enfoques para definir cadenas que abarcan varias líneas:&lt;/p&gt;
 &lt;ol&gt;
@@ -3234,34 +3253,4 @@ la regla del zoom es para aplicar el hasLayout en el ie6. No es estándar y es m
 
 Nota personal: Pablo olvida el div con el clear:both que en este caso no es solución.
 
-    </content><category term="Programación"></category><category term="web"></category></entry><entry><title>Comandos útiles en la consola de postgres (pgsql)</title><link href="https://pablocaro.es/comandos-utiles-en-la-consola-de-postgres-pgsql" rel="alternate"></link><published>2009-03-30T06:04:00+02:00</published><updated>2009-03-30T06:04:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2009-03-30:/comandos-utiles-en-la-consola-de-postgres-pgsql</id><summary type="html">
-        Otra de las cosas que simpre olvido. Así que lo anoto.
-
-Para sacar el resultado de una consulta sql a un fichero desde el pgsql.
-&lt;ol&gt;
-	&lt;li&gt;\a&lt;/li&gt;
-	&lt;li&gt;\f ,&lt;/li&gt;
-	&lt;li&gt;\o /tmp/salida.csv&lt;/li&gt;
-	&lt;li&gt;select * from ...&lt;/li&gt;
-&lt;/ol&gt;
-Se trata de:
-&lt;ol&gt;
-	&lt;li&gt;Cambiar entre modo de salida alineado y sin alinear&lt;/li&gt;
-	&lt;li&gt;Definir separador de campos (en …&lt;/li&gt;&lt;/ol&gt;</summary><content type="html">
-        Otra de las cosas que simpre olvido. Así que lo anoto.
-
-Para sacar el resultado de una consulta sql a un fichero desde el pgsql.
-&lt;ol&gt;
-	&lt;li&gt;\a&lt;/li&gt;
-	&lt;li&gt;\f ,&lt;/li&gt;
-	&lt;li&gt;\o /tmp/salida.csv&lt;/li&gt;
-	&lt;li&gt;select * from ...&lt;/li&gt;
-&lt;/ol&gt;
-Se trata de:
-&lt;ol&gt;
-	&lt;li&gt;Cambiar entre modo de salida alineado y sin alinear&lt;/li&gt;
-	&lt;li&gt;Definir separador de campos (en el ejemplo a una coma)&lt;/li&gt;
-	&lt;li&gt;Envíar resultados de consultas a archivo&lt;/li&gt;
-	&lt;li&gt;Ejecutar la consulta&lt;/li&gt;
-&lt;/ol&gt;
-    </content><category term="Sin Categoría"></category></entry></feed>
+    </content><category term="Programación"></category><category term="web"></category></entry></feed>

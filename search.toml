@@ -3,6 +3,11 @@ html_selector = "main"
 base_directory = "/home/runner/work/anotaciones/anotaciones/output"
 
 [[input.files]]
+path = "gestionando-instalaciones-desde-github-con-gah.html"
+url = "/gestionando-instalaciones-desde-github-con-gah"
+title = "Gestionando instalaciones desde GitHub con gah"
+
+[[input.files]]
 path = "yaml-multilinea-cadenas-complejas.html"
 url = "/yaml-multilinea-cadenas-complejas"
 title = "YAML Multilínea: Entendiendo y probando cadenas de texto complejas"
