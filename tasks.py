@@ -62,7 +62,8 @@ def serve(c, port=7000):
 def develop(c, port=7000):
     """Build and serve the site for development"""
     build(c)
-    serve(c, port)
+    print(f"Serving on http://localhost:{port}", flush=True)
+    c.run(f"python3 -m invoke serve --port {port}", pty=True)
 
 
 @task
