@@ -104,6 +104,7 @@ I18N_SUBSITES = {
             ("Categories", "/en/categories.html"),
             ("Tags", "/en/tags.html"),
             ("Search", "/en/search.html"),
+            ("Español", "/"),
         ),
         "SITESUBTITLE": "Annotations",
         "SITE_DESCRIPTION": "My name is Pablo Caro — a software engineer. I am pcaro on Github and twitter. I build software of all kinds. This is my personal blog.",
@@ -181,6 +182,7 @@ MENUITEMS = (
     ("Categorías", "/categories.html"),
     ("Etiquetas", "/tags.html"),
     ("Búsqueda", "/search.html"),
+    ("English", "/en/"),
 )
 
 # Mailchimp
