@@ -24,6 +24,7 @@ def serve(c, port=7000):
     import http.server
     import socketserver
     import os
+    import sys
     from urllib.parse import urlparse, unquote
 
     class HTMLHandler(http.server.SimpleHTTPRequestHandler):
@@ -45,19 +46,22 @@ def serve(c, port=7000):
             return super().do_GET()
 
     os.chdir("output_dev")
-    with socketserver.TCPServer(("", port), HTMLHandler) as httpd:
-        print(f"Serving on http://localhost:{port}", flush=True)
-        try:
+    # Allow address reuse to avoid "Address already in use" errors after restart
+    socketserver.TCPServer.allow_reuse_address = True
+    
+    try:
+        with socketserver.TCPServer(("", port), HTMLHandler) as httpd:
+            sys.stdout.write(f"Serving on http://localhost:{port}\n")
+            sys.stdout.flush()
             httpd.serve_forever()
-        except KeyboardInterrupt:
-            pass
+    except KeyboardInterrupt:
+        sys.stdout.write("\nStopping server...\n")
 
 
 @task
 def develop(c, port=7000):
     """Build and serve the site for development"""
     build(c)
-    print(f"Serving on http://localhost:{port}", flush=True)
     serve(c, port)
 
 
