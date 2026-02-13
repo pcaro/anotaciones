@@ -1,0 +1,15 @@
+{% macro translations_for(article) %}
+    {% if article.translations %}
+    <div class="translations">
+    {% for translation in article.translations %}
+        {% if translation.lang == 'en' %}
+            <a href="{{ SITEURL }}/{{ translation.url }}">Read in English</a>
+        {% elif translation.lang == 'es' %}
+            <a href="{{ SITEURL }}/{{ translation.url }}">Leer en español</a>
+        {% else %}
+            <a href="{{ SITEURL }}/{{ translation.url }}">Read in {{ translation.lang }}</a>
+        {% endif %}
+    {% endfor %}
+    </div>
+    {% endif %}
+{% endmacro %}

@@ -67,7 +67,7 @@ RELATIVE_URLS = False
 # THEME = 'pelican-themes/mg'
 # THEME = 'pelican-themes/Just-Read'  # Un buen punto de partida. Necesita cosas de elegant
 # THEME = 'pelican-themes/svbhack'
-THEME = "themes/Flex"
+THEME_TEMPLATES_OVERRIDES = ["themes/custom/templates"]
 
 SITEMAP = {
     "format": "xml",
