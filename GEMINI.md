@@ -27,7 +27,10 @@ This project uses `uv` for dependency management and `invoke` for task automatio
     ```
 
 3.  **Setup Theme and Plugins**:
-    The `Flex` theme is located in the `themes/Flex` directory.
+    The `Flex` theme is configured as a git submodule.
+    ```bash
+    git submodule update --init --recursive
+    ```
     Plugins are managed by cloning the `pelican-plugins` repository into the `plugins` directory.
     ```bash
     git clone https://github.com/getpelican/pelican-plugins.git plugins
@@ -40,22 +43,22 @@ All common tasks are automated using `invoke` (defined in `tasks.py`).
 
 *   **Build the site**:
     ```bash
-    uv run invoke build
+    invoke build
     ```
 
 *   **Run a local development server**:
     ```bash
-    uv run invoke develop
+    invoke develop
     ```
 
 *   **Run a local development server with live reloading (recommended)**:
     ```bash
-    uv run invoke develop-live
+    invoke develop-live
     ```
 
 *   **Run server on specific port**:
     ```bash
-    uv run invoke serve --port 7000
+    invoke serve --port 7000
     ```
 
 *   **Stop a running development server**:
@@ -73,12 +76,12 @@ All common tasks are automated using `invoke` (defined in `tasks.py`).
 
 *   **Build for production**:
     ```bash
-    uv run invoke production
+    invoke production
     ```
 
 *   **Create a new post**:
     ```bash
-    uv run invoke write "Title of your new post"
+    invoke write "Title of your new post"
     ```
     *(This will create a new reStructuredText file in `content/articles/` with a pre-filled template.)*
 
@@ -110,9 +113,19 @@ The site is automatically deployed to [GitHub Pages](https://pages.github.com/) 
 *   **Build Verification**: Always run a local build and verify it works correctly before committing to avoid breaking the automated deployment.
 *   **Asset Paths**: Ensure `SITEURL` in `pelicanconf.py` is set correctly to the root domain (`https://pablocaro.es`) and `RELATIVE_URLS = False` for production builds to avoid path issues. Static assets are managed under the `themes/Flex/static/` and `content/images/` directories.
 
-## Search Functionality
+## Multi-language Support
 
-The blog uses **[Stork](https://stork-search.net/)** for fast client-side search via the `pelican-search` plugin.
+The blog supports multi-language content (Spanish and English) using `pelican-i18n-subsites`.
+
+*   **Default Language**: Spanish (`es`).
+*   **Secondary Language**: English (`en`).
+*   **English Subsite**: Generated at `/en/`.
+*   **Translation Workflow**:
+    1.  Write the original article in Spanish (default).
+    2.  Create a translated version with the same slug but different filename (e.g., `slug.en.rst`).
+    3.  Add `:lang: en` metadata to the translated file.
+    4.  The plugin will automatically link them and generate the subsite.
+*   **Configuration**: managed in `pelicanconf.py` under `I18N_SUBSITES`.
 
 ### How It Works
 
@@ -140,6 +153,7 @@ The blog uses **[Stork](https://stork-search.net/)** for fast client-side search
   - Check installation: `which stork`
   - Current location: `/usr/local/bin/stork`
   - Install: https://stork-search.net/docs/install
+  - **Note for Ubuntu 22.04+**: Stork v1.6.0 depends on `libssl1.1`. If missing, download it from [ubuntu security](http://security.ubuntu.com/ubuntu/pool/main/o/openssl/) and place `libssl.so.1.1` and `libcrypto.so.1.1` in `~/.local/lib`, then wrap the stork binary to set `LD_LIBRARY_PATH`.
 
 ### Theme Template
 
@@ -171,10 +185,10 @@ The blog previously used custom `generate_search_index()` code that:
 #### 1. Launch Development Server
 ```bash
 # Build the site first
-uv run invoke build
+invoke build
 
 # Launch the development server
-uv run invoke serve --port 7000
+invoke serve --port 7000
 # Server runs on http://localhost:7000
 ```
 

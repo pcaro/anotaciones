@@ -27,5 +27,6 @@ dependencies = [
 [dependency-groups]
 dev = [
     "black",
+    "livereload>=2.6.3",
     "ruff",
 ]

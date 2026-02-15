@@ -18,7 +18,7 @@ First install dependencies using uv::
 
 Then download theme and plugins::
 
-    git clone https://github.com/pcaro/pelican-elegant.git
+    git submodule update --init --recursive
     git clone https://github.com/getpelican/pelican-plugins.git plugins
 
 **Development Commands**
