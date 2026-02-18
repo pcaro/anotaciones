@@ -18,7 +18,6 @@ dependencies = [
     "blinker==1.7.0",
     "rich==13.7.0",
     "invoke==2.2.0",
-    "livereload==2.6.3",
     "ghp-import==2.1.0",
     "six==1.17.0",
     "pelican-search",
@@ -27,6 +26,5 @@ dependencies = [
 [dependency-groups]
 dev = [
     "black",
-    "livereload>=2.6.3",
     "ruff",
 ]

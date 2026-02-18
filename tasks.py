@@ -66,33 +66,6 @@ def develop(c, port=7000):
 
 
 @task
-def develop_live(c, port=7000):
-    """Develop with live reload and HTML rewriting"""
-    from livereload import Server
-    import os
-
-    build(c)
-
-    # Use a simpler approach with livereload's built-in capability
-    # but configure it to watch paths.
-    server = Server()
-
-    def rebuild():
-        c.run("pelican -s pelicanconf.py -o output_dev", warn=True)
-
-    server.watch("content/", rebuild)
-    server.watch("pelicanconf.py", rebuild)
-
-    # Note: livereload server is good enough for development.
-    # It might not do the clean URL rewriting exactly as our custom
-    # handler did, but it usually handles .html files fine.
-    # If URL rewriting is critical, we'd need a more complex setup,
-    # but this simplifies things significantly and fixes the blocking issue.
-    os.chdir("output_dev")
-    server.serve(port=port, host="127.0.0.1", root=".")
-
-
-@task
 def production(c):
     """Build for production"""
     c.run("pelican -s publishconf.py")

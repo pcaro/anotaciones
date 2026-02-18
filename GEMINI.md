@@ -51,11 +51,6 @@ All common tasks are automated using `invoke` (defined in `tasks.py`).
     invoke develop
     ```
 
-*   **Run a local development server with live reloading (recommended)**:
-    ```bash
-    invoke develop-live
-    ```
-
 *   **Run server on specific port**:
     ```bash
     invoke serve --port 7000
@@ -109,7 +104,7 @@ The site is automatically deployed to [GitHub Pages](https://pages.github.com/) 
 *   **Configuration**:
     *   `pelicanconf.py`: Main Pelican configuration (for both development and production).
     *   `publishconf.py`: (Optional) Overrides `pelicanconf.py` settings specifically for production builds (currently empty as all settings are consolidated in `pelicanconf.py`).
-*   **Local Development**: `uv run invoke develop-live` is recommended for immediate feedback.
+*   **Local Development**: `uv run invoke develop` is recommended for immediate feedback.
 *   **Build Verification**: Always run a local build and verify it works correctly before committing to avoid breaking the automated deployment.
 *   **Asset Paths**: Ensure `SITEURL` in `pelicanconf.py` is set correctly to the root domain (`https://pablocaro.es`) and `RELATIVE_URLS = False` for production builds to avoid path issues. Static assets are managed under the `themes/Flex/static/` and `content/images/` directories.
 
@@ -172,7 +167,7 @@ The template detects which search plugin is active (`pelican-search` or `tipue_s
 The blog previously used custom `generate_search_index()` code that:
 - Manually parsed RST files with regex
 - Generated simple JSON index (`search_index.json`)
-- Required manual calls in `build()` and `develop_live()` tasks
+- Required manual calls in `build()` task
 
 **This code has been removed** in favor of `pelican-search` because:
 - ✅ Automatic integration with Pelican
