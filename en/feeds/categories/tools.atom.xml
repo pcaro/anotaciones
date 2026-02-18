@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Annotations by Pablo Caro - Tools</title><link href="https://pablocaro.es/en/" rel="alternate"></link><link href="https://pablocaro.es/feeds/categories/tools.atom.xml" rel="self"></link><id>https://pablocaro.es/en/</id><updated>2025-12-25T16:10:00+01:00</updated><subtitle>Annotations</subtitle><entry><title>Multiline YAML: Understanding and testing complex strings</title><link href="https://pablocaro.es/en/yaml-multilinea-cadenas-complejas" rel="alternate"></link><published>2025-12-25T16:10:00+01:00</published><updated>2025-12-25T16:10:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2025-12-25:/en/yaml-multilinea-cadenas-complejas</id><summary type="html">&lt;p&gt;Explore YAML options for effectively handling multiline strings, with an interactive demo that allows you to test them in real-time.&lt;/p&gt;</summary><content type="html">&lt;p&gt;YAML has become the de facto format for configuration in many projects, from Kubernetes to CI/CD scripts. One of its most powerful, and sometimes confusing, features is the management of &lt;strong&gt;multiline strings&lt;/strong&gt;. Fortunately, there is an exceptional interactive tool to master this aspect: &lt;a href="https://yaml-multiline.info/"&gt;yaml-multiline.info&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id="formats-for-multiline-strings-in-yaml"&gt;Formats for Multiline Strings in YAML&lt;a class="headerlink" href="#formats-for-multiline-strings-in-yaml" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;YAML mainly offers two approaches for defining strings that span multiple lines:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Flow Scalars&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;They are simple strings, often quoted (&lt;code&gt;'...'&lt;/code&gt; or &lt;code&gt;"..."&lt;/code&gt;) or unquoted.&lt;/li&gt;
+&lt;li&gt;They ignore indentations and, by default, replace line breaks with spaces.&lt;/li&gt;
+&lt;li&gt;Double-quoted strings allow using escape sequences like &lt;code&gt;\n&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Block Scalars&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;They offer much more precise control over line breaks and indentation.&lt;/li&gt;
+&lt;li&gt;They are indicated with a special character at the beginning of the line where the string starts.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="keys-for-block-multiline-strings"&gt;Keys for Block Multiline Strings&lt;a class="headerlink" href="#keys-for-block-multiline-strings" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The two most important style indicators for block scalars are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;|&lt;/code&gt; (Literal Style)&lt;/strong&gt;: Keeps all line breaks and indentation as is. It is ideal for blocks of text where formatting is crucial (e.g., code, long messages).
+    &lt;code&gt;yaml
+    literal_string: |
+      This is a line.
+      This is another.
+        With its own indentation.&lt;/code&gt;
+    Result: "This is a line.\nThis is another.\n  With its own indentation.\n"&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;&amp;gt;&lt;/code&gt; (Folded Style)&lt;/strong&gt;: Replaces line breaks with spaces, joining lines into a single one. Only double line breaks (blank lines) or lines with greater indentation are kept as line breaks. It is useful for long paragraphs.
+    &lt;code&gt;yaml
+    folded_string: &amp;gt;
+      This is a string
+      folded into multiple lines.
+      It will keep the paragraph format.&lt;/code&gt;
+    Result: "This is a string folded into multiple lines. It will keep the paragraph format.\n"&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In addition to this, there are "chomping" indicators (&lt;code&gt;-&lt;/code&gt; to remove trailing line breaks, &lt;code&gt;+&lt;/code&gt; to keep them, or the default behavior) and indentation indicators that offer even more control.&lt;/p&gt;
+&lt;h2 id="real-time-demo"&gt;Real-Time Demo!&lt;a class="headerlink" href="#real-time-demo" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;What makes &lt;a href="https://yaml-multiline.info/"&gt;yaml-multiline.info&lt;/a&gt; an invaluable tool is its &lt;strong&gt;interactive demo&lt;/strong&gt;. You can test different YAML syntaxes in real-time and see how the resulting string is interpreted. It is the best way to visually understand how literal and folded styles work, and how chomping and indentation indicators affect the final result.&lt;/p&gt;
+&lt;h2 id="conclusion"&gt;Conclusion&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Understanding how to handle multiline strings in YAML not only improves the readability of your configuration files but also prevents unexpected errors. The real-time demo of &lt;code&gt;yaml-multiline.info&lt;/code&gt; is a fantastic resource for anyone who regularly works with YAML and wants to master this aspect.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Website&lt;/em&gt;: &lt;a href="https://yaml-multiline.info/"&gt;&lt;code&gt;yaml-multiline.info&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;</content><category term="Tools"></category><category term="yaml"></category><category term="configuration"></category><category term="development"></category><category term="tools"></category><category term="multiline"></category><category term="strings"></category></entry><entry><title>`fresh`: My preferred terminal editor for daily use</title><link href="https://pablocaro.es/en/fresh-editor-terminal" rel="alternate"></link><published>2025-12-25T15:45:00+01:00</published><updated>2025-12-25T15:45:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2025-12-25:/en/fresh-editor-terminal</id><summary type="html">&lt;p&gt;Discover &lt;code&gt;fresh&lt;/code&gt;, a fast, modern, modeless terminal text editor, ideal for casual file editing, surpassing &lt;code&gt;nano&lt;/code&gt; and &lt;code&gt;vim&lt;/code&gt; in simplicity for regular use.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Although &lt;code&gt;vim&lt;/code&gt; is an incredibly powerful tool and &lt;code&gt;nano&lt;/code&gt; stands out for its extreme simplicity, I often look for a middle ground for file editing in the terminal. An editor that is fast, modern, and doesn't force me to remember modes or complex key combinations for simple tasks. That's how I discovered &lt;strong&gt;&lt;code&gt;fresh&lt;/code&gt;&lt;/strong&gt;, and it has quickly become my preferred terminal editor for daily use.&lt;/p&gt;
+&lt;h2 id="what-is-fresh"&gt;What is &lt;code&gt;fresh&lt;/code&gt;?&lt;a class="headerlink" href="#what-is-fresh" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;fresh&lt;/code&gt; is a text editor for the terminal designed to be &lt;strong&gt;simple, fast, and efficient&lt;/strong&gt;. Unlike &lt;code&gt;vim&lt;/code&gt;, &lt;code&gt;fresh&lt;/code&gt; is a modeless editor, which means you can start typing and editing text immediately, just like you would in a graphical editor. Unlike &lt;code&gt;nano&lt;/code&gt;, &lt;code&gt;fresh&lt;/code&gt; offers a more modern experience with features you expect from a current text editor.&lt;/p&gt;
+&lt;h2 id="why-do-i-prefer-it-over-nano-or-vim-for-regular-use"&gt;Why do I prefer it over &lt;code&gt;nano&lt;/code&gt; or &lt;code&gt;vim&lt;/code&gt; for regular use?&lt;a class="headerlink" href="#why-do-i-prefer-it-over-nano-or-vim-for-regular-use" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Modeless&lt;/strong&gt;: The main advantage over &lt;code&gt;vim&lt;/code&gt;. You don't need to learn to switch between insert, normal, visual modes, etc. You simply open the file and edit.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Modern and Fast&lt;/strong&gt;: Despite running in the terminal, &lt;code&gt;fresh&lt;/code&gt; feels responsive and offers a clean interface.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Syntax Highlighting&lt;/strong&gt;: Support for syntax coloring for a wide variety of languages.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Mouse Support&lt;/strong&gt;: You can click to move the cursor, select text, or even use the wheel to scroll.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Multi-Cursor&lt;/strong&gt;: A very powerful feature that &lt;code&gt;nano&lt;/code&gt; does not offer and &lt;code&gt;vim&lt;/code&gt; requires more complexity to use.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Undo/Redo&lt;/strong&gt;: Full &lt;code&gt;undo&lt;/code&gt;/&lt;code&gt;redo&lt;/code&gt; functionality.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Search and Replace&lt;/strong&gt;: Simple and intuitive search and replace functions.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;While &lt;code&gt;vim&lt;/code&gt; remains my choice for complex edits or advanced scripting, for "opening a &lt;code&gt;.conf&lt;/code&gt;", modifying a &lt;code&gt;.bashrc&lt;/code&gt;, or writing a small note, &lt;code&gt;fresh&lt;/code&gt; is unbeatable in speed and convenience. &lt;code&gt;nano&lt;/code&gt; is perhaps too basic for my needs, lacking most of the modern features that &lt;code&gt;fresh&lt;/code&gt; offers.&lt;/p&gt;
+&lt;h2 id="installation"&gt;Installation&lt;a class="headerlink" href="#installation" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;fresh&lt;/code&gt; is easy to install on most Linux distributions. For example, on Debian/Ubuntu-based systems:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;apt&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;fresh
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Or you can follow the instructions in the official repository to compile it from source or use other package managers.&lt;/p&gt;
+&lt;h2 id="conclusion"&gt;Conclusion&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;If you are looking for a terminal editor that is a perfect hybrid between the power of &lt;code&gt;vim&lt;/code&gt; and the simplicity of &lt;code&gt;nano&lt;/code&gt;, but with a modern touch and focused on immediate usability, &lt;code&gt;fresh&lt;/code&gt; is an excellent choice. Give it a try, it might become your new favorite!&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Official repository&lt;/em&gt;: &lt;a href="https://sinelaw.github.io/fresh/"&gt;&lt;code&gt;fresh&lt;/code&gt; on GitHub&lt;/a&gt;&lt;/p&gt;</content><category term="Tools"></category><category term="fresh"></category><category term="terminal"></category><category term="editor"></category><category term="productivity"></category><category term="linux"></category><category term="tools"></category><category term="cli"></category></entry><entry><title>Kooha: Simple and Elegant Screen Recording on Linux</title><link href="https://pablocaro.es/en/kooha-captura-pantalla-linux" rel="alternate"></link><published>2025-12-25T15:00:00+01:00</published><updated>2025-12-25T15:00:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2025-12-25:/en/kooha-captura-pantalla-linux</id><summary type="html">&lt;p&gt;Discover Kooha, a minimalist screen recording application for Linux that combines ease of use with essential features.&lt;/p&gt;</summary><content type="html">&lt;p&gt;In Linux, the need to record the screen simply and efficiently is common, whether to create tutorials, presentations, bug reports, or simply share an experience. Although there are many tools, &lt;strong&gt;Kooha&lt;/strong&gt; stands out for its minimalist approach and its intuitive user interface, based on GTK.&lt;/p&gt;
+&lt;h2 id="what-is-kooha"&gt;What is Kooha?&lt;a class="headerlink" href="#what-is-kooha" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Kooha is a free and open-source screen recording application, designed specifically for Linux desktop environments. Its main goal is to offer a hassle-free user experience, focusing on the essential functionalities of a screen recorder.&lt;/p&gt;
+&lt;h2 id="why-choose-kooha"&gt;Why Choose Kooha?&lt;a class="headerlink" href="#why-choose-kooha" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Ease of Use&lt;/strong&gt;: Its interface is clear and direct. No complex menus or overwhelming options, making it ideal for users of all levels.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Minimalist Design&lt;/strong&gt;: It integrates perfectly with the look of GNOME and other GTK environments, offering a clean and pleasant visual experience.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Key Features&lt;/strong&gt;: Despite its simplicity, it includes all the necessary options for most recording tasks.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Open Source&lt;/strong&gt;: Being open-source, it benefits from the community and allows users to inspect and contribute to the code.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="main-features"&gt;Main Features&lt;a class="headerlink" href="#main-features" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Full Screen Recording&lt;/strong&gt;: Captures everything that happens on your monitor.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Specific Window Recording&lt;/strong&gt;: Choose a particular application or window to record.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Selected Area Recording&lt;/strong&gt;: Define a rectangular area on your screen for capture.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Audio Recording&lt;/strong&gt;: Includes audio from your microphone.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Webcam Recording&lt;/strong&gt;: Integrates your webcam image into the recording.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Common Formats&lt;/strong&gt;: Support for popular formats like WebM and MP4.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Quality Options&lt;/strong&gt;: Settings for frame rate (FPS) and video quality.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="installation"&gt;Installation&lt;a class="headerlink" href="#installation" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The most recommended way to install Kooha is via Flatpak, which ensures you get the latest version and all necessary dependencies:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;flatpak&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;flathub&lt;span class="w"&gt; &lt;/span&gt;com.github.SeaDve.Kooha
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;It may also be available in the repositories of some Linux distributions or as a Snap package.&lt;/p&gt;
+&lt;h2 id="conclusion"&gt;Conclusion&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Kooha is the perfect tool for those looking for a screen recording solution on Linux that is powerful without being complicated. Its elegance and simplicity make it an excellent addition to any Linux user's productivity arsenal.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Official repository&lt;/em&gt;: &lt;a href="https://github.com/SeaDve/Kooha"&gt;SeaDve/Kooha on GitHub&lt;/a&gt;&lt;/p&gt;</content><category term="Tools"></category><category term="linux"></category><category term="kooha"></category><category term="screen-recorder"></category><category term="productivity"></category><category term="tools"></category><category term="open-source"></category></entry><entry><title>`direnv`: Manage your development environments intelligently</title><link href="https://pablocaro.es/en/direnv-gestion-entornos" rel="alternate"></link><published>2025-12-25T14:30:00+01:00</published><updated>2025-12-25T14:30:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2025-12-25:/en/direnv-gestion-entornos</id><summary type="html">&lt;p&gt;Discover &lt;code&gt;direnv&lt;/code&gt;, a shell extension that automatically loads and unloads environment variables when changing directories, keeping your configuration clean and organized.&lt;/p&gt;</summary><content type="html">&lt;p&gt;In the daily life of a developer, it is common to work with multiple projects, each with its own environment variables, paths (&lt;code&gt;PATH&lt;/code&gt;), tool versions, or credentials. Manually managing these variables can lead to messy configurations in your &lt;code&gt;.profile&lt;/code&gt; or &lt;code&gt;.bashrc&lt;/code&gt;, or errors due to using the wrong environment. This is where &lt;strong&gt;&lt;code&gt;direnv&lt;/code&gt;&lt;/strong&gt; shines, offering an elegant and automatic solution.&lt;/p&gt;
+&lt;h2 id="what-is-direnv"&gt;What is &lt;code&gt;direnv&lt;/code&gt;?&lt;a class="headerlink" href="#what-is-direnv" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;direnv&lt;/code&gt; is an extension for your shell (Bash, Zsh, Fish, etc.) that automatically detects when you change directories. When you enter a directory containing an &lt;code&gt;.envrc&lt;/code&gt; file, &lt;code&gt;direnv&lt;/code&gt; loads it; when you leave it, it unloads it. This means your shell environment dynamically adapts to your current project without you having to do anything manually.&lt;/p&gt;
+&lt;h2 id="how-does-it-work"&gt;How does it work?&lt;a class="headerlink" href="#how-does-it-work" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;direnv&lt;/code&gt; integrates with your shell through a hook in the &lt;code&gt;cd&lt;/code&gt; command. Every time you change directories, &lt;code&gt;direnv&lt;/code&gt; checks if there is an &lt;code&gt;.envrc&lt;/code&gt; file in the current directory or any of its ancestors. If it finds one (and you have granted permission to load it), it executes the commands defined in that file to modify your environment. Upon leaving the directory, it reverts those changes, cleaning up your environment.&lt;/p&gt;
+&lt;h2 id="common-use-cases"&gt;Common Use Cases&lt;a class="headerlink" href="#common-use-cases" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;PATH&lt;/code&gt; Management&lt;/strong&gt;: Adding project-specific binaries to your &lt;code&gt;PATH&lt;/code&gt; temporarily.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Python Virtual Environments&lt;/strong&gt;: Automatically activating a &lt;code&gt;virtualenv&lt;/code&gt; or &lt;code&gt;uv venv&lt;/code&gt; when entering a Python project.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Credentials and API Keys&lt;/strong&gt;: Loading environment variables with database credentials, API keys, or tokens securely (without leaving them in the shell history).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Project-Specific Environment Variables&lt;/strong&gt;: &lt;code&gt;RAILS_ENV&lt;/code&gt;, &lt;code&gt;NODE_ENV&lt;/code&gt;, etc.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Tool Version Switching&lt;/strong&gt;: Integrating with tools like &lt;code&gt;nvm&lt;/code&gt; or &lt;code&gt;pyenv&lt;/code&gt; to automatically switch Node.js or Python versions.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="basic-installation-bash-example"&gt;Basic Installation (Bash example)&lt;a class="headerlink" href="#basic-installation-bash-example" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Install &lt;code&gt;direnv&lt;/code&gt;&lt;/strong&gt;: You can install it from your package manager (&lt;code&gt;sudo apt install direnv&lt;/code&gt;, &lt;code&gt;brew install direnv&lt;/code&gt;, etc.).&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Activate the hook in your shell&lt;/strong&gt;: Add the following line to your &lt;code&gt;~/.bashrc&lt;/code&gt; (or &lt;code&gt;~/.zshrc&lt;/code&gt;):&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;bash
+eval "$(direnv hook bash)"&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Create an &lt;code&gt;.envrc&lt;/code&gt; file&lt;/strong&gt;: In the root of your project, create an &lt;code&gt;.envrc&lt;/code&gt; file with the variables and commands you want.&lt;/p&gt;
+&lt;p&gt;```bash&lt;/p&gt;
+&lt;h1 id="envrc-in-the-root-of-your-python-project"&gt;.envrc in the root of your Python project&lt;a class="headerlink" href="#envrc-in-the-root-of-your-python-project" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;layout python  # Automatically activates a virtual environment
+export MY_API_KEY="super_secret_project_key"
+```&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Allow loading&lt;/strong&gt;: The first time you enter the directory with a new &lt;code&gt;.envrc&lt;/code&gt;, &lt;code&gt;direnv&lt;/code&gt; will ask for confirmation:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;bash
+direnv: error .envrc is blocked. Run `direnv allow` to approve its contents&lt;/code&gt;
+Run &lt;code&gt;direnv allow&lt;/code&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="the-direnv-standard-library"&gt;The &lt;code&gt;direnv&lt;/code&gt; Standard Library&lt;a class="headerlink" href="#the-direnv-standard-library" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;direnv&lt;/code&gt; comes with a powerful standard library that includes predefined functions for common tasks, such as &lt;code&gt;layout python&lt;/code&gt; (to manage virtualenvs), &lt;code&gt;use nix&lt;/code&gt;, &lt;code&gt;use node&lt;/code&gt;, etc., greatly simplifying the configuration of your &lt;code&gt;.envrc&lt;/code&gt; files.&lt;/p&gt;
+&lt;h2 id="key-benefits"&gt;Key Benefits&lt;a class="headerlink" href="#key-benefits" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Clean environments&lt;/strong&gt;: Your &lt;code&gt;.profile&lt;/code&gt; stays tidy.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Consistency&lt;/strong&gt;: Each project has exactly the environment it needs.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Productivity&lt;/strong&gt;: No more manual &lt;code&gt;source venv/bin/activate&lt;/code&gt; or remembering to set variables.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;direnv&lt;/code&gt; is a small but powerful tool that transforms the way you manage your development environments, making your life in the terminal much more efficient and error-free.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Original article&lt;/em&gt;: &lt;a href="https://direnv.net/"&gt;&lt;code&gt;direnv&lt;/code&gt; homepage&lt;/a&gt;&lt;/p&gt;</content><category term="Tools"></category><category term="direnv"></category><category term="shell"></category><category term="environment"></category><category term="productivity"></category><category term="development"></category><category term="linux"></category><category term="tools"></category></entry><entry><title>`docker-http-https-echo`: An Essential Tool for Network Debugging</title><link href="https://pablocaro.es/en/docker-http-https-echo" rel="alternate"></link><published>2025-12-25T14:15:00+01:00</published><updated>2025-12-25T14:15:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2025-12-25:/en/docker-http-https-echo</id><summary type="html">&lt;p&gt;&lt;code&gt;mendhak/docker-http-https-echo&lt;/code&gt; is a simple Docker container that facilitates debugging network configurations, proxies, and load balancers.&lt;/p&gt;</summary><content type="html">&lt;p&gt;In the complex world of distributed applications, debugging network issues, proxies, load balancers, or firewall rules can be an arduous task. We need a simple way to verify what a server is receiving. This is where a tool like &lt;code&gt;mendhak/docker-http-https-echo&lt;/code&gt; becomes indispensable.&lt;/p&gt;
+&lt;h2 id="what-is-mendhakdocker-http-https-echo"&gt;What is &lt;code&gt;mendhak/docker-http-https-echo&lt;/code&gt;?&lt;a class="headerlink" href="#what-is-mendhakdocker-http-https-echo" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;It is an extremely lightweight and simple Docker container that functions as an "echo" HTTP and HTTPS server. Its main function is to &lt;strong&gt;respond to any HTTP or HTTPS request with a detailed description of the request itself&lt;/strong&gt;. This includes:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Request headers.&lt;/li&gt;
+&lt;li&gt;HTTP method (GET, POST, PUT, etc.).&lt;/li&gt;
+&lt;li&gt;Request URL and parameters.&lt;/li&gt;
+&lt;li&gt;Request body.&lt;/li&gt;
+&lt;li&gt;Remote IP address of the client.&lt;/li&gt;
+&lt;li&gt;TLS/SSL information (if HTTPS).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="why-is-it-useful"&gt;Why is it useful?&lt;a class="headerlink" href="#why-is-it-useful" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;This type of echo server is invaluable for a variety of debugging scenarios:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Proxy and Load Balancer Debugging&lt;/strong&gt;: Verify if a reverse proxy or load balancer is rewriting headers, modifying URLs, or passing the request body as you expect.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Firewall and Security Rules&lt;/strong&gt;: Confirm that traffic is reaching the correct destination and is not being blocked or altered.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;HTTP/HTTPS Header Inspection&lt;/strong&gt;: Useful to see exactly what headers your client or a specific application sends.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Integration Testing&lt;/strong&gt;: A predictable target for automated tests of how different services communicate via HTTP/HTTPS.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Mixed Content Diagnosis&lt;/strong&gt;: You can use it to verify if HTTP resources are loading correctly in an HTTPS context.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="how-to-use-it"&gt;How to Use It&lt;a class="headerlink" href="#how-to-use-it" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Using it is straightforward via Docker:&lt;/p&gt;
+&lt;h3 id="for-http-port-8080"&gt;For HTTP (port 8080)&lt;a class="headerlink" href="#for-http-port-8080" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;docker&lt;span class="w"&gt; &lt;/span&gt;run&lt;span class="w"&gt; &lt;/span&gt;-p&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;8080&lt;/span&gt;:8080&lt;span class="w"&gt; &lt;/span&gt;mendhak/http-https-echo
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Then, you can access &lt;code&gt;http://localhost:8080&lt;/code&gt; with your browser or &lt;code&gt;curl&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;curl&lt;span class="w"&gt; &lt;/span&gt;http://localhost:8080/path?query&lt;span class="o"&gt;=&lt;/span&gt;value&lt;span class="w"&gt; &lt;/span&gt;-H&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;X-Custom-Header: test&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id="for-https-port-8443"&gt;For HTTPS (port 8443)&lt;a class="headerlink" href="#for-https-port-8443" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;To use HTTPS, you must map the container's HTTPS port. The image already comes with a self-signed certificate for testing.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;docker&lt;span class="w"&gt; &lt;/span&gt;run&lt;span class="w"&gt; &lt;/span&gt;-p&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;8443&lt;/span&gt;:8443&lt;span class="w"&gt; &lt;/span&gt;mendhak/http-https-echo
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Access &lt;code&gt;https://localhost:8443&lt;/code&gt; (your browser may warn you about the self-signed certificate).&lt;/p&gt;
+&lt;h2 id="conclusion"&gt;Conclusion&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;mendhak/docker-http-https-echo&lt;/code&gt; is one of those simple but incredibly useful tools that every developer and system operator should have on hand. It facilitates understanding network flows and speeds up debugging connectivity issues in any container-based environment.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Original repository&lt;/em&gt;: &lt;a href="https://github.com/mendhak/docker-http-https-echo"&gt;mendhak/docker-http-https-echo on GitHub&lt;/a&gt;&lt;/p&gt;</content><category term="Tools"></category><category term="docker"></category><category term="http"></category><category term="https"></category><category term="debugging"></category><category term="networking"></category><category term="tools"></category><category term="containers"></category></entry><entry><title>PosteRazor: Create Giant Posters from Any Image</title><link href="https://pablocaro.es/en/posterazor-crear-posters-grandes" rel="alternate"></link><published>2017-02-24T20:06:00+01:00</published><updated>2017-02-24T20:06:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2017-02-24:/en/posterazor-crear-posters-grandes</id><summary type="html">&lt;p&gt;PosteRazor converts any image into a giant poster by splitting the image into printable pages that you can assemble&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;strong&gt;PosteRazor&lt;/strong&gt; is a free and open source tool that solves a daily problem: &lt;strong&gt;how to print a large image when you only have a home printer?&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id="what-does-posterazor-do"&gt;What does PosteRazor do?&lt;a class="headerlink" href="#what-does-posterazor-do" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;PosteRazor takes a raster image and &lt;strong&gt;"cuts" it into pieces&lt;/strong&gt; that can then be printed and assembled to form a complete poster. It converts a single image into a multi-page PDF document ready for printing.&lt;/p&gt;
+&lt;h2 id="key-features"&gt;Key Features&lt;a class="headerlink" href="#key-features" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Wizard-like interface&lt;/strong&gt; with 5 simple steps&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Multi-platform&lt;/strong&gt;: Windows, macOS, Linux&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Web version&lt;/strong&gt; available via WebAssembly&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Completely free&lt;/strong&gt; and open source&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="ideal-use-cases"&gt;Ideal Use Cases&lt;a class="headerlink" href="#ideal-use-cases" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Decorative posters&lt;/strong&gt; for home, school, or office&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;DIY projects&lt;/strong&gt; for decoration&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Printing giant images&lt;/strong&gt; that exceed standard page size&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Large format visual presentations&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="how-does-it-work"&gt;How does it work?&lt;a class="headerlink" href="#how-does-it-work" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;You load your image&lt;/li&gt;
+&lt;li&gt;You select the desired poster size&lt;/li&gt;
+&lt;li&gt;You configure your printer's page format&lt;/li&gt;
+&lt;li&gt;PosteRazor calculates the division automatically&lt;/li&gt;
+&lt;li&gt;You generate the PDF and print each page&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="the-perfect-solution"&gt;The Perfect Solution&lt;a class="headerlink" href="#the-perfect-solution" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;PosteRazor democratizes the creation of large posters. You no longer need expensive printing services - &lt;strong&gt;with any home printer you can create posters of any size you want&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Official site&lt;/em&gt;: &lt;a href="https://posterazor.sourceforge.io/"&gt;PosteRazor&lt;/a&gt;&lt;/p&gt;</content><category term="Tools"></category><category term="posterazor"></category><category term="printing"></category><category term="posters"></category><category term="diy"></category><category term="tools"></category></entry><entry><title>Powerful Command Line Tools for Developers</title><link href="https://pablocaro.es/en/herramientas-desarrolladores-linea-comandos" rel="alternate"></link><published>2016-06-07T11:36:00+02:00</published><updated>2016-06-07T11:36:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2016-06-07:/en/herramientas-desarrolladores-linea-comandos</id><summary type="html">&lt;p&gt;Collection of essential command line tools for developers: curl, ngrep, netcat, sshuttle, siege, and mitmproxy&lt;/p&gt;</summary><content type="html">&lt;p&gt;The &lt;strong&gt;command line remains the most powerful environment&lt;/strong&gt; for developers. These specialized tools dramatically expand your debugging, testing, and analysis capabilities.&lt;/p&gt;
+&lt;h2 id="curl-the-http-swiss-army-knife"&gt;Curl: The HTTP Swiss Army Knife&lt;a class="headerlink" href="#curl-the-http-swiss-army-knife" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Get your public IP&lt;/span&gt;
+curl&lt;span class="w"&gt; &lt;/span&gt;ifconfig.me
+
+&lt;span class="c1"&gt;# Inspect response headers&lt;/span&gt;
+curl&lt;span class="w"&gt; &lt;/span&gt;-I&lt;span class="w"&gt; &lt;/span&gt;https://example.com
+
+&lt;span class="c1"&gt;# POST with JSON data&lt;/span&gt;
+curl&lt;span class="w"&gt; &lt;/span&gt;-X&lt;span class="w"&gt; &lt;/span&gt;POST&lt;span class="w"&gt; &lt;/span&gt;-H&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Content-Type: application/json&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="se"&gt;\&lt;/span&gt;
+&lt;span class="w"&gt;     &lt;/span&gt;-d&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;{&amp;quot;key&amp;quot;:&amp;quot;value&amp;quot;}&amp;#39;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;https://api.example.com
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Main usage&lt;/strong&gt;: Network data transfer, API testing, HTTP inspection.&lt;/p&gt;
+&lt;h2 id="ngrep-grep-for-network-traffic"&gt;Ngrep: Grep for Network Traffic&lt;a class="headerlink" href="#ngrep-grep-for-network-traffic" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Filter HTTP traffic by keyword&lt;/span&gt;
+ngrep&lt;span class="w"&gt; &lt;/span&gt;-i&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;password&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;port&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;80&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Capture by specific IP&lt;/span&gt;
+ngrep&lt;span class="w"&gt; &lt;/span&gt;host&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;192&lt;/span&gt;.168.1.100
+
+&lt;span class="c1"&gt;# Monitor traffic on specific port&lt;/span&gt;
+ngrep&lt;span class="w"&gt; &lt;/span&gt;port&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;443&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Main usage&lt;/strong&gt;: Network packet analysis, protocol debugging, traffic monitoring.&lt;/p&gt;
+&lt;h2 id="netcat-nc-the-networking-swiss-army-knife"&gt;Netcat (nc): The Networking Swiss Army Knife&lt;a class="headerlink" href="#netcat-nc-the-networking-swiss-army-knife" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Port scanning&lt;/span&gt;
+nc&lt;span class="w"&gt; &lt;/span&gt;-zv&lt;span class="w"&gt; &lt;/span&gt;example.com&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;-1000
+
+&lt;span class="c1"&gt;# Transfer file between servers&lt;/span&gt;
+&lt;span class="c1"&gt;# Receiver: nc -l 1234 &amp;gt; received_file&lt;/span&gt;
+&lt;span class="c1"&gt;# Sender: nc destination_server 1234 &amp;lt; file_to_send&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Create simple HTTP server&lt;/span&gt;
+&lt;span class="nb"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;HTTP/1.1 200 OK\n\nHello world&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;nc&lt;span class="w"&gt; &lt;/span&gt;-l&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;8080&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Main usage&lt;/strong&gt;: Port scanning, file transfer, connectivity testing.&lt;/p&gt;
+&lt;h2 id="sshuttle-easy-vpn-with-ssh"&gt;Sshuttle: Easy VPN with SSH&lt;a class="headerlink" href="#sshuttle-easy-vpn-with-ssh" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Tunnel all traffic&lt;/span&gt;
+sshuttle&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;user@server&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;0&lt;/span&gt;.0.0.0/0
+
+&lt;span class="c1"&gt;# Tunnel only a subnet&lt;/span&gt;
+sshuttle&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;user@server&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;192&lt;/span&gt;.168.1.0/24
+
+&lt;span class="c1"&gt;# Bypass geo-blocking&lt;/span&gt;
+sshuttle&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;remote_server&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;0&lt;/span&gt;.0.0.0/0&lt;span class="w"&gt; &lt;/span&gt;--dns
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Main usage&lt;/strong&gt;: Secure tunneling, geo-restriction bypass, protection on public WiFi.&lt;/p&gt;
+&lt;h2 id="siege-http-load-bombardment"&gt;Siege: HTTP Load Bombardment&lt;a class="headerlink" href="#siege-http-load-bombardment" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Simple load test&lt;/span&gt;
+siege&lt;span class="w"&gt; &lt;/span&gt;-c&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;25&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;-t&lt;span class="w"&gt; &lt;/span&gt;60s&lt;span class="w"&gt; &lt;/span&gt;https://example.com
+
+&lt;span class="c1"&gt;# Test with multiple URLs&lt;/span&gt;
+siege&lt;span class="w"&gt; &lt;/span&gt;-c&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;50&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;-t&lt;span class="w"&gt; &lt;/span&gt;30s&lt;span class="w"&gt; &lt;/span&gt;-f&lt;span class="w"&gt; &lt;/span&gt;urls.txt
+
+&lt;span class="c1"&gt;# Specific benchmark&lt;/span&gt;
+siege&lt;span class="w"&gt; &lt;/span&gt;-c&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;100&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;10&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;https://api.example.com/endpoint
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Main usage&lt;/strong&gt;: Performance testing, HTTP benchmarking, load simulation.&lt;/p&gt;
+&lt;h2 id="mitmproxy-spy-on-https-traffic"&gt;Mitmproxy: Spy on HTTP/S Traffic&lt;a class="headerlink" href="#mitmproxy-spy-on-https-traffic" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Basic proxy&lt;/span&gt;
+mitmproxy&lt;span class="w"&gt; &lt;/span&gt;-p&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;8080&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Transparent mode&lt;/span&gt;
+mitmproxy&lt;span class="w"&gt; &lt;/span&gt;--mode&lt;span class="w"&gt; &lt;/span&gt;transparent
+
+&lt;span class="c1"&gt;# Save traffic to file&lt;/span&gt;
+mitmdump&lt;span class="w"&gt; &lt;/span&gt;-w&lt;span class="w"&gt; &lt;/span&gt;capture.flow
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Main usage&lt;/strong&gt;: Web application debugging, HTTPS traffic inspection, API analysis.&lt;/p&gt;
+&lt;h2 id="typical-workflow"&gt;Typical Workflow&lt;a class="headerlink" href="#typical-workflow" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# 1. Scan connectivity&lt;/span&gt;
+nc&lt;span class="w"&gt; &lt;/span&gt;-zv&lt;span class="w"&gt; &lt;/span&gt;api.example.com&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;443&lt;/span&gt;
+
+&lt;span class="c1"&gt;# 2. Analyze response&lt;/span&gt;
+curl&lt;span class="w"&gt; &lt;/span&gt;-I&lt;span class="w"&gt; &lt;/span&gt;https://api.example.com
+
+&lt;span class="c1"&gt;# 3. Monitor traffic&lt;/span&gt;
+ngrep&lt;span class="w"&gt; &lt;/span&gt;-i&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;api&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;port&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;443&lt;/span&gt;
+
+&lt;span class="c1"&gt;# 4. Load test&lt;/span&gt;
+siege&lt;span class="w"&gt; &lt;/span&gt;-c&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;20&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;-t&lt;span class="w"&gt; &lt;/span&gt;30s&lt;span class="w"&gt; &lt;/span&gt;https://api.example.com
+
+&lt;span class="c1"&gt;# 5. Detailed debugging&lt;/span&gt;
+mitmproxy&lt;span class="w"&gt; &lt;/span&gt;-p&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;8080&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="why-command-line"&gt;Why Command Line?&lt;a class="headerlink" href="#why-command-line" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Speed&lt;/strong&gt;: No GUI overhead&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Scriptability&lt;/strong&gt;: Complete automation&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Flexibility&lt;/strong&gt;: Combination with pipes and redirects&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Universality&lt;/strong&gt;: Available on any server&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;These tools turn your terminal into a &lt;strong&gt;complete networking and testing laboratory&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Original source&lt;/em&gt;: &lt;a href="http://www.xn--apaados-6za.es/tenemos-que-apanar/internet-tutoriales-y-trucos/317-potentes-herramientas-desarrolladores-linea-comandos.html"&gt;Somos Apañados&lt;/a&gt;&lt;/p&gt;</content><category term="Tools"></category><category term="cli"></category><category term="tools"></category><category term="development"></category><category term="networking"></category><category term="testing"></category></entry><entry><title>Sysdig: Cloud-Native Security Platform with AI</title><link href="https://pablocaro.es/en/sysdig-seguridad-cloud-nativa" rel="alternate"></link><published>2016-02-10T14:37:00+01:00</published><updated>2016-02-10T14:37:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2016-02-10:/en/sysdig-seguridad-cloud-nativa</id><summary type="html">&lt;p&gt;Sysdig offers a comprehensive security platform for cloud-native environments that combines AI, real-time visibility, and open source innovation&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;strong&gt;Sysdig&lt;/strong&gt; is a cloud security platform that provides comprehensive, real-time security solutions for cloud-native environments, resolving the conflict between the needs of security and development teams.&lt;/p&gt;
+&lt;h2 id="key-features"&gt;Key Features&lt;a class="headerlink" href="#key-features" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="intelligent-security-ai"&gt;Intelligent Security AI&lt;a class="headerlink" href="#intelligent-security-ai" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Contextual AI&lt;/strong&gt; that understands cloud environments and guides actionable insights&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;76% reduction&lt;/strong&gt; in mean time to resolution (MTTR)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="real-time-visibility"&gt;Real-Time Visibility&lt;a class="headerlink" href="#real-time-visibility" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Continuous monitoring of cloud activities and potential risks&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Threat detection in 2 seconds&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Filters noise to highlight only critical issues&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="open-innovation"&gt;Open Innovation&lt;a class="headerlink" href="#open-innovation" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Based on open source technologies like &lt;strong&gt;Falco&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Transparency and customization in cloud security&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="key-benefits"&gt;Key Benefits&lt;a class="headerlink" href="#key-benefits" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;95% savings&lt;/strong&gt; in vulnerability management time&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;98% reduction&lt;/strong&gt; in vulnerability noise&lt;/li&gt;
+&lt;li&gt;Ultra-fast threat detection&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="value-proposition"&gt;Value Proposition&lt;a class="headerlink" href="#value-proposition" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Sysdig enables security and development teams to work more effectively, &lt;strong&gt;enabling rapid innovation without compromising security&lt;/strong&gt;. The platform is used by major companies like IBM, Booking.com, and Neo4j to secure their cloud environments.&lt;/p&gt;
+&lt;p&gt;This tool represents the future of cloud-native security: &lt;strong&gt;intelligent, fast, and uncompromising&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Official site&lt;/em&gt;: &lt;a href="https://sysdig.com/"&gt;Sysdig&lt;/a&gt;&lt;/p&gt;</content><category term="Tools"></category><category term="sysdig"></category><category term="security"></category><category term="cloud"></category><category term="kubernetes"></category><category term="falco"></category></entry></feed>

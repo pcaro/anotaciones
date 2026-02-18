@@ -1,0 +1,441 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Annotations by Pablo Caro - linux</title><link href="https://pablocaro.es/en/" rel="alternate"></link><link href="https://pablocaro.es/feeds/tags/linux.atom.xml" rel="self"></link><id>https://pablocaro.es/en/</id><updated>2026-02-11T20:23:00+01:00</updated><subtitle>Annotations</subtitle><entry><title>Managing GitHub installations with gah</title><link href="https://pablocaro.es/en/gestionando-instalaciones-desde-github-con-gah" rel="alternate"></link><published>2026-02-11T20:23:00+01:00</published><updated>2026-02-11T20:23:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-02-11:/en/gestionando-instalaciones-desde-github-con-gah</id><summary type="html">&lt;p class="first last"&gt;Install binaries directly from GitHub releases easily with gah.&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;&lt;a class="reference external" href="https://github.com/get-gah/gah"&gt;gah&lt;/a&gt; is a tool that simplifies installing programs distributed via GitHub releases. It's a lightweight alternative when you don't want to rely on your distro's package manager or when you need a newer version.&lt;/p&gt;
+&lt;div class="section" id="installation"&gt;
+&lt;h2&gt;Installation&lt;/h2&gt;
+&lt;p&gt;To install &lt;strong&gt;gah&lt;/strong&gt;, you can use the official script:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;bash&lt;span class="w"&gt; &lt;/span&gt;-c&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;curl&lt;span class="w"&gt; &lt;/span&gt;-fsSL&lt;span class="w"&gt; &lt;/span&gt;https://raw.githubusercontent.com/get-gah/gah/refs/heads/master/tools/install.sh&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="usage"&gt;
+&lt;h2&gt;Usage&lt;/h2&gt;
+&lt;p&gt;Once installed, usage is very straightforward. Here are a couple of examples I've used recently to install popular Rust tools:&lt;/p&gt;
+&lt;p&gt;To install &lt;cite&gt;fd&lt;/cite&gt; (a fast alternative to &lt;tt class="docutils literal"&gt;find&lt;/tt&gt;):&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;gah&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;sharkdp/fd
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;To install &lt;cite&gt;ripgrep&lt;/cite&gt; (a fast alternative to &lt;tt class="docutils literal"&gt;grep&lt;/tt&gt;):&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;gah&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;BurntSushi/ripgrep
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Gah handles downloading the correct asset for your architecture, unpacking it, and placing it in your path.&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="Linux"></category><category term="linux"></category><category term="tools"></category><category term="cli"></category></entry><entry><title>`fresh`: My preferred terminal editor for daily use</title><link href="https://pablocaro.es/en/fresh-editor-terminal" rel="alternate"></link><published>2025-12-25T15:45:00+01:00</published><updated>2025-12-25T15:45:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2025-12-25:/en/fresh-editor-terminal</id><summary type="html">&lt;p&gt;Discover &lt;code&gt;fresh&lt;/code&gt;, a fast, modern, modeless terminal text editor, ideal for casual file editing, surpassing &lt;code&gt;nano&lt;/code&gt; and &lt;code&gt;vim&lt;/code&gt; in simplicity for regular use.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Although &lt;code&gt;vim&lt;/code&gt; is an incredibly powerful tool and &lt;code&gt;nano&lt;/code&gt; stands out for its extreme simplicity, I often look for a middle ground for file editing in the terminal. An editor that is fast, modern, and doesn't force me to remember modes or complex key combinations for simple tasks. That's how I discovered &lt;strong&gt;&lt;code&gt;fresh&lt;/code&gt;&lt;/strong&gt;, and it has quickly become my preferred terminal editor for daily use.&lt;/p&gt;
+&lt;h2 id="what-is-fresh"&gt;What is &lt;code&gt;fresh&lt;/code&gt;?&lt;a class="headerlink" href="#what-is-fresh" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;fresh&lt;/code&gt; is a text editor for the terminal designed to be &lt;strong&gt;simple, fast, and efficient&lt;/strong&gt;. Unlike &lt;code&gt;vim&lt;/code&gt;, &lt;code&gt;fresh&lt;/code&gt; is a modeless editor, which means you can start typing and editing text immediately, just like you would in a graphical editor. Unlike &lt;code&gt;nano&lt;/code&gt;, &lt;code&gt;fresh&lt;/code&gt; offers a more modern experience with features you expect from a current text editor.&lt;/p&gt;
+&lt;h2 id="why-do-i-prefer-it-over-nano-or-vim-for-regular-use"&gt;Why do I prefer it over &lt;code&gt;nano&lt;/code&gt; or &lt;code&gt;vim&lt;/code&gt; for regular use?&lt;a class="headerlink" href="#why-do-i-prefer-it-over-nano-or-vim-for-regular-use" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Modeless&lt;/strong&gt;: The main advantage over &lt;code&gt;vim&lt;/code&gt;. You don't need to learn to switch between insert, normal, visual modes, etc. You simply open the file and edit.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Modern and Fast&lt;/strong&gt;: Despite running in the terminal, &lt;code&gt;fresh&lt;/code&gt; feels responsive and offers a clean interface.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Syntax Highlighting&lt;/strong&gt;: Support for syntax coloring for a wide variety of languages.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Mouse Support&lt;/strong&gt;: You can click to move the cursor, select text, or even use the wheel to scroll.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Multi-Cursor&lt;/strong&gt;: A very powerful feature that &lt;code&gt;nano&lt;/code&gt; does not offer and &lt;code&gt;vim&lt;/code&gt; requires more complexity to use.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Undo/Redo&lt;/strong&gt;: Full &lt;code&gt;undo&lt;/code&gt;/&lt;code&gt;redo&lt;/code&gt; functionality.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Search and Replace&lt;/strong&gt;: Simple and intuitive search and replace functions.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;While &lt;code&gt;vim&lt;/code&gt; remains my choice for complex edits or advanced scripting, for "opening a &lt;code&gt;.conf&lt;/code&gt;", modifying a &lt;code&gt;.bashrc&lt;/code&gt;, or writing a small note, &lt;code&gt;fresh&lt;/code&gt; is unbeatable in speed and convenience. &lt;code&gt;nano&lt;/code&gt; is perhaps too basic for my needs, lacking most of the modern features that &lt;code&gt;fresh&lt;/code&gt; offers.&lt;/p&gt;
+&lt;h2 id="installation"&gt;Installation&lt;a class="headerlink" href="#installation" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;fresh&lt;/code&gt; is easy to install on most Linux distributions. For example, on Debian/Ubuntu-based systems:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;apt&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;fresh
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Or you can follow the instructions in the official repository to compile it from source or use other package managers.&lt;/p&gt;
+&lt;h2 id="conclusion"&gt;Conclusion&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;If you are looking for a terminal editor that is a perfect hybrid between the power of &lt;code&gt;vim&lt;/code&gt; and the simplicity of &lt;code&gt;nano&lt;/code&gt;, but with a modern touch and focused on immediate usability, &lt;code&gt;fresh&lt;/code&gt; is an excellent choice. Give it a try, it might become your new favorite!&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Official repository&lt;/em&gt;: &lt;a href="https://sinelaw.github.io/fresh/"&gt;&lt;code&gt;fresh&lt;/code&gt; on GitHub&lt;/a&gt;&lt;/p&gt;</content><category term="Tools"></category><category term="fresh"></category><category term="terminal"></category><category term="editor"></category><category term="productivity"></category><category term="linux"></category><category term="tools"></category><category term="cli"></category></entry><entry><title>How to View Files in an RPM Package on Linux</title><link href="https://pablocaro.es/en/ver-archivos-paquete-rpm" rel="alternate"></link><published>2025-12-25T15:15:00+01:00</published><updated>2025-12-25T15:15:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2025-12-25:/en/ver-archivos-paquete-rpm</id><summary type="html">&lt;p&gt;Quick guide to inspecting the contents of RPM packages and determining which packages own specific files on your Linux system.&lt;/p&gt;</summary><content type="html">&lt;p&gt;On RPM-based Linux systems (like Red Hat, CentOS, Fedora, openSUSE), it is common to interact with packages in &lt;code&gt;.rpm&lt;/code&gt; format. Often, we need to know what files a package contains before installing it, or which package is responsible for a specific file already installed on the system. For this, the &lt;code&gt;rpm&lt;/code&gt; tool offers several useful options.&lt;/p&gt;
+&lt;h2 id="1-list-files-of-an-rpm-package-without-installing"&gt;1. List Files of an RPM Package Without Installing&lt;a class="headerlink" href="#1-list-files-of-an-rpm-package-without-installing" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;If you have a downloaded &lt;code&gt;.rpm&lt;/code&gt; file and want to see what files it will install (and where) without installing it, you can use the &lt;code&gt;-qlp&lt;/code&gt; option:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;rpm&lt;span class="w"&gt; &lt;/span&gt;-qlp&lt;span class="w"&gt; &lt;/span&gt;package_name.rpm
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;-q&lt;/code&gt;: Query mode.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;-l&lt;/code&gt;: List files.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;-p&lt;/code&gt;: Query a package file instead of an installed one.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Example:&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;rpm&lt;span class="w"&gt; &lt;/span&gt;-qlp&lt;span class="w"&gt; &lt;/span&gt;nginx-1.20.1-1.el8.x86_64.rpm
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="2-find-the-owner-package-of-an-installed-file"&gt;2. Find the Owner Package of an Installed File&lt;a class="headerlink" href="#2-find-the-owner-package-of-an-installed-file" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;If you find a file on your system and want to know which RPM package it belongs to (useful for debugging or knowing if you can safely delete it), use the &lt;code&gt;-qf&lt;/code&gt; option:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;rpm&lt;span class="w"&gt; &lt;/span&gt;-qf&lt;span class="w"&gt; &lt;/span&gt;/path/to/file
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Example:&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;rpm&lt;span class="w"&gt; &lt;/span&gt;-qf&lt;span class="w"&gt; &lt;/span&gt;/etc/nginx/nginx.conf
+&lt;span class="c1"&gt;# Expected output: nginx-1.20.1-1.el8.x86_64&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="3-get-detailed-information-about-a-package"&gt;3. Get Detailed Information about a Package&lt;a class="headerlink" href="#3-get-detailed-information-about-a-package" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;To see complete information about a package (version, description, dependencies, etc.), whether installed or an &lt;code&gt;.rpm&lt;/code&gt; file, you can use &lt;code&gt;-qi&lt;/code&gt; (for installed packages) or &lt;code&gt;-qip&lt;/code&gt; (for package files):&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;rpm&lt;span class="w"&gt; &lt;/span&gt;-qi&lt;span class="w"&gt; &lt;/span&gt;installed_package_name
+&lt;span class="c1"&gt;# Example: rpm -qi nginx&lt;/span&gt;
+
+rpm&lt;span class="w"&gt; &lt;/span&gt;-qip&lt;span class="w"&gt; &lt;/span&gt;package_name.rpm
+&lt;span class="c1"&gt;# Example: rpm -qip nginx-1.20.1-1.el8.x86_64.rpm&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="conclusion"&gt;Conclusion&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Mastering these simple options of the &lt;code&gt;rpm&lt;/code&gt; command gives you much greater control over packages and files on your Linux system, facilitating administration and debugging. They are essential tools for any system administrator or developer working with RPM-based distributions.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Original article&lt;/em&gt;: &lt;a href="https://comulinux.blogspot.com/2010/04/como-ver-los-archivos-de-un-paquete-rpm.html"&gt;Cómo Ver los Archivos de un Paquete RPM o Deb&lt;/a&gt;&lt;/p&gt;</content><category term="Systems"></category><category term="linux"></category><category term="rpm"></category><category term="packages"></category><category term="commands"></category><category term="systems"></category><category term="administration"></category><category term="dnf"></category><category term="yum"></category></entry><entry><title>Kooha: Simple and Elegant Screen Recording on Linux</title><link href="https://pablocaro.es/en/kooha-captura-pantalla-linux" rel="alternate"></link><published>2025-12-25T15:00:00+01:00</published><updated>2025-12-25T15:00:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2025-12-25:/en/kooha-captura-pantalla-linux</id><summary type="html">&lt;p&gt;Discover Kooha, a minimalist screen recording application for Linux that combines ease of use with essential features.&lt;/p&gt;</summary><content type="html">&lt;p&gt;In Linux, the need to record the screen simply and efficiently is common, whether to create tutorials, presentations, bug reports, or simply share an experience. Although there are many tools, &lt;strong&gt;Kooha&lt;/strong&gt; stands out for its minimalist approach and its intuitive user interface, based on GTK.&lt;/p&gt;
+&lt;h2 id="what-is-kooha"&gt;What is Kooha?&lt;a class="headerlink" href="#what-is-kooha" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Kooha is a free and open-source screen recording application, designed specifically for Linux desktop environments. Its main goal is to offer a hassle-free user experience, focusing on the essential functionalities of a screen recorder.&lt;/p&gt;
+&lt;h2 id="why-choose-kooha"&gt;Why Choose Kooha?&lt;a class="headerlink" href="#why-choose-kooha" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Ease of Use&lt;/strong&gt;: Its interface is clear and direct. No complex menus or overwhelming options, making it ideal for users of all levels.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Minimalist Design&lt;/strong&gt;: It integrates perfectly with the look of GNOME and other GTK environments, offering a clean and pleasant visual experience.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Key Features&lt;/strong&gt;: Despite its simplicity, it includes all the necessary options for most recording tasks.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Open Source&lt;/strong&gt;: Being open-source, it benefits from the community and allows users to inspect and contribute to the code.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="main-features"&gt;Main Features&lt;a class="headerlink" href="#main-features" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Full Screen Recording&lt;/strong&gt;: Captures everything that happens on your monitor.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Specific Window Recording&lt;/strong&gt;: Choose a particular application or window to record.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Selected Area Recording&lt;/strong&gt;: Define a rectangular area on your screen for capture.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Audio Recording&lt;/strong&gt;: Includes audio from your microphone.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Webcam Recording&lt;/strong&gt;: Integrates your webcam image into the recording.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Common Formats&lt;/strong&gt;: Support for popular formats like WebM and MP4.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Quality Options&lt;/strong&gt;: Settings for frame rate (FPS) and video quality.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="installation"&gt;Installation&lt;a class="headerlink" href="#installation" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The most recommended way to install Kooha is via Flatpak, which ensures you get the latest version and all necessary dependencies:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;flatpak&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;flathub&lt;span class="w"&gt; &lt;/span&gt;com.github.SeaDve.Kooha
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;It may also be available in the repositories of some Linux distributions or as a Snap package.&lt;/p&gt;
+&lt;h2 id="conclusion"&gt;Conclusion&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Kooha is the perfect tool for those looking for a screen recording solution on Linux that is powerful without being complicated. Its elegance and simplicity make it an excellent addition to any Linux user's productivity arsenal.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Official repository&lt;/em&gt;: &lt;a href="https://github.com/SeaDve/Kooha"&gt;SeaDve/Kooha on GitHub&lt;/a&gt;&lt;/p&gt;</content><category term="Tools"></category><category term="linux"></category><category term="kooha"></category><category term="screen-recorder"></category><category term="productivity"></category><category term="tools"></category><category term="open-source"></category></entry><entry><title>`direnv`: Manage your development environments intelligently</title><link href="https://pablocaro.es/en/direnv-gestion-entornos" rel="alternate"></link><published>2025-12-25T14:30:00+01:00</published><updated>2025-12-25T14:30:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2025-12-25:/en/direnv-gestion-entornos</id><summary type="html">&lt;p&gt;Discover &lt;code&gt;direnv&lt;/code&gt;, a shell extension that automatically loads and unloads environment variables when changing directories, keeping your configuration clean and organized.&lt;/p&gt;</summary><content type="html">&lt;p&gt;In the daily life of a developer, it is common to work with multiple projects, each with its own environment variables, paths (&lt;code&gt;PATH&lt;/code&gt;), tool versions, or credentials. Manually managing these variables can lead to messy configurations in your &lt;code&gt;.profile&lt;/code&gt; or &lt;code&gt;.bashrc&lt;/code&gt;, or errors due to using the wrong environment. This is where &lt;strong&gt;&lt;code&gt;direnv&lt;/code&gt;&lt;/strong&gt; shines, offering an elegant and automatic solution.&lt;/p&gt;
+&lt;h2 id="what-is-direnv"&gt;What is &lt;code&gt;direnv&lt;/code&gt;?&lt;a class="headerlink" href="#what-is-direnv" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;direnv&lt;/code&gt; is an extension for your shell (Bash, Zsh, Fish, etc.) that automatically detects when you change directories. When you enter a directory containing an &lt;code&gt;.envrc&lt;/code&gt; file, &lt;code&gt;direnv&lt;/code&gt; loads it; when you leave it, it unloads it. This means your shell environment dynamically adapts to your current project without you having to do anything manually.&lt;/p&gt;
+&lt;h2 id="how-does-it-work"&gt;How does it work?&lt;a class="headerlink" href="#how-does-it-work" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;direnv&lt;/code&gt; integrates with your shell through a hook in the &lt;code&gt;cd&lt;/code&gt; command. Every time you change directories, &lt;code&gt;direnv&lt;/code&gt; checks if there is an &lt;code&gt;.envrc&lt;/code&gt; file in the current directory or any of its ancestors. If it finds one (and you have granted permission to load it), it executes the commands defined in that file to modify your environment. Upon leaving the directory, it reverts those changes, cleaning up your environment.&lt;/p&gt;
+&lt;h2 id="common-use-cases"&gt;Common Use Cases&lt;a class="headerlink" href="#common-use-cases" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;PATH&lt;/code&gt; Management&lt;/strong&gt;: Adding project-specific binaries to your &lt;code&gt;PATH&lt;/code&gt; temporarily.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Python Virtual Environments&lt;/strong&gt;: Automatically activating a &lt;code&gt;virtualenv&lt;/code&gt; or &lt;code&gt;uv venv&lt;/code&gt; when entering a Python project.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Credentials and API Keys&lt;/strong&gt;: Loading environment variables with database credentials, API keys, or tokens securely (without leaving them in the shell history).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Project-Specific Environment Variables&lt;/strong&gt;: &lt;code&gt;RAILS_ENV&lt;/code&gt;, &lt;code&gt;NODE_ENV&lt;/code&gt;, etc.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Tool Version Switching&lt;/strong&gt;: Integrating with tools like &lt;code&gt;nvm&lt;/code&gt; or &lt;code&gt;pyenv&lt;/code&gt; to automatically switch Node.js or Python versions.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="basic-installation-bash-example"&gt;Basic Installation (Bash example)&lt;a class="headerlink" href="#basic-installation-bash-example" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Install &lt;code&gt;direnv&lt;/code&gt;&lt;/strong&gt;: You can install it from your package manager (&lt;code&gt;sudo apt install direnv&lt;/code&gt;, &lt;code&gt;brew install direnv&lt;/code&gt;, etc.).&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Activate the hook in your shell&lt;/strong&gt;: Add the following line to your &lt;code&gt;~/.bashrc&lt;/code&gt; (or &lt;code&gt;~/.zshrc&lt;/code&gt;):&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;bash
+eval "$(direnv hook bash)"&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Create an &lt;code&gt;.envrc&lt;/code&gt; file&lt;/strong&gt;: In the root of your project, create an &lt;code&gt;.envrc&lt;/code&gt; file with the variables and commands you want.&lt;/p&gt;
+&lt;p&gt;```bash&lt;/p&gt;
+&lt;h1 id="envrc-in-the-root-of-your-python-project"&gt;.envrc in the root of your Python project&lt;a class="headerlink" href="#envrc-in-the-root-of-your-python-project" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;layout python  # Automatically activates a virtual environment
+export MY_API_KEY="super_secret_project_key"
+```&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Allow loading&lt;/strong&gt;: The first time you enter the directory with a new &lt;code&gt;.envrc&lt;/code&gt;, &lt;code&gt;direnv&lt;/code&gt; will ask for confirmation:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;bash
+direnv: error .envrc is blocked. Run `direnv allow` to approve its contents&lt;/code&gt;
+Run &lt;code&gt;direnv allow&lt;/code&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="the-direnv-standard-library"&gt;The &lt;code&gt;direnv&lt;/code&gt; Standard Library&lt;a class="headerlink" href="#the-direnv-standard-library" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;direnv&lt;/code&gt; comes with a powerful standard library that includes predefined functions for common tasks, such as &lt;code&gt;layout python&lt;/code&gt; (to manage virtualenvs), &lt;code&gt;use nix&lt;/code&gt;, &lt;code&gt;use node&lt;/code&gt;, etc., greatly simplifying the configuration of your &lt;code&gt;.envrc&lt;/code&gt; files.&lt;/p&gt;
+&lt;h2 id="key-benefits"&gt;Key Benefits&lt;a class="headerlink" href="#key-benefits" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Clean environments&lt;/strong&gt;: Your &lt;code&gt;.profile&lt;/code&gt; stays tidy.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Consistency&lt;/strong&gt;: Each project has exactly the environment it needs.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Productivity&lt;/strong&gt;: No more manual &lt;code&gt;source venv/bin/activate&lt;/code&gt; or remembering to set variables.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;direnv&lt;/code&gt; is a small but powerful tool that transforms the way you manage your development environments, making your life in the terminal much more efficient and error-free.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Original article&lt;/em&gt;: &lt;a href="https://direnv.net/"&gt;&lt;code&gt;direnv&lt;/code&gt; homepage&lt;/a&gt;&lt;/p&gt;</content><category term="Tools"></category><category term="direnv"></category><category term="shell"></category><category term="environment"></category><category term="productivity"></category><category term="development"></category><category term="linux"></category><category term="tools"></category></entry><entry><title>TCP Connection States in GNU/Linux: netstat and ss</title><link href="https://pablocaro.es/en/estados-conexion-tcp-netstat-ss" rel="alternate"></link><published>2025-12-25T13:30:00+01:00</published><updated>2025-12-25T13:30:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2025-12-25:/en/estados-conexion-tcp-netstat-ss</id><summary type="html">&lt;p&gt;Understand the different TCP connection states reported by netstat and ss, from establishment to termination, for better network diagnosis.&lt;/p&gt;</summary><content type="html">&lt;p&gt;In the GNU/Linux world, tools like &lt;code&gt;netstat&lt;/code&gt; and &lt;code&gt;ss&lt;/code&gt; are indispensable for monitoring and diagnosing the state of network connections on our systems. To correctly interpret their output, it is fundamental to understand the different states a TCP connection goes through. This post explores those states, from establishment to termination of a connection.&lt;/p&gt;
+&lt;h2 id="phases-of-a-tcp-connection"&gt;Phases of a TCP Connection&lt;a class="headerlink" href="#phases-of-a-tcp-connection" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;A TCP connection is managed through three main phases:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Connection Establishment&lt;/strong&gt;: A multi-step handshake process that initiates the connection.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Data Transfer&lt;/strong&gt;: Once established, data is sent between the two endpoints.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Connection Termination&lt;/strong&gt;: Closes the connection and releases associated resources.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;During these phases, the Internet socket (the local endpoint of the communication) experiences a series of state changes.&lt;/p&gt;
+&lt;h2 id="tcp-socket-states-explained"&gt;TCP Socket States Explained&lt;a class="headerlink" href="#tcp-socket-states-explained" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Here are the most common states you might encounter when listing connections with &lt;code&gt;netstat&lt;/code&gt; or &lt;code&gt;ss&lt;/code&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;ESTABLISHED&lt;/strong&gt;: The TCP connection is established and ready to transfer data. This is the desired state for an active connection.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;SYN_SENT&lt;/strong&gt;: The local socket has sent a SYN packet to the remote server and is waiting for a SYN-ACK response. Indicates that a connection attempt is being made.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;SYN_RECV&lt;/strong&gt;: The server has received a SYN packet from a client and has responded with a SYN-ACK, now waiting for an ACK from the client. It is part of the three-way handshake.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;FIN_WAIT1&lt;/strong&gt;: The local socket has closed its side of the connection and has sent a FIN packet, waiting for an ACK from the remote peer. The connection is closing actively.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;FIN_WAIT2&lt;/strong&gt;: The local socket has received the ACK to its FIN, but is still waiting for a FIN packet from the remote peer to fully close the connection.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;TIME_WAIT&lt;/strong&gt;: The socket has waited after closing the connection to ensure that all packets have been transmitted and received by both sides, and to allow duplicate packets to die out in the network. It is a necessary wait state before fully releasing resources.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;CLOSE&lt;/strong&gt;: The socket is not in use and there is no connection.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;CLOSE_WAIT&lt;/strong&gt;: The remote peer has closed its side of the connection (sent a FIN and been ACKed), and the local socket is waiting for the local application to close its own side.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;LAST_ACK&lt;/strong&gt;: The local socket has sent its FIN to the remote peer, and is waiting for the final ACK from the remote peer. This happens after a &lt;code&gt;CLOSE_WAIT&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;LISTEN&lt;/strong&gt;: The socket is waiting for incoming connections. Only seen with the &lt;code&gt;--listening (-l)&lt;/code&gt; or &lt;code&gt;--all (-a)&lt;/code&gt; options of &lt;code&gt;netstat&lt;/code&gt;/&lt;code&gt;ss&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;CLOSING&lt;/strong&gt;: Both sides of the connection have tried to close simultaneously, and the local socket is in the process of sending/receiving FIN and ACK.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;UNKNOWN&lt;/strong&gt;: The socket state is unknown or cannot be determined.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="tools-netstat-and-ss"&gt;Tools: &lt;code&gt;netstat&lt;/code&gt; and &lt;code&gt;ss&lt;/code&gt;&lt;a class="headerlink" href="#tools-netstat-and-ss" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;You can see these states using commands like:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;netstat&lt;span class="w"&gt; &lt;/span&gt;-tn&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="c1"&gt;# Shows TCP connections, without name resolution (-n)&lt;/span&gt;
+ss&lt;span class="w"&gt; &lt;/span&gt;-tn&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="c1"&gt;# Modern and faster version of netstat&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The &lt;code&gt;-t&lt;/code&gt; option filters for TCP connections and &lt;code&gt;-n&lt;/code&gt; avoids name resolution, which speeds up the output and shows IPs directly.&lt;/p&gt;
+&lt;h2 id="conclusion"&gt;Conclusion&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Understanding TCP connection states is vital for diagnosing network issues, identifying unresponsive or stuck processes, and understanding how applications behave in terms of connectivity. Knowing what each state means allows you to debug problems more effectively on your GNU/Linux system.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Original article&lt;/em&gt;: &lt;a href="https://www.ochobitshacenunbyte.com/2020/11/07/tipos-de-conexiones-en-netstat-y-ss-explicadas/"&gt;Tipos de Conexiones en netstat y ss Explicadas&lt;/a&gt;&lt;/p&gt;</content><category term="Systems"></category><category term="linux"></category><category term="networking"></category><category term="tcp"></category><category term="netstat"></category><category term="ss"></category><category term="systems"></category></entry><entry><title>Kitty as a Quick Access Terminal: The Convenience of a Dropdown</title><link href="https://pablocaro.es/en/kitty-acceso-rapido" rel="alternate"></link><published>2025-12-25T12:30:00+01:00</published><updated>2025-12-25T12:30:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2025-12-25:/en/kitty-acceso-rapido</id><summary type="html">&lt;p&gt;Configure Kitty for instant and efficient access, combining the power of a modern terminal with the convenience of a dropdown.&lt;/p&gt;</summary><content type="html">&lt;p&gt;One of the most appreciated features of terminals like Yakuake or Guake is their ability to appear and disappear instantly with a single keystroke, offering quick access without interrupting the workflow. &lt;strong&gt;Kitty&lt;/strong&gt;, the GPU-accelerated terminal, can also replicate and improve this experience, combining its power with the convenience of a dropdown terminal.&lt;/p&gt;
+&lt;h2 id="the-dropdown-terminal-concept"&gt;The Dropdown Terminal Concept&lt;a class="headerlink" href="#the-dropdown-terminal-concept" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The idea is simple: a terminal that resides in the background and shows or hides on demand. This is especially useful for quick commands, monitoring, or any task that requires brief interaction with the command line.&lt;/p&gt;
+&lt;h2 id="kitty-for-quick-access"&gt;Kitty for Quick Access&lt;a class="headerlink" href="#kitty-for-quick-access" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Kitty does not have a native "dropdown" function like Yakuake, but its flexibility and scripting capabilities allow it to be configured for this purpose. The key lies in:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Dedicated Kitty instances:&lt;/strong&gt; You can launch a Kitty instance in a "daemon" or background mode, ready to be activated.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Remote control:&lt;/strong&gt; Kitty offers a remote control protocol (&lt;code&gt;kitty @&lt;/code&gt;) that allows interacting with already open instances.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Window Manager:&lt;/strong&gt; Using the rules of your window manager (KDE, Gnome, i3, Sway, etc.) to assign a hotkey that shows or hides the Kitty window.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id="example-configuration"&gt;Example Configuration&lt;a class="headerlink" href="#example-configuration" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Here is a conceptual approach to achieve a quick access terminal with Kitty and a window manager (e.g., with &lt;code&gt;xdotool&lt;/code&gt; for Xorg environments, or similar functions in Wayland):&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Launch Kitty in the background:&lt;/strong&gt;
+    You can have a Kitty instance that starts automatically with your session and is configured to be "floating" and with a specific size.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Toggle Script:&lt;/strong&gt;
+    Create a small script that checks if the "always visible" Kitty window is active and, if it is, hides it; if not, shows it.&lt;/p&gt;
+&lt;p&gt;```bash&lt;/p&gt;
+&lt;h1 id="binbash"&gt;!/bin/bash&lt;a class="headerlink" href="#binbash" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;KITTY_CLASS="kitty-dropdown" # A custom class for the Kitty window
+KITTY_ID=$(xdotool search --class "$KITTY_CLASS" | head -n 1)&lt;/p&gt;
+&lt;p&gt;if [ -z "$KITTY_ID" ]; then
+    # If it doesn't exist, launch it
+    kitty --class "$KITTY_CLASS" &amp;amp;
+else
+    # If it exists, toggle visibility
+    if xdotool getwindowfocus getwindowpid | grep -q "$(xdotool getwindowpid "$KITTY_ID")"; then
+        xdotool windowminimize "$KITTY_ID"
+    else
+        xdotool windowmap "$KITTY_ID" # Show the window
+        xdotool windowraise "$KITTY_ID" # Make sure it's on top
+        xdotool windowfocus "$KITTY_ID" # Give it focus
+    fi
+fi
+```&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Keyboard shortcut in your window manager:&lt;/strong&gt;
+    Assign a global key (e.g., &lt;code&gt;F12&lt;/code&gt;) to run this script.&lt;/p&gt;
+&lt;p&gt;```&lt;/p&gt;
+&lt;h1 id="example-in-configi3config-or-similar"&gt;Example in ~/.config/i3/config or similar&lt;a class="headerlink" href="#example-in-configi3config-or-similar" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;bindsym $mod+F12 exec --no-startup-id /path/to/your/toggle-kitty-dropdown.sh
+```&lt;/p&gt;
+&lt;p&gt;And in your &lt;code&gt;kitty.conf&lt;/code&gt;, you can configure the Kitty instance to have the specific class and a suitable position/size:&lt;/p&gt;
+&lt;p&gt;```&lt;/p&gt;
+&lt;h1 id="kittyconf-configuration-for-the-dropdown-instance"&gt;kitty.conf (configuration for the dropdown instance)&lt;a class="headerlink" href="#kittyconf-configuration-for-the-dropdown-instance" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;window_class_members kitty-dropdown
+initial_window_width 80%
+initial_window_height 40%
+window_border_width 0&lt;/p&gt;
+&lt;h1 id="other-appearance-settings"&gt;... other appearance settings ...&lt;a class="headerlink" href="#other-appearance-settings" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;```&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;This method gives you the speed and convenience of a dropdown terminal, but with all the power and customization that Kitty offers. It's the best of both worlds!&lt;/p&gt;</content><category term="Systems"></category><category term="kitty"></category><category term="terminal"></category><category term="quick-access"></category><category term="productivity"></category><category term="linux"></category><category term="shortcuts"></category></entry><entry><title>From Yakuake to Kitty: My Transition to a Modern Terminal</title><link href="https://pablocaro.es/en/de-yakuake-a-kitty" rel="alternate"></link><published>2025-12-25T12:00:00+01:00</published><updated>2025-12-25T12:00:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2025-12-25:/en/de-yakuake-a-kitty</id><summary type="html">&lt;p&gt;Exploring the reasons and benefits of switching from Yakuake to Kitty for a more powerful and customizable terminal experience.&lt;/p&gt;</summary><content type="html">&lt;p&gt;For years, &lt;strong&gt;Yakuake&lt;/strong&gt; has been my go-to terminal in KDE desktop environments. Its quick access convenience, dropping down and hiding with a simple keystroke, is undeniable. However, in my constant search for optimization and performance, I decided to explore alternatives, and &lt;strong&gt;Kitty&lt;/strong&gt; emerged as a standout option.&lt;/p&gt;
+&lt;h2 id="why-the-switch"&gt;Why the Switch?&lt;a class="headerlink" href="#why-the-switch" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Although Yakuake is excellent in its niche, Kitty offers a series of advantages that align better with the demands of a modern and demanding workflow:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;GPU Accelerated Performance&lt;/strong&gt;: Kitty is designed to leverage the graphics card, resulting in extremely fast and fluid text rendering, especially noticeable in terminals with a lot of scrolling or intense output.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Integrated Multiplexing&lt;/strong&gt;: Unlike Yakuake, which relies on traditional tab/window sessions, Kitty incorporates its own multiplexing system (similar to &lt;code&gt;tmux&lt;/code&gt; or &lt;code&gt;screen&lt;/code&gt;) that allows splitting windows, creating tabs, and organizing panes natively and efficiently.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Extensive Configurability&lt;/strong&gt;: &lt;code&gt;kitty.conf&lt;/code&gt; allows deep customization, from keyboard shortcuts to appearance, themes, and behavior.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Modern Support&lt;/strong&gt;: Excellent support for Wayland (the future of Linux on the desktop), font ligatures (like Fira Code), and an ecosystem of "kittens" (scripts and extended functionalities).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Cross-platform&lt;/strong&gt;: Although my main use is on Linux, the ability to have a consistent terminal experience across different operating systems is a plus.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="adapting-to-kitty"&gt;Adapting to Kitty&lt;a class="headerlink" href="#adapting-to-kitty" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The transition required adjusting some habits, mainly the way sessions and quick access are managed. However, the advantages far outweigh the initial learning curve. The speed, fluidity, and power of Kitty's built-in features make it an indispensable tool for my daily life.&lt;/p&gt;
+&lt;p&gt;Configuring Kitty is a simple process through its &lt;code&gt;kitty.conf&lt;/code&gt; file, where all aspects of the terminal are defined. We will explore more about its configuration and keyboard shortcuts in future posts.&lt;/p&gt;
+&lt;p&gt;If you are looking to take your terminal experience to the next level, migrating to Kitty is a step I highly recommend.&lt;/p&gt;</content><category term="Systems"></category><category term="kitty"></category><category term="yakuake"></category><category term="terminal"></category><category term="linux"></category><category term="productivity"></category><category term="tools"></category></entry><entry><title>MobaXterm. Much more than an ssh client</title><link href="https://pablocaro.es/en/mobaxterm-mucho-m%C3%A1s-que-un-cliente-ssh" rel="alternate"></link><published>2017-04-11T14:07:00+02:00</published><updated>2017-04-11T14:07:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2017-04-11:/en/mobaxterm-mucho-más-que-un-cliente-ssh</id><summary type="html"></summary><content type="html">&lt;p&gt;As you know, I am not a Windows person. A Linux user for years, after going through multiple flavors of Debian, now my thing is &lt;a class="reference external" href="https://es.opensuse.org/Portal:Tumbleweed"&gt;OpenSuse Tumbleweed&lt;/a&gt;. But I also have a Windows 7 work computer that I use occasionally.
+For that, &lt;a class="reference external" href="http://mobaxterm.mobatek.net/"&gt;MobaXterm&lt;/a&gt; comes in very handy.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="http://mobaxterm.mobatek.net/"&gt;MobaXterm&lt;/a&gt; is a set of very interesting applications to work as in Linux and connect to remote computers:
+terminal, ssh client, X server, rdp, vnc, etc.&lt;/p&gt;
+</content><category term="Tricks"></category><category term="linux"></category></entry><entry><title>Unread Mail in Gmail's Primary Tab</title><link href="https://pablocaro.es/en/gmail_correo_no_leido_solo_en_principal" rel="alternate"></link><published>2016-07-28T18:00:00+02:00</published><updated>2016-07-28T18:00:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2016-07-28:/en/gmail_correo_no_leido_solo_en_principal</id><summary type="html">&lt;p&gt;As always, another reminder note.&lt;/p&gt;
+&lt;p&gt;If you filter mail in gmail by unread (&lt;code&gt;is:unread&lt;/code&gt;), you get all unread mail,
+which in my case always includes hundreds of notifications, social, promotions, or forums which is usually not what I'm looking for.&lt;/p&gt;
+&lt;p&gt;To search for unread emails &lt;em&gt;from the Primary tab …&lt;/em&gt;&lt;/p&gt;</summary><content type="html">&lt;p&gt;As always, another reminder note.&lt;/p&gt;
+&lt;p&gt;If you filter mail in gmail by unread (&lt;code&gt;is:unread&lt;/code&gt;), you get all unread mail,
+which in my case always includes hundreds of notifications, social, promotions, or forums which is usually not what I'm looking for.&lt;/p&gt;
+&lt;p&gt;To search for unread emails &lt;em&gt;from the Primary tab&lt;/em&gt; the query to perform is this:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+is:inbox -category:(updates OR promotions OR social OR forums) is:unread
+&lt;/pre&gt;
+</content><category term="Tricks"></category><category term="linux"></category></entry><entry><title>Determining RAM slots in use on Linux</title><link href="https://pablocaro.es/en/determinar-slots-ram-uso-linux" rel="alternate"></link><published>2016-07-13T20:28:00+02:00</published><updated>2016-07-13T20:28:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2016-07-13:/en/determinar-slots-ram-uso-linux</id><summary type="html">&lt;p&gt;Linux commands to determine how many RAM slots are occupied and their capacity using dmidecode, lshw, and hardware inspection techniques&lt;/p&gt;</summary><content type="html">&lt;p&gt;How many &lt;strong&gt;RAM slots do you have occupied&lt;/strong&gt; and how many are free? Linux provides tools to inspect memory configuration without opening the computer.&lt;/p&gt;
+&lt;h2 id="dmidecode-the-main-tool"&gt;dmidecode: The Main Tool&lt;a class="headerlink" href="#dmidecode-the-main-tool" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="basic-memory-information"&gt;Basic Memory Information&lt;a class="headerlink" href="#basic-memory-information" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# View all memory information&lt;/span&gt;
+sudo&lt;span class="w"&gt; &lt;/span&gt;dmidecode&lt;span class="w"&gt; &lt;/span&gt;-t&lt;span class="w"&gt; &lt;/span&gt;memory
+
+&lt;span class="c1"&gt;# Specific memory type (table 16)&lt;/span&gt;
+sudo&lt;span class="w"&gt; &lt;/span&gt;dmidecode&lt;span class="w"&gt; &lt;/span&gt;-t&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;16&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Installed sizes only&lt;/span&gt;
+sudo&lt;span class="w"&gt; &lt;/span&gt;dmidecode&lt;span class="w"&gt; &lt;/span&gt;-t&lt;span class="w"&gt; &lt;/span&gt;memory&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;grep&lt;span class="w"&gt; &lt;/span&gt;-i&lt;span class="w"&gt; &lt;/span&gt;size
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Typical Output&lt;/strong&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;Size&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;8192&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;MB&lt;/span&gt;
+&lt;span class="n"&gt;Size&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;8192&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;MB&lt;/span&gt;
+&lt;span class="n"&gt;Size&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;No&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Module&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Installed&lt;/span&gt;
+&lt;span class="n"&gt;Size&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;No&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Module&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Installed&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id="detailed-information-per-slot"&gt;Detailed Information per Slot&lt;a class="headerlink" href="#detailed-information-per-slot" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Granular information for each slot (table 17)&lt;/span&gt;
+sudo&lt;span class="w"&gt; &lt;/span&gt;dmidecode&lt;span class="w"&gt; &lt;/span&gt;-t&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;17&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Compact summary&lt;/span&gt;
+sudo&lt;span class="w"&gt; &lt;/span&gt;dmidecode&lt;span class="w"&gt; &lt;/span&gt;-t&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;17&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;grep&lt;span class="w"&gt; &lt;/span&gt;-E&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;(Size|Locator|Speed|Type:)&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Information Provided&lt;/strong&gt;:
+- &lt;strong&gt;Locator&lt;/strong&gt;: Physical slot identifier (DIMM_A1, DIMM_B1, etc.)
+- &lt;strong&gt;Size&lt;/strong&gt;: Installed capacity or "No Module Installed"
+- &lt;strong&gt;Type&lt;/strong&gt;: DDR3, DDR4, etc.
+- &lt;strong&gt;Speed&lt;/strong&gt;: Speed in MT/s&lt;/p&gt;
+&lt;h2 id="lshw-alternative-with-structured-format"&gt;lshw: Alternative with Structured Format&lt;a class="headerlink" href="#lshw-alternative-with-structured-format" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Memory information with lshw&lt;/span&gt;
+sudo&lt;span class="w"&gt; &lt;/span&gt;lshw&lt;span class="w"&gt; &lt;/span&gt;-class&lt;span class="w"&gt; &lt;/span&gt;memory
+
+&lt;span class="c1"&gt;# Physical memory only (no cache)&lt;/span&gt;
+sudo&lt;span class="w"&gt; &lt;/span&gt;lshw&lt;span class="w"&gt; &lt;/span&gt;-class&lt;span class="w"&gt; &lt;/span&gt;memory&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;grep&lt;span class="w"&gt; &lt;/span&gt;-A&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;10&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;System Memory&amp;quot;&lt;/span&gt;
+
+&lt;span class="c1"&gt;# More compact format&lt;/span&gt;
+sudo&lt;span class="w"&gt; &lt;/span&gt;lshw&lt;span class="w"&gt; &lt;/span&gt;-short&lt;span class="w"&gt; &lt;/span&gt;-class&lt;span class="w"&gt; &lt;/span&gt;memory
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="useful-scripts-for-analysis"&gt;Useful Scripts for Analysis&lt;a class="headerlink" href="#useful-scripts-for-analysis" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="occupied-slots-counter"&gt;Occupied Slots Counter&lt;a class="headerlink" href="#occupied-slots-counter" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="ch"&gt;#!/bin/bash&lt;/span&gt;
+&lt;span class="nb"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;=== RAM Slot Analysis ===&amp;quot;&lt;/span&gt;
+&lt;span class="nv"&gt;TOTAL_SLOTS&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;dmidecode&lt;span class="w"&gt; &lt;/span&gt;-t&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;17&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;grep&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Size:&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;wc&lt;span class="w"&gt; &lt;/span&gt;-l&lt;span class="k"&gt;)&lt;/span&gt;
+&lt;span class="nv"&gt;OCCUPIED_SLOTS&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;dmidecode&lt;span class="w"&gt; &lt;/span&gt;-t&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;17&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;grep&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Size:&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;grep&lt;span class="w"&gt; &lt;/span&gt;-v&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;No Module&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;wc&lt;span class="w"&gt; &lt;/span&gt;-l&lt;span class="k"&gt;)&lt;/span&gt;
+&lt;span class="nv"&gt;FREE_SLOTS&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;$((&lt;/span&gt;&lt;span class="nv"&gt;TOTAL_SLOTS&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;OCCUPIED_SLOTS&lt;/span&gt;&lt;span class="k"&gt;))&lt;/span&gt;
+
+&lt;span class="nb"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Total Slots: &lt;/span&gt;&lt;span class="nv"&gt;$TOTAL_SLOTS&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+&lt;span class="nb"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Occupied Slots: &lt;/span&gt;&lt;span class="nv"&gt;$OCCUPIED_SLOTS&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;
+&lt;span class="nb"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Free Slots: &lt;/span&gt;&lt;span class="nv"&gt;$FREE_SLOTS&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id="detailed-summary"&gt;Detailed Summary&lt;a class="headerlink" href="#detailed-summary" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="ch"&gt;#!/bin/bash&lt;/span&gt;
+&lt;span class="nb"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;=== Current RAM Configuration ===&amp;quot;&lt;/span&gt;
+sudo&lt;span class="w"&gt; &lt;/span&gt;dmidecode&lt;span class="w"&gt; &lt;/span&gt;-t&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;17&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;awk&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;
+&lt;span class="s1"&gt;/Memory Device/,/^$/ {&lt;/span&gt;
+&lt;span class="s1"&gt;    if(/Locator:/) locator=$2&lt;/span&gt;
+&lt;span class="s1"&gt;    if(/Size:/ &amp;amp;&amp;amp; !/No Module/) {&lt;/span&gt;
+&lt;span class="s1"&gt;        size=$2&amp;quot; &amp;quot;$3&lt;/span&gt;
+&lt;span class="s1"&gt;        print locator&amp;quot;: &amp;quot;size&lt;/span&gt;
+&lt;span class="s1"&gt;    }&lt;/span&gt;
+&lt;span class="s1"&gt;    if(/Size:.*No Module/) print locator&amp;quot;: Empty&amp;quot;&lt;/span&gt;
+&lt;span class="s1"&gt;}&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="additional-useful-information"&gt;Additional Useful Information&lt;a class="headerlink" href="#additional-useful-information" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="maximum-supported-capacity"&gt;Maximum Supported Capacity&lt;a class="headerlink" href="#maximum-supported-capacity" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Maximum total capacity&lt;/span&gt;
+sudo&lt;span class="w"&gt; &lt;/span&gt;dmidecode&lt;span class="w"&gt; &lt;/span&gt;-t&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;16&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;grep&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Maximum Capacity&amp;quot;&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Maximum number of devices&lt;/span&gt;
+sudo&lt;span class="w"&gt; &lt;/span&gt;dmidecode&lt;span class="w"&gt; &lt;/span&gt;-t&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;16&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;grep&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Number Of Devices&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id="speed-and-type-verification"&gt;Speed and Type Verification&lt;a class="headerlink" href="#speed-and-type-verification" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Configured speed&lt;/span&gt;
+sudo&lt;span class="w"&gt; &lt;/span&gt;dmidecode&lt;span class="w"&gt; &lt;/span&gt;-t&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;17&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;grep&lt;span class="w"&gt; &lt;/span&gt;-E&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;(Speed|Configured)&amp;quot;&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Memory type&lt;/span&gt;
+sudo&lt;span class="w"&gt; &lt;/span&gt;dmidecode&lt;span class="w"&gt; &lt;/span&gt;-t&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;17&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;grep&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Type:&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;grep&lt;span class="w"&gt; &lt;/span&gt;-v&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Error&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="example-of-interpreted-output"&gt;Example of Interpreted Output&lt;a class="headerlink" href="#example-of-interpreted-output" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$&lt;span class="w"&gt; &lt;/span&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;dmidecode&lt;span class="w"&gt; &lt;/span&gt;-t&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;17&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;grep&lt;span class="w"&gt; &lt;/span&gt;-E&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;(Locator|Size|Type:)&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;head&lt;span class="w"&gt; &lt;/span&gt;-12
+
+Locator:&lt;span class="w"&gt; &lt;/span&gt;DIMM_A1
+Size:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;8192&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;MB&lt;span class="w"&gt;  &lt;/span&gt;
+Type:&lt;span class="w"&gt; &lt;/span&gt;DDR4
+
+Locator:&lt;span class="w"&gt; &lt;/span&gt;DIMM_A2
+Size:&lt;span class="w"&gt; &lt;/span&gt;No&lt;span class="w"&gt; &lt;/span&gt;Module&lt;span class="w"&gt; &lt;/span&gt;Installed
+Type:&lt;span class="w"&gt; &lt;/span&gt;Unknown
+
+Locator:&lt;span class="w"&gt; &lt;/span&gt;DIMM_B1&lt;span class="w"&gt;  &lt;/span&gt;
+Size:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;8192&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;MB
+Type:&lt;span class="w"&gt; &lt;/span&gt;DDR4
+
+Locator:&lt;span class="w"&gt; &lt;/span&gt;DIMM_B2
+Size:&lt;span class="w"&gt; &lt;/span&gt;No&lt;span class="w"&gt; &lt;/span&gt;Module&lt;span class="w"&gt; &lt;/span&gt;Installed
+Type:&lt;span class="w"&gt; &lt;/span&gt;Unknown
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Interpretation&lt;/strong&gt;: 
+- 4 total slots (DIMM_A1, A2, B1, B2)
+- 2 slots occupied with 8GB DDR4 each
+- 2 free slots available&lt;/p&gt;
+&lt;h2 id="important-limitations"&gt;Important Limitations&lt;a class="headerlink" href="#important-limitations" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;⚠️ &lt;strong&gt;Accuracy&lt;/strong&gt;: Command-line tools may not perfectly reflect physical hardware&lt;/p&gt;
+&lt;p&gt;⚠️ &lt;strong&gt;Privileges&lt;/strong&gt;: Root permissions are required to access DMI information&lt;/p&gt;
+&lt;p&gt;⚠️ &lt;strong&gt;Compatibility&lt;/strong&gt;: Some embedded systems may not provide complete information&lt;/p&gt;
+&lt;p&gt;For &lt;strong&gt;maximum certainty&lt;/strong&gt;, physical inspection is still recommended, but these tools provide sufficiently accurate information for most cases.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Original source&lt;/em&gt;: &lt;a href="http://unix.stackexchange.com/questions/33249/how-to-determine-the-amount-of-ram-slots-in-use"&gt;Unix &amp;amp; Linux Stack Exchange&lt;/a&gt;&lt;/p&gt;</content><category term="Linux"></category><category term="linux"></category><category term="ram"></category><category term="dmidecode"></category><category term="lshw"></category><category term="hardware"></category><category term="memory"></category></entry><entry><title>Middle click in firefox</title><link href="https://pablocaro.es/en/boton_central_firefox" rel="alternate"></link><published>2016-01-01T07:00:00+01:00</published><updated>2016-01-01T07:00:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2016-01-01:/en/boton_central_firefox</id><summary type="html">&lt;p class="first last"&gt;Stop firefox from opening the pasted url with the middle mouse button&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;Another reminder note.
+I usually open links in a new window in firefox using the middle button.
+It often happens to me that I have a url in the clipboard and firefox then opens it for me instead of the link.
+To avoid this, simply go to &lt;code&gt;about:config&lt;/code&gt; and set the property &lt;code&gt;middlemouse.contentLoadURL&lt;/code&gt; to false.&lt;/p&gt;
+</content><category term="Systems"></category><category term="linux"></category></entry><entry><title>NetHogs see consumed bandwidth</title><link href="https://pablocaro.es/en/nethogs-ver-ancho-de-banda-consumido" rel="alternate"></link><published>2015-04-16T11:37:00+02:00</published><updated>2015-04-16T11:37:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2015-04-16:/en/nethogs-ver-ancho-de-banda-consumido</id><summary type="html">&lt;p&gt;To measure the bandwidth I am using right now, I use NetHogs&lt;/p&gt;
+&lt;p&gt;By default, it looks for a network interface called &amp;quot;eth0&amp;quot;. If it doesn't find it, it complains like this:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+ioctl failed while establishing local IP for selected device eth0. You may specify the device on the command line …&lt;/pre&gt;</summary><content type="html">&lt;p&gt;To measure the bandwidth I am using right now, I use NetHogs&lt;/p&gt;
+&lt;p&gt;By default, it looks for a network interface called &amp;quot;eth0&amp;quot;. If it doesn't find it, it complains like this:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+ioctl failed while establishing local IP for selected device eth0. You may specify the device on the command line.
+&lt;/pre&gt;
+&lt;p&gt;You can see your network configuration with the &lt;em&gt;ip&lt;/em&gt; command:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ ip a
+1: lo: &amp;lt;LOOPBACK,UP,LOWER_UP&amp;gt; mtu 65536 qdisc noqueue state UNKNOWN group default
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host
+       valid_lft forever preferred_lft forever
+2: wlp3s0: &amp;lt;BROADCAST,MULTICAST&amp;gt; mtu 1500 qdisc mq state DOWN group default qlen 1000
+    link/ether 84:3a:4b:50:14:cc brd ff:ff:ff:ff:ff:ff
+3: enp0s25: &amp;lt;BROADCAST,MULTICAST,UP,LOWER_UP&amp;gt; mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+    link/ether 3c:97:0e:77:76:d3 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.1.39/24 brd 192.168.1.255 scope global dynamic enp0s25
+       valid_lft 28955sec preferred_lft 28955sec
+    inet6 fe80::3e97:eff:fe77:76d3/64 scope link
+       valid_lft forever preferred_lft forever
+&lt;/pre&gt;
+&lt;p&gt;As you can see on my computer, I have two interfaces (apart from the loopback one) which are enp0s25 (my wired network card)
+and the wifi wlp3s0, which I am connected to now and is the one I will use (I could list both).&lt;/p&gt;
+&lt;p&gt;So by running:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ sudo nethogs enp0s25
+&lt;/pre&gt;
+&lt;p&gt;I can see the processes that are consuming the most bandwidth.&lt;/p&gt;
+&lt;img alt="Nethogs" class="align-center" src="images/nethogs.png" /&gt;
+&lt;p&gt;The command help is:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+20:02 $ nethogs -h
+usage: nethogs [-V] [-b] [-d seconds] [-t] [-p] [device [device [device ...]]]
+                -V : prints version.
+                -d : delay for update refresh rate in seconds. default is 1.
+                -t : tracemode.
+                -b : bughunt mode - implies tracemode.
+                -p : sniff in promiscious mode (not recommended).
+                device : device(s) to monitor. default is eth0
+
+When nethogs is running, press:
+ q: quit
+ m: switch between total and kb/s mode
+&lt;/pre&gt;
+</content><category term="Systems"></category><category term="linux"></category></entry></feed>

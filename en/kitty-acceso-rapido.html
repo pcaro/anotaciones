@@ -1,0 +1,356 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://pablocaro.es/en/theme/stylesheet/style.min.css">
+
+
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+          href="https://pablocaro.es/en/theme/pygments/github.min.css">
+
+
+  <link rel="stylesheet"
+        type="text/css"
+        href="https://pablocaro.es/en/theme/stork/stork.css" />
+
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/en/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/en/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/en/theme/font-awesome/css/solid.css">
+
+
+  <link rel="shortcut icon" href="/theme/img/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/theme/img/favicon.ico" type="image/x-icon">
+
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#333333">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#333333">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Microsoft EDGE -->
+  <meta name="msapplication-TileColor" content="#333333">
+
+  <link href="https://pablocaro.es/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Annotations by Pablo Caro Atom">
+
+  <link href="https://pablocaro.es/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Annotations by Pablo Caro RSS">
+
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-60035125-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Pablo Caro" />
+<meta name="description" content="Configure Kitty for instant and efficient access, combining the power of a modern terminal with the convenience of a dropdown." />
+<meta name="keywords" content="kitty, terminal, quick-access, productivity, linux, shortcuts">
+
+<link rel="alternate" href="https://pablocaro.es/en/kitty-acceso-rapido" hreflang="en" />
+<link rel="alternate" href="https://pablocaro.es/en/../kitty-acceso-rapido" hreflang="es" />
+
+  <meta property="og:site_name" content="Annotations by Pablo Caro"/>
+  <meta property="og:title" content="Kitty as a Quick Access Terminal: The Convenience of a Dropdown"/>
+  <meta property="og:description" content="Configure Kitty for instant and efficient access, combining the power of a modern terminal with the convenience of a dropdown."/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://pablocaro.es/en/kitty-acceso-rapido"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2025-12-25 12:30:00+01:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://pablocaro.es/en/author/pablo-caro.html">
+  <meta property="article:section" content="Systems"/>
+  <meta property="article:tag" content="kitty"/>
+  <meta property="article:tag" content="terminal"/>
+  <meta property="article:tag" content="quick-access"/>
+  <meta property="article:tag" content="productivity"/>
+  <meta property="article:tag" content="linux"/>
+  <meta property="article:tag" content="shortcuts"/>
+  <meta property="og:image" content="/theme/img/profile.png">
+
+  <title>Annotations by Pablo Caro &ndash; Kitty as a Quick Access Terminal: The Convenience of a Dropdown</title>
+
+
+</head>
+<body class="light-theme">
+
+<aside>
+  <div>
+    <a href="https://pablocaro.es/en/">
+      <img src="/theme/img/profile.png" alt="Anotaciones" title="Anotaciones">
+    </a>
+
+    <h1>
+      <a href="https://pablocaro.es/en/">Anotaciones</a>
+    </h1>
+
+    <p>Annotations</p>
+
+    <div class="stork">
+      <input class="stork-input" type="text" autocomplete="off" name="q" data-stork="sitesearch" placeholder="Search..." onclick="loadStorkIndex()"/>
+      <div class="stork-output" data-stork="sitesearch-output"></div>
+    </div>
+
+    <nav>
+      <ul class="list">
+
+
+
+          <li>
+            <a target="_self" href="http://x.com/pcaro" >@pcaro at X.com</a>
+          </li>
+          <li>
+            <a target="_self" href="http://python.org/" >Python.org</a>
+          </li>
+          <li>
+            <a target="_self" href="http://jinja.pocoo.org/" >Jinja2</a>
+          </li>
+      </ul>
+    </nav>
+
+    <ul class="social">
+      <li>
+        <a class="sc-Twitter"
+           href="http://twitter.com/pcaro"
+           target="_blank">
+          <i class="fa-brands fa-Twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Github"
+           href="http://github.com/pcaro"
+           target="_blank">
+          <i class="fa-brands fa-Github"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Linkedin"
+           href="https://www.linkedin.com/in/pcarorevuelta"
+           target="_blank">
+          <i class="fa-brands fa-Linkedin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Facebook"
+           href="https://www.facebook.com/pablo.carorevuelta"
+           target="_blank">
+          <i class="fa-brands fa-Facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Email"
+           href="mailto:correo@pablocaro.es"
+           target="_blank">
+          <i class="fa-brands fa-Email"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+</aside>
+  <main>
+
+<nav>
+  <a href="https://pablocaro.es/en/">Home</a>
+
+  <a href="/en/archives.html">Archives</a>
+  <a href="/en/categories.html">Categories</a>
+  <a href="/en/tags.html">Tags</a>
+  <a href="/en/search.html">Search</a>
+  <a href="/">Español</a>
+
+  <a href="https://pablocaro.es/feeds/all.atom.xml">Atom</a>
+
+  <a href="https://pablocaro.es/feeds/all.rss.xml">RSS</a>
+</nav>
+
+<article class="single">
+  <header>
+          <div class="translations">
+            <a href="https://pablocaro.es/en/../kitty-acceso-rapido">Leer en español</a>
+    </div>
+
+    <h1 id="kitty-acceso-rapido">Kitty as a Quick Access Terminal: The Convenience of a Dropdown</h1>
+    <p>
+      Posted on Thu 25 December 2025 in <a href="https://pablocaro.es/en/category/systems.html">Systems</a>
+
+    </p>
+  </header>
+
+
+  <div>
+    <p>One of the most appreciated features of terminals like Yakuake or Guake is their ability to appear and disappear instantly with a single keystroke, offering quick access without interrupting the workflow. <strong>Kitty</strong>, the GPU-accelerated terminal, can also replicate and improve this experience, combining its power with the convenience of a dropdown terminal.</p>
+<h2 id="the-dropdown-terminal-concept">The Dropdown Terminal Concept<a class="headerlink" href="#the-dropdown-terminal-concept" title="Permanent link">&para;</a></h2>
+<p>The idea is simple: a terminal that resides in the background and shows or hides on demand. This is especially useful for quick commands, monitoring, or any task that requires brief interaction with the command line.</p>
+<h2 id="kitty-for-quick-access">Kitty for Quick Access<a class="headerlink" href="#kitty-for-quick-access" title="Permanent link">&para;</a></h2>
+<p>Kitty does not have a native "dropdown" function like Yakuake, but its flexibility and scripting capabilities allow it to be configured for this purpose. The key lies in:</p>
+<ol>
+<li><strong>Dedicated Kitty instances:</strong> You can launch a Kitty instance in a "daemon" or background mode, ready to be activated.</li>
+<li><strong>Remote control:</strong> Kitty offers a remote control protocol (<code>kitty @</code>) that allows interacting with already open instances.</li>
+<li><strong>Window Manager:</strong> Using the rules of your window manager (KDE, Gnome, i3, Sway, etc.) to assign a hotkey that shows or hides the Kitty window.</li>
+</ol>
+<h3 id="example-configuration">Example Configuration<a class="headerlink" href="#example-configuration" title="Permanent link">&para;</a></h3>
+<p>Here is a conceptual approach to achieve a quick access terminal with Kitty and a window manager (e.g., with <code>xdotool</code> for Xorg environments, or similar functions in Wayland):</p>
+<ol>
+<li>
+<p><strong>Launch Kitty in the background:</strong>
+    You can have a Kitty instance that starts automatically with your session and is configured to be "floating" and with a specific size.</p>
+</li>
+<li>
+<p><strong>Toggle Script:</strong>
+    Create a small script that checks if the "always visible" Kitty window is active and, if it is, hides it; if not, shows it.</p>
+<p>```bash</p>
+<h1 id="binbash">!/bin/bash<a class="headerlink" href="#binbash" title="Permanent link">&para;</a></h1>
+<p>KITTY_CLASS="kitty-dropdown" # A custom class for the Kitty window
+KITTY_ID=$(xdotool search --class "$KITTY_CLASS" | head -n 1)</p>
+<p>if [ -z "$KITTY_ID" ]; then
+    # If it doesn't exist, launch it
+    kitty --class "$KITTY_CLASS" &amp;
+else
+    # If it exists, toggle visibility
+    if xdotool getwindowfocus getwindowpid | grep -q "$(xdotool getwindowpid "$KITTY_ID")"; then
+        xdotool windowminimize "$KITTY_ID"
+    else
+        xdotool windowmap "$KITTY_ID" # Show the window
+        xdotool windowraise "$KITTY_ID" # Make sure it's on top
+        xdotool windowfocus "$KITTY_ID" # Give it focus
+    fi
+fi
+```</p>
+</li>
+<li>
+<p><strong>Keyboard shortcut in your window manager:</strong>
+    Assign a global key (e.g., <code>F12</code>) to run this script.</p>
+<p>```</p>
+<h1 id="example-in-configi3config-or-similar">Example in ~/.config/i3/config or similar<a class="headerlink" href="#example-in-configi3config-or-similar" title="Permanent link">&para;</a></h1>
+<p>bindsym $mod+F12 exec --no-startup-id /path/to/your/toggle-kitty-dropdown.sh
+```</p>
+<p>And in your <code>kitty.conf</code>, you can configure the Kitty instance to have the specific class and a suitable position/size:</p>
+<p>```</p>
+<h1 id="kittyconf-configuration-for-the-dropdown-instance">kitty.conf (configuration for the dropdown instance)<a class="headerlink" href="#kittyconf-configuration-for-the-dropdown-instance" title="Permanent link">&para;</a></h1>
+<p>window_class_members kitty-dropdown
+initial_window_width 80%
+initial_window_height 40%
+window_border_width 0</p>
+<h1 id="other-appearance-settings">... other appearance settings ...<a class="headerlink" href="#other-appearance-settings" title="Permanent link">&para;</a></h1>
+<p>```</p>
+</li>
+</ol>
+<p>This method gives you the speed and convenience of a dropdown terminal, but with all the power and customization that Kitty offers. It's the best of both worlds!</p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="https://pablocaro.es/en/tag/kitty.html">kitty</a>
+      <a href="https://pablocaro.es/en/tag/terminal.html">terminal</a>
+      <a href="https://pablocaro.es/en/tag/quick-access.html">quick-access</a>
+      <a href="https://pablocaro.es/en/tag/productivity.html">productivity</a>
+      <a href="https://pablocaro.es/en/tag/linux.html">linux</a>
+      <a href="https://pablocaro.es/en/tag/shortcuts.html">shortcuts</a>
+    </p>
+  </div>
+
+
+
+  <div class="neighbors">
+    <a class="btn float-left" href="https://pablocaro.es/en/atajos-de-teclado-kitty" title="Essential Keyboard Shortcuts in Kitty: Mastering Your Terminal">
+      <i class="fa fa-angle-left"></i> Previous Post
+    </a>
+    <a class="btn float-right" href="https://pablocaro.es/en/reduce-ruido-logs-python" title="Reduce Noise in Your Python Logs: A Smart Approach">
+      Next Post <i class="fa fa-angle-right"></i>
+    </a>
+  </div>
+
+  <div class="related-posts">
+    <h4>You might enjoy</h4>
+    <ul class="related-posts">
+      <li><a href="https://pablocaro.es/en/atajos-de-teclado-kitty">Essential Keyboard Shortcuts in Kitty: Mastering Your Terminal</a></li>
+      <li><a href="https://pablocaro.es/en/de-yakuake-a-kitty">From Yakuake to Kitty: My Transition to a Modern Terminal</a></li>
+      <li><a href="https://pablocaro.es/en/fresh-editor-terminal">`fresh`: My preferred terminal editor for daily use</a></li>
+      <li><a href="https://pablocaro.es/en/kooha-captura-pantalla-linux">Kooha: Simple and Elegant Screen Recording on Linux</a></li>
+      <li><a href="https://pablocaro.es/en/direnv-gestion-entornos">`direnv`: Manage your development environments intelligently</a></li>
+    </ul>
+  </div>
+
+
+
+<!-- Disqus -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'anotaciones';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>
+    Please enable JavaScript to view comments.
+</noscript>
+<!-- End Disqus -->
+</article>
+
+<footer>
+<p>
+  &copy; 2025  - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/3.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/3.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Annotations by Pablo Caro ",
+  "url" : "https://pablocaro.es/en",
+  "image": "/theme/img/profile.png",
+  "description": ""
+}
+</script>  <script src="https://files.stork-search.net/releases/v1.6.0/stork.js"></script>
+  <script>
+    window.storkIndexLoaded = false;
+    window.loadStorkIndex = function () {
+      if (window.storkIndexLoaded) {
+        return;
+      }
+      if (typeof stork === 'undefined') {
+        console.error('Stork is not loaded yet, retrying...');
+        setTimeout(window.loadStorkIndex, 100);
+        return;
+      }
+      stork.register("sitesearch", "https://pablocaro.es/en/search-index.st", { showProgress: false });
+      stork.register("sitesearch-page", "https://pablocaro.es/en/search-index.st", { showProgress: false });
+      window.storkIndexLoaded = true;
+    }
+  </script>
+
+</body>
+</html>

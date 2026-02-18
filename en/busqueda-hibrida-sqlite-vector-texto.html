@@ -1,0 +1,343 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://pablocaro.es/en/theme/stylesheet/style.min.css">
+
+
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+          href="https://pablocaro.es/en/theme/pygments/github.min.css">
+
+
+  <link rel="stylesheet"
+        type="text/css"
+        href="https://pablocaro.es/en/theme/stork/stork.css" />
+
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/en/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/en/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/en/theme/font-awesome/css/solid.css">
+
+
+  <link rel="shortcut icon" href="/theme/img/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/theme/img/favicon.ico" type="image/x-icon">
+
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#333333">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#333333">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Microsoft EDGE -->
+  <meta name="msapplication-TileColor" content="#333333">
+
+  <link href="https://pablocaro.es/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Annotations by Pablo Caro Atom">
+
+  <link href="https://pablocaro.es/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Annotations by Pablo Caro RSS">
+
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-60035125-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Pablo Caro" />
+<meta name="description" content="Combining vector search and full-text search in SQLite using Reciprocal Rank Fusion for better results" />
+<meta name="keywords" content="sqlite, search, vectors, fts, sql">
+
+<link rel="alternate" href="https://pablocaro.es/en/busqueda-hibrida-sqlite-vector-texto" hreflang="en" />
+<link rel="alternate" href="https://pablocaro.es/en/../busqueda-hibrida-sqlite-vector-texto" hreflang="es" />
+
+  <meta property="og:site_name" content="Annotations by Pablo Caro"/>
+  <meta property="og:title" content="Hybrid Search with SQLite: Vector + Full-Text"/>
+  <meta property="og:description" content="Combining vector search and full-text search in SQLite using Reciprocal Rank Fusion for better results"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://pablocaro.es/en/busqueda-hibrida-sqlite-vector-texto"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2024-10-06 11:43:00+02:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://pablocaro.es/en/author/pablo-caro.html">
+  <meta property="article:section" content="Programming"/>
+  <meta property="article:tag" content="sqlite"/>
+  <meta property="article:tag" content="search"/>
+  <meta property="article:tag" content="vectors"/>
+  <meta property="article:tag" content="fts"/>
+  <meta property="article:tag" content="sql"/>
+  <meta property="og:image" content="/theme/img/profile.png">
+
+  <title>Annotations by Pablo Caro &ndash; Hybrid Search with SQLite: Vector + Full-Text</title>
+
+
+</head>
+<body class="light-theme">
+
+<aside>
+  <div>
+    <a href="https://pablocaro.es/en/">
+      <img src="/theme/img/profile.png" alt="Anotaciones" title="Anotaciones">
+    </a>
+
+    <h1>
+      <a href="https://pablocaro.es/en/">Anotaciones</a>
+    </h1>
+
+    <p>Annotations</p>
+
+    <div class="stork">
+      <input class="stork-input" type="text" autocomplete="off" name="q" data-stork="sitesearch" placeholder="Search..." onclick="loadStorkIndex()"/>
+      <div class="stork-output" data-stork="sitesearch-output"></div>
+    </div>
+
+    <nav>
+      <ul class="list">
+
+
+
+          <li>
+            <a target="_self" href="http://x.com/pcaro" >@pcaro at X.com</a>
+          </li>
+          <li>
+            <a target="_self" href="http://python.org/" >Python.org</a>
+          </li>
+          <li>
+            <a target="_self" href="http://jinja.pocoo.org/" >Jinja2</a>
+          </li>
+      </ul>
+    </nav>
+
+    <ul class="social">
+      <li>
+        <a class="sc-Twitter"
+           href="http://twitter.com/pcaro"
+           target="_blank">
+          <i class="fa-brands fa-Twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Github"
+           href="http://github.com/pcaro"
+           target="_blank">
+          <i class="fa-brands fa-Github"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Linkedin"
+           href="https://www.linkedin.com/in/pcarorevuelta"
+           target="_blank">
+          <i class="fa-brands fa-Linkedin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Facebook"
+           href="https://www.facebook.com/pablo.carorevuelta"
+           target="_blank">
+          <i class="fa-brands fa-Facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Email"
+           href="mailto:correo@pablocaro.es"
+           target="_blank">
+          <i class="fa-brands fa-Email"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+</aside>
+  <main>
+
+<nav>
+  <a href="https://pablocaro.es/en/">Home</a>
+
+  <a href="/en/archives.html">Archives</a>
+  <a href="/en/categories.html">Categories</a>
+  <a href="/en/tags.html">Tags</a>
+  <a href="/en/search.html">Search</a>
+  <a href="/">Español</a>
+
+  <a href="https://pablocaro.es/feeds/all.atom.xml">Atom</a>
+
+  <a href="https://pablocaro.es/feeds/all.rss.xml">RSS</a>
+</nav>
+
+<article class="single">
+  <header>
+          <div class="translations">
+            <a href="https://pablocaro.es/en/../busqueda-hibrida-sqlite-vector-texto">Leer en español</a>
+    </div>
+
+    <h1 id="busqueda-hibrida-sqlite-vector-texto">Hybrid Search with SQLite: Vector + Full-Text</h1>
+    <p>
+      Posted on Sun 06 October 2024 in <a href="https://pablocaro.es/en/category/programming.html">Programming</a>
+
+    </p>
+  </header>
+
+
+  <div>
+    <p>Simon Willison presents a fascinating approach to combining vector search and traditional full-text search in SQLite, using a technique called <strong>Reciprocal Rank Fusion (RRF)</strong>.</p>
+<div class="section" id="the-core-problem">
+<h2>The Core Problem</h2>
+<p>When we have vector searches (based on semantic similarity) and full-text searches (FTS), each returns scores on completely different scales:</p>
+<ul class="simple">
+<li>FTS returns relevance scores</li>
+<li>Vector search returns similarity distances</li>
+</ul>
+<p>How to combine these results effectively?</p>
+</div>
+<div class="section" id="the-solution-reciprocal-rank-fusion">
+<h2>The Solution: Reciprocal Rank Fusion</h2>
+<p>The RRF technique avoids comparing incompatible scores and instead relies on the <strong>ranking</strong> of each result within its respective search method.</p>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span>
+<span class="w">    </span><span class="n">content</span><span class="p">,</span>
+<span class="w">    </span><span class="mi">1</span><span class="p">.</span><span class="mi">0</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(:</span><span class="n">rrf_k</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="k">coalesce</span><span class="p">(</span><span class="n">fts_rank</span><span class="p">,</span><span class="w"> </span><span class="mi">999</span><span class="p">))</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">:</span><span class="n">fts_weight</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="mi">1</span><span class="p">.</span><span class="mi">0</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(:</span><span class="n">rrf_k</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="k">coalesce</span><span class="p">(</span><span class="n">vec_rank</span><span class="p">,</span><span class="w"> </span><span class="mi">999</span><span class="p">))</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">:</span><span class="n">vec_weight</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">combined_rank</span>
+<span class="k">FROM</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="c1">-- FTS subquery with row_number()</span>
+<span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">row_number</span><span class="p">()</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="p">(</span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">rank</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">fts_rank</span>
+<span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">fts_search</span><span class="p">(:</span><span class="n">query</span><span class="p">)</span>
+<span class="p">)</span><span class="w"> </span><span class="n">fts</span>
+<span class="k">FULL</span><span class="w"> </span><span class="k">OUTER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="c1">-- Vector subquery with row_number()</span>
+<span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">row_number</span><span class="p">()</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="p">(</span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">distance</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">vec_rank</span>
+<span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">vector_search</span><span class="p">(:</span><span class="n">query</span><span class="p">,</span><span class="w"> </span><span class="p">:</span><span class="n">k</span><span class="p">)</span>
+<span class="p">)</span><span class="w"> </span><span class="n">vec</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">fts</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vec</span><span class="p">.</span><span class="n">id</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">combined_rank</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span>
+</pre></div>
+</div>
+<div class="section" id="advantages-of-the-hybrid-approach">
+<h2>Advantages of the Hybrid Approach</h2>
+<ol class="arabic simple">
+<li><strong>Flexibility</strong>: Allows adjusting weights between FTS and vector search</li>
+<li><strong>Robustness</strong>: Results can appear in one or both methods</li>
+<li><strong>Scalability</strong>: Does not require complex score normalization</li>
+<li><strong>Simplicity</strong>: A single SQL query handles all the logic</li>
+</ol>
+</div>
+<div class="section" id="sqlite-as-a-unified-platform">
+<h2>SQLite as a Unified Platform</h2>
+<p>With extensions like <a class="reference external" href="https://github.com/asg017/sqlite-vec">sqlite-vec</a>, SQLite becomes a powerful platform for:</p>
+<ul class="simple">
+<li>Full-text search (Native FTS5)</li>
+<li>Vector embedding search</li>
+<li>Hybrid combination of both techniques</li>
+</ul>
+<p>This approach democratizes advanced search techniques, making them accessible without complex infrastructure.</p>
+<p><em>Original article</em>: <a class="reference external" href="https://simonwillison.net/2024/Oct/4/hybrid-full-text-search-and-vector-search-with-sqlite/">Hybrid full-text search and vector search with SQLite</a></p>
+</div>
+
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="https://pablocaro.es/en/tag/sqlite.html">sqlite</a>
+      <a href="https://pablocaro.es/en/tag/search.html">search</a>
+      <a href="https://pablocaro.es/en/tag/vectors.html">vectors</a>
+      <a href="https://pablocaro.es/en/tag/fts.html">fts</a>
+      <a href="https://pablocaro.es/en/tag/sql.html">sql</a>
+    </p>
+  </div>
+
+
+
+  <div class="neighbors">
+    <a class="btn float-left" href="https://pablocaro.es/en/conflacion-datos-geoespaciales-duckdb" title="Geospatial Data Conflation with DuckDB and Embeddings">
+      <i class="fa fa-angle-left"></i> Previous Post
+    </a>
+    <a class="btn float-right" href="https://pablocaro.es/en/como-uso-git-worktrees" title="How I Use Git Worktrees for Concurrent Work">
+      Next Post <i class="fa fa-angle-right"></i>
+    </a>
+  </div>
+
+  <div class="related-posts">
+    <h4>You might enjoy</h4>
+    <ul class="related-posts">
+      <li><a href="https://pablocaro.es/en/sql-select-rows-max-value">SQL: Select Rows with Max Value per Group</a></li>
+    </ul>
+  </div>
+
+
+
+<!-- Disqus -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'anotaciones';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>
+    Please enable JavaScript to view comments.
+</noscript>
+<!-- End Disqus -->
+</article>
+
+<footer>
+<p>
+  &copy; 2025  - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/3.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/3.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Annotations by Pablo Caro ",
+  "url" : "https://pablocaro.es/en",
+  "image": "/theme/img/profile.png",
+  "description": ""
+}
+</script>  <script src="https://files.stork-search.net/releases/v1.6.0/stork.js"></script>
+  <script>
+    window.storkIndexLoaded = false;
+    window.loadStorkIndex = function () {
+      if (window.storkIndexLoaded) {
+        return;
+      }
+      if (typeof stork === 'undefined') {
+        console.error('Stork is not loaded yet, retrying...');
+        setTimeout(window.loadStorkIndex, 100);
+        return;
+      }
+      stork.register("sitesearch", "https://pablocaro.es/en/search-index.st", { showProgress: false });
+      stork.register("sitesearch-page", "https://pablocaro.es/en/search-index.st", { showProgress: false });
+      window.storkIndexLoaded = true;
+    }
+  </script>
+
+</body>
+</html>

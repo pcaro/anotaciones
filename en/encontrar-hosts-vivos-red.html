@@ -1,0 +1,405 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://pablocaro.es/en/theme/stylesheet/style.min.css">
+
+
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+          href="https://pablocaro.es/en/theme/pygments/github.min.css">
+
+
+  <link rel="stylesheet"
+        type="text/css"
+        href="https://pablocaro.es/en/theme/stork/stork.css" />
+
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/en/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/en/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/en/theme/font-awesome/css/solid.css">
+
+
+  <link rel="shortcut icon" href="/theme/img/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/theme/img/favicon.ico" type="image/x-icon">
+
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#333333">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#333333">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Microsoft EDGE -->
+  <meta name="msapplication-TileColor" content="#333333">
+
+  <link href="https://pablocaro.es/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Annotations by Pablo Caro Atom">
+
+  <link href="https://pablocaro.es/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Annotations by Pablo Caro RSS">
+
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-60035125-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Pablo Caro" />
+<meta name="description" content="Methods and tools to discover active devices on local networks using nmap, arp-scan, netdiscover, and other reconnaissance techniques" />
+<meta name="keywords" content="nmap, network-discovery, arp-scan, netdiscover, security">
+
+<link rel="alternate" href="https://pablocaro.es/en/encontrar-hosts-vivos-red" hreflang="en" />
+<link rel="alternate" href="https://pablocaro.es/en/../encontrar-hosts-vivos-red" hreflang="es" />
+
+  <meta property="og:site_name" content="Annotations by Pablo Caro"/>
+  <meta property="og:title" content="How to Find Live Hosts on Your Local Network"/>
+  <meta property="og:description" content="Methods and tools to discover active devices on local networks using nmap, arp-scan, netdiscover, and other reconnaissance techniques"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://pablocaro.es/en/encontrar-hosts-vivos-red"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2016-06-27 07:59:00+02:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://pablocaro.es/en/author/pablo-caro.html">
+  <meta property="article:section" content="Security"/>
+  <meta property="article:tag" content="nmap"/>
+  <meta property="article:tag" content="network-discovery"/>
+  <meta property="article:tag" content="arp-scan"/>
+  <meta property="article:tag" content="netdiscover"/>
+  <meta property="article:tag" content="security"/>
+  <meta property="og:image" content="/theme/img/profile.png">
+
+  <title>Annotations by Pablo Caro &ndash; How to Find Live Hosts on Your Local Network</title>
+
+
+</head>
+<body class="light-theme">
+
+<aside>
+  <div>
+    <a href="https://pablocaro.es/en/">
+      <img src="/theme/img/profile.png" alt="Anotaciones" title="Anotaciones">
+    </a>
+
+    <h1>
+      <a href="https://pablocaro.es/en/">Anotaciones</a>
+    </h1>
+
+    <p>Annotations</p>
+
+    <div class="stork">
+      <input class="stork-input" type="text" autocomplete="off" name="q" data-stork="sitesearch" placeholder="Search..." onclick="loadStorkIndex()"/>
+      <div class="stork-output" data-stork="sitesearch-output"></div>
+    </div>
+
+    <nav>
+      <ul class="list">
+
+
+
+          <li>
+            <a target="_self" href="http://x.com/pcaro" >@pcaro at X.com</a>
+          </li>
+          <li>
+            <a target="_self" href="http://python.org/" >Python.org</a>
+          </li>
+          <li>
+            <a target="_self" href="http://jinja.pocoo.org/" >Jinja2</a>
+          </li>
+      </ul>
+    </nav>
+
+    <ul class="social">
+      <li>
+        <a class="sc-Twitter"
+           href="http://twitter.com/pcaro"
+           target="_blank">
+          <i class="fa-brands fa-Twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Github"
+           href="http://github.com/pcaro"
+           target="_blank">
+          <i class="fa-brands fa-Github"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Linkedin"
+           href="https://www.linkedin.com/in/pcarorevuelta"
+           target="_blank">
+          <i class="fa-brands fa-Linkedin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Facebook"
+           href="https://www.facebook.com/pablo.carorevuelta"
+           target="_blank">
+          <i class="fa-brands fa-Facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Email"
+           href="mailto:correo@pablocaro.es"
+           target="_blank">
+          <i class="fa-brands fa-Email"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+</aside>
+  <main>
+
+<nav>
+  <a href="https://pablocaro.es/en/">Home</a>
+
+  <a href="/en/archives.html">Archives</a>
+  <a href="/en/categories.html">Categories</a>
+  <a href="/en/tags.html">Tags</a>
+  <a href="/en/search.html">Search</a>
+  <a href="/">Español</a>
+
+  <a href="https://pablocaro.es/feeds/all.atom.xml">Atom</a>
+
+  <a href="https://pablocaro.es/feeds/all.rss.xml">RSS</a>
+</nav>
+
+<article class="single">
+  <header>
+          <div class="translations">
+            <a href="https://pablocaro.es/en/../encontrar-hosts-vivos-red">Leer en español</a>
+    </div>
+
+    <h1 id="encontrar-hosts-vivos-red">How to Find Live Hosts on Your Local Network</h1>
+    <p>
+      Posted on Mon 27 June 2016 in <a href="https://pablocaro.es/en/category/security.html">Security</a>
+
+    </p>
+  </header>
+
+
+  <div>
+    <p>Discovering <strong>which devices are active</strong> on your local network is a fundamental task for network administrators and security professionals. Here are the most effective techniques.</p>
+<h2 id="nmap-the-main-tool">Nmap: The Main Tool<a class="headerlink" href="#nmap-the-main-tool" title="Permanent link">&para;</a></h2>
+<h3 id="basic-host-scan">Basic Host Scan<a class="headerlink" href="#basic-host-scan" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Simple Ping scan</span>
+nmap<span class="w"> </span>-sn<span class="w"> </span><span class="m">192</span>.168.1.1/24
+
+<span class="c1"># Scan with specific TCP ports</span>
+nmap<span class="w"> </span>-sP<span class="w"> </span>-PS22,3389<span class="w"> </span><span class="m">192</span>.168.1.1/24
+
+<span class="c1"># UDP scan for special devices</span>
+nmap<span class="w"> </span>-sP<span class="w"> </span>-PU161<span class="w"> </span><span class="m">192</span>.168.1.1/24
+</code></pre></div>
+
+<p><strong>-sn</strong>: Host discovery only, no port scan
+<strong>-PS</strong>: TCP SYN discovery on specific ports
+<strong>-PU</strong>: UDP discovery (useful for embedded devices)</p>
+<h3 id="more-exhaustive-scans">More Exhaustive Scans<a class="headerlink" href="#more-exhaustive-scans" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Full scan with OS detection</span>
+nmap<span class="w"> </span>-A<span class="w"> </span><span class="m">192</span>.168.1.1/24
+
+<span class="c1"># TCP Connect Scan (less intrusive)</span>
+nmap<span class="w"> </span>-sT<span class="w"> </span><span class="m">192</span>.168.1.1/24
+
+<span class="c1"># Firewall bypass with fragmentation</span>
+nmap<span class="w"> </span>-f<span class="w"> </span>-sS<span class="w"> </span><span class="m">192</span>.168.1.1/24
+</code></pre></div>
+
+<h2 id="alternative-tools">Alternative Tools<a class="headerlink" href="#alternative-tools" title="Permanent link">&para;</a></h2>
+<h3 id="arp-scan-arp-based">arp-scan: ARP Based<a class="headerlink" href="#arp-scan-arp-based" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Local subnet scan</span>
+arp-scan<span class="w"> </span><span class="m">192</span>.168.12.0/24
+
+<span class="c1"># With specific interface</span>
+arp-scan<span class="w"> </span>-I<span class="w"> </span>eth0<span class="w"> </span><span class="m">172</span>.16.17.0/24
+
+<span class="c1"># Simplified local scan</span>
+arp-scan<span class="w"> </span>-l
+</code></pre></div>
+
+<p><strong>Advantage</strong>: Works even with strict firewalls</p>
+<h3 id="netdiscover-passiveactive-discovery">netdiscover: Passive/Active Discovery<a class="headerlink" href="#netdiscover-passiveactive-discovery" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Active discovery</span>
+netdiscover<span class="w"> </span>-r<span class="w"> </span><span class="m">172</span>.16.17.0/24
+
+<span class="c1"># Passive mode (listen only)</span>
+netdiscover<span class="w"> </span>-p
+
+<span class="c1"># Fast mode</span>
+netdiscover<span class="w"> </span>-f<span class="w"> </span>-r<span class="w"> </span><span class="m">192</span>.168.1.0/24
+</code></pre></div>
+
+<h3 id="fing-mobile-scanner">fing: Mobile Scanner<a class="headerlink" href="#fing-mobile-scanner" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Fast scan</span>
+fing<span class="w"> </span>-r<span class="w"> </span><span class="m">1</span>
+
+<span class="c1"># With manufacturer details</span>
+fing<span class="w"> </span>-o<span class="w"> </span>table,csv
+</code></pre></div>
+
+<h2 id="post-scan-verification">Post-Scan Verification<a class="headerlink" href="#post-scan-verification" title="Permanent link">&para;</a></h2>
+<h3 id="check-arp-table">Check ARP Table<a class="headerlink" href="#check-arp-table" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># View current ARP table</span>
+arp<span class="w"> </span>-a<span class="w"> </span>-n
+
+<span class="c1"># On modern systems</span>
+ip<span class="w"> </span>neigh<span class="w"> </span>show
+
+<span class="c1"># Clear and rescan</span>
+sudo<span class="w"> </span>arp<span class="w"> </span>-d<span class="w"> </span>-a
+ping<span class="w"> </span>-c<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">192</span>.168.1.<span class="o">{</span><span class="m">1</span>..254<span class="o">}</span>
+arp<span class="w"> </span>-a
+</code></pre></div>
+
+<h2 id="advanced-techniques">Advanced Techniques<a class="headerlink" href="#advanced-techniques" title="Permanent link">&para;</a></h2>
+<h3 id="wireshark-for-passive-analysis">Wireshark for Passive Analysis<a class="headerlink" href="#wireshark-for-passive-analysis" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Capture traffic on the network interface</li>
+<li>Filter by ARP: <code>arp</code></li>
+<li>Analyze broadcast traffic</li>
+<li>Identify devices by traffic patterns</li>
+</ol>
+<h3 id="automation-scripts">Automation Scripts<a class="headerlink" href="#automation-scripts" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+<span class="c1"># Full local network scan</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Scanning network...&quot;</span>
+nmap<span class="w"> </span>-sn<span class="w"> </span><span class="k">$(</span>ip<span class="w"> </span>route<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-E<span class="w"> </span><span class="s2">&quot;^192|^10|^172&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{print $1}&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-1<span class="k">)</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Verifying ARP...&quot;</span>
+arp<span class="w"> </span>-a<span class="w"> </span>-n<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-v<span class="w"> </span><span class="s2">&quot;incomplete&quot;</span>
+</code></pre></div>
+
+<h2 id="important-considerations">Important Considerations<a class="headerlink" href="#important-considerations" title="Permanent link">&para;</a></h2>
+<h3 id="firewall-limitations">Firewall Limitations<a class="headerlink" href="#firewall-limitations" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Some devices</strong> block ping/ICMP</li>
+<li><strong>Corporate firewalls</strong> may filter scans</li>
+<li><strong>Different ports</strong> may reveal "hidden" devices</li>
+</ul>
+<h3 id="legal-considerations">Legal Considerations<a class="headerlink" href="#legal-considerations" title="Permanent link">&para;</a></h3>
+<p>⚠️ <strong>Authorization needed</strong>: Only scan your own networks
+⚠️ <strong>Corporate policies</strong>: Verify before scanning in enterprise environments</p>
+<h3 id="optimization-by-network-type">Optimization by Network Type<a class="headerlink" href="#optimization-by-network-type" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Home network (routers, IoT)</span>
+nmap<span class="w"> </span>-sn<span class="w"> </span>--min-rate<span class="w"> </span><span class="m">1000</span><span class="w"> </span><span class="m">192</span>.168.1.1/24
+
+<span class="c1"># Corporate network (servers, stations)</span>
+nmap<span class="w"> </span>-sP<span class="w"> </span>-PS80,443,22,3389<span class="w"> </span><span class="m">10</span>.0.0.0/8
+
+<span class="c1"># Industrial network (embedded devices)</span>
+nmap<span class="w"> </span>-sP<span class="w"> </span>-PU161,502<span class="w"> </span><span class="m">172</span>.16.0.0/12
+</code></pre></div>
+
+<p>The <strong>combination of multiple techniques</strong> provides the most complete picture of active devices on your network.</p>
+<p><em>Original source</em>: <a href="http://security.stackexchange.com/questions/36198/how-to-find-live-hosts-on-my-network">Information Security Stack Exchange</a></p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="https://pablocaro.es/en/tag/nmap.html">nmap</a>
+      <a href="https://pablocaro.es/en/tag/network-discovery.html">network-discovery</a>
+      <a href="https://pablocaro.es/en/tag/arp-scan.html">arp-scan</a>
+      <a href="https://pablocaro.es/en/tag/netdiscover.html">netdiscover</a>
+      <a href="https://pablocaro.es/en/tag/security.html">security</a>
+    </p>
+  </div>
+
+
+
+  <div class="neighbors">
+    <a class="btn float-left" href="https://pablocaro.es/en/herramientas-desarrolladores-linea-comandos" title="Powerful Command Line Tools for Developers">
+      <i class="fa fa-angle-left"></i> Previous Post
+    </a>
+    <a class="btn float-right" href="https://pablocaro.es/en/introduccion-trading-alta-frecuencia" title="Introduction to High-Frequency Trading Systems">
+      Next Post <i class="fa fa-angle-right"></i>
+    </a>
+  </div>
+
+  <div class="related-posts">
+    <h4>You might enjoy</h4>
+    <ul class="related-posts">
+      <li><a href="https://pablocaro.es/en/sysdig-seguridad-cloud-nativa">Sysdig: Cloud-Native Security Platform with AI</a></li>
+    </ul>
+  </div>
+
+
+
+<!-- Disqus -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'anotaciones';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>
+    Please enable JavaScript to view comments.
+</noscript>
+<!-- End Disqus -->
+</article>
+
+<footer>
+<p>
+  &copy; 2025  - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/3.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/3.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Annotations by Pablo Caro ",
+  "url" : "https://pablocaro.es/en",
+  "image": "/theme/img/profile.png",
+  "description": ""
+}
+</script>  <script src="https://files.stork-search.net/releases/v1.6.0/stork.js"></script>
+  <script>
+    window.storkIndexLoaded = false;
+    window.loadStorkIndex = function () {
+      if (window.storkIndexLoaded) {
+        return;
+      }
+      if (typeof stork === 'undefined') {
+        console.error('Stork is not loaded yet, retrying...');
+        setTimeout(window.loadStorkIndex, 100);
+        return;
+      }
+      stork.register("sitesearch", "https://pablocaro.es/en/search-index.st", { showProgress: false });
+      stork.register("sitesearch-page", "https://pablocaro.es/en/search-index.st", { showProgress: false });
+      window.storkIndexLoaded = true;
+    }
+  </script>
+
+</body>
+</html>

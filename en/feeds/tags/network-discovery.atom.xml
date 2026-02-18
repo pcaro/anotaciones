@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Annotations by Pablo Caro - network-discovery</title><link href="https://pablocaro.es/en/" rel="alternate"></link><link href="https://pablocaro.es/feeds/tags/network-discovery.atom.xml" rel="self"></link><id>https://pablocaro.es/en/</id><updated>2016-06-27T07:59:00+02:00</updated><subtitle>Annotations</subtitle><entry><title>How to Find Live Hosts on Your Local Network</title><link href="https://pablocaro.es/en/encontrar-hosts-vivos-red" rel="alternate"></link><published>2016-06-27T07:59:00+02:00</published><updated>2016-06-27T07:59:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2016-06-27:/en/encontrar-hosts-vivos-red</id><summary type="html">&lt;p&gt;Methods and tools to discover active devices on local networks using nmap, arp-scan, netdiscover, and other reconnaissance techniques&lt;/p&gt;</summary><content type="html">&lt;p&gt;Discovering &lt;strong&gt;which devices are active&lt;/strong&gt; on your local network is a fundamental task for network administrators and security professionals. Here are the most effective techniques.&lt;/p&gt;
+&lt;h2 id="nmap-the-main-tool"&gt;Nmap: The Main Tool&lt;a class="headerlink" href="#nmap-the-main-tool" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="basic-host-scan"&gt;Basic Host Scan&lt;a class="headerlink" href="#basic-host-scan" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Simple Ping scan&lt;/span&gt;
+nmap&lt;span class="w"&gt; &lt;/span&gt;-sn&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;192&lt;/span&gt;.168.1.1/24
+
+&lt;span class="c1"&gt;# Scan with specific TCP ports&lt;/span&gt;
+nmap&lt;span class="w"&gt; &lt;/span&gt;-sP&lt;span class="w"&gt; &lt;/span&gt;-PS22,3389&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;192&lt;/span&gt;.168.1.1/24
+
+&lt;span class="c1"&gt;# UDP scan for special devices&lt;/span&gt;
+nmap&lt;span class="w"&gt; &lt;/span&gt;-sP&lt;span class="w"&gt; &lt;/span&gt;-PU161&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;192&lt;/span&gt;.168.1.1/24
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;-sn&lt;/strong&gt;: Host discovery only, no port scan
+&lt;strong&gt;-PS&lt;/strong&gt;: TCP SYN discovery on specific ports
+&lt;strong&gt;-PU&lt;/strong&gt;: UDP discovery (useful for embedded devices)&lt;/p&gt;
+&lt;h3 id="more-exhaustive-scans"&gt;More Exhaustive Scans&lt;a class="headerlink" href="#more-exhaustive-scans" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Full scan with OS detection&lt;/span&gt;
+nmap&lt;span class="w"&gt; &lt;/span&gt;-A&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;192&lt;/span&gt;.168.1.1/24
+
+&lt;span class="c1"&gt;# TCP Connect Scan (less intrusive)&lt;/span&gt;
+nmap&lt;span class="w"&gt; &lt;/span&gt;-sT&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;192&lt;/span&gt;.168.1.1/24
+
+&lt;span class="c1"&gt;# Firewall bypass with fragmentation&lt;/span&gt;
+nmap&lt;span class="w"&gt; &lt;/span&gt;-f&lt;span class="w"&gt; &lt;/span&gt;-sS&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;192&lt;/span&gt;.168.1.1/24
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="alternative-tools"&gt;Alternative Tools&lt;a class="headerlink" href="#alternative-tools" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="arp-scan-arp-based"&gt;arp-scan: ARP Based&lt;a class="headerlink" href="#arp-scan-arp-based" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Local subnet scan&lt;/span&gt;
+arp-scan&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;192&lt;/span&gt;.168.12.0/24
+
+&lt;span class="c1"&gt;# With specific interface&lt;/span&gt;
+arp-scan&lt;span class="w"&gt; &lt;/span&gt;-I&lt;span class="w"&gt; &lt;/span&gt;eth0&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;172&lt;/span&gt;.16.17.0/24
+
+&lt;span class="c1"&gt;# Simplified local scan&lt;/span&gt;
+arp-scan&lt;span class="w"&gt; &lt;/span&gt;-l
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Advantage&lt;/strong&gt;: Works even with strict firewalls&lt;/p&gt;
+&lt;h3 id="netdiscover-passiveactive-discovery"&gt;netdiscover: Passive/Active Discovery&lt;a class="headerlink" href="#netdiscover-passiveactive-discovery" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Active discovery&lt;/span&gt;
+netdiscover&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;172&lt;/span&gt;.16.17.0/24
+
+&lt;span class="c1"&gt;# Passive mode (listen only)&lt;/span&gt;
+netdiscover&lt;span class="w"&gt; &lt;/span&gt;-p
+
+&lt;span class="c1"&gt;# Fast mode&lt;/span&gt;
+netdiscover&lt;span class="w"&gt; &lt;/span&gt;-f&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;192&lt;/span&gt;.168.1.0/24
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id="fing-mobile-scanner"&gt;fing: Mobile Scanner&lt;a class="headerlink" href="#fing-mobile-scanner" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Fast scan&lt;/span&gt;
+fing&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;
+
+&lt;span class="c1"&gt;# With manufacturer details&lt;/span&gt;
+fing&lt;span class="w"&gt; &lt;/span&gt;-o&lt;span class="w"&gt; &lt;/span&gt;table,csv
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="post-scan-verification"&gt;Post-Scan Verification&lt;a class="headerlink" href="#post-scan-verification" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="check-arp-table"&gt;Check ARP Table&lt;a class="headerlink" href="#check-arp-table" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# View current ARP table&lt;/span&gt;
+arp&lt;span class="w"&gt; &lt;/span&gt;-a&lt;span class="w"&gt; &lt;/span&gt;-n
+
+&lt;span class="c1"&gt;# On modern systems&lt;/span&gt;
+ip&lt;span class="w"&gt; &lt;/span&gt;neigh&lt;span class="w"&gt; &lt;/span&gt;show
+
+&lt;span class="c1"&gt;# Clear and rescan&lt;/span&gt;
+sudo&lt;span class="w"&gt; &lt;/span&gt;arp&lt;span class="w"&gt; &lt;/span&gt;-d&lt;span class="w"&gt; &lt;/span&gt;-a
+ping&lt;span class="w"&gt; &lt;/span&gt;-c&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;192&lt;/span&gt;.168.1.&lt;span class="o"&gt;{&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;..254&lt;span class="o"&gt;}&lt;/span&gt;
+arp&lt;span class="w"&gt; &lt;/span&gt;-a
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="advanced-techniques"&gt;Advanced Techniques&lt;a class="headerlink" href="#advanced-techniques" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="wireshark-for-passive-analysis"&gt;Wireshark for Passive Analysis&lt;a class="headerlink" href="#wireshark-for-passive-analysis" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;Capture traffic on the network interface&lt;/li&gt;
+&lt;li&gt;Filter by ARP: &lt;code&gt;arp&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Analyze broadcast traffic&lt;/li&gt;
+&lt;li&gt;Identify devices by traffic patterns&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id="automation-scripts"&gt;Automation Scripts&lt;a class="headerlink" href="#automation-scripts" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="ch"&gt;#!/bin/bash&lt;/span&gt;
+&lt;span class="c1"&gt;# Full local network scan&lt;/span&gt;
+&lt;span class="nb"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Scanning network...&amp;quot;&lt;/span&gt;
+nmap&lt;span class="w"&gt; &lt;/span&gt;-sn&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;ip&lt;span class="w"&gt; &lt;/span&gt;route&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;grep&lt;span class="w"&gt; &lt;/span&gt;-E&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;^192|^10|^172&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;awk&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;{print $1}&amp;#39;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;head&lt;span class="w"&gt; &lt;/span&gt;-1&lt;span class="k"&gt;)&lt;/span&gt;
+&lt;span class="nb"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Verifying ARP...&amp;quot;&lt;/span&gt;
+arp&lt;span class="w"&gt; &lt;/span&gt;-a&lt;span class="w"&gt; &lt;/span&gt;-n&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;grep&lt;span class="w"&gt; &lt;/span&gt;-v&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;incomplete&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="important-considerations"&gt;Important Considerations&lt;a class="headerlink" href="#important-considerations" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="firewall-limitations"&gt;Firewall Limitations&lt;a class="headerlink" href="#firewall-limitations" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Some devices&lt;/strong&gt; block ping/ICMP&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Corporate firewalls&lt;/strong&gt; may filter scans&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Different ports&lt;/strong&gt; may reveal "hidden" devices&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="legal-considerations"&gt;Legal Considerations&lt;a class="headerlink" href="#legal-considerations" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;⚠️ &lt;strong&gt;Authorization needed&lt;/strong&gt;: Only scan your own networks
+⚠️ &lt;strong&gt;Corporate policies&lt;/strong&gt;: Verify before scanning in enterprise environments&lt;/p&gt;
+&lt;h3 id="optimization-by-network-type"&gt;Optimization by Network Type&lt;a class="headerlink" href="#optimization-by-network-type" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Home network (routers, IoT)&lt;/span&gt;
+nmap&lt;span class="w"&gt; &lt;/span&gt;-sn&lt;span class="w"&gt; &lt;/span&gt;--min-rate&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;1000&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;192&lt;/span&gt;.168.1.1/24
+
+&lt;span class="c1"&gt;# Corporate network (servers, stations)&lt;/span&gt;
+nmap&lt;span class="w"&gt; &lt;/span&gt;-sP&lt;span class="w"&gt; &lt;/span&gt;-PS80,443,22,3389&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;10&lt;/span&gt;.0.0.0/8
+
+&lt;span class="c1"&gt;# Industrial network (embedded devices)&lt;/span&gt;
+nmap&lt;span class="w"&gt; &lt;/span&gt;-sP&lt;span class="w"&gt; &lt;/span&gt;-PU161,502&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;172&lt;/span&gt;.16.0.0/12
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The &lt;strong&gt;combination of multiple techniques&lt;/strong&gt; provides the most complete picture of active devices on your network.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Original source&lt;/em&gt;: &lt;a href="http://security.stackexchange.com/questions/36198/how-to-find-live-hosts-on-my-network"&gt;Information Security Stack Exchange&lt;/a&gt;&lt;/p&gt;</content><category term="Security"></category><category term="nmap"></category><category term="network-discovery"></category><category term="arp-scan"></category><category term="netdiscover"></category><category term="security"></category></entry></feed>

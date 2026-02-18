@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Annotations by Pablo Caro - responsive</title><link href="https://pablocaro.es/en/" rel="alternate"></link><link href="https://pablocaro.es/feeds/tags/responsive.atom.xml" rel="self"></link><id>https://pablocaro.es/en/</id><updated>2015-11-13T18:20:00+01:00</updated><subtitle>Annotations</subtitle><entry><title>Galen Framework: Automated Testing for Responsive Design</title><link href="https://pablocaro.es/en/galen-framework-testing-responsive" rel="alternate"></link><published>2015-11-13T18:20:00+01:00</published><updated>2015-11-13T18:20:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2015-11-13:/en/galen-framework-testing-responsive</id><summary type="html">&lt;p&gt;Galen Framework simplifies automated testing of responsive layouts by verifying the position and appearance of elements across different devices&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;strong&gt;Galen Framework&lt;/strong&gt; is an automated testing tool designed specifically to &lt;strong&gt;test responsive web designs&lt;/strong&gt;. Its main purpose is to simplify layout testing by verifying the positioning and appearance of web elements on different device sizes.&lt;/p&gt;
+&lt;h2 id="key-features"&gt;Key Features&lt;a class="headerlink" href="#key-features" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="intelligent-layout-testing"&gt;Intelligent Layout Testing&lt;a class="headerlink" href="#intelligent-layout-testing" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;"Layout testing seemed always a complex task. Galen Framework offers a simple solution: test location of objects relatively to each other on page."&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id="full-responsive-support"&gt;Full Responsive Support&lt;a class="headerlink" href="#full-responsive-support" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Automatic resizing&lt;/strong&gt; of the browser to defined sizes&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Cross-device testing&lt;/strong&gt; in multiple resolutions&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Rule verification&lt;/strong&gt; specific per screen&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="human-and-flexible-syntax"&gt;Human and Flexible Syntax&lt;a class="headerlink" href="#human-and-flexible-syntax" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;header
+    width: 100% of screen/width
+    height: 50px
+
+sidebar
+    below: header
+    width: 200px
+    left-of: content 10px
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id="advanced-capabilities"&gt;Advanced Capabilities&lt;a class="headerlink" href="#advanced-capabilities" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Selenium Grid compatibility&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Visual testing&lt;/strong&gt; with image comparison&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Color scheme verification&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Detailed HTML reports&lt;/strong&gt; with highlighted errors&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="multi-language-support"&gt;Multi-Language Support&lt;a class="headerlink" href="#multi-language-support" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Tests written in:
+- &lt;strong&gt;JavaScript&lt;/strong&gt;
+- &lt;strong&gt;Java&lt;/strong&gt;
+- Other languages with integrated parameterization&lt;/p&gt;
+&lt;h2 id="why-galen"&gt;Why Galen?&lt;a class="headerlink" href="#why-galen" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Before Galen, layout testing was &lt;strong&gt;complex and error-prone&lt;/strong&gt;. Galen introduces:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Declarative syntax&lt;/strong&gt; easy to read&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Relational verification&lt;/strong&gt; between elements&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Native responsive testing&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Visual reports&lt;/strong&gt; understandable&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="typical-use-case"&gt;Typical Use Case&lt;a class="headerlink" href="#typical-use-case" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;// Open browser, resize and test&lt;/span&gt;
+&lt;span class="nx"&gt;test&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Homepage on mobile&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="kd"&gt;var&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;driver&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;createDriver&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nx"&gt;driver&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;http://example.com&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nx"&gt;driver&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;manage&lt;/span&gt;&lt;span class="p"&gt;().&lt;/span&gt;&lt;span class="nb"&gt;window&lt;/span&gt;&lt;span class="p"&gt;().&lt;/span&gt;&lt;span class="nx"&gt;setSize&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;375&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;667&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nx"&gt;checkLayout&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;driver&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;homepage-mobile.spec&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Galen democratizes responsive design testing, making &lt;strong&gt;layout testing as easy as functional testing&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Open source framework&lt;/em&gt;: &lt;a href="http://galenframework.com/"&gt;Galen Framework&lt;/a&gt; (Apache License 2.0)&lt;/p&gt;</content><category term="Testing"></category><category term="galen"></category><category term="testing"></category><category term="responsive"></category><category term="layout"></category><category term="selenium"></category></entry></feed>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Annotations by Pablo Caro - keyboard</title><link href="https://pablocaro.es/en/" rel="alternate"></link><link href="https://pablocaro.es/feeds/tags/keyboard.atom.xml" rel="self"></link><id>https://pablocaro.es/en/</id><updated>2025-12-25T12:15:00+01:00</updated><subtitle>Annotations</subtitle><entry><title>Essential Keyboard Shortcuts in Kitty: Mastering Your Terminal</title><link href="https://pablocaro.es/en/atajos-de-teclado-kitty" rel="alternate"></link><published>2025-12-25T12:15:00+01:00</published><updated>2025-12-25T12:15:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2025-12-25:/en/atajos-de-teclado-kitty</id><summary type="html">&lt;p&gt;A quick guide to the most useful Kitty keyboard shortcuts to optimize your command-line workflow.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;strong&gt;Kitty&lt;/strong&gt; is a terminal that shines for its performance and high customizability, but where it truly excels is in its keyboard-driven interface. Mastering its shortcuts will allow you to navigate, manage, and manipulate your terminal sessions with amazing efficiency.&lt;/p&gt;
+&lt;h2 id="discover-your-shortcuts-show_shortcuts"&gt;Discover Your Shortcuts: &lt;code&gt;show_shortcuts&lt;/code&gt;&lt;a class="headerlink" href="#discover-your-shortcuts-show_shortcuts" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The fastest way to know all the keyboard shortcuts configured in your Kitty instance is by using its own functionality:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;kitty&lt;span class="w"&gt; &lt;/span&gt;+kitten&lt;span class="w"&gt; &lt;/span&gt;show_shortcuts
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This will open an interactive window where you can see all shortcuts, both the default ones and those customized in your &lt;code&gt;kitty.conf&lt;/code&gt;.&lt;/p&gt;
+&lt;h2 id="essential-shortcuts-for-every-day"&gt;Essential Shortcuts for Every Day&lt;a class="headerlink" href="#essential-shortcuts-for-every-day" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Here are some of the most useful shortcuts that will help you optimize your workflow the most:&lt;/p&gt;
+&lt;h3 id="window-and-split-management-panes"&gt;Window and Split Management (Panes)&lt;a class="headerlink" href="#window-and-split-management-panes" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+enter&lt;/code&gt;: Opens a new Kitty window.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+w&lt;/code&gt;: Closes the current Kitty window.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+o&lt;/code&gt;: Splits the current window vertically (new pane to the right).&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+e&lt;/code&gt;: Splits the current window horizontally (new pane below).&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+f&lt;/code&gt;: Toggles between split panes (focus).&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+[&lt;/code&gt; / &lt;code&gt;ctrl+shift+]&lt;/code&gt;: Navigates between panes (left/right).&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+alt+[&lt;/code&gt; / &lt;code&gt;ctrl+shift+alt+]&lt;/code&gt;: Moves the active pane (left/right).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="tab-management"&gt;Tab Management&lt;a class="headerlink" href="#tab-management" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+t&lt;/code&gt;: Opens a new tab.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+q&lt;/code&gt;: Closes the current tab.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+.&lt;/code&gt;: Moves to the next tab.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+,&lt;/code&gt;: Moves to the previous tab.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+alt+.&lt;/code&gt;: Moves the current tab to the right.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+alt+,&lt;/code&gt;: Moves the current tab to the left.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="copy-and-paste"&gt;Copy and Paste&lt;a class="headerlink" href="#copy-and-paste" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Kitty has its own copy/paste implementation, which can be more reliable than the system one when working in remote environments or with multiplexers:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+c&lt;/code&gt;: Copies the selected text to the system clipboard.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+v&lt;/code&gt;: Pastes text from the system clipboard.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="font-and-appearance-control"&gt;Font and Appearance Control&lt;a class="headerlink" href="#font-and-appearance-control" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+=&lt;/code&gt; (or &lt;code&gt;+&lt;/code&gt;): Increases the font size.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+-&lt;/code&gt;: Decreases the font size.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+backspace&lt;/code&gt;: Resets the font size to the default value.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+k&lt;/code&gt;: Enters "scrollback" mode (to search or select historical text).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="customizing-your-shortcuts-in-kittyconf"&gt;Customizing Your Shortcuts in &lt;code&gt;kitty.conf&lt;/code&gt;&lt;a class="headerlink" href="#customizing-your-shortcuts-in-kittyconf" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;You can add or modify keyboard shortcuts in your configuration file &lt;code&gt;~/.config/kitty/kitty.conf&lt;/code&gt; using the &lt;code&gt;map&lt;/code&gt; directive. For example, to map &lt;code&gt;F1&lt;/code&gt; for a custom script:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nx"&gt;map&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;f1&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;launch&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="k"&gt;type&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;&lt;span class="nx"&gt;overlay&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;bash&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nx"&gt;c&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;my_custom_script.sh&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Mastering these shortcuts will transform your interaction with the terminal, making it more fluid and intuitive. Experiment and customize Kitty to perfectly adapt to your work style!&lt;/p&gt;</content><category term="Systems"></category><category term="kitty"></category><category term="terminal"></category><category term="shortcuts"></category><category term="keyboard"></category><category term="productivity"></category></entry></feed>

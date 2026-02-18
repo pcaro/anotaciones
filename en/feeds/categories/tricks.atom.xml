@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Annotations by Pablo Caro - Tricks</title><link href="https://pablocaro.es/en/" rel="alternate"></link><link href="https://pablocaro.es/feeds/categories/tricks.atom.xml" rel="self"></link><id>https://pablocaro.es/en/</id><updated>2017-04-11T14:07:00+02:00</updated><subtitle>Annotations</subtitle><entry><title>MobaXterm. Much more than an ssh client</title><link href="https://pablocaro.es/en/mobaxterm-mucho-m%C3%A1s-que-un-cliente-ssh" rel="alternate"></link><published>2017-04-11T14:07:00+02:00</published><updated>2017-04-11T14:07:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2017-04-11:/en/mobaxterm-mucho-más-que-un-cliente-ssh</id><summary type="html"></summary><content type="html">&lt;p&gt;As you know, I am not a Windows person. A Linux user for years, after going through multiple flavors of Debian, now my thing is &lt;a class="reference external" href="https://es.opensuse.org/Portal:Tumbleweed"&gt;OpenSuse Tumbleweed&lt;/a&gt;. But I also have a Windows 7 work computer that I use occasionally.
+For that, &lt;a class="reference external" href="http://mobaxterm.mobatek.net/"&gt;MobaXterm&lt;/a&gt; comes in very handy.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="http://mobaxterm.mobatek.net/"&gt;MobaXterm&lt;/a&gt; is a set of very interesting applications to work as in Linux and connect to remote computers:
+terminal, ssh client, X server, rdp, vnc, etc.&lt;/p&gt;
+</content><category term="Tricks"></category><category term="linux"></category></entry><entry><title>Unread Mail in Gmail's Primary Tab</title><link href="https://pablocaro.es/en/gmail_correo_no_leido_solo_en_principal" rel="alternate"></link><published>2016-07-28T18:00:00+02:00</published><updated>2016-07-28T18:00:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2016-07-28:/en/gmail_correo_no_leido_solo_en_principal</id><summary type="html">&lt;p&gt;As always, another reminder note.&lt;/p&gt;
+&lt;p&gt;If you filter mail in gmail by unread (&lt;code&gt;is:unread&lt;/code&gt;), you get all unread mail,
+which in my case always includes hundreds of notifications, social, promotions, or forums which is usually not what I'm looking for.&lt;/p&gt;
+&lt;p&gt;To search for unread emails &lt;em&gt;from the Primary tab …&lt;/em&gt;&lt;/p&gt;</summary><content type="html">&lt;p&gt;As always, another reminder note.&lt;/p&gt;
+&lt;p&gt;If you filter mail in gmail by unread (&lt;code&gt;is:unread&lt;/code&gt;), you get all unread mail,
+which in my case always includes hundreds of notifications, social, promotions, or forums which is usually not what I'm looking for.&lt;/p&gt;
+&lt;p&gt;To search for unread emails &lt;em&gt;from the Primary tab&lt;/em&gt; the query to perform is this:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+is:inbox -category:(updates OR promotions OR social OR forums) is:unread
+&lt;/pre&gt;
+</content><category term="Tricks"></category><category term="linux"></category></entry></feed>

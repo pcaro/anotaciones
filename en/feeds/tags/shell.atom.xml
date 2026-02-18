@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Annotations by Pablo Caro - shell</title><link href="https://pablocaro.es/en/" rel="alternate"></link><link href="https://pablocaro.es/feeds/tags/shell.atom.xml" rel="self"></link><id>https://pablocaro.es/en/</id><updated>2025-12-25T14:30:00+01:00</updated><subtitle>Annotations</subtitle><entry><title>`direnv`: Manage your development environments intelligently</title><link href="https://pablocaro.es/en/direnv-gestion-entornos" rel="alternate"></link><published>2025-12-25T14:30:00+01:00</published><updated>2025-12-25T14:30:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2025-12-25:/en/direnv-gestion-entornos</id><summary type="html">&lt;p&gt;Discover &lt;code&gt;direnv&lt;/code&gt;, a shell extension that automatically loads and unloads environment variables when changing directories, keeping your configuration clean and organized.&lt;/p&gt;</summary><content type="html">&lt;p&gt;In the daily life of a developer, it is common to work with multiple projects, each with its own environment variables, paths (&lt;code&gt;PATH&lt;/code&gt;), tool versions, or credentials. Manually managing these variables can lead to messy configurations in your &lt;code&gt;.profile&lt;/code&gt; or &lt;code&gt;.bashrc&lt;/code&gt;, or errors due to using the wrong environment. This is where &lt;strong&gt;&lt;code&gt;direnv&lt;/code&gt;&lt;/strong&gt; shines, offering an elegant and automatic solution.&lt;/p&gt;
+&lt;h2 id="what-is-direnv"&gt;What is &lt;code&gt;direnv&lt;/code&gt;?&lt;a class="headerlink" href="#what-is-direnv" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;direnv&lt;/code&gt; is an extension for your shell (Bash, Zsh, Fish, etc.) that automatically detects when you change directories. When you enter a directory containing an &lt;code&gt;.envrc&lt;/code&gt; file, &lt;code&gt;direnv&lt;/code&gt; loads it; when you leave it, it unloads it. This means your shell environment dynamically adapts to your current project without you having to do anything manually.&lt;/p&gt;
+&lt;h2 id="how-does-it-work"&gt;How does it work?&lt;a class="headerlink" href="#how-does-it-work" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;direnv&lt;/code&gt; integrates with your shell through a hook in the &lt;code&gt;cd&lt;/code&gt; command. Every time you change directories, &lt;code&gt;direnv&lt;/code&gt; checks if there is an &lt;code&gt;.envrc&lt;/code&gt; file in the current directory or any of its ancestors. If it finds one (and you have granted permission to load it), it executes the commands defined in that file to modify your environment. Upon leaving the directory, it reverts those changes, cleaning up your environment.&lt;/p&gt;
+&lt;h2 id="common-use-cases"&gt;Common Use Cases&lt;a class="headerlink" href="#common-use-cases" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;PATH&lt;/code&gt; Management&lt;/strong&gt;: Adding project-specific binaries to your &lt;code&gt;PATH&lt;/code&gt; temporarily.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Python Virtual Environments&lt;/strong&gt;: Automatically activating a &lt;code&gt;virtualenv&lt;/code&gt; or &lt;code&gt;uv venv&lt;/code&gt; when entering a Python project.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Credentials and API Keys&lt;/strong&gt;: Loading environment variables with database credentials, API keys, or tokens securely (without leaving them in the shell history).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Project-Specific Environment Variables&lt;/strong&gt;: &lt;code&gt;RAILS_ENV&lt;/code&gt;, &lt;code&gt;NODE_ENV&lt;/code&gt;, etc.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Tool Version Switching&lt;/strong&gt;: Integrating with tools like &lt;code&gt;nvm&lt;/code&gt; or &lt;code&gt;pyenv&lt;/code&gt; to automatically switch Node.js or Python versions.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="basic-installation-bash-example"&gt;Basic Installation (Bash example)&lt;a class="headerlink" href="#basic-installation-bash-example" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Install &lt;code&gt;direnv&lt;/code&gt;&lt;/strong&gt;: You can install it from your package manager (&lt;code&gt;sudo apt install direnv&lt;/code&gt;, &lt;code&gt;brew install direnv&lt;/code&gt;, etc.).&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Activate the hook in your shell&lt;/strong&gt;: Add the following line to your &lt;code&gt;~/.bashrc&lt;/code&gt; (or &lt;code&gt;~/.zshrc&lt;/code&gt;):&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;bash
+eval "$(direnv hook bash)"&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Create an &lt;code&gt;.envrc&lt;/code&gt; file&lt;/strong&gt;: In the root of your project, create an &lt;code&gt;.envrc&lt;/code&gt; file with the variables and commands you want.&lt;/p&gt;
+&lt;p&gt;```bash&lt;/p&gt;
+&lt;h1 id="envrc-in-the-root-of-your-python-project"&gt;.envrc in the root of your Python project&lt;a class="headerlink" href="#envrc-in-the-root-of-your-python-project" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;layout python  # Automatically activates a virtual environment
+export MY_API_KEY="super_secret_project_key"
+```&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Allow loading&lt;/strong&gt;: The first time you enter the directory with a new &lt;code&gt;.envrc&lt;/code&gt;, &lt;code&gt;direnv&lt;/code&gt; will ask for confirmation:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;bash
+direnv: error .envrc is blocked. Run `direnv allow` to approve its contents&lt;/code&gt;
+Run &lt;code&gt;direnv allow&lt;/code&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="the-direnv-standard-library"&gt;The &lt;code&gt;direnv&lt;/code&gt; Standard Library&lt;a class="headerlink" href="#the-direnv-standard-library" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;direnv&lt;/code&gt; comes with a powerful standard library that includes predefined functions for common tasks, such as &lt;code&gt;layout python&lt;/code&gt; (to manage virtualenvs), &lt;code&gt;use nix&lt;/code&gt;, &lt;code&gt;use node&lt;/code&gt;, etc., greatly simplifying the configuration of your &lt;code&gt;.envrc&lt;/code&gt; files.&lt;/p&gt;
+&lt;h2 id="key-benefits"&gt;Key Benefits&lt;a class="headerlink" href="#key-benefits" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Clean environments&lt;/strong&gt;: Your &lt;code&gt;.profile&lt;/code&gt; stays tidy.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Consistency&lt;/strong&gt;: Each project has exactly the environment it needs.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Productivity&lt;/strong&gt;: No more manual &lt;code&gt;source venv/bin/activate&lt;/code&gt; or remembering to set variables.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;direnv&lt;/code&gt; is a small but powerful tool that transforms the way you manage your development environments, making your life in the terminal much more efficient and error-free.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Original article&lt;/em&gt;: &lt;a href="https://direnv.net/"&gt;&lt;code&gt;direnv&lt;/code&gt; homepage&lt;/a&gt;&lt;/p&gt;</content><category term="Tools"></category><category term="direnv"></category><category term="shell"></category><category term="environment"></category><category term="productivity"></category><category term="development"></category><category term="linux"></category><category term="tools"></category></entry></feed>

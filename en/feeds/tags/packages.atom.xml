@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Annotations by Pablo Caro - packages</title><link href="https://pablocaro.es/en/" rel="alternate"></link><link href="https://pablocaro.es/feeds/tags/packages.atom.xml" rel="self"></link><id>https://pablocaro.es/en/</id><updated>2025-12-25T15:15:00+01:00</updated><subtitle>Annotations</subtitle><entry><title>How to View Files in an RPM Package on Linux</title><link href="https://pablocaro.es/en/ver-archivos-paquete-rpm" rel="alternate"></link><published>2025-12-25T15:15:00+01:00</published><updated>2025-12-25T15:15:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2025-12-25:/en/ver-archivos-paquete-rpm</id><summary type="html">&lt;p&gt;Quick guide to inspecting the contents of RPM packages and determining which packages own specific files on your Linux system.&lt;/p&gt;</summary><content type="html">&lt;p&gt;On RPM-based Linux systems (like Red Hat, CentOS, Fedora, openSUSE), it is common to interact with packages in &lt;code&gt;.rpm&lt;/code&gt; format. Often, we need to know what files a package contains before installing it, or which package is responsible for a specific file already installed on the system. For this, the &lt;code&gt;rpm&lt;/code&gt; tool offers several useful options.&lt;/p&gt;
+&lt;h2 id="1-list-files-of-an-rpm-package-without-installing"&gt;1. List Files of an RPM Package Without Installing&lt;a class="headerlink" href="#1-list-files-of-an-rpm-package-without-installing" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;If you have a downloaded &lt;code&gt;.rpm&lt;/code&gt; file and want to see what files it will install (and where) without installing it, you can use the &lt;code&gt;-qlp&lt;/code&gt; option:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;rpm&lt;span class="w"&gt; &lt;/span&gt;-qlp&lt;span class="w"&gt; &lt;/span&gt;package_name.rpm
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;-q&lt;/code&gt;: Query mode.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;-l&lt;/code&gt;: List files.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;-p&lt;/code&gt;: Query a package file instead of an installed one.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Example:&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;rpm&lt;span class="w"&gt; &lt;/span&gt;-qlp&lt;span class="w"&gt; &lt;/span&gt;nginx-1.20.1-1.el8.x86_64.rpm
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="2-find-the-owner-package-of-an-installed-file"&gt;2. Find the Owner Package of an Installed File&lt;a class="headerlink" href="#2-find-the-owner-package-of-an-installed-file" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;If you find a file on your system and want to know which RPM package it belongs to (useful for debugging or knowing if you can safely delete it), use the &lt;code&gt;-qf&lt;/code&gt; option:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;rpm&lt;span class="w"&gt; &lt;/span&gt;-qf&lt;span class="w"&gt; &lt;/span&gt;/path/to/file
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Example:&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;rpm&lt;span class="w"&gt; &lt;/span&gt;-qf&lt;span class="w"&gt; &lt;/span&gt;/etc/nginx/nginx.conf
+&lt;span class="c1"&gt;# Expected output: nginx-1.20.1-1.el8.x86_64&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="3-get-detailed-information-about-a-package"&gt;3. Get Detailed Information about a Package&lt;a class="headerlink" href="#3-get-detailed-information-about-a-package" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;To see complete information about a package (version, description, dependencies, etc.), whether installed or an &lt;code&gt;.rpm&lt;/code&gt; file, you can use &lt;code&gt;-qi&lt;/code&gt; (for installed packages) or &lt;code&gt;-qip&lt;/code&gt; (for package files):&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;rpm&lt;span class="w"&gt; &lt;/span&gt;-qi&lt;span class="w"&gt; &lt;/span&gt;installed_package_name
+&lt;span class="c1"&gt;# Example: rpm -qi nginx&lt;/span&gt;
+
+rpm&lt;span class="w"&gt; &lt;/span&gt;-qip&lt;span class="w"&gt; &lt;/span&gt;package_name.rpm
+&lt;span class="c1"&gt;# Example: rpm -qip nginx-1.20.1-1.el8.x86_64.rpm&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="conclusion"&gt;Conclusion&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Mastering these simple options of the &lt;code&gt;rpm&lt;/code&gt; command gives you much greater control over packages and files on your Linux system, facilitating administration and debugging. They are essential tools for any system administrator or developer working with RPM-based distributions.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Original article&lt;/em&gt;: &lt;a href="https://comulinux.blogspot.com/2010/04/como-ver-los-archivos-de-un-paquete-rpm.html"&gt;Cómo Ver los Archivos de un Paquete RPM o Deb&lt;/a&gt;&lt;/p&gt;</content><category term="Systems"></category><category term="linux"></category><category term="rpm"></category><category term="packages"></category><category term="commands"></category><category term="systems"></category><category term="administration"></category><category term="dnf"></category><category term="yum"></category></entry></feed>

@@ -1,0 +1,308 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://pablocaro.es/en/theme/stylesheet/style.min.css">
+
+
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+          href="https://pablocaro.es/en/theme/pygments/github.min.css">
+
+
+  <link rel="stylesheet"
+        type="text/css"
+        href="https://pablocaro.es/en/theme/stork/stork.css" />
+
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/en/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/en/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/en/theme/font-awesome/css/solid.css">
+
+
+  <link rel="shortcut icon" href="/theme/img/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/theme/img/favicon.ico" type="image/x-icon">
+
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#333333">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#333333">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Microsoft EDGE -->
+  <meta name="msapplication-TileColor" content="#333333">
+
+  <link href="https://pablocaro.es/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Annotations by Pablo Caro Atom">
+
+  <link href="https://pablocaro.es/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Annotations by Pablo Caro RSS">
+
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-60035125-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Pablo Caro" />
+<meta name="description" content="broot is a terminal tool that allows you to explore your directories in an interactive way and much more powerful than traditional commands like ls or tree." />
+<meta name="keywords" content="terminal, cli, broot, rust, tools">
+
+<link rel="alternate" href="https://pablocaro.es/en/drafts/broot-una-forma-diferente-de-navegar-directorios.html" hreflang="en" />
+<link rel="alternate" href="https://pablocaro.es/en/../drafts/broot-una-forma-diferente-de-navegar-directorios.html" hreflang="es" />
+
+  <meta property="og:site_name" content="Annotations by Pablo Caro"/>
+  <meta property="og:title" content="broot, a different way to navigate your directories"/>
+  <meta property="og:description" content="broot is a terminal tool that allows you to explore your directories in an interactive way and much more powerful than traditional commands like ls or tree."/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://pablocaro.es/en/drafts/broot-una-forma-diferente-de-navegar-directorios.html"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2026-01-02 10:00:00+01:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://pablocaro.es/en/author/pablo-caro.html">
+  <meta property="article:section" content="Tools"/>
+  <meta property="article:tag" content="terminal"/>
+  <meta property="article:tag" content="cli"/>
+  <meta property="article:tag" content="broot"/>
+  <meta property="article:tag" content="rust"/>
+  <meta property="article:tag" content="tools"/>
+  <meta property="og:image" content="/theme/img/profile.png">
+
+  <title>Annotations by Pablo Caro &ndash; broot, a different way to navigate your directories</title>
+
+
+</head>
+<body class="light-theme">
+
+<aside>
+  <div>
+    <a href="https://pablocaro.es/en/">
+      <img src="/theme/img/profile.png" alt="Anotaciones" title="Anotaciones">
+    </a>
+
+    <h1>
+      <a href="https://pablocaro.es/en/">Anotaciones</a>
+    </h1>
+
+    <p>Annotations</p>
+
+    <div class="stork">
+      <input class="stork-input" type="text" autocomplete="off" name="q" data-stork="sitesearch" placeholder="Search..." onclick="loadStorkIndex()"/>
+      <div class="stork-output" data-stork="sitesearch-output"></div>
+    </div>
+
+    <nav>
+      <ul class="list">
+
+
+
+          <li>
+            <a target="_self" href="http://x.com/pcaro" >@pcaro at X.com</a>
+          </li>
+          <li>
+            <a target="_self" href="http://python.org/" >Python.org</a>
+          </li>
+          <li>
+            <a target="_self" href="http://jinja.pocoo.org/" >Jinja2</a>
+          </li>
+      </ul>
+    </nav>
+
+    <ul class="social">
+      <li>
+        <a class="sc-Twitter"
+           href="http://twitter.com/pcaro"
+           target="_blank">
+          <i class="fa-brands fa-Twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Github"
+           href="http://github.com/pcaro"
+           target="_blank">
+          <i class="fa-brands fa-Github"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Linkedin"
+           href="https://www.linkedin.com/in/pcarorevuelta"
+           target="_blank">
+          <i class="fa-brands fa-Linkedin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Facebook"
+           href="https://www.facebook.com/pablo.carorevuelta"
+           target="_blank">
+          <i class="fa-brands fa-Facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Email"
+           href="mailto:correo@pablocaro.es"
+           target="_blank">
+          <i class="fa-brands fa-Email"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+</aside>
+  <main>
+
+<nav>
+  <a href="https://pablocaro.es/en/">Home</a>
+
+  <a href="/en/archives.html">Archives</a>
+  <a href="/en/categories.html">Categories</a>
+  <a href="/en/tags.html">Tags</a>
+  <a href="/en/search.html">Search</a>
+  <a href="/">Español</a>
+
+  <a href="https://pablocaro.es/feeds/all.atom.xml">Atom</a>
+
+  <a href="https://pablocaro.es/feeds/all.rss.xml">RSS</a>
+</nav>
+
+<article class="single">
+  <header>
+          <div class="translations">
+            <a href="https://pablocaro.es/en/../drafts/broot-una-forma-diferente-de-navegar-directorios.html">Leer en español</a>
+    </div>
+
+    <h1 id="broot-una-forma-diferente-de-navegar-directorios">broot, a different way to navigate your directories</h1>
+    <p>
+      Posted on Fri 02 January 2026 in <a href="https://pablocaro.es/en/category/tools.html">Tools</a>
+
+    </p>
+  </header>
+
+
+  <div>
+    <p>Hello! How are you? Today I want to tell you about a tool that blew my mind for moving through directories on my computer: it's called <strong>broot</strong>. If you are one of those who get tangled up with <code>ls</code> or <code>cd</code> and always end up lost, you are going to love this.</p>
+<h3 id="broot-a-different-way-to-navigate-your-directories">broot, a different way to navigate your directories<a class="headerlink" href="#broot-a-different-way-to-navigate-your-directories" title="Permanent link">&para;</a></h3>
+<p>Imagine you have a bunch of folders and files, and you want to find something quickly or just understand what's there. With the usual commands, sometimes it's a drag, right? Well, broot comes to solve that in a super visual and efficient way.</p>
+<p><strong>What is broot?</strong></p>
+<p>In short, broot is a terminal tool that allows you to explore your directories in an interactive way and much more powerful than traditional commands like <code>ls</code> or <code>tree</code>. It's like having a graphical file explorer, but directly in your terminal.</p>
+<p><strong>What is it for? Its main features:</strong></p>
+<ul>
+<li><strong>Instant overview:</strong> It gives you a tree view of your directories, even if they are huge, but intelligently. It doesn't overwhelm you with thousands of lines, but hides what is not relevant (like files ignored by Git) so you can focus on what matters. But if you want to see them, you can too!</li>
+<li><strong>Fast navigation:</strong> Remember that directory you don't know where you put? With broot, you just have to type a few letters of what you are looking for, and it finds it for you. You can move between results, go up and down the hierarchy, and when you find the place, an <code>alt + enter</code> takes you directly to that directory in your terminal. Goodbye to <code>cd ../../stuff/more_stuff</code>!</li>
+<li><strong>Don't get lost in the search:</strong> Unlike other searchers, broot always shows you where the file or directory you are looking for is within the folder structure. So, you never lose context. You can search by name, by file content, and even use regular expressions!</li>
+<li><strong>Blind file manipulation:</strong> Need to move, copy, delete or create a directory? With broot, you can do it seeing the file structure at all times. It is much safer and visual than doing it "blindly" with <code>mv</code> or <code>cp</code>.</li>
+<li><strong>Panels to work better:</strong> One of the coolest things is that you can open multiple panels. Imagine you want to copy something from one folder to another: you open a panel with the source, another with the destination, and drag (well, not drag, but almost) the files between them. Ideal for organizing!</li>
+<li><strong>File preview:</strong> If you select a file, you can preview its content directly in a side panel. Even images if your terminal supports it!</li>
+<li><strong>Execute commands on files:</strong> You find a file you want to edit, type <code>:e</code> and <code>enter</code>, and broot opens it with your favorite editor. You can configure your own "verbs" (commands) to do whatever you want with the selected files.</li>
+<li><strong>Replaces <code>ls</code> on steroids:</strong> If you want to see sizes, dates, permissions, etc., broot shows it to you clearly and orderly. In addition, you can sort by size or date to see what is taking up the most space or what you have modified recently.</li>
+<li><strong>Git control:</strong> If you work with Git, broot shows you the status of your files (modified, new, etc.), the current branch and change statistics. You can even see only the files that <code>git status</code> would show you!</li>
+</ul>
+<p>In short, broot is a Swiss Army knife for the terminal that makes your life much easier when interacting with your files and directories. If you spend a lot of time in the terminal, I recommend you take a look at it. You're going to love it!</p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="https://pablocaro.es/en/tag/terminal.html">terminal</a>
+      <a href="https://pablocaro.es/en/tag/cli.html">cli</a>
+      <a href="https://pablocaro.es/en/tag/broot.html">broot</a>
+      <a href="https://pablocaro.es/en/tag/rust.html">rust</a>
+      <a href="https://pablocaro.es/en/tag/tools.html">tools</a>
+    </p>
+  </div>
+
+
+
+  <div class="neighbors">
+  </div>
+
+  <div class="related-posts">
+    <h4>You might enjoy</h4>
+    <ul class="related-posts">
+      <li><a href="https://pablocaro.es/en/fresh-editor-terminal">`fresh`: My preferred terminal editor for daily use</a></li>
+      <li><a href="https://pablocaro.es/en/de-yakuake-a-kitty">From Yakuake to Kitty: My Transition to a Modern Terminal</a></li>
+      <li><a href="https://pablocaro.es/en/gestionando-instalaciones-desde-github-con-gah">Managing GitHub installations with gah</a></li>
+      <li><a href="https://pablocaro.es/en/herramientas-desarrolladores-linea-comandos">Powerful Command Line Tools for Developers</a></li>
+      <li><a href="https://pablocaro.es/en/kitty-acceso-rapido">Kitty as a Quick Access Terminal: The Convenience of a Dropdown</a></li>
+    </ul>
+  </div>
+
+
+
+<!-- Disqus -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'anotaciones';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>
+    Please enable JavaScript to view comments.
+</noscript>
+<!-- End Disqus -->
+</article>
+
+<footer>
+<p>
+  &copy; 2025  - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/3.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/3.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Annotations by Pablo Caro ",
+  "url" : "https://pablocaro.es/en",
+  "image": "/theme/img/profile.png",
+  "description": ""
+}
+</script>  <script src="https://files.stork-search.net/releases/v1.6.0/stork.js"></script>
+  <script>
+    window.storkIndexLoaded = false;
+    window.loadStorkIndex = function () {
+      if (window.storkIndexLoaded) {
+        return;
+      }
+      if (typeof stork === 'undefined') {
+        console.error('Stork is not loaded yet, retrying...');
+        setTimeout(window.loadStorkIndex, 100);
+        return;
+      }
+      stork.register("sitesearch", "https://pablocaro.es/en/search-index.st", { showProgress: false });
+      stork.register("sitesearch-page", "https://pablocaro.es/en/search-index.st", { showProgress: false });
+      window.storkIndexLoaded = true;
+    }
+  </script>
+
+</body>
+</html>

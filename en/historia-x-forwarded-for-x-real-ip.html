@@ -1,0 +1,348 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://pablocaro.es/en/theme/stylesheet/style.min.css">
+
+
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+          href="https://pablocaro.es/en/theme/pygments/github.min.css">
+
+
+  <link rel="stylesheet"
+        type="text/css"
+        href="https://pablocaro.es/en/theme/stork/stork.css" />
+
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/en/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/en/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/en/theme/font-awesome/css/solid.css">
+
+
+  <link rel="shortcut icon" href="/theme/img/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/theme/img/favicon.ico" type="image/x-icon">
+
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#333333">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#333333">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Microsoft EDGE -->
+  <meta name="msapplication-TileColor" content="#333333">
+
+  <link href="https://pablocaro.es/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Annotations by Pablo Caro Atom">
+
+  <link href="https://pablocaro.es/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Annotations by Pablo Caro RSS">
+
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-60035125-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Pablo Caro" />
+<meta name="description" content="Analysis of X-Forwarded-For and X-Real-IP headers, their origins, differences, and how to determine the client&#39;s real IP in architectures with multiple proxies" />
+<meta name="keywords" content="headers, x-forwarded-for, x-real-ip, proxy, nginx">
+
+<link rel="alternate" href="https://pablocaro.es/en/historia-x-forwarded-for-x-real-ip" hreflang="en" />
+<link rel="alternate" href="https://pablocaro.es/en/../historia-x-forwarded-for-x-real-ip" hreflang="es" />
+
+  <meta property="og:site_name" content="Annotations by Pablo Caro"/>
+  <meta property="og:title" content="The Story Behind X-Forwarded-For and X-Real-IP"/>
+  <meta property="og:description" content="Analysis of X-Forwarded-For and X-Real-IP headers, their origins, differences, and how to determine the client&#39;s real IP in architectures with multiple proxies"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://pablocaro.es/en/historia-x-forwarded-for-x-real-ip"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2015-10-21 23:05:00+02:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://pablocaro.es/en/author/pablo-caro.html">
+  <meta property="article:section" content="Networking"/>
+  <meta property="article:tag" content="headers"/>
+  <meta property="article:tag" content="x-forwarded-for"/>
+  <meta property="article:tag" content="x-real-ip"/>
+  <meta property="article:tag" content="proxy"/>
+  <meta property="article:tag" content="nginx"/>
+  <meta property="og:image" content="/theme/img/profile.png">
+
+  <title>Annotations by Pablo Caro &ndash; The Story Behind X-Forwarded-For and X-Real-IP</title>
+
+
+</head>
+<body class="light-theme">
+
+<aside>
+  <div>
+    <a href="https://pablocaro.es/en/">
+      <img src="/theme/img/profile.png" alt="Anotaciones" title="Anotaciones">
+    </a>
+
+    <h1>
+      <a href="https://pablocaro.es/en/">Anotaciones</a>
+    </h1>
+
+    <p>Annotations</p>
+
+    <div class="stork">
+      <input class="stork-input" type="text" autocomplete="off" name="q" data-stork="sitesearch" placeholder="Search..." onclick="loadStorkIndex()"/>
+      <div class="stork-output" data-stork="sitesearch-output"></div>
+    </div>
+
+    <nav>
+      <ul class="list">
+
+
+
+          <li>
+            <a target="_self" href="http://x.com/pcaro" >@pcaro at X.com</a>
+          </li>
+          <li>
+            <a target="_self" href="http://python.org/" >Python.org</a>
+          </li>
+          <li>
+            <a target="_self" href="http://jinja.pocoo.org/" >Jinja2</a>
+          </li>
+      </ul>
+    </nav>
+
+    <ul class="social">
+      <li>
+        <a class="sc-Twitter"
+           href="http://twitter.com/pcaro"
+           target="_blank">
+          <i class="fa-brands fa-Twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Github"
+           href="http://github.com/pcaro"
+           target="_blank">
+          <i class="fa-brands fa-Github"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Linkedin"
+           href="https://www.linkedin.com/in/pcarorevuelta"
+           target="_blank">
+          <i class="fa-brands fa-Linkedin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Facebook"
+           href="https://www.facebook.com/pablo.carorevuelta"
+           target="_blank">
+          <i class="fa-brands fa-Facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Email"
+           href="mailto:correo@pablocaro.es"
+           target="_blank">
+          <i class="fa-brands fa-Email"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+</aside>
+  <main>
+
+<nav>
+  <a href="https://pablocaro.es/en/">Home</a>
+
+  <a href="/en/archives.html">Archives</a>
+  <a href="/en/categories.html">Categories</a>
+  <a href="/en/tags.html">Tags</a>
+  <a href="/en/search.html">Search</a>
+  <a href="/">Español</a>
+
+  <a href="https://pablocaro.es/feeds/all.atom.xml">Atom</a>
+
+  <a href="https://pablocaro.es/feeds/all.rss.xml">RSS</a>
+</nav>
+
+<article class="single">
+  <header>
+          <div class="translations">
+            <a href="https://pablocaro.es/en/../historia-x-forwarded-for-x-real-ip">Leer en español</a>
+    </div>
+
+    <h1 id="historia-x-forwarded-for-x-real-ip">The Story Behind X-Forwarded-For and X-Real-IP</h1>
+    <p>
+      Posted on Wed 21 October 2015 in <a href="https://pablocaro.es/en/category/networking.html">Networking</a>
+
+    </p>
+  </header>
+
+
+  <div>
+    <p>Determining the <strong>client's real IP</strong> in proxy architectures is more complex than it seems. The <code>X-Forwarded-For</code> and <code>X-Real-IP</code> headers have different purposes and limitations.</p>
+<h2 id="x-forwarded-for-the-full-chain">X-Forwarded-For: The Full Chain<a class="headerlink" href="#x-forwarded-for-the-full-chain" title="Permanent link">&para;</a></h2>
+<h3 id="format-and-purpose">Format and Purpose<a class="headerlink" href="#format-and-purpose" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nv">X</span><span class="o">-</span><span class="nv">Forwarded</span><span class="o">-</span><span class="k">For</span>:<span class="w"> </span><span class="nv">client</span>,<span class="w"> </span><span class="nv">proxy1</span>,<span class="w"> </span><span class="nv">proxy2</span>
+</code></pre></div>
+
+<ul>
+<li><strong>Tracks the original IP</strong> of the client through multiple hops</li>
+<li><strong>Accumulates IPs</strong> as it passes through proxies</li>
+<li><strong>Not mandatory</strong> for all proxies</li>
+</ul>
+<h3 id="critical-limitations">Critical Limitations<a class="headerlink" href="#critical-limitations" title="Permanent link">&para;</a></h3>
+<p>⚠️ <strong>Easily forgeable</strong>: A client can add fake IPs
+⚠️ <strong>Potentially unreliable</strong> for determining the real IP</p>
+<h2 id="x-real-ip-the-direct-approach">X-Real-IP: The Direct Approach<a class="headerlink" href="#x-real-ip-the-direct-approach" title="Permanent link">&para;</a></h2>
+<h3 id="characteristics">Characteristics<a class="headerlink" href="#characteristics" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Less documentation</strong> officially available</li>
+<li><strong>Commonly used</strong> alongside X-Forwarded-For</li>
+<li><strong>Simpler approach</strong> to passing the client IP</li>
+</ul>
+<h3 id="limitation">Limitation<a class="headerlink" href="#limitation" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>"Not many good info or specs about this one" - No definitive standards</p>
+</blockquote>
+<h2 id="recommended-nginx-configuration">Recommended Nginx Configuration<a class="headerlink" href="#recommended-nginx-configuration" title="Permanent link">&para;</a></h2>
+<p>To extract the most accurate IP:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Configure known proxies</span>
+<span class="k">set_real_ip_from</span><span class="w"> </span><span class="mi">10</span><span class="s">.0.0.0/8</span><span class="p">;</span>
+<span class="k">set_real_ip_from</span><span class="w"> </span><span class="mi">172</span><span class="s">.16.0.0/12</span><span class="p">;</span>
+<span class="k">set_real_ip_from</span><span class="w"> </span><span class="mi">192</span><span class="s">.168.0.0/16</span><span class="p">;</span>
+
+<span class="c1"># Enable recursive processing</span>
+<span class="k">real_ip_recursive</span><span class="w"> </span><span class="no">on</span><span class="p">;</span>
+
+<span class="c1"># Use X-Forwarded-For as source</span>
+<span class="k">real_ip_header</span><span class="w"> </span><span class="s">X-Forwarded-For</span><span class="p">;</span>
+</code></pre></div>
+
+<h2 id="the-real-challenge">The Real Challenge<a class="headerlink" href="#the-real-challenge" title="Permanent link">&para;</a></h2>
+<p><strong>Determining the "real" client IP is inherently complex</strong> due to:</p>
+<ol>
+<li><strong>Multiple network hops</strong></li>
+<li><strong>Uncooperative proxies</strong></li>
+<li><strong>Potential IP spoofing</strong></li>
+<li><strong>Lack of uniform standards</strong></li>
+</ol>
+<h2 id="best-practices">Best Practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>Validate trusted sources</strong> of headers</li>
+<li><strong>Correctly configure</strong> known proxies</li>
+<li><strong>Do not blindly trust</strong> client headers</li>
+<li><strong>Implement logging</strong> for debugging</li>
+</ol>
+<p><strong>Real reliability</strong> depends more on your network architecture than on the specific headers used.</p>
+<p><em>Original source</em>: <a href="http://distinctplace.com/infrastructure/2014/04/23/story-behind-x-forwarded-for-and-x-real-ip-headers/">Distinct Place</a></p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="https://pablocaro.es/en/tag/headers.html">headers</a>
+      <a href="https://pablocaro.es/en/tag/x-forwarded-for.html">x-forwarded-for</a>
+      <a href="https://pablocaro.es/en/tag/x-real-ip.html">x-real-ip</a>
+      <a href="https://pablocaro.es/en/tag/proxy.html">proxy</a>
+      <a href="https://pablocaro.es/en/tag/nginx.html">nginx</a>
+    </p>
+  </div>
+
+
+
+  <div class="neighbors">
+    <a class="btn float-left" href="https://pablocaro.es/en/nginx-x-forwarded-for-reverse-proxy" title="Nginx: Configuring X-Forwarded-For in Reverse Proxy">
+      <i class="fa fa-angle-left"></i> Previous Post
+    </a>
+    <a class="btn float-right" href="https://pablocaro.es/en/galen-framework-testing-responsive" title="Galen Framework: Automated Testing for Responsive Design">
+      Next Post <i class="fa fa-angle-right"></i>
+    </a>
+  </div>
+
+  <div class="related-posts">
+    <h4>You might enjoy</h4>
+    <ul class="related-posts">
+      <li><a href="https://pablocaro.es/en/nginx-x-forwarded-for-reverse-proxy">Nginx: Configuring X-Forwarded-For in Reverse Proxy</a></li>
+    </ul>
+  </div>
+
+
+
+<!-- Disqus -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'anotaciones';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>
+    Please enable JavaScript to view comments.
+</noscript>
+<!-- End Disqus -->
+</article>
+
+<footer>
+<p>
+  &copy; 2025  - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/3.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/3.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Annotations by Pablo Caro ",
+  "url" : "https://pablocaro.es/en",
+  "image": "/theme/img/profile.png",
+  "description": ""
+}
+</script>  <script src="https://files.stork-search.net/releases/v1.6.0/stork.js"></script>
+  <script>
+    window.storkIndexLoaded = false;
+    window.loadStorkIndex = function () {
+      if (window.storkIndexLoaded) {
+        return;
+      }
+      if (typeof stork === 'undefined') {
+        console.error('Stork is not loaded yet, retrying...');
+        setTimeout(window.loadStorkIndex, 100);
+        return;
+      }
+      stork.register("sitesearch", "https://pablocaro.es/en/search-index.st", { showProgress: false });
+      stork.register("sitesearch-page", "https://pablocaro.es/en/search-index.st", { showProgress: false });
+      window.storkIndexLoaded = true;
+    }
+  </script>
+
+</body>
+</html>

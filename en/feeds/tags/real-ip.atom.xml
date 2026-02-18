@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Annotations by Pablo Caro - real-ip</title><link href="https://pablocaro.es/en/" rel="alternate"></link><link href="https://pablocaro.es/feeds/tags/real-ip.atom.xml" rel="self"></link><id>https://pablocaro.es/en/</id><updated>2015-10-21T23:05:00+02:00</updated><subtitle>Annotations</subtitle><entry><title>Nginx: Configuring X-Forwarded-For in Reverse Proxy</title><link href="https://pablocaro.es/en/nginx-x-forwarded-for-reverse-proxy" rel="alternate"></link><published>2015-10-21T23:05:00+02:00</published><updated>2015-10-21T23:05:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2015-10-21:/en/nginx-x-forwarded-for-reverse-proxy</id><summary type="html">&lt;p&gt;How to configure Nginx to pass the client's real IP to backend servers using the X-Forwarded-For header in reverse proxy configurations&lt;/p&gt;</summary><content type="html">&lt;p&gt;When you use &lt;strong&gt;Nginx as a reverse proxy&lt;/strong&gt;, you need the backend server to see the &lt;strong&gt;client's real IP&lt;/strong&gt;, not the proxy's IP. The &lt;code&gt;X-Forwarded-For&lt;/code&gt; header solves this problem.&lt;/p&gt;
+&lt;h2 id="the-problem"&gt;The Problem&lt;a class="headerlink" href="#the-problem" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Without configuration, the backend server only sees the Nginx proxy IP, losing crucial information about the real client for:
+- Accurate &lt;strong&gt;access logs&lt;/strong&gt;
+- Correct &lt;strong&gt;geolocation&lt;/strong&gt;
+- &lt;strong&gt;Rate limiting&lt;/strong&gt; by real IP
+- Reliable &lt;strong&gt;traffic analysis&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id="solution-1-simple-ip"&gt;Solution 1: Simple IP&lt;a class="headerlink" href="#solution-1-simple-ip" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;proxy_set_header&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;X-Forwarded-For&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;$remote_addr&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Usage&lt;/strong&gt;: When Nginx is the only proxy in the chain.
+&lt;strong&gt;Result&lt;/strong&gt;: Header contains only the original client IP.&lt;/p&gt;
+&lt;h2 id="solution-2-ip-chain"&gt;Solution 2: IP Chain&lt;a class="headerlink" href="#solution-2-ip-chain" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;proxy_set_header&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;X-Forwarded-For&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;$proxy_add_x_forwarded_for&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Usage&lt;/strong&gt;: When there are multiple proxies in the chain.
+&lt;strong&gt;Result&lt;/strong&gt;: Preserves existing IPs and adds the current one.&lt;/p&gt;
+&lt;h2 id="practical-configuration"&gt;Practical Configuration&lt;a class="headerlink" href="#practical-configuration" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;server&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="kn"&gt;listen&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;80&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="kn"&gt;server_name&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;example.com&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="kn"&gt;location&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;/&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="kn"&gt;proxy_pass&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;http://backend-server&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="kn"&gt;proxy_set_header&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;Host&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;$host&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="kn"&gt;proxy_set_header&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;X-Real-IP&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;$remote_addr&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="kn"&gt;proxy_set_header&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;X-Forwarded-For&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;$proxy_add_x_forwarded_for&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="kn"&gt;proxy_set_header&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;X-Forwarded-Proto&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;$scheme&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="related-headers"&gt;Related Headers&lt;a class="headerlink" href="#related-headers" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;X-Real-IP&lt;/strong&gt;: Most recent client IP&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;X-Forwarded-For&lt;/strong&gt;: Complete chain of IPs&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;X-Forwarded-Proto&lt;/strong&gt;: Original protocol (http/https)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Host&lt;/strong&gt;: Original hostname&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="verification"&gt;Verification&lt;a class="headerlink" href="#verification" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# On the backend server, check the headers&lt;/span&gt;
+tail&lt;span class="w"&gt; &lt;/span&gt;-f&lt;span class="w"&gt; &lt;/span&gt;/var/log/apache2/access.log
+&lt;span class="c1"&gt;# Or in your application&lt;/span&gt;
+&lt;span class="nb"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;$_SERVER&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;HTTP_X_FORWARDED_FOR&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="security-considerations"&gt;Security Considerations&lt;a class="headerlink" href="#security-considerations" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;⚠️ &lt;strong&gt;Important&lt;/strong&gt;: X-Forwarded-* headers can be forged by clients. In production environments, ensure that only your proxy sets them.&lt;/p&gt;
+&lt;p&gt;This configuration is essential to maintain &lt;strong&gt;full traceability&lt;/strong&gt; in reverse proxy architectures.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Original source&lt;/em&gt;: &lt;a href="http://www.networkinghowtos.com/howto/set-the-x-forwarded-for-header-on-a-nginx-reverse-proxy-setup/"&gt;Networking How To's&lt;/a&gt;&lt;/p&gt;</content><category term="DevOps"></category><category term="nginx"></category><category term="reverse-proxy"></category><category term="x-forwarded-for"></category><category term="real-ip"></category><category term="configuration"></category></entry></feed>

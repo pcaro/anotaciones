@@ -1,0 +1,416 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://pablocaro.es/en/theme/stylesheet/style.min.css">
+
+
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+          href="https://pablocaro.es/en/theme/pygments/github.min.css">
+
+
+  <link rel="stylesheet"
+        type="text/css"
+        href="https://pablocaro.es/en/theme/stork/stork.css" />
+
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/en/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/en/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/en/theme/font-awesome/css/solid.css">
+
+
+  <link rel="shortcut icon" href="/theme/img/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/theme/img/favicon.ico" type="image/x-icon">
+
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#333333">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#333333">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Microsoft EDGE -->
+  <meta name="msapplication-TileColor" content="#333333">
+
+  <link href="https://pablocaro.es/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Annotations by Pablo Caro Atom">
+
+  <link href="https://pablocaro.es/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Annotations by Pablo Caro RSS">
+
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-60035125-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Pablo Caro" />
+<meta name="description" content="Linux commands to determine how many RAM slots are occupied and their capacity using dmidecode, lshw, and hardware inspection techniques" />
+<meta name="keywords" content="linux, ram, dmidecode, lshw, hardware, memory">
+
+<link rel="alternate" href="https://pablocaro.es/en/determinar-slots-ram-uso-linux" hreflang="en" />
+<link rel="alternate" href="https://pablocaro.es/en/../determinar-slots-ram-uso-linux" hreflang="es" />
+
+  <meta property="og:site_name" content="Annotations by Pablo Caro"/>
+  <meta property="og:title" content="Determining RAM slots in use on Linux"/>
+  <meta property="og:description" content="Linux commands to determine how many RAM slots are occupied and their capacity using dmidecode, lshw, and hardware inspection techniques"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://pablocaro.es/en/determinar-slots-ram-uso-linux"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2016-07-13 20:28:00+02:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://pablocaro.es/en/author/pablo-caro.html">
+  <meta property="article:section" content="Linux"/>
+  <meta property="article:tag" content="linux"/>
+  <meta property="article:tag" content="ram"/>
+  <meta property="article:tag" content="dmidecode"/>
+  <meta property="article:tag" content="lshw"/>
+  <meta property="article:tag" content="hardware"/>
+  <meta property="article:tag" content="memory"/>
+  <meta property="og:image" content="/theme/img/profile.png">
+
+  <title>Annotations by Pablo Caro &ndash; Determining RAM slots in use on Linux</title>
+
+
+</head>
+<body class="light-theme">
+
+<aside>
+  <div>
+    <a href="https://pablocaro.es/en/">
+      <img src="/theme/img/profile.png" alt="Anotaciones" title="Anotaciones">
+    </a>
+
+    <h1>
+      <a href="https://pablocaro.es/en/">Anotaciones</a>
+    </h1>
+
+    <p>Annotations</p>
+
+    <div class="stork">
+      <input class="stork-input" type="text" autocomplete="off" name="q" data-stork="sitesearch" placeholder="Search..." onclick="loadStorkIndex()"/>
+      <div class="stork-output" data-stork="sitesearch-output"></div>
+    </div>
+
+    <nav>
+      <ul class="list">
+
+
+
+          <li>
+            <a target="_self" href="http://x.com/pcaro" >@pcaro at X.com</a>
+          </li>
+          <li>
+            <a target="_self" href="http://python.org/" >Python.org</a>
+          </li>
+          <li>
+            <a target="_self" href="http://jinja.pocoo.org/" >Jinja2</a>
+          </li>
+      </ul>
+    </nav>
+
+    <ul class="social">
+      <li>
+        <a class="sc-Twitter"
+           href="http://twitter.com/pcaro"
+           target="_blank">
+          <i class="fa-brands fa-Twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Github"
+           href="http://github.com/pcaro"
+           target="_blank">
+          <i class="fa-brands fa-Github"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Linkedin"
+           href="https://www.linkedin.com/in/pcarorevuelta"
+           target="_blank">
+          <i class="fa-brands fa-Linkedin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Facebook"
+           href="https://www.facebook.com/pablo.carorevuelta"
+           target="_blank">
+          <i class="fa-brands fa-Facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Email"
+           href="mailto:correo@pablocaro.es"
+           target="_blank">
+          <i class="fa-brands fa-Email"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+</aside>
+  <main>
+
+<nav>
+  <a href="https://pablocaro.es/en/">Home</a>
+
+  <a href="/en/archives.html">Archives</a>
+  <a href="/en/categories.html">Categories</a>
+  <a href="/en/tags.html">Tags</a>
+  <a href="/en/search.html">Search</a>
+  <a href="/">Español</a>
+
+  <a href="https://pablocaro.es/feeds/all.atom.xml">Atom</a>
+
+  <a href="https://pablocaro.es/feeds/all.rss.xml">RSS</a>
+</nav>
+
+<article class="single">
+  <header>
+          <div class="translations">
+            <a href="https://pablocaro.es/en/../determinar-slots-ram-uso-linux">Leer en español</a>
+    </div>
+
+    <h1 id="determinar-slots-ram-uso-linux">Determining RAM slots in use on Linux</h1>
+    <p>
+      Posted on Wed 13 July 2016 in <a href="https://pablocaro.es/en/category/linux.html">Linux</a>
+
+    </p>
+  </header>
+
+
+  <div>
+    <p>How many <strong>RAM slots do you have occupied</strong> and how many are free? Linux provides tools to inspect memory configuration without opening the computer.</p>
+<h2 id="dmidecode-the-main-tool">dmidecode: The Main Tool<a class="headerlink" href="#dmidecode-the-main-tool" title="Permanent link">&para;</a></h2>
+<h3 id="basic-memory-information">Basic Memory Information<a class="headerlink" href="#basic-memory-information" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># View all memory information</span>
+sudo<span class="w"> </span>dmidecode<span class="w"> </span>-t<span class="w"> </span>memory
+
+<span class="c1"># Specific memory type (table 16)</span>
+sudo<span class="w"> </span>dmidecode<span class="w"> </span>-t<span class="w"> </span><span class="m">16</span>
+
+<span class="c1"># Installed sizes only</span>
+sudo<span class="w"> </span>dmidecode<span class="w"> </span>-t<span class="w"> </span>memory<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-i<span class="w"> </span>size
+</code></pre></div>
+
+<p><strong>Typical Output</strong>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">Size</span><span class="o">:</span><span class="w"> </span><span class="mi">8192</span><span class="w"> </span><span class="n">MB</span>
+<span class="n">Size</span><span class="o">:</span><span class="w"> </span><span class="mi">8192</span><span class="w"> </span><span class="n">MB</span>
+<span class="n">Size</span><span class="o">:</span><span class="w"> </span><span class="n">No</span><span class="w"> </span><span class="n">Module</span><span class="w"> </span><span class="n">Installed</span>
+<span class="n">Size</span><span class="o">:</span><span class="w"> </span><span class="n">No</span><span class="w"> </span><span class="n">Module</span><span class="w"> </span><span class="n">Installed</span>
+</code></pre></div>
+
+<h3 id="detailed-information-per-slot">Detailed Information per Slot<a class="headerlink" href="#detailed-information-per-slot" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Granular information for each slot (table 17)</span>
+sudo<span class="w"> </span>dmidecode<span class="w"> </span>-t<span class="w"> </span><span class="m">17</span>
+
+<span class="c1"># Compact summary</span>
+sudo<span class="w"> </span>dmidecode<span class="w"> </span>-t<span class="w"> </span><span class="m">17</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-E<span class="w"> </span><span class="s2">&quot;(Size|Locator|Speed|Type:)&quot;</span>
+</code></pre></div>
+
+<p><strong>Information Provided</strong>:
+- <strong>Locator</strong>: Physical slot identifier (DIMM_A1, DIMM_B1, etc.)
+- <strong>Size</strong>: Installed capacity or "No Module Installed"
+- <strong>Type</strong>: DDR3, DDR4, etc.
+- <strong>Speed</strong>: Speed in MT/s</p>
+<h2 id="lshw-alternative-with-structured-format">lshw: Alternative with Structured Format<a class="headerlink" href="#lshw-alternative-with-structured-format" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="c1"># Memory information with lshw</span>
+sudo<span class="w"> </span>lshw<span class="w"> </span>-class<span class="w"> </span>memory
+
+<span class="c1"># Physical memory only (no cache)</span>
+sudo<span class="w"> </span>lshw<span class="w"> </span>-class<span class="w"> </span>memory<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-A<span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="s2">&quot;System Memory&quot;</span>
+
+<span class="c1"># More compact format</span>
+sudo<span class="w"> </span>lshw<span class="w"> </span>-short<span class="w"> </span>-class<span class="w"> </span>memory
+</code></pre></div>
+
+<h2 id="useful-scripts-for-analysis">Useful Scripts for Analysis<a class="headerlink" href="#useful-scripts-for-analysis" title="Permanent link">&para;</a></h2>
+<h3 id="occupied-slots-counter">Occupied Slots Counter<a class="headerlink" href="#occupied-slots-counter" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;=== RAM Slot Analysis ===&quot;</span>
+<span class="nv">TOTAL_SLOTS</span><span class="o">=</span><span class="k">$(</span>sudo<span class="w"> </span>dmidecode<span class="w"> </span>-t<span class="w"> </span><span class="m">17</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s2">&quot;Size:&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l<span class="k">)</span>
+<span class="nv">OCCUPIED_SLOTS</span><span class="o">=</span><span class="k">$(</span>sudo<span class="w"> </span>dmidecode<span class="w"> </span>-t<span class="w"> </span><span class="m">17</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s2">&quot;Size:&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-v<span class="w"> </span><span class="s2">&quot;No Module&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l<span class="k">)</span>
+<span class="nv">FREE_SLOTS</span><span class="o">=</span><span class="k">$((</span><span class="nv">TOTAL_SLOTS</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nv">OCCUPIED_SLOTS</span><span class="k">))</span>
+
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Total Slots: </span><span class="nv">$TOTAL_SLOTS</span><span class="s2">&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Occupied Slots: </span><span class="nv">$OCCUPIED_SLOTS</span><span class="s2">&quot;</span><span class="w"> </span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Free Slots: </span><span class="nv">$FREE_SLOTS</span><span class="s2">&quot;</span>
+</code></pre></div>
+
+<h3 id="detailed-summary">Detailed Summary<a class="headerlink" href="#detailed-summary" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;=== Current RAM Configuration ===&quot;</span>
+sudo<span class="w"> </span>dmidecode<span class="w"> </span>-t<span class="w"> </span><span class="m">17</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;</span>
+<span class="s1">/Memory Device/,/^$/ {</span>
+<span class="s1">    if(/Locator:/) locator=$2</span>
+<span class="s1">    if(/Size:/ &amp;&amp; !/No Module/) {</span>
+<span class="s1">        size=$2&quot; &quot;$3</span>
+<span class="s1">        print locator&quot;: &quot;size</span>
+<span class="s1">    }</span>
+<span class="s1">    if(/Size:.*No Module/) print locator&quot;: Empty&quot;</span>
+<span class="s1">}&#39;</span>
+</code></pre></div>
+
+<h2 id="additional-useful-information">Additional Useful Information<a class="headerlink" href="#additional-useful-information" title="Permanent link">&para;</a></h2>
+<h3 id="maximum-supported-capacity">Maximum Supported Capacity<a class="headerlink" href="#maximum-supported-capacity" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Maximum total capacity</span>
+sudo<span class="w"> </span>dmidecode<span class="w"> </span>-t<span class="w"> </span><span class="m">16</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s2">&quot;Maximum Capacity&quot;</span>
+
+<span class="c1"># Maximum number of devices</span>
+sudo<span class="w"> </span>dmidecode<span class="w"> </span>-t<span class="w"> </span><span class="m">16</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s2">&quot;Number Of Devices&quot;</span>
+</code></pre></div>
+
+<h3 id="speed-and-type-verification">Speed and Type Verification<a class="headerlink" href="#speed-and-type-verification" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Configured speed</span>
+sudo<span class="w"> </span>dmidecode<span class="w"> </span>-t<span class="w"> </span><span class="m">17</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-E<span class="w"> </span><span class="s2">&quot;(Speed|Configured)&quot;</span>
+
+<span class="c1"># Memory type</span>
+sudo<span class="w"> </span>dmidecode<span class="w"> </span>-t<span class="w"> </span><span class="m">17</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s2">&quot;Type:&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-v<span class="w"> </span><span class="s2">&quot;Error&quot;</span>
+</code></pre></div>
+
+<h2 id="example-of-interpreted-output">Example of Interpreted Output<a class="headerlink" href="#example-of-interpreted-output" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>dmidecode<span class="w"> </span>-t<span class="w"> </span><span class="m">17</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-E<span class="w"> </span><span class="s2">&quot;(Locator|Size|Type:)&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-12
+
+Locator:<span class="w"> </span>DIMM_A1
+Size:<span class="w"> </span><span class="m">8192</span><span class="w"> </span>MB<span class="w">  </span>
+Type:<span class="w"> </span>DDR4
+
+Locator:<span class="w"> </span>DIMM_A2
+Size:<span class="w"> </span>No<span class="w"> </span>Module<span class="w"> </span>Installed
+Type:<span class="w"> </span>Unknown
+
+Locator:<span class="w"> </span>DIMM_B1<span class="w">  </span>
+Size:<span class="w"> </span><span class="m">8192</span><span class="w"> </span>MB
+Type:<span class="w"> </span>DDR4
+
+Locator:<span class="w"> </span>DIMM_B2
+Size:<span class="w"> </span>No<span class="w"> </span>Module<span class="w"> </span>Installed
+Type:<span class="w"> </span>Unknown
+</code></pre></div>
+
+<p><strong>Interpretation</strong>: 
+- 4 total slots (DIMM_A1, A2, B1, B2)
+- 2 slots occupied with 8GB DDR4 each
+- 2 free slots available</p>
+<h2 id="important-limitations">Important Limitations<a class="headerlink" href="#important-limitations" title="Permanent link">&para;</a></h2>
+<p>⚠️ <strong>Accuracy</strong>: Command-line tools may not perfectly reflect physical hardware</p>
+<p>⚠️ <strong>Privileges</strong>: Root permissions are required to access DMI information</p>
+<p>⚠️ <strong>Compatibility</strong>: Some embedded systems may not provide complete information</p>
+<p>For <strong>maximum certainty</strong>, physical inspection is still recommended, but these tools provide sufficiently accurate information for most cases.</p>
+<p><em>Original source</em>: <a href="http://unix.stackexchange.com/questions/33249/how-to-determine-the-amount-of-ram-slots-in-use">Unix &amp; Linux Stack Exchange</a></p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="https://pablocaro.es/en/tag/linux.html">linux</a>
+      <a href="https://pablocaro.es/en/tag/ram.html">ram</a>
+      <a href="https://pablocaro.es/en/tag/dmidecode.html">dmidecode</a>
+      <a href="https://pablocaro.es/en/tag/lshw.html">lshw</a>
+      <a href="https://pablocaro.es/en/tag/hardware.html">hardware</a>
+      <a href="https://pablocaro.es/en/tag/memory.html">memory</a>
+    </p>
+  </div>
+
+
+
+  <div class="neighbors">
+    <a class="btn float-left" href="https://pablocaro.es/en/introduccion-trading-alta-frecuencia" title="Introduction to High-Frequency Trading Systems">
+      <i class="fa fa-angle-left"></i> Previous Post
+    </a>
+    <a class="btn float-right" href="https://pablocaro.es/en/documentacion-tecnica-sphinx-paver-cog" title="Technical Documentation with Sphinx, Paver, and Cog">
+      Next Post <i class="fa fa-angle-right"></i>
+    </a>
+  </div>
+
+  <div class="related-posts">
+    <h4>You might enjoy</h4>
+    <ul class="related-posts">
+      <li><a href="https://pablocaro.es/en/gestionando-instalaciones-desde-github-con-gah">Managing GitHub installations with gah</a></li>
+      <li><a href="https://pablocaro.es/en/fresh-editor-terminal">`fresh`: My preferred terminal editor for daily use</a></li>
+      <li><a href="https://pablocaro.es/en/ver-archivos-paquete-rpm">How to View Files in an RPM Package on Linux</a></li>
+      <li><a href="https://pablocaro.es/en/kooha-captura-pantalla-linux">Kooha: Simple and Elegant Screen Recording on Linux</a></li>
+      <li><a href="https://pablocaro.es/en/direnv-gestion-entornos">`direnv`: Manage your development environments intelligently</a></li>
+    </ul>
+  </div>
+
+
+
+<!-- Disqus -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'anotaciones';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>
+    Please enable JavaScript to view comments.
+</noscript>
+<!-- End Disqus -->
+</article>
+
+<footer>
+<p>
+  &copy; 2025  - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/3.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/3.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Annotations by Pablo Caro ",
+  "url" : "https://pablocaro.es/en",
+  "image": "/theme/img/profile.png",
+  "description": ""
+}
+</script>  <script src="https://files.stork-search.net/releases/v1.6.0/stork.js"></script>
+  <script>
+    window.storkIndexLoaded = false;
+    window.loadStorkIndex = function () {
+      if (window.storkIndexLoaded) {
+        return;
+      }
+      if (typeof stork === 'undefined') {
+        console.error('Stork is not loaded yet, retrying...');
+        setTimeout(window.loadStorkIndex, 100);
+        return;
+      }
+      stork.register("sitesearch", "https://pablocaro.es/en/search-index.st", { showProgress: false });
+      stork.register("sitesearch-page", "https://pablocaro.es/en/search-index.st", { showProgress: false });
+      window.storkIndexLoaded = true;
+    }
+  </script>
+
+</body>
+</html>

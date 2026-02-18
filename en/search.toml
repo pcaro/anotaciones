@@ -1,0 +1,483 @@
+[input]
+html_selector = "main"
+base_directory = "/home/runner/work/anotaciones/anotaciones/output/en"
+
+[[input.files]]
+path = "gestionando-instalaciones-desde-github-con-gah.html"
+url = "/gestionando-instalaciones-desde-github-con-gah"
+title = "Managing GitHub installations with gah"
+
+[[input.files]]
+path = "yaml-multilinea-cadenas-complejas.html"
+url = "/yaml-multilinea-cadenas-complejas"
+title = "Multiline YAML: Understanding and testing complex strings"
+
+[[input.files]]
+path = "pandas-styler-presentacion-dataframes.html"
+url = "/pandas-styler-presentacion-dataframes"
+title = "Pandas Styler: Improve the Presentation of your DataFrames"
+
+[[input.files]]
+path = "fresh-editor-terminal.html"
+url = "/fresh-editor-terminal"
+title = "`fresh`: My preferred terminal editor for daily use"
+
+[[input.files]]
+path = "ver-archivos-paquete-rpm.html"
+url = "/ver-archivos-paquete-rpm"
+title = "How to View Files in an RPM Package on Linux"
+
+[[input.files]]
+path = "kooha-captura-pantalla-linux.html"
+url = "/kooha-captura-pantalla-linux"
+title = "Kooha: Simple and Elegant Screen Recording on Linux"
+
+[[input.files]]
+path = "open-evidence-plataforma-medica.html"
+url = "/open-evidence-plataforma-medica"
+title = "OpenEvidence: The Leading Medical Information Platform for Professionals"
+
+[[input.files]]
+path = "direnv-gestion-entornos.html"
+url = "/direnv-gestion-entornos"
+title = "`direnv`: Manage your development environments intelligently"
+
+[[input.files]]
+path = "docker-http-https-echo.html"
+url = "/docker-http-https-echo"
+title = "`docker-http-https-echo`: An Essential Tool for Network Debugging"
+
+[[input.files]]
+path = "kubegres-postgresql-kubernetes.html"
+url = "/kubegres-postgresql-kubernetes"
+title = "Kubegres: Simplified PostgreSQL Management on Kubernetes"
+
+[[input.files]]
+path = "estados-conexion-tcp-netstat-ss.html"
+url = "/estados-conexion-tcp-netstat-ss"
+title = "TCP Connection States in GNU/Linux: netstat and ss"
+
+[[input.files]]
+path = "reduce-ruido-logs-python.html"
+url = "/reduce-ruido-logs-python"
+title = "Reduce Noise in Your Python Logs: A Smart Approach"
+
+[[input.files]]
+path = "kitty-acceso-rapido.html"
+url = "/kitty-acceso-rapido"
+title = "Kitty as a Quick Access Terminal: The Convenience of a Dropdown"
+
+[[input.files]]
+path = "atajos-de-teclado-kitty.html"
+url = "/atajos-de-teclado-kitty"
+title = "Essential Keyboard Shortcuts in Kitty: Mastering Your Terminal"
+
+[[input.files]]
+path = "de-yakuake-a-kitty.html"
+url = "/de-yakuake-a-kitty"
+title = "From Yakuake to Kitty: My Transition to a Modern Terminal"
+
+[[input.files]]
+path = "poe-the-poet-automatizando-tareas-en-proyectos-python-con-uv.html"
+url = "/poe-the-poet-automatizando-tareas-en-proyectos-python-con-uv"
+title = "Poe the Poet: Automating Tasks in Python Projects with uv"
+
+[[input.files]]
+path = "como-uso-git-worktrees.html"
+url = "/como-uso-git-worktrees"
+title = "How I Use Git Worktrees for Concurrent Work"
+
+[[input.files]]
+path = "busqueda-hibrida-sqlite-vector-texto.html"
+url = "/busqueda-hibrida-sqlite-vector-texto"
+title = "Hybrid Search with SQLite: Vector + Full-Text"
+
+[[input.files]]
+path = "conflacion-datos-geoespaciales-duckdb.html"
+url = "/conflacion-datos-geoespaciales-duckdb"
+title = "Geospatial Data Conflation with DuckDB and Embeddings"
+
+[[input.files]]
+path = "httpx-cliente-http-moderno-python.html"
+url = "/httpx-cliente-http-moderno-python"
+title = "HTTPX: Modern HTTP Client for Python"
+
+[[input.files]]
+path = "server-sent-events-comunicacion-tiempo-real.html"
+url = "/server-sent-events-comunicacion-tiempo-real"
+title = "Server-Sent Events: Simplified Real-Time Communication"
+
+[[input.files]]
+path = "una-de-versiones.html"
+url = "/una-de-versiones"
+title = "About Versions"
+
+[[input.files]]
+path = "mobaxterm-mucho-más-que-un-cliente-ssh.html"
+url = "/mobaxterm-mucho-más-que-un-cliente-ssh"
+title = "MobaXterm. Much more than an ssh client"
+
+[[input.files]]
+path = "posterazor-crear-posters-grandes.html"
+url = "/posterazor-crear-posters-grandes"
+title = "PosteRazor: Create Giant Posters from Any Image"
+
+[[input.files]]
+path = "gmail_correo_no_leido_solo_en_principal.html"
+url = "/gmail_correo_no_leido_solo_en_principal"
+title = "Unread Mail in Gmail's Primary Tab"
+
+[[input.files]]
+path = "documentacion-tecnica-sphinx-paver-cog.html"
+url = "/documentacion-tecnica-sphinx-paver-cog"
+title = "Technical Documentation with Sphinx, Paver, and Cog"
+
+[[input.files]]
+path = "determinar-slots-ram-uso-linux.html"
+url = "/determinar-slots-ram-uso-linux"
+title = "Determining RAM slots in use on Linux"
+
+[[input.files]]
+path = "introduccion-trading-alta-frecuencia.html"
+url = "/introduccion-trading-alta-frecuencia"
+title = "Introduction to High-Frequency Trading Systems"
+
+[[input.files]]
+path = "encontrar-hosts-vivos-red.html"
+url = "/encontrar-hosts-vivos-red"
+title = "How to Find Live Hosts on Your Local Network"
+
+[[input.files]]
+path = "herramientas-desarrolladores-linea-comandos.html"
+url = "/herramientas-desarrolladores-linea-comandos"
+title = "Powerful Command Line Tools for Developers"
+
+[[input.files]]
+path = "sysdig-seguridad-cloud-nativa.html"
+url = "/sysdig-seguridad-cloud-nativa"
+title = "Sysdig: Cloud-Native Security Platform with AI"
+
+[[input.files]]
+path = "python-generadores-repetibles.html"
+url = "/python-generadores-repetibles"
+title = "Python: Create Repeating Generators"
+
+[[input.files]]
+path = "boton_central_firefox.html"
+url = "/boton_central_firefox"
+title = "Middle click in firefox"
+
+[[input.files]]
+path = "bootstrap-dropdown-enlaces-horizontal.html"
+url = "/bootstrap-dropdown-enlaces-horizontal"
+title = "Bootstrap: Two Links in the Same Row in Dropdown"
+
+[[input.files]]
+path = "galen-framework-testing-responsive.html"
+url = "/galen-framework-testing-responsive"
+title = "Galen Framework: Automated Testing for Responsive Design"
+
+[[input.files]]
+path = "historia-x-forwarded-for-x-real-ip.html"
+url = "/historia-x-forwarded-for-x-real-ip"
+title = "The Story Behind X-Forwarded-For and X-Real-IP"
+
+[[input.files]]
+path = "nginx-x-forwarded-for-reverse-proxy.html"
+url = "/nginx-x-forwarded-for-reverse-proxy"
+title = "Nginx: Configuring X-Forwarded-For in Reverse Proxy"
+
+[[input.files]]
+path = "sql-select-rows-max-value.html"
+url = "/sql-select-rows-max-value"
+title = "SQL: Select Rows with Max Value per Group"
+
+[[input.files]]
+path = "repetiendo-una-función-con-hilos.html"
+url = "/repetiendo-una-función-con-hilos"
+title = "Repeating a function with threads"
+
+[[input.files]]
+path = "instalar-insync-en-opensuse.html"
+url = "/instalar-insync-en-opensuse"
+title = "Install InSync on Opensuse"
+
+[[input.files]]
+path = "nethogs-ver-ancho-de-banda-consumido.html"
+url = "/nethogs-ver-ancho-de-banda-consumido"
+title = "NetHogs see consumed bandwidth"
+
+[[input.files]]
+path = "cierra-google-code.html"
+url = "/cierra-google-code"
+title = "Google Code is Closing"
+
+[[input.files]]
+path = "pgcli-el-descubrimiento-de-hoy.html"
+url = "/pgcli-el-descubrimiento-de-hoy"
+title = "pgcli the discovery of the day"
+
+[[input.files]]
+path = "reactivando-el-blog.html"
+url = "/reactivando-el-blog"
+title = "Blogging again"
+
+[[input.files]]
+path = "decorador-vista-ajax.html"
+url = "/decorador-vista-ajax"
+title = "Ajax view decorator"
+
+[[input.files]]
+path = "funcion-generica-para-usar-como-upload_to.html"
+url = "/funcion-generica-para-usar-como-upload_to"
+title = "Generic function to use as upload_to"
+
+[[input.files]]
+path = "enlaces-en-listado-de-objectos.html"
+url = "/enlaces-en-listado-de-objectos"
+title = "Django: links in object list"
+
+[[input.files]]
+path = "settings-vars-processor.html"
+url = "/settings-vars-processor"
+title = "Settings vars processor"
+
+[[input.files]]
+path = "gestionando-instalaciones-desde-github-con-gah-es.html"
+url = "/../gestionando-instalaciones-desde-github-con-gah"
+title = "Gestionando instalaciones desde GitHub con gah"
+
+[[input.files]]
+path = "yaml-multilinea-cadenas-complejas-es.html"
+url = "/../yaml-multilinea-cadenas-complejas"
+title = "YAML Multilínea: Entendiendo y probando cadenas de texto complejas"
+
+[[input.files]]
+path = "pandas-styler-presentacion-dataframes-es.html"
+url = "/../pandas-styler-presentacion-dataframes"
+title = "Pandas Styler: Mejora la presentación de tus DataFrames"
+
+[[input.files]]
+path = "fresh-editor-terminal-es.html"
+url = "/../fresh-editor-terminal"
+title = "`fresh`: Mi editor de terminal preferido para el día a día"
+
+[[input.files]]
+path = "ver-archivos-paquete-rpm-es.html"
+url = "/../ver-archivos-paquete-rpm"
+title = "Cómo ver los archivos de un paquete RPM en Linux"
+
+[[input.files]]
+path = "kooha-captura-pantalla-linux-es.html"
+url = "/../kooha-captura-pantalla-linux"
+title = "Kooha: Captura de pantalla sencilla y elegante en Linux"
+
+[[input.files]]
+path = "open-evidence-plataforma-medica-es.html"
+url = "/../open-evidence-plataforma-medica"
+title = "OpenEvidence: La plataforma líder en información médica para profesionales"
+
+[[input.files]]
+path = "direnv-gestion-entornos-es.html"
+url = "/../direnv-gestion-entornos"
+title = "`direnv`: Gestiona tus entornos de desarrollo de forma inteligente"
+
+[[input.files]]
+path = "docker-http-https-echo-es.html"
+url = "/../docker-http-https-echo"
+title = "`docker-http-https-echo`: Una herramienta esencial para depuración de red"
+
+[[input.files]]
+path = "kubegres-postgresql-kubernetes-es.html"
+url = "/../kubegres-postgresql-kubernetes"
+title = "Kubegres: Gestión simplificada de PostgreSQL en Kubernetes"
+
+[[input.files]]
+path = "estados-conexion-tcp-netstat-ss-es.html"
+url = "/../estados-conexion-tcp-netstat-ss"
+title = "Estados de Conexión TCP en GNU/Linux: netstat y ss"
+
+[[input.files]]
+path = "reduce-ruido-logs-python-es.html"
+url = "/../reduce-ruido-logs-python"
+title = "Reduce el Ruido en tus Logs de Python: Un enfoque inteligente"
+
+[[input.files]]
+path = "kitty-acceso-rapido-es.html"
+url = "/../kitty-acceso-rapido"
+title = "Kitty como terminal de acceso rápido: La comodidad de un desplegable"
+
+[[input.files]]
+path = "atajos-de-teclado-kitty-es.html"
+url = "/../atajos-de-teclado-kitty"
+title = "Atajos de teclado esenciales en Kitty: Dominando tu terminal"
+
+[[input.files]]
+path = "de-yakuake-a-kitty-es.html"
+url = "/../de-yakuake-a-kitty"
+title = "De Yakuake a Kitty: Mi transición a un terminal moderno"
+
+[[input.files]]
+path = "poe-the-poet-automatizando-tareas-en-proyectos-python-con-uv-es.html"
+url = "/../poe-the-poet-automatizando-tareas-en-proyectos-python-con-uv"
+title = "Poe the Poet: Automatizando tareas en proyectos Python con uv"
+
+[[input.files]]
+path = "como-uso-git-worktrees-es.html"
+url = "/../como-uso-git-worktrees"
+title = "Cómo uso git worktrees para trabajo concurrente"
+
+[[input.files]]
+path = "busqueda-hibrida-sqlite-vector-texto-es.html"
+url = "/../busqueda-hibrida-sqlite-vector-texto"
+title = "Búsqueda híbrida con SQLite: vector + texto completo"
+
+[[input.files]]
+path = "conflacion-datos-geoespaciales-duckdb-es.html"
+url = "/../conflacion-datos-geoespaciales-duckdb"
+title = "Conflación de datos geoespaciales con DuckDB y embeddings"
+
+[[input.files]]
+path = "httpx-cliente-http-moderno-python-es.html"
+url = "/../httpx-cliente-http-moderno-python"
+title = "HTTPX: Cliente HTTP moderno para Python"
+
+[[input.files]]
+path = "server-sent-events-comunicacion-tiempo-real-es.html"
+url = "/../server-sent-events-comunicacion-tiempo-real"
+title = "Server-Sent Events: Comunicación en tiempo real simplificada"
+
+[[input.files]]
+path = "una-de-versiones-es.html"
+url = "/../una-de-versiones"
+title = "Una de versiones"
+
+[[input.files]]
+path = "mobaxterm-mucho-más-que-un-cliente-ssh-es.html"
+url = "/../mobaxterm-mucho-más-que-un-cliente-ssh"
+title = "MobaXterm. Mucho más que un cliente ssh"
+
+[[input.files]]
+path = "posterazor-crear-posters-grandes-es.html"
+url = "/../posterazor-crear-posters-grandes"
+title = "PosteRazor: Crea pósters gigantes desde cualquier imagen"
+
+[[input.files]]
+path = "gmail_correo_no_leido_solo_en_principal-es.html"
+url = "/../gmail_correo_no_leido_solo_en_principal"
+title = "Correo no leído en pestaña principal de gmail"
+
+[[input.files]]
+path = "documentacion-tecnica-sphinx-paver-cog-es.html"
+url = "/../documentacion-tecnica-sphinx-paver-cog"
+title = "Documentación técnica con Sphinx, Paver y Cog"
+
+[[input.files]]
+path = "determinar-slots-ram-uso-linux-es.html"
+url = "/../determinar-slots-ram-uso-linux"
+title = "Determinar slots de RAM en uso en Linux"
+
+[[input.files]]
+path = "introduccion-trading-alta-frecuencia-es.html"
+url = "/../introduccion-trading-alta-frecuencia"
+title = "Introducción a los sistemas de trading de alta frecuencia"
+
+[[input.files]]
+path = "encontrar-hosts-vivos-red-es.html"
+url = "/../encontrar-hosts-vivos-red"
+title = "Cómo encontrar hosts vivos en tu red local"
+
+[[input.files]]
+path = "herramientas-desarrolladores-linea-comandos-es.html"
+url = "/../herramientas-desarrolladores-linea-comandos"
+title = "Potentes herramientas para desarrolladores desde línea de comandos"
+
+[[input.files]]
+path = "sysdig-seguridad-cloud-nativa-es.html"
+url = "/../sysdig-seguridad-cloud-nativa"
+title = "Sysdig: Plataforma de seguridad cloud-nativa con IA"
+
+[[input.files]]
+path = "python-generadores-repetibles-es.html"
+url = "/../python-generadores-repetibles"
+title = "Python: Crear generadores repetibles (repeating generators)"
+
+[[input.files]]
+path = "boton_central_firefox-es.html"
+url = "/../boton_central_firefox"
+title = "Botón central en firefox"
+
+[[input.files]]
+path = "bootstrap-dropdown-enlaces-horizontal-es.html"
+url = "/../bootstrap-dropdown-enlaces-horizontal"
+title = "Bootstrap: Dos enlaces en la misma fila en dropdown"
+
+[[input.files]]
+path = "galen-framework-testing-responsive-es.html"
+url = "/../galen-framework-testing-responsive"
+title = "Galen Framework: Testing automatizado para diseño responsive"
+
+[[input.files]]
+path = "historia-x-forwarded-for-x-real-ip-es.html"
+url = "/../historia-x-forwarded-for-x-real-ip"
+title = "La historia detrás de X-Forwarded-For y X-Real-IP"
+
+[[input.files]]
+path = "nginx-x-forwarded-for-reverse-proxy-es.html"
+url = "/../nginx-x-forwarded-for-reverse-proxy"
+title = "Nginx: Configurar X-Forwarded-For en reverse proxy"
+
+[[input.files]]
+path = "sql-select-rows-max-value-es.html"
+url = "/../sql-select-rows-max-value"
+title = "SQL: Seleccionar filas con valor máximo por grupo"
+
+[[input.files]]
+path = "repetiendo-una-función-con-hilos-es.html"
+url = "/../repetiendo-una-función-con-hilos"
+title = "Repitiendo una función con hilos"
+
+[[input.files]]
+path = "instalar-insync-en-opensuse-es.html"
+url = "/../instalar-insync-en-opensuse"
+title = "Instalar InSync en Opensuse"
+
+[[input.files]]
+path = "nethogs-ver-ancho-de-banda-consumido-es.html"
+url = "/../nethogs-ver-ancho-de-banda-consumido"
+title = "NetHogs ver ancho de banda consumido"
+
+[[input.files]]
+path = "cierra-google-code-es.html"
+url = "/../cierra-google-code"
+title = "Cierra Google Code"
+
+[[input.files]]
+path = "pgcli-el-descubrimiento-de-hoy-es.html"
+url = "/../pgcli-el-descubrimiento-de-hoy"
+title = "pgcli el descubrimiento de hoy"
+
+[[input.files]]
+path = "reactivando-el-blog-es.html"
+url = "/../reactivando-el-blog"
+title = "Reactivando el blog"
+
+[[input.files]]
+path = "decorador-vista-ajax-es.html"
+url = "/../decorador-vista-ajax"
+title = "Decorador vista ajax"
+
+[[input.files]]
+path = "funcion-generica-para-usar-como-upload_to-es.html"
+url = "/../funcion-generica-para-usar-como-upload_to"
+title = "Función genérica para usar como upload_to"
+
+[[input.files]]
+path = "enlaces-en-listado-de-objectos-es.html"
+url = "/../enlaces-en-listado-de-objectos"
+title = "Django: enlaces en listado de objectos"
+
+[[input.files]]
+path = "settings-vars-processor-es.html"
+url = "/../settings-vars-processor"
+title = "Settings vars processor"

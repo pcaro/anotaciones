@@ -1,0 +1,331 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://pablocaro.es/en/theme/stylesheet/style.min.css">
+
+
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+          href="https://pablocaro.es/en/theme/pygments/github.min.css">
+
+
+  <link rel="stylesheet"
+        type="text/css"
+        href="https://pablocaro.es/en/theme/stork/stork.css" />
+
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/en/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/en/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/en/theme/font-awesome/css/solid.css">
+
+
+  <link rel="shortcut icon" href="/theme/img/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/theme/img/favicon.ico" type="image/x-icon">
+
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#333333">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#333333">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Microsoft EDGE -->
+  <meta name="msapplication-TileColor" content="#333333">
+
+  <link href="https://pablocaro.es/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Annotations by Pablo Caro Atom">
+
+  <link href="https://pablocaro.es/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Annotations by Pablo Caro RSS">
+
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-60035125-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Pablo Caro" />
+<meta name="description" content="Discover Kubegres, a Kubernetes operator that simplifies the deployment and management of highly available and scalable PostgreSQL clusters." />
+<meta name="keywords" content="kubernetes, postgresql, kubegres, operator, database, devops">
+
+<link rel="alternate" href="https://pablocaro.es/en/kubegres-postgresql-kubernetes" hreflang="en" />
+<link rel="alternate" href="https://pablocaro.es/en/../kubegres-postgresql-kubernetes" hreflang="es" />
+
+  <meta property="og:site_name" content="Annotations by Pablo Caro"/>
+  <meta property="og:title" content="Kubegres: Simplified PostgreSQL Management on Kubernetes"/>
+  <meta property="og:description" content="Discover Kubegres, a Kubernetes operator that simplifies the deployment and management of highly available and scalable PostgreSQL clusters."/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://pablocaro.es/en/kubegres-postgresql-kubernetes"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2025-12-25 14:00:00+01:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://pablocaro.es/en/author/pablo-caro.html">
+  <meta property="article:section" content="DevOps"/>
+  <meta property="article:tag" content="kubernetes"/>
+  <meta property="article:tag" content="postgresql"/>
+  <meta property="article:tag" content="kubegres"/>
+  <meta property="article:tag" content="operator"/>
+  <meta property="article:tag" content="database"/>
+  <meta property="article:tag" content="devops"/>
+  <meta property="og:image" content="/theme/img/profile.png">
+
+  <title>Annotations by Pablo Caro &ndash; Kubegres: Simplified PostgreSQL Management on Kubernetes</title>
+
+
+</head>
+<body class="light-theme">
+
+<aside>
+  <div>
+    <a href="https://pablocaro.es/en/">
+      <img src="/theme/img/profile.png" alt="Anotaciones" title="Anotaciones">
+    </a>
+
+    <h1>
+      <a href="https://pablocaro.es/en/">Anotaciones</a>
+    </h1>
+
+    <p>Annotations</p>
+
+    <div class="stork">
+      <input class="stork-input" type="text" autocomplete="off" name="q" data-stork="sitesearch" placeholder="Search..." onclick="loadStorkIndex()"/>
+      <div class="stork-output" data-stork="sitesearch-output"></div>
+    </div>
+
+    <nav>
+      <ul class="list">
+
+
+
+          <li>
+            <a target="_self" href="http://x.com/pcaro" >@pcaro at X.com</a>
+          </li>
+          <li>
+            <a target="_self" href="http://python.org/" >Python.org</a>
+          </li>
+          <li>
+            <a target="_self" href="http://jinja.pocoo.org/" >Jinja2</a>
+          </li>
+      </ul>
+    </nav>
+
+    <ul class="social">
+      <li>
+        <a class="sc-Twitter"
+           href="http://twitter.com/pcaro"
+           target="_blank">
+          <i class="fa-brands fa-Twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Github"
+           href="http://github.com/pcaro"
+           target="_blank">
+          <i class="fa-brands fa-Github"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Linkedin"
+           href="https://www.linkedin.com/in/pcarorevuelta"
+           target="_blank">
+          <i class="fa-brands fa-Linkedin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Facebook"
+           href="https://www.facebook.com/pablo.carorevuelta"
+           target="_blank">
+          <i class="fa-brands fa-Facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Email"
+           href="mailto:correo@pablocaro.es"
+           target="_blank">
+          <i class="fa-brands fa-Email"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+</aside>
+  <main>
+
+<nav>
+  <a href="https://pablocaro.es/en/">Home</a>
+
+  <a href="/en/archives.html">Archives</a>
+  <a href="/en/categories.html">Categories</a>
+  <a href="/en/tags.html">Tags</a>
+  <a href="/en/search.html">Search</a>
+  <a href="/">Español</a>
+
+  <a href="https://pablocaro.es/feeds/all.atom.xml">Atom</a>
+
+  <a href="https://pablocaro.es/feeds/all.rss.xml">RSS</a>
+</nav>
+
+<article class="single">
+  <header>
+          <div class="translations">
+            <a href="https://pablocaro.es/en/../kubegres-postgresql-kubernetes">Leer en español</a>
+    </div>
+
+    <h1 id="kubegres-postgresql-kubernetes">Kubegres: Simplified PostgreSQL Management on Kubernetes</h1>
+    <p>
+      Posted on Thu 25 December 2025 in <a href="https://pablocaro.es/en/category/devops.html">DevOps</a>
+
+    </p>
+  </header>
+
+
+  <div>
+    <p>Deploying and managing relational databases on Kubernetes can be challenging. Although containers and orchestration offer flexibility, data persistence, high availability, and backups for a database like PostgreSQL require careful consideration. This is where <strong>Kubegres</strong> comes into play.</p>
+<h2 id="what-is-kubegres">What is Kubegres?<a class="headerlink" href="#what-is-kubegres" title="Permanent link">&para;</a></h2>
+<p>Kubegres is a <strong>Kubernetes operator</strong> that allows you to deploy and manage PostgreSQL clusters on Kubernetes simply and efficiently. An operator is an application that extends Kubernetes functionalities, automating complex operational tasks that typically require manual intervention.</p>
+<h2 id="why-use-kubegres">Why use Kubegres?<a class="headerlink" href="#why-use-kubegres" title="Permanent link">&para;</a></h2>
+<p>Kubegres abstracts much of the complexity of running PostgreSQL in an orchestrated environment, offering key features such as:</p>
+<ul>
+<li><strong>High Availability (HA)</strong>: Automatic configuration of PostgreSQL replicas to ensure service continuity in the event of failures.</li>
+<li><strong>Replication</strong>: Support for streaming replication (Primary/Standby) for redundancy and read scalability.</li>
+<li><strong>Backups and Restore</strong>: Facilitates the configuration of backup policies and data recovery.</li>
+<li><strong>Scalability</strong>: Allows scaling PostgreSQL read replicas to handle growing workloads.</li>
+<li><strong>Easy Updates</strong>: Manages PostgreSQL version updates within the cluster.</li>
+<li><strong>Monitoring</strong>: Integrates mechanisms to monitor the cluster status.</li>
+</ul>
+<h2 id="how-does-it-work">How does it work?<a class="headerlink" href="#how-does-it-work" title="Permanent link">&para;</a></h2>
+<p>Kubegres uses Kubernetes <strong>Custom Resources (CRs)</strong>. This means you interact with your PostgreSQL cluster using standard Kubernetes objects (YAML). You define the desired state of your cluster (number of replicas, PostgreSQL version, backup policies) in a YAML file, and Kubegres ensures that state is maintained at all times.</p>
+<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kubegres.reactive-tech.io/v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Kubegres</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-postgres</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">replicas</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+<span class="w">  </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">postgres:13.2</span>
+<span class="w">  </span><span class="nt">database</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10Gi</span>
+<span class="w">  </span><span class="c1"># ... other settings for backups, etc.</span>
+</code></pre></div>
+
+<h2 id="benefits-for-developers-and-operations">Benefits for Developers and Operations<a class="headerlink" href="#benefits-for-developers-and-operations" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Simplification</strong>: Drastically reduces the complexity of operating PostgreSQL on Kubernetes.</li>
+<li><strong>Automation</strong>: Tasks like failover, replication, and backups are managed automatically.</li>
+<li><strong>Consistency</strong>: Ensures that the state of your database always reflects your desired configuration.</li>
+<li><strong>DevOps Friendly</strong>: Allows you to integrate database management into your CI/CD pipelines using the same tools and workflows as for the rest of your K8s applications.</li>
+</ul>
+<p>Kubegres is an excellent choice for teams looking for a robust and automated solution for their PostgreSQL needs on Kubernetes.</p>
+<p><em>Original article</em>: <a href="https://www.kubegres.io/">Kubegres - The Kubernetes PostgreSQL operator</a></p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="https://pablocaro.es/en/tag/kubernetes.html">kubernetes</a>
+      <a href="https://pablocaro.es/en/tag/postgresql.html">postgresql</a>
+      <a href="https://pablocaro.es/en/tag/kubegres.html">kubegres</a>
+      <a href="https://pablocaro.es/en/tag/operator.html">operator</a>
+      <a href="https://pablocaro.es/en/tag/database.html">database</a>
+      <a href="https://pablocaro.es/en/tag/devops.html">devops</a>
+    </p>
+  </div>
+
+
+
+  <div class="neighbors">
+    <a class="btn float-left" href="https://pablocaro.es/en/estados-conexion-tcp-netstat-ss" title="TCP Connection States in GNU/Linux: netstat and ss">
+      <i class="fa fa-angle-left"></i> Previous Post
+    </a>
+    <a class="btn float-right" href="https://pablocaro.es/en/docker-http-https-echo" title="`docker-http-https-echo`: An Essential Tool for Network Debugging">
+      Next Post <i class="fa fa-angle-right"></i>
+    </a>
+  </div>
+
+  <div class="related-posts">
+    <h4>You might enjoy</h4>
+    <ul class="related-posts">
+      <li><a href="https://pablocaro.es/en/sysdig-seguridad-cloud-nativa">Sysdig: Cloud-Native Security Platform with AI</a></li>
+      <li><a href="https://pablocaro.es/en/pgcli-el-descubrimiento-de-hoy">pgcli the discovery of the day</a></li>
+    </ul>
+  </div>
+
+
+
+<!-- Disqus -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'anotaciones';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>
+    Please enable JavaScript to view comments.
+</noscript>
+<!-- End Disqus -->
+</article>
+
+<footer>
+<p>
+  &copy; 2025  - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/3.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/3.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Annotations by Pablo Caro ",
+  "url" : "https://pablocaro.es/en",
+  "image": "/theme/img/profile.png",
+  "description": ""
+}
+</script>  <script src="https://files.stork-search.net/releases/v1.6.0/stork.js"></script>
+  <script>
+    window.storkIndexLoaded = false;
+    window.loadStorkIndex = function () {
+      if (window.storkIndexLoaded) {
+        return;
+      }
+      if (typeof stork === 'undefined') {
+        console.error('Stork is not loaded yet, retrying...');
+        setTimeout(window.loadStorkIndex, 100);
+        return;
+      }
+      stork.register("sitesearch", "https://pablocaro.es/en/search-index.st", { showProgress: false });
+      stork.register("sitesearch-page", "https://pablocaro.es/en/search-index.st", { showProgress: false });
+      window.storkIndexLoaded = true;
+    }
+  </script>
+
+</body>
+</html>

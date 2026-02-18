@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Annotations by Pablo Caro - logs</title><link href="https://pablocaro.es/en/" rel="alternate"></link><link href="https://pablocaro.es/feeds/tags/logs.atom.xml" rel="self"></link><id>https://pablocaro.es/en/</id><updated>2025-12-25T13:00:00+01:00</updated><subtitle>Annotations</subtitle><entry><title>Reduce Noise in Your Python Logs: A Smart Approach</title><link href="https://pablocaro.es/en/reduce-ruido-logs-python" rel="alternate"></link><published>2025-12-25T13:00:00+01:00</published><updated>2025-12-25T13:00:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2025-12-25:/en/reduce-ruido-logs-python</id><summary type="html">&lt;p&gt;Learn how to configure Python's &lt;code&gt;logging&lt;/code&gt; module to avoid message overload from third-party libraries, keeping your logs clean and useful.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Python's &lt;code&gt;logging&lt;/code&gt; module is a powerful tool, but it can quickly become a source of "noise" when third-party libraries flood your logs with messages that are not relevant to debugging your application. Keeping logs clean is crucial for efficiently identifying issues and understanding the actual behavior of your code.&lt;/p&gt;
+&lt;h2 id="the-problem-with-basicconfig"&gt;The Problem with &lt;code&gt;basicConfig()&lt;/code&gt;&lt;a class="headerlink" href="#the-problem-with-basicconfig" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Many Python developers start using &lt;code&gt;logging&lt;/code&gt; with &lt;code&gt;logging.basicConfig()&lt;/code&gt;. While convenient, this function configures the "root logger" of your application. The problem is that &lt;strong&gt;all loggers in your application, including third-party libraries, are children of the root logger&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;This means that if you configure the root logger to the &lt;code&gt;DEBUG&lt;/code&gt; level, you will start seeing debug messages from all the libraries you use, which can be overwhelming and hide the truly important information from your own code.&lt;/p&gt;
+&lt;h2 id="the-recommended-solution-granular-configuration"&gt;The Recommended Solution: Granular Configuration&lt;a class="headerlink" href="#the-recommended-solution-granular-configuration" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;To avoid this overload, the strategy involves taking more granular control of logging levels.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Name Your Loggers:&lt;/strong&gt;
+    Follow the best practice of creating a specific logger for each module of your application using &lt;code&gt;logging.getLogger(__name__)&lt;/code&gt;. This creates a hierarchy of loggers that you can control individually.&lt;/p&gt;
+&lt;p&gt;```python&lt;/p&gt;
+&lt;h1 id="my_modulepy"&gt;my_module.py&lt;a class="headerlink" href="#my_modulepy" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;import logging
+logger = logging.getLogger(&lt;strong&gt;name&lt;/strong&gt;)&lt;/p&gt;
+&lt;p&gt;def my_function():
+    logger.info("My function is running.")
+    logger.debug("Debug message in my function.")
+```&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Configure Levels on Application-Specific Loggers:&lt;/strong&gt;
+    Instead of modifying the root logger, set the logging level on the highest-level logger of your own application. This allows your modules to log messages at detailed levels (e.g., &lt;code&gt;DEBUG&lt;/code&gt;), while third-party libraries (which will remain children of the unconfigured root logger, or with a less verbose default configuration) will only show more critical messages (e.g., &lt;code&gt;WARNING&lt;/code&gt; or &lt;code&gt;ERROR&lt;/code&gt;).&lt;/p&gt;
+&lt;p&gt;```python&lt;/p&gt;
+&lt;h1 id="mainpy-or-your-main-entry-point"&gt;main.py (or your main entry point)&lt;a class="headerlink" href="#mainpy-or-your-main-entry-point" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;import logging
+from my_package.my_module import my_function&lt;/p&gt;
+&lt;h1 id="create-a-logger-for-your-main-application"&gt;Create a logger for your main application&lt;a class="headerlink" href="#create-a-logger-for-your-main-application" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;app_logger = logging.getLogger('my_package') # Or the name of your main package
+app_logger.setLevel(logging.DEBUG)&lt;/p&gt;
+&lt;h1 id="create-a-handler-for-output-eg-to-console"&gt;Create a handler for output (e.g., to console)&lt;a class="headerlink" href="#create-a-handler-for-output-eg-to-console" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;handler = logging.StreamHandler()
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+handler.setFormatter(formatter)&lt;/p&gt;
+&lt;h1 id="add-the-handler-to-your-application-logger"&gt;Add the handler to your application logger&lt;a class="headerlink" href="#add-the-handler-to-your-application-logger" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;app_logger.addHandler(handler)&lt;/p&gt;
+&lt;h1 id="now-the-root-logger-and-its-children-the-libraries-will-not-be-directly-affected"&gt;Now, the root logger (and its children, the libraries) will not be directly affected&lt;a class="headerlink" href="#now-the-root-logger-and-its-children-the-libraries-will-not-be-directly-affected" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h1&gt;
+&lt;h1 id="you-can-control-the-level-of-specific-libraries-if-you-need-to"&gt;You can control the level of specific libraries if you need to&lt;a class="headerlink" href="#you-can-control-the-level-of-specific-libraries-if-you-need-to" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;logging.getLogger('requests').setLevel(logging.WARNING) # Example for a library&lt;/p&gt;
+&lt;p&gt;my_function()
+```&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="advanced-tip-first-party-dependency-management"&gt;Advanced Tip: First-Party Dependency Management&lt;a class="headerlink" href="#advanced-tip-first-party-dependency-management" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;For projects with multiple internal modules or "first-party" dependencies (that you develop yourself), you can wrap &lt;code&gt;getLogger()&lt;/code&gt; to always prefix the logger name with your organization or project name (e.g., &lt;code&gt;ORG_NAME.my_module&lt;/code&gt;). This allows you to control the logging level of an entire set of internal loggers more easily.&lt;/p&gt;
+&lt;h2 id="conclusion"&gt;Conclusion&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Reducing noise in your logs not only makes them more readable but also more reliable as a debugging tool. By adopting a granular approach to Python's &lt;code&gt;logging&lt;/code&gt; configuration, you ensure that critical information from your application is not lost in a sea of messages from third-party libraries.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Original article&lt;/em&gt;: &lt;a href="https://sinclairtarget.com/blog/2024/03/how-to-make-your-logs-less-noisy-in-python/"&gt;How to Make Your Logs Less Noisy in Python | Sinclair Target&lt;/a&gt;&lt;/p&gt;</content><category term="Programming"></category><category term="python"></category><category term="logging"></category><category term="logs"></category><category term="debugging"></category><category term="development"></category></entry></feed>

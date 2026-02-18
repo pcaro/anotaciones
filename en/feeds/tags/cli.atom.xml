@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Annotations by Pablo Caro - cli</title><link href="https://pablocaro.es/en/" rel="alternate"></link><link href="https://pablocaro.es/feeds/tags/cli.atom.xml" rel="self"></link><id>https://pablocaro.es/en/</id><updated>2026-02-11T20:23:00+01:00</updated><subtitle>Annotations</subtitle><entry><title>Managing GitHub installations with gah</title><link href="https://pablocaro.es/en/gestionando-instalaciones-desde-github-con-gah" rel="alternate"></link><published>2026-02-11T20:23:00+01:00</published><updated>2026-02-11T20:23:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-02-11:/en/gestionando-instalaciones-desde-github-con-gah</id><summary type="html">&lt;p class="first last"&gt;Install binaries directly from GitHub releases easily with gah.&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;&lt;a class="reference external" href="https://github.com/get-gah/gah"&gt;gah&lt;/a&gt; is a tool that simplifies installing programs distributed via GitHub releases. It's a lightweight alternative when you don't want to rely on your distro's package manager or when you need a newer version.&lt;/p&gt;
+&lt;div class="section" id="installation"&gt;
+&lt;h2&gt;Installation&lt;/h2&gt;
+&lt;p&gt;To install &lt;strong&gt;gah&lt;/strong&gt;, you can use the official script:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;bash&lt;span class="w"&gt; &lt;/span&gt;-c&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;curl&lt;span class="w"&gt; &lt;/span&gt;-fsSL&lt;span class="w"&gt; &lt;/span&gt;https://raw.githubusercontent.com/get-gah/gah/refs/heads/master/tools/install.sh&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="usage"&gt;
+&lt;h2&gt;Usage&lt;/h2&gt;
+&lt;p&gt;Once installed, usage is very straightforward. Here are a couple of examples I've used recently to install popular Rust tools:&lt;/p&gt;
+&lt;p&gt;To install &lt;cite&gt;fd&lt;/cite&gt; (a fast alternative to &lt;tt class="docutils literal"&gt;find&lt;/tt&gt;):&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;gah&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;sharkdp/fd
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;To install &lt;cite&gt;ripgrep&lt;/cite&gt; (a fast alternative to &lt;tt class="docutils literal"&gt;grep&lt;/tt&gt;):&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;gah&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;BurntSushi/ripgrep
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Gah handles downloading the correct asset for your architecture, unpacking it, and placing it in your path.&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="Linux"></category><category term="linux"></category><category term="tools"></category><category term="cli"></category></entry><entry><title>`fresh`: My preferred terminal editor for daily use</title><link href="https://pablocaro.es/en/fresh-editor-terminal" rel="alternate"></link><published>2025-12-25T15:45:00+01:00</published><updated>2025-12-25T15:45:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2025-12-25:/en/fresh-editor-terminal</id><summary type="html">&lt;p&gt;Discover &lt;code&gt;fresh&lt;/code&gt;, a fast, modern, modeless terminal text editor, ideal for casual file editing, surpassing &lt;code&gt;nano&lt;/code&gt; and &lt;code&gt;vim&lt;/code&gt; in simplicity for regular use.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Although &lt;code&gt;vim&lt;/code&gt; is an incredibly powerful tool and &lt;code&gt;nano&lt;/code&gt; stands out for its extreme simplicity, I often look for a middle ground for file editing in the terminal. An editor that is fast, modern, and doesn't force me to remember modes or complex key combinations for simple tasks. That's how I discovered &lt;strong&gt;&lt;code&gt;fresh&lt;/code&gt;&lt;/strong&gt;, and it has quickly become my preferred terminal editor for daily use.&lt;/p&gt;
+&lt;h2 id="what-is-fresh"&gt;What is &lt;code&gt;fresh&lt;/code&gt;?&lt;a class="headerlink" href="#what-is-fresh" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;fresh&lt;/code&gt; is a text editor for the terminal designed to be &lt;strong&gt;simple, fast, and efficient&lt;/strong&gt;. Unlike &lt;code&gt;vim&lt;/code&gt;, &lt;code&gt;fresh&lt;/code&gt; is a modeless editor, which means you can start typing and editing text immediately, just like you would in a graphical editor. Unlike &lt;code&gt;nano&lt;/code&gt;, &lt;code&gt;fresh&lt;/code&gt; offers a more modern experience with features you expect from a current text editor.&lt;/p&gt;
+&lt;h2 id="why-do-i-prefer-it-over-nano-or-vim-for-regular-use"&gt;Why do I prefer it over &lt;code&gt;nano&lt;/code&gt; or &lt;code&gt;vim&lt;/code&gt; for regular use?&lt;a class="headerlink" href="#why-do-i-prefer-it-over-nano-or-vim-for-regular-use" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Modeless&lt;/strong&gt;: The main advantage over &lt;code&gt;vim&lt;/code&gt;. You don't need to learn to switch between insert, normal, visual modes, etc. You simply open the file and edit.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Modern and Fast&lt;/strong&gt;: Despite running in the terminal, &lt;code&gt;fresh&lt;/code&gt; feels responsive and offers a clean interface.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Syntax Highlighting&lt;/strong&gt;: Support for syntax coloring for a wide variety of languages.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Mouse Support&lt;/strong&gt;: You can click to move the cursor, select text, or even use the wheel to scroll.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Multi-Cursor&lt;/strong&gt;: A very powerful feature that &lt;code&gt;nano&lt;/code&gt; does not offer and &lt;code&gt;vim&lt;/code&gt; requires more complexity to use.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Undo/Redo&lt;/strong&gt;: Full &lt;code&gt;undo&lt;/code&gt;/&lt;code&gt;redo&lt;/code&gt; functionality.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Search and Replace&lt;/strong&gt;: Simple and intuitive search and replace functions.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;While &lt;code&gt;vim&lt;/code&gt; remains my choice for complex edits or advanced scripting, for "opening a &lt;code&gt;.conf&lt;/code&gt;", modifying a &lt;code&gt;.bashrc&lt;/code&gt;, or writing a small note, &lt;code&gt;fresh&lt;/code&gt; is unbeatable in speed and convenience. &lt;code&gt;nano&lt;/code&gt; is perhaps too basic for my needs, lacking most of the modern features that &lt;code&gt;fresh&lt;/code&gt; offers.&lt;/p&gt;
+&lt;h2 id="installation"&gt;Installation&lt;a class="headerlink" href="#installation" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;fresh&lt;/code&gt; is easy to install on most Linux distributions. For example, on Debian/Ubuntu-based systems:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;apt&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;fresh
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Or you can follow the instructions in the official repository to compile it from source or use other package managers.&lt;/p&gt;
+&lt;h2 id="conclusion"&gt;Conclusion&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;If you are looking for a terminal editor that is a perfect hybrid between the power of &lt;code&gt;vim&lt;/code&gt; and the simplicity of &lt;code&gt;nano&lt;/code&gt;, but with a modern touch and focused on immediate usability, &lt;code&gt;fresh&lt;/code&gt; is an excellent choice. Give it a try, it might become your new favorite!&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Official repository&lt;/em&gt;: &lt;a href="https://sinelaw.github.io/fresh/"&gt;&lt;code&gt;fresh&lt;/code&gt; on GitHub&lt;/a&gt;&lt;/p&gt;</content><category term="Tools"></category><category term="fresh"></category><category term="terminal"></category><category term="editor"></category><category term="productivity"></category><category term="linux"></category><category term="tools"></category><category term="cli"></category></entry><entry><title>Powerful Command Line Tools for Developers</title><link href="https://pablocaro.es/en/herramientas-desarrolladores-linea-comandos" rel="alternate"></link><published>2016-06-07T11:36:00+02:00</published><updated>2016-06-07T11:36:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2016-06-07:/en/herramientas-desarrolladores-linea-comandos</id><summary type="html">&lt;p&gt;Collection of essential command line tools for developers: curl, ngrep, netcat, sshuttle, siege, and mitmproxy&lt;/p&gt;</summary><content type="html">&lt;p&gt;The &lt;strong&gt;command line remains the most powerful environment&lt;/strong&gt; for developers. These specialized tools dramatically expand your debugging, testing, and analysis capabilities.&lt;/p&gt;
+&lt;h2 id="curl-the-http-swiss-army-knife"&gt;Curl: The HTTP Swiss Army Knife&lt;a class="headerlink" href="#curl-the-http-swiss-army-knife" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Get your public IP&lt;/span&gt;
+curl&lt;span class="w"&gt; &lt;/span&gt;ifconfig.me
+
+&lt;span class="c1"&gt;# Inspect response headers&lt;/span&gt;
+curl&lt;span class="w"&gt; &lt;/span&gt;-I&lt;span class="w"&gt; &lt;/span&gt;https://example.com
+
+&lt;span class="c1"&gt;# POST with JSON data&lt;/span&gt;
+curl&lt;span class="w"&gt; &lt;/span&gt;-X&lt;span class="w"&gt; &lt;/span&gt;POST&lt;span class="w"&gt; &lt;/span&gt;-H&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Content-Type: application/json&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="se"&gt;\&lt;/span&gt;
+&lt;span class="w"&gt;     &lt;/span&gt;-d&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;{&amp;quot;key&amp;quot;:&amp;quot;value&amp;quot;}&amp;#39;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;https://api.example.com
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Main usage&lt;/strong&gt;: Network data transfer, API testing, HTTP inspection.&lt;/p&gt;
+&lt;h2 id="ngrep-grep-for-network-traffic"&gt;Ngrep: Grep for Network Traffic&lt;a class="headerlink" href="#ngrep-grep-for-network-traffic" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Filter HTTP traffic by keyword&lt;/span&gt;
+ngrep&lt;span class="w"&gt; &lt;/span&gt;-i&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;password&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;port&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;80&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Capture by specific IP&lt;/span&gt;
+ngrep&lt;span class="w"&gt; &lt;/span&gt;host&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;192&lt;/span&gt;.168.1.100
+
+&lt;span class="c1"&gt;# Monitor traffic on specific port&lt;/span&gt;
+ngrep&lt;span class="w"&gt; &lt;/span&gt;port&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;443&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Main usage&lt;/strong&gt;: Network packet analysis, protocol debugging, traffic monitoring.&lt;/p&gt;
+&lt;h2 id="netcat-nc-the-networking-swiss-army-knife"&gt;Netcat (nc): The Networking Swiss Army Knife&lt;a class="headerlink" href="#netcat-nc-the-networking-swiss-army-knife" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Port scanning&lt;/span&gt;
+nc&lt;span class="w"&gt; &lt;/span&gt;-zv&lt;span class="w"&gt; &lt;/span&gt;example.com&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;-1000
+
+&lt;span class="c1"&gt;# Transfer file between servers&lt;/span&gt;
+&lt;span class="c1"&gt;# Receiver: nc -l 1234 &amp;gt; received_file&lt;/span&gt;
+&lt;span class="c1"&gt;# Sender: nc destination_server 1234 &amp;lt; file_to_send&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Create simple HTTP server&lt;/span&gt;
+&lt;span class="nb"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;HTTP/1.1 200 OK\n\nHello world&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;nc&lt;span class="w"&gt; &lt;/span&gt;-l&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;8080&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Main usage&lt;/strong&gt;: Port scanning, file transfer, connectivity testing.&lt;/p&gt;
+&lt;h2 id="sshuttle-easy-vpn-with-ssh"&gt;Sshuttle: Easy VPN with SSH&lt;a class="headerlink" href="#sshuttle-easy-vpn-with-ssh" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Tunnel all traffic&lt;/span&gt;
+sshuttle&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;user@server&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;0&lt;/span&gt;.0.0.0/0
+
+&lt;span class="c1"&gt;# Tunnel only a subnet&lt;/span&gt;
+sshuttle&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;user@server&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;192&lt;/span&gt;.168.1.0/24
+
+&lt;span class="c1"&gt;# Bypass geo-blocking&lt;/span&gt;
+sshuttle&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;remote_server&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;0&lt;/span&gt;.0.0.0/0&lt;span class="w"&gt; &lt;/span&gt;--dns
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Main usage&lt;/strong&gt;: Secure tunneling, geo-restriction bypass, protection on public WiFi.&lt;/p&gt;
+&lt;h2 id="siege-http-load-bombardment"&gt;Siege: HTTP Load Bombardment&lt;a class="headerlink" href="#siege-http-load-bombardment" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Simple load test&lt;/span&gt;
+siege&lt;span class="w"&gt; &lt;/span&gt;-c&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;25&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;-t&lt;span class="w"&gt; &lt;/span&gt;60s&lt;span class="w"&gt; &lt;/span&gt;https://example.com
+
+&lt;span class="c1"&gt;# Test with multiple URLs&lt;/span&gt;
+siege&lt;span class="w"&gt; &lt;/span&gt;-c&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;50&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;-t&lt;span class="w"&gt; &lt;/span&gt;30s&lt;span class="w"&gt; &lt;/span&gt;-f&lt;span class="w"&gt; &lt;/span&gt;urls.txt
+
+&lt;span class="c1"&gt;# Specific benchmark&lt;/span&gt;
+siege&lt;span class="w"&gt; &lt;/span&gt;-c&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;100&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;10&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;https://api.example.com/endpoint
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Main usage&lt;/strong&gt;: Performance testing, HTTP benchmarking, load simulation.&lt;/p&gt;
+&lt;h2 id="mitmproxy-spy-on-https-traffic"&gt;Mitmproxy: Spy on HTTP/S Traffic&lt;a class="headerlink" href="#mitmproxy-spy-on-https-traffic" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Basic proxy&lt;/span&gt;
+mitmproxy&lt;span class="w"&gt; &lt;/span&gt;-p&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;8080&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Transparent mode&lt;/span&gt;
+mitmproxy&lt;span class="w"&gt; &lt;/span&gt;--mode&lt;span class="w"&gt; &lt;/span&gt;transparent
+
+&lt;span class="c1"&gt;# Save traffic to file&lt;/span&gt;
+mitmdump&lt;span class="w"&gt; &lt;/span&gt;-w&lt;span class="w"&gt; &lt;/span&gt;capture.flow
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Main usage&lt;/strong&gt;: Web application debugging, HTTPS traffic inspection, API analysis.&lt;/p&gt;
+&lt;h2 id="typical-workflow"&gt;Typical Workflow&lt;a class="headerlink" href="#typical-workflow" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# 1. Scan connectivity&lt;/span&gt;
+nc&lt;span class="w"&gt; &lt;/span&gt;-zv&lt;span class="w"&gt; &lt;/span&gt;api.example.com&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;443&lt;/span&gt;
+
+&lt;span class="c1"&gt;# 2. Analyze response&lt;/span&gt;
+curl&lt;span class="w"&gt; &lt;/span&gt;-I&lt;span class="w"&gt; &lt;/span&gt;https://api.example.com
+
+&lt;span class="c1"&gt;# 3. Monitor traffic&lt;/span&gt;
+ngrep&lt;span class="w"&gt; &lt;/span&gt;-i&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;api&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;port&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;443&lt;/span&gt;
+
+&lt;span class="c1"&gt;# 4. Load test&lt;/span&gt;
+siege&lt;span class="w"&gt; &lt;/span&gt;-c&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;20&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;-t&lt;span class="w"&gt; &lt;/span&gt;30s&lt;span class="w"&gt; &lt;/span&gt;https://api.example.com
+
+&lt;span class="c1"&gt;# 5. Detailed debugging&lt;/span&gt;
+mitmproxy&lt;span class="w"&gt; &lt;/span&gt;-p&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;8080&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="why-command-line"&gt;Why Command Line?&lt;a class="headerlink" href="#why-command-line" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Speed&lt;/strong&gt;: No GUI overhead&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Scriptability&lt;/strong&gt;: Complete automation&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Flexibility&lt;/strong&gt;: Combination with pipes and redirects&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Universality&lt;/strong&gt;: Available on any server&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;These tools turn your terminal into a &lt;strong&gt;complete networking and testing laboratory&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Original source&lt;/em&gt;: &lt;a href="http://www.xn--apaados-6za.es/tenemos-que-apanar/internet-tutoriales-y-trucos/317-potentes-herramientas-desarrolladores-linea-comandos.html"&gt;Somos Apañados&lt;/a&gt;&lt;/p&gt;</content><category term="Tools"></category><category term="cli"></category><category term="tools"></category><category term="development"></category><category term="networking"></category><category term="testing"></category></entry></feed>

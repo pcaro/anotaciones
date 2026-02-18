@@ -1,0 +1,486 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://pablocaro.es/en/theme/stylesheet/style.min.css">
+
+
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+          href="https://pablocaro.es/en/theme/pygments/github.min.css">
+
+
+  <link rel="stylesheet"
+        type="text/css"
+        href="https://pablocaro.es/en/theme/stork/stork.css" />
+
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/en/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/en/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/en/theme/font-awesome/css/solid.css">
+
+
+  <link rel="shortcut icon" href="/theme/img/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/theme/img/favicon.ico" type="image/x-icon">
+
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#333333">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#333333">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Microsoft EDGE -->
+  <meta name="msapplication-TileColor" content="#333333">
+
+  <link href="https://pablocaro.es/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Annotations by Pablo Caro Atom">
+
+  <link href="https://pablocaro.es/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Annotations by Pablo Caro RSS">
+
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-60035125-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Pablo Caro" />
+<meta name="description" content="HTTPX emerges as the natural successor to requests, offering async support, HTTP/2, and a modern API for contemporary Python applications." />
+<meta name="keywords" content="python, http, httpx, async, requests">
+
+<link rel="alternate" href="https://pablocaro.es/en/httpx-cliente-http-moderno-python" hreflang="en" />
+<link rel="alternate" href="https://pablocaro.es/en/../httpx-cliente-http-moderno-python" hreflang="es" />
+
+  <meta property="og:site_name" content="Annotations by Pablo Caro"/>
+  <meta property="og:title" content="HTTPX: Modern HTTP Client for Python"/>
+  <meta property="og:description" content="HTTPX emerges as the natural successor to requests, offering async support, HTTP/2, and a modern API for contemporary Python applications."/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://pablocaro.es/en/httpx-cliente-http-moderno-python"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2024-09-23 00:07:00+02:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://pablocaro.es/en/author/pablo-caro.html">
+  <meta property="article:section" content="Programming"/>
+  <meta property="article:tag" content="python"/>
+  <meta property="article:tag" content="http"/>
+  <meta property="article:tag" content="httpx"/>
+  <meta property="article:tag" content="async"/>
+  <meta property="article:tag" content="requests"/>
+  <meta property="og:image" content="/theme/img/profile.png">
+
+  <title>Annotations by Pablo Caro &ndash; HTTPX: Modern HTTP Client for Python</title>
+
+
+</head>
+<body class="light-theme">
+
+<aside>
+  <div>
+    <a href="https://pablocaro.es/en/">
+      <img src="/theme/img/profile.png" alt="Anotaciones" title="Anotaciones">
+    </a>
+
+    <h1>
+      <a href="https://pablocaro.es/en/">Anotaciones</a>
+    </h1>
+
+    <p>Annotations</p>
+
+    <div class="stork">
+      <input class="stork-input" type="text" autocomplete="off" name="q" data-stork="sitesearch" placeholder="Search..." onclick="loadStorkIndex()"/>
+      <div class="stork-output" data-stork="sitesearch-output"></div>
+    </div>
+
+    <nav>
+      <ul class="list">
+
+
+
+          <li>
+            <a target="_self" href="http://x.com/pcaro" >@pcaro at X.com</a>
+          </li>
+          <li>
+            <a target="_self" href="http://python.org/" >Python.org</a>
+          </li>
+          <li>
+            <a target="_self" href="http://jinja.pocoo.org/" >Jinja2</a>
+          </li>
+      </ul>
+    </nav>
+
+    <ul class="social">
+      <li>
+        <a class="sc-Twitter"
+           href="http://twitter.com/pcaro"
+           target="_blank">
+          <i class="fa-brands fa-Twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Github"
+           href="http://github.com/pcaro"
+           target="_blank">
+          <i class="fa-brands fa-Github"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Linkedin"
+           href="https://www.linkedin.com/in/pcarorevuelta"
+           target="_blank">
+          <i class="fa-brands fa-Linkedin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Facebook"
+           href="https://www.facebook.com/pablo.carorevuelta"
+           target="_blank">
+          <i class="fa-brands fa-Facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Email"
+           href="mailto:correo@pablocaro.es"
+           target="_blank">
+          <i class="fa-brands fa-Email"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+</aside>
+  <main>
+
+<nav>
+  <a href="https://pablocaro.es/en/">Home</a>
+
+  <a href="/en/archives.html">Archives</a>
+  <a href="/en/categories.html">Categories</a>
+  <a href="/en/tags.html">Tags</a>
+  <a href="/en/search.html">Search</a>
+  <a href="/">Español</a>
+
+  <a href="https://pablocaro.es/feeds/all.atom.xml">Atom</a>
+
+  <a href="https://pablocaro.es/feeds/all.rss.xml">RSS</a>
+</nav>
+
+<article class="single">
+  <header>
+          <div class="translations">
+            <a href="https://pablocaro.es/en/../httpx-cliente-http-moderno-python">Leer en español</a>
+    </div>
+
+    <h1 id="httpx-cliente-http-moderno-python">HTTPX: Modern HTTP Client for Python</h1>
+    <p>
+      Posted on Mon 23 September 2024 in <a href="https://pablocaro.es/en/category/programming.html">Programming</a>
+
+    </p>
+  </header>
+
+
+  <div>
+    <p>HTTPX presents itself as the natural evolution of the popular <tt class="docutils literal">requests</tt> library, maintaining its simplicity but adding modern capabilities that current applications need.</p>
+<div class="section" id="why-httpx">
+<h2>Why HTTPX?</h2>
+<p>While <tt class="docutils literal">requests</tt> remains excellent for synchronous use, HTTPX addresses limitations that have arisen over time:</p>
+<ul class="simple">
+<li><strong>No native async support</strong> in requests</li>
+<li><strong>HTTP/2 not available</strong></li>
+<li><strong>Limited type hints</strong></li>
+<li><strong>Less precise timeouts</strong></li>
+</ul>
+</div>
+<div class="section" id="installation-and-configuration">
+<h2>Installation and Configuration</h2>
+<div class="highlight"><pre><span></span><span class="c1"># Basic installation</span>
+pip<span class="w"> </span>install<span class="w"> </span>httpx
+
+<span class="c1"># With HTTP/2 support</span>
+pip<span class="w"> </span>install<span class="w"> </span>httpx<span class="o">[</span>http2<span class="o">]</span>
+
+<span class="c1"># With advanced compression</span>
+pip<span class="w"> </span>install<span class="w"> </span>httpx<span class="o">[</span>brotli,zstd<span class="o">]</span>
+</pre></div>
+</div>
+<div class="section" id="familiar-api-modern-capabilities">
+<h2>Familiar API, Modern Capabilities</h2>
+<p><strong>Synchronous usage</strong> - Compatible with requests:</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">httpx</span>
+
+<span class="c1"># Basic GET</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">httpx</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;https://api.github.com/users/octocat&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">status_code</span><span class="p">)</span>  <span class="c1"># 200</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">&#39;login&#39;</span><span class="p">])</span>  <span class="c1"># &#39;octocat&#39;</span>
+
+<span class="c1"># POST with JSON data</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;key&#39;</span><span class="p">:</span> <span class="s1">&#39;value&#39;</span><span class="p">}</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">httpx</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s1">&#39;https://httpbin.org/post&#39;</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
+
+<span class="c1"># Custom headers</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;User-Agent&#39;</span><span class="p">:</span> <span class="s1">&#39;my-app/1.0&#39;</span><span class="p">}</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">httpx</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;https://api.example.com/data&#39;</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="section" id="the-power-of-async-await">
+<h2>The Power of Async/Await</h2>
+<p><strong>Asynchronous client</strong> - The real advantage:</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">asyncio</span>
+<span class="kn">import</span> <span class="nn">httpx</span>
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">fetch_user</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">username</span><span class="p">):</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;https://api.github.com/users/</span><span class="si">{</span><span class="n">username</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="k">async</span> <span class="k">with</span> <span class="n">httpx</span><span class="o">.</span><span class="n">AsyncClient</span><span class="p">()</span> <span class="k">as</span> <span class="n">client</span><span class="p">:</span>
+        <span class="n">users</span> <span class="o">=</span> <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span>
+            <span class="n">fetch_user</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="s1">&#39;octocat&#39;</span><span class="p">),</span>
+            <span class="n">fetch_user</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="s1">&#39;gvanrossum&#39;</span><span class="p">),</span>
+            <span class="n">fetch_user</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="s1">&#39;kennethreitz&#39;</span><span class="p">)</span>
+        <span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">user</span> <span class="ow">in</span> <span class="n">users</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">user</span><span class="p">[</span><span class="s1">&#39;login&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">user</span><span class="p">[</span><span class="s1">&#39;public_repos&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> repos&quot;</span><span class="p">)</span>
+
+<span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">main</span><span class="p">())</span>
+</pre></div>
+</div>
+<div class="section" id="advanced-features">
+<h2>Advanced Features</h2>
+<p><strong>Strict Timeouts</strong>:</p>
+<div class="highlight"><pre><span></span><span class="c1"># Granular timeout</span>
+<span class="n">timeout</span> <span class="o">=</span> <span class="n">httpx</span><span class="o">.</span><span class="n">Timeout</span><span class="p">(</span><span class="mf">10.0</span><span class="p">,</span> <span class="n">read</span><span class="o">=</span><span class="mf">5.0</span><span class="p">)</span>
+
+<span class="k">async</span> <span class="k">with</span> <span class="n">httpx</span><span class="o">.</span><span class="n">AsyncClient</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span> <span class="k">as</span> <span class="n">client</span><span class="p">:</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;https://slow-api.example.com&#39;</span><span class="p">)</span>
+</pre></div>
+<p><strong>Data Streaming</strong>:</p>
+<div class="highlight"><pre><span></span><span class="c1"># Streaming download</span>
+<span class="k">async</span> <span class="k">with</span> <span class="n">httpx</span><span class="o">.</span><span class="n">AsyncClient</span><span class="p">()</span> <span class="k">as</span> <span class="n">client</span><span class="p">:</span>
+    <span class="k">async</span> <span class="k">with</span> <span class="n">client</span><span class="o">.</span><span class="n">stream</span><span class="p">(</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="s1">&#39;https://example.com/bigfile.zip&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">r</span><span class="p">:</span>
+        <span class="k">async</span> <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">r</span><span class="o">.</span><span class="n">aiter_bytes</span><span class="p">(</span><span class="n">chunk_size</span><span class="o">=</span><span class="mi">8192</span><span class="p">):</span>
+            <span class="c1"># Process chunk</span>
+            <span class="n">process_data</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
+</pre></div>
+<p><strong>Testing with WSGI/ASGI Applications</strong>:</p>
+<div class="highlight"><pre><span></span><span class="c1"># Test FastAPI directly</span>
+<span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">FastAPI</span>
+<span class="kn">import</span> <span class="nn">httpx</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">()</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">read_root</span><span class="p">():</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;Hello World&quot;</span><span class="p">}</span>
+
+<span class="c1"># Direct test without server</span>
+<span class="k">with</span> <span class="n">httpx</span><span class="o">.</span><span class="n">Client</span><span class="p">(</span><span class="n">app</span><span class="o">=</span><span class="n">app</span><span class="p">,</span> <span class="n">base_url</span><span class="o">=</span><span class="s2">&quot;http://testserver&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">client</span><span class="p">:</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span> <span class="o">==</span> <span class="p">{</span><span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;Hello World&quot;</span><span class="p">}</span>
+</pre></div>
+</div>
+<div class="section" id="http-2-and-persistent-connections">
+<h2>HTTP/2 and Persistent Connections</h2>
+<div class="highlight"><pre><span></span><span class="c1"># Client with HTTP/2 and connection pooling</span>
+<span class="n">limits</span> <span class="o">=</span> <span class="n">httpx</span><span class="o">.</span><span class="n">Limits</span><span class="p">(</span><span class="n">max_keepalive_connections</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">max_connections</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="k">async</span> <span class="k">with</span> <span class="n">httpx</span><span class="o">.</span><span class="n">AsyncClient</span><span class="p">(</span><span class="n">http2</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">limits</span><span class="o">=</span><span class="n">limits</span><span class="p">)</span> <span class="k">as</span> <span class="n">client</span><span class="p">:</span>
+    <span class="c1"># Multiple requests reuse connections</span>
+    <span class="n">tasks</span> <span class="o">=</span> <span class="p">[</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;https://httpbin.org/get?page=</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+             <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">50</span><span class="p">)]</span>
+
+    <span class="n">responses</span> <span class="o">=</span> <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="o">*</span><span class="n">tasks</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Completed </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">responses</span><span class="p">)</span><span class="si">}</span><span class="s2"> requests&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="section" id="comparison-requests-vs-httpx">
+<h2>Comparison: requests vs HTTPX</h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Feature</th>
+<th class="head">requests</th>
+<th class="head">HTTPX</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>Familiar API</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr><td>Async support</td>
+<td>✗</td>
+<td>✓</td>
+</tr>
+<tr><td>HTTP/2</td>
+<td>✗</td>
+<td>✓</td>
+</tr>
+<tr><td>Type hints</td>
+<td>Partial</td>
+<td>Full</td>
+</tr>
+<tr><td>Precise timeouts</td>
+<td>Basic</td>
+<td>Advanced</td>
+</tr>
+<tr><td>WSGI/ASGI Testing</td>
+<td>✗</td>
+<td>✓</td>
+</tr>
+<tr><td>Streaming</td>
+<td>Basic</td>
+<td>Advanced</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="ideal-use-cases">
+<h2>Ideal Use Cases</h2>
+<p><strong>HTTPX is perfect for</strong>:</p>
+<ul class="simple">
+<li><strong>Concurrent APIs</strong> with async/await</li>
+<li><strong>Microservices</strong> that need HTTP/2</li>
+<li><strong>Application testing</strong> FastAPI/Django</li>
+<li><strong>Large-scale scraping</strong> with streaming</li>
+<li><strong>Modern applications</strong> with type safety</li>
+</ul>
+<p><strong>Keep requests for</strong>:</p>
+<ul class="simple">
+<li><strong>Simple scripts</strong> without concurrency</li>
+<li><strong>Legacy projects</strong> already established</li>
+<li><strong>Code with dependencies</strong> that require requests</li>
+</ul>
+</div>
+<div class="section" id="the-future-of-http-in-python">
+<h2>The Future of HTTP in Python</h2>
+<p>HTTPX represents the way forward for HTTP applications in Python, offering:</p>
+<ul class="simple">
+<li><strong>Modern performance</strong> with async and HTTP/2</li>
+<li><strong>Developer experience</strong> improved with types</li>
+<li><strong>Integrated ecosystem</strong> with current frameworks</li>
+<li><strong>Compatibility</strong> that eases migration</li>
+</ul>
+<p>It's time to consider HTTPX as the default HTTP client for new Python projects.</p>
+<p><em>Official documentation</em>: <a class="reference external" href="https://www.python-httpx.org/">python-httpx.org</a></p>
+</div>
+
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="https://pablocaro.es/en/tag/python.html">python</a>
+      <a href="https://pablocaro.es/en/tag/http.html">http</a>
+      <a href="https://pablocaro.es/en/tag/httpx.html">httpx</a>
+      <a href="https://pablocaro.es/en/tag/async.html">async</a>
+      <a href="https://pablocaro.es/en/tag/requests.html">requests</a>
+    </p>
+  </div>
+
+
+
+  <div class="neighbors">
+    <a class="btn float-left" href="https://pablocaro.es/en/server-sent-events-comunicacion-tiempo-real" title="Server-Sent Events: Simplified Real-Time Communication">
+      <i class="fa fa-angle-left"></i> Previous Post
+    </a>
+    <a class="btn float-right" href="https://pablocaro.es/en/conflacion-datos-geoespaciales-duckdb" title="Geospatial Data Conflation with DuckDB and Embeddings">
+      Next Post <i class="fa fa-angle-right"></i>
+    </a>
+  </div>
+
+  <div class="related-posts">
+    <h4>You might enjoy</h4>
+    <ul class="related-posts">
+      <li><a href="https://pablocaro.es/en/pandas-styler-presentacion-dataframes">Pandas Styler: Improve the Presentation of your DataFrames</a></li>
+      <li><a href="https://pablocaro.es/en/reduce-ruido-logs-python">Reduce Noise in Your Python Logs: A Smart Approach</a></li>
+      <li><a href="https://pablocaro.es/en/poe-the-poet-automatizando-tareas-en-proyectos-python-con-uv">Poe the Poet: Automating Tasks in Python Projects with uv</a></li>
+      <li><a href="https://pablocaro.es/en/una-de-versiones">About Versions</a></li>
+      <li><a href="https://pablocaro.es/en/python-generadores-repetibles">Python: Create Repeating Generators</a></li>
+    </ul>
+  </div>
+
+
+
+<!-- Disqus -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'anotaciones';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>
+    Please enable JavaScript to view comments.
+</noscript>
+<!-- End Disqus -->
+</article>
+
+<footer>
+<p>
+  &copy; 2025  - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/3.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/3.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Annotations by Pablo Caro ",
+  "url" : "https://pablocaro.es/en",
+  "image": "/theme/img/profile.png",
+  "description": ""
+}
+</script>  <script src="https://files.stork-search.net/releases/v1.6.0/stork.js"></script>
+  <script>
+    window.storkIndexLoaded = false;
+    window.loadStorkIndex = function () {
+      if (window.storkIndexLoaded) {
+        return;
+      }
+      if (typeof stork === 'undefined') {
+        console.error('Stork is not loaded yet, retrying...');
+        setTimeout(window.loadStorkIndex, 100);
+        return;
+      }
+      stork.register("sitesearch", "https://pablocaro.es/en/search-index.st", { showProgress: false });
+      stork.register("sitesearch-page", "https://pablocaro.es/en/search-index.st", { showProgress: false });
+      window.storkIndexLoaded = true;
+    }
+  </script>
+
+</body>
+</html>

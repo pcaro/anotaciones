@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Annotations by Pablo Caro - high-frequency</title><link href="https://pablocaro.es/en/" rel="alternate"></link><link href="https://pablocaro.es/feeds/tags/high-frequency.atom.xml" rel="self"></link><id>https://pablocaro.es/en/</id><updated>2016-06-27T11:51:00+02:00</updated><subtitle>Annotations</subtitle><entry><title>Introduction to High-Frequency Trading Systems</title><link href="https://pablocaro.es/en/introduccion-trading-alta-frecuencia" rel="alternate"></link><published>2016-06-27T11:51:00+02:00</published><updated>2016-06-27T11:51:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2016-06-27:/en/introduccion-trading-alta-frecuencia</id><summary type="html">&lt;p&gt;Fundamental concepts about High-Frequency Trading (HFT) systems, programs that execute thousands of trades per day in fractions of a second&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;strong&gt;High-Frequency Trading&lt;/strong&gt; (HFT) programs represent the extreme automation of financial investments, operating at speeds that surpass any human capability.&lt;/p&gt;
+&lt;h2 id="what-is-hft"&gt;What is HFT?&lt;a class="headerlink" href="#what-is-hft" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;HFT systems are &lt;strong&gt;programs designed to invest in financial markets&lt;/strong&gt; with the following characteristics:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Massive volume&lt;/strong&gt;: They buy and sell up to &lt;strong&gt;tens of thousands of stocks or options&lt;/strong&gt; per day&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Extreme speed&lt;/strong&gt;: Each operation can last &lt;strong&gt;fractions of a second&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Small margins&lt;/strong&gt;: &lt;strong&gt;Very reduced profit&lt;/strong&gt; per individual operation&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Cumulative effect&lt;/strong&gt;: In their &lt;strong&gt;global computation, they become very effective&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="fundamental-principles"&gt;Fundamental Principles&lt;a class="headerlink" href="#fundamental-principles" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="speed-as-a-competitive-advantage"&gt;Speed as a Competitive Advantage&lt;a class="headerlink" href="#speed-as-a-competitive-advantage" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Ultra-low latency&lt;/strong&gt;: Every millisecond counts&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Physical proximity&lt;/strong&gt;: Servers close to exchanges&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Specialized hardware&lt;/strong&gt;: FPGA, optimized fiber optic cables&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="algorithmic-strategies"&gt;Algorithmic Strategies&lt;a class="headerlink" href="#algorithmic-strategies" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Market making&lt;/strong&gt;: Providing constant liquidity&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Statistical arbitrage&lt;/strong&gt;: Taking advantage of price discrepancies&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Temporal arbitrage&lt;/strong&gt;: Exploiting differences between markets&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="key-technologies"&gt;Key Technologies&lt;a class="headerlink" href="#key-technologies" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="optimized-hardware"&gt;Optimized Hardware&lt;a class="headerlink" href="#optimized-hardware" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;FPGA (Field-Programmable Gate Arrays)&lt;/strong&gt; for ultra-fast processing&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Co-located servers&lt;/strong&gt; in exchange datacenters&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;High-speed fiber optic networks&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="specialized-software"&gt;Specialized Software&lt;a class="headerlink" href="#specialized-software" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Low-latency algorithms&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Optimized network protocols&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Real-time risk management systems&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="impact-on-markets"&gt;Impact on Markets&lt;a class="headerlink" href="#impact-on-markets" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="benefits"&gt;Benefits&lt;a class="headerlink" href="#benefits" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Greater liquidity&lt;/strong&gt; in markets&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Tighter spreads&lt;/strong&gt; between bid/ask&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Improved price efficiency&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="controversies"&gt;Controversies&lt;a class="headerlink" href="#controversies" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Increased volatility&lt;/strong&gt; in times of stress&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Unfair advantage&lt;/strong&gt; over traditional investors&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Potential market manipulations&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="the-future-of-hft"&gt;The Future of HFT&lt;a class="headerlink" href="#the-future-of-hft" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The race for speed continues to evolve towards:
+- &lt;strong&gt;Artificial Intelligence&lt;/strong&gt; and machine learning
+- &lt;strong&gt;Real-time sentiment analysis&lt;/strong&gt;
+- &lt;strong&gt;Quantum computing&lt;/strong&gt; experimental&lt;/p&gt;
+&lt;p&gt;HFT exemplifies how &lt;strong&gt;technology completely redefines&lt;/strong&gt; traditional industries, creating new opportunities and ethical challenges.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Original source&lt;/em&gt;: &lt;a href="http://albertomagallon.es/introduccion-a-los-sistemas-de-trading-de-alta-frecuencia/"&gt;Alberto Magallón&lt;/a&gt;&lt;/p&gt;</content><category term="Finance"></category><category term="trading"></category><category term="hft"></category><category term="high-frequency"></category><category term="algorithms"></category><category term="finance"></category></entry></feed>

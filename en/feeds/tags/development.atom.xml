@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Annotations by Pablo Caro - development</title><link href="https://pablocaro.es/en/" rel="alternate"></link><link href="https://pablocaro.es/feeds/tags/development.atom.xml" rel="self"></link><id>https://pablocaro.es/en/</id><updated>2025-12-25T16:10:00+01:00</updated><subtitle>Annotations</subtitle><entry><title>Multiline YAML: Understanding and testing complex strings</title><link href="https://pablocaro.es/en/yaml-multilinea-cadenas-complejas" rel="alternate"></link><published>2025-12-25T16:10:00+01:00</published><updated>2025-12-25T16:10:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2025-12-25:/en/yaml-multilinea-cadenas-complejas</id><summary type="html">&lt;p&gt;Explore YAML options for effectively handling multiline strings, with an interactive demo that allows you to test them in real-time.&lt;/p&gt;</summary><content type="html">&lt;p&gt;YAML has become the de facto format for configuration in many projects, from Kubernetes to CI/CD scripts. One of its most powerful, and sometimes confusing, features is the management of &lt;strong&gt;multiline strings&lt;/strong&gt;. Fortunately, there is an exceptional interactive tool to master this aspect: &lt;a href="https://yaml-multiline.info/"&gt;yaml-multiline.info&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id="formats-for-multiline-strings-in-yaml"&gt;Formats for Multiline Strings in YAML&lt;a class="headerlink" href="#formats-for-multiline-strings-in-yaml" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;YAML mainly offers two approaches for defining strings that span multiple lines:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Flow Scalars&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;They are simple strings, often quoted (&lt;code&gt;'...'&lt;/code&gt; or &lt;code&gt;"..."&lt;/code&gt;) or unquoted.&lt;/li&gt;
+&lt;li&gt;They ignore indentations and, by default, replace line breaks with spaces.&lt;/li&gt;
+&lt;li&gt;Double-quoted strings allow using escape sequences like &lt;code&gt;\n&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Block Scalars&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;They offer much more precise control over line breaks and indentation.&lt;/li&gt;
+&lt;li&gt;They are indicated with a special character at the beginning of the line where the string starts.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="keys-for-block-multiline-strings"&gt;Keys for Block Multiline Strings&lt;a class="headerlink" href="#keys-for-block-multiline-strings" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The two most important style indicators for block scalars are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;|&lt;/code&gt; (Literal Style)&lt;/strong&gt;: Keeps all line breaks and indentation as is. It is ideal for blocks of text where formatting is crucial (e.g., code, long messages).
+    &lt;code&gt;yaml
+    literal_string: |
+      This is a line.
+      This is another.
+        With its own indentation.&lt;/code&gt;
+    Result: "This is a line.\nThis is another.\n  With its own indentation.\n"&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;&amp;gt;&lt;/code&gt; (Folded Style)&lt;/strong&gt;: Replaces line breaks with spaces, joining lines into a single one. Only double line breaks (blank lines) or lines with greater indentation are kept as line breaks. It is useful for long paragraphs.
+    &lt;code&gt;yaml
+    folded_string: &amp;gt;
+      This is a string
+      folded into multiple lines.
+      It will keep the paragraph format.&lt;/code&gt;
+    Result: "This is a string folded into multiple lines. It will keep the paragraph format.\n"&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In addition to this, there are "chomping" indicators (&lt;code&gt;-&lt;/code&gt; to remove trailing line breaks, &lt;code&gt;+&lt;/code&gt; to keep them, or the default behavior) and indentation indicators that offer even more control.&lt;/p&gt;
+&lt;h2 id="real-time-demo"&gt;Real-Time Demo!&lt;a class="headerlink" href="#real-time-demo" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;What makes &lt;a href="https://yaml-multiline.info/"&gt;yaml-multiline.info&lt;/a&gt; an invaluable tool is its &lt;strong&gt;interactive demo&lt;/strong&gt;. You can test different YAML syntaxes in real-time and see how the resulting string is interpreted. It is the best way to visually understand how literal and folded styles work, and how chomping and indentation indicators affect the final result.&lt;/p&gt;
+&lt;h2 id="conclusion"&gt;Conclusion&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Understanding how to handle multiline strings in YAML not only improves the readability of your configuration files but also prevents unexpected errors. The real-time demo of &lt;code&gt;yaml-multiline.info&lt;/code&gt; is a fantastic resource for anyone who regularly works with YAML and wants to master this aspect.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Website&lt;/em&gt;: &lt;a href="https://yaml-multiline.info/"&gt;&lt;code&gt;yaml-multiline.info&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;</content><category term="Tools"></category><category term="yaml"></category><category term="configuration"></category><category term="development"></category><category term="tools"></category><category term="multiline"></category><category term="strings"></category></entry><entry><title>`direnv`: Manage your development environments intelligently</title><link href="https://pablocaro.es/en/direnv-gestion-entornos" rel="alternate"></link><published>2025-12-25T14:30:00+01:00</published><updated>2025-12-25T14:30:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2025-12-25:/en/direnv-gestion-entornos</id><summary type="html">&lt;p&gt;Discover &lt;code&gt;direnv&lt;/code&gt;, a shell extension that automatically loads and unloads environment variables when changing directories, keeping your configuration clean and organized.&lt;/p&gt;</summary><content type="html">&lt;p&gt;In the daily life of a developer, it is common to work with multiple projects, each with its own environment variables, paths (&lt;code&gt;PATH&lt;/code&gt;), tool versions, or credentials. Manually managing these variables can lead to messy configurations in your &lt;code&gt;.profile&lt;/code&gt; or &lt;code&gt;.bashrc&lt;/code&gt;, or errors due to using the wrong environment. This is where &lt;strong&gt;&lt;code&gt;direnv&lt;/code&gt;&lt;/strong&gt; shines, offering an elegant and automatic solution.&lt;/p&gt;
+&lt;h2 id="what-is-direnv"&gt;What is &lt;code&gt;direnv&lt;/code&gt;?&lt;a class="headerlink" href="#what-is-direnv" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;direnv&lt;/code&gt; is an extension for your shell (Bash, Zsh, Fish, etc.) that automatically detects when you change directories. When you enter a directory containing an &lt;code&gt;.envrc&lt;/code&gt; file, &lt;code&gt;direnv&lt;/code&gt; loads it; when you leave it, it unloads it. This means your shell environment dynamically adapts to your current project without you having to do anything manually.&lt;/p&gt;
+&lt;h2 id="how-does-it-work"&gt;How does it work?&lt;a class="headerlink" href="#how-does-it-work" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;direnv&lt;/code&gt; integrates with your shell through a hook in the &lt;code&gt;cd&lt;/code&gt; command. Every time you change directories, &lt;code&gt;direnv&lt;/code&gt; checks if there is an &lt;code&gt;.envrc&lt;/code&gt; file in the current directory or any of its ancestors. If it finds one (and you have granted permission to load it), it executes the commands defined in that file to modify your environment. Upon leaving the directory, it reverts those changes, cleaning up your environment.&lt;/p&gt;
+&lt;h2 id="common-use-cases"&gt;Common Use Cases&lt;a class="headerlink" href="#common-use-cases" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;PATH&lt;/code&gt; Management&lt;/strong&gt;: Adding project-specific binaries to your &lt;code&gt;PATH&lt;/code&gt; temporarily.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Python Virtual Environments&lt;/strong&gt;: Automatically activating a &lt;code&gt;virtualenv&lt;/code&gt; or &lt;code&gt;uv venv&lt;/code&gt; when entering a Python project.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Credentials and API Keys&lt;/strong&gt;: Loading environment variables with database credentials, API keys, or tokens securely (without leaving them in the shell history).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Project-Specific Environment Variables&lt;/strong&gt;: &lt;code&gt;RAILS_ENV&lt;/code&gt;, &lt;code&gt;NODE_ENV&lt;/code&gt;, etc.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Tool Version Switching&lt;/strong&gt;: Integrating with tools like &lt;code&gt;nvm&lt;/code&gt; or &lt;code&gt;pyenv&lt;/code&gt; to automatically switch Node.js or Python versions.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="basic-installation-bash-example"&gt;Basic Installation (Bash example)&lt;a class="headerlink" href="#basic-installation-bash-example" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Install &lt;code&gt;direnv&lt;/code&gt;&lt;/strong&gt;: You can install it from your package manager (&lt;code&gt;sudo apt install direnv&lt;/code&gt;, &lt;code&gt;brew install direnv&lt;/code&gt;, etc.).&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Activate the hook in your shell&lt;/strong&gt;: Add the following line to your &lt;code&gt;~/.bashrc&lt;/code&gt; (or &lt;code&gt;~/.zshrc&lt;/code&gt;):&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;bash
+eval "$(direnv hook bash)"&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Create an &lt;code&gt;.envrc&lt;/code&gt; file&lt;/strong&gt;: In the root of your project, create an &lt;code&gt;.envrc&lt;/code&gt; file with the variables and commands you want.&lt;/p&gt;
+&lt;p&gt;```bash&lt;/p&gt;
+&lt;h1 id="envrc-in-the-root-of-your-python-project"&gt;.envrc in the root of your Python project&lt;a class="headerlink" href="#envrc-in-the-root-of-your-python-project" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;layout python  # Automatically activates a virtual environment
+export MY_API_KEY="super_secret_project_key"
+```&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Allow loading&lt;/strong&gt;: The first time you enter the directory with a new &lt;code&gt;.envrc&lt;/code&gt;, &lt;code&gt;direnv&lt;/code&gt; will ask for confirmation:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;bash
+direnv: error .envrc is blocked. Run `direnv allow` to approve its contents&lt;/code&gt;
+Run &lt;code&gt;direnv allow&lt;/code&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="the-direnv-standard-library"&gt;The &lt;code&gt;direnv&lt;/code&gt; Standard Library&lt;a class="headerlink" href="#the-direnv-standard-library" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;direnv&lt;/code&gt; comes with a powerful standard library that includes predefined functions for common tasks, such as &lt;code&gt;layout python&lt;/code&gt; (to manage virtualenvs), &lt;code&gt;use nix&lt;/code&gt;, &lt;code&gt;use node&lt;/code&gt;, etc., greatly simplifying the configuration of your &lt;code&gt;.envrc&lt;/code&gt; files.&lt;/p&gt;
+&lt;h2 id="key-benefits"&gt;Key Benefits&lt;a class="headerlink" href="#key-benefits" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Clean environments&lt;/strong&gt;: Your &lt;code&gt;.profile&lt;/code&gt; stays tidy.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Consistency&lt;/strong&gt;: Each project has exactly the environment it needs.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Productivity&lt;/strong&gt;: No more manual &lt;code&gt;source venv/bin/activate&lt;/code&gt; or remembering to set variables.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;direnv&lt;/code&gt; is a small but powerful tool that transforms the way you manage your development environments, making your life in the terminal much more efficient and error-free.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Original article&lt;/em&gt;: &lt;a href="https://direnv.net/"&gt;&lt;code&gt;direnv&lt;/code&gt; homepage&lt;/a&gt;&lt;/p&gt;</content><category term="Tools"></category><category term="direnv"></category><category term="shell"></category><category term="environment"></category><category term="productivity"></category><category term="development"></category><category term="linux"></category><category term="tools"></category></entry><entry><title>Reduce Noise in Your Python Logs: A Smart Approach</title><link href="https://pablocaro.es/en/reduce-ruido-logs-python" rel="alternate"></link><published>2025-12-25T13:00:00+01:00</published><updated>2025-12-25T13:00:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2025-12-25:/en/reduce-ruido-logs-python</id><summary type="html">&lt;p&gt;Learn how to configure Python's &lt;code&gt;logging&lt;/code&gt; module to avoid message overload from third-party libraries, keeping your logs clean and useful.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Python's &lt;code&gt;logging&lt;/code&gt; module is a powerful tool, but it can quickly become a source of "noise" when third-party libraries flood your logs with messages that are not relevant to debugging your application. Keeping logs clean is crucial for efficiently identifying issues and understanding the actual behavior of your code.&lt;/p&gt;
+&lt;h2 id="the-problem-with-basicconfig"&gt;The Problem with &lt;code&gt;basicConfig()&lt;/code&gt;&lt;a class="headerlink" href="#the-problem-with-basicconfig" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Many Python developers start using &lt;code&gt;logging&lt;/code&gt; with &lt;code&gt;logging.basicConfig()&lt;/code&gt;. While convenient, this function configures the "root logger" of your application. The problem is that &lt;strong&gt;all loggers in your application, including third-party libraries, are children of the root logger&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;This means that if you configure the root logger to the &lt;code&gt;DEBUG&lt;/code&gt; level, you will start seeing debug messages from all the libraries you use, which can be overwhelming and hide the truly important information from your own code.&lt;/p&gt;
+&lt;h2 id="the-recommended-solution-granular-configuration"&gt;The Recommended Solution: Granular Configuration&lt;a class="headerlink" href="#the-recommended-solution-granular-configuration" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;To avoid this overload, the strategy involves taking more granular control of logging levels.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Name Your Loggers:&lt;/strong&gt;
+    Follow the best practice of creating a specific logger for each module of your application using &lt;code&gt;logging.getLogger(__name__)&lt;/code&gt;. This creates a hierarchy of loggers that you can control individually.&lt;/p&gt;
+&lt;p&gt;```python&lt;/p&gt;
+&lt;h1 id="my_modulepy"&gt;my_module.py&lt;a class="headerlink" href="#my_modulepy" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;import logging
+logger = logging.getLogger(&lt;strong&gt;name&lt;/strong&gt;)&lt;/p&gt;
+&lt;p&gt;def my_function():
+    logger.info("My function is running.")
+    logger.debug("Debug message in my function.")
+```&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Configure Levels on Application-Specific Loggers:&lt;/strong&gt;
+    Instead of modifying the root logger, set the logging level on the highest-level logger of your own application. This allows your modules to log messages at detailed levels (e.g., &lt;code&gt;DEBUG&lt;/code&gt;), while third-party libraries (which will remain children of the unconfigured root logger, or with a less verbose default configuration) will only show more critical messages (e.g., &lt;code&gt;WARNING&lt;/code&gt; or &lt;code&gt;ERROR&lt;/code&gt;).&lt;/p&gt;
+&lt;p&gt;```python&lt;/p&gt;
+&lt;h1 id="mainpy-or-your-main-entry-point"&gt;main.py (or your main entry point)&lt;a class="headerlink" href="#mainpy-or-your-main-entry-point" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;import logging
+from my_package.my_module import my_function&lt;/p&gt;
+&lt;h1 id="create-a-logger-for-your-main-application"&gt;Create a logger for your main application&lt;a class="headerlink" href="#create-a-logger-for-your-main-application" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;app_logger = logging.getLogger('my_package') # Or the name of your main package
+app_logger.setLevel(logging.DEBUG)&lt;/p&gt;
+&lt;h1 id="create-a-handler-for-output-eg-to-console"&gt;Create a handler for output (e.g., to console)&lt;a class="headerlink" href="#create-a-handler-for-output-eg-to-console" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;handler = logging.StreamHandler()
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+handler.setFormatter(formatter)&lt;/p&gt;
+&lt;h1 id="add-the-handler-to-your-application-logger"&gt;Add the handler to your application logger&lt;a class="headerlink" href="#add-the-handler-to-your-application-logger" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;app_logger.addHandler(handler)&lt;/p&gt;
+&lt;h1 id="now-the-root-logger-and-its-children-the-libraries-will-not-be-directly-affected"&gt;Now, the root logger (and its children, the libraries) will not be directly affected&lt;a class="headerlink" href="#now-the-root-logger-and-its-children-the-libraries-will-not-be-directly-affected" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h1&gt;
+&lt;h1 id="you-can-control-the-level-of-specific-libraries-if-you-need-to"&gt;You can control the level of specific libraries if you need to&lt;a class="headerlink" href="#you-can-control-the-level-of-specific-libraries-if-you-need-to" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;logging.getLogger('requests').setLevel(logging.WARNING) # Example for a library&lt;/p&gt;
+&lt;p&gt;my_function()
+```&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="advanced-tip-first-party-dependency-management"&gt;Advanced Tip: First-Party Dependency Management&lt;a class="headerlink" href="#advanced-tip-first-party-dependency-management" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;For projects with multiple internal modules or "first-party" dependencies (that you develop yourself), you can wrap &lt;code&gt;getLogger()&lt;/code&gt; to always prefix the logger name with your organization or project name (e.g., &lt;code&gt;ORG_NAME.my_module&lt;/code&gt;). This allows you to control the logging level of an entire set of internal loggers more easily.&lt;/p&gt;
+&lt;h2 id="conclusion"&gt;Conclusion&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Reducing noise in your logs not only makes them more readable but also more reliable as a debugging tool. By adopting a granular approach to Python's &lt;code&gt;logging&lt;/code&gt; configuration, you ensure that critical information from your application is not lost in a sea of messages from third-party libraries.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Original article&lt;/em&gt;: &lt;a href="https://sinclairtarget.com/blog/2024/03/how-to-make-your-logs-less-noisy-in-python/"&gt;How to Make Your Logs Less Noisy in Python | Sinclair Target&lt;/a&gt;&lt;/p&gt;</content><category term="Programming"></category><category term="python"></category><category term="logging"></category><category term="logs"></category><category term="debugging"></category><category term="development"></category></entry><entry><title>Powerful Command Line Tools for Developers</title><link href="https://pablocaro.es/en/herramientas-desarrolladores-linea-comandos" rel="alternate"></link><published>2016-06-07T11:36:00+02:00</published><updated>2016-06-07T11:36:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2016-06-07:/en/herramientas-desarrolladores-linea-comandos</id><summary type="html">&lt;p&gt;Collection of essential command line tools for developers: curl, ngrep, netcat, sshuttle, siege, and mitmproxy&lt;/p&gt;</summary><content type="html">&lt;p&gt;The &lt;strong&gt;command line remains the most powerful environment&lt;/strong&gt; for developers. These specialized tools dramatically expand your debugging, testing, and analysis capabilities.&lt;/p&gt;
+&lt;h2 id="curl-the-http-swiss-army-knife"&gt;Curl: The HTTP Swiss Army Knife&lt;a class="headerlink" href="#curl-the-http-swiss-army-knife" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Get your public IP&lt;/span&gt;
+curl&lt;span class="w"&gt; &lt;/span&gt;ifconfig.me
+
+&lt;span class="c1"&gt;# Inspect response headers&lt;/span&gt;
+curl&lt;span class="w"&gt; &lt;/span&gt;-I&lt;span class="w"&gt; &lt;/span&gt;https://example.com
+
+&lt;span class="c1"&gt;# POST with JSON data&lt;/span&gt;
+curl&lt;span class="w"&gt; &lt;/span&gt;-X&lt;span class="w"&gt; &lt;/span&gt;POST&lt;span class="w"&gt; &lt;/span&gt;-H&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Content-Type: application/json&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="se"&gt;\&lt;/span&gt;
+&lt;span class="w"&gt;     &lt;/span&gt;-d&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;{&amp;quot;key&amp;quot;:&amp;quot;value&amp;quot;}&amp;#39;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;https://api.example.com
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Main usage&lt;/strong&gt;: Network data transfer, API testing, HTTP inspection.&lt;/p&gt;
+&lt;h2 id="ngrep-grep-for-network-traffic"&gt;Ngrep: Grep for Network Traffic&lt;a class="headerlink" href="#ngrep-grep-for-network-traffic" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Filter HTTP traffic by keyword&lt;/span&gt;
+ngrep&lt;span class="w"&gt; &lt;/span&gt;-i&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;password&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;port&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;80&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Capture by specific IP&lt;/span&gt;
+ngrep&lt;span class="w"&gt; &lt;/span&gt;host&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;192&lt;/span&gt;.168.1.100
+
+&lt;span class="c1"&gt;# Monitor traffic on specific port&lt;/span&gt;
+ngrep&lt;span class="w"&gt; &lt;/span&gt;port&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;443&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Main usage&lt;/strong&gt;: Network packet analysis, protocol debugging, traffic monitoring.&lt;/p&gt;
+&lt;h2 id="netcat-nc-the-networking-swiss-army-knife"&gt;Netcat (nc): The Networking Swiss Army Knife&lt;a class="headerlink" href="#netcat-nc-the-networking-swiss-army-knife" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Port scanning&lt;/span&gt;
+nc&lt;span class="w"&gt; &lt;/span&gt;-zv&lt;span class="w"&gt; &lt;/span&gt;example.com&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;-1000
+
+&lt;span class="c1"&gt;# Transfer file between servers&lt;/span&gt;
+&lt;span class="c1"&gt;# Receiver: nc -l 1234 &amp;gt; received_file&lt;/span&gt;
+&lt;span class="c1"&gt;# Sender: nc destination_server 1234 &amp;lt; file_to_send&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Create simple HTTP server&lt;/span&gt;
+&lt;span class="nb"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;HTTP/1.1 200 OK\n\nHello world&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;nc&lt;span class="w"&gt; &lt;/span&gt;-l&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;8080&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Main usage&lt;/strong&gt;: Port scanning, file transfer, connectivity testing.&lt;/p&gt;
+&lt;h2 id="sshuttle-easy-vpn-with-ssh"&gt;Sshuttle: Easy VPN with SSH&lt;a class="headerlink" href="#sshuttle-easy-vpn-with-ssh" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Tunnel all traffic&lt;/span&gt;
+sshuttle&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;user@server&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;0&lt;/span&gt;.0.0.0/0
+
+&lt;span class="c1"&gt;# Tunnel only a subnet&lt;/span&gt;
+sshuttle&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;user@server&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;192&lt;/span&gt;.168.1.0/24
+
+&lt;span class="c1"&gt;# Bypass geo-blocking&lt;/span&gt;
+sshuttle&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;remote_server&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;0&lt;/span&gt;.0.0.0/0&lt;span class="w"&gt; &lt;/span&gt;--dns
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Main usage&lt;/strong&gt;: Secure tunneling, geo-restriction bypass, protection on public WiFi.&lt;/p&gt;
+&lt;h2 id="siege-http-load-bombardment"&gt;Siege: HTTP Load Bombardment&lt;a class="headerlink" href="#siege-http-load-bombardment" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Simple load test&lt;/span&gt;
+siege&lt;span class="w"&gt; &lt;/span&gt;-c&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;25&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;-t&lt;span class="w"&gt; &lt;/span&gt;60s&lt;span class="w"&gt; &lt;/span&gt;https://example.com
+
+&lt;span class="c1"&gt;# Test with multiple URLs&lt;/span&gt;
+siege&lt;span class="w"&gt; &lt;/span&gt;-c&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;50&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;-t&lt;span class="w"&gt; &lt;/span&gt;30s&lt;span class="w"&gt; &lt;/span&gt;-f&lt;span class="w"&gt; &lt;/span&gt;urls.txt
+
+&lt;span class="c1"&gt;# Specific benchmark&lt;/span&gt;
+siege&lt;span class="w"&gt; &lt;/span&gt;-c&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;100&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;10&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;https://api.example.com/endpoint
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Main usage&lt;/strong&gt;: Performance testing, HTTP benchmarking, load simulation.&lt;/p&gt;
+&lt;h2 id="mitmproxy-spy-on-https-traffic"&gt;Mitmproxy: Spy on HTTP/S Traffic&lt;a class="headerlink" href="#mitmproxy-spy-on-https-traffic" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Basic proxy&lt;/span&gt;
+mitmproxy&lt;span class="w"&gt; &lt;/span&gt;-p&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;8080&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Transparent mode&lt;/span&gt;
+mitmproxy&lt;span class="w"&gt; &lt;/span&gt;--mode&lt;span class="w"&gt; &lt;/span&gt;transparent
+
+&lt;span class="c1"&gt;# Save traffic to file&lt;/span&gt;
+mitmdump&lt;span class="w"&gt; &lt;/span&gt;-w&lt;span class="w"&gt; &lt;/span&gt;capture.flow
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Main usage&lt;/strong&gt;: Web application debugging, HTTPS traffic inspection, API analysis.&lt;/p&gt;
+&lt;h2 id="typical-workflow"&gt;Typical Workflow&lt;a class="headerlink" href="#typical-workflow" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# 1. Scan connectivity&lt;/span&gt;
+nc&lt;span class="w"&gt; &lt;/span&gt;-zv&lt;span class="w"&gt; &lt;/span&gt;api.example.com&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;443&lt;/span&gt;
+
+&lt;span class="c1"&gt;# 2. Analyze response&lt;/span&gt;
+curl&lt;span class="w"&gt; &lt;/span&gt;-I&lt;span class="w"&gt; &lt;/span&gt;https://api.example.com
+
+&lt;span class="c1"&gt;# 3. Monitor traffic&lt;/span&gt;
+ngrep&lt;span class="w"&gt; &lt;/span&gt;-i&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;api&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;port&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;443&lt;/span&gt;
+
+&lt;span class="c1"&gt;# 4. Load test&lt;/span&gt;
+siege&lt;span class="w"&gt; &lt;/span&gt;-c&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;20&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;-t&lt;span class="w"&gt; &lt;/span&gt;30s&lt;span class="w"&gt; &lt;/span&gt;https://api.example.com
+
+&lt;span class="c1"&gt;# 5. Detailed debugging&lt;/span&gt;
+mitmproxy&lt;span class="w"&gt; &lt;/span&gt;-p&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;8080&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="why-command-line"&gt;Why Command Line?&lt;a class="headerlink" href="#why-command-line" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Speed&lt;/strong&gt;: No GUI overhead&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Scriptability&lt;/strong&gt;: Complete automation&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Flexibility&lt;/strong&gt;: Combination with pipes and redirects&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Universality&lt;/strong&gt;: Available on any server&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;These tools turn your terminal into a &lt;strong&gt;complete networking and testing laboratory&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Original source&lt;/em&gt;: &lt;a href="http://www.xn--apaados-6za.es/tenemos-que-apanar/internet-tutoriales-y-trucos/317-potentes-herramientas-desarrolladores-linea-comandos.html"&gt;Somos Apañados&lt;/a&gt;&lt;/p&gt;</content><category term="Tools"></category><category term="cli"></category><category term="tools"></category><category term="development"></category><category term="networking"></category><category term="testing"></category></entry></feed>

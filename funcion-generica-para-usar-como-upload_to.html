@@ -64,6 +64,8 @@
 <meta name="description" content="Los FileField en django necesitan ana función upload_to que determine donde se subirá el fichero. Yo suelo tener en utils.py una función genérica que los deja en una subcarpeta con el nombre del modelo. import os def generic_upload_to(instance, filename): &#34;&#34;&#34; Generic `upload_to` function for models.FileField and models.ImageField …" />
 <meta name="keywords" content="django, python">
 
+<link rel="alternate" href="https://pablocaro.es/funcion-generica-para-usar-como-upload_to" hreflang="es" />
+<link rel="alternate" href="https://pablocaro.es/en/funcion-generica-para-usar-como-upload_to" hreflang="en" />
 
   <meta property="og:site_name" content="Anotaciones por Pablo Caro"/>
   <meta property="og:title" content="Función genérica para usar como upload_to"/>
@@ -98,7 +100,7 @@
     <p>Anotaciones</p>
 
     <div class="stork">
-      <input class="stork-input" type="text" autocomplete="off" name="q" data-stork="sitesearch" placeholder="Search..." onclick="loadStorkIndex()"/>
+      <input class="stork-input" type="text" autocomplete="off" name="q" data-stork="sitesearch" placeholder="Buscar..." onclick="loadStorkIndex()"/>
       <div class="stork-output" data-stork="sitesearch-output"></div>
     </div>
 
@@ -162,12 +164,13 @@
   <main>
 
 <nav>
-  <a href="https://pablocaro.es/">Home</a>
+  <a href="https://pablocaro.es/">Inicio</a>
 
   <a href="/archives.html">Archivo</a>
   <a href="/categories.html">Categorías</a>
   <a href="/tags.html">Etiquetas</a>
   <a href="/search.html">Búsqueda</a>
+  <a href="/en/">English</a>
 
   <a href="https://pablocaro.es/feeds/all.atom.xml">Atom</a>
 
@@ -176,10 +179,13 @@
 
 <article class="single">
   <header>
-      
+          <div class="translations">
+            <a href="https://pablocaro.es/en/funcion-generica-para-usar-como-upload_to">Read in English</a>
+    </div>
+
     <h1 id="funcion-generica-para-usar-como-upload_to">Función genérica para usar como upload_to</h1>
     <p>
-      Posted on Sat 11 October 2014 in <a href="https://pablocaro.es/category/programacion.html">Programación</a>
+      Publicado el Sat 11 October 2014 en <a href="https://pablocaro.es/category/programacion.html">Programación</a>
 
     </p>
   </header>
@@ -215,15 +221,15 @@ Yo suelo tener en <code>utils.py</code> una función genérica que los deja en u
 
   <div class="neighbors">
     <a class="btn float-left" href="https://pablocaro.es/enlaces-en-listado-de-objectos" title="Django: enlaces en listado de objectos">
-      <i class="fa fa-angle-left"></i> Previous Post
+      <i class="fa fa-angle-left"></i> Artículo anterior
     </a>
     <a class="btn float-right" href="https://pablocaro.es/decorador-vista-ajax" title="Decorador vista ajax">
-      Next Post <i class="fa fa-angle-right"></i>
+      Próximo artículo <i class="fa fa-angle-right"></i>
     </a>
   </div>
 
   <div class="related-posts">
-    <h4>You might enjoy</h4>
+    <h4>Te puede gustar</h4>
     <ul class="related-posts">
       <li><a href="https://pablocaro.es/instalar-insync-en-opensuse">Instalar InSync en Opensuse</a></li>
       <li><a href="https://pablocaro.es/decorador-vista-ajax">Decorador vista ajax</a></li>
@@ -246,7 +252,7 @@ Yo suelo tener en <code>utils.py</code> una función genérica que los deja en u
     })();
 </script>
 <noscript>
-    Please enable JavaScript to view comments.
+    Por favor, habilita JavaScript para ver los comentarios.
 </noscript>
 <!-- End Disqus -->
 </article>
@@ -256,7 +262,7 @@ Yo suelo tener en <code>utils.py</code> una función genérica que los deja en u
   &copy; 2025  - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
 </p>
 <p>
-Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+Construido con <a href="http://getpelican.com" target="_blank">Pelican</a> usando el tema <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> 
 </p><p>
   <a rel="license"
      href="http://creativecommons.org/licenses/by-sa/3.0/"

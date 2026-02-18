@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Annotations by Pablo Caro - debugging</title><link href="https://pablocaro.es/en/" rel="alternate"></link><link href="https://pablocaro.es/feeds/tags/debugging.atom.xml" rel="self"></link><id>https://pablocaro.es/en/</id><updated>2025-12-25T14:15:00+01:00</updated><subtitle>Annotations</subtitle><entry><title>`docker-http-https-echo`: An Essential Tool for Network Debugging</title><link href="https://pablocaro.es/en/docker-http-https-echo" rel="alternate"></link><published>2025-12-25T14:15:00+01:00</published><updated>2025-12-25T14:15:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2025-12-25:/en/docker-http-https-echo</id><summary type="html">&lt;p&gt;&lt;code&gt;mendhak/docker-http-https-echo&lt;/code&gt; is a simple Docker container that facilitates debugging network configurations, proxies, and load balancers.&lt;/p&gt;</summary><content type="html">&lt;p&gt;In the complex world of distributed applications, debugging network issues, proxies, load balancers, or firewall rules can be an arduous task. We need a simple way to verify what a server is receiving. This is where a tool like &lt;code&gt;mendhak/docker-http-https-echo&lt;/code&gt; becomes indispensable.&lt;/p&gt;
+&lt;h2 id="what-is-mendhakdocker-http-https-echo"&gt;What is &lt;code&gt;mendhak/docker-http-https-echo&lt;/code&gt;?&lt;a class="headerlink" href="#what-is-mendhakdocker-http-https-echo" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;It is an extremely lightweight and simple Docker container that functions as an "echo" HTTP and HTTPS server. Its main function is to &lt;strong&gt;respond to any HTTP or HTTPS request with a detailed description of the request itself&lt;/strong&gt;. This includes:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Request headers.&lt;/li&gt;
+&lt;li&gt;HTTP method (GET, POST, PUT, etc.).&lt;/li&gt;
+&lt;li&gt;Request URL and parameters.&lt;/li&gt;
+&lt;li&gt;Request body.&lt;/li&gt;
+&lt;li&gt;Remote IP address of the client.&lt;/li&gt;
+&lt;li&gt;TLS/SSL information (if HTTPS).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="why-is-it-useful"&gt;Why is it useful?&lt;a class="headerlink" href="#why-is-it-useful" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;This type of echo server is invaluable for a variety of debugging scenarios:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Proxy and Load Balancer Debugging&lt;/strong&gt;: Verify if a reverse proxy or load balancer is rewriting headers, modifying URLs, or passing the request body as you expect.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Firewall and Security Rules&lt;/strong&gt;: Confirm that traffic is reaching the correct destination and is not being blocked or altered.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;HTTP/HTTPS Header Inspection&lt;/strong&gt;: Useful to see exactly what headers your client or a specific application sends.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Integration Testing&lt;/strong&gt;: A predictable target for automated tests of how different services communicate via HTTP/HTTPS.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Mixed Content Diagnosis&lt;/strong&gt;: You can use it to verify if HTTP resources are loading correctly in an HTTPS context.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="how-to-use-it"&gt;How to Use It&lt;a class="headerlink" href="#how-to-use-it" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Using it is straightforward via Docker:&lt;/p&gt;
+&lt;h3 id="for-http-port-8080"&gt;For HTTP (port 8080)&lt;a class="headerlink" href="#for-http-port-8080" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;docker&lt;span class="w"&gt; &lt;/span&gt;run&lt;span class="w"&gt; &lt;/span&gt;-p&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;8080&lt;/span&gt;:8080&lt;span class="w"&gt; &lt;/span&gt;mendhak/http-https-echo
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Then, you can access &lt;code&gt;http://localhost:8080&lt;/code&gt; with your browser or &lt;code&gt;curl&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;curl&lt;span class="w"&gt; &lt;/span&gt;http://localhost:8080/path?query&lt;span class="o"&gt;=&lt;/span&gt;value&lt;span class="w"&gt; &lt;/span&gt;-H&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;X-Custom-Header: test&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id="for-https-port-8443"&gt;For HTTPS (port 8443)&lt;a class="headerlink" href="#for-https-port-8443" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;To use HTTPS, you must map the container's HTTPS port. The image already comes with a self-signed certificate for testing.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;docker&lt;span class="w"&gt; &lt;/span&gt;run&lt;span class="w"&gt; &lt;/span&gt;-p&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;8443&lt;/span&gt;:8443&lt;span class="w"&gt; &lt;/span&gt;mendhak/http-https-echo
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Access &lt;code&gt;https://localhost:8443&lt;/code&gt; (your browser may warn you about the self-signed certificate).&lt;/p&gt;
+&lt;h2 id="conclusion"&gt;Conclusion&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;mendhak/docker-http-https-echo&lt;/code&gt; is one of those simple but incredibly useful tools that every developer and system operator should have on hand. It facilitates understanding network flows and speeds up debugging connectivity issues in any container-based environment.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Original repository&lt;/em&gt;: &lt;a href="https://github.com/mendhak/docker-http-https-echo"&gt;mendhak/docker-http-https-echo on GitHub&lt;/a&gt;&lt;/p&gt;</content><category term="Tools"></category><category term="docker"></category><category term="http"></category><category term="https"></category><category term="debugging"></category><category term="networking"></category><category term="tools"></category><category term="containers"></category></entry><entry><title>Reduce Noise in Your Python Logs: A Smart Approach</title><link href="https://pablocaro.es/en/reduce-ruido-logs-python" rel="alternate"></link><published>2025-12-25T13:00:00+01:00</published><updated>2025-12-25T13:00:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2025-12-25:/en/reduce-ruido-logs-python</id><summary type="html">&lt;p&gt;Learn how to configure Python's &lt;code&gt;logging&lt;/code&gt; module to avoid message overload from third-party libraries, keeping your logs clean and useful.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Python's &lt;code&gt;logging&lt;/code&gt; module is a powerful tool, but it can quickly become a source of "noise" when third-party libraries flood your logs with messages that are not relevant to debugging your application. Keeping logs clean is crucial for efficiently identifying issues and understanding the actual behavior of your code.&lt;/p&gt;
+&lt;h2 id="the-problem-with-basicconfig"&gt;The Problem with &lt;code&gt;basicConfig()&lt;/code&gt;&lt;a class="headerlink" href="#the-problem-with-basicconfig" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Many Python developers start using &lt;code&gt;logging&lt;/code&gt; with &lt;code&gt;logging.basicConfig()&lt;/code&gt;. While convenient, this function configures the "root logger" of your application. The problem is that &lt;strong&gt;all loggers in your application, including third-party libraries, are children of the root logger&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;This means that if you configure the root logger to the &lt;code&gt;DEBUG&lt;/code&gt; level, you will start seeing debug messages from all the libraries you use, which can be overwhelming and hide the truly important information from your own code.&lt;/p&gt;
+&lt;h2 id="the-recommended-solution-granular-configuration"&gt;The Recommended Solution: Granular Configuration&lt;a class="headerlink" href="#the-recommended-solution-granular-configuration" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;To avoid this overload, the strategy involves taking more granular control of logging levels.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Name Your Loggers:&lt;/strong&gt;
+    Follow the best practice of creating a specific logger for each module of your application using &lt;code&gt;logging.getLogger(__name__)&lt;/code&gt;. This creates a hierarchy of loggers that you can control individually.&lt;/p&gt;
+&lt;p&gt;```python&lt;/p&gt;
+&lt;h1 id="my_modulepy"&gt;my_module.py&lt;a class="headerlink" href="#my_modulepy" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;import logging
+logger = logging.getLogger(&lt;strong&gt;name&lt;/strong&gt;)&lt;/p&gt;
+&lt;p&gt;def my_function():
+    logger.info("My function is running.")
+    logger.debug("Debug message in my function.")
+```&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Configure Levels on Application-Specific Loggers:&lt;/strong&gt;
+    Instead of modifying the root logger, set the logging level on the highest-level logger of your own application. This allows your modules to log messages at detailed levels (e.g., &lt;code&gt;DEBUG&lt;/code&gt;), while third-party libraries (which will remain children of the unconfigured root logger, or with a less verbose default configuration) will only show more critical messages (e.g., &lt;code&gt;WARNING&lt;/code&gt; or &lt;code&gt;ERROR&lt;/code&gt;).&lt;/p&gt;
+&lt;p&gt;```python&lt;/p&gt;
+&lt;h1 id="mainpy-or-your-main-entry-point"&gt;main.py (or your main entry point)&lt;a class="headerlink" href="#mainpy-or-your-main-entry-point" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;import logging
+from my_package.my_module import my_function&lt;/p&gt;
+&lt;h1 id="create-a-logger-for-your-main-application"&gt;Create a logger for your main application&lt;a class="headerlink" href="#create-a-logger-for-your-main-application" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;app_logger = logging.getLogger('my_package') # Or the name of your main package
+app_logger.setLevel(logging.DEBUG)&lt;/p&gt;
+&lt;h1 id="create-a-handler-for-output-eg-to-console"&gt;Create a handler for output (e.g., to console)&lt;a class="headerlink" href="#create-a-handler-for-output-eg-to-console" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;handler = logging.StreamHandler()
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+handler.setFormatter(formatter)&lt;/p&gt;
+&lt;h1 id="add-the-handler-to-your-application-logger"&gt;Add the handler to your application logger&lt;a class="headerlink" href="#add-the-handler-to-your-application-logger" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;app_logger.addHandler(handler)&lt;/p&gt;
+&lt;h1 id="now-the-root-logger-and-its-children-the-libraries-will-not-be-directly-affected"&gt;Now, the root logger (and its children, the libraries) will not be directly affected&lt;a class="headerlink" href="#now-the-root-logger-and-its-children-the-libraries-will-not-be-directly-affected" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h1&gt;
+&lt;h1 id="you-can-control-the-level-of-specific-libraries-if-you-need-to"&gt;You can control the level of specific libraries if you need to&lt;a class="headerlink" href="#you-can-control-the-level-of-specific-libraries-if-you-need-to" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;logging.getLogger('requests').setLevel(logging.WARNING) # Example for a library&lt;/p&gt;
+&lt;p&gt;my_function()
+```&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="advanced-tip-first-party-dependency-management"&gt;Advanced Tip: First-Party Dependency Management&lt;a class="headerlink" href="#advanced-tip-first-party-dependency-management" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;For projects with multiple internal modules or "first-party" dependencies (that you develop yourself), you can wrap &lt;code&gt;getLogger()&lt;/code&gt; to always prefix the logger name with your organization or project name (e.g., &lt;code&gt;ORG_NAME.my_module&lt;/code&gt;). This allows you to control the logging level of an entire set of internal loggers more easily.&lt;/p&gt;
+&lt;h2 id="conclusion"&gt;Conclusion&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Reducing noise in your logs not only makes them more readable but also more reliable as a debugging tool. By adopting a granular approach to Python's &lt;code&gt;logging&lt;/code&gt; configuration, you ensure that critical information from your application is not lost in a sea of messages from third-party libraries.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Original article&lt;/em&gt;: &lt;a href="https://sinclairtarget.com/blog/2024/03/how-to-make-your-logs-less-noisy-in-python/"&gt;How to Make Your Logs Less Noisy in Python | Sinclair Target&lt;/a&gt;&lt;/p&gt;</content><category term="Programming"></category><category term="python"></category><category term="logging"></category><category term="logs"></category><category term="debugging"></category><category term="development"></category></entry></feed>

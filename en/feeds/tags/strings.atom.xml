@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Annotations by Pablo Caro - strings</title><link href="https://pablocaro.es/en/" rel="alternate"></link><link href="https://pablocaro.es/feeds/tags/strings.atom.xml" rel="self"></link><id>https://pablocaro.es/en/</id><updated>2025-12-25T16:10:00+01:00</updated><subtitle>Annotations</subtitle><entry><title>Multiline YAML: Understanding and testing complex strings</title><link href="https://pablocaro.es/en/yaml-multilinea-cadenas-complejas" rel="alternate"></link><published>2025-12-25T16:10:00+01:00</published><updated>2025-12-25T16:10:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2025-12-25:/en/yaml-multilinea-cadenas-complejas</id><summary type="html">&lt;p&gt;Explore YAML options for effectively handling multiline strings, with an interactive demo that allows you to test them in real-time.&lt;/p&gt;</summary><content type="html">&lt;p&gt;YAML has become the de facto format for configuration in many projects, from Kubernetes to CI/CD scripts. One of its most powerful, and sometimes confusing, features is the management of &lt;strong&gt;multiline strings&lt;/strong&gt;. Fortunately, there is an exceptional interactive tool to master this aspect: &lt;a href="https://yaml-multiline.info/"&gt;yaml-multiline.info&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id="formats-for-multiline-strings-in-yaml"&gt;Formats for Multiline Strings in YAML&lt;a class="headerlink" href="#formats-for-multiline-strings-in-yaml" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;YAML mainly offers two approaches for defining strings that span multiple lines:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Flow Scalars&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;They are simple strings, often quoted (&lt;code&gt;'...'&lt;/code&gt; or &lt;code&gt;"..."&lt;/code&gt;) or unquoted.&lt;/li&gt;
+&lt;li&gt;They ignore indentations and, by default, replace line breaks with spaces.&lt;/li&gt;
+&lt;li&gt;Double-quoted strings allow using escape sequences like &lt;code&gt;\n&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Block Scalars&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;They offer much more precise control over line breaks and indentation.&lt;/li&gt;
+&lt;li&gt;They are indicated with a special character at the beginning of the line where the string starts.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="keys-for-block-multiline-strings"&gt;Keys for Block Multiline Strings&lt;a class="headerlink" href="#keys-for-block-multiline-strings" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The two most important style indicators for block scalars are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;|&lt;/code&gt; (Literal Style)&lt;/strong&gt;: Keeps all line breaks and indentation as is. It is ideal for blocks of text where formatting is crucial (e.g., code, long messages).
+    &lt;code&gt;yaml
+    literal_string: |
+      This is a line.
+      This is another.
+        With its own indentation.&lt;/code&gt;
+    Result: "This is a line.\nThis is another.\n  With its own indentation.\n"&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;&amp;gt;&lt;/code&gt; (Folded Style)&lt;/strong&gt;: Replaces line breaks with spaces, joining lines into a single one. Only double line breaks (blank lines) or lines with greater indentation are kept as line breaks. It is useful for long paragraphs.
+    &lt;code&gt;yaml
+    folded_string: &amp;gt;
+      This is a string
+      folded into multiple lines.
+      It will keep the paragraph format.&lt;/code&gt;
+    Result: "This is a string folded into multiple lines. It will keep the paragraph format.\n"&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In addition to this, there are "chomping" indicators (&lt;code&gt;-&lt;/code&gt; to remove trailing line breaks, &lt;code&gt;+&lt;/code&gt; to keep them, or the default behavior) and indentation indicators that offer even more control.&lt;/p&gt;
+&lt;h2 id="real-time-demo"&gt;Real-Time Demo!&lt;a class="headerlink" href="#real-time-demo" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;What makes &lt;a href="https://yaml-multiline.info/"&gt;yaml-multiline.info&lt;/a&gt; an invaluable tool is its &lt;strong&gt;interactive demo&lt;/strong&gt;. You can test different YAML syntaxes in real-time and see how the resulting string is interpreted. It is the best way to visually understand how literal and folded styles work, and how chomping and indentation indicators affect the final result.&lt;/p&gt;
+&lt;h2 id="conclusion"&gt;Conclusion&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Understanding how to handle multiline strings in YAML not only improves the readability of your configuration files but also prevents unexpected errors. The real-time demo of &lt;code&gt;yaml-multiline.info&lt;/code&gt; is a fantastic resource for anyone who regularly works with YAML and wants to master this aspect.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Website&lt;/em&gt;: &lt;a href="https://yaml-multiline.info/"&gt;&lt;code&gt;yaml-multiline.info&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;</content><category term="Tools"></category><category term="yaml"></category><category term="configuration"></category><category term="development"></category><category term="tools"></category><category term="multiline"></category><category term="strings"></category></entry></feed>

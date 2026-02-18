@@ -1,0 +1,373 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://pablocaro.es/en/theme/stylesheet/style.min.css">
+
+
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+          href="https://pablocaro.es/en/theme/pygments/github.min.css">
+
+
+  <link rel="stylesheet"
+        type="text/css"
+        href="https://pablocaro.es/en/theme/stork/stork.css" />
+
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/en/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/en/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/en/theme/font-awesome/css/solid.css">
+
+
+  <link rel="shortcut icon" href="/theme/img/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/theme/img/favicon.ico" type="image/x-icon">
+
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#333333">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#333333">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Microsoft EDGE -->
+  <meta name="msapplication-TileColor" content="#333333">
+
+  <link href="https://pablocaro.es/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Annotations by Pablo Caro Atom">
+
+  <link href="https://pablocaro.es/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Annotations by Pablo Caro RSS">
+
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-60035125-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Pablo Caro" />
+<meta name="description" content="Advanced techniques to integrate geospatial data sources using DuckDB, H3, Ollama, and embedding models" />
+<meta name="keywords" content="duckdb, geospatial, embeddings, ollama, h3">
+
+<link rel="alternate" href="https://pablocaro.es/en/conflacion-datos-geoespaciales-duckdb" hreflang="en" />
+<link rel="alternate" href="https://pablocaro.es/en/../conflacion-datos-geoespaciales-duckdb" hreflang="es" />
+
+  <meta property="og:site_name" content="Annotations by Pablo Caro"/>
+  <meta property="og:title" content="Geospatial Data Conflation with DuckDB and Embeddings"/>
+  <meta property="og:description" content="Advanced techniques to integrate geospatial data sources using DuckDB, H3, Ollama, and embedding models"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://pablocaro.es/en/conflacion-datos-geoespaciales-duckdb"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2024-10-01 07:12:00+02:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://pablocaro.es/en/author/pablo-caro.html">
+  <meta property="article:section" content="Programming"/>
+  <meta property="article:tag" content="duckdb"/>
+  <meta property="article:tag" content="geospatial"/>
+  <meta property="article:tag" content="embeddings"/>
+  <meta property="article:tag" content="ollama"/>
+  <meta property="article:tag" content="h3"/>
+  <meta property="og:image" content="/theme/img/profile.png">
+
+  <title>Annotations by Pablo Caro &ndash; Geospatial Data Conflation with DuckDB and Embeddings</title>
+
+
+</head>
+<body class="light-theme">
+
+<aside>
+  <div>
+    <a href="https://pablocaro.es/en/">
+      <img src="/theme/img/profile.png" alt="Anotaciones" title="Anotaciones">
+    </a>
+
+    <h1>
+      <a href="https://pablocaro.es/en/">Anotaciones</a>
+    </h1>
+
+    <p>Annotations</p>
+
+    <div class="stork">
+      <input class="stork-input" type="text" autocomplete="off" name="q" data-stork="sitesearch" placeholder="Search..." onclick="loadStorkIndex()"/>
+      <div class="stork-output" data-stork="sitesearch-output"></div>
+    </div>
+
+    <nav>
+      <ul class="list">
+
+
+
+          <li>
+            <a target="_self" href="http://x.com/pcaro" >@pcaro at X.com</a>
+          </li>
+          <li>
+            <a target="_self" href="http://python.org/" >Python.org</a>
+          </li>
+          <li>
+            <a target="_self" href="http://jinja.pocoo.org/" >Jinja2</a>
+          </li>
+      </ul>
+    </nav>
+
+    <ul class="social">
+      <li>
+        <a class="sc-Twitter"
+           href="http://twitter.com/pcaro"
+           target="_blank">
+          <i class="fa-brands fa-Twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Github"
+           href="http://github.com/pcaro"
+           target="_blank">
+          <i class="fa-brands fa-Github"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Linkedin"
+           href="https://www.linkedin.com/in/pcarorevuelta"
+           target="_blank">
+          <i class="fa-brands fa-Linkedin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Facebook"
+           href="https://www.facebook.com/pablo.carorevuelta"
+           target="_blank">
+          <i class="fa-brands fa-Facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Email"
+           href="mailto:correo@pablocaro.es"
+           target="_blank">
+          <i class="fa-brands fa-Email"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+</aside>
+  <main>
+
+<nav>
+  <a href="https://pablocaro.es/en/">Home</a>
+
+  <a href="/en/archives.html">Archives</a>
+  <a href="/en/categories.html">Categories</a>
+  <a href="/en/tags.html">Tags</a>
+  <a href="/en/search.html">Search</a>
+  <a href="/">Español</a>
+
+  <a href="https://pablocaro.es/feeds/all.atom.xml">Atom</a>
+
+  <a href="https://pablocaro.es/feeds/all.rss.xml">RSS</a>
+</nav>
+
+<article class="single">
+  <header>
+          <div class="translations">
+            <a href="https://pablocaro.es/en/../conflacion-datos-geoespaciales-duckdb">Leer en español</a>
+    </div>
+
+    <h1 id="conflacion-datos-geoespaciales-duckdb">Geospatial Data Conflation with DuckDB and Embeddings</h1>
+    <p>
+      Posted on Tue 01 October 2024 in <a href="https://pablocaro.es/en/category/programming.html">Programming</a>
+
+    </p>
+  </header>
+
+
+  <div>
+    <p>Drew Breunig presents a fascinating case study of <strong>geospatial data conflation</strong>: the process of identifying and merging similar records from different sources.</p>
+<div class="section" id="the-challenge-integrating-restaurant-data">
+<h2>The Challenge: Integrating Restaurant Data</h2>
+<p>The goal was to connect two data sources:</p>
+<ul class="simple">
+<li><strong>Restaurant inspections</strong> from Alameda County</li>
+<li><strong>Place data</strong> from Overture Maps Foundation</li>
+</ul>
+<p>Two datasets with similar information but structured differently.</p>
+</div>
+<div class="section" id="modern-stack-tools">
+<h2>Modern Stack Tools</h2>
+<dl class="docutils">
+<dt><strong>DuckDB as the main engine</strong></dt>
+<dd><ul class="first last simple">
+<li><strong>Staging and querying</strong> large volumes of data</li>
+<li>Native support for geospatial formats</li>
+<li>Exceptional performance for exploratory analysis</li>
+</ul>
+</dd>
+</dl>
+<p><strong>H3 for spatial grouping</strong></p>
+<div class="highlight"><pre><span></span><span class="c1">-- Group nearby places using H3 hexagons</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">h3_cell_to_lat_lng</span><span class="p">(</span><span class="n">h3_latlng_to_cell</span><span class="p">(</span><span class="n">lat</span><span class="p">,</span><span class="w"> </span><span class="n">lng</span><span class="p">,</span><span class="w"> </span><span class="mi">9</span><span class="p">))</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">h3_9</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">places</span>
+</pre></div>
+<dl class="docutils">
+<dt><strong>Ollama for local embeddings</strong></dt>
+<dd><ul class="first last simple">
+<li>ML framework running locally</li>
+<li>Generation of contextual embeddings</li>
+<li>No dependence on external APIs</li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="three-matching-approaches">
+<h2>Three Matching Approaches</h2>
+<dl class="docutils">
+<dt><strong>1. Exact Name Matching</strong></dt>
+<dd><ul class="first last simple">
+<li><strong>Result</strong>: ~31% matches</li>
+<li><strong>Limitations</strong>: Chain names, unit numbers in addresses</li>
+</ul>
+</dd>
+</dl>
+<p><strong>2. String Similarity (Jaro-Winkler)</strong></p>
+<div class="highlight"><pre><span></span><span class="c1">-- Comparison combining name and address</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">jaro_winkler_similarity</span><span class="p">(</span><span class="n">name1</span><span class="p">,</span><span class="w"> </span><span class="n">name2</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="mi">8</span>
+<span class="w">  </span><span class="k">AND</span><span class="w"> </span><span class="n">levenshtein</span><span class="p">(</span><span class="n">address1</span><span class="p">,</span><span class="w"> </span><span class="n">address2</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">5</span>
+</pre></div>
+<ul class="simple">
+<li><strong>Result</strong>: ~68% matches</li>
+<li><strong>Disadvantage</strong>: Complex SQL with many conditional rules</li>
+</ul>
+<p><strong>3. Embedding-Based Matching</strong></p>
+<div class="highlight"><pre><span></span><span class="c1"># Generate contextual description</span>
+<span class="n">description</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2"> at </span><span class="si">{</span><span class="n">address</span><span class="si">}</span><span class="s2"> in </span><span class="si">{</span><span class="n">city</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="n">embedding</span> <span class="o">=</span> <span class="n">ollama</span><span class="o">.</span><span class="n">embeddings</span><span class="p">(</span><span class="n">description</span><span class="p">)</span>
+</pre></div>
+<ul class="simple">
+<li><strong>Result</strong>: ~71% matches</li>
+<li><strong>Advantages</strong>: Simpler pipeline, greater flexibility</li>
+<li><strong>Disadvantage</strong>: Longer processing time</li>
+</ul>
+</div>
+<div class="section" id="key-insights">
+<h2>Key Insights</h2>
+<ol class="arabic simple">
+<li><strong>There is no silver bullet</strong> - each method has specific strengths</li>
+<li><strong>Local tools are powerful</strong> - DuckDB + Ollama allow sophisticated analysis without cloud</li>
+<li><strong>Embeddings are promising</strong> - especially for cases with complex context</li>
+<li><strong>Conflation requires iteration</strong> - combining multiple techniques improves results</li>
+</ol>
+</div>
+<div class="section" id="the-future-of-data-integration">
+<h2>The Future of Data Integration</h2>
+<p>This work shows how modern tools democratize techniques that previously required complex infrastructure. The combination of:</p>
+<ul class="simple">
+<li><strong>Analytical databases</strong> (DuckDB)</li>
+<li><strong>Spatial indices</strong> (H3)</li>
+<li><strong>Local ML</strong> (Ollama)</li>
+</ul>
+<p>...opens new possibilities for intelligent data integration.</p>
+<p><em>Original article</em>: <a class="reference external" href="https://www.dbreunig.com/2024/09/27/conflating-overture-points-of-interests-with-duckdb-ollama-and-more.html">Conflating Overture Places Using DuckDB, Ollama, Embeddings, and More</a></p>
+</div>
+
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="https://pablocaro.es/en/tag/duckdb.html">duckdb</a>
+      <a href="https://pablocaro.es/en/tag/geospatial.html">geospatial</a>
+      <a href="https://pablocaro.es/en/tag/embeddings.html">embeddings</a>
+      <a href="https://pablocaro.es/en/tag/ollama.html">ollama</a>
+      <a href="https://pablocaro.es/en/tag/h3.html">h3</a>
+    </p>
+  </div>
+
+
+
+  <div class="neighbors">
+    <a class="btn float-left" href="https://pablocaro.es/en/httpx-cliente-http-moderno-python" title="HTTPX: Modern HTTP Client for Python">
+      <i class="fa fa-angle-left"></i> Previous Post
+    </a>
+    <a class="btn float-right" href="https://pablocaro.es/en/busqueda-hibrida-sqlite-vector-texto" title="Hybrid Search with SQLite: Vector + Full-Text">
+      Next Post <i class="fa fa-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+<!-- Disqus -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'anotaciones';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>
+    Please enable JavaScript to view comments.
+</noscript>
+<!-- End Disqus -->
+</article>
+
+<footer>
+<p>
+  &copy; 2025  - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/3.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/3.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Annotations by Pablo Caro ",
+  "url" : "https://pablocaro.es/en",
+  "image": "/theme/img/profile.png",
+  "description": ""
+}
+</script>  <script src="https://files.stork-search.net/releases/v1.6.0/stork.js"></script>
+  <script>
+    window.storkIndexLoaded = false;
+    window.loadStorkIndex = function () {
+      if (window.storkIndexLoaded) {
+        return;
+      }
+      if (typeof stork === 'undefined') {
+        console.error('Stork is not loaded yet, retrying...');
+        setTimeout(window.loadStorkIndex, 100);
+        return;
+      }
+      stork.register("sitesearch", "https://pablocaro.es/en/search-index.st", { showProgress: false });
+      stork.register("sitesearch-page", "https://pablocaro.es/en/search-index.st", { showProgress: false });
+      window.storkIndexLoaded = true;
+    }
+  </script>
+
+</body>
+</html>

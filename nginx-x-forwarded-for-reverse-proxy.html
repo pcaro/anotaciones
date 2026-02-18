@@ -64,6 +64,8 @@
 <meta name="description" content="Cómo configurar Nginx para pasar la IP real del cliente a servidores backend usando el header X-Forwarded-For en configuraciones de reverse proxy" />
 <meta name="keywords" content="nginx, reverse-proxy, x-forwarded-for, ip-real, configuración">
 
+<link rel="alternate" href="https://pablocaro.es/nginx-x-forwarded-for-reverse-proxy" hreflang="es" />
+<link rel="alternate" href="https://pablocaro.es/en/nginx-x-forwarded-for-reverse-proxy" hreflang="en" />
 
   <meta property="og:site_name" content="Anotaciones por Pablo Caro"/>
   <meta property="og:title" content="Nginx: Configurar X-Forwarded-For en reverse proxy"/>
@@ -101,7 +103,7 @@
     <p>Anotaciones</p>
 
     <div class="stork">
-      <input class="stork-input" type="text" autocomplete="off" name="q" data-stork="sitesearch" placeholder="Search..." onclick="loadStorkIndex()"/>
+      <input class="stork-input" type="text" autocomplete="off" name="q" data-stork="sitesearch" placeholder="Buscar..." onclick="loadStorkIndex()"/>
       <div class="stork-output" data-stork="sitesearch-output"></div>
     </div>
 
@@ -165,12 +167,13 @@
   <main>
 
 <nav>
-  <a href="https://pablocaro.es/">Home</a>
+  <a href="https://pablocaro.es/">Inicio</a>
 
   <a href="/archives.html">Archivo</a>
   <a href="/categories.html">Categorías</a>
   <a href="/tags.html">Etiquetas</a>
   <a href="/search.html">Búsqueda</a>
+  <a href="/en/">English</a>
 
   <a href="https://pablocaro.es/feeds/all.atom.xml">Atom</a>
 
@@ -179,10 +182,13 @@
 
 <article class="single">
   <header>
-      
+          <div class="translations">
+            <a href="https://pablocaro.es/en/nginx-x-forwarded-for-reverse-proxy">Read in English</a>
+    </div>
+
     <h1 id="nginx-x-forwarded-for-reverse-proxy">Nginx: Configurar X-Forwarded-For en reverse proxy</h1>
     <p>
-      Posted on Wed 21 October 2015 in <a href="https://pablocaro.es/category/devops.html">DevOps</a>
+      Publicado el Wed 21 October 2015 en <a href="https://pablocaro.es/category/devops.html">DevOps</a>
 
     </p>
   </header>
@@ -256,15 +262,15 @@ tail<span class="w"> </span>-f<span class="w"> </span>/var/log/apache2/access.lo
 
   <div class="neighbors">
     <a class="btn float-left" href="https://pablocaro.es/sql-select-rows-max-value" title="SQL: Seleccionar filas con valor máximo por grupo">
-      <i class="fa fa-angle-left"></i> Previous Post
+      <i class="fa fa-angle-left"></i> Artículo anterior
     </a>
     <a class="btn float-right" href="https://pablocaro.es/historia-x-forwarded-for-x-real-ip" title="La historia detrás de X-Forwarded-For y X-Real-IP">
-      Next Post <i class="fa fa-angle-right"></i>
+      Próximo artículo <i class="fa fa-angle-right"></i>
     </a>
   </div>
 
   <div class="related-posts">
-    <h4>You might enjoy</h4>
+    <h4>Te puede gustar</h4>
     <ul class="related-posts">
       <li><a href="https://pablocaro.es/historia-x-forwarded-for-x-real-ip">La historia detrás de X-Forwarded-For y X-Real-IP</a></li>
       <li><a href="https://pablocaro.es/yaml-multilinea-cadenas-complejas">YAML Multilínea: Entendiendo y probando cadenas de texto complejas</a></li>
@@ -284,7 +290,7 @@ tail<span class="w"> </span>-f<span class="w"> </span>/var/log/apache2/access.lo
     })();
 </script>
 <noscript>
-    Please enable JavaScript to view comments.
+    Por favor, habilita JavaScript para ver los comentarios.
 </noscript>
 <!-- End Disqus -->
 </article>
@@ -294,7 +300,7 @@ tail<span class="w"> </span>-f<span class="w"> </span>/var/log/apache2/access.lo
   &copy; 2025  - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
 </p>
 <p>
-Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+Construido con <a href="http://getpelican.com" target="_blank">Pelican</a> usando el tema <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> 
 </p><p>
   <a rel="license"
      href="http://creativecommons.org/licenses/by-sa/3.0/"

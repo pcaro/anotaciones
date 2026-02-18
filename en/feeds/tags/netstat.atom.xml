@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Annotations by Pablo Caro - netstat</title><link href="https://pablocaro.es/en/" rel="alternate"></link><link href="https://pablocaro.es/feeds/tags/netstat.atom.xml" rel="self"></link><id>https://pablocaro.es/en/</id><updated>2025-12-25T13:30:00+01:00</updated><subtitle>Annotations</subtitle><entry><title>TCP Connection States in GNU/Linux: netstat and ss</title><link href="https://pablocaro.es/en/estados-conexion-tcp-netstat-ss" rel="alternate"></link><published>2025-12-25T13:30:00+01:00</published><updated>2025-12-25T13:30:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2025-12-25:/en/estados-conexion-tcp-netstat-ss</id><summary type="html">&lt;p&gt;Understand the different TCP connection states reported by netstat and ss, from establishment to termination, for better network diagnosis.&lt;/p&gt;</summary><content type="html">&lt;p&gt;In the GNU/Linux world, tools like &lt;code&gt;netstat&lt;/code&gt; and &lt;code&gt;ss&lt;/code&gt; are indispensable for monitoring and diagnosing the state of network connections on our systems. To correctly interpret their output, it is fundamental to understand the different states a TCP connection goes through. This post explores those states, from establishment to termination of a connection.&lt;/p&gt;
+&lt;h2 id="phases-of-a-tcp-connection"&gt;Phases of a TCP Connection&lt;a class="headerlink" href="#phases-of-a-tcp-connection" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;A TCP connection is managed through three main phases:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Connection Establishment&lt;/strong&gt;: A multi-step handshake process that initiates the connection.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Data Transfer&lt;/strong&gt;: Once established, data is sent between the two endpoints.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Connection Termination&lt;/strong&gt;: Closes the connection and releases associated resources.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;During these phases, the Internet socket (the local endpoint of the communication) experiences a series of state changes.&lt;/p&gt;
+&lt;h2 id="tcp-socket-states-explained"&gt;TCP Socket States Explained&lt;a class="headerlink" href="#tcp-socket-states-explained" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Here are the most common states you might encounter when listing connections with &lt;code&gt;netstat&lt;/code&gt; or &lt;code&gt;ss&lt;/code&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;ESTABLISHED&lt;/strong&gt;: The TCP connection is established and ready to transfer data. This is the desired state for an active connection.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;SYN_SENT&lt;/strong&gt;: The local socket has sent a SYN packet to the remote server and is waiting for a SYN-ACK response. Indicates that a connection attempt is being made.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;SYN_RECV&lt;/strong&gt;: The server has received a SYN packet from a client and has responded with a SYN-ACK, now waiting for an ACK from the client. It is part of the three-way handshake.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;FIN_WAIT1&lt;/strong&gt;: The local socket has closed its side of the connection and has sent a FIN packet, waiting for an ACK from the remote peer. The connection is closing actively.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;FIN_WAIT2&lt;/strong&gt;: The local socket has received the ACK to its FIN, but is still waiting for a FIN packet from the remote peer to fully close the connection.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;TIME_WAIT&lt;/strong&gt;: The socket has waited after closing the connection to ensure that all packets have been transmitted and received by both sides, and to allow duplicate packets to die out in the network. It is a necessary wait state before fully releasing resources.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;CLOSE&lt;/strong&gt;: The socket is not in use and there is no connection.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;CLOSE_WAIT&lt;/strong&gt;: The remote peer has closed its side of the connection (sent a FIN and been ACKed), and the local socket is waiting for the local application to close its own side.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;LAST_ACK&lt;/strong&gt;: The local socket has sent its FIN to the remote peer, and is waiting for the final ACK from the remote peer. This happens after a &lt;code&gt;CLOSE_WAIT&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;LISTEN&lt;/strong&gt;: The socket is waiting for incoming connections. Only seen with the &lt;code&gt;--listening (-l)&lt;/code&gt; or &lt;code&gt;--all (-a)&lt;/code&gt; options of &lt;code&gt;netstat&lt;/code&gt;/&lt;code&gt;ss&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;CLOSING&lt;/strong&gt;: Both sides of the connection have tried to close simultaneously, and the local socket is in the process of sending/receiving FIN and ACK.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;UNKNOWN&lt;/strong&gt;: The socket state is unknown or cannot be determined.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="tools-netstat-and-ss"&gt;Tools: &lt;code&gt;netstat&lt;/code&gt; and &lt;code&gt;ss&lt;/code&gt;&lt;a class="headerlink" href="#tools-netstat-and-ss" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;You can see these states using commands like:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;netstat&lt;span class="w"&gt; &lt;/span&gt;-tn&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="c1"&gt;# Shows TCP connections, without name resolution (-n)&lt;/span&gt;
+ss&lt;span class="w"&gt; &lt;/span&gt;-tn&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="c1"&gt;# Modern and faster version of netstat&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The &lt;code&gt;-t&lt;/code&gt; option filters for TCP connections and &lt;code&gt;-n&lt;/code&gt; avoids name resolution, which speeds up the output and shows IPs directly.&lt;/p&gt;
+&lt;h2 id="conclusion"&gt;Conclusion&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Understanding TCP connection states is vital for diagnosing network issues, identifying unresponsive or stuck processes, and understanding how applications behave in terms of connectivity. Knowing what each state means allows you to debug problems more effectively on your GNU/Linux system.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Original article&lt;/em&gt;: &lt;a href="https://www.ochobitshacenunbyte.com/2020/11/07/tipos-de-conexiones-en-netstat-y-ss-explicadas/"&gt;Tipos de Conexiones en netstat y ss Explicadas&lt;/a&gt;&lt;/p&gt;</content><category term="Systems"></category><category term="linux"></category><category term="networking"></category><category term="tcp"></category><category term="netstat"></category><category term="ss"></category><category term="systems"></category></entry></feed>

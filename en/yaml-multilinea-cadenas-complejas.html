@@ -1,0 +1,346 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://pablocaro.es/en/theme/stylesheet/style.min.css">
+
+
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+          href="https://pablocaro.es/en/theme/pygments/github.min.css">
+
+
+  <link rel="stylesheet"
+        type="text/css"
+        href="https://pablocaro.es/en/theme/stork/stork.css" />
+
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/en/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/en/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/en/theme/font-awesome/css/solid.css">
+
+
+  <link rel="shortcut icon" href="/theme/img/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/theme/img/favicon.ico" type="image/x-icon">
+
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#333333">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#333333">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Microsoft EDGE -->
+  <meta name="msapplication-TileColor" content="#333333">
+
+  <link href="https://pablocaro.es/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Annotations by Pablo Caro Atom">
+
+  <link href="https://pablocaro.es/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Annotations by Pablo Caro RSS">
+
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-60035125-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Pablo Caro" />
+<meta name="description" content="Explore YAML options for effectively handling multiline strings, with an interactive demo that allows you to test them in real-time." />
+<meta name="keywords" content="yaml, configuration, development, tools, multiline, strings">
+
+<link rel="alternate" href="https://pablocaro.es/en/yaml-multilinea-cadenas-complejas" hreflang="en" />
+<link rel="alternate" href="https://pablocaro.es/en/../yaml-multilinea-cadenas-complejas" hreflang="es" />
+
+  <meta property="og:site_name" content="Annotations by Pablo Caro"/>
+  <meta property="og:title" content="Multiline YAML: Understanding and testing complex strings"/>
+  <meta property="og:description" content="Explore YAML options for effectively handling multiline strings, with an interactive demo that allows you to test them in real-time."/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://pablocaro.es/en/yaml-multilinea-cadenas-complejas"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2025-12-25 16:10:00+01:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://pablocaro.es/en/author/pablo-caro.html">
+  <meta property="article:section" content="Tools"/>
+  <meta property="article:tag" content="yaml"/>
+  <meta property="article:tag" content="configuration"/>
+  <meta property="article:tag" content="development"/>
+  <meta property="article:tag" content="tools"/>
+  <meta property="article:tag" content="multiline"/>
+  <meta property="article:tag" content="strings"/>
+  <meta property="og:image" content="/theme/img/profile.png">
+
+  <title>Annotations by Pablo Caro &ndash; Multiline YAML: Understanding and testing complex strings</title>
+
+
+</head>
+<body class="light-theme">
+
+<aside>
+  <div>
+    <a href="https://pablocaro.es/en/">
+      <img src="/theme/img/profile.png" alt="Anotaciones" title="Anotaciones">
+    </a>
+
+    <h1>
+      <a href="https://pablocaro.es/en/">Anotaciones</a>
+    </h1>
+
+    <p>Annotations</p>
+
+    <div class="stork">
+      <input class="stork-input" type="text" autocomplete="off" name="q" data-stork="sitesearch" placeholder="Search..." onclick="loadStorkIndex()"/>
+      <div class="stork-output" data-stork="sitesearch-output"></div>
+    </div>
+
+    <nav>
+      <ul class="list">
+
+
+
+          <li>
+            <a target="_self" href="http://x.com/pcaro" >@pcaro at X.com</a>
+          </li>
+          <li>
+            <a target="_self" href="http://python.org/" >Python.org</a>
+          </li>
+          <li>
+            <a target="_self" href="http://jinja.pocoo.org/" >Jinja2</a>
+          </li>
+      </ul>
+    </nav>
+
+    <ul class="social">
+      <li>
+        <a class="sc-Twitter"
+           href="http://twitter.com/pcaro"
+           target="_blank">
+          <i class="fa-brands fa-Twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Github"
+           href="http://github.com/pcaro"
+           target="_blank">
+          <i class="fa-brands fa-Github"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Linkedin"
+           href="https://www.linkedin.com/in/pcarorevuelta"
+           target="_blank">
+          <i class="fa-brands fa-Linkedin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Facebook"
+           href="https://www.facebook.com/pablo.carorevuelta"
+           target="_blank">
+          <i class="fa-brands fa-Facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Email"
+           href="mailto:correo@pablocaro.es"
+           target="_blank">
+          <i class="fa-brands fa-Email"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+</aside>
+  <main>
+
+<nav>
+  <a href="https://pablocaro.es/en/">Home</a>
+
+  <a href="/en/archives.html">Archives</a>
+  <a href="/en/categories.html">Categories</a>
+  <a href="/en/tags.html">Tags</a>
+  <a href="/en/search.html">Search</a>
+  <a href="/">Español</a>
+
+  <a href="https://pablocaro.es/feeds/all.atom.xml">Atom</a>
+
+  <a href="https://pablocaro.es/feeds/all.rss.xml">RSS</a>
+</nav>
+
+<article class="single">
+  <header>
+          <div class="translations">
+            <a href="https://pablocaro.es/en/../yaml-multilinea-cadenas-complejas">Leer en español</a>
+    </div>
+
+    <h1 id="yaml-multilinea-cadenas-complejas">Multiline YAML: Understanding and testing complex strings</h1>
+    <p>
+      Posted on Thu 25 December 2025 in <a href="https://pablocaro.es/en/category/tools.html">Tools</a>
+
+    </p>
+  </header>
+
+
+  <div>
+    <p>YAML has become the de facto format for configuration in many projects, from Kubernetes to CI/CD scripts. One of its most powerful, and sometimes confusing, features is the management of <strong>multiline strings</strong>. Fortunately, there is an exceptional interactive tool to master this aspect: <a href="https://yaml-multiline.info/">yaml-multiline.info</a>.</p>
+<h2 id="formats-for-multiline-strings-in-yaml">Formats for Multiline Strings in YAML<a class="headerlink" href="#formats-for-multiline-strings-in-yaml" title="Permanent link">&para;</a></h2>
+<p>YAML mainly offers two approaches for defining strings that span multiple lines:</p>
+<ol>
+<li>
+<p><strong>Flow Scalars</strong>:</p>
+<ul>
+<li>They are simple strings, often quoted (<code>'...'</code> or <code>"..."</code>) or unquoted.</li>
+<li>They ignore indentations and, by default, replace line breaks with spaces.</li>
+<li>Double-quoted strings allow using escape sequences like <code>\n</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>Block Scalars</strong>:</p>
+<ul>
+<li>They offer much more precise control over line breaks and indentation.</li>
+<li>They are indicated with a special character at the beginning of the line where the string starts.</li>
+</ul>
+</li>
+</ol>
+<h2 id="keys-for-block-multiline-strings">Keys for Block Multiline Strings<a class="headerlink" href="#keys-for-block-multiline-strings" title="Permanent link">&para;</a></h2>
+<p>The two most important style indicators for block scalars are:</p>
+<ul>
+<li>
+<p><strong><code>|</code> (Literal Style)</strong>: Keeps all line breaks and indentation as is. It is ideal for blocks of text where formatting is crucial (e.g., code, long messages).
+    <code>yaml
+    literal_string: |
+      This is a line.
+      This is another.
+        With its own indentation.</code>
+    Result: "This is a line.\nThis is another.\n  With its own indentation.\n"</p>
+</li>
+<li>
+<p><strong><code>&gt;</code> (Folded Style)</strong>: Replaces line breaks with spaces, joining lines into a single one. Only double line breaks (blank lines) or lines with greater indentation are kept as line breaks. It is useful for long paragraphs.
+    <code>yaml
+    folded_string: &gt;
+      This is a string
+      folded into multiple lines.
+      It will keep the paragraph format.</code>
+    Result: "This is a string folded into multiple lines. It will keep the paragraph format.\n"</p>
+</li>
+</ul>
+<p>In addition to this, there are "chomping" indicators (<code>-</code> to remove trailing line breaks, <code>+</code> to keep them, or the default behavior) and indentation indicators that offer even more control.</p>
+<h2 id="real-time-demo">Real-Time Demo!<a class="headerlink" href="#real-time-demo" title="Permanent link">&para;</a></h2>
+<p>What makes <a href="https://yaml-multiline.info/">yaml-multiline.info</a> an invaluable tool is its <strong>interactive demo</strong>. You can test different YAML syntaxes in real-time and see how the resulting string is interpreted. It is the best way to visually understand how literal and folded styles work, and how chomping and indentation indicators affect the final result.</p>
+<h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">&para;</a></h2>
+<p>Understanding how to handle multiline strings in YAML not only improves the readability of your configuration files but also prevents unexpected errors. The real-time demo of <code>yaml-multiline.info</code> is a fantastic resource for anyone who regularly works with YAML and wants to master this aspect.</p>
+<p><em>Website</em>: <a href="https://yaml-multiline.info/"><code>yaml-multiline.info</code></a></p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="https://pablocaro.es/en/tag/yaml.html">yaml</a>
+      <a href="https://pablocaro.es/en/tag/configuration.html">configuration</a>
+      <a href="https://pablocaro.es/en/tag/development.html">development</a>
+      <a href="https://pablocaro.es/en/tag/tools.html">tools</a>
+      <a href="https://pablocaro.es/en/tag/multiline.html">multiline</a>
+      <a href="https://pablocaro.es/en/tag/strings.html">strings</a>
+    </p>
+  </div>
+
+
+
+  <div class="neighbors">
+    <a class="btn float-left" href="https://pablocaro.es/en/pandas-styler-presentacion-dataframes" title="Pandas Styler: Improve the Presentation of your DataFrames">
+      <i class="fa fa-angle-left"></i> Previous Post
+    </a>
+    <a class="btn float-right" href="https://pablocaro.es/en/gestionando-instalaciones-desde-github-con-gah" title="Managing GitHub installations with gah">
+      Next Post <i class="fa fa-angle-right"></i>
+    </a>
+  </div>
+
+  <div class="related-posts">
+    <h4>You might enjoy</h4>
+    <ul class="related-posts">
+      <li><a href="https://pablocaro.es/en/direnv-gestion-entornos">`direnv`: Manage your development environments intelligently</a></li>
+      <li><a href="https://pablocaro.es/en/herramientas-desarrolladores-linea-comandos">Powerful Command Line Tools for Developers</a></li>
+      <li><a href="https://pablocaro.es/en/nginx-x-forwarded-for-reverse-proxy">Nginx: Configuring X-Forwarded-For in Reverse Proxy</a></li>
+      <li><a href="https://pablocaro.es/en/reduce-ruido-logs-python">Reduce Noise in Your Python Logs: A Smart Approach</a></li>
+      <li><a href="https://pablocaro.es/en/gestionando-instalaciones-desde-github-con-gah">Managing GitHub installations with gah</a></li>
+    </ul>
+  </div>
+
+
+
+<!-- Disqus -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'anotaciones';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>
+    Please enable JavaScript to view comments.
+</noscript>
+<!-- End Disqus -->
+</article>
+
+<footer>
+<p>
+  &copy; 2025  - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/3.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/3.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Annotations by Pablo Caro ",
+  "url" : "https://pablocaro.es/en",
+  "image": "/theme/img/profile.png",
+  "description": ""
+}
+</script>  <script src="https://files.stork-search.net/releases/v1.6.0/stork.js"></script>
+  <script>
+    window.storkIndexLoaded = false;
+    window.loadStorkIndex = function () {
+      if (window.storkIndexLoaded) {
+        return;
+      }
+      if (typeof stork === 'undefined') {
+        console.error('Stork is not loaded yet, retrying...');
+        setTimeout(window.loadStorkIndex, 100);
+        return;
+      }
+      stork.register("sitesearch", "https://pablocaro.es/en/search-index.st", { showProgress: false });
+      stork.register("sitesearch-page", "https://pablocaro.es/en/search-index.st", { showProgress: false });
+      window.storkIndexLoaded = true;
+    }
+  </script>
+
+</body>
+</html>

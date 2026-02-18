@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Annotations by Pablo Caro - configuration</title><link href="https://pablocaro.es/en/" rel="alternate"></link><link href="https://pablocaro.es/feeds/tags/configuration.atom.xml" rel="self"></link><id>https://pablocaro.es/en/</id><updated>2025-12-25T16:10:00+01:00</updated><subtitle>Annotations</subtitle><entry><title>Multiline YAML: Understanding and testing complex strings</title><link href="https://pablocaro.es/en/yaml-multilinea-cadenas-complejas" rel="alternate"></link><published>2025-12-25T16:10:00+01:00</published><updated>2025-12-25T16:10:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2025-12-25:/en/yaml-multilinea-cadenas-complejas</id><summary type="html">&lt;p&gt;Explore YAML options for effectively handling multiline strings, with an interactive demo that allows you to test them in real-time.&lt;/p&gt;</summary><content type="html">&lt;p&gt;YAML has become the de facto format for configuration in many projects, from Kubernetes to CI/CD scripts. One of its most powerful, and sometimes confusing, features is the management of &lt;strong&gt;multiline strings&lt;/strong&gt;. Fortunately, there is an exceptional interactive tool to master this aspect: &lt;a href="https://yaml-multiline.info/"&gt;yaml-multiline.info&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id="formats-for-multiline-strings-in-yaml"&gt;Formats for Multiline Strings in YAML&lt;a class="headerlink" href="#formats-for-multiline-strings-in-yaml" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;YAML mainly offers two approaches for defining strings that span multiple lines:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Flow Scalars&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;They are simple strings, often quoted (&lt;code&gt;'...'&lt;/code&gt; or &lt;code&gt;"..."&lt;/code&gt;) or unquoted.&lt;/li&gt;
+&lt;li&gt;They ignore indentations and, by default, replace line breaks with spaces.&lt;/li&gt;
+&lt;li&gt;Double-quoted strings allow using escape sequences like &lt;code&gt;\n&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Block Scalars&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;They offer much more precise control over line breaks and indentation.&lt;/li&gt;
+&lt;li&gt;They are indicated with a special character at the beginning of the line where the string starts.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="keys-for-block-multiline-strings"&gt;Keys for Block Multiline Strings&lt;a class="headerlink" href="#keys-for-block-multiline-strings" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The two most important style indicators for block scalars are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;|&lt;/code&gt; (Literal Style)&lt;/strong&gt;: Keeps all line breaks and indentation as is. It is ideal for blocks of text where formatting is crucial (e.g., code, long messages).
+    &lt;code&gt;yaml
+    literal_string: |
+      This is a line.
+      This is another.
+        With its own indentation.&lt;/code&gt;
+    Result: "This is a line.\nThis is another.\n  With its own indentation.\n"&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;&amp;gt;&lt;/code&gt; (Folded Style)&lt;/strong&gt;: Replaces line breaks with spaces, joining lines into a single one. Only double line breaks (blank lines) or lines with greater indentation are kept as line breaks. It is useful for long paragraphs.
+    &lt;code&gt;yaml
+    folded_string: &amp;gt;
+      This is a string
+      folded into multiple lines.
+      It will keep the paragraph format.&lt;/code&gt;
+    Result: "This is a string folded into multiple lines. It will keep the paragraph format.\n"&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In addition to this, there are "chomping" indicators (&lt;code&gt;-&lt;/code&gt; to remove trailing line breaks, &lt;code&gt;+&lt;/code&gt; to keep them, or the default behavior) and indentation indicators that offer even more control.&lt;/p&gt;
+&lt;h2 id="real-time-demo"&gt;Real-Time Demo!&lt;a class="headerlink" href="#real-time-demo" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;What makes &lt;a href="https://yaml-multiline.info/"&gt;yaml-multiline.info&lt;/a&gt; an invaluable tool is its &lt;strong&gt;interactive demo&lt;/strong&gt;. You can test different YAML syntaxes in real-time and see how the resulting string is interpreted. It is the best way to visually understand how literal and folded styles work, and how chomping and indentation indicators affect the final result.&lt;/p&gt;
+&lt;h2 id="conclusion"&gt;Conclusion&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Understanding how to handle multiline strings in YAML not only improves the readability of your configuration files but also prevents unexpected errors. The real-time demo of &lt;code&gt;yaml-multiline.info&lt;/code&gt; is a fantastic resource for anyone who regularly works with YAML and wants to master this aspect.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Website&lt;/em&gt;: &lt;a href="https://yaml-multiline.info/"&gt;&lt;code&gt;yaml-multiline.info&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;</content><category term="Tools"></category><category term="yaml"></category><category term="configuration"></category><category term="development"></category><category term="tools"></category><category term="multiline"></category><category term="strings"></category></entry><entry><title>Nginx: Configuring X-Forwarded-For in Reverse Proxy</title><link href="https://pablocaro.es/en/nginx-x-forwarded-for-reverse-proxy" rel="alternate"></link><published>2015-10-21T23:05:00+02:00</published><updated>2015-10-21T23:05:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2015-10-21:/en/nginx-x-forwarded-for-reverse-proxy</id><summary type="html">&lt;p&gt;How to configure Nginx to pass the client's real IP to backend servers using the X-Forwarded-For header in reverse proxy configurations&lt;/p&gt;</summary><content type="html">&lt;p&gt;When you use &lt;strong&gt;Nginx as a reverse proxy&lt;/strong&gt;, you need the backend server to see the &lt;strong&gt;client's real IP&lt;/strong&gt;, not the proxy's IP. The &lt;code&gt;X-Forwarded-For&lt;/code&gt; header solves this problem.&lt;/p&gt;
+&lt;h2 id="the-problem"&gt;The Problem&lt;a class="headerlink" href="#the-problem" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Without configuration, the backend server only sees the Nginx proxy IP, losing crucial information about the real client for:
+- Accurate &lt;strong&gt;access logs&lt;/strong&gt;
+- Correct &lt;strong&gt;geolocation&lt;/strong&gt;
+- &lt;strong&gt;Rate limiting&lt;/strong&gt; by real IP
+- Reliable &lt;strong&gt;traffic analysis&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id="solution-1-simple-ip"&gt;Solution 1: Simple IP&lt;a class="headerlink" href="#solution-1-simple-ip" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;proxy_set_header&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;X-Forwarded-For&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;$remote_addr&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Usage&lt;/strong&gt;: When Nginx is the only proxy in the chain.
+&lt;strong&gt;Result&lt;/strong&gt;: Header contains only the original client IP.&lt;/p&gt;
+&lt;h2 id="solution-2-ip-chain"&gt;Solution 2: IP Chain&lt;a class="headerlink" href="#solution-2-ip-chain" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;proxy_set_header&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;X-Forwarded-For&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;$proxy_add_x_forwarded_for&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Usage&lt;/strong&gt;: When there are multiple proxies in the chain.
+&lt;strong&gt;Result&lt;/strong&gt;: Preserves existing IPs and adds the current one.&lt;/p&gt;
+&lt;h2 id="practical-configuration"&gt;Practical Configuration&lt;a class="headerlink" href="#practical-configuration" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;server&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="kn"&gt;listen&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;80&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="kn"&gt;server_name&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;example.com&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="kn"&gt;location&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;/&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="kn"&gt;proxy_pass&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;http://backend-server&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="kn"&gt;proxy_set_header&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;Host&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;$host&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="kn"&gt;proxy_set_header&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;X-Real-IP&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;$remote_addr&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="kn"&gt;proxy_set_header&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;X-Forwarded-For&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;$proxy_add_x_forwarded_for&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="kn"&gt;proxy_set_header&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;X-Forwarded-Proto&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;$scheme&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="related-headers"&gt;Related Headers&lt;a class="headerlink" href="#related-headers" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;X-Real-IP&lt;/strong&gt;: Most recent client IP&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;X-Forwarded-For&lt;/strong&gt;: Complete chain of IPs&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;X-Forwarded-Proto&lt;/strong&gt;: Original protocol (http/https)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Host&lt;/strong&gt;: Original hostname&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="verification"&gt;Verification&lt;a class="headerlink" href="#verification" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# On the backend server, check the headers&lt;/span&gt;
+tail&lt;span class="w"&gt; &lt;/span&gt;-f&lt;span class="w"&gt; &lt;/span&gt;/var/log/apache2/access.log
+&lt;span class="c1"&gt;# Or in your application&lt;/span&gt;
+&lt;span class="nb"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;$_SERVER&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;HTTP_X_FORWARDED_FOR&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="security-considerations"&gt;Security Considerations&lt;a class="headerlink" href="#security-considerations" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;⚠️ &lt;strong&gt;Important&lt;/strong&gt;: X-Forwarded-* headers can be forged by clients. In production environments, ensure that only your proxy sets them.&lt;/p&gt;
+&lt;p&gt;This configuration is essential to maintain &lt;strong&gt;full traceability&lt;/strong&gt; in reverse proxy architectures.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Original source&lt;/em&gt;: &lt;a href="http://www.networkinghowtos.com/howto/set-the-x-forwarded-for-header-on-a-nginx-reverse-proxy-setup/"&gt;Networking How To's&lt;/a&gt;&lt;/p&gt;</content><category term="DevOps"></category><category term="nginx"></category><category term="reverse-proxy"></category><category term="x-forwarded-for"></category><category term="real-ip"></category><category term="configuration"></category></entry></feed>

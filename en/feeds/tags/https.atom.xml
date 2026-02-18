@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Annotations by Pablo Caro - https</title><link href="https://pablocaro.es/en/" rel="alternate"></link><link href="https://pablocaro.es/feeds/tags/https.atom.xml" rel="self"></link><id>https://pablocaro.es/en/</id><updated>2025-12-25T14:15:00+01:00</updated><subtitle>Annotations</subtitle><entry><title>`docker-http-https-echo`: An Essential Tool for Network Debugging</title><link href="https://pablocaro.es/en/docker-http-https-echo" rel="alternate"></link><published>2025-12-25T14:15:00+01:00</published><updated>2025-12-25T14:15:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2025-12-25:/en/docker-http-https-echo</id><summary type="html">&lt;p&gt;&lt;code&gt;mendhak/docker-http-https-echo&lt;/code&gt; is a simple Docker container that facilitates debugging network configurations, proxies, and load balancers.&lt;/p&gt;</summary><content type="html">&lt;p&gt;In the complex world of distributed applications, debugging network issues, proxies, load balancers, or firewall rules can be an arduous task. We need a simple way to verify what a server is receiving. This is where a tool like &lt;code&gt;mendhak/docker-http-https-echo&lt;/code&gt; becomes indispensable.&lt;/p&gt;
+&lt;h2 id="what-is-mendhakdocker-http-https-echo"&gt;What is &lt;code&gt;mendhak/docker-http-https-echo&lt;/code&gt;?&lt;a class="headerlink" href="#what-is-mendhakdocker-http-https-echo" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;It is an extremely lightweight and simple Docker container that functions as an "echo" HTTP and HTTPS server. Its main function is to &lt;strong&gt;respond to any HTTP or HTTPS request with a detailed description of the request itself&lt;/strong&gt;. This includes:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Request headers.&lt;/li&gt;
+&lt;li&gt;HTTP method (GET, POST, PUT, etc.).&lt;/li&gt;
+&lt;li&gt;Request URL and parameters.&lt;/li&gt;
+&lt;li&gt;Request body.&lt;/li&gt;
+&lt;li&gt;Remote IP address of the client.&lt;/li&gt;
+&lt;li&gt;TLS/SSL information (if HTTPS).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="why-is-it-useful"&gt;Why is it useful?&lt;a class="headerlink" href="#why-is-it-useful" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;This type of echo server is invaluable for a variety of debugging scenarios:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Proxy and Load Balancer Debugging&lt;/strong&gt;: Verify if a reverse proxy or load balancer is rewriting headers, modifying URLs, or passing the request body as you expect.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Firewall and Security Rules&lt;/strong&gt;: Confirm that traffic is reaching the correct destination and is not being blocked or altered.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;HTTP/HTTPS Header Inspection&lt;/strong&gt;: Useful to see exactly what headers your client or a specific application sends.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Integration Testing&lt;/strong&gt;: A predictable target for automated tests of how different services communicate via HTTP/HTTPS.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Mixed Content Diagnosis&lt;/strong&gt;: You can use it to verify if HTTP resources are loading correctly in an HTTPS context.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="how-to-use-it"&gt;How to Use It&lt;a class="headerlink" href="#how-to-use-it" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Using it is straightforward via Docker:&lt;/p&gt;
+&lt;h3 id="for-http-port-8080"&gt;For HTTP (port 8080)&lt;a class="headerlink" href="#for-http-port-8080" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;docker&lt;span class="w"&gt; &lt;/span&gt;run&lt;span class="w"&gt; &lt;/span&gt;-p&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;8080&lt;/span&gt;:8080&lt;span class="w"&gt; &lt;/span&gt;mendhak/http-https-echo
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Then, you can access &lt;code&gt;http://localhost:8080&lt;/code&gt; with your browser or &lt;code&gt;curl&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;curl&lt;span class="w"&gt; &lt;/span&gt;http://localhost:8080/path?query&lt;span class="o"&gt;=&lt;/span&gt;value&lt;span class="w"&gt; &lt;/span&gt;-H&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;X-Custom-Header: test&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id="for-https-port-8443"&gt;For HTTPS (port 8443)&lt;a class="headerlink" href="#for-https-port-8443" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;To use HTTPS, you must map the container's HTTPS port. The image already comes with a self-signed certificate for testing.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;docker&lt;span class="w"&gt; &lt;/span&gt;run&lt;span class="w"&gt; &lt;/span&gt;-p&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;8443&lt;/span&gt;:8443&lt;span class="w"&gt; &lt;/span&gt;mendhak/http-https-echo
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Access &lt;code&gt;https://localhost:8443&lt;/code&gt; (your browser may warn you about the self-signed certificate).&lt;/p&gt;
+&lt;h2 id="conclusion"&gt;Conclusion&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;mendhak/docker-http-https-echo&lt;/code&gt; is one of those simple but incredibly useful tools that every developer and system operator should have on hand. It facilitates understanding network flows and speeds up debugging connectivity issues in any container-based environment.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Original repository&lt;/em&gt;: &lt;a href="https://github.com/mendhak/docker-http-https-echo"&gt;mendhak/docker-http-https-echo on GitHub&lt;/a&gt;&lt;/p&gt;</content><category term="Tools"></category><category term="docker"></category><category term="http"></category><category term="https"></category><category term="debugging"></category><category term="networking"></category><category term="tools"></category><category term="containers"></category></entry></feed>

@@ -1,0 +1,393 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://pablocaro.es/en/theme/stylesheet/style.min.css">
+
+
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+          href="https://pablocaro.es/en/theme/pygments/github.min.css">
+
+
+  <link rel="stylesheet"
+        type="text/css"
+        href="https://pablocaro.es/en/theme/stork/stork.css" />
+
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/en/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/en/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/en/theme/font-awesome/css/solid.css">
+
+
+  <link rel="shortcut icon" href="/theme/img/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/theme/img/favicon.ico" type="image/x-icon">
+
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#333333">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#333333">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Microsoft EDGE -->
+  <meta name="msapplication-TileColor" content="#333333">
+
+  <link href="https://pablocaro.es/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Annotations by Pablo Caro Atom">
+
+  <link href="https://pablocaro.es/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Annotations by Pablo Caro RSS">
+
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-60035125-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Pablo Caro" />
+<meta name="description" content="A practical approach to using git worktrees and maximizing productivity with multiple simultaneous work contexts" />
+<meta name="keywords" content="git, worktrees, workflow, productivity">
+
+<link rel="alternate" href="https://pablocaro.es/en/como-uso-git-worktrees" hreflang="en" />
+<link rel="alternate" href="https://pablocaro.es/en/../como-uso-git-worktrees" hreflang="es" />
+
+  <meta property="og:site_name" content="Annotations by Pablo Caro"/>
+  <meta property="og:title" content="How I Use Git Worktrees for Concurrent Work"/>
+  <meta property="og:description" content="A practical approach to using git worktrees and maximizing productivity with multiple simultaneous work contexts"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://pablocaro.es/en/como-uso-git-worktrees"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2025-07-23 06:12:00+02:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://pablocaro.es/en/author/pablo-caro.html">
+  <meta property="article:section" content="Programming"/>
+  <meta property="article:tag" content="git"/>
+  <meta property="article:tag" content="worktrees"/>
+  <meta property="article:tag" content="workflow"/>
+  <meta property="article:tag" content="productivity"/>
+  <meta property="og:image" content="/theme/img/profile.png">
+
+  <title>Annotations by Pablo Caro &ndash; How I Use Git Worktrees for Concurrent Work</title>
+
+
+</head>
+<body class="light-theme">
+
+<aside>
+  <div>
+    <a href="https://pablocaro.es/en/">
+      <img src="/theme/img/profile.png" alt="Anotaciones" title="Anotaciones">
+    </a>
+
+    <h1>
+      <a href="https://pablocaro.es/en/">Anotaciones</a>
+    </h1>
+
+    <p>Annotations</p>
+
+    <div class="stork">
+      <input class="stork-input" type="text" autocomplete="off" name="q" data-stork="sitesearch" placeholder="Search..." onclick="loadStorkIndex()"/>
+      <div class="stork-output" data-stork="sitesearch-output"></div>
+    </div>
+
+    <nav>
+      <ul class="list">
+
+
+
+          <li>
+            <a target="_self" href="http://x.com/pcaro" >@pcaro at X.com</a>
+          </li>
+          <li>
+            <a target="_self" href="http://python.org/" >Python.org</a>
+          </li>
+          <li>
+            <a target="_self" href="http://jinja.pocoo.org/" >Jinja2</a>
+          </li>
+      </ul>
+    </nav>
+
+    <ul class="social">
+      <li>
+        <a class="sc-Twitter"
+           href="http://twitter.com/pcaro"
+           target="_blank">
+          <i class="fa-brands fa-Twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Github"
+           href="http://github.com/pcaro"
+           target="_blank">
+          <i class="fa-brands fa-Github"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Linkedin"
+           href="https://www.linkedin.com/in/pcarorevuelta"
+           target="_blank">
+          <i class="fa-brands fa-Linkedin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Facebook"
+           href="https://www.facebook.com/pablo.carorevuelta"
+           target="_blank">
+          <i class="fa-brands fa-Facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Email"
+           href="mailto:correo@pablocaro.es"
+           target="_blank">
+          <i class="fa-brands fa-Email"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+</aside>
+  <main>
+
+<nav>
+  <a href="https://pablocaro.es/en/">Home</a>
+
+  <a href="/en/archives.html">Archives</a>
+  <a href="/en/categories.html">Categories</a>
+  <a href="/en/tags.html">Tags</a>
+  <a href="/en/search.html">Search</a>
+  <a href="/">Español</a>
+
+  <a href="https://pablocaro.es/feeds/all.atom.xml">Atom</a>
+
+  <a href="https://pablocaro.es/feeds/all.rss.xml">RSS</a>
+</nav>
+
+<article class="single">
+  <header>
+          <div class="translations">
+            <a href="https://pablocaro.es/en/../como-uso-git-worktrees">Leer en español</a>
+    </div>
+
+    <h1 id="como-uso-git-worktrees">How I Use Git Worktrees for Concurrent Work</h1>
+    <p>
+      Posted on Wed 23 July 2025 in <a href="https://pablocaro.es/en/category/programming.html">Programming</a>
+
+    </p>
+  </header>
+
+
+  <div>
+    <p>Aleksey Kladov shares his unique approach to using git worktrees, which goes beyond simply switching branches and becomes a complete methodology for concurrent work.</p>
+<img alt="Worktree structure" class="align-center" src="https://matklad.github.io/images/worktree-structure.png" />
+<div class="section" id="the-core-philosophy">
+<h2>The Core Philosophy</h2>
+<p><strong>&quot;Git is not a version control system, Git is a toolbox for building a VCS&quot;</strong></p>
+<p>This perspective completely changes how we think about git. Instead of limiting ourselves to basic functionalities, we can create our own optimized workflow.</p>
+</div>
+<div class="section" id="the-5-specialized-worktrees">
+<h2>The 5 Specialized Worktrees</h2>
+<p>The author maintains 5 worktrees, each with a specific purpose:</p>
+<ol class="arabic simple">
+<li><strong>main</strong> - Read-only snapshot
+- Clean reflection of remote main
+- Reference for comparisons
+- Never modified locally</li>
+<li><strong>work</strong> - Main workspace
+- Day-to-day active development
+- Frequent commits with minimal messages
+- Detached HEAD for maximum flexibility</li>
+<li><strong>review</strong> - Dedicated to code reviews
+- Clean context to analyze PRs
+- Without interfering with ongoing work</li>
+<li><strong>fuzz</strong> - Long-running tests
+- Fuzzing and tests that last hours
+- Runs in parallel without blocking development</li>
+<li><strong>scratch</strong> - Unrelated quick tasks
+- Experiments
+- Urgent fixes
+- Ad-hoc investigations</li>
+</ol>
+<div class="highlight"><pre><span></span><span class="c1"># Typical directory structure</span>
+~/projects/my-project/
+├──<span class="w"> </span>main/<span class="w">        </span><span class="c1"># main worktree</span>
+├──<span class="w"> </span>work/<span class="w">        </span><span class="c1"># active development</span>
+├──<span class="w"> </span>review/<span class="w">      </span><span class="c1"># reviews</span>
+├──<span class="w"> </span>fuzz/<span class="w">        </span><span class="c1"># testing</span>
+└──<span class="w"> </span>scratch/<span class="w">     </span><span class="c1"># experiments</span>
+</pre></div>
+</div>
+<div class="section" id="advantages-of-the-approach">
+<h2>Advantages of the Approach</h2>
+<dl class="docutils">
+<dt><strong>Truly Concurrent Work</strong></dt>
+<dd><ul class="first last simple">
+<li>Multiple coding activities simultaneously</li>
+<li>No need for stash or complex branch switching</li>
+<li>Clean separation of contexts</li>
+</ul>
+</dd>
+<dt><strong>Frictionless Workflow</strong></dt>
+<dd><ul class="first last simple">
+<li>Instant switching between tasks</li>
+<li>Frequent commits without pressure for perfect messages</li>
+<li>Free experimentation on detached HEAD</li>
+</ul>
+</dd>
+<dt><strong>Real Parallelization</strong></dt>
+<dd><ul class="first last simple">
+<li>Fuzzing running while you develop</li>
+<li>Reviews without interrupting main work</li>
+<li>Background tests without blocks</li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="advanced-techniques">
+<h2>Advanced Techniques</h2>
+<p><strong>Strategic Detached HEAD</strong></p>
+<div class="highlight"><pre><span></span><span class="c1"># In the &#39;work&#39; worktree, work without a branch</span>
+git<span class="w"> </span>checkout<span class="w"> </span>--detach<span class="w"> </span>HEAD
+<span class="c1"># Frequent commit, reorganize later</span>
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;wip&quot;</span>
+</pre></div>
+<p><strong>Custom Scripts for Common Operations</strong></p>
+<div class="highlight"><pre><span></span><span class="c1"># Script to quickly create/switch worktrees</span>
+<span class="c1">#!/bin/bash</span>
+git<span class="w"> </span>worktree<span class="w"> </span>add<span class="w"> </span><span class="s2">&quot;../</span><span class="nv">$1</span><span class="s2">&quot;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$2</span><span class="s2">&quot;</span>
+<span class="nb">cd</span><span class="w"> </span><span class="s2">&quot;../</span><span class="nv">$1</span><span class="s2">&quot;</span>
+</pre></div>
+<p><strong>Integration Flow</strong></p>
+<div class="highlight"><pre><span></span><span class="c1"># From the &#39;work&#39; worktree</span>
+git<span class="w"> </span>log<span class="w"> </span>--oneline<span class="w">  </span><span class="c1"># review commits</span>
+git<span class="w"> </span>reset<span class="w"> </span>HEAD~5<span class="w">   </span><span class="c1"># undo temporary commits</span>
+git<span class="w"> </span>add<span class="w"> </span>-p<span class="w">         </span><span class="c1"># select changes</span>
+git<span class="w"> </span>commit<span class="w">         </span><span class="c1"># clean final commit</span>
+</pre></div>
+</div>
+<div class="section" id="key-lessons">
+<h2>Key Lessons</h2>
+<ol class="arabic simple">
+<li><strong>Git is flexible</strong>: There is no &quot;one right way&quot; to use git</li>
+<li><strong>Automate the repetitive</strong>: Custom scripts for common operations</li>
+<li><strong>Separate contexts</strong>: Each type of work deserves its own space</li>
+<li><strong>Cheap commits</strong>: Commit frequently, organize later</li>
+</ol>
+<p>This approach transforms git from a versioning tool into a complete workflow management platform, maximizing productivity through truly concurrent work.</p>
+<p><em>Original article</em>: <a class="reference external" href="https://matklad.github.io/2024/07/25/git-worktrees.html">How I Use Git Worktrees</a></p>
+</div>
+
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="https://pablocaro.es/en/tag/git.html">git</a>
+      <a href="https://pablocaro.es/en/tag/worktrees.html">worktrees</a>
+      <a href="https://pablocaro.es/en/tag/workflow.html">workflow</a>
+      <a href="https://pablocaro.es/en/tag/productivity.html">productivity</a>
+    </p>
+  </div>
+
+
+
+  <div class="neighbors">
+    <a class="btn float-left" href="https://pablocaro.es/en/busqueda-hibrida-sqlite-vector-texto" title="Hybrid Search with SQLite: Vector + Full-Text">
+      <i class="fa fa-angle-left"></i> Previous Post
+    </a>
+    <a class="btn float-right" href="https://pablocaro.es/en/poe-the-poet-automatizando-tareas-en-proyectos-python-con-uv" title="Poe the Poet: Automating Tasks in Python Projects with uv">
+      Next Post <i class="fa fa-angle-right"></i>
+    </a>
+  </div>
+
+  <div class="related-posts">
+    <h4>You might enjoy</h4>
+    <ul class="related-posts">
+      <li><a href="https://pablocaro.es/en/fresh-editor-terminal">`fresh`: My preferred terminal editor for daily use</a></li>
+      <li><a href="https://pablocaro.es/en/kooha-captura-pantalla-linux">Kooha: Simple and Elegant Screen Recording on Linux</a></li>
+      <li><a href="https://pablocaro.es/en/direnv-gestion-entornos">`direnv`: Manage your development environments intelligently</a></li>
+      <li><a href="https://pablocaro.es/en/kitty-acceso-rapido">Kitty as a Quick Access Terminal: The Convenience of a Dropdown</a></li>
+      <li><a href="https://pablocaro.es/en/atajos-de-teclado-kitty">Essential Keyboard Shortcuts in Kitty: Mastering Your Terminal</a></li>
+    </ul>
+  </div>
+
+
+
+<!-- Disqus -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'anotaciones';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>
+    Please enable JavaScript to view comments.
+</noscript>
+<!-- End Disqus -->
+</article>
+
+<footer>
+<p>
+  &copy; 2025  - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/3.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/3.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Annotations by Pablo Caro ",
+  "url" : "https://pablocaro.es/en",
+  "image": "/theme/img/profile.png",
+  "description": ""
+}
+</script>  <script src="https://files.stork-search.net/releases/v1.6.0/stork.js"></script>
+  <script>
+    window.storkIndexLoaded = false;
+    window.loadStorkIndex = function () {
+      if (window.storkIndexLoaded) {
+        return;
+      }
+      if (typeof stork === 'undefined') {
+        console.error('Stork is not loaded yet, retrying...');
+        setTimeout(window.loadStorkIndex, 100);
+        return;
+      }
+      stork.register("sitesearch", "https://pablocaro.es/en/search-index.st", { showProgress: false });
+      stork.register("sitesearch-page", "https://pablocaro.es/en/search-index.st", { showProgress: false });
+      window.storkIndexLoaded = true;
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,1251 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://pablocaro.es/en/theme/stylesheet/style.min.css">
+
+
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+          href="https://pablocaro.es/en/theme/pygments/github.min.css">
+
+
+  <link rel="stylesheet"
+        type="text/css"
+        href="https://pablocaro.es/en/theme/stork/stork.css" />
+
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/en/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/en/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/en/theme/font-awesome/css/solid.css">
+
+
+  <link rel="shortcut icon" href="/theme/img/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/theme/img/favicon.ico" type="image/x-icon">
+
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#333333">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#333333">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Microsoft EDGE -->
+  <meta name="msapplication-TileColor" content="#333333">
+
+  <link href="https://pablocaro.es/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Annotations by Pablo Caro Atom">
+
+  <link href="https://pablocaro.es/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Annotations by Pablo Caro RSS">
+
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-60035125-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+ 
+
+    <meta name="author" content="Pablo Caro" />
+    <meta name="description" content="" />
+  <meta property="og:site_name" content="Annotations by Pablo Caro"/>
+  <meta property="og:type" content="blog"/>
+  <meta property="og:title" content="Annotations by Pablo Caro"/>
+  <meta property="og:description" content=""/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://pablocaro.es/en"/>
+  <meta property="og:image" content="/theme/img/profile.png">
+
+  <title>Annotations by Pablo Caro</title>
+
+
+</head>
+<body class="light-theme">
+
+<aside>
+  <div>
+    <a href="https://pablocaro.es/en/">
+      <img src="/theme/img/profile.png" alt="Anotaciones" title="Anotaciones">
+    </a>
+
+    <h1>
+      <a href="https://pablocaro.es/en/">Anotaciones</a>
+    </h1>
+
+    <p>Annotations</p>
+
+    <div class="stork">
+      <input class="stork-input" type="text" autocomplete="off" name="q" data-stork="sitesearch" placeholder="Search..." onclick="loadStorkIndex()"/>
+      <div class="stork-output" data-stork="sitesearch-output"></div>
+    </div>
+
+    <nav>
+      <ul class="list">
+
+
+
+          <li>
+            <a target="_self" href="http://x.com/pcaro" >@pcaro at X.com</a>
+          </li>
+          <li>
+            <a target="_self" href="http://python.org/" >Python.org</a>
+          </li>
+          <li>
+            <a target="_self" href="http://jinja.pocoo.org/" >Jinja2</a>
+          </li>
+      </ul>
+    </nav>
+
+    <ul class="social">
+      <li>
+        <a class="sc-Twitter"
+           href="http://twitter.com/pcaro"
+           target="_blank">
+          <i class="fa-brands fa-Twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Github"
+           href="http://github.com/pcaro"
+           target="_blank">
+          <i class="fa-brands fa-Github"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Linkedin"
+           href="https://www.linkedin.com/in/pcarorevuelta"
+           target="_blank">
+          <i class="fa-brands fa-Linkedin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Facebook"
+           href="https://www.facebook.com/pablo.carorevuelta"
+           target="_blank">
+          <i class="fa-brands fa-Facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Email"
+           href="mailto:correo@pablocaro.es"
+           target="_blank">
+          <i class="fa-brands fa-Email"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+</aside>
+  <main>
+
+<nav>
+  <a href="https://pablocaro.es/en/">Home</a>
+
+  <a href="/en/archives.html">Archives</a>
+  <a href="/en/categories.html">Categories</a>
+  <a href="/en/tags.html">Tags</a>
+  <a href="/en/search.html">Search</a>
+  <a href="/">Español</a>
+
+  <a href="https://pablocaro.es/feeds/all.atom.xml">Atom</a>
+
+  <a href="https://pablocaro.es/feeds/all.rss.xml">RSS</a>
+</nav>
+
+
+
+<article>
+  <header>
+    <h2><a href="https://pablocaro.es/en/gestionando-instalaciones-desde-github-con-gah#gestionando-instalaciones-desde-github-con-gah">Managing GitHub installations with gah</a></h2>
+    <p>
+      Posted on Wed 11 February 2026 in <a href="https://pablocaro.es/en/category/linux.html">Linux</a>
+
+          &#8226; Tagged with
+              <a href="https://pablocaro.es/en/tag/linux.html">linux</a>,              <a href="https://pablocaro.es/en/tag/tools.html">tools</a>,              <a href="https://pablocaro.es/en/tag/cli.html">cli</a>
+    </p>
+  </header>
+  <div>
+      <div><p class="first last">Install binaries directly from GitHub releases easily with gah.</p>
+</div>
+        <br>
+        <a class="btn"
+           href="https://pablocaro.es/en/gestionando-instalaciones-desde-github-con-gah#gestionando-instalaciones-desde-github-con-gah">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="https://pablocaro.es/en/yaml-multilinea-cadenas-complejas#yaml-multilinea-cadenas-complejas">Multiline YAML: Understanding and testing complex strings</a></h2>
+    <p>
+      Posted on Thu 25 December 2025 in <a href="https://pablocaro.es/en/category/tools.html">Tools</a>
+
+          &#8226; Tagged with
+              <a href="https://pablocaro.es/en/tag/yaml.html">yaml</a>,              <a href="https://pablocaro.es/en/tag/configuration.html">configuration</a>,              <a href="https://pablocaro.es/en/tag/development.html">development</a>,              <a href="https://pablocaro.es/en/tag/tools.html">tools</a>,              <a href="https://pablocaro.es/en/tag/multiline.html">multiline</a>,              <a href="https://pablocaro.es/en/tag/strings.html">strings</a>
+    </p>
+  </header>
+  <div>
+      <div><p>Explore YAML options for effectively handling multiline strings, with an interactive demo that allows you to test them in real-time.</p></div>
+        <br>
+        <a class="btn"
+           href="https://pablocaro.es/en/yaml-multilinea-cadenas-complejas#yaml-multilinea-cadenas-complejas">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="https://pablocaro.es/en/pandas-styler-presentacion-dataframes#pandas-styler-presentacion-dataframes">Pandas Styler: Improve the Presentation of your DataFrames</a></h2>
+    <p>
+      Posted on Thu 25 December 2025 in <a href="https://pablocaro.es/en/category/programming.html">Programming</a>
+
+          &#8226; Tagged with
+              <a href="https://pablocaro.es/en/tag/pandas.html">pandas</a>,              <a href="https://pablocaro.es/en/tag/python.html">python</a>,              <a href="https://pablocaro.es/en/tag/data-science.html">data-science</a>,              <a href="https://pablocaro.es/en/tag/visualization.html">visualization</a>,              <a href="https://pablocaro.es/en/tag/style.html">style</a>
+    </p>
+  </header>
+  <div>
+      <div><p>Discover how the Pandas <code>Styler</code> object allows you to apply conditional formatting and CSS styles to your DataFrames for better data visualization and presentation.</p></div>
+        <br>
+        <a class="btn"
+           href="https://pablocaro.es/en/pandas-styler-presentacion-dataframes#pandas-styler-presentacion-dataframes">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="https://pablocaro.es/en/fresh-editor-terminal#fresh-editor-terminal">`fresh`: My preferred terminal editor for daily use</a></h2>
+    <p>
+      Posted on Thu 25 December 2025 in <a href="https://pablocaro.es/en/category/tools.html">Tools</a>
+
+          &#8226; Tagged with
+              <a href="https://pablocaro.es/en/tag/fresh.html">fresh</a>,              <a href="https://pablocaro.es/en/tag/terminal.html">terminal</a>,              <a href="https://pablocaro.es/en/tag/editor.html">editor</a>,              <a href="https://pablocaro.es/en/tag/productivity.html">productivity</a>,              <a href="https://pablocaro.es/en/tag/linux.html">linux</a>,              <a href="https://pablocaro.es/en/tag/tools.html">tools</a>,              <a href="https://pablocaro.es/en/tag/cli.html">cli</a>
+    </p>
+  </header>
+  <div>
+      <div><p>Discover <code>fresh</code>, a fast, modern, modeless terminal text editor, ideal for casual file editing, surpassing <code>nano</code> and <code>vim</code> in simplicity for regular use.</p></div>
+        <br>
+        <a class="btn"
+           href="https://pablocaro.es/en/fresh-editor-terminal#fresh-editor-terminal">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="https://pablocaro.es/en/ver-archivos-paquete-rpm#ver-archivos-paquete-rpm">How to View Files in an RPM Package on Linux</a></h2>
+    <p>
+      Posted on Thu 25 December 2025 in <a href="https://pablocaro.es/en/category/systems.html">Systems</a>
+
+          &#8226; Tagged with
+              <a href="https://pablocaro.es/en/tag/linux.html">linux</a>,              <a href="https://pablocaro.es/en/tag/rpm.html">rpm</a>,              <a href="https://pablocaro.es/en/tag/packages.html">packages</a>,              <a href="https://pablocaro.es/en/tag/commands.html">commands</a>,              <a href="https://pablocaro.es/en/tag/systems.html">systems</a>,              <a href="https://pablocaro.es/en/tag/administration.html">administration</a>,              <a href="https://pablocaro.es/en/tag/dnf.html">dnf</a>,              <a href="https://pablocaro.es/en/tag/yum.html">yum</a>
+    </p>
+  </header>
+  <div>
+      <div><p>Quick guide to inspecting the contents of RPM packages and determining which packages own specific files on your Linux system.</p></div>
+        <br>
+        <a class="btn"
+           href="https://pablocaro.es/en/ver-archivos-paquete-rpm#ver-archivos-paquete-rpm">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="https://pablocaro.es/en/kooha-captura-pantalla-linux#kooha-captura-pantalla-linux">Kooha: Simple and Elegant Screen Recording on Linux</a></h2>
+    <p>
+      Posted on Thu 25 December 2025 in <a href="https://pablocaro.es/en/category/tools.html">Tools</a>
+
+          &#8226; Tagged with
+              <a href="https://pablocaro.es/en/tag/linux.html">linux</a>,              <a href="https://pablocaro.es/en/tag/kooha.html">kooha</a>,              <a href="https://pablocaro.es/en/tag/screen-recorder.html">screen-recorder</a>,              <a href="https://pablocaro.es/en/tag/productivity.html">productivity</a>,              <a href="https://pablocaro.es/en/tag/tools.html">tools</a>,              <a href="https://pablocaro.es/en/tag/open-source.html">open-source</a>
+    </p>
+  </header>
+  <div>
+      <div><p>Discover Kooha, a minimalist screen recording application for Linux that combines ease of use with essential features.</p></div>
+        <br>
+        <a class="btn"
+           href="https://pablocaro.es/en/kooha-captura-pantalla-linux#kooha-captura-pantalla-linux">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="https://pablocaro.es/en/open-evidence-plataforma-medica#open-evidence-plataforma-medica">OpenEvidence: The Leading Medical Information Platform for Professionals</a></h2>
+    <p>
+      Posted on Thu 25 December 2025 in <a href="https://pablocaro.es/en/category/miscellaneous.html">Miscellaneous</a>
+
+          &#8226; Tagged with
+              <a href="https://pablocaro.es/en/tag/open-evidence.html">open-evidence</a>,              <a href="https://pablocaro.es/en/tag/medicine.html">medicine</a>,              <a href="https://pablocaro.es/en/tag/health.html">health</a>,              <a href="https://pablocaro.es/en/tag/medical-information.html">medical-information</a>,              <a href="https://pablocaro.es/en/tag/health-professionals.html">health-professionals</a>,              <a href="https://pablocaro.es/en/tag/research.html">research</a>,              <a href="https://pablocaro.es/en/tag/clinical.html">clinical</a>
+    </p>
+  </header>
+  <div>
+      <div><p>Exploring OpenEvidence, a leading platform that consolidates medical information, clinical findings, and practice guidelines for healthcare professionals in the US.</p></div>
+        <br>
+        <a class="btn"
+           href="https://pablocaro.es/en/open-evidence-plataforma-medica#open-evidence-plataforma-medica">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="https://pablocaro.es/en/direnv-gestion-entornos#direnv-gestion-entornos">`direnv`: Manage your development environments intelligently</a></h2>
+    <p>
+      Posted on Thu 25 December 2025 in <a href="https://pablocaro.es/en/category/tools.html">Tools</a>
+
+          &#8226; Tagged with
+              <a href="https://pablocaro.es/en/tag/direnv.html">direnv</a>,              <a href="https://pablocaro.es/en/tag/shell.html">shell</a>,              <a href="https://pablocaro.es/en/tag/environment.html">environment</a>,              <a href="https://pablocaro.es/en/tag/productivity.html">productivity</a>,              <a href="https://pablocaro.es/en/tag/development.html">development</a>,              <a href="https://pablocaro.es/en/tag/linux.html">linux</a>,              <a href="https://pablocaro.es/en/tag/tools.html">tools</a>
+    </p>
+  </header>
+  <div>
+      <div><p>Discover <code>direnv</code>, a shell extension that automatically loads and unloads environment variables when changing directories, keeping your configuration clean and organized.</p></div>
+        <br>
+        <a class="btn"
+           href="https://pablocaro.es/en/direnv-gestion-entornos#direnv-gestion-entornos">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="https://pablocaro.es/en/docker-http-https-echo#docker-http-https-echo">`docker-http-https-echo`: An Essential Tool for Network Debugging</a></h2>
+    <p>
+      Posted on Thu 25 December 2025 in <a href="https://pablocaro.es/en/category/tools.html">Tools</a>
+
+          &#8226; Tagged with
+              <a href="https://pablocaro.es/en/tag/docker.html">docker</a>,              <a href="https://pablocaro.es/en/tag/http.html">http</a>,              <a href="https://pablocaro.es/en/tag/https.html">https</a>,              <a href="https://pablocaro.es/en/tag/debugging.html">debugging</a>,              <a href="https://pablocaro.es/en/tag/networking.html">networking</a>,              <a href="https://pablocaro.es/en/tag/tools.html">tools</a>,              <a href="https://pablocaro.es/en/tag/containers.html">containers</a>
+    </p>
+  </header>
+  <div>
+      <div><p><code>mendhak/docker-http-https-echo</code> is a simple Docker container that facilitates debugging network configurations, proxies, and load balancers.</p></div>
+        <br>
+        <a class="btn"
+           href="https://pablocaro.es/en/docker-http-https-echo#docker-http-https-echo">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="https://pablocaro.es/en/kubegres-postgresql-kubernetes#kubegres-postgresql-kubernetes">Kubegres: Simplified PostgreSQL Management on Kubernetes</a></h2>
+    <p>
+      Posted on Thu 25 December 2025 in <a href="https://pablocaro.es/en/category/devops.html">DevOps</a>
+
+          &#8226; Tagged with
+              <a href="https://pablocaro.es/en/tag/kubernetes.html">kubernetes</a>,              <a href="https://pablocaro.es/en/tag/postgresql.html">postgresql</a>,              <a href="https://pablocaro.es/en/tag/kubegres.html">kubegres</a>,              <a href="https://pablocaro.es/en/tag/operator.html">operator</a>,              <a href="https://pablocaro.es/en/tag/database.html">database</a>,              <a href="https://pablocaro.es/en/tag/devops.html">devops</a>
+    </p>
+  </header>
+  <div>
+      <div><p>Discover Kubegres, a Kubernetes operator that simplifies the deployment and management of highly available and scalable PostgreSQL clusters.</p></div>
+        <br>
+        <a class="btn"
+           href="https://pablocaro.es/en/kubegres-postgresql-kubernetes#kubegres-postgresql-kubernetes">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="https://pablocaro.es/en/estados-conexion-tcp-netstat-ss#estados-conexion-tcp-netstat-ss">TCP Connection States in GNU/Linux: netstat and ss</a></h2>
+    <p>
+      Posted on Thu 25 December 2025 in <a href="https://pablocaro.es/en/category/systems.html">Systems</a>
+
+          &#8226; Tagged with
+              <a href="https://pablocaro.es/en/tag/linux.html">linux</a>,              <a href="https://pablocaro.es/en/tag/networking.html">networking</a>,              <a href="https://pablocaro.es/en/tag/tcp.html">tcp</a>,              <a href="https://pablocaro.es/en/tag/netstat.html">netstat</a>,              <a href="https://pablocaro.es/en/tag/ss.html">ss</a>,              <a href="https://pablocaro.es/en/tag/systems.html">systems</a>
+    </p>
+  </header>
+  <div>
+      <div><p>Understand the different TCP connection states reported by netstat and ss, from establishment to termination, for better network diagnosis.</p></div>
+        <br>
+        <a class="btn"
+           href="https://pablocaro.es/en/estados-conexion-tcp-netstat-ss#estados-conexion-tcp-netstat-ss">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="https://pablocaro.es/en/reduce-ruido-logs-python#reduce-ruido-logs-python">Reduce Noise in Your Python Logs: A Smart Approach</a></h2>
+    <p>
+      Posted on Thu 25 December 2025 in <a href="https://pablocaro.es/en/category/programming.html">Programming</a>
+
+          &#8226; Tagged with
+              <a href="https://pablocaro.es/en/tag/python.html">python</a>,              <a href="https://pablocaro.es/en/tag/logging.html">logging</a>,              <a href="https://pablocaro.es/en/tag/logs.html">logs</a>,              <a href="https://pablocaro.es/en/tag/debugging.html">debugging</a>,              <a href="https://pablocaro.es/en/tag/development.html">development</a>
+    </p>
+  </header>
+  <div>
+      <div><p>Learn how to configure Python's <code>logging</code> module to avoid message overload from third-party libraries, keeping your logs clean and useful.</p></div>
+        <br>
+        <a class="btn"
+           href="https://pablocaro.es/en/reduce-ruido-logs-python#reduce-ruido-logs-python">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="https://pablocaro.es/en/kitty-acceso-rapido#kitty-acceso-rapido">Kitty as a Quick Access Terminal: The Convenience of a Dropdown</a></h2>
+    <p>
+      Posted on Thu 25 December 2025 in <a href="https://pablocaro.es/en/category/systems.html">Systems</a>
+
+          &#8226; Tagged with
+              <a href="https://pablocaro.es/en/tag/kitty.html">kitty</a>,              <a href="https://pablocaro.es/en/tag/terminal.html">terminal</a>,              <a href="https://pablocaro.es/en/tag/quick-access.html">quick-access</a>,              <a href="https://pablocaro.es/en/tag/productivity.html">productivity</a>,              <a href="https://pablocaro.es/en/tag/linux.html">linux</a>,              <a href="https://pablocaro.es/en/tag/shortcuts.html">shortcuts</a>
+    </p>
+  </header>
+  <div>
+      <div><p>Configure Kitty for instant and efficient access, combining the power of a modern terminal with the convenience of a dropdown.</p></div>
+        <br>
+        <a class="btn"
+           href="https://pablocaro.es/en/kitty-acceso-rapido#kitty-acceso-rapido">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="https://pablocaro.es/en/atajos-de-teclado-kitty#atajos-de-teclado-kitty">Essential Keyboard Shortcuts in Kitty: Mastering Your Terminal</a></h2>
+    <p>
+      Posted on Thu 25 December 2025 in <a href="https://pablocaro.es/en/category/systems.html">Systems</a>
+
+          &#8226; Tagged with
+              <a href="https://pablocaro.es/en/tag/kitty.html">kitty</a>,              <a href="https://pablocaro.es/en/tag/terminal.html">terminal</a>,              <a href="https://pablocaro.es/en/tag/shortcuts.html">shortcuts</a>,              <a href="https://pablocaro.es/en/tag/keyboard.html">keyboard</a>,              <a href="https://pablocaro.es/en/tag/productivity.html">productivity</a>
+    </p>
+  </header>
+  <div>
+      <div><p>A quick guide to the most useful Kitty keyboard shortcuts to optimize your command-line workflow.</p></div>
+        <br>
+        <a class="btn"
+           href="https://pablocaro.es/en/atajos-de-teclado-kitty#atajos-de-teclado-kitty">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="https://pablocaro.es/en/de-yakuake-a-kitty#de-yakuake-a-kitty">From Yakuake to Kitty: My Transition to a Modern Terminal</a></h2>
+    <p>
+      Posted on Thu 25 December 2025 in <a href="https://pablocaro.es/en/category/systems.html">Systems</a>
+
+          &#8226; Tagged with
+              <a href="https://pablocaro.es/en/tag/kitty.html">kitty</a>,              <a href="https://pablocaro.es/en/tag/yakuake.html">yakuake</a>,              <a href="https://pablocaro.es/en/tag/terminal.html">terminal</a>,              <a href="https://pablocaro.es/en/tag/linux.html">linux</a>,              <a href="https://pablocaro.es/en/tag/productivity.html">productivity</a>,              <a href="https://pablocaro.es/en/tag/tools.html">tools</a>
+    </p>
+  </header>
+  <div>
+      <div><p>Exploring the reasons and benefits of switching from Yakuake to Kitty for a more powerful and customizable terminal experience.</p></div>
+        <br>
+        <a class="btn"
+           href="https://pablocaro.es/en/de-yakuake-a-kitty#de-yakuake-a-kitty">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="https://pablocaro.es/en/poe-the-poet-automatizando-tareas-en-proyectos-python-con-uv#poe-the-poet-automatizando-tareas-en-proyectos-python-con-uv">Poe the Poet: Automating Tasks in Python Projects with uv</a></h2>
+    <p>
+      Posted on Thu 25 December 2025 in <a href="https://pablocaro.es/en/category/programming.html">Programming</a>
+
+          &#8226; Tagged with
+              <a href="https://pablocaro.es/en/tag/python.html">python</a>,              <a href="https://pablocaro.es/en/tag/uv.html">uv</a>,              <a href="https://pablocaro.es/en/tag/poethepoet.html">poethepoet</a>,              <a href="https://pablocaro.es/en/tag/automation.html">automation</a>,              <a href="https://pablocaro.es/en/tag/pyprojecttoml.html">pyproject.toml</a>
+    </p>
+  </header>
+  <div>
+      <div><p>Discover how Poe the Poet allows you to define and execute custom commands directly from your pyproject.toml, optimizing your workflow in uv environments.</p></div>
+        <br>
+        <a class="btn"
+           href="https://pablocaro.es/en/poe-the-poet-automatizando-tareas-en-proyectos-python-con-uv#poe-the-poet-automatizando-tareas-en-proyectos-python-con-uv">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="https://pablocaro.es/en/como-uso-git-worktrees#como-uso-git-worktrees">How I Use Git Worktrees for Concurrent Work</a></h2>
+    <p>
+      Posted on Wed 23 July 2025 in <a href="https://pablocaro.es/en/category/programming.html">Programming</a>
+
+          &#8226; Tagged with
+              <a href="https://pablocaro.es/en/tag/git.html">git</a>,              <a href="https://pablocaro.es/en/tag/worktrees.html">worktrees</a>,              <a href="https://pablocaro.es/en/tag/workflow.html">workflow</a>,              <a href="https://pablocaro.es/en/tag/productivity.html">productivity</a>
+    </p>
+  </header>
+  <div>
+      <div><p class="first last">A practical approach to using git worktrees and maximizing productivity with multiple simultaneous work contexts</p>
+</div>
+        <br>
+        <a class="btn"
+           href="https://pablocaro.es/en/como-uso-git-worktrees#como-uso-git-worktrees">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="https://pablocaro.es/en/busqueda-hibrida-sqlite-vector-texto#busqueda-hibrida-sqlite-vector-texto">Hybrid Search with SQLite: Vector + Full-Text</a></h2>
+    <p>
+      Posted on Sun 06 October 2024 in <a href="https://pablocaro.es/en/category/programming.html">Programming</a>
+
+          &#8226; Tagged with
+              <a href="https://pablocaro.es/en/tag/sqlite.html">sqlite</a>,              <a href="https://pablocaro.es/en/tag/search.html">search</a>,              <a href="https://pablocaro.es/en/tag/vectors.html">vectors</a>,              <a href="https://pablocaro.es/en/tag/fts.html">fts</a>,              <a href="https://pablocaro.es/en/tag/sql.html">sql</a>
+    </p>
+  </header>
+  <div>
+      <div><p class="first last">Combining vector search and full-text search in SQLite using Reciprocal Rank Fusion for better results</p>
+</div>
+        <br>
+        <a class="btn"
+           href="https://pablocaro.es/en/busqueda-hibrida-sqlite-vector-texto#busqueda-hibrida-sqlite-vector-texto">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="https://pablocaro.es/en/conflacion-datos-geoespaciales-duckdb#conflacion-datos-geoespaciales-duckdb">Geospatial Data Conflation with DuckDB and Embeddings</a></h2>
+    <p>
+      Posted on Tue 01 October 2024 in <a href="https://pablocaro.es/en/category/programming.html">Programming</a>
+
+          &#8226; Tagged with
+              <a href="https://pablocaro.es/en/tag/duckdb.html">duckdb</a>,              <a href="https://pablocaro.es/en/tag/geospatial.html">geospatial</a>,              <a href="https://pablocaro.es/en/tag/embeddings.html">embeddings</a>,              <a href="https://pablocaro.es/en/tag/ollama.html">ollama</a>,              <a href="https://pablocaro.es/en/tag/h3.html">h3</a>
+    </p>
+  </header>
+  <div>
+      <div><p class="first last">Advanced techniques to integrate geospatial data sources using DuckDB, H3, Ollama, and embedding models</p>
+</div>
+        <br>
+        <a class="btn"
+           href="https://pablocaro.es/en/conflacion-datos-geoespaciales-duckdb#conflacion-datos-geoespaciales-duckdb">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="https://pablocaro.es/en/httpx-cliente-http-moderno-python#httpx-cliente-http-moderno-python">HTTPX: Modern HTTP Client for Python</a></h2>
+    <p>
+      Posted on Mon 23 September 2024 in <a href="https://pablocaro.es/en/category/programming.html">Programming</a>
+
+          &#8226; Tagged with
+              <a href="https://pablocaro.es/en/tag/python.html">python</a>,              <a href="https://pablocaro.es/en/tag/http.html">http</a>,              <a href="https://pablocaro.es/en/tag/httpx.html">httpx</a>,              <a href="https://pablocaro.es/en/tag/async.html">async</a>,              <a href="https://pablocaro.es/en/tag/requests.html">requests</a>
+    </p>
+  </header>
+  <div>
+      <div><p class="first last">HTTPX emerges as the natural successor to requests, offering async support, HTTP/2, and a modern API for contemporary Python applications.</p>
+</div>
+        <br>
+        <a class="btn"
+           href="https://pablocaro.es/en/httpx-cliente-http-moderno-python#httpx-cliente-http-moderno-python">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="https://pablocaro.es/en/server-sent-events-comunicacion-tiempo-real#server-sent-events-comunicacion-tiempo-real">Server-Sent Events: Simplified Real-Time Communication</a></h2>
+    <p>
+      Posted on Mon 23 September 2024 in <a href="https://pablocaro.es/en/category/programming.html">Programming</a>
+
+          &#8226; Tagged with
+              <a href="https://pablocaro.es/en/tag/javascript.html">javascript</a>,              <a href="https://pablocaro.es/en/tag/sse.html">sse</a>,              <a href="https://pablocaro.es/en/tag/real-time.html">real-time</a>,              <a href="https://pablocaro.es/en/tag/web-apis.html">web-apis</a>
+    </p>
+  </header>
+  <div>
+      <div><p>Server-Sent Events offer a simple and efficient alternative to WebSockets for unidirectional server-to-client communication in web applications</p></div>
+        <br>
+        <a class="btn"
+           href="https://pablocaro.es/en/server-sent-events-comunicacion-tiempo-real#server-sent-events-comunicacion-tiempo-real">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="https://pablocaro.es/en/una-de-versiones#una-de-versiones">About Versions</a></h2>
+    <p>
+      Posted on Mon 01 May 2017 in <a href="https://pablocaro.es/en/category/programming.html">Programming</a>
+
+          &#8226; Tagged with
+              <a href="https://pablocaro.es/en/tag/python.html">python</a>
+    </p>
+  </header>
+  <div>
+      <div></div>
+        <br>
+        <a class="btn"
+           href="https://pablocaro.es/en/una-de-versiones#una-de-versiones">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="https://pablocaro.es/en/mobaxterm-mucho-más-que-un-cliente-ssh#mobaxterm-mucho-más-que-un-cliente-ssh">MobaXterm. Much more than an ssh client</a></h2>
+    <p>
+      Posted on Tue 11 April 2017 in <a href="https://pablocaro.es/en/category/tricks.html">Tricks</a>
+
+          &#8226; Tagged with
+              <a href="https://pablocaro.es/en/tag/linux.html">linux</a>
+    </p>
+  </header>
+  <div>
+      <div></div>
+        <br>
+        <a class="btn"
+           href="https://pablocaro.es/en/mobaxterm-mucho-más-que-un-cliente-ssh#mobaxterm-mucho-más-que-un-cliente-ssh">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="https://pablocaro.es/en/posterazor-crear-posters-grandes#posterazor-crear-posters-grandes">PosteRazor: Create Giant Posters from Any Image</a></h2>
+    <p>
+      Posted on Fri 24 February 2017 in <a href="https://pablocaro.es/en/category/tools.html">Tools</a>
+
+          &#8226; Tagged with
+              <a href="https://pablocaro.es/en/tag/posterazor.html">posterazor</a>,              <a href="https://pablocaro.es/en/tag/printing.html">printing</a>,              <a href="https://pablocaro.es/en/tag/posters.html">posters</a>,              <a href="https://pablocaro.es/en/tag/diy.html">diy</a>,              <a href="https://pablocaro.es/en/tag/tools.html">tools</a>
+    </p>
+  </header>
+  <div>
+      <div><p>PosteRazor converts any image into a giant poster by splitting the image into printable pages that you can assemble</p></div>
+        <br>
+        <a class="btn"
+           href="https://pablocaro.es/en/posterazor-crear-posters-grandes#posterazor-crear-posters-grandes">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="https://pablocaro.es/en/gmail_correo_no_leido_solo_en_principal#gmail_correo_no_leido_solo_en_principal">Unread Mail in Gmail's Primary Tab</a></h2>
+    <p>
+      Posted on Thu 28 July 2016 in <a href="https://pablocaro.es/en/category/tricks.html">Tricks</a>
+
+          &#8226; Tagged with
+              <a href="https://pablocaro.es/en/tag/linux.html">linux</a>
+    </p>
+  </header>
+  <div>
+      <div><p>As always, another reminder note.</p>
+<p>If you filter mail in gmail by unread (<code>is:unread</code>), you get all unread mail,
+which in my case always includes hundreds of notifications, social, promotions, or forums which is usually not what I'm looking for.</p>
+<p>To search for unread emails <em>from the Primary tab …</em></p></div>
+        <br>
+        <a class="btn"
+           href="https://pablocaro.es/en/gmail_correo_no_leido_solo_en_principal#gmail_correo_no_leido_solo_en_principal">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="https://pablocaro.es/en/documentacion-tecnica-sphinx-paver-cog#documentacion-tecnica-sphinx-paver-cog">Technical Documentation with Sphinx, Paver, and Cog</a></h2>
+    <p>
+      Posted on Thu 14 July 2016 in <a href="https://pablocaro.es/en/category/documentation.html">Documentation</a>
+
+          &#8226; Tagged with
+              <a href="https://pablocaro.es/en/tag/sphinx.html">sphinx</a>,              <a href="https://pablocaro.es/en/tag/paver.html">paver</a>,              <a href="https://pablocaro.es/en/tag/cog.html">cog</a>,              <a href="https://pablocaro.es/en/tag/documentation.html">documentation</a>,              <a href="https://pablocaro.es/en/tag/rst.html">rst</a>,              <a href="https://pablocaro.es/en/tag/automation.html">automation</a>
+    </p>
+  </header>
+  <div>
+      <div><p>Automated workflow to create technical documentation using Sphinx, Paver, and Cog, eliminating repetitive tasks and manual errors in code examples</p></div>
+        <br>
+        <a class="btn"
+           href="https://pablocaro.es/en/documentacion-tecnica-sphinx-paver-cog#documentacion-tecnica-sphinx-paver-cog">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="https://pablocaro.es/en/determinar-slots-ram-uso-linux#determinar-slots-ram-uso-linux">Determining RAM slots in use on Linux</a></h2>
+    <p>
+      Posted on Wed 13 July 2016 in <a href="https://pablocaro.es/en/category/linux.html">Linux</a>
+
+          &#8226; Tagged with
+              <a href="https://pablocaro.es/en/tag/linux.html">linux</a>,              <a href="https://pablocaro.es/en/tag/ram.html">ram</a>,              <a href="https://pablocaro.es/en/tag/dmidecode.html">dmidecode</a>,              <a href="https://pablocaro.es/en/tag/lshw.html">lshw</a>,              <a href="https://pablocaro.es/en/tag/hardware.html">hardware</a>,              <a href="https://pablocaro.es/en/tag/memory.html">memory</a>
+    </p>
+  </header>
+  <div>
+      <div><p>Linux commands to determine how many RAM slots are occupied and their capacity using dmidecode, lshw, and hardware inspection techniques</p></div>
+        <br>
+        <a class="btn"
+           href="https://pablocaro.es/en/determinar-slots-ram-uso-linux#determinar-slots-ram-uso-linux">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="https://pablocaro.es/en/introduccion-trading-alta-frecuencia#introduccion-trading-alta-frecuencia">Introduction to High-Frequency Trading Systems</a></h2>
+    <p>
+      Posted on Mon 27 June 2016 in <a href="https://pablocaro.es/en/category/finance.html">Finance</a>
+
+          &#8226; Tagged with
+              <a href="https://pablocaro.es/en/tag/trading.html">trading</a>,              <a href="https://pablocaro.es/en/tag/hft.html">hft</a>,              <a href="https://pablocaro.es/en/tag/high-frequency.html">high-frequency</a>,              <a href="https://pablocaro.es/en/tag/algorithms.html">algorithms</a>,              <a href="https://pablocaro.es/en/tag/finance.html">finance</a>
+    </p>
+  </header>
+  <div>
+      <div><p>Fundamental concepts about High-Frequency Trading (HFT) systems, programs that execute thousands of trades per day in fractions of a second</p></div>
+        <br>
+        <a class="btn"
+           href="https://pablocaro.es/en/introduccion-trading-alta-frecuencia#introduccion-trading-alta-frecuencia">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="https://pablocaro.es/en/encontrar-hosts-vivos-red#encontrar-hosts-vivos-red">How to Find Live Hosts on Your Local Network</a></h2>
+    <p>
+      Posted on Mon 27 June 2016 in <a href="https://pablocaro.es/en/category/security.html">Security</a>
+
+          &#8226; Tagged with
+              <a href="https://pablocaro.es/en/tag/nmap.html">nmap</a>,              <a href="https://pablocaro.es/en/tag/network-discovery.html">network-discovery</a>,              <a href="https://pablocaro.es/en/tag/arp-scan.html">arp-scan</a>,              <a href="https://pablocaro.es/en/tag/netdiscover.html">netdiscover</a>,              <a href="https://pablocaro.es/en/tag/security.html">security</a>
+    </p>
+  </header>
+  <div>
+      <div><p>Methods and tools to discover active devices on local networks using nmap, arp-scan, netdiscover, and other reconnaissance techniques</p></div>
+        <br>
+        <a class="btn"
+           href="https://pablocaro.es/en/encontrar-hosts-vivos-red#encontrar-hosts-vivos-red">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="https://pablocaro.es/en/herramientas-desarrolladores-linea-comandos#herramientas-desarrolladores-linea-comandos">Powerful Command Line Tools for Developers</a></h2>
+    <p>
+      Posted on Tue 07 June 2016 in <a href="https://pablocaro.es/en/category/tools.html">Tools</a>
+
+          &#8226; Tagged with
+              <a href="https://pablocaro.es/en/tag/cli.html">cli</a>,              <a href="https://pablocaro.es/en/tag/tools.html">tools</a>,              <a href="https://pablocaro.es/en/tag/development.html">development</a>,              <a href="https://pablocaro.es/en/tag/networking.html">networking</a>,              <a href="https://pablocaro.es/en/tag/testing.html">testing</a>
+    </p>
+  </header>
+  <div>
+      <div><p>Collection of essential command line tools for developers: curl, ngrep, netcat, sshuttle, siege, and mitmproxy</p></div>
+        <br>
+        <a class="btn"
+           href="https://pablocaro.es/en/herramientas-desarrolladores-linea-comandos#herramientas-desarrolladores-linea-comandos">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="https://pablocaro.es/en/sysdig-seguridad-cloud-nativa#sysdig-seguridad-cloud-nativa">Sysdig: Cloud-Native Security Platform with AI</a></h2>
+    <p>
+      Posted on Wed 10 February 2016 in <a href="https://pablocaro.es/en/category/tools.html">Tools</a>
+
+          &#8226; Tagged with
+              <a href="https://pablocaro.es/en/tag/sysdig.html">sysdig</a>,              <a href="https://pablocaro.es/en/tag/security.html">security</a>,              <a href="https://pablocaro.es/en/tag/cloud.html">cloud</a>,              <a href="https://pablocaro.es/en/tag/kubernetes.html">kubernetes</a>,              <a href="https://pablocaro.es/en/tag/falco.html">falco</a>
+    </p>
+  </header>
+  <div>
+      <div><p>Sysdig offers a comprehensive security platform for cloud-native environments that combines AI, real-time visibility, and open source innovation</p></div>
+        <br>
+        <a class="btn"
+           href="https://pablocaro.es/en/sysdig-seguridad-cloud-nativa#sysdig-seguridad-cloud-nativa">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="https://pablocaro.es/en/python-generadores-repetibles#python-generadores-repetibles">Python: Create Repeating Generators</a></h2>
+    <p>
+      Posted on Tue 09 February 2016 in <a href="https://pablocaro.es/en/category/python.html">Python</a>
+
+          &#8226; Tagged with
+              <a href="https://pablocaro.es/en/tag/python.html">python</a>,              <a href="https://pablocaro.es/en/tag/generators.html">generators</a>,              <a href="https://pablocaro.es/en/tag/itertools.html">itertools</a>,              <a href="https://pablocaro.es/en/tag/decorators.html">decorators</a>,              <a href="https://pablocaro.es/en/tag/yield.html">yield</a>
+    </p>
+  </header>
+  <div>
+      <div><p>Techniques in Python to create generators that can be iterated multiple times, overcoming the "one-shot" limitation of standard generators</p></div>
+        <br>
+        <a class="btn"
+           href="https://pablocaro.es/en/python-generadores-repetibles#python-generadores-repetibles">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="https://pablocaro.es/en/boton_central_firefox#boton_central_firefox">Middle click in firefox</a></h2>
+    <p>
+      Posted on Fri 01 January 2016 in <a href="https://pablocaro.es/en/category/systems.html">Systems</a>
+
+          &#8226; Tagged with
+              <a href="https://pablocaro.es/en/tag/linux.html">linux</a>
+    </p>
+  </header>
+  <div>
+      <div><p class="first last">Stop firefox from opening the pasted url with the middle mouse button</p>
+</div>
+        <br>
+        <a class="btn"
+           href="https://pablocaro.es/en/boton_central_firefox#boton_central_firefox">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="https://pablocaro.es/en/bootstrap-dropdown-enlaces-horizontal#bootstrap-dropdown-enlaces-horizontal">Bootstrap: Two Links in the Same Row in Dropdown</a></h2>
+    <p>
+      Posted on Tue 15 December 2015 in <a href="https://pablocaro.es/en/category/frontend.html">Frontend</a>
+
+          &#8226; Tagged with
+              <a href="https://pablocaro.es/en/tag/bootstrap.html">bootstrap</a>,              <a href="https://pablocaro.es/en/tag/css.html">css</a>,              <a href="https://pablocaro.es/en/tag/dropdown.html">dropdown</a>,              <a href="https://pablocaro.es/en/tag/flexbox.html">flexbox</a>,              <a href="https://pablocaro.es/en/tag/html.html">html</a>
+    </p>
+  </header>
+  <div>
+      <div><p>CSS technique to place two links on the same horizontal row within a Bootstrap dropdown menu using flexbox</p></div>
+        <br>
+        <a class="btn"
+           href="https://pablocaro.es/en/bootstrap-dropdown-enlaces-horizontal#bootstrap-dropdown-enlaces-horizontal">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="https://pablocaro.es/en/galen-framework-testing-responsive#galen-framework-testing-responsive">Galen Framework: Automated Testing for Responsive Design</a></h2>
+    <p>
+      Posted on Fri 13 November 2015 in <a href="https://pablocaro.es/en/category/testing.html">Testing</a>
+
+          &#8226; Tagged with
+              <a href="https://pablocaro.es/en/tag/galen.html">galen</a>,              <a href="https://pablocaro.es/en/tag/testing.html">testing</a>,              <a href="https://pablocaro.es/en/tag/responsive.html">responsive</a>,              <a href="https://pablocaro.es/en/tag/layout.html">layout</a>,              <a href="https://pablocaro.es/en/tag/selenium.html">selenium</a>
+    </p>
+  </header>
+  <div>
+      <div><p>Galen Framework simplifies automated testing of responsive layouts by verifying the position and appearance of elements across different devices</p></div>
+        <br>
+        <a class="btn"
+           href="https://pablocaro.es/en/galen-framework-testing-responsive#galen-framework-testing-responsive">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="https://pablocaro.es/en/historia-x-forwarded-for-x-real-ip#historia-x-forwarded-for-x-real-ip">The Story Behind X-Forwarded-For and X-Real-IP</a></h2>
+    <p>
+      Posted on Wed 21 October 2015 in <a href="https://pablocaro.es/en/category/networking.html">Networking</a>
+
+          &#8226; Tagged with
+              <a href="https://pablocaro.es/en/tag/headers.html">headers</a>,              <a href="https://pablocaro.es/en/tag/x-forwarded-for.html">x-forwarded-for</a>,              <a href="https://pablocaro.es/en/tag/x-real-ip.html">x-real-ip</a>,              <a href="https://pablocaro.es/en/tag/proxy.html">proxy</a>,              <a href="https://pablocaro.es/en/tag/nginx.html">nginx</a>
+    </p>
+  </header>
+  <div>
+      <div><p>Analysis of X-Forwarded-For and X-Real-IP headers, their origins, differences, and how to determine the client's real IP in architectures with multiple proxies</p></div>
+        <br>
+        <a class="btn"
+           href="https://pablocaro.es/en/historia-x-forwarded-for-x-real-ip#historia-x-forwarded-for-x-real-ip">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="https://pablocaro.es/en/nginx-x-forwarded-for-reverse-proxy#nginx-x-forwarded-for-reverse-proxy">Nginx: Configuring X-Forwarded-For in Reverse Proxy</a></h2>
+    <p>
+      Posted on Wed 21 October 2015 in <a href="https://pablocaro.es/en/category/devops.html">DevOps</a>
+
+          &#8226; Tagged with
+              <a href="https://pablocaro.es/en/tag/nginx.html">nginx</a>,              <a href="https://pablocaro.es/en/tag/reverse-proxy.html">reverse-proxy</a>,              <a href="https://pablocaro.es/en/tag/x-forwarded-for.html">x-forwarded-for</a>,              <a href="https://pablocaro.es/en/tag/real-ip.html">real-ip</a>,              <a href="https://pablocaro.es/en/tag/configuration.html">configuration</a>
+    </p>
+  </header>
+  <div>
+      <div><p>How to configure Nginx to pass the client's real IP to backend servers using the X-Forwarded-For header in reverse proxy configurations</p></div>
+        <br>
+        <a class="btn"
+           href="https://pablocaro.es/en/nginx-x-forwarded-for-reverse-proxy#nginx-x-forwarded-for-reverse-proxy">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="https://pablocaro.es/en/sql-select-rows-max-value#sql-select-rows-max-value">SQL: Select Rows with Max Value per Group</a></h2>
+    <p>
+      Posted on Wed 21 October 2015 in <a href="https://pablocaro.es/en/category/sql.html">SQL</a>
+
+          &#8226; Tagged with
+              <a href="https://pablocaro.es/en/tag/sql.html">sql</a>,              <a href="https://pablocaro.es/en/tag/mysql.html">mysql</a>,              <a href="https://pablocaro.es/en/tag/queries.html">queries</a>,              <a href="https://pablocaro.es/en/tag/window-functions.html">window-functions</a>,              <a href="https://pablocaro.es/en/tag/joins.html">joins</a>
+    </p>
+  </header>
+  <div>
+      <div><p>SQL techniques to select complete rows with the maximum value of a column within groups, comparing performance of subqueries, joins, and window functions</p></div>
+        <br>
+        <a class="btn"
+           href="https://pablocaro.es/en/sql-select-rows-max-value#sql-select-rows-max-value">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="https://pablocaro.es/en/repetiendo-una-función-con-hilos#repetiendo-una-función-con-hilos">Repeating a function with threads</a></h2>
+    <p>
+      Posted on Sun 03 May 2015 in <a href="https://pablocaro.es/en/category/programming.html">Programming</a>
+
+          &#8226; Tagged with
+              <a href="https://pablocaro.es/en/tag/python.html">python</a>
+    </p>
+  </header>
+  <div>
+      <div><p class="first last">Let's use threads in python to periodically execute a function</p>
+</div>
+        <br>
+        <a class="btn"
+           href="https://pablocaro.es/en/repetiendo-una-función-con-hilos#repetiendo-una-función-con-hilos">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="https://pablocaro.es/en/instalar-insync-en-opensuse#instalar-insync-en-opensuse">Install InSync on Opensuse</a></h2>
+    <p>
+      Posted on Mon 20 April 2015 in <a href="https://pablocaro.es/en/category/systems.html">Systems</a>
+
+          &#8226; Tagged with
+              <a href="https://pablocaro.es/en/tag/django.html">django</a>,              <a href="https://pablocaro.es/en/tag/python.html">python</a>
+    </p>
+  </header>
+  <div>
+      <div></div>
+        <br>
+        <a class="btn"
+           href="https://pablocaro.es/en/instalar-insync-en-opensuse#instalar-insync-en-opensuse">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="https://pablocaro.es/en/nethogs-ver-ancho-de-banda-consumido#nethogs-ver-ancho-de-banda-consumido">NetHogs see consumed bandwidth</a></h2>
+    <p>
+      Posted on Thu 16 April 2015 in <a href="https://pablocaro.es/en/category/systems.html">Systems</a>
+
+          &#8226; Tagged with
+              <a href="https://pablocaro.es/en/tag/linux.html">linux</a>
+    </p>
+  </header>
+  <div>
+      <div><p>To measure the bandwidth I am using right now, I use NetHogs</p>
+<p>By default, it looks for a network interface called &quot;eth0&quot;. If it doesn't find it, it complains like this:</p>
+<pre class="literal-block">
+ioctl failed while establishing local IP for selected device eth0. You may specify the device on the command line …</pre></div>
+        <br>
+        <a class="btn"
+           href="https://pablocaro.es/en/nethogs-ver-ancho-de-banda-consumido#nethogs-ver-ancho-de-banda-consumido">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="https://pablocaro.es/en/cierra-google-code#cierra-google-code">Google Code is Closing</a></h2>
+    <p>
+      Posted on Fri 13 March 2015 in <a href="https://pablocaro.es/en/category/programming.html">Programming</a>
+
+          &#8226; Tagged with
+              <a href="https://pablocaro.es/en/tag/python.html">python</a>
+    </p>
+  </header>
+  <div>
+      <div><p>As I said, Google announced the closure of Google Code.</p>
+<p>Today I received the email notifying me (I had a test project hosted there) that I could move
+my projects simply to <a class="reference external" href="http://github.com">github</a>, the de facto repository for free software today
+(sorry for <a class="reference external" href="https://bitbucket.org/pcaro">bitbucket</a> and especially for <a class="reference external" href="http://mercurial.selenic.com/">mercurial</a>).</p>
+<p>Its interface …</p></div>
+        <br>
+        <a class="btn"
+           href="https://pablocaro.es/en/cierra-google-code#cierra-google-code">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="https://pablocaro.es/en/pgcli-el-descubrimiento-de-hoy#pgcli-el-descubrimiento-de-hoy">pgcli the discovery of the day</a></h2>
+    <p>
+      Posted on Mon 02 March 2015 in <a href="https://pablocaro.es/en/category/programming.html">Programming</a>
+
+          &#8226; Tagged with
+              <a href="https://pablocaro.es/en/tag/postgresql.html">postgresql</a>
+    </p>
+  </header>
+  <div>
+      <div><p class="first last">postresql command line</p>
+</div>
+        <br>
+        <a class="btn"
+           href="https://pablocaro.es/en/pgcli-el-descubrimiento-de-hoy#pgcli-el-descubrimiento-de-hoy">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="https://pablocaro.es/en/reactivando-el-blog#reactivando-el-blog">Blogging again</a></h2>
+    <p>
+      Posted on Fri 20 February 2015 in <a href="https://pablocaro.es/en/category/personal.html">Personal</a>
+
+          &#8226; Tagged with
+              <a href="https://pablocaro.es/en/tag/python.html">python</a>
+    </p>
+  </header>
+  <div>
+      <div><p class="first last">I am writing again.</p>
+</div>
+        <br>
+        <a class="btn"
+           href="https://pablocaro.es/en/reactivando-el-blog#reactivando-el-blog">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="https://pablocaro.es/en/decorador-vista-ajax#decorador-vista-ajax">Ajax view decorator</a></h2>
+    <p>
+      Posted on Fri 21 November 2014 in <a href="https://pablocaro.es/en/category/programming.html">Programming</a>
+
+          &#8226; Tagged with
+              <a href="https://pablocaro.es/en/tag/python.html">python</a>,              <a href="https://pablocaro.es/en/tag/django.html">django</a>
+    </p>
+  </header>
+  <div>
+      <div><p>To force a <a class="reference external" href="https://www.djangoproject.com/">django</a> view to be called only via AJAX calls.</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">ajax_required</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    AJAX request required decorator</span>
+<span class="sd">    use it in your views:</span>
+
+<span class="sd">    @ajax_required</span>
+<span class="sd">    def my_view(request):</span>
+<span class="sd">        ....</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">wrap</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">request</span><span class="o">.</span><span class="n">is_ajax</span><span class="p">():</span>
+            <span class="k">return</span> <span class="n">HttpResponseBadRequest</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">f</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="n">wrap</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="vm">__doc__</span>
+    <span class="n">wrap</span><span class="o">.</span><span class="vm">__name__ …</span></pre></div></div>
+        <br>
+        <a class="btn"
+           href="https://pablocaro.es/en/decorador-vista-ajax#decorador-vista-ajax">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="https://pablocaro.es/en/funcion-generica-para-usar-como-upload_to#funcion-generica-para-usar-como-upload_to">Generic function to use as upload_to</a></h2>
+    <p>
+      Posted on Sat 11 October 2014 in <a href="https://pablocaro.es/en/category/programming.html">Programming</a>
+
+          &#8226; Tagged with
+              <a href="https://pablocaro.es/en/tag/django.html">django</a>,              <a href="https://pablocaro.es/en/tag/python.html">python</a>
+    </p>
+  </header>
+  <div>
+      <div><p>FileFields in Django need an <a class="reference external" href="https://docs.djangoproject.com/en/1.7/ref/models/fields/#django.db.models.FileField.upload_to">upload_to</a> function that determines where the file will be uploaded.
+I usually have a generic function in <code>utils.py</code> that leaves them in a subfolder with the model name.</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+
+<span class="k">def</span> <span class="nf">generic_upload_to</span><span class="p">(</span><span class="n">instance</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Generic `upload_to` function for models.FileField and models.ImageField</span>
+<span class="sd">    which …</span></pre></div></div>
+        <br>
+        <a class="btn"
+           href="https://pablocaro.es/en/funcion-generica-para-usar-como-upload_to#funcion-generica-para-usar-como-upload_to">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="https://pablocaro.es/en/enlaces-en-listado-de-objectos#enlaces-en-listado-de-objectos">Django: links in object list</a></h2>
+    <p>
+      Posted on Wed 21 May 2014 in <a href="https://pablocaro.es/en/category/programming.html">Programming</a>
+
+          &#8226; Tagged with
+              <a href="https://pablocaro.es/en/tag/django.html">django</a>,              <a href="https://pablocaro.es/en/tag/python.html">python</a>
+    </p>
+  </header>
+  <div>
+      <div><p>In my projects I usually use links to related items in the admin change_list.</p>
+<div class="contents topic" id="files">
+<p class="topic-title">Files</p>
+<ul class="simple">
+<li><a class="reference internal" href="#utils-py" id="toc-entry-1">utils.py</a></li>
+<li><a class="reference internal" href="#admin-py" id="toc-entry-2">admin.py</a></li>
+</ul>
+</div>
+<div class="section" id="utils-py">
+<h2><a class="toc-backref" href="#toc-entry-1">utils.py</a></h2>
+<p>I have this in <code>utils.py</code></p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">admin</span>
+<span class="kn">from</span> <span class="nn">django.contrib.contenttypes.models</span> <span class="kn">import</span> <span class="n">ContentType</span>
+<span class="kn">from</span> <span class="nn">django.core</span> <span class="kn">import</span> <span class="n">urlresolvers</span>
+<span class="kn">from</span> <span class="nn">django.utils.datastructures</span> <span class="kn">import</span> <span class="n">SortedDict …</span></pre></div></div></div>
+        <br>
+        <a class="btn"
+           href="https://pablocaro.es/en/enlaces-en-listado-de-objectos#enlaces-en-listado-de-objectos">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="https://pablocaro.es/en/settings-vars-processor#settings-vars-processor">Settings vars processor</a></h2>
+    <p>
+      Posted on Wed 08 January 2014 in <a href="https://pablocaro.es/en/category/programming.html">Programming</a>
+
+          &#8226; Tagged with
+              <a href="https://pablocaro.es/en/tag/python.html">python</a>,              <a href="https://pablocaro.es/en/tag/django.html">django</a>
+    </p>
+  </header>
+  <div>
+      <div><p>I usually use this at the beginning of projects.</p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.conf</span> <span class="kn">import</span> <span class="n">settings</span> <span class="k">as</span> <span class="n">django_settings</span>
+<span class="kn">from</span> <span class="nn">django.core.exceptions</span> <span class="kn">import</span> <span class="n">ImproperlyConfigured</span>
+
+
+<span class="k">def</span> <span class="nf">settings</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Adds the settings specified in settings.TEMPLATE_VISIBLE_SETTINGS to</span>
+<span class="sd">    the request context.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">new_settings</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="n">django_settings</span><span class="o">.</span><span class="n">TEMPLATE_VISIBLE_SETTINGS</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">new_settings</span><span class="p">[</span><span class="n">attr</span><span class="p">]</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">django_settings</span><span class="p">,</span> <span class="n">attr</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">AttributeError …</span></pre></div></div>
+        <br>
+        <a class="btn"
+           href="https://pablocaro.es/en/settings-vars-processor#settings-vars-processor">
+          Continue reading
+        </a>
+  </div>
+</article>
+
+
+
+
+<footer>
+<p>
+  &copy; 2025  - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/3.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/3.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Annotations by Pablo Caro ",
+  "url" : "https://pablocaro.es/en",
+  "image": "/theme/img/profile.png",
+  "description": ""
+}
+</script>  <script src="https://files.stork-search.net/releases/v1.6.0/stork.js"></script>
+  <script>
+    window.storkIndexLoaded = false;
+    window.loadStorkIndex = function () {
+      if (window.storkIndexLoaded) {
+        return;
+      }
+      if (typeof stork === 'undefined') {
+        console.error('Stork is not loaded yet, retrying...');
+        setTimeout(window.loadStorkIndex, 100);
+        return;
+      }
+      stork.register("sitesearch", "https://pablocaro.es/en/search-index.st", { showProgress: false });
+      stork.register("sitesearch-page", "https://pablocaro.es/en/search-index.st", { showProgress: false });
+      window.storkIndexLoaded = true;
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Annotations by Pablo Caro - uv</title><link href="https://pablocaro.es/en/" rel="alternate"></link><link href="https://pablocaro.es/feeds/tags/uv.atom.xml" rel="self"></link><id>https://pablocaro.es/en/</id><updated>2025-12-25T11:00:00+01:00</updated><subtitle>Annotations</subtitle><entry><title>Poe the Poet: Automating Tasks in Python Projects with uv</title><link href="https://pablocaro.es/en/poe-the-poet-automatizando-tareas-en-proyectos-python-con-uv" rel="alternate"></link><published>2025-12-25T11:00:00+01:00</published><updated>2025-12-25T11:00:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2025-12-25:/en/poe-the-poet-automatizando-tareas-en-proyectos-python-con-uv</id><summary type="html">&lt;p&gt;Discover how Poe the Poet allows you to define and execute custom commands directly from your pyproject.toml, optimizing your workflow in uv environments.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Managing Python projects often involves executing various custom tasks, from building documentation to running tests or helper scripts. While &lt;code&gt;uv&lt;/code&gt; has greatly simplified dependency management, how to integrate and execute these commands directly from &lt;code&gt;pyproject.toml&lt;/code&gt; has been a point of debate. This is where &lt;strong&gt;Poe the Poet&lt;/strong&gt; emerges as an elegant and effective solution.&lt;/p&gt;
+&lt;h2 id="what-is-poe-the-poet"&gt;What is Poe the Poet?&lt;a class="headerlink" href="#what-is-poe-the-poet" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Poe the Poet is a tool that allows you to define custom "scripts" or "tasks" directly in your &lt;code&gt;pyproject.toml&lt;/code&gt; file. These tasks can be any command you want to run in the context of your Python environment, making workflow automation much cleaner and centralized. It solves the problem of having to resort to &lt;code&gt;Makefile&lt;/code&gt; or other external scripts for project-specific tasks.&lt;/p&gt;
+&lt;h2 id="how-to-use-poe-the-poet-with-uv"&gt;How to Use Poe the Poet with uv&lt;a class="headerlink" href="#how-to-use-poe-the-poet-with-uv" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Integrating Poe the Poet into a project using &lt;code&gt;uv&lt;/code&gt; is straightforward:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Add &lt;code&gt;poethepoet&lt;/code&gt; to your dev dependencies:&lt;/strong&gt;
+    First, ensure that &lt;code&gt;poethepoet&lt;/code&gt; is included in your development dependencies group (e.g., &lt;code&gt;dev&lt;/code&gt;) in &lt;code&gt;pyproject.toml&lt;/code&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;[project]&lt;/span&gt;
+&lt;span class="c1"&gt;# ... other project configurations ...&lt;/span&gt;
+
+&lt;span class="k"&gt;[tool.uv]&lt;/span&gt;
+&lt;span class="n"&gt;dev-dependencies&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;black&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;ruff&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;poethepoet&amp;gt;=0.38.0&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;# Add Poe the Poet here&lt;/span&gt;
+&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Define custom tasks:&lt;/strong&gt;
+    Then, you can add a &lt;code&gt;[tool.poe.tasks]&lt;/code&gt; section in your &lt;code&gt;pyproject.toml&lt;/code&gt; to define your custom commands.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;[tool.poe.tasks]&lt;/span&gt;
+&lt;span class="n"&gt;docs&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;sphinx-build -M html docs docs/_build&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;livehtml&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;sphinx-autobuild -b html docs docs/_build&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;cog&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;cog -r docs/*.md&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="running-tasks-with-uv-run"&gt;Running Tasks with &lt;code&gt;uv run&lt;/code&gt;&lt;a class="headerlink" href="#running-tasks-with-uv-run" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Once Poe the Poet is configured and your tasks are defined, you can easily execute them using &lt;code&gt;uv run&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# To build the documentation&lt;/span&gt;
+uv&lt;span class="w"&gt; &lt;/span&gt;run&lt;span class="w"&gt; &lt;/span&gt;poe&lt;span class="w"&gt; &lt;/span&gt;docs
+
+&lt;span class="c1"&gt;# For the live preview server&lt;/span&gt;
+uv&lt;span class="w"&gt; &lt;/span&gt;run&lt;span class="w"&gt; &lt;/span&gt;poe&lt;span class="w"&gt; &lt;/span&gt;livehtml
+
+&lt;span class="c1"&gt;# To run the &amp;#39;cog&amp;#39; command&lt;/span&gt;
+uv&lt;span class="w"&gt; &lt;/span&gt;run&lt;span class="w"&gt; &lt;/span&gt;poe&lt;span class="w"&gt; &lt;/span&gt;cog
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="benefits"&gt;Benefits&lt;a class="headerlink" href="#benefits" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Centralization:&lt;/strong&gt; All your custom tasks live in &lt;code&gt;pyproject.toml&lt;/code&gt;, alongside your dependencies.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Integration with &lt;code&gt;uv&lt;/code&gt;:&lt;/strong&gt; Tasks run in the virtual environment managed by &lt;code&gt;uv&lt;/code&gt;, ensuring all necessary tools are available.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Simplification:&lt;/strong&gt; Avoids the need for &lt;code&gt;Makefile&lt;/code&gt; or complex bash scripts for common tasks.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Consistency:&lt;/strong&gt; Promotes a more consistent and shareable workflow among collaborators.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Poe the Poet offers a robust and elegant way to extend the capabilities of &lt;code&gt;uv&lt;/code&gt; for task automation in Python projects, enhancing the development experience.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Original article&lt;/em&gt;: &lt;a href="https://simonwillison.net/2025/Dec/16/poe-the-poet/#atom-everything"&gt;Poe the Poet - Simon Willison's Weblog&lt;/a&gt;&lt;/p&gt;</content><category term="Programming"></category><category term="python"></category><category term="uv"></category><category term="poethepoet"></category><category term="automation"></category><category term="pyproject.toml"></category></entry></feed>

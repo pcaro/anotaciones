@@ -1,0 +1,341 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://pablocaro.es/en/theme/stylesheet/style.min.css">
+
+
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+          href="https://pablocaro.es/en/theme/pygments/github.min.css">
+
+
+  <link rel="stylesheet"
+        type="text/css"
+        href="https://pablocaro.es/en/theme/stork/stork.css" />
+
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/en/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/en/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/en/theme/font-awesome/css/solid.css">
+
+
+  <link rel="shortcut icon" href="/theme/img/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/theme/img/favicon.ico" type="image/x-icon">
+
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#333333">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#333333">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Microsoft EDGE -->
+  <meta name="msapplication-TileColor" content="#333333">
+
+  <link href="https://pablocaro.es/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Annotations by Pablo Caro Atom">
+
+  <link href="https://pablocaro.es/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Annotations by Pablo Caro RSS">
+
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-60035125-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Pablo Caro" />
+<meta name="description" content="Fundamental concepts about High-Frequency Trading (HFT) systems, programs that execute thousands of trades per day in fractions of a second" />
+<meta name="keywords" content="trading, hft, high-frequency, algorithms, finance">
+
+<link rel="alternate" href="https://pablocaro.es/en/introduccion-trading-alta-frecuencia" hreflang="en" />
+<link rel="alternate" href="https://pablocaro.es/en/../introduccion-trading-alta-frecuencia" hreflang="es" />
+
+  <meta property="og:site_name" content="Annotations by Pablo Caro"/>
+  <meta property="og:title" content="Introduction to High-Frequency Trading Systems"/>
+  <meta property="og:description" content="Fundamental concepts about High-Frequency Trading (HFT) systems, programs that execute thousands of trades per day in fractions of a second"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://pablocaro.es/en/introduccion-trading-alta-frecuencia"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2016-06-27 11:51:00+02:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://pablocaro.es/en/author/pablo-caro.html">
+  <meta property="article:section" content="Finance"/>
+  <meta property="article:tag" content="trading"/>
+  <meta property="article:tag" content="hft"/>
+  <meta property="article:tag" content="high-frequency"/>
+  <meta property="article:tag" content="algorithms"/>
+  <meta property="article:tag" content="finance"/>
+  <meta property="og:image" content="/theme/img/profile.png">
+
+  <title>Annotations by Pablo Caro &ndash; Introduction to High-Frequency Trading Systems</title>
+
+
+</head>
+<body class="light-theme">
+
+<aside>
+  <div>
+    <a href="https://pablocaro.es/en/">
+      <img src="/theme/img/profile.png" alt="Anotaciones" title="Anotaciones">
+    </a>
+
+    <h1>
+      <a href="https://pablocaro.es/en/">Anotaciones</a>
+    </h1>
+
+    <p>Annotations</p>
+
+    <div class="stork">
+      <input class="stork-input" type="text" autocomplete="off" name="q" data-stork="sitesearch" placeholder="Search..." onclick="loadStorkIndex()"/>
+      <div class="stork-output" data-stork="sitesearch-output"></div>
+    </div>
+
+    <nav>
+      <ul class="list">
+
+
+
+          <li>
+            <a target="_self" href="http://x.com/pcaro" >@pcaro at X.com</a>
+          </li>
+          <li>
+            <a target="_self" href="http://python.org/" >Python.org</a>
+          </li>
+          <li>
+            <a target="_self" href="http://jinja.pocoo.org/" >Jinja2</a>
+          </li>
+      </ul>
+    </nav>
+
+    <ul class="social">
+      <li>
+        <a class="sc-Twitter"
+           href="http://twitter.com/pcaro"
+           target="_blank">
+          <i class="fa-brands fa-Twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Github"
+           href="http://github.com/pcaro"
+           target="_blank">
+          <i class="fa-brands fa-Github"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Linkedin"
+           href="https://www.linkedin.com/in/pcarorevuelta"
+           target="_blank">
+          <i class="fa-brands fa-Linkedin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Facebook"
+           href="https://www.facebook.com/pablo.carorevuelta"
+           target="_blank">
+          <i class="fa-brands fa-Facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Email"
+           href="mailto:correo@pablocaro.es"
+           target="_blank">
+          <i class="fa-brands fa-Email"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+</aside>
+  <main>
+
+<nav>
+  <a href="https://pablocaro.es/en/">Home</a>
+
+  <a href="/en/archives.html">Archives</a>
+  <a href="/en/categories.html">Categories</a>
+  <a href="/en/tags.html">Tags</a>
+  <a href="/en/search.html">Search</a>
+  <a href="/">Español</a>
+
+  <a href="https://pablocaro.es/feeds/all.atom.xml">Atom</a>
+
+  <a href="https://pablocaro.es/feeds/all.rss.xml">RSS</a>
+</nav>
+
+<article class="single">
+  <header>
+          <div class="translations">
+            <a href="https://pablocaro.es/en/../introduccion-trading-alta-frecuencia">Leer en español</a>
+    </div>
+
+    <h1 id="introduccion-trading-alta-frecuencia">Introduction to High-Frequency Trading Systems</h1>
+    <p>
+      Posted on Mon 27 June 2016 in <a href="https://pablocaro.es/en/category/finance.html">Finance</a>
+
+    </p>
+  </header>
+
+
+  <div>
+    <p><strong>High-Frequency Trading</strong> (HFT) programs represent the extreme automation of financial investments, operating at speeds that surpass any human capability.</p>
+<h2 id="what-is-hft">What is HFT?<a class="headerlink" href="#what-is-hft" title="Permanent link">&para;</a></h2>
+<p>HFT systems are <strong>programs designed to invest in financial markets</strong> with the following characteristics:</p>
+<ul>
+<li><strong>Massive volume</strong>: They buy and sell up to <strong>tens of thousands of stocks or options</strong> per day</li>
+<li><strong>Extreme speed</strong>: Each operation can last <strong>fractions of a second</strong></li>
+<li><strong>Small margins</strong>: <strong>Very reduced profit</strong> per individual operation</li>
+<li><strong>Cumulative effect</strong>: In their <strong>global computation, they become very effective</strong></li>
+</ul>
+<h2 id="fundamental-principles">Fundamental Principles<a class="headerlink" href="#fundamental-principles" title="Permanent link">&para;</a></h2>
+<h3 id="speed-as-a-competitive-advantage">Speed as a Competitive Advantage<a class="headerlink" href="#speed-as-a-competitive-advantage" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Ultra-low latency</strong>: Every millisecond counts</li>
+<li><strong>Physical proximity</strong>: Servers close to exchanges</li>
+<li><strong>Specialized hardware</strong>: FPGA, optimized fiber optic cables</li>
+</ul>
+<h3 id="algorithmic-strategies">Algorithmic Strategies<a class="headerlink" href="#algorithmic-strategies" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Market making</strong>: Providing constant liquidity</li>
+<li><strong>Statistical arbitrage</strong>: Taking advantage of price discrepancies</li>
+<li><strong>Temporal arbitrage</strong>: Exploiting differences between markets</li>
+</ul>
+<h2 id="key-technologies">Key Technologies<a class="headerlink" href="#key-technologies" title="Permanent link">&para;</a></h2>
+<h3 id="optimized-hardware">Optimized Hardware<a class="headerlink" href="#optimized-hardware" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>FPGA (Field-Programmable Gate Arrays)</strong> for ultra-fast processing</li>
+<li><strong>Co-located servers</strong> in exchange datacenters</li>
+<li><strong>High-speed fiber optic networks</strong></li>
+</ul>
+<h3 id="specialized-software">Specialized Software<a class="headerlink" href="#specialized-software" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Low-latency algorithms</strong></li>
+<li><strong>Optimized network protocols</strong></li>
+<li><strong>Real-time risk management systems</strong></li>
+</ul>
+<h2 id="impact-on-markets">Impact on Markets<a class="headerlink" href="#impact-on-markets" title="Permanent link">&para;</a></h2>
+<h3 id="benefits">Benefits<a class="headerlink" href="#benefits" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Greater liquidity</strong> in markets</li>
+<li><strong>Tighter spreads</strong> between bid/ask</li>
+<li><strong>Improved price efficiency</strong></li>
+</ul>
+<h3 id="controversies">Controversies<a class="headerlink" href="#controversies" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Increased volatility</strong> in times of stress</li>
+<li><strong>Unfair advantage</strong> over traditional investors</li>
+<li><strong>Potential market manipulations</strong></li>
+</ul>
+<h2 id="the-future-of-hft">The Future of HFT<a class="headerlink" href="#the-future-of-hft" title="Permanent link">&para;</a></h2>
+<p>The race for speed continues to evolve towards:
+- <strong>Artificial Intelligence</strong> and machine learning
+- <strong>Real-time sentiment analysis</strong>
+- <strong>Quantum computing</strong> experimental</p>
+<p>HFT exemplifies how <strong>technology completely redefines</strong> traditional industries, creating new opportunities and ethical challenges.</p>
+<p><em>Original source</em>: <a href="http://albertomagallon.es/introduccion-a-los-sistemas-de-trading-de-alta-frecuencia/">Alberto Magallón</a></p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="https://pablocaro.es/en/tag/trading.html">trading</a>
+      <a href="https://pablocaro.es/en/tag/hft.html">hft</a>
+      <a href="https://pablocaro.es/en/tag/high-frequency.html">high-frequency</a>
+      <a href="https://pablocaro.es/en/tag/algorithms.html">algorithms</a>
+      <a href="https://pablocaro.es/en/tag/finance.html">finance</a>
+    </p>
+  </div>
+
+
+
+  <div class="neighbors">
+    <a class="btn float-left" href="https://pablocaro.es/en/encontrar-hosts-vivos-red" title="How to Find Live Hosts on Your Local Network">
+      <i class="fa fa-angle-left"></i> Previous Post
+    </a>
+    <a class="btn float-right" href="https://pablocaro.es/en/determinar-slots-ram-uso-linux" title="Determining RAM slots in use on Linux">
+      Next Post <i class="fa fa-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+<!-- Disqus -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'anotaciones';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>
+    Please enable JavaScript to view comments.
+</noscript>
+<!-- End Disqus -->
+</article>
+
+<footer>
+<p>
+  &copy; 2025  - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/3.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/3.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Annotations by Pablo Caro ",
+  "url" : "https://pablocaro.es/en",
+  "image": "/theme/img/profile.png",
+  "description": ""
+}
+</script>  <script src="https://files.stork-search.net/releases/v1.6.0/stork.js"></script>
+  <script>
+    window.storkIndexLoaded = false;
+    window.loadStorkIndex = function () {
+      if (window.storkIndexLoaded) {
+        return;
+      }
+      if (typeof stork === 'undefined') {
+        console.error('Stork is not loaded yet, retrying...');
+        setTimeout(window.loadStorkIndex, 100);
+        return;
+      }
+      stork.register("sitesearch", "https://pablocaro.es/en/search-index.st", { showProgress: false });
+      stork.register("sitesearch-page", "https://pablocaro.es/en/search-index.st", { showProgress: false });
+      window.storkIndexLoaded = true;
+    }
+  </script>
+
+</body>
+</html>
