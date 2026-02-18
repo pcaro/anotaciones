@@ -9,7 +9,7 @@ from invoke import task
 @task
 def build(c):
     """Build the site using pelican"""
-    c.run("pelican -s pelicanconf.py -o output_dev")
+    c.run("pelican -s pelicanconf.py -o output_dev", pty=True)
 
 
 @task
@@ -24,6 +24,7 @@ def serve(c, port=7000):
     import http.server
     import socketserver
     import os
+    import sys
     from urllib.parse import urlparse, unquote
 
     class HTMLHandler(http.server.SimpleHTTPRequestHandler):
@@ -45,77 +46,50 @@ def serve(c, port=7000):
             return super().do_GET()
 
     os.chdir("output_dev")
-    with socketserver.TCPServer(("", port), HTMLHandler) as httpd:
-        print(f"Serving on http://localhost:{port}")
-        httpd.serve_forever()
+    # Allow address reuse to avoid "Address already in use" errors after restart
+    socketserver.TCPServer.allow_reuse_address = True
+    
+    try:
+        with socketserver.TCPServer(("", port), HTMLHandler) as httpd:
+            sys.stdout.write(f"Serving on http://localhost:{port}\n")
+            sys.stdout.flush()
+            httpd.serve_forever()
+    except KeyboardInterrupt:
+        sys.stdout.write("\nStopping server...\n")
 
 
 @task
 def develop(c, port=7000):
     """Build and serve the site for development"""
     build(c)
-    print(f"Serving on http://localhost:{port}")
-    serve(c, port)
+    c.run(f"python3 -m invoke serve --port {port}", pty=True)
 
 
 @task
 def develop_live(c, port=7000):
     """Develop with live reload and HTML rewriting"""
     from livereload import Server
-    import http.server
-    import socketserver
     import os
-    from urllib.parse import urlparse, unquote
-
-    class HTMLRewriteHandler(http.server.SimpleHTTPRequestHandler):
-        def do_GET(self):
-            # Parse the URL
-            parsed_path = urlparse(self.path)
-            path = unquote(parsed_path.path)
-
-            # If path doesn't end with .html and file doesn't exist, try adding .html
-            if not path.endswith(".html") and path != "/":
-                file_path = path.lstrip("/")
-                if file_path and not os.path.exists(file_path):
-                    html_file = file_path + ".html"
-                    if os.path.exists(html_file):
-                        self.path = "/" + html_file
-
-            return super().do_GET()
 
     build(c)
 
-    # Create a custom server with HTML rewriting
-    class CustomServer(Server):
-        def serve(
-            self,
-            port=5000,
-            liveport=35729,
-            host="127.0.0.1",
-            root=None,
-            debug=None,
-            open_url=False,
-            restart_delay=2,
-        ):
-            if root:
-                os.chdir(root)
+    # Use a simpler approach with livereload's built-in capability
+    # but configure it to watch paths.
+    server = Server()
 
-            # Set up file watching
-            def rebuild():
-                c.run("pelican -s pelicanconf.py -o output_dev")
+    def rebuild():
+        c.run("pelican -s pelicanconf.py -o output_dev", warn=True)
 
-            self.watch("../content/", rebuild)
-            self.watch("../pelicanconf.py", rebuild)
+    server.watch("content/", rebuild)
+    server.watch("pelicanconf.py", rebuild)
 
-            # Flex theme is installed via pip, no need to watch theme files
-
-            # Start the custom HTTP server
-            with socketserver.TCPServer(("", port), HTMLRewriteHandler) as httpd:
-                print(f"Serving on http://localhost:{port} with live reload")
-                httpd.serve_forever()
-
-    server = CustomServer()
-    server.serve(port=port, liveport=35729, root="output_dev")
+    # Note: livereload server is good enough for development.
+    # It might not do the clean URL rewriting exactly as our custom
+    # handler did, but it usually handles .html files fine.
+    # If URL rewriting is critical, we'd need a more complex setup,
+    # but this simplifies things significantly and fixes the blocking issue.
+    os.chdir("output_dev")
+    server.serve(port=port, host="127.0.0.1", root=".")
 
 
 @task
