@@ -41,10 +41,9 @@ AUTHOR_FEED_RSS = None
 
 # Blogroll
 LINKS = (
-    ("@pcaro at X.com", "http://x.com/pcaro"),
-    ("Linkedin", "https://www.linkedin.com/in/pcarorevuelta/"),
-    ("Python.org", "http://python.org/"),
-    ("Jinja2", "http://jinja.pocoo.org/"),
+    ("pcaro@X", "http://x.com/pcaro"),
+    ("pcaro@Github", "https://github.com/pcaro/"),
+    ("LinkedIn", "https://www.linkedin.com/in/pcarorevuelta/"),
 )
 
 GITHUB_URL = "http://github.com/pcaro"

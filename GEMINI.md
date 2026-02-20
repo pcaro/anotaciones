@@ -107,6 +107,8 @@ The site is automatically deployed to [GitHub Pages](https://pages.github.com/) 
 *   **Local Development**: `uv run invoke develop` is recommended for immediate feedback.
 *   **Build Verification**: Always run a local build and verify it works correctly before committing to avoid breaking the automated deployment.
 *   **Asset Paths**: Ensure `SITEURL` in `pelicanconf.py` is set correctly to the root domain (`https://pablocaro.es`) and `RELATIVE_URLS = False` for production builds to avoid path issues. Static assets are managed under the `themes/Flex/static/` and `content/images/` directories.
+*   **Internal Linking**: Annotations should include links to other related annotations, always linking to the appropriate language version.
+*   **Bilingual Content**: Every new annotation must include both a Spanish and an English version (`.md` and `.en.md` respectively). Ensure internal links point to the corresponding language file (e.g., `.en.md` files should link to other `.en.md` files).
 
 ## Multi-language Support
 
