@@ -21,7 +21,8 @@ TIMEZONE = "Europe/Paris"
 # DISQUS_SITENAME = 'anotaciones'  # Disabled in development - only works in production
 
 DEFAULT_LANG = "es"
-LOCALE = ("es_ES.UTF-8", "es_ES", "es")
+LOCALE = "es_ES.utf8"  # Set directly to the available locale string
+DEFAULT_DATE_FORMAT = "%d de %B de %Y"
 DATE_FORMATS = {
     "en": "%a, %d %b %Y",
     "es": "%d de %B de %Y",
