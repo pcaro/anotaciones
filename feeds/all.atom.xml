@@ -1,5 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Anotaciones por Pablo Caro</title><link href="https://pablocaro.es/" rel="alternate"></link><link href="https://pablocaro.es/feeds/all.atom.xml" rel="self"></link><id>https://pablocaro.es/</id><updated>2026-02-11T20:23:00+01:00</updated><subtitle>Anotaciones</subtitle><entry><title>Gestionando instalaciones desde GitHub con gah</title><link href="https://pablocaro.es/gestionando-instalaciones-desde-github-con-gah" rel="alternate"></link><published>2026-02-11T20:23:00+01:00</published><updated>2026-02-11T20:23:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-02-11:/gestionando-instalaciones-desde-github-con-gah</id><summary type="html">&lt;p class="first last"&gt;Instala binarios directamente desde releases de GitHub de forma sencilla con gah.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Anotaciones por Pablo Caro</title><link href="https://pablocaro.es/" rel="alternate"></link><link href="https://pablocaro.es/feeds/all.atom.xml" rel="self"></link><id>https://pablocaro.es/</id><updated>2026-02-20T00:00:00+01:00</updated><subtitle>Anotaciones</subtitle><entry><title>Renderizando Markdown en la terminal con Glow</title><link href="https://pablocaro.es/renderizando-markdown-en-la-terminal-con-glow" rel="alternate"></link><published>2026-02-20T00:00:00+01:00</published><updated>2026-02-20T00:00:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-02-20:/renderizando-markdown-en-la-terminal-con-glow</id><summary type="html">&lt;p&gt;Descubre Glow, una herramienta para renderizar Markdown directamente en la terminal, ideal para leer documentación y READMEs.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;a href="https://github.com/charmbracelet/glow"&gt;Glow&lt;/a&gt; es un renderizador de Markdown para la línea de comandos. Permite leer archivos Markdown locales o remotos, y renderizarlos con resaltado de sintaxis y estilos, directamente en tu terminal.&lt;/p&gt;
+&lt;p&gt;Esta herramienta me resulta especialmente útil ahora que paso más tiempo usando la terminal con &lt;a href="https://pablocaro.es/de-yakuake-a-kitty"&gt;Kitty&lt;/a&gt;, ya que me permite consultar documentación y READMEs sin tener que abrir un navegador o un editor gráfico.&lt;/p&gt;
+&lt;h2 id="instalacion"&gt;Instalación&lt;a class="headerlink" href="#instalacion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Para instalar Glow, utilizaremos &lt;a href="https://pablocaro.es/gestionando-instalaciones-desde-github-con-gah"&gt;gah&lt;/a&gt;, una herramienta que facilita la instalación de binarios desde GitHub Releases.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;gah&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;charmbracelet/glow
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;El proceso de instalación es muy sencillo:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$ gah install charmbracelet/glow
+Fetching release info for: charmbracelet/glow [latest]
+Found release: v2.1.1
+Downloading: glow_2.1.1_Linux_x86_64.tar.gz
+############################################################################################################################################################################### 100.0%
+GitHub Release did not provide digest for glow_2.1.1_Linux_x86_64.tar.gz. Skipping verification.
+Extracting: glow_2.1.1_Linux_x86_64.tar.gz
+Installing: glow
+Give a new name or keep &amp;#39;glow&amp;#39;? (Leave empty to keep the same)
+New name: 
+Installed: glow
+Done!
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Una vez instalado, simplemente ejecuta &lt;code&gt;glow&lt;/code&gt; seguido del archivo que quieras visualizar, o incluso la URL de un README en GitHub.&lt;/p&gt;</content><category term="Linux"></category><category term="cli"></category><category term="markdown"></category><category term="herramientas"></category><category term="linux"></category><category term="kitty"></category></entry><entry><title>Rendering Markdown in the terminal with Glow</title><link href="https://pablocaro.es/en/renderizando-markdown-en-la-terminal-con-glow" rel="alternate"></link><published>2026-02-20T00:00:00+01:00</published><updated>2026-02-20T00:00:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-02-20:/en/renderizando-markdown-en-la-terminal-con-glow</id><summary type="html">&lt;p&gt;Discover Glow, a tool to render Markdown directly in the terminal, ideal for reading documentation and READMEs.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;a href="https://github.com/charmbracelet/glow"&gt;Glow&lt;/a&gt; is a command-line Markdown renderer. It allows you to read local or remote Markdown files, rendering them with syntax highlighting and styles, directly in your terminal.&lt;/p&gt;
+&lt;p&gt;I find this tool especially useful now that I spend more time using the terminal with &lt;a href="https://pablocaro.es/en/de-yakuake-a-kitty"&gt;Kitty&lt;/a&gt;, as it allows me to consult documentation and READMEs without having to open a browser or a graphical editor.&lt;/p&gt;
+&lt;h2 id="installation"&gt;Installation&lt;a class="headerlink" href="#installation" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;To install Glow, we will use &lt;a href="https://pablocaro.es/en/gestionando-instalaciones-desde-github-con-gah"&gt;gah&lt;/a&gt;, a tool that simplifies installing binaries from GitHub Releases.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;gah&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;charmbracelet/glow
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The installation process is very simple:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$ gah install charmbracelet/glow
+Fetching release info for: charmbracelet/glow [latest]
+Found release: v2.1.1
+Downloading: glow_2.1.1_Linux_x86_64.tar.gz
+############################################################################################################################################################################### 100.0%
+GitHub Release did not provide digest for glow_2.1.1_Linux_x86_64.tar.gz. Skipping verification.
+Extracting: glow_2.1.1_Linux_x86_64.tar.gz
+Installing: glow
+Give a new name or keep &amp;#39;glow&amp;#39;? (Leave empty to keep the same)
+New name: 
+Installed: glow
+Done!
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Once installed, simply run &lt;code&gt;glow&lt;/code&gt; followed by the file you want to view, or even the URL of a README on GitHub.&lt;/p&gt;</content><category term="Linux"></category><category term="cli"></category><category term="markdown"></category><category term="tools"></category><category term="linux"></category><category term="kitty"></category></entry><entry><title>Gestionando instalaciones desde GitHub con gah</title><link href="https://pablocaro.es/gestionando-instalaciones-desde-github-con-gah" rel="alternate"></link><published>2026-02-11T20:23:00+01:00</published><updated>2026-02-11T20:23:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-02-11:/gestionando-instalaciones-desde-github-con-gah</id><summary type="html">&lt;p class="first last"&gt;Instala binarios directamente desde releases de GitHub de forma sencilla con gah.&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;&lt;a class="reference external" href="https://github.com/get-gah/gah"&gt;gah&lt;/a&gt; es una herramienta que facilita la instalación de programas que distribuyen sus binarios a través de releases de GitHub. Es una alternativa ligera cuando no quieres depender del gestor de paquetes de tu distribución o cuando necesitas una versión más reciente.&lt;/p&gt;
 &lt;div class="section" id="instalacion"&gt;
 &lt;h2&gt;Instalación&lt;/h2&gt;
@@ -4929,64 +4973,4 @@ Listar paquetes huérfanos:
 LC_ALL=C zypper se -s | fgrep '(System Packages)'
 &lt;/pre&gt;
 
-    </content><category term="Sin Categoría"></category></entry><entry><title>Paso de ubuntu a suse</title><link href="https://pablocaro.es/paso-de-ubuntu-a-suse" rel="alternate"></link><published>2013-02-01T02:17:00+01:00</published><updated>2013-02-01T02:17:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2013-02-01:/paso-de-ubuntu-a-suse</id><summary type="html">
-        En mi nuevo portátil del trabajo he pasado de Ubuntu a OpenSuse. Una distribución muy estable y sobre todo con el mejor soporte de KDE.
-
-Pero hay una cuantas cosas que nunca recuerdo. Como este blog se llama anotaciones...
-
-&lt;table width="100%"&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;th&gt;Debian&lt;/th&gt;
-&lt;th&gt;OpenSuse&lt;/th&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;dpkg -S fichero&lt;/td&gt;
-&lt;td&gt;rpm -q -f fichero&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;dpkg -L …&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;</summary><content type="html">
-        En mi nuevo portátil del trabajo he pasado de Ubuntu a OpenSuse. Una distribución muy estable y sobre todo con el mejor soporte de KDE.
-
-Pero hay una cuantas cosas que nunca recuerdo. Como este blog se llama anotaciones...
-
-&lt;table width="100%"&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;th&gt;Debian&lt;/th&gt;
-&lt;th&gt;OpenSuse&lt;/th&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;dpkg -S fichero&lt;/td&gt;
-&lt;td&gt;rpm -q -f fichero&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;dpkg -L paquete&lt;/td&gt;
-&lt;td&gt;rpm -q -l paquete&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;dpkg –purge –dry-run paquete&lt;/td&gt;
-&lt;td&gt;rpm -q –whatrequires paquee&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&amp;nbsp;
-
-&amp;nbsp;
-    </content><category term="Sistemas"></category><category term="linux"></category></entry><entry><title>reducir recursos de KDE</title><link href="https://pablocaro.es/reducir-recursos-de-kde" rel="alternate"></link><published>2012-10-24T03:18:00+02:00</published><updated>2012-10-24T03:18:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2012-10-24:/reducir-recursos-de-kde</id><content type="html">
-        Mágnifica entrada que explica como acelerar un poco tu sistema kde:
-
-&lt;a href="http://parduslife.com/2011/02/17/como-acelerar-el-entorno-de-escritorio-plasma-de-la-kde-sc/"&gt;http://parduslife.com/2011/02/17/como-acelerar-el-entorno-de-escritorio-plasma-de-la-kde-sc/&lt;/a&gt;
-
-No uso akonadi y siempre he querido pararlo. Así no tienes que hacer un
-&lt;pre lang="bash"&gt;akonadictl stop&lt;/pre&gt;
-tras arrancar.
-
-&amp;nbsp;
-
-&lt;a href="http://mschlander.wordpress.com/2011/08/18/disable-akonadi-in-kde-sc-4-7/"&gt;http://mschlander.wordpress.com/2011/08/18/disable-akonadi-in-kde-sc-4-7/&lt;/a&gt;
-
-&amp;nbsp;
-
-&amp;nbsp;
-    </content><category term="Sistemas"></category><category term="linux"></category></entry></feed>
+    </content><category term="Sin Categoría"></category></entry></feed>

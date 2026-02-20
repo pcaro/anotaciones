@@ -3,6 +3,11 @@ html_selector = "main"
 base_directory = "/home/runner/work/anotaciones/anotaciones/output/en"
 
 [[input.files]]
+path = "renderizando-markdown-en-la-terminal-con-glow.html"
+url = "/renderizando-markdown-en-la-terminal-con-glow"
+title = "Rendering Markdown in the terminal with Glow"
+
+[[input.files]]
 path = "gestionando-instalaciones-desde-github-con-gah.html"
 url = "/gestionando-instalaciones-desde-github-con-gah"
 title = "Managing GitHub installations with gah"
@@ -241,6 +246,11 @@ title = "Django: links in object list"
 path = "settings-vars-processor.html"
 url = "/settings-vars-processor"
 title = "Settings vars processor"
+
+[[input.files]]
+path = "renderizando-markdown-en-la-terminal-con-glow-es.html"
+url = "/../renderizando-markdown-en-la-terminal-con-glow"
+title = "Renderizando Markdown en la terminal con Glow"
 
 [[input.files]]
 path = "gestionando-instalaciones-desde-github-con-gah-es.html"

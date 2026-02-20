@@ -3,6 +3,11 @@ html_selector = "main"
 base_directory = "/home/runner/work/anotaciones/anotaciones/output"
 
 [[input.files]]
+path = "renderizando-markdown-en-la-terminal-con-glow.html"
+url = "/renderizando-markdown-en-la-terminal-con-glow"
+title = "Renderizando Markdown en la terminal con Glow"
+
+[[input.files]]
 path = "gestionando-instalaciones-desde-github-con-gah.html"
 url = "/gestionando-instalaciones-desde-github-con-gah"
 title = "Gestionando instalaciones desde GitHub con gah"
@@ -666,6 +671,11 @@ title = "Corrector ortográfico de firefox 2.0 en castellano"
 path = "primera-anotacion-de-prueba.html"
 url = "/primera-anotacion-de-prueba"
 title = "Primera anotación de prueba"
+
+[[input.files]]
+path = "renderizando-markdown-en-la-terminal-con-glow-en.html"
+url = "/en/renderizando-markdown-en-la-terminal-con-glow"
+title = "Rendering Markdown in the terminal with Glow"
 
 [[input.files]]
 path = "gestionando-instalaciones-desde-github-con-gah-en.html"

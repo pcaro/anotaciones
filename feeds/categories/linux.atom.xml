@@ -1,5 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Anotaciones por Pablo Caro - Linux</title><link href="https://pablocaro.es/" rel="alternate"></link><link href="https://pablocaro.es/feeds/categories/linux.atom.xml" rel="self"></link><id>https://pablocaro.es/</id><updated>2026-02-11T20:23:00+01:00</updated><subtitle>Anotaciones</subtitle><entry><title>Gestionando instalaciones desde GitHub con gah</title><link href="https://pablocaro.es/gestionando-instalaciones-desde-github-con-gah" rel="alternate"></link><published>2026-02-11T20:23:00+01:00</published><updated>2026-02-11T20:23:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-02-11:/gestionando-instalaciones-desde-github-con-gah</id><summary type="html">&lt;p class="first last"&gt;Instala binarios directamente desde releases de GitHub de forma sencilla con gah.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Anotaciones por Pablo Caro - Linux</title><link href="https://pablocaro.es/" rel="alternate"></link><link href="https://pablocaro.es/feeds/categories/linux.atom.xml" rel="self"></link><id>https://pablocaro.es/</id><updated>2026-02-20T00:00:00+01:00</updated><subtitle>Anotaciones</subtitle><entry><title>Renderizando Markdown en la terminal con Glow</title><link href="https://pablocaro.es/renderizando-markdown-en-la-terminal-con-glow" rel="alternate"></link><published>2026-02-20T00:00:00+01:00</published><updated>2026-02-20T00:00:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-02-20:/renderizando-markdown-en-la-terminal-con-glow</id><summary type="html">&lt;p&gt;Descubre Glow, una herramienta para renderizar Markdown directamente en la terminal, ideal para leer documentación y READMEs.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;a href="https://github.com/charmbracelet/glow"&gt;Glow&lt;/a&gt; es un renderizador de Markdown para la línea de comandos. Permite leer archivos Markdown locales o remotos, y renderizarlos con resaltado de sintaxis y estilos, directamente en tu terminal.&lt;/p&gt;
+&lt;p&gt;Esta herramienta me resulta especialmente útil ahora que paso más tiempo usando la terminal con &lt;a href="https://pablocaro.es/de-yakuake-a-kitty"&gt;Kitty&lt;/a&gt;, ya que me permite consultar documentación y READMEs sin tener que abrir un navegador o un editor gráfico.&lt;/p&gt;
+&lt;h2 id="instalacion"&gt;Instalación&lt;a class="headerlink" href="#instalacion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Para instalar Glow, utilizaremos &lt;a href="https://pablocaro.es/gestionando-instalaciones-desde-github-con-gah"&gt;gah&lt;/a&gt;, una herramienta que facilita la instalación de binarios desde GitHub Releases.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;gah&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;charmbracelet/glow
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;El proceso de instalación es muy sencillo:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$ gah install charmbracelet/glow
+Fetching release info for: charmbracelet/glow [latest]
+Found release: v2.1.1
+Downloading: glow_2.1.1_Linux_x86_64.tar.gz
+############################################################################################################################################################################### 100.0%
+GitHub Release did not provide digest for glow_2.1.1_Linux_x86_64.tar.gz. Skipping verification.
+Extracting: glow_2.1.1_Linux_x86_64.tar.gz
+Installing: glow
+Give a new name or keep &amp;#39;glow&amp;#39;? (Leave empty to keep the same)
+New name: 
+Installed: glow
+Done!
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Una vez instalado, simplemente ejecuta &lt;code&gt;glow&lt;/code&gt; seguido del archivo que quieras visualizar, o incluso la URL de un README en GitHub.&lt;/p&gt;</content><category term="Linux"></category><category term="cli"></category><category term="markdown"></category><category term="herramientas"></category><category term="linux"></category><category term="kitty"></category></entry><entry><title>Gestionando instalaciones desde GitHub con gah</title><link href="https://pablocaro.es/gestionando-instalaciones-desde-github-con-gah" rel="alternate"></link><published>2026-02-11T20:23:00+01:00</published><updated>2026-02-11T20:23:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-02-11:/gestionando-instalaciones-desde-github-con-gah</id><summary type="html">&lt;p class="first last"&gt;Instala binarios directamente desde releases de GitHub de forma sencilla con gah.&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;&lt;a class="reference external" href="https://github.com/get-gah/gah"&gt;gah&lt;/a&gt; es una herramienta que facilita la instalación de programas que distribuyen sus binarios a través de releases de GitHub. Es una alternativa ligera cuando no quieres depender del gestor de paquetes de tu distribución o cuando necesitas una versión más reciente.&lt;/p&gt;
 &lt;div class="section" id="instalacion"&gt;
 &lt;h2&gt;Instalación&lt;/h2&gt;

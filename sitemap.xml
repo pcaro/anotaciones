@@ -5,36 +5,43 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://pablocaro.es/</loc>
-<lastmod>2026-02-20T10:41:09-00:00</lastmod>
+<lastmod>2026-02-20T11:43:54-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://pablocaro.es/tags.html</loc>
-<lastmod>2026-02-20T10:41:09-00:00</lastmod>
+<lastmod>2026-02-20T11:43:54-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://pablocaro.es/categories.html</loc>
-<lastmod>2026-02-20T10:41:09-00:00</lastmod>
+<lastmod>2026-02-20T11:43:54-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://pablocaro.es/archives.html</loc>
-<lastmod>2026-02-20T10:41:09-00:00</lastmod>
+<lastmod>2026-02-20T11:43:54-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://pablocaro.es/search.html</loc>
-<lastmod>2026-02-20T10:41:09-00:00</lastmod>
+<lastmod>2026-02-20T11:43:54-00:00</lastmod>
 <changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://pablocaro.es/renderizando-markdown-en-la-terminal-con-glow</loc>
+<lastmod>2026-02-20T00:00:00+01:00</lastmod>
+<changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
@@ -1006,7 +1013,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://pablocaro.es/category/linux.html</loc>
-<lastmod>2026-02-11T20:23:00+00:09</lastmod>
+<lastmod>2026-02-20T00:00:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -1089,22 +1096,36 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>https://pablocaro.es/tag/linux.html</loc>
-<lastmod>2026-02-11T20:23:00+00:09</lastmod>
+<loc>https://pablocaro.es/tag/cli.html</loc>
+<lastmod>2026-02-20T00:00:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://pablocaro.es/tag/markdown.html</loc>
+<lastmod>2026-02-20T00:00:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://pablocaro.es/tag/herramientas.html</loc>
-<lastmod>2026-02-11T20:23:00+00:09</lastmod>
+<lastmod>2026-02-20T00:00:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://pablocaro.es/tag/cli.html</loc>
-<lastmod>2026-02-11T20:23:00+00:09</lastmod>
+<loc>https://pablocaro.es/tag/linux.html</loc>
+<lastmod>2026-02-20T00:00:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://pablocaro.es/tag/kitty.html</loc>
+<lastmod>2026-02-20T00:00:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -1462,13 +1483,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>https://pablocaro.es/tag/logs.html</loc>
 <lastmod>2025-12-25T13:00:00+00:09</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>https://pablocaro.es/tag/kitty.html</loc>
-<lastmod>2025-12-25T12:30:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
