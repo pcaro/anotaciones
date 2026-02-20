@@ -1,5 +1,136 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Anotaciones por Pablo Caro - Python</title><link href="https://pablocaro.es/" rel="alternate"></link><link href="https://pablocaro.es/feeds/categories/python.atom.xml" rel="self"></link><id>https://pablocaro.es/</id><updated>2016-02-09T10:10:00+01:00</updated><subtitle>Anotaciones</subtitle><entry><title>Python: Crear generadores repetibles (repeating generators)</title><link href="https://pablocaro.es/python-generadores-repetibles" rel="alternate"></link><published>2016-02-09T10:10:00+01:00</published><updated>2016-02-09T10:10:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2016-02-09:/python-generadores-repetibles</id><summary type="html">&lt;p&gt;Técnicas en Python para crear generadores que se pueden iterar múltiples veces, superando la limitación de "una sola vez" de los generadores estándar&lt;/p&gt;</summary><content type="html">&lt;p&gt;Los &lt;strong&gt;generadores en Python son "one-shot"&lt;/strong&gt; - solo se pueden iterar una vez. ¿Cómo crear generadores que se puedan reutilizar múltiples veces?&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Anotaciones por Pablo Caro - Python</title><link href="https://pablocaro.es/" rel="alternate"></link><link href="https://pablocaro.es/feeds/categories/python.atom.xml" rel="self"></link><id>https://pablocaro.es/</id><updated>2026-02-20T00:00:00+01:00</updated><subtitle>Anotaciones</subtitle><entry><title>DeepDiff: La navaja suiza para comparar datos en Python</title><link href="https://pablocaro.es/deepdiff-comparar-datos-python" rel="alternate"></link><published>2026-02-20T00:00:00+01:00</published><updated>2026-02-20T00:00:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-02-20:/deepdiff-comparar-datos-python</id><summary type="html">&lt;p&gt;Cuando trabajamos con datos estructurados en Python, a menudo necesitamos comparar dos diccionarios, JSONs u objetos complejos para encontrar qué ha cambiado. Si bien la comparación directa (&lt;code&gt;==&lt;/code&gt;) es útil, a veces necesitamos entender &lt;em&gt;exactamente qué&lt;/em&gt; es diferente: qué claves se han añadido, cuáles se han eliminado, o dónde han cambiado …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Cuando trabajamos con datos estructurados en Python, a menudo necesitamos comparar dos diccionarios, JSONs u objetos complejos para encontrar qué ha cambiado. Si bien la comparación directa (&lt;code&gt;==&lt;/code&gt;) es útil, a veces necesitamos entender &lt;em&gt;exactamente qué&lt;/em&gt; es diferente: qué claves se han añadido, cuáles se han eliminado, o dónde han cambiado los valores, incluso en estructuras profundamente anidadas.&lt;/p&gt;
+&lt;p&gt;Aquí es donde entra &lt;strong&gt;&lt;a href="https://github.com/seperman/deepdiff"&gt;DeepDiff&lt;/a&gt;&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;DeepDiff es una biblioteca de Python increíblemente potente que ofrece mucho más que una simple comparación. Es una herramienta esencial para pruebas, validación de datos y depuración de APIs.&lt;/p&gt;
+&lt;h2 id="caracteristicas-principales"&gt;Características principales&lt;a class="headerlink" href="#caracteristicas-principales" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;DeepDiff no es solo una herramienta, es un conjunto de utilidades:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;DeepDiff&lt;/strong&gt;: Compara diccionarios, iterables, cadenas y otros objetos recursivamente. Puede ignorar el orden en listas, ignorar tipos específicos, o excluir rutas de la comparación.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;DeepSearch&lt;/strong&gt;: Busca objetos dentro de otros objetos, como un &lt;code&gt;grep&lt;/code&gt; para estructuras de datos en memoria.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;DeepHash&lt;/strong&gt;: Calcula hashes de objetos basándose en su contenido. Muy útil para deduplicación de datos complejos donde el orden de las claves no importa.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Delta&lt;/strong&gt;: Genera "deltas" (diferencias) que se pueden aplicar a otros objetos, similar a un &lt;code&gt;git patch&lt;/code&gt; pero para objetos Python.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="instalacion"&gt;Instalación&lt;a class="headerlink" href="#instalacion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;La forma moderna y recomendada de instalar herramientas en Python es usando &lt;code&gt;uv&lt;/code&gt;.&lt;/p&gt;
+&lt;h3 id="como-herramienta-de-linea-de-comandos-cli"&gt;Como herramienta de línea de comandos (CLI)&lt;a class="headerlink" href="#como-herramienta-de-linea-de-comandos-cli" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Si solo quieres usar el comando &lt;code&gt;deep&lt;/code&gt; en tu terminal para comparar archivos JSON o YAML:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;uv&lt;span class="w"&gt; &lt;/span&gt;tool&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;deepdiff[cli]&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Esto instalará el comando &lt;code&gt;deep&lt;/code&gt; en tu sistema de forma aislada. Asegúrate de incluir &lt;code&gt;[cli]&lt;/code&gt; para instalar las dependencias necesarias.&lt;/p&gt;
+&lt;h3 id="como-biblioteca-en-tu-proyecto"&gt;Como biblioteca en tu proyecto&lt;a class="headerlink" href="#como-biblioteca-en-tu-proyecto" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Si vas a usarlo dentro de tus scripts de Python:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;uv&lt;span class="w"&gt; &lt;/span&gt;add&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;deepdiff&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;O si necesitas la CLI también dentro de tu entorno virtual:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;uv&lt;span class="w"&gt; &lt;/span&gt;add&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;deepdiff[cli]&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="ejemplos-de-uso"&gt;Ejemplos de uso&lt;a class="headerlink" href="#ejemplos-de-uso" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="en-python"&gt;En Python&lt;a class="headerlink" href="#en-python" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Imagina que tienes dos respuestas de API ligeramente diferentes y quieres saber qué cambió:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;deepdiff&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;DeepDiff&lt;/span&gt;
+
+&lt;span class="n"&gt;t1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;id&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;name&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Producto A&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;tags&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;nuevo&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;oferta&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;details&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;price&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;stock&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;50&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="n"&gt;t2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;id&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;name&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Producto A&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;tags&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;oferta&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;nuevo&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;  &lt;span class="c1"&gt;# Orden diferente&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;details&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;price&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;120&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;stock&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;50&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Por defecto, el orden importa en listas&lt;/span&gt;
+&lt;span class="n"&gt;diff&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;DeepDiff&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;t1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;t2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c1"&gt;# Resultado muestra cambios en la lista &amp;#39;tags&amp;#39; y en &amp;#39;details.price&amp;#39;&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Si ignoramos el orden en iterables&lt;/span&gt;
+&lt;span class="n"&gt;diff_ignore_order&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;DeepDiff&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;t1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;t2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ignore_order&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;diff_ignore_order&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Salida:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;values_changed&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="s2"&gt;&amp;quot;root[&amp;#39;details&amp;#39;][&amp;#39;price&amp;#39;]&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="s1"&gt;&amp;#39;new_value&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;120&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+            &lt;span class="s1"&gt;&amp;#39;old_value&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;100&lt;/span&gt;
+        &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Como ves, detectó el cambio de precio pero ignoró el cambio de orden en los tags.&lt;/p&gt;
+&lt;h3 id="en-la-terminal-cli"&gt;En la terminal (CLI)&lt;a class="headerlink" href="#en-la-terminal-cli" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;El comando &lt;code&gt;deep&lt;/code&gt; es muy útil para comparar archivos rápidamente:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Comparar dos archivos JSON&lt;/span&gt;
+deep&lt;span class="w"&gt; &lt;/span&gt;diff&lt;span class="w"&gt; &lt;/span&gt;production.json&lt;span class="w"&gt; &lt;/span&gt;development.json
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;También puedes usarlo para extraer información o buscar dentro de archivos JSON/YAML grandes sin tener que escribir un script.&lt;/p&gt;
+&lt;h2 id="conclusion"&gt;Conclusión&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;DeepDiff es una de esas librerías que, una vez que conoces, no puedes dejar de usar. Su flexibilidad para ignorar ciertos campos (como timestamps o IDs autogenerados) la hace perfecta para tests de integración y validación de datos.&lt;/p&gt;
+&lt;p&gt;Puedes ver la documentación completa en &lt;a href="https://zepworks.com/deepdiff/current/"&gt;zepworks.com/deepdiff&lt;/a&gt;.&lt;/p&gt;</content><category term="Python"></category><category term="python"></category><category term="data"></category><category term="cli"></category><category term="tools"></category><category term="diff"></category></entry><entry><title>Shot-scraper: Capturas de pantalla automatizadas para la web</title><link href="https://pablocaro.es/shot-scraper-capturas-pantalla-automatizadas" rel="alternate"></link><published>2026-02-20T00:00:00+01:00</published><updated>2026-02-20T00:00:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-02-20:/shot-scraper-capturas-pantalla-automatizadas</id><summary type="html">&lt;p&gt;¿Alguna vez has necesitado tomar capturas de pantalla de una página web de forma programática? Tal vez para documentar tu proyecto, monitorizar cambios en una UI, o generar imágenes para redes sociales. Existen muchas formas de hacerlo, pero &lt;strong&gt;&lt;a href="https://shot-scraper.datasette.io/"&gt;shot-scraper&lt;/a&gt;&lt;/strong&gt; destaca por su facilidad de uso y potencia.&lt;/p&gt;
+&lt;p&gt;Creada por Simon …&lt;/p&gt;</summary><content type="html">&lt;p&gt;¿Alguna vez has necesitado tomar capturas de pantalla de una página web de forma programática? Tal vez para documentar tu proyecto, monitorizar cambios en una UI, o generar imágenes para redes sociales. Existen muchas formas de hacerlo, pero &lt;strong&gt;&lt;a href="https://shot-scraper.datasette.io/"&gt;shot-scraper&lt;/a&gt;&lt;/strong&gt; destaca por su facilidad de uso y potencia.&lt;/p&gt;
+&lt;p&gt;Creada por Simon Willison, &lt;code&gt;shot-scraper&lt;/code&gt; es una herramienta de línea de comandos (CLI) que envuelve Playwright para hacer que tomar screenshots sea trivial.&lt;/p&gt;
+&lt;h2 id="instalacion"&gt;Instalación&lt;a class="headerlink" href="#instalacion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Al igual que con otras herramientas modernas de Python, la mejor forma de instalarla es usando &lt;code&gt;uv&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;uv&lt;span class="w"&gt; &lt;/span&gt;tool&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;shot-scraper
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Una vez instalada, necesitarás descargar el navegador que utiliza por debajo (Chromium):&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;shot-scraper&lt;span class="w"&gt; &lt;/span&gt;install
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="uso-basico"&gt;Uso básico&lt;a class="headerlink" href="#uso-basico" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;La forma más sencilla de usarlo es darle una URL y un nombre de archivo:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;shot-scraper&lt;span class="w"&gt; &lt;/span&gt;https://pablocaro.es/&lt;span class="w"&gt; &lt;/span&gt;blog.png
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Esto generará una imagen llamada &lt;code&gt;blog.png&lt;/code&gt; con la captura de la página.&lt;/p&gt;
+&lt;h3 id="capturando-selectores-especificos"&gt;Capturando selectores específicos&lt;a class="headerlink" href="#capturando-selectores-especificos" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Una de las características más potentes es la capacidad de capturar solo un elemento específico de la página usando selectores CSS:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;shot-scraper&lt;span class="w"&gt; &lt;/span&gt;https://github.com/pcaro&lt;span class="w"&gt; &lt;/span&gt;-s&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;.js-calendar-graph&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;calendar.png
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Este comando capturará únicamente el gráfico de contribuciones de GitHub.&lt;/p&gt;
+&lt;h3 id="interactuando-con-javascript"&gt;Interactuando con JavaScript&lt;a class="headerlink" href="#interactuando-con-javascript" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;A veces necesitas ejecutar algo de código antes de tomar la foto. Por ejemplo, para ocultar un banner de cookies o esperar a que cargue algo.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;shot-scraper&lt;span class="w"&gt; &lt;/span&gt;https://pablocaro.es/&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="se"&gt;\&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;--javascript&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;document.querySelector(&amp;#39;header&amp;#39;).style.display = &amp;#39;none&amp;#39;;&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="se"&gt;\&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;-o&lt;span class="w"&gt; &lt;/span&gt;sin-header.png
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="automatizacion-avanzada"&gt;Automatización avanzada&lt;a class="headerlink" href="#automatizacion-avanzada" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Si necesitas tomar muchas capturas, puedes definir un archivo YAML de configuración:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# shots.yml&lt;/span&gt;
+&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;url&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;https://pablocaro.es/&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;output&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;home.png&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;height&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;800&lt;/span&gt;
+&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;url&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;https://pablocaro.es/archives.html&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;output&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;archives.png&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;wait&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;1000&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="c1"&gt;# Esperar 1 segundo&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Y ejecutarlas todas de una vez:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;shot-scraper&lt;span class="w"&gt; &lt;/span&gt;multi&lt;span class="w"&gt; &lt;/span&gt;shots.yml
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="mas-alla-de-las-capturas"&gt;Más allá de las capturas&lt;a class="headerlink" href="#mas-alla-de-las-capturas" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;shot-scraper&lt;/code&gt; también incluye utilidades para:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Accesibilidad&lt;/strong&gt;: Volcar el árbol de accesibilidad de una página (&lt;code&gt;shot-scraper accessibility&lt;/code&gt;).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;PDF&lt;/strong&gt;: Generar PDFs de páginas web (&lt;code&gt;shot-scraper pdf&lt;/code&gt;).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;HAR&lt;/strong&gt;: Grabar archivos HAR para analizar el tráfico de red (&lt;code&gt;shot-scraper har&lt;/code&gt;).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Es una de esas herramientas que, una vez instaladas, encuentras usos para ella constantemente. Perfecta para integrar en pipelines de CI/CD para generar visuales de documentación automáticamente.&lt;/p&gt;
+&lt;p&gt;Más info en la &lt;a href="https://shot-scraper.datasette.io/"&gt;documentación oficial&lt;/a&gt;.&lt;/p&gt;</content><category term="Python"></category><category term="python"></category><category term="cli"></category><category term="tools"></category><category term="web"></category><category term="scraping"></category><category term="screenshots"></category></entry><entry><title>Python: Crear generadores repetibles (repeating generators)</title><link href="https://pablocaro.es/python-generadores-repetibles" rel="alternate"></link><published>2016-02-09T10:10:00+01:00</published><updated>2016-02-09T10:10:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2016-02-09:/python-generadores-repetibles</id><summary type="html">&lt;p&gt;Técnicas en Python para crear generadores que se pueden iterar múltiples veces, superando la limitación de "una sola vez" de los generadores estándar&lt;/p&gt;</summary><content type="html">&lt;p&gt;Los &lt;strong&gt;generadores en Python son "one-shot"&lt;/strong&gt; - solo se pueden iterar una vez. ¿Cómo crear generadores que se puedan reutilizar múltiples veces?&lt;/p&gt;
 &lt;h2 id="el-problema"&gt;El problema&lt;a class="headerlink" href="#el-problema" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;mi_generador&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
     &lt;span class="k"&gt;yield&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;

@@ -1,0 +1,371 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://pablocaro.es/en/theme/stylesheet/style.min.css">
+
+
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+          href="https://pablocaro.es/en/theme/pygments/github.min.css">
+
+
+  <link rel="stylesheet"
+        type="text/css"
+        href="https://pablocaro.es/en/theme/stork/stork.css" />
+
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/en/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/en/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/en/theme/font-awesome/css/solid.css">
+
+
+  <link rel="shortcut icon" href="/theme/img/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/theme/img/favicon.ico" type="image/x-icon">
+
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#333333">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#333333">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Microsoft EDGE -->
+  <meta name="msapplication-TileColor" content="#333333">
+
+  <link href="https://pablocaro.es/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Annotations by Pablo Caro Atom">
+
+  <link href="https://pablocaro.es/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Annotations by Pablo Caro RSS">
+
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-60035125-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Pablo Caro" />
+<meta name="description" content="When working with structured data in Python, we often need to compare two dictionaries, JSONs, or complex objects to find out what has changed. While direct comparison (==) is useful, sometimes we need to understand exactly what is different: which keys were added, which were removed, or where values have changed …" />
+<meta name="keywords" content="python, data, cli, tools, diff">
+
+<link rel="alternate" href="https://pablocaro.es/en/deepdiff-comparar-datos-python" hreflang="en" />
+<link rel="alternate" href="https://pablocaro.es/en/../deepdiff-comparar-datos-python" hreflang="es" />
+
+  <meta property="og:site_name" content="Annotations by Pablo Caro"/>
+  <meta property="og:title" content="DeepDiff: The Swiss Army Knife for Data Comparison in Python"/>
+  <meta property="og:description" content="When working with structured data in Python, we often need to compare two dictionaries, JSONs, or complex objects to find out what has changed. While direct comparison (==) is useful, sometimes we need to understand exactly what is different: which keys were added, which were removed, or where values have changed …"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://pablocaro.es/en/deepdiff-comparar-datos-python"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2026-02-20 00:00:00+01:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://pablocaro.es/en/author/pablo-caro.html">
+  <meta property="article:section" content="Python"/>
+  <meta property="article:tag" content="python"/>
+  <meta property="article:tag" content="data"/>
+  <meta property="article:tag" content="cli"/>
+  <meta property="article:tag" content="tools"/>
+  <meta property="article:tag" content="diff"/>
+  <meta property="og:image" content="/theme/img/profile.png">
+
+  <title>Annotations by Pablo Caro &ndash; DeepDiff: The Swiss Army Knife for Data Comparison in Python</title>
+
+
+</head>
+<body class="light-theme">
+
+<aside>
+  <div>
+    <a href="https://pablocaro.es/en/">
+      <img src="/theme/img/profile.png" alt="Anotaciones" title="Anotaciones">
+    </a>
+
+    <h1>
+      <a href="https://pablocaro.es/en/">Anotaciones</a>
+    </h1>
+
+    <p>Annotations</p>
+
+    <div class="stork">
+      <input class="stork-input" type="text" autocomplete="off" name="q" data-stork="sitesearch" placeholder="Search..." onclick="loadStorkIndex()"/>
+      <div class="stork-output" data-stork="sitesearch-output"></div>
+    </div>
+
+    <nav>
+      <ul class="list">
+
+
+
+          <li>
+            <a target="_self" href="http://x.com/pcaro" >pcaro@X</a>
+          </li>
+          <li>
+            <a target="_self" href="https://github.com/pcaro/" >pcaro@Github</a>
+          </li>
+          <li>
+            <a target="_self" href="https://www.linkedin.com/in/pcarorevuelta/" >LinkedIn</a>
+          </li>
+      </ul>
+    </nav>
+
+    <ul class="social">
+      <li>
+        <a class="sc-Twitter"
+           href="http://twitter.com/pcaro"
+           target="_blank">
+          <i class="fa-brands fa-Twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Github"
+           href="http://github.com/pcaro"
+           target="_blank">
+          <i class="fa-brands fa-Github"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Linkedin"
+           href="https://www.linkedin.com/in/pcarorevuelta"
+           target="_blank">
+          <i class="fa-brands fa-Linkedin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Facebook"
+           href="https://www.facebook.com/pablo.carorevuelta"
+           target="_blank">
+          <i class="fa-brands fa-Facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Email"
+           href="mailto:correo@pablocaro.es"
+           target="_blank">
+          <i class="fa-brands fa-Email"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+</aside>
+  <main>
+
+<nav>
+  <a href="https://pablocaro.es/en/">Home</a>
+
+  <a href="/en/archives.html">Archives</a>
+  <a href="/en/categories.html">Categories</a>
+  <a href="/en/tags.html">Tags</a>
+  <a href="/en/search.html">Search</a>
+  <a href="/">Español</a>
+
+  <a href="https://pablocaro.es/feeds/all.atom.xml">Atom</a>
+
+  <a href="https://pablocaro.es/feeds/all.rss.xml">RSS</a>
+</nav>
+
+<article class="single">
+  <header>
+          <div class="translations">
+            <a href="https://pablocaro.es/en/../deepdiff-comparar-datos-python">Leer en español</a>
+    </div>
+
+    <h1 id="deepdiff-comparar-datos-python">DeepDiff: The Swiss Army Knife for Data Comparison in Python</h1>
+    <p>
+      Posted on Fri 20 February 2026 in <a href="https://pablocaro.es/en/category/python.html">Python</a>
+
+    </p>
+  </header>
+
+
+  <div>
+    <p>When working with structured data in Python, we often need to compare two dictionaries, JSONs, or complex objects to find out what has changed. While direct comparison (<code>==</code>) is useful, sometimes we need to understand <em>exactly what</em> is different: which keys were added, which were removed, or where values have changed, even in deeply nested structures.</p>
+<p>This is where <strong><a href="https://github.com/seperman/deepdiff">DeepDiff</a></strong> comes in.</p>
+<p>DeepDiff is an incredibly powerful Python library that offers much more than simple comparison. It is an essential tool for testing, data validation, and API debugging.</p>
+<h2 id="key-features">Key Features<a class="headerlink" href="#key-features" title="Permanent link">&para;</a></h2>
+<p>DeepDiff is not just a tool, it's a suite of utilities:</p>
+<ul>
+<li><strong>DeepDiff</strong>: Recursively compares dictionaries, iterables, strings, and other objects. It can ignore order in lists, ignore specific types, or exclude paths from comparison.</li>
+<li><strong>DeepSearch</strong>: Searches for objects within other objects, like a <code>grep</code> for in-memory data structures.</li>
+<li><strong>DeepHash</strong>: Calculates hashes of objects based on their content. Very useful for deduplication of complex data where key order doesn't matter.</li>
+<li><strong>Delta</strong>: Generates "deltas" (differences) that can be applied to other objects, similar to a <code>git patch</code> but for Python objects.</li>
+</ul>
+<h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h2>
+<p>The modern and recommended way to install Python tools is using <code>uv</code>.</p>
+<h3 id="as-a-command-line-interface-cli-tool">As a Command Line Interface (CLI) Tool<a class="headerlink" href="#as-a-command-line-interface-cli-tool" title="Permanent link">&para;</a></h3>
+<p>If you just want to use the <code>deep</code> command in your terminal to compare JSON or YAML files:</p>
+<div class="highlight"><pre><span></span><code>uv<span class="w"> </span>tool<span class="w"> </span>install<span class="w"> </span><span class="s2">&quot;deepdiff[cli]&quot;</span>
+</code></pre></div>
+
+<p>This will install the <code>deep</code> command on your system in an isolated environment. Make sure to include <code>[cli]</code> to install the necessary dependencies.</p>
+<h3 id="as-a-library-in-your-project">As a Library in Your Project<a class="headerlink" href="#as-a-library-in-your-project" title="Permanent link">&para;</a></h3>
+<p>If you are going to use it within your Python scripts:</p>
+<div class="highlight"><pre><span></span><code>uv<span class="w"> </span>add<span class="w"> </span><span class="s2">&quot;deepdiff&quot;</span>
+</code></pre></div>
+
+<p>Or if you need the CLI inside your virtual environment as well:</p>
+<div class="highlight"><pre><span></span><code>uv<span class="w"> </span>add<span class="w"> </span><span class="s2">&quot;deepdiff[cli]&quot;</span>
+</code></pre></div>
+
+<h2 id="usage-examples">Usage Examples<a class="headerlink" href="#usage-examples" title="Permanent link">&para;</a></h2>
+<h3 id="in-python">In Python<a class="headerlink" href="#in-python" title="Permanent link">&para;</a></h3>
+<p>Imagine you have two slightly different API responses and want to know what changed:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">deepdiff</span> <span class="kn">import</span> <span class="n">DeepDiff</span>
+
+<span class="n">t1</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Product A&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;new&quot;</span><span class="p">,</span> <span class="s2">&quot;sale&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;details&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;price&quot;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="s2">&quot;stock&quot;</span><span class="p">:</span> <span class="mi">50</span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">t2</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Product A&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;sale&quot;</span><span class="p">,</span> <span class="s2">&quot;new&quot;</span><span class="p">],</span>  <span class="c1"># Different order</span>
+    <span class="s2">&quot;details&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;price&quot;</span><span class="p">:</span> <span class="mi">120</span><span class="p">,</span> <span class="s2">&quot;stock&quot;</span><span class="p">:</span> <span class="mi">50</span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1"># By default, order matters in lists</span>
+<span class="n">diff</span> <span class="o">=</span> <span class="n">DeepDiff</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span> <span class="n">t2</span><span class="p">)</span>
+<span class="c1"># Result shows changes in &#39;tags&#39; list and &#39;details.price&#39;</span>
+
+<span class="c1"># If we ignore order in iterables</span>
+<span class="n">diff_ignore_order</span> <span class="o">=</span> <span class="n">DeepDiff</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span> <span class="n">t2</span><span class="p">,</span> <span class="n">ignore_order</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">diff_ignore_order</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Output:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+    <span class="s1">&#39;values_changed&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;root[&#39;details&#39;][&#39;price&#39;]&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;new_value&#39;</span><span class="p">:</span> <span class="mi">120</span><span class="p">,</span>
+            <span class="s1">&#39;old_value&#39;</span><span class="p">:</span> <span class="mi">100</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>As you can see, it detected the price change but ignored the order change in tags.</p>
+<h3 id="in-the-terminal-cli">In the Terminal (CLI)<a class="headerlink" href="#in-the-terminal-cli" title="Permanent link">&para;</a></h3>
+<p>The <code>deep</code> command is very useful for quickly comparing files:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Compare two JSON files</span>
+deep<span class="w"> </span>diff<span class="w"> </span>production.json<span class="w"> </span>development.json
+</code></pre></div>
+
+<p>You can also use it to extract information or search within large JSON/YAML files without having to write a script.</p>
+<h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">&para;</a></h2>
+<p>DeepDiff is one of those libraries that, once you know about it, you can't stop using. Its flexibility to ignore certain fields (like timestamps or auto-generated IDs) makes it perfect for integration tests and data validation.</p>
+<p>You can view the full documentation at <a href="https://zepworks.com/deepdiff/current/">zepworks.com/deepdiff</a>.</p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="https://pablocaro.es/en/tag/python.html">python</a>
+      <a href="https://pablocaro.es/en/tag/data.html">data</a>
+      <a href="https://pablocaro.es/en/tag/cli.html">cli</a>
+      <a href="https://pablocaro.es/en/tag/tools.html">tools</a>
+      <a href="https://pablocaro.es/en/tag/diff.html">diff</a>
+    </p>
+  </div>
+
+
+
+  <div class="neighbors">
+    <a class="btn float-left" href="https://pablocaro.es/en/renderizando-markdown-en-la-terminal-con-glow" title="Rendering Markdown in the terminal with Glow">
+      <i class="fa fa-angle-left"></i> Previous Post
+    </a>
+  </div>
+
+  <div class="related-posts">
+    <h4>You might enjoy</h4>
+    <ul class="related-posts">
+      <li><a href="https://pablocaro.es/en/shot-scraper-capturas-pantalla-automatizadas">Shot-scraper: Automated Web Screenshots</a></li>
+      <li><a href="https://pablocaro.es/en/renderizando-markdown-en-la-terminal-con-glow">Rendering Markdown in the terminal with Glow</a></li>
+      <li><a href="https://pablocaro.es/en/stern-kubernetes-logs">Stern: Kubernetes Logs on Steroids</a></li>
+      <li><a href="https://pablocaro.es/en/gestionando-instalaciones-desde-github-con-gah">Managing GitHub installations with gah</a></li>
+      <li><a href="https://pablocaro.es/en/fresh-editor-terminal">`fresh`: My preferred terminal editor for daily use</a></li>
+    </ul>
+  </div>
+
+
+
+<!-- Disqus -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'anotaciones';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>
+    Please enable JavaScript to view comments.
+</noscript>
+<!-- End Disqus -->
+</article>
+
+<footer>
+<p>
+  &copy; 2025  - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/3.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/3.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Annotations by Pablo Caro ",
+  "url" : "https://pablocaro.es/en",
+  "image": "/theme/img/profile.png",
+  "description": ""
+}
+</script>  <script src="https://files.stork-search.net/releases/v1.6.0/stork.js"></script>
+  <script>
+    window.storkIndexLoaded = false;
+    window.loadStorkIndex = function () {
+      if (window.storkIndexLoaded) {
+        return;
+      }
+      if (typeof stork === 'undefined') {
+        console.error('Stork is not loaded yet, retrying...');
+        setTimeout(window.loadStorkIndex, 100);
+        return;
+      }
+      stork.register("sitesearch", "https://pablocaro.es/en/search-index.st", { showProgress: false });
+      stork.register("sitesearch-page", "https://pablocaro.es/en/search-index.st", { showProgress: false });
+      window.storkIndexLoaded = true;
+    }
+  </script>
+
+</body>
+</html>

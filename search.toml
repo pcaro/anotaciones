@@ -3,9 +3,24 @@ html_selector = "main"
 base_directory = "/home/runner/work/anotaciones/anotaciones/output"
 
 [[input.files]]
+path = "deepdiff-comparar-datos-python.html"
+url = "/deepdiff-comparar-datos-python"
+title = "DeepDiff: La navaja suiza para comparar datos en Python"
+
+[[input.files]]
 path = "renderizando-markdown-en-la-terminal-con-glow.html"
 url = "/renderizando-markdown-en-la-terminal-con-glow"
 title = "Renderizando Markdown en la terminal con Glow"
+
+[[input.files]]
+path = "shot-scraper-capturas-pantalla-automatizadas.html"
+url = "/shot-scraper-capturas-pantalla-automatizadas"
+title = "Shot-scraper: Capturas de pantalla automatizadas para la web"
+
+[[input.files]]
+path = "stern-kubernetes-logs.html"
+url = "/stern-kubernetes-logs"
+title = "Stern: Logs de Kubernetes con esteroides"
 
 [[input.files]]
 path = "gestionando-instalaciones-desde-github-con-gah.html"
@@ -673,9 +688,24 @@ url = "/primera-anotacion-de-prueba"
 title = "Primera anotación de prueba"
 
 [[input.files]]
+path = "deepdiff-comparar-datos-python-en.html"
+url = "/en/deepdiff-comparar-datos-python"
+title = "DeepDiff: The Swiss Army Knife for Data Comparison in Python"
+
+[[input.files]]
 path = "renderizando-markdown-en-la-terminal-con-glow-en.html"
 url = "/en/renderizando-markdown-en-la-terminal-con-glow"
 title = "Rendering Markdown in the terminal with Glow"
+
+[[input.files]]
+path = "shot-scraper-capturas-pantalla-automatizadas-en.html"
+url = "/en/shot-scraper-capturas-pantalla-automatizadas"
+title = "Shot-scraper: Automated Web Screenshots"
+
+[[input.files]]
+path = "stern-kubernetes-logs-en.html"
+url = "/en/stern-kubernetes-logs"
+title = "Stern: Kubernetes Logs on Steroids"
 
 [[input.files]]
 path = "gestionando-instalaciones-desde-github-con-gah-en.html"

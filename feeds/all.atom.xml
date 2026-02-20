@@ -1,5 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Anotaciones por Pablo Caro</title><link href="https://pablocaro.es/" rel="alternate"></link><link href="https://pablocaro.es/feeds/all.atom.xml" rel="self"></link><id>https://pablocaro.es/</id><updated>2026-02-20T00:00:00+01:00</updated><subtitle>Anotaciones</subtitle><entry><title>Renderizando Markdown en la terminal con Glow</title><link href="https://pablocaro.es/renderizando-markdown-en-la-terminal-con-glow" rel="alternate"></link><published>2026-02-20T00:00:00+01:00</published><updated>2026-02-20T00:00:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-02-20:/renderizando-markdown-en-la-terminal-con-glow</id><summary type="html">&lt;p&gt;Descubre Glow, una herramienta para renderizar Markdown directamente en la terminal, ideal para leer documentación y READMEs.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;a href="https://github.com/charmbracelet/glow"&gt;Glow&lt;/a&gt; es un renderizador de Markdown para la línea de comandos. Permite leer archivos Markdown locales o remotos, y renderizarlos con resaltado de sintaxis y estilos, directamente en tu terminal.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Anotaciones por Pablo Caro</title><link href="https://pablocaro.es/" rel="alternate"></link><link href="https://pablocaro.es/feeds/all.atom.xml" rel="self"></link><id>https://pablocaro.es/</id><updated>2026-02-20T00:00:00+01:00</updated><subtitle>Anotaciones</subtitle><entry><title>DeepDiff: La navaja suiza para comparar datos en Python</title><link href="https://pablocaro.es/deepdiff-comparar-datos-python" rel="alternate"></link><published>2026-02-20T00:00:00+01:00</published><updated>2026-02-20T00:00:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-02-20:/deepdiff-comparar-datos-python</id><summary type="html">&lt;p&gt;Cuando trabajamos con datos estructurados en Python, a menudo necesitamos comparar dos diccionarios, JSONs u objetos complejos para encontrar qué ha cambiado. Si bien la comparación directa (&lt;code&gt;==&lt;/code&gt;) es útil, a veces necesitamos entender &lt;em&gt;exactamente qué&lt;/em&gt; es diferente: qué claves se han añadido, cuáles se han eliminado, o dónde han cambiado …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Cuando trabajamos con datos estructurados en Python, a menudo necesitamos comparar dos diccionarios, JSONs u objetos complejos para encontrar qué ha cambiado. Si bien la comparación directa (&lt;code&gt;==&lt;/code&gt;) es útil, a veces necesitamos entender &lt;em&gt;exactamente qué&lt;/em&gt; es diferente: qué claves se han añadido, cuáles se han eliminado, o dónde han cambiado los valores, incluso en estructuras profundamente anidadas.&lt;/p&gt;
+&lt;p&gt;Aquí es donde entra &lt;strong&gt;&lt;a href="https://github.com/seperman/deepdiff"&gt;DeepDiff&lt;/a&gt;&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;DeepDiff es una biblioteca de Python increíblemente potente que ofrece mucho más que una simple comparación. Es una herramienta esencial para pruebas, validación de datos y depuración de APIs.&lt;/p&gt;
+&lt;h2 id="caracteristicas-principales"&gt;Características principales&lt;a class="headerlink" href="#caracteristicas-principales" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;DeepDiff no es solo una herramienta, es un conjunto de utilidades:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;DeepDiff&lt;/strong&gt;: Compara diccionarios, iterables, cadenas y otros objetos recursivamente. Puede ignorar el orden en listas, ignorar tipos específicos, o excluir rutas de la comparación.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;DeepSearch&lt;/strong&gt;: Busca objetos dentro de otros objetos, como un &lt;code&gt;grep&lt;/code&gt; para estructuras de datos en memoria.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;DeepHash&lt;/strong&gt;: Calcula hashes de objetos basándose en su contenido. Muy útil para deduplicación de datos complejos donde el orden de las claves no importa.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Delta&lt;/strong&gt;: Genera "deltas" (diferencias) que se pueden aplicar a otros objetos, similar a un &lt;code&gt;git patch&lt;/code&gt; pero para objetos Python.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="instalacion"&gt;Instalación&lt;a class="headerlink" href="#instalacion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;La forma moderna y recomendada de instalar herramientas en Python es usando &lt;code&gt;uv&lt;/code&gt;.&lt;/p&gt;
+&lt;h3 id="como-herramienta-de-linea-de-comandos-cli"&gt;Como herramienta de línea de comandos (CLI)&lt;a class="headerlink" href="#como-herramienta-de-linea-de-comandos-cli" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Si solo quieres usar el comando &lt;code&gt;deep&lt;/code&gt; en tu terminal para comparar archivos JSON o YAML:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;uv&lt;span class="w"&gt; &lt;/span&gt;tool&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;deepdiff[cli]&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Esto instalará el comando &lt;code&gt;deep&lt;/code&gt; en tu sistema de forma aislada. Asegúrate de incluir &lt;code&gt;[cli]&lt;/code&gt; para instalar las dependencias necesarias.&lt;/p&gt;
+&lt;h3 id="como-biblioteca-en-tu-proyecto"&gt;Como biblioteca en tu proyecto&lt;a class="headerlink" href="#como-biblioteca-en-tu-proyecto" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Si vas a usarlo dentro de tus scripts de Python:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;uv&lt;span class="w"&gt; &lt;/span&gt;add&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;deepdiff&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;O si necesitas la CLI también dentro de tu entorno virtual:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;uv&lt;span class="w"&gt; &lt;/span&gt;add&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;deepdiff[cli]&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="ejemplos-de-uso"&gt;Ejemplos de uso&lt;a class="headerlink" href="#ejemplos-de-uso" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="en-python"&gt;En Python&lt;a class="headerlink" href="#en-python" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Imagina que tienes dos respuestas de API ligeramente diferentes y quieres saber qué cambió:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;deepdiff&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;DeepDiff&lt;/span&gt;
+
+&lt;span class="n"&gt;t1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;id&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;name&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Producto A&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;tags&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;nuevo&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;oferta&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;details&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;price&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;stock&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;50&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="n"&gt;t2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;id&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;name&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Producto A&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;tags&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;oferta&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;nuevo&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;  &lt;span class="c1"&gt;# Orden diferente&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;details&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;price&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;120&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;stock&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;50&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Por defecto, el orden importa en listas&lt;/span&gt;
+&lt;span class="n"&gt;diff&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;DeepDiff&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;t1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;t2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c1"&gt;# Resultado muestra cambios en la lista &amp;#39;tags&amp;#39; y en &amp;#39;details.price&amp;#39;&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Si ignoramos el orden en iterables&lt;/span&gt;
+&lt;span class="n"&gt;diff_ignore_order&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;DeepDiff&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;t1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;t2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ignore_order&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;diff_ignore_order&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Salida:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;values_changed&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="s2"&gt;&amp;quot;root[&amp;#39;details&amp;#39;][&amp;#39;price&amp;#39;]&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="s1"&gt;&amp;#39;new_value&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;120&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+            &lt;span class="s1"&gt;&amp;#39;old_value&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;100&lt;/span&gt;
+        &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Como ves, detectó el cambio de precio pero ignoró el cambio de orden en los tags.&lt;/p&gt;
+&lt;h3 id="en-la-terminal-cli"&gt;En la terminal (CLI)&lt;a class="headerlink" href="#en-la-terminal-cli" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;El comando &lt;code&gt;deep&lt;/code&gt; es muy útil para comparar archivos rápidamente:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Comparar dos archivos JSON&lt;/span&gt;
+deep&lt;span class="w"&gt; &lt;/span&gt;diff&lt;span class="w"&gt; &lt;/span&gt;production.json&lt;span class="w"&gt; &lt;/span&gt;development.json
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;También puedes usarlo para extraer información o buscar dentro de archivos JSON/YAML grandes sin tener que escribir un script.&lt;/p&gt;
+&lt;h2 id="conclusion"&gt;Conclusión&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;DeepDiff es una de esas librerías que, una vez que conoces, no puedes dejar de usar. Su flexibilidad para ignorar ciertos campos (como timestamps o IDs autogenerados) la hace perfecta para tests de integración y validación de datos.&lt;/p&gt;
+&lt;p&gt;Puedes ver la documentación completa en &lt;a href="https://zepworks.com/deepdiff/current/"&gt;zepworks.com/deepdiff&lt;/a&gt;.&lt;/p&gt;</content><category term="Python"></category><category term="python"></category><category term="data"></category><category term="cli"></category><category term="tools"></category><category term="diff"></category></entry><entry><title>Renderizando Markdown en la terminal con Glow</title><link href="https://pablocaro.es/renderizando-markdown-en-la-terminal-con-glow" rel="alternate"></link><published>2026-02-20T00:00:00+01:00</published><updated>2026-02-20T00:00:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-02-20:/renderizando-markdown-en-la-terminal-con-glow</id><summary type="html">&lt;p&gt;Descubre Glow, una herramienta para renderizar Markdown directamente en la terminal, ideal para leer documentación y READMEs.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;a href="https://github.com/charmbracelet/glow"&gt;Glow&lt;/a&gt; es un renderizador de Markdown para la línea de comandos. Permite leer archivos Markdown locales o remotos, y renderizarlos con resaltado de sintaxis y estilos, directamente en tu terminal.&lt;/p&gt;
 &lt;p&gt;Esta herramienta me resulta especialmente útil ahora que paso más tiempo usando la terminal con &lt;a href="https://pablocaro.es/de-yakuake-a-kitty"&gt;Kitty&lt;/a&gt;, ya que me permite consultar documentación y READMEs sin tener que abrir un navegador o un editor gráfico.&lt;/p&gt;
 &lt;h2 id="instalacion"&gt;Instalación&lt;a class="headerlink" href="#instalacion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Para instalar Glow, utilizaremos &lt;a href="https://pablocaro.es/gestionando-instalaciones-desde-github-con-gah"&gt;gah&lt;/a&gt;, una herramienta que facilita la instalación de binarios desde GitHub Releases.&lt;/p&gt;
@@ -21,7 +98,188 @@ Installed: glow
 Done!
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;Una vez instalado, simplemente ejecuta &lt;code&gt;glow&lt;/code&gt; seguido del archivo que quieras visualizar, o incluso la URL de un README en GitHub.&lt;/p&gt;</content><category term="Linux"></category><category term="cli"></category><category term="markdown"></category><category term="herramientas"></category><category term="linux"></category><category term="kitty"></category></entry><entry><title>Rendering Markdown in the terminal with Glow</title><link href="https://pablocaro.es/en/renderizando-markdown-en-la-terminal-con-glow" rel="alternate"></link><published>2026-02-20T00:00:00+01:00</published><updated>2026-02-20T00:00:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-02-20:/en/renderizando-markdown-en-la-terminal-con-glow</id><summary type="html">&lt;p&gt;Discover Glow, a tool to render Markdown directly in the terminal, ideal for reading documentation and READMEs.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;a href="https://github.com/charmbracelet/glow"&gt;Glow&lt;/a&gt; is a command-line Markdown renderer. It allows you to read local or remote Markdown files, rendering them with syntax highlighting and styles, directly in your terminal.&lt;/p&gt;
+&lt;p&gt;Una vez instalado, simplemente ejecuta &lt;code&gt;glow&lt;/code&gt; seguido del archivo que quieras visualizar, o incluso la URL de un README en GitHub.&lt;/p&gt;</content><category term="Linux"></category><category term="cli"></category><category term="markdown"></category><category term="herramientas"></category><category term="linux"></category><category term="kitty"></category></entry><entry><title>Shot-scraper: Capturas de pantalla automatizadas para la web</title><link href="https://pablocaro.es/shot-scraper-capturas-pantalla-automatizadas" rel="alternate"></link><published>2026-02-20T00:00:00+01:00</published><updated>2026-02-20T00:00:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-02-20:/shot-scraper-capturas-pantalla-automatizadas</id><summary type="html">&lt;p&gt;¿Alguna vez has necesitado tomar capturas de pantalla de una página web de forma programática? Tal vez para documentar tu proyecto, monitorizar cambios en una UI, o generar imágenes para redes sociales. Existen muchas formas de hacerlo, pero &lt;strong&gt;&lt;a href="https://shot-scraper.datasette.io/"&gt;shot-scraper&lt;/a&gt;&lt;/strong&gt; destaca por su facilidad de uso y potencia.&lt;/p&gt;
+&lt;p&gt;Creada por Simon …&lt;/p&gt;</summary><content type="html">&lt;p&gt;¿Alguna vez has necesitado tomar capturas de pantalla de una página web de forma programática? Tal vez para documentar tu proyecto, monitorizar cambios en una UI, o generar imágenes para redes sociales. Existen muchas formas de hacerlo, pero &lt;strong&gt;&lt;a href="https://shot-scraper.datasette.io/"&gt;shot-scraper&lt;/a&gt;&lt;/strong&gt; destaca por su facilidad de uso y potencia.&lt;/p&gt;
+&lt;p&gt;Creada por Simon Willison, &lt;code&gt;shot-scraper&lt;/code&gt; es una herramienta de línea de comandos (CLI) que envuelve Playwright para hacer que tomar screenshots sea trivial.&lt;/p&gt;
+&lt;h2 id="instalacion"&gt;Instalación&lt;a class="headerlink" href="#instalacion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Al igual que con otras herramientas modernas de Python, la mejor forma de instalarla es usando &lt;code&gt;uv&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;uv&lt;span class="w"&gt; &lt;/span&gt;tool&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;shot-scraper
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Una vez instalada, necesitarás descargar el navegador que utiliza por debajo (Chromium):&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;shot-scraper&lt;span class="w"&gt; &lt;/span&gt;install
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="uso-basico"&gt;Uso básico&lt;a class="headerlink" href="#uso-basico" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;La forma más sencilla de usarlo es darle una URL y un nombre de archivo:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;shot-scraper&lt;span class="w"&gt; &lt;/span&gt;https://pablocaro.es/&lt;span class="w"&gt; &lt;/span&gt;blog.png
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Esto generará una imagen llamada &lt;code&gt;blog.png&lt;/code&gt; con la captura de la página.&lt;/p&gt;
+&lt;h3 id="capturando-selectores-especificos"&gt;Capturando selectores específicos&lt;a class="headerlink" href="#capturando-selectores-especificos" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Una de las características más potentes es la capacidad de capturar solo un elemento específico de la página usando selectores CSS:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;shot-scraper&lt;span class="w"&gt; &lt;/span&gt;https://github.com/pcaro&lt;span class="w"&gt; &lt;/span&gt;-s&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;.js-calendar-graph&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;calendar.png
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Este comando capturará únicamente el gráfico de contribuciones de GitHub.&lt;/p&gt;
+&lt;h3 id="interactuando-con-javascript"&gt;Interactuando con JavaScript&lt;a class="headerlink" href="#interactuando-con-javascript" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;A veces necesitas ejecutar algo de código antes de tomar la foto. Por ejemplo, para ocultar un banner de cookies o esperar a que cargue algo.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;shot-scraper&lt;span class="w"&gt; &lt;/span&gt;https://pablocaro.es/&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="se"&gt;\&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;--javascript&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;document.querySelector(&amp;#39;header&amp;#39;).style.display = &amp;#39;none&amp;#39;;&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="se"&gt;\&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;-o&lt;span class="w"&gt; &lt;/span&gt;sin-header.png
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="automatizacion-avanzada"&gt;Automatización avanzada&lt;a class="headerlink" href="#automatizacion-avanzada" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Si necesitas tomar muchas capturas, puedes definir un archivo YAML de configuración:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# shots.yml&lt;/span&gt;
+&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;url&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;https://pablocaro.es/&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;output&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;home.png&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;height&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;800&lt;/span&gt;
+&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;url&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;https://pablocaro.es/archives.html&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;output&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;archives.png&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;wait&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;1000&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="c1"&gt;# Esperar 1 segundo&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Y ejecutarlas todas de una vez:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;shot-scraper&lt;span class="w"&gt; &lt;/span&gt;multi&lt;span class="w"&gt; &lt;/span&gt;shots.yml
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="mas-alla-de-las-capturas"&gt;Más allá de las capturas&lt;a class="headerlink" href="#mas-alla-de-las-capturas" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;shot-scraper&lt;/code&gt; también incluye utilidades para:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Accesibilidad&lt;/strong&gt;: Volcar el árbol de accesibilidad de una página (&lt;code&gt;shot-scraper accessibility&lt;/code&gt;).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;PDF&lt;/strong&gt;: Generar PDFs de páginas web (&lt;code&gt;shot-scraper pdf&lt;/code&gt;).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;HAR&lt;/strong&gt;: Grabar archivos HAR para analizar el tráfico de red (&lt;code&gt;shot-scraper har&lt;/code&gt;).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Es una de esas herramientas que, una vez instaladas, encuentras usos para ella constantemente. Perfecta para integrar en pipelines de CI/CD para generar visuales de documentación automáticamente.&lt;/p&gt;
+&lt;p&gt;Más info en la &lt;a href="https://shot-scraper.datasette.io/"&gt;documentación oficial&lt;/a&gt;.&lt;/p&gt;</content><category term="Python"></category><category term="python"></category><category term="cli"></category><category term="tools"></category><category term="web"></category><category term="scraping"></category><category term="screenshots"></category></entry><entry><title>Stern: Logs de Kubernetes con esteroides</title><link href="https://pablocaro.es/stern-kubernetes-logs" rel="alternate"></link><published>2026-02-20T00:00:00+01:00</published><updated>2026-02-20T00:00:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-02-20:/stern-kubernetes-logs</id><summary type="html">&lt;p&gt;Si trabajas con Kubernetes, probablemente hayas sufrido el comando &lt;code&gt;kubectl logs&lt;/code&gt;. Es útil para ver los logs de un pod específico, pero se queda corto cuando tienes múltiples réplicas de un servicio o cuando los pods se reinician y cambian de nombre.&lt;/p&gt;
+&lt;p&gt;Aquí es donde entra &lt;strong&gt;&lt;a href="https://github.com/stern/stern"&gt;Stern&lt;/a&gt;&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Stern te permite …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Si trabajas con Kubernetes, probablemente hayas sufrido el comando &lt;code&gt;kubectl logs&lt;/code&gt;. Es útil para ver los logs de un pod específico, pero se queda corto cuando tienes múltiples réplicas de un servicio o cuando los pods se reinician y cambian de nombre.&lt;/p&gt;
+&lt;p&gt;Aquí es donde entra &lt;strong&gt;&lt;a href="https://github.com/stern/stern"&gt;Stern&lt;/a&gt;&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Stern te permite hacer "tail" (seguir) logs de múltiples pods y contenedores dentro de Kubernetes simultáneamente. Lo mejor de todo es que utiliza expresiones regulares para seleccionar los pods, por lo que no necesitas copiar y pegar esos IDs aleatorios (&lt;code&gt;pod-1234567890-abcde&lt;/code&gt;).&lt;/p&gt;
+&lt;h2 id="instalacion"&gt;Instalación&lt;a class="headerlink" href="#instalacion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Stern es muy popular y está disponible en la mayoría de gestores de paquetes.&lt;/p&gt;
+&lt;h3 id="usando-krew-recomendado"&gt;Usando Krew (recomendado)&lt;a class="headerlink" href="#usando-krew-recomendado" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Si ya usas &lt;code&gt;kubectl&lt;/code&gt;, Krew es la forma más natural de instalar plugins:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;kubectl&lt;span class="w"&gt; &lt;/span&gt;krew&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;stern
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id="usando-homebrew"&gt;Usando Homebrew&lt;a class="headerlink" href="#usando-homebrew" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;brew&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;stern
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id="binario-directo"&gt;Binario directo&lt;a class="headerlink" href="#binario-directo" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;También puedes descargar el binario directamente desde sus &lt;a href="https://github.com/stern/stern/releases"&gt;releases en GitHub&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Si utilizas algún helper como &lt;code&gt;gah&lt;/code&gt; (GitHub Asset Helper) o scripts personalizados, la instalación es tan sencilla como:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;gah&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;stern/stern
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="caracteristicas-principales"&gt;Características principales&lt;a class="headerlink" href="#caracteristicas-principales" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="1-tailing-de-multiples-pods"&gt;1. Tailing de múltiples pods&lt;a class="headerlink" href="#1-tailing-de-multiples-pods" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;En lugar de buscar el nombre exacto del pod, puedes usar una regex:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;stern&lt;span class="w"&gt; &lt;/span&gt;backend
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Esto mostrará los logs de todos los pods que contengan "backend" en su nombre (&lt;code&gt;backend-api&lt;/code&gt;, &lt;code&gt;backend-worker&lt;/code&gt;, etc.), intercalados y coloreados para distinguirlos fácilmente.&lt;/p&gt;
+&lt;h3 id="2-filtrado-y-exclusion"&gt;2. Filtrado y exclusión&lt;a class="headerlink" href="#2-filtrado-y-exclusion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Puedes filtrar el contenido de los logs sobre la marcha sin necesidad de &lt;code&gt;grep&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Solo mostrar líneas que contengan &amp;quot;Error&amp;quot;&lt;/span&gt;
+stern&lt;span class="w"&gt; &lt;/span&gt;backend&lt;span class="w"&gt; &lt;/span&gt;-i&lt;span class="w"&gt; &lt;/span&gt;Error
+
+&lt;span class="c1"&gt;# Excluir líneas que contengan &amp;quot;Health check&amp;quot;&lt;/span&gt;
+stern&lt;span class="w"&gt; &lt;/span&gt;backend&lt;span class="w"&gt; &lt;/span&gt;-e&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Health check&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id="3-selectores-de-kubernetes"&gt;3. Selectores de Kubernetes&lt;a class="headerlink" href="#3-selectores-de-kubernetes" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Además de regex por nombre, puedes usar selectores de etiquetas, lo cual es mucho más preciso para entornos de producción:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;stern&lt;span class="w"&gt; &lt;/span&gt;-l&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;app&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;mi-app&lt;span class="w"&gt; &lt;/span&gt;-l&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;tier&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;frontend
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id="4-formato-de-salida"&gt;4. Formato de salida&lt;a class="headerlink" href="#4-formato-de-salida" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Si tus logs están en JSON (como es buena práctica), Stern puede pasarlos tal cual para que los proceses con herramientas como &lt;code&gt;jq&lt;/code&gt; o &lt;code&gt;fx&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;stern&lt;span class="w"&gt; &lt;/span&gt;backend&lt;span class="w"&gt; &lt;/span&gt;-o&lt;span class="w"&gt; &lt;/span&gt;raw&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;fx
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="conclusion"&gt;Conclusión&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Stern es una de esas herramientas que instalas el primer día y te preguntas cómo podías vivir sin ella. Hace que el debug en entornos distribuidos sea mucho menos doloroso al agregar la información de manera coherente.&lt;/p&gt;
+&lt;p&gt;Dale una oportunidad y tus sesiones de debugging te lo agradecerán.&lt;/p&gt;</content><category term="DevOps"></category><category term="kubernetes"></category><category term="cli"></category><category term="logs"></category><category term="devops"></category><category term="tools"></category></entry><entry><title>DeepDiff: The Swiss Army Knife for Data Comparison in Python</title><link href="https://pablocaro.es/en/deepdiff-comparar-datos-python" rel="alternate"></link><published>2026-02-20T00:00:00+01:00</published><updated>2026-02-20T00:00:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-02-20:/en/deepdiff-comparar-datos-python</id><summary type="html">&lt;p&gt;When working with structured data in Python, we often need to compare two dictionaries, JSONs, or complex objects to find out what has changed. While direct comparison (&lt;code&gt;==&lt;/code&gt;) is useful, sometimes we need to understand &lt;em&gt;exactly what&lt;/em&gt; is different: which keys were added, which were removed, or where values have changed …&lt;/p&gt;</summary><content type="html">&lt;p&gt;When working with structured data in Python, we often need to compare two dictionaries, JSONs, or complex objects to find out what has changed. While direct comparison (&lt;code&gt;==&lt;/code&gt;) is useful, sometimes we need to understand &lt;em&gt;exactly what&lt;/em&gt; is different: which keys were added, which were removed, or where values have changed, even in deeply nested structures.&lt;/p&gt;
+&lt;p&gt;This is where &lt;strong&gt;&lt;a href="https://github.com/seperman/deepdiff"&gt;DeepDiff&lt;/a&gt;&lt;/strong&gt; comes in.&lt;/p&gt;
+&lt;p&gt;DeepDiff is an incredibly powerful Python library that offers much more than simple comparison. It is an essential tool for testing, data validation, and API debugging.&lt;/p&gt;
+&lt;h2 id="key-features"&gt;Key Features&lt;a class="headerlink" href="#key-features" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;DeepDiff is not just a tool, it's a suite of utilities:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;DeepDiff&lt;/strong&gt;: Recursively compares dictionaries, iterables, strings, and other objects. It can ignore order in lists, ignore specific types, or exclude paths from comparison.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;DeepSearch&lt;/strong&gt;: Searches for objects within other objects, like a &lt;code&gt;grep&lt;/code&gt; for in-memory data structures.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;DeepHash&lt;/strong&gt;: Calculates hashes of objects based on their content. Very useful for deduplication of complex data where key order doesn't matter.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Delta&lt;/strong&gt;: Generates "deltas" (differences) that can be applied to other objects, similar to a &lt;code&gt;git patch&lt;/code&gt; but for Python objects.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="installation"&gt;Installation&lt;a class="headerlink" href="#installation" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The modern and recommended way to install Python tools is using &lt;code&gt;uv&lt;/code&gt;.&lt;/p&gt;
+&lt;h3 id="as-a-command-line-interface-cli-tool"&gt;As a Command Line Interface (CLI) Tool&lt;a class="headerlink" href="#as-a-command-line-interface-cli-tool" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;If you just want to use the &lt;code&gt;deep&lt;/code&gt; command in your terminal to compare JSON or YAML files:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;uv&lt;span class="w"&gt; &lt;/span&gt;tool&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;deepdiff[cli]&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This will install the &lt;code&gt;deep&lt;/code&gt; command on your system in an isolated environment. Make sure to include &lt;code&gt;[cli]&lt;/code&gt; to install the necessary dependencies.&lt;/p&gt;
+&lt;h3 id="as-a-library-in-your-project"&gt;As a Library in Your Project&lt;a class="headerlink" href="#as-a-library-in-your-project" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;If you are going to use it within your Python scripts:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;uv&lt;span class="w"&gt; &lt;/span&gt;add&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;deepdiff&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Or if you need the CLI inside your virtual environment as well:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;uv&lt;span class="w"&gt; &lt;/span&gt;add&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;deepdiff[cli]&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="usage-examples"&gt;Usage Examples&lt;a class="headerlink" href="#usage-examples" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="in-python"&gt;In Python&lt;a class="headerlink" href="#in-python" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Imagine you have two slightly different API responses and want to know what changed:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;deepdiff&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;DeepDiff&lt;/span&gt;
+
+&lt;span class="n"&gt;t1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;id&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;name&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Product A&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;tags&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;new&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;sale&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;details&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;price&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;stock&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;50&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="n"&gt;t2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;id&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;name&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Product A&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;tags&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;sale&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;new&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;  &lt;span class="c1"&gt;# Different order&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;details&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;price&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;120&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;stock&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;50&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="c1"&gt;# By default, order matters in lists&lt;/span&gt;
+&lt;span class="n"&gt;diff&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;DeepDiff&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;t1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;t2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c1"&gt;# Result shows changes in &amp;#39;tags&amp;#39; list and &amp;#39;details.price&amp;#39;&lt;/span&gt;
+
+&lt;span class="c1"&gt;# If we ignore order in iterables&lt;/span&gt;
+&lt;span class="n"&gt;diff_ignore_order&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;DeepDiff&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;t1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;t2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ignore_order&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;diff_ignore_order&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Output:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;values_changed&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="s2"&gt;&amp;quot;root[&amp;#39;details&amp;#39;][&amp;#39;price&amp;#39;]&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="s1"&gt;&amp;#39;new_value&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;120&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+            &lt;span class="s1"&gt;&amp;#39;old_value&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;100&lt;/span&gt;
+        &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;As you can see, it detected the price change but ignored the order change in tags.&lt;/p&gt;
+&lt;h3 id="in-the-terminal-cli"&gt;In the Terminal (CLI)&lt;a class="headerlink" href="#in-the-terminal-cli" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;The &lt;code&gt;deep&lt;/code&gt; command is very useful for quickly comparing files:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Compare two JSON files&lt;/span&gt;
+deep&lt;span class="w"&gt; &lt;/span&gt;diff&lt;span class="w"&gt; &lt;/span&gt;production.json&lt;span class="w"&gt; &lt;/span&gt;development.json
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;You can also use it to extract information or search within large JSON/YAML files without having to write a script.&lt;/p&gt;
+&lt;h2 id="conclusion"&gt;Conclusion&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;DeepDiff is one of those libraries that, once you know about it, you can't stop using. Its flexibility to ignore certain fields (like timestamps or auto-generated IDs) makes it perfect for integration tests and data validation.&lt;/p&gt;
+&lt;p&gt;You can view the full documentation at &lt;a href="https://zepworks.com/deepdiff/current/"&gt;zepworks.com/deepdiff&lt;/a&gt;.&lt;/p&gt;</content><category term="Python"></category><category term="python"></category><category term="data"></category><category term="cli"></category><category term="tools"></category><category term="diff"></category></entry><entry><title>Rendering Markdown in the terminal with Glow</title><link href="https://pablocaro.es/en/renderizando-markdown-en-la-terminal-con-glow" rel="alternate"></link><published>2026-02-20T00:00:00+01:00</published><updated>2026-02-20T00:00:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-02-20:/en/renderizando-markdown-en-la-terminal-con-glow</id><summary type="html">&lt;p&gt;Discover Glow, a tool to render Markdown directly in the terminal, ideal for reading documentation and READMEs.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;a href="https://github.com/charmbracelet/glow"&gt;Glow&lt;/a&gt; is a command-line Markdown renderer. It allows you to read local or remote Markdown files, rendering them with syntax highlighting and styles, directly in your terminal.&lt;/p&gt;
 &lt;p&gt;I find this tool especially useful now that I spend more time using the terminal with &lt;a href="https://pablocaro.es/en/de-yakuake-a-kitty"&gt;Kitty&lt;/a&gt;, as it allows me to consult documentation and READMEs without having to open a browser or a graphical editor.&lt;/p&gt;
 &lt;h2 id="installation"&gt;Installation&lt;a class="headerlink" href="#installation" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;To install Glow, we will use &lt;a href="https://pablocaro.es/en/gestionando-instalaciones-desde-github-con-gah"&gt;gah&lt;/a&gt;, a tool that simplifies installing binaries from GitHub Releases.&lt;/p&gt;
@@ -43,7 +301,111 @@ Installed: glow
 Done!
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;Once installed, simply run &lt;code&gt;glow&lt;/code&gt; followed by the file you want to view, or even the URL of a README on GitHub.&lt;/p&gt;</content><category term="Linux"></category><category term="cli"></category><category term="markdown"></category><category term="tools"></category><category term="linux"></category><category term="kitty"></category></entry><entry><title>Gestionando instalaciones desde GitHub con gah</title><link href="https://pablocaro.es/gestionando-instalaciones-desde-github-con-gah" rel="alternate"></link><published>2026-02-11T20:23:00+01:00</published><updated>2026-02-11T20:23:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-02-11:/gestionando-instalaciones-desde-github-con-gah</id><summary type="html">&lt;p class="first last"&gt;Instala binarios directamente desde releases de GitHub de forma sencilla con gah.&lt;/p&gt;
+&lt;p&gt;Once installed, simply run &lt;code&gt;glow&lt;/code&gt; followed by the file you want to view, or even the URL of a README on GitHub.&lt;/p&gt;</content><category term="Linux"></category><category term="cli"></category><category term="markdown"></category><category term="tools"></category><category term="linux"></category><category term="kitty"></category></entry><entry><title>Shot-scraper: Automated Web Screenshots</title><link href="https://pablocaro.es/en/shot-scraper-capturas-pantalla-automatizadas" rel="alternate"></link><published>2026-02-20T00:00:00+01:00</published><updated>2026-02-20T00:00:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-02-20:/en/shot-scraper-capturas-pantalla-automatizadas</id><summary type="html">&lt;p&gt;Have you ever needed to take screenshots of a web page programmatically? Perhaps to document your project, monitor UI changes, or generate images for social media. There are many ways to do it, but &lt;strong&gt;&lt;a href="https://shot-scraper.datasette.io/"&gt;shot-scraper&lt;/a&gt;&lt;/strong&gt; stands out for its ease of use and power.&lt;/p&gt;
+&lt;p&gt;Created by Simon Willison, &lt;code&gt;shot-scraper&lt;/code&gt; is …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Have you ever needed to take screenshots of a web page programmatically? Perhaps to document your project, monitor UI changes, or generate images for social media. There are many ways to do it, but &lt;strong&gt;&lt;a href="https://shot-scraper.datasette.io/"&gt;shot-scraper&lt;/a&gt;&lt;/strong&gt; stands out for its ease of use and power.&lt;/p&gt;
+&lt;p&gt;Created by Simon Willison, &lt;code&gt;shot-scraper&lt;/code&gt; is a command line interface (CLI) tool that wraps Playwright to make taking screenshots trivial.&lt;/p&gt;
+&lt;h2 id="installation"&gt;Installation&lt;a class="headerlink" href="#installation" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;As with other modern Python tools, the best way to install it is using &lt;code&gt;uv&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;uv&lt;span class="w"&gt; &lt;/span&gt;tool&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;shot-scraper
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Once installed, you'll need to download the browser it uses under the hood (Chromium):&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;shot-scraper&lt;span class="w"&gt; &lt;/span&gt;install
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="basic-usage"&gt;Basic Usage&lt;a class="headerlink" href="#basic-usage" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The simplest way to use it is to give it a URL and a filename:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;shot-scraper&lt;span class="w"&gt; &lt;/span&gt;https://pablocaro.es/en/&lt;span class="w"&gt; &lt;/span&gt;blog.png
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This will generate an image named &lt;code&gt;blog.png&lt;/code&gt; with the screenshot of the page.&lt;/p&gt;
+&lt;h3 id="capturing-specific-selectors"&gt;Capturing Specific Selectors&lt;a class="headerlink" href="#capturing-specific-selectors" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;One of the most powerful features is the ability to capture only a specific element of the page using CSS selectors:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;shot-scraper&lt;span class="w"&gt; &lt;/span&gt;https://github.com/pcaro&lt;span class="w"&gt; &lt;/span&gt;-s&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;.js-calendar-graph&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;calendar.png
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This command will capture only the GitHub contribution graph.&lt;/p&gt;
+&lt;h3 id="interacting-with-javascript"&gt;Interacting with JavaScript&lt;a class="headerlink" href="#interacting-with-javascript" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Sometimes you need to execute some code before taking the shot. For example, to hide a cookie banner or wait for something to load.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;shot-scraper&lt;span class="w"&gt; &lt;/span&gt;https://pablocaro.es/en/&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="se"&gt;\&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;--javascript&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;document.querySelector(&amp;#39;header&amp;#39;).style.display = &amp;#39;none&amp;#39;;&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="se"&gt;\&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;-o&lt;span class="w"&gt; &lt;/span&gt;no-header.png
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="advanced-automation"&gt;Advanced Automation&lt;a class="headerlink" href="#advanced-automation" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;If you need to take many screenshots, you can define a YAML configuration file:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# shots.yml&lt;/span&gt;
+&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;url&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;https://pablocaro.es/en/&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;output&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;home.png&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;height&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;800&lt;/span&gt;
+&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;url&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;https://pablocaro.es/en/archives.html&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;output&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;archives.png&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;wait&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;1000&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="c1"&gt;# Wait 1 second&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;And run them all at once:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;shot-scraper&lt;span class="w"&gt; &lt;/span&gt;multi&lt;span class="w"&gt; &lt;/span&gt;shots.yml
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="beyond-screenshots"&gt;Beyond Screenshots&lt;a class="headerlink" href="#beyond-screenshots" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;shot-scraper&lt;/code&gt; also includes utilities for:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Accessibility&lt;/strong&gt;: Dump the accessibility tree of a page (&lt;code&gt;shot-scraper accessibility&lt;/code&gt;).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;PDF&lt;/strong&gt;: Generate PDFs of web pages (&lt;code&gt;shot-scraper pdf&lt;/code&gt;).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;HAR&lt;/strong&gt;: Record HAR files to analyze network traffic (&lt;code&gt;shot-scraper har&lt;/code&gt;).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;It's one of those tools that, once installed, you find uses for constantly. Perfect for integrating into CI/CD pipelines to generate documentation visuals automatically.&lt;/p&gt;
+&lt;p&gt;More info in the &lt;a href="https://shot-scraper.datasette.io/"&gt;official documentation&lt;/a&gt;.&lt;/p&gt;</content><category term="Python"></category><category term="python"></category><category term="cli"></category><category term="tools"></category><category term="web"></category><category term="scraping"></category><category term="screenshots"></category></entry><entry><title>Stern: Kubernetes Logs on Steroids</title><link href="https://pablocaro.es/en/stern-kubernetes-logs" rel="alternate"></link><published>2026-02-20T00:00:00+01:00</published><updated>2026-02-20T00:00:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-02-20:/en/stern-kubernetes-logs</id><summary type="html">&lt;p&gt;If you work with Kubernetes, you've probably suffered through the &lt;code&gt;kubectl logs&lt;/code&gt; command. It's useful for viewing the logs of a specific pod, but it falls short when you have multiple replicas of a service or when pods restart and change names.&lt;/p&gt;
+&lt;p&gt;This is where &lt;strong&gt;&lt;a href="https://github.com/stern/stern"&gt;Stern&lt;/a&gt;&lt;/strong&gt; comes in.&lt;/p&gt;
+&lt;p&gt;Stern allows …&lt;/p&gt;</summary><content type="html">&lt;p&gt;If you work with Kubernetes, you've probably suffered through the &lt;code&gt;kubectl logs&lt;/code&gt; command. It's useful for viewing the logs of a specific pod, but it falls short when you have multiple replicas of a service or when pods restart and change names.&lt;/p&gt;
+&lt;p&gt;This is where &lt;strong&gt;&lt;a href="https://github.com/stern/stern"&gt;Stern&lt;/a&gt;&lt;/strong&gt; comes in.&lt;/p&gt;
+&lt;p&gt;Stern allows you to "tail" logs from multiple pods and containers within Kubernetes simultaneously. Best of all, it uses regular expressions to select pods, so you don't need to copy and paste those random IDs (&lt;code&gt;pod-1234567890-abcde&lt;/code&gt;).&lt;/p&gt;
+&lt;h2 id="installation"&gt;Installation&lt;a class="headerlink" href="#installation" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Stern is very popular and available in most package managers.&lt;/p&gt;
+&lt;h3 id="using-krew-recommended"&gt;Using Krew (recommended)&lt;a class="headerlink" href="#using-krew-recommended" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;If you already use &lt;code&gt;kubectl&lt;/code&gt;, Krew is the most natural way to install plugins:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;kubectl&lt;span class="w"&gt; &lt;/span&gt;krew&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;stern
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id="using-homebrew"&gt;Using Homebrew&lt;a class="headerlink" href="#using-homebrew" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;brew&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;stern
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id="direct-binary"&gt;Direct Binary&lt;a class="headerlink" href="#direct-binary" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;You can also download the binary directly from their &lt;a href="https://github.com/stern/stern/releases"&gt;GitHub releases&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;If you use a helper like &lt;code&gt;gah&lt;/code&gt; (GitHub Asset Helper) or custom scripts, installation is as simple as:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;gah&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;stern/stern
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="key-features"&gt;Key Features&lt;a class="headerlink" href="#key-features" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="1-multi-pod-tailing"&gt;1. Multi-pod Tailing&lt;a class="headerlink" href="#1-multi-pod-tailing" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Instead of searching for the exact pod name, you can use a regex:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;stern&lt;span class="w"&gt; &lt;/span&gt;backend
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This will show logs from all pods containing "backend" in their name (&lt;code&gt;backend-api&lt;/code&gt;, &lt;code&gt;backend-worker&lt;/code&gt;, etc.), interleaved and colored to easily distinguish them.&lt;/p&gt;
+&lt;h3 id="2-filtering-and-exclusion"&gt;2. Filtering and Exclusion&lt;a class="headerlink" href="#2-filtering-and-exclusion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;You can filter log content on the fly without needing &lt;code&gt;grep&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Only show lines containing &amp;quot;Error&amp;quot;&lt;/span&gt;
+stern&lt;span class="w"&gt; &lt;/span&gt;backend&lt;span class="w"&gt; &lt;/span&gt;-i&lt;span class="w"&gt; &lt;/span&gt;Error
+
+&lt;span class="c1"&gt;# Exclude lines containing &amp;quot;Health check&amp;quot;&lt;/span&gt;
+stern&lt;span class="w"&gt; &lt;/span&gt;backend&lt;span class="w"&gt; &lt;/span&gt;-e&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Health check&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id="3-kubernetes-selectors"&gt;3. Kubernetes Selectors&lt;a class="headerlink" href="#3-kubernetes-selectors" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;In addition to regex by name, you can use label selectors, which is much more precise for production environments:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;stern&lt;span class="w"&gt; &lt;/span&gt;-l&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;app&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;my-app&lt;span class="w"&gt; &lt;/span&gt;-l&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;tier&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;frontend
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id="4-output-formatting"&gt;4. Output Formatting&lt;a class="headerlink" href="#4-output-formatting" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;If your logs are in JSON (as is best practice), Stern can pass them through as is so you can process them with tools like &lt;code&gt;jq&lt;/code&gt; or &lt;code&gt;fx&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;stern&lt;span class="w"&gt; &lt;/span&gt;backend&lt;span class="w"&gt; &lt;/span&gt;-o&lt;span class="w"&gt; &lt;/span&gt;raw&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;fx
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="conclusion"&gt;Conclusion&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Stern is one of those tools you install on day one and wonder how you ever lived without it. It makes debugging in distributed environments much less painful by aggregating information coherently.&lt;/p&gt;
+&lt;p&gt;Give it a try and your debugging sessions will thank you.&lt;/p&gt;</content><category term="DevOps"></category><category term="kubernetes"></category><category term="cli"></category><category term="logs"></category><category term="devops"></category><category term="tools"></category></entry><entry><title>Gestionando instalaciones desde GitHub con gah</title><link href="https://pablocaro.es/gestionando-instalaciones-desde-github-con-gah" rel="alternate"></link><published>2026-02-11T20:23:00+01:00</published><updated>2026-02-11T20:23:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-02-11:/gestionando-instalaciones-desde-github-con-gah</id><summary type="html">&lt;p class="first last"&gt;Instala binarios directamente desde releases de GitHub de forma sencilla con gah.&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;&lt;a class="reference external" href="https://github.com/get-gah/gah"&gt;gah&lt;/a&gt; es una herramienta que facilita la instalación de programas que distribuyen sus binarios a través de releases de GitHub. Es una alternativa ligera cuando no quieres depender del gestor de paquetes de tu distribución o cuando necesitas una versión más reciente.&lt;/p&gt;
 &lt;div class="section" id="instalacion"&gt;
 &lt;h2&gt;Instalación&lt;/h2&gt;
@@ -4709,268 +5071,4 @@ I usually have a generic function in &lt;code&gt;utils.py&lt;/code&gt; that leav
                             &lt;span class="n"&gt;verbose_name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Featured Image (770x490)&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
                             &lt;span class="n"&gt;max_length&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;250&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;blank&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;null&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-</content><category term="Programming"></category><category term="django"></category><category term="python"></category></entry><entry><title>Django: enlaces en listado de objectos</title><link href="https://pablocaro.es/enlaces-en-listado-de-objectos" rel="alternate"></link><published>2014-05-21T10:42:00+02:00</published><updated>2014-05-21T10:42:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2014-05-21:/enlaces-en-listado-de-objectos</id><summary type="html">&lt;p&gt;En mis proyectos suelo usar enlaces a elementos relacionados en el change_list del admin.&lt;/p&gt;
-&lt;div class="contents topic" id="ficheros"&gt;
-&lt;p class="topic-title"&gt;Ficheros&lt;/p&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#utils-py" id="toc-entry-1"&gt;utils.py&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#admin-py" id="toc-entry-2"&gt;admin.py&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class="section" id="utils-py"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#toc-entry-1"&gt;utils.py&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Tengo esto en &lt;code&gt;utils.py&lt;/code&gt;&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.contrib&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;admin&lt;/span&gt;
-&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.contrib.contenttypes.models&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;ContentType&lt;/span&gt;
-&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.core&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;urlresolvers&lt;/span&gt;
-&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.utils.datastructures&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;SortedDict&lt;/span&gt;
-&lt;span class="kn"&gt;from …&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;En mis proyectos suelo usar enlaces a elementos relacionados en el change_list del admin.&lt;/p&gt;
-&lt;div class="contents topic" id="ficheros"&gt;
-&lt;p class="topic-title"&gt;Ficheros&lt;/p&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#utils-py" id="toc-entry-1"&gt;utils.py&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#admin-py" id="toc-entry-2"&gt;admin.py&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class="section" id="utils-py"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#toc-entry-1"&gt;utils.py&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Tengo esto en &lt;code&gt;utils.py&lt;/code&gt;&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.contrib&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;admin&lt;/span&gt;
-&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.contrib.contenttypes.models&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;ContentType&lt;/span&gt;
-&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.core&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;urlresolvers&lt;/span&gt;
-&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.utils.datastructures&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;SortedDict&lt;/span&gt;
-&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.utils.functional&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;memoize&lt;/span&gt;
-
-&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;get_change_url&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;obj&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot; Utility method&lt;/span&gt;
-&lt;span class="sd"&gt;        def server_link(self, obj):&lt;/span&gt;
-&lt;span class="sd"&gt;             return self.get_change_url(obj.server)&lt;/span&gt;
-&lt;span class="sd"&gt;        server_link.short_description = _(&amp;#39;server&amp;#39;)&lt;/span&gt;
-&lt;span class="sd"&gt;        server_link.allow_tags = True&lt;/span&gt;
-&lt;span class="sd"&gt;        server_link.admin_order_field = &amp;#39;server__name&amp;#39;&lt;/span&gt;
-&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;obj&lt;/span&gt; &lt;span class="ow"&gt;is&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-        &lt;span class="k"&gt;return&lt;/span&gt;
-    &lt;span class="n"&gt;content_type&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;get_content_type&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;obj&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="vm"&gt;__class__&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-    &lt;span class="n"&gt;change_url&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;urlresolvers&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;reverse&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
-        &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s2"&gt;:&lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s2"&gt;_&lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s2"&gt;_change&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;admin&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;site&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;app_name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;content_type&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;app_label&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;content_type&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;model&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
-        &lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;obj&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pk&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
-    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;&amp;lt;a href=&amp;quot;&lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s1"&gt;&amp;quot;&amp;gt;&lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s1"&gt;&amp;lt;/a&amp;gt;&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;change_url&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;obj&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-
-&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;_get_content_type&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;klass&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;ContentType&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;objects&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get_for_model&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;klass&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;get_content_type&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;memoize&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;_get_content_type&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;SortedDict&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Hago uso de memoize para aumentar la eficiencia. Creo que es el punto junto entre simplicidad
-en el código con facilidad de uso. He tenido también decoradores para repetir menos en el admin.py
-pero cuando otros veían el código no lo entendían a la primera.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="admin-py"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#toc-entry-2"&gt;admin.py&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Un ejemplo de uso: en &lt;code&gt;admin.py&lt;/code&gt; (suponiendo que el modelo Link tiene un FK llamado product):&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;utils&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;get_change_url&lt;/span&gt;
-
-&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;LinkAdmin&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;AdminImageMixin&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;admin&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ModelAdmin&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="n"&gt;list_display&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;name&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;is_visible&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;product_link&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;updated_at&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
-    &lt;span class="n"&gt;search_fields&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;name&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;]&lt;/span&gt;
-
-    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;product_link&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;obj&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;get_change_url&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;obj&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;product&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="n"&gt;product_link&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;short_description&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Product&amp;#39;&lt;/span&gt;
-    &lt;span class="n"&gt;product_link&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;allow_tags&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;True&lt;/span&gt;
-    &lt;span class="n"&gt;product_link&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;admin_order_field&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;product__name&amp;#39;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-</content><category term="Programación"></category><category term="django"></category><category term="python"></category></entry><entry><title>Django: links in object list</title><link href="https://pablocaro.es/en/enlaces-en-listado-de-objectos" rel="alternate"></link><published>2014-05-21T10:42:00+02:00</published><updated>2014-05-21T10:42:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2014-05-21:/en/enlaces-en-listado-de-objectos</id><summary type="html">&lt;p&gt;In my projects I usually use links to related items in the admin change_list.&lt;/p&gt;
-&lt;div class="contents topic" id="files"&gt;
-&lt;p class="topic-title"&gt;Files&lt;/p&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#utils-py" id="toc-entry-1"&gt;utils.py&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#admin-py" id="toc-entry-2"&gt;admin.py&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class="section" id="utils-py"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#toc-entry-1"&gt;utils.py&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;I have this in &lt;code&gt;utils.py&lt;/code&gt;&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.contrib&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;admin&lt;/span&gt;
-&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.contrib.contenttypes.models&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;ContentType&lt;/span&gt;
-&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.core&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;urlresolvers&lt;/span&gt;
-&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.utils.datastructures&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;SortedDict …&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;In my projects I usually use links to related items in the admin change_list.&lt;/p&gt;
-&lt;div class="contents topic" id="files"&gt;
-&lt;p class="topic-title"&gt;Files&lt;/p&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#utils-py" id="toc-entry-1"&gt;utils.py&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="#admin-py" id="toc-entry-2"&gt;admin.py&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class="section" id="utils-py"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#toc-entry-1"&gt;utils.py&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;I have this in &lt;code&gt;utils.py&lt;/code&gt;&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.contrib&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;admin&lt;/span&gt;
-&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.contrib.contenttypes.models&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;ContentType&lt;/span&gt;
-&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.core&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;urlresolvers&lt;/span&gt;
-&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.utils.datastructures&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;SortedDict&lt;/span&gt;
-&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.utils.functional&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;memoize&lt;/span&gt;
-
-&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;get_change_url&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;obj&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot; Utility method&lt;/span&gt;
-&lt;span class="sd"&gt;        def server_link(self, obj):&lt;/span&gt;
-&lt;span class="sd"&gt;             return self.get_change_url(obj.server)&lt;/span&gt;
-&lt;span class="sd"&gt;        server_link.short_description = _(&amp;#39;server&amp;#39;)&lt;/span&gt;
-&lt;span class="sd"&gt;        server_link.allow_tags = True&lt;/span&gt;
-&lt;span class="sd"&gt;        server_link.admin_order_field = &amp;#39;server__name&amp;#39;&lt;/span&gt;
-&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;obj&lt;/span&gt; &lt;span class="ow"&gt;is&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-        &lt;span class="k"&gt;return&lt;/span&gt;
-    &lt;span class="n"&gt;content_type&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;get_content_type&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;obj&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="vm"&gt;__class__&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-    &lt;span class="n"&gt;change_url&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;urlresolvers&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;reverse&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
-        &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s2"&gt;:&lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s2"&gt;_&lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s2"&gt;_change&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;admin&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;site&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;app_name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;content_type&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;app_label&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;content_type&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;model&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
-        &lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;obj&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pk&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
-    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;&amp;lt;a href=&amp;quot;&lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s1"&gt;&amp;quot;&amp;gt;&lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s1"&gt;&amp;lt;/a&amp;gt;&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;change_url&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;obj&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-
-&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;_get_content_type&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;klass&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;ContentType&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;objects&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get_for_model&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;klass&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;get_content_type&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;memoize&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;_get_content_type&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;SortedDict&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;I make use of memoize to increase efficiency. I think it is the point between simplicity
-in code with ease of use. I have also had decorators to repeat less in admin.py
-but when others saw the code they didn't understand it at first.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="admin-py"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="#toc-entry-2"&gt;admin.py&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;A usage example: in &lt;code&gt;admin.py&lt;/code&gt; (assuming the Link model has a FK called product):&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;utils&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;get_change_url&lt;/span&gt;
-
-&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;LinkAdmin&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;AdminImageMixin&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;admin&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ModelAdmin&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="n"&gt;list_display&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;name&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;is_visible&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;product_link&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;updated_at&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
-    &lt;span class="n"&gt;search_fields&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;name&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;]&lt;/span&gt;
-
-    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;product_link&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;obj&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;get_change_url&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;obj&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;product&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="n"&gt;product_link&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;short_description&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Product&amp;#39;&lt;/span&gt;
-    &lt;span class="n"&gt;product_link&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;allow_tags&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;True&lt;/span&gt;
-    &lt;span class="n"&gt;product_link&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;admin_order_field&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;product__name&amp;#39;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-</content><category term="Programming"></category><category term="django"></category><category term="python"></category></entry><entry><title>Settings vars processor</title><link href="https://pablocaro.es/settings-vars-processor" rel="alternate"></link><published>2014-01-08T11:23:00+01:00</published><updated>2014-01-08T11:23:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2014-01-08:/settings-vars-processor</id><summary type="html">&lt;p&gt;Lo suelo usar durante el principio de los proyectos.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.conf&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;settings&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;django_settings&lt;/span&gt;
-&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.core.exceptions&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;ImproperlyConfigured&lt;/span&gt;
-
-
-&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;settings&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-&lt;span class="sd"&gt;    Adds the settings specified in settings.TEMPLATE_VISIBLE_SETTINGS to&lt;/span&gt;
-&lt;span class="sd"&gt;    the request context.&lt;/span&gt;
-&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-    &lt;span class="n"&gt;new_settings&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{}&lt;/span&gt;
-    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;attr&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;django_settings&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;TEMPLATE_VISIBLE_SETTINGS&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-        &lt;span class="k"&gt;try&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-            &lt;span class="n"&gt;new_settings&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;attr&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;getattr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;django_settings&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;attr&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-        &lt;span class="k"&gt;except&lt;/span&gt; &lt;span class="ne"&gt;AttributeError …&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;Lo suelo usar durante el principio de los proyectos.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.conf&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;settings&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;django_settings&lt;/span&gt;
-&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.core.exceptions&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;ImproperlyConfigured&lt;/span&gt;
-
-
-&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;settings&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-&lt;span class="sd"&gt;    Adds the settings specified in settings.TEMPLATE_VISIBLE_SETTINGS to&lt;/span&gt;
-&lt;span class="sd"&gt;    the request context.&lt;/span&gt;
-&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-    &lt;span class="n"&gt;new_settings&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{}&lt;/span&gt;
-    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;attr&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;django_settings&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;TEMPLATE_VISIBLE_SETTINGS&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-        &lt;span class="k"&gt;try&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-            &lt;span class="n"&gt;new_settings&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;attr&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;getattr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;django_settings&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;attr&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-        &lt;span class="k"&gt;except&lt;/span&gt; &lt;span class="ne"&gt;AttributeError&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-            &lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;TEMPLATE_VISIBLE_SETTINGS: &amp;#39;&lt;/span&gt;&lt;span class="si"&gt;{0}&lt;/span&gt;&lt;span class="s2"&gt;&amp;#39; does not exist&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;attr&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-            &lt;span class="k"&gt;raise&lt;/span&gt; &lt;span class="n"&gt;ImproperlyConfigured&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;new_settings&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Se usa así:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;TEMPLATE_CONTEXT_PROCESSORS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;
-    &lt;span class="s1"&gt;&amp;#39;django.contrib.auth.context_processors.auth&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-    &lt;span class="o"&gt;...&lt;/span&gt;
-    &lt;span class="s1"&gt;&amp;#39;web.context_processors.settings&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="p"&gt;)&lt;/span&gt;
-
-&lt;span class="n"&gt;DEBUG&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;True&lt;/span&gt;
-&lt;span class="n"&gt;CLIENT_SLOGAN&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Esto es un ejemplo&amp;#39;&lt;/span&gt;
-&lt;span class="n"&gt;TEMPLATE_VISIBLE_SETTINGS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;
-    &lt;span class="s1"&gt;&amp;#39;DEBUG&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-    &lt;span class="s1"&gt;&amp;#39;CLIENT_SLOGAN&amp;#39;&lt;/span&gt;
-&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-</content><category term="Programación"></category><category term="python"></category><category term="django"></category></entry><entry><title>Settings vars processor</title><link href="https://pablocaro.es/en/settings-vars-processor" rel="alternate"></link><published>2014-01-08T11:23:00+01:00</published><updated>2014-01-08T11:23:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2014-01-08:/en/settings-vars-processor</id><summary type="html">&lt;p&gt;I usually use this at the beginning of projects.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.conf&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;settings&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;django_settings&lt;/span&gt;
-&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.core.exceptions&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;ImproperlyConfigured&lt;/span&gt;
-
-
-&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;settings&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-&lt;span class="sd"&gt;    Adds the settings specified in settings.TEMPLATE_VISIBLE_SETTINGS to&lt;/span&gt;
-&lt;span class="sd"&gt;    the request context.&lt;/span&gt;
-&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-    &lt;span class="n"&gt;new_settings&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{}&lt;/span&gt;
-    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;attr&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;django_settings&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;TEMPLATE_VISIBLE_SETTINGS&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-        &lt;span class="k"&gt;try&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-            &lt;span class="n"&gt;new_settings&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;attr&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;getattr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;django_settings&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;attr&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-        &lt;span class="k"&gt;except&lt;/span&gt; &lt;span class="ne"&gt;AttributeError …&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;I usually use this at the beginning of projects.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.conf&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;settings&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;django_settings&lt;/span&gt;
-&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.core.exceptions&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;ImproperlyConfigured&lt;/span&gt;
-
-
-&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;settings&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-&lt;span class="sd"&gt;    Adds the settings specified in settings.TEMPLATE_VISIBLE_SETTINGS to&lt;/span&gt;
-&lt;span class="sd"&gt;    the request context.&lt;/span&gt;
-&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-    &lt;span class="n"&gt;new_settings&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{}&lt;/span&gt;
-    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;attr&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;django_settings&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;TEMPLATE_VISIBLE_SETTINGS&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-        &lt;span class="k"&gt;try&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-            &lt;span class="n"&gt;new_settings&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;attr&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;getattr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;django_settings&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;attr&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-        &lt;span class="k"&gt;except&lt;/span&gt; &lt;span class="ne"&gt;AttributeError&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-            &lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;TEMPLATE_VISIBLE_SETTINGS: &amp;#39;&lt;/span&gt;&lt;span class="si"&gt;{0}&lt;/span&gt;&lt;span class="s2"&gt;&amp;#39; does not exist&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;attr&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-            &lt;span class="k"&gt;raise&lt;/span&gt; &lt;span class="n"&gt;ImproperlyConfigured&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;new_settings&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;It is used like this:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;TEMPLATE_CONTEXT_PROCESSORS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;
-    &lt;span class="s1"&gt;&amp;#39;django.contrib.auth.context_processors.auth&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-    &lt;span class="o"&gt;...&lt;/span&gt;
-    &lt;span class="s1"&gt;&amp;#39;web.context_processors.settings&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="p"&gt;)&lt;/span&gt;
-
-&lt;span class="n"&gt;DEBUG&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;True&lt;/span&gt;
-&lt;span class="n"&gt;CLIENT_SLOGAN&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;This is an example&amp;#39;&lt;/span&gt;
-&lt;span class="n"&gt;TEMPLATE_VISIBLE_SETTINGS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;
-    &lt;span class="s1"&gt;&amp;#39;DEBUG&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-    &lt;span class="s1"&gt;&amp;#39;CLIENT_SLOGAN&amp;#39;&lt;/span&gt;
-&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-</content><category term="Programming"></category><category term="python"></category><category term="django"></category></entry><entry><title>pyinotify: Ejecutar comando cuando se modifica un fichero</title><link href="https://pablocaro.es/pyinotify-ejecutar-comando-cuando-se-modifica-un-fichero" rel="alternate"></link><published>2013-04-03T05:09:00+02:00</published><updated>2013-04-03T05:09:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2013-04-03:/pyinotify-ejecutar-comando-cuando-se-modifica-un-fichero</id><content type="html">
-        Ya he comentado por aquí un comando &lt;em&gt;when-changed&lt;/em&gt;.
-
-Ahora anoto otra alternativa, esta vez python. Se trata de pyinotify.
-
-Yo lo uso para generar la documentación de sphinx mientras estoy escribiendo:
-
-&lt;pre lang="bash"&gt;
-python -m pyinotify -r -c "make html" -e IN_MODIFY source
-&lt;/pre&gt;
-    </content><category term="Sistemas"></category><category term="python"></category><category term="linux"></category></entry><entry><title>A vueltas con suse</title><link href="https://pablocaro.es/a-vueltas-con-suse" rel="alternate"></link><published>2013-03-25T11:01:00+01:00</published><updated>2013-03-25T11:01:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2013-03-25:/a-vueltas-con-suse</id><content type="html">
-        Algunos comandos de zypper para recordar:
-
-Para borrar un paquete y también las dependencias:
-&lt;pre lang="bash"&gt;
-zypper remove  --clean-deps packate
-&lt;/pre&gt;
-
-Listar paquetes huérfanos:
-&lt;pre lang="bash"&gt;
-LC_ALL=C zypper se -s | fgrep '(System Packages)'
-&lt;/pre&gt;
-
-    </content><category term="Sin Categoría"></category></entry></feed>
+</content><category term="Programming"></category><category term="django"></category><category term="python"></category></entry></feed>

@@ -1,5 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Anotaciones por Pablo Caro - DevOps</title><link href="https://pablocaro.es/" rel="alternate"></link><link href="https://pablocaro.es/feeds/categories/devops.atom.xml" rel="self"></link><id>https://pablocaro.es/</id><updated>2025-12-25T14:00:00+01:00</updated><subtitle>Anotaciones</subtitle><entry><title>Kubegres: Gestión simplificada de PostgreSQL en Kubernetes</title><link href="https://pablocaro.es/kubegres-postgresql-kubernetes" rel="alternate"></link><published>2025-12-25T14:00:00+01:00</published><updated>2025-12-25T14:00:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2025-12-25:/kubegres-postgresql-kubernetes</id><summary type="html">&lt;p&gt;Descubre Kubegres, un operador de Kubernetes que simplifica la implementación y gestión de clusters PostgreSQL altamente disponibles y escalables.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Desplegar y gestionar bases de datos relacionales en Kubernetes puede ser un desafío. Aunque los contenedores y la orquestación ofrecen flexibilidad, la persistencia de datos, la alta disponibilidad y las copias de seguridad de una base de datos como PostgreSQL requieren una consideración cuidadosa. Aquí es donde &lt;strong&gt;Kubegres&lt;/strong&gt; entra en juego.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Anotaciones por Pablo Caro - DevOps</title><link href="https://pablocaro.es/" rel="alternate"></link><link href="https://pablocaro.es/feeds/categories/devops.atom.xml" rel="self"></link><id>https://pablocaro.es/</id><updated>2026-02-20T00:00:00+01:00</updated><subtitle>Anotaciones</subtitle><entry><title>Stern: Logs de Kubernetes con esteroides</title><link href="https://pablocaro.es/stern-kubernetes-logs" rel="alternate"></link><published>2026-02-20T00:00:00+01:00</published><updated>2026-02-20T00:00:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-02-20:/stern-kubernetes-logs</id><summary type="html">&lt;p&gt;Si trabajas con Kubernetes, probablemente hayas sufrido el comando &lt;code&gt;kubectl logs&lt;/code&gt;. Es útil para ver los logs de un pod específico, pero se queda corto cuando tienes múltiples réplicas de un servicio o cuando los pods se reinician y cambian de nombre.&lt;/p&gt;
+&lt;p&gt;Aquí es donde entra &lt;strong&gt;&lt;a href="https://github.com/stern/stern"&gt;Stern&lt;/a&gt;&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Stern te permite …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Si trabajas con Kubernetes, probablemente hayas sufrido el comando &lt;code&gt;kubectl logs&lt;/code&gt;. Es útil para ver los logs de un pod específico, pero se queda corto cuando tienes múltiples réplicas de un servicio o cuando los pods se reinician y cambian de nombre.&lt;/p&gt;
+&lt;p&gt;Aquí es donde entra &lt;strong&gt;&lt;a href="https://github.com/stern/stern"&gt;Stern&lt;/a&gt;&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Stern te permite hacer "tail" (seguir) logs de múltiples pods y contenedores dentro de Kubernetes simultáneamente. Lo mejor de todo es que utiliza expresiones regulares para seleccionar los pods, por lo que no necesitas copiar y pegar esos IDs aleatorios (&lt;code&gt;pod-1234567890-abcde&lt;/code&gt;).&lt;/p&gt;
+&lt;h2 id="instalacion"&gt;Instalación&lt;a class="headerlink" href="#instalacion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Stern es muy popular y está disponible en la mayoría de gestores de paquetes.&lt;/p&gt;
+&lt;h3 id="usando-krew-recomendado"&gt;Usando Krew (recomendado)&lt;a class="headerlink" href="#usando-krew-recomendado" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Si ya usas &lt;code&gt;kubectl&lt;/code&gt;, Krew es la forma más natural de instalar plugins:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;kubectl&lt;span class="w"&gt; &lt;/span&gt;krew&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;stern
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id="usando-homebrew"&gt;Usando Homebrew&lt;a class="headerlink" href="#usando-homebrew" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;brew&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;stern
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id="binario-directo"&gt;Binario directo&lt;a class="headerlink" href="#binario-directo" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;También puedes descargar el binario directamente desde sus &lt;a href="https://github.com/stern/stern/releases"&gt;releases en GitHub&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Si utilizas algún helper como &lt;code&gt;gah&lt;/code&gt; (GitHub Asset Helper) o scripts personalizados, la instalación es tan sencilla como:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;gah&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;stern/stern
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="caracteristicas-principales"&gt;Características principales&lt;a class="headerlink" href="#caracteristicas-principales" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="1-tailing-de-multiples-pods"&gt;1. Tailing de múltiples pods&lt;a class="headerlink" href="#1-tailing-de-multiples-pods" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;En lugar de buscar el nombre exacto del pod, puedes usar una regex:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;stern&lt;span class="w"&gt; &lt;/span&gt;backend
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Esto mostrará los logs de todos los pods que contengan "backend" en su nombre (&lt;code&gt;backend-api&lt;/code&gt;, &lt;code&gt;backend-worker&lt;/code&gt;, etc.), intercalados y coloreados para distinguirlos fácilmente.&lt;/p&gt;
+&lt;h3 id="2-filtrado-y-exclusion"&gt;2. Filtrado y exclusión&lt;a class="headerlink" href="#2-filtrado-y-exclusion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Puedes filtrar el contenido de los logs sobre la marcha sin necesidad de &lt;code&gt;grep&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Solo mostrar líneas que contengan &amp;quot;Error&amp;quot;&lt;/span&gt;
+stern&lt;span class="w"&gt; &lt;/span&gt;backend&lt;span class="w"&gt; &lt;/span&gt;-i&lt;span class="w"&gt; &lt;/span&gt;Error
+
+&lt;span class="c1"&gt;# Excluir líneas que contengan &amp;quot;Health check&amp;quot;&lt;/span&gt;
+stern&lt;span class="w"&gt; &lt;/span&gt;backend&lt;span class="w"&gt; &lt;/span&gt;-e&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Health check&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id="3-selectores-de-kubernetes"&gt;3. Selectores de Kubernetes&lt;a class="headerlink" href="#3-selectores-de-kubernetes" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Además de regex por nombre, puedes usar selectores de etiquetas, lo cual es mucho más preciso para entornos de producción:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;stern&lt;span class="w"&gt; &lt;/span&gt;-l&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;app&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;mi-app&lt;span class="w"&gt; &lt;/span&gt;-l&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;tier&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;frontend
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id="4-formato-de-salida"&gt;4. Formato de salida&lt;a class="headerlink" href="#4-formato-de-salida" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Si tus logs están en JSON (como es buena práctica), Stern puede pasarlos tal cual para que los proceses con herramientas como &lt;code&gt;jq&lt;/code&gt; o &lt;code&gt;fx&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;stern&lt;span class="w"&gt; &lt;/span&gt;backend&lt;span class="w"&gt; &lt;/span&gt;-o&lt;span class="w"&gt; &lt;/span&gt;raw&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;fx
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="conclusion"&gt;Conclusión&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Stern es una de esas herramientas que instalas el primer día y te preguntas cómo podías vivir sin ella. Hace que el debug en entornos distribuidos sea mucho menos doloroso al agregar la información de manera coherente.&lt;/p&gt;
+&lt;p&gt;Dale una oportunidad y tus sesiones de debugging te lo agradecerán.&lt;/p&gt;</content><category term="DevOps"></category><category term="kubernetes"></category><category term="cli"></category><category term="logs"></category><category term="devops"></category><category term="tools"></category></entry><entry><title>Kubegres: Gestión simplificada de PostgreSQL en Kubernetes</title><link href="https://pablocaro.es/kubegres-postgresql-kubernetes" rel="alternate"></link><published>2025-12-25T14:00:00+01:00</published><updated>2025-12-25T14:00:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2025-12-25:/kubegres-postgresql-kubernetes</id><summary type="html">&lt;p&gt;Descubre Kubegres, un operador de Kubernetes que simplifica la implementación y gestión de clusters PostgreSQL altamente disponibles y escalables.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Desplegar y gestionar bases de datos relacionales en Kubernetes puede ser un desafío. Aunque los contenedores y la orquestación ofrecen flexibilidad, la persistencia de datos, la alta disponibilidad y las copias de seguridad de una base de datos como PostgreSQL requieren una consideración cuidadosa. Aquí es donde &lt;strong&gt;Kubegres&lt;/strong&gt; entra en juego.&lt;/p&gt;
 &lt;h2 id="que-es-kubegres"&gt;¿Qué es Kubegres?&lt;a class="headerlink" href="#que-es-kubegres" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Kubegres es un &lt;strong&gt;operador de Kubernetes&lt;/strong&gt; que permite implementar y gestionar clusters PostgreSQL en Kubernetes de forma sencilla y eficiente. Un operador es una aplicación que extiende las funcionalidades de Kubernetes, automatizando tareas operacionales complejas que normalmente requieren intervención manual.&lt;/p&gt;
 &lt;h2 id="por-que-usar-kubegres"&gt;¿Por qué usar Kubegres?&lt;a class="headerlink" href="#por-que-usar-kubegres" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;

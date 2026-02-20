@@ -1,5 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Annotations by Pablo Caro - logs</title><link href="https://pablocaro.es/en/" rel="alternate"></link><link href="https://pablocaro.es/feeds/tags/logs.atom.xml" rel="self"></link><id>https://pablocaro.es/en/</id><updated>2025-12-25T13:00:00+01:00</updated><subtitle>Annotations</subtitle><entry><title>Reduce Noise in Your Python Logs: A Smart Approach</title><link href="https://pablocaro.es/en/reduce-ruido-logs-python" rel="alternate"></link><published>2025-12-25T13:00:00+01:00</published><updated>2025-12-25T13:00:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2025-12-25:/en/reduce-ruido-logs-python</id><summary type="html">&lt;p&gt;Learn how to configure Python's &lt;code&gt;logging&lt;/code&gt; module to avoid message overload from third-party libraries, keeping your logs clean and useful.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Python's &lt;code&gt;logging&lt;/code&gt; module is a powerful tool, but it can quickly become a source of "noise" when third-party libraries flood your logs with messages that are not relevant to debugging your application. Keeping logs clean is crucial for efficiently identifying issues and understanding the actual behavior of your code.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Annotations by Pablo Caro - logs</title><link href="https://pablocaro.es/en/" rel="alternate"></link><link href="https://pablocaro.es/feeds/tags/logs.atom.xml" rel="self"></link><id>https://pablocaro.es/en/</id><updated>2026-02-20T00:00:00+01:00</updated><subtitle>Annotations</subtitle><entry><title>Stern: Kubernetes Logs on Steroids</title><link href="https://pablocaro.es/en/stern-kubernetes-logs" rel="alternate"></link><published>2026-02-20T00:00:00+01:00</published><updated>2026-02-20T00:00:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-02-20:/en/stern-kubernetes-logs</id><summary type="html">&lt;p&gt;If you work with Kubernetes, you've probably suffered through the &lt;code&gt;kubectl logs&lt;/code&gt; command. It's useful for viewing the logs of a specific pod, but it falls short when you have multiple replicas of a service or when pods restart and change names.&lt;/p&gt;
+&lt;p&gt;This is where &lt;strong&gt;&lt;a href="https://github.com/stern/stern"&gt;Stern&lt;/a&gt;&lt;/strong&gt; comes in.&lt;/p&gt;
+&lt;p&gt;Stern allows …&lt;/p&gt;</summary><content type="html">&lt;p&gt;If you work with Kubernetes, you've probably suffered through the &lt;code&gt;kubectl logs&lt;/code&gt; command. It's useful for viewing the logs of a specific pod, but it falls short when you have multiple replicas of a service or when pods restart and change names.&lt;/p&gt;
+&lt;p&gt;This is where &lt;strong&gt;&lt;a href="https://github.com/stern/stern"&gt;Stern&lt;/a&gt;&lt;/strong&gt; comes in.&lt;/p&gt;
+&lt;p&gt;Stern allows you to "tail" logs from multiple pods and containers within Kubernetes simultaneously. Best of all, it uses regular expressions to select pods, so you don't need to copy and paste those random IDs (&lt;code&gt;pod-1234567890-abcde&lt;/code&gt;).&lt;/p&gt;
+&lt;h2 id="installation"&gt;Installation&lt;a class="headerlink" href="#installation" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Stern is very popular and available in most package managers.&lt;/p&gt;
+&lt;h3 id="using-krew-recommended"&gt;Using Krew (recommended)&lt;a class="headerlink" href="#using-krew-recommended" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;If you already use &lt;code&gt;kubectl&lt;/code&gt;, Krew is the most natural way to install plugins:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;kubectl&lt;span class="w"&gt; &lt;/span&gt;krew&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;stern
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id="using-homebrew"&gt;Using Homebrew&lt;a class="headerlink" href="#using-homebrew" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;brew&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;stern
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id="direct-binary"&gt;Direct Binary&lt;a class="headerlink" href="#direct-binary" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;You can also download the binary directly from their &lt;a href="https://github.com/stern/stern/releases"&gt;GitHub releases&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;If you use a helper like &lt;code&gt;gah&lt;/code&gt; (GitHub Asset Helper) or custom scripts, installation is as simple as:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;gah&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;stern/stern
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="key-features"&gt;Key Features&lt;a class="headerlink" href="#key-features" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="1-multi-pod-tailing"&gt;1. Multi-pod Tailing&lt;a class="headerlink" href="#1-multi-pod-tailing" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Instead of searching for the exact pod name, you can use a regex:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;stern&lt;span class="w"&gt; &lt;/span&gt;backend
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This will show logs from all pods containing "backend" in their name (&lt;code&gt;backend-api&lt;/code&gt;, &lt;code&gt;backend-worker&lt;/code&gt;, etc.), interleaved and colored to easily distinguish them.&lt;/p&gt;
+&lt;h3 id="2-filtering-and-exclusion"&gt;2. Filtering and Exclusion&lt;a class="headerlink" href="#2-filtering-and-exclusion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;You can filter log content on the fly without needing &lt;code&gt;grep&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Only show lines containing &amp;quot;Error&amp;quot;&lt;/span&gt;
+stern&lt;span class="w"&gt; &lt;/span&gt;backend&lt;span class="w"&gt; &lt;/span&gt;-i&lt;span class="w"&gt; &lt;/span&gt;Error
+
+&lt;span class="c1"&gt;# Exclude lines containing &amp;quot;Health check&amp;quot;&lt;/span&gt;
+stern&lt;span class="w"&gt; &lt;/span&gt;backend&lt;span class="w"&gt; &lt;/span&gt;-e&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Health check&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id="3-kubernetes-selectors"&gt;3. Kubernetes Selectors&lt;a class="headerlink" href="#3-kubernetes-selectors" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;In addition to regex by name, you can use label selectors, which is much more precise for production environments:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;stern&lt;span class="w"&gt; &lt;/span&gt;-l&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;app&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;my-app&lt;span class="w"&gt; &lt;/span&gt;-l&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;tier&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;frontend
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id="4-output-formatting"&gt;4. Output Formatting&lt;a class="headerlink" href="#4-output-formatting" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;If your logs are in JSON (as is best practice), Stern can pass them through as is so you can process them with tools like &lt;code&gt;jq&lt;/code&gt; or &lt;code&gt;fx&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;stern&lt;span class="w"&gt; &lt;/span&gt;backend&lt;span class="w"&gt; &lt;/span&gt;-o&lt;span class="w"&gt; &lt;/span&gt;raw&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;fx
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="conclusion"&gt;Conclusion&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Stern is one of those tools you install on day one and wonder how you ever lived without it. It makes debugging in distributed environments much less painful by aggregating information coherently.&lt;/p&gt;
+&lt;p&gt;Give it a try and your debugging sessions will thank you.&lt;/p&gt;</content><category term="DevOps"></category><category term="kubernetes"></category><category term="cli"></category><category term="logs"></category><category term="devops"></category><category term="tools"></category></entry><entry><title>Reduce Noise in Your Python Logs: A Smart Approach</title><link href="https://pablocaro.es/en/reduce-ruido-logs-python" rel="alternate"></link><published>2025-12-25T13:00:00+01:00</published><updated>2025-12-25T13:00:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2025-12-25:/en/reduce-ruido-logs-python</id><summary type="html">&lt;p&gt;Learn how to configure Python's &lt;code&gt;logging&lt;/code&gt; module to avoid message overload from third-party libraries, keeping your logs clean and useful.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Python's &lt;code&gt;logging&lt;/code&gt; module is a powerful tool, but it can quickly become a source of "noise" when third-party libraries flood your logs with messages that are not relevant to debugging your application. Keeping logs clean is crucial for efficiently identifying issues and understanding the actual behavior of your code.&lt;/p&gt;
 &lt;h2 id="the-problem-with-basicconfig"&gt;The Problem with &lt;code&gt;basicConfig()&lt;/code&gt;&lt;a class="headerlink" href="#the-problem-with-basicconfig" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Many Python developers start using &lt;code&gt;logging&lt;/code&gt; with &lt;code&gt;logging.basicConfig()&lt;/code&gt;. While convenient, this function configures the "root logger" of your application. The problem is that &lt;strong&gt;all loggers in your application, including third-party libraries, are children of the root logger&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;This means that if you configure the root logger to the &lt;code&gt;DEBUG&lt;/code&gt; level, you will start seeing debug messages from all the libraries you use, which can be overwhelming and hide the truly important information from your own code.&lt;/p&gt;

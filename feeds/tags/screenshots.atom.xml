@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Anotaciones por Pablo Caro - screenshots</title><link href="https://pablocaro.es/" rel="alternate"></link><link href="https://pablocaro.es/feeds/tags/screenshots.atom.xml" rel="self"></link><id>https://pablocaro.es/</id><updated>2026-02-20T00:00:00+01:00</updated><subtitle>Anotaciones</subtitle><entry><title>Shot-scraper: Capturas de pantalla automatizadas para la web</title><link href="https://pablocaro.es/shot-scraper-capturas-pantalla-automatizadas" rel="alternate"></link><published>2026-02-20T00:00:00+01:00</published><updated>2026-02-20T00:00:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-02-20:/shot-scraper-capturas-pantalla-automatizadas</id><summary type="html">&lt;p&gt;¿Alguna vez has necesitado tomar capturas de pantalla de una página web de forma programática? Tal vez para documentar tu proyecto, monitorizar cambios en una UI, o generar imágenes para redes sociales. Existen muchas formas de hacerlo, pero &lt;strong&gt;&lt;a href="https://shot-scraper.datasette.io/"&gt;shot-scraper&lt;/a&gt;&lt;/strong&gt; destaca por su facilidad de uso y potencia.&lt;/p&gt;
+&lt;p&gt;Creada por Simon …&lt;/p&gt;</summary><content type="html">&lt;p&gt;¿Alguna vez has necesitado tomar capturas de pantalla de una página web de forma programática? Tal vez para documentar tu proyecto, monitorizar cambios en una UI, o generar imágenes para redes sociales. Existen muchas formas de hacerlo, pero &lt;strong&gt;&lt;a href="https://shot-scraper.datasette.io/"&gt;shot-scraper&lt;/a&gt;&lt;/strong&gt; destaca por su facilidad de uso y potencia.&lt;/p&gt;
+&lt;p&gt;Creada por Simon Willison, &lt;code&gt;shot-scraper&lt;/code&gt; es una herramienta de línea de comandos (CLI) que envuelve Playwright para hacer que tomar screenshots sea trivial.&lt;/p&gt;
+&lt;h2 id="instalacion"&gt;Instalación&lt;a class="headerlink" href="#instalacion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Al igual que con otras herramientas modernas de Python, la mejor forma de instalarla es usando &lt;code&gt;uv&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;uv&lt;span class="w"&gt; &lt;/span&gt;tool&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;shot-scraper
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Una vez instalada, necesitarás descargar el navegador que utiliza por debajo (Chromium):&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;shot-scraper&lt;span class="w"&gt; &lt;/span&gt;install
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="uso-basico"&gt;Uso básico&lt;a class="headerlink" href="#uso-basico" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;La forma más sencilla de usarlo es darle una URL y un nombre de archivo:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;shot-scraper&lt;span class="w"&gt; &lt;/span&gt;https://pablocaro.es/&lt;span class="w"&gt; &lt;/span&gt;blog.png
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Esto generará una imagen llamada &lt;code&gt;blog.png&lt;/code&gt; con la captura de la página.&lt;/p&gt;
+&lt;h3 id="capturando-selectores-especificos"&gt;Capturando selectores específicos&lt;a class="headerlink" href="#capturando-selectores-especificos" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Una de las características más potentes es la capacidad de capturar solo un elemento específico de la página usando selectores CSS:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;shot-scraper&lt;span class="w"&gt; &lt;/span&gt;https://github.com/pcaro&lt;span class="w"&gt; &lt;/span&gt;-s&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;.js-calendar-graph&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;calendar.png
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Este comando capturará únicamente el gráfico de contribuciones de GitHub.&lt;/p&gt;
+&lt;h3 id="interactuando-con-javascript"&gt;Interactuando con JavaScript&lt;a class="headerlink" href="#interactuando-con-javascript" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;A veces necesitas ejecutar algo de código antes de tomar la foto. Por ejemplo, para ocultar un banner de cookies o esperar a que cargue algo.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;shot-scraper&lt;span class="w"&gt; &lt;/span&gt;https://pablocaro.es/&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="se"&gt;\&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;--javascript&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;document.querySelector(&amp;#39;header&amp;#39;).style.display = &amp;#39;none&amp;#39;;&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="se"&gt;\&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;-o&lt;span class="w"&gt; &lt;/span&gt;sin-header.png
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="automatizacion-avanzada"&gt;Automatización avanzada&lt;a class="headerlink" href="#automatizacion-avanzada" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Si necesitas tomar muchas capturas, puedes definir un archivo YAML de configuración:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# shots.yml&lt;/span&gt;
+&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;url&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;https://pablocaro.es/&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;output&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;home.png&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;height&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;800&lt;/span&gt;
+&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;url&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;https://pablocaro.es/archives.html&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;output&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;archives.png&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;wait&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;1000&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="c1"&gt;# Esperar 1 segundo&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Y ejecutarlas todas de una vez:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;shot-scraper&lt;span class="w"&gt; &lt;/span&gt;multi&lt;span class="w"&gt; &lt;/span&gt;shots.yml
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="mas-alla-de-las-capturas"&gt;Más allá de las capturas&lt;a class="headerlink" href="#mas-alla-de-las-capturas" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;shot-scraper&lt;/code&gt; también incluye utilidades para:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Accesibilidad&lt;/strong&gt;: Volcar el árbol de accesibilidad de una página (&lt;code&gt;shot-scraper accessibility&lt;/code&gt;).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;PDF&lt;/strong&gt;: Generar PDFs de páginas web (&lt;code&gt;shot-scraper pdf&lt;/code&gt;).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;HAR&lt;/strong&gt;: Grabar archivos HAR para analizar el tráfico de red (&lt;code&gt;shot-scraper har&lt;/code&gt;).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Es una de esas herramientas que, una vez instaladas, encuentras usos para ella constantemente. Perfecta para integrar en pipelines de CI/CD para generar visuales de documentación automáticamente.&lt;/p&gt;
+&lt;p&gt;Más info en la &lt;a href="https://shot-scraper.datasette.io/"&gt;documentación oficial&lt;/a&gt;.&lt;/p&gt;</content><category term="Python"></category><category term="python"></category><category term="cli"></category><category term="tools"></category><category term="web"></category><category term="scraping"></category><category term="screenshots"></category></entry></feed>

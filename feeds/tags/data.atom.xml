@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Anotaciones por Pablo Caro - data</title><link href="https://pablocaro.es/" rel="alternate"></link><link href="https://pablocaro.es/feeds/tags/data.atom.xml" rel="self"></link><id>https://pablocaro.es/</id><updated>2026-02-20T00:00:00+01:00</updated><subtitle>Anotaciones</subtitle><entry><title>DeepDiff: La navaja suiza para comparar datos en Python</title><link href="https://pablocaro.es/deepdiff-comparar-datos-python" rel="alternate"></link><published>2026-02-20T00:00:00+01:00</published><updated>2026-02-20T00:00:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-02-20:/deepdiff-comparar-datos-python</id><summary type="html">&lt;p&gt;Cuando trabajamos con datos estructurados en Python, a menudo necesitamos comparar dos diccionarios, JSONs u objetos complejos para encontrar qué ha cambiado. Si bien la comparación directa (&lt;code&gt;==&lt;/code&gt;) es útil, a veces necesitamos entender &lt;em&gt;exactamente qué&lt;/em&gt; es diferente: qué claves se han añadido, cuáles se han eliminado, o dónde han cambiado …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Cuando trabajamos con datos estructurados en Python, a menudo necesitamos comparar dos diccionarios, JSONs u objetos complejos para encontrar qué ha cambiado. Si bien la comparación directa (&lt;code&gt;==&lt;/code&gt;) es útil, a veces necesitamos entender &lt;em&gt;exactamente qué&lt;/em&gt; es diferente: qué claves se han añadido, cuáles se han eliminado, o dónde han cambiado los valores, incluso en estructuras profundamente anidadas.&lt;/p&gt;
+&lt;p&gt;Aquí es donde entra &lt;strong&gt;&lt;a href="https://github.com/seperman/deepdiff"&gt;DeepDiff&lt;/a&gt;&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;DeepDiff es una biblioteca de Python increíblemente potente que ofrece mucho más que una simple comparación. Es una herramienta esencial para pruebas, validación de datos y depuración de APIs.&lt;/p&gt;
+&lt;h2 id="caracteristicas-principales"&gt;Características principales&lt;a class="headerlink" href="#caracteristicas-principales" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;DeepDiff no es solo una herramienta, es un conjunto de utilidades:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;DeepDiff&lt;/strong&gt;: Compara diccionarios, iterables, cadenas y otros objetos recursivamente. Puede ignorar el orden en listas, ignorar tipos específicos, o excluir rutas de la comparación.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;DeepSearch&lt;/strong&gt;: Busca objetos dentro de otros objetos, como un &lt;code&gt;grep&lt;/code&gt; para estructuras de datos en memoria.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;DeepHash&lt;/strong&gt;: Calcula hashes de objetos basándose en su contenido. Muy útil para deduplicación de datos complejos donde el orden de las claves no importa.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Delta&lt;/strong&gt;: Genera "deltas" (diferencias) que se pueden aplicar a otros objetos, similar a un &lt;code&gt;git patch&lt;/code&gt; pero para objetos Python.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="instalacion"&gt;Instalación&lt;a class="headerlink" href="#instalacion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;La forma moderna y recomendada de instalar herramientas en Python es usando &lt;code&gt;uv&lt;/code&gt;.&lt;/p&gt;
+&lt;h3 id="como-herramienta-de-linea-de-comandos-cli"&gt;Como herramienta de línea de comandos (CLI)&lt;a class="headerlink" href="#como-herramienta-de-linea-de-comandos-cli" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Si solo quieres usar el comando &lt;code&gt;deep&lt;/code&gt; en tu terminal para comparar archivos JSON o YAML:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;uv&lt;span class="w"&gt; &lt;/span&gt;tool&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;deepdiff[cli]&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Esto instalará el comando &lt;code&gt;deep&lt;/code&gt; en tu sistema de forma aislada. Asegúrate de incluir &lt;code&gt;[cli]&lt;/code&gt; para instalar las dependencias necesarias.&lt;/p&gt;
+&lt;h3 id="como-biblioteca-en-tu-proyecto"&gt;Como biblioteca en tu proyecto&lt;a class="headerlink" href="#como-biblioteca-en-tu-proyecto" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Si vas a usarlo dentro de tus scripts de Python:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;uv&lt;span class="w"&gt; &lt;/span&gt;add&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;deepdiff&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;O si necesitas la CLI también dentro de tu entorno virtual:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;uv&lt;span class="w"&gt; &lt;/span&gt;add&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;deepdiff[cli]&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="ejemplos-de-uso"&gt;Ejemplos de uso&lt;a class="headerlink" href="#ejemplos-de-uso" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="en-python"&gt;En Python&lt;a class="headerlink" href="#en-python" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Imagina que tienes dos respuestas de API ligeramente diferentes y quieres saber qué cambió:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;deepdiff&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;DeepDiff&lt;/span&gt;
+
+&lt;span class="n"&gt;t1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;id&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;name&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Producto A&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;tags&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;nuevo&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;oferta&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;details&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;price&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;stock&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;50&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="n"&gt;t2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;id&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;name&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Producto A&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;tags&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;oferta&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;nuevo&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;  &lt;span class="c1"&gt;# Orden diferente&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;details&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;price&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;120&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;stock&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;50&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Por defecto, el orden importa en listas&lt;/span&gt;
+&lt;span class="n"&gt;diff&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;DeepDiff&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;t1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;t2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c1"&gt;# Resultado muestra cambios en la lista &amp;#39;tags&amp;#39; y en &amp;#39;details.price&amp;#39;&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Si ignoramos el orden en iterables&lt;/span&gt;
+&lt;span class="n"&gt;diff_ignore_order&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;DeepDiff&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;t1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;t2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ignore_order&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;diff_ignore_order&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Salida:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;values_changed&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="s2"&gt;&amp;quot;root[&amp;#39;details&amp;#39;][&amp;#39;price&amp;#39;]&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="s1"&gt;&amp;#39;new_value&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;120&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+            &lt;span class="s1"&gt;&amp;#39;old_value&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;100&lt;/span&gt;
+        &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Como ves, detectó el cambio de precio pero ignoró el cambio de orden en los tags.&lt;/p&gt;
+&lt;h3 id="en-la-terminal-cli"&gt;En la terminal (CLI)&lt;a class="headerlink" href="#en-la-terminal-cli" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;El comando &lt;code&gt;deep&lt;/code&gt; es muy útil para comparar archivos rápidamente:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Comparar dos archivos JSON&lt;/span&gt;
+deep&lt;span class="w"&gt; &lt;/span&gt;diff&lt;span class="w"&gt; &lt;/span&gt;production.json&lt;span class="w"&gt; &lt;/span&gt;development.json
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;También puedes usarlo para extraer información o buscar dentro de archivos JSON/YAML grandes sin tener que escribir un script.&lt;/p&gt;
+&lt;h2 id="conclusion"&gt;Conclusión&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;DeepDiff es una de esas librerías que, una vez que conoces, no puedes dejar de usar. Su flexibilidad para ignorar ciertos campos (como timestamps o IDs autogenerados) la hace perfecta para tests de integración y validación de datos.&lt;/p&gt;
+&lt;p&gt;Puedes ver la documentación completa en &lt;a href="https://zepworks.com/deepdiff/current/"&gt;zepworks.com/deepdiff&lt;/a&gt;.&lt;/p&gt;</content><category term="Python"></category><category term="python"></category><category term="data"></category><category term="cli"></category><category term="tools"></category><category term="diff"></category></entry></feed>
