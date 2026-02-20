@@ -42,6 +42,7 @@ AUTHOR_FEED_RSS = None
 # Blogroll
 LINKS = (
     ("@pcaro at X.com", "http://x.com/pcaro"),
+    ("Linkedin", "https://www.linkedin.com/in/pcarorevuelta/"),
     ("Python.org", "http://python.org/"),
     ("Jinja2", "http://jinja.pocoo.org/"),
 )

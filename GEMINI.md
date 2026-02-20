@@ -39,21 +39,21 @@ This project uses `uv` for dependency management and `invoke` for task automatio
 
 ### Development Commands
 
-All common tasks are automated using `invoke` (defined in `tasks.py`).
+All common tasks are automated using `invoke` (defined in `tasks.py`). Note that if you are not in an active virtual environment, you should prepend `uv run` to these commands.
 
 *   **Build the site**:
     ```bash
-    invoke build
+    uv run invoke build
     ```
 
 *   **Run a local development server**:
     ```bash
-    invoke develop
+    uv run invoke develop
     ```
 
 *   **Run server on specific port**:
     ```bash
-    invoke serve --port 7000
+    uv run invoke serve --port 7000
     ```
 
 *   **Stop a running development server**:
@@ -71,12 +71,12 @@ All common tasks are automated using `invoke` (defined in `tasks.py`).
 
 *   **Build for production**:
     ```bash
-    invoke production
+    uv run invoke production
     ```
 
 *   **Create a new post**:
     ```bash
-    invoke write "Title of your new post"
+    uv run invoke write "Title of your new post"
     ```
     *(This will create a new reStructuredText file in `content/articles/` with a pre-filled template.)*
 
@@ -180,10 +180,10 @@ The blog previously used custom `generate_search_index()` code that:
 #### 1. Launch Development Server
 ```bash
 # Build the site first
-invoke build
+uv run invoke build
 
 # Launch the development server
-invoke serve --port 7000
+uv run invoke serve --port 7000
 # Server runs on http://localhost:7000
 ```
 
