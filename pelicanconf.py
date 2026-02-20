@@ -21,6 +21,11 @@ TIMEZONE = "Europe/Paris"
 # DISQUS_SITENAME = 'anotaciones'  # Disabled in development - only works in production
 
 DEFAULT_LANG = "es"
+LOCALE = ("es_ES.UTF-8", "es_ES", "es")
+DATE_FORMATS = {
+    "en": "%a, %d %b %Y",
+    "es": "%d de %B de %Y",
+}
 
 # Manual Spanish translations for Elegant theme
 # (Alternative to i18n_subsites plugin which has compatibility issues)
