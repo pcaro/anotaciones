@@ -1,0 +1,58 @@
+Title: kitty-rbw: Acceso rápido a Bitwarden desde tu terminal kitty
+Date: 2026-02-26 14:20
+Category: Herramientas
+Tags: bitwarden, cli, kitty, rust, productividad
+Slug: kitty-rbw-kitten
+Lang: es
+Summary: Presentación de kitty-rbw, un "kitten" para el terminal kitty que permite buscar y usar credenciales de rbw (Bitwarden) de forma instantánea mediante fzf.
+
+En la [entrada anterior]({filename}rbw-bitwarden.md) hablamos de **rbw**, el cliente de Bitwarden para terminal escrito en Rust que destaca por su velocidad y por usar un agente para gestionar el desbloqueo del almacén.
+
+Hoy doy un paso más allá y presento **[kitty-rbw](https://github.com/pcaro/kitty_rbw)**, un *kitten* que he desarrollado para el terminal **kitty**. Su objetivo es permitirte buscar y usar tus credenciales de Bitwarden sin tener que salir del terminal ni escribir comandos complejos, integrándose perfectamente en tu flujo de trabajo.
+
+![Interfaz de kitty-rbw]({static}/images/kitty-rbw.png)
+
+## ¿Qué es un kitten?
+
+Los *kittens* son pequeños programas en Python que extienden las funcionalidades del terminal kitty. Pueden ejecutarse en ventanas superpuestas (overlays), lo que los hace ideales para herramientas interactivas que no queremos que ensucien nuestro historial del terminal.
+
+## Características principales
+
+`kitty-rbw` utiliza **fzf** para ofrecer una búsqueda difusa (fuzzy search) extremadamente rápida sobre tu almacén de rbw. Estas son sus funciones más destacadas:
+
+- **Búsqueda simultánea**: Filtra por nombre, usuario y carpeta al mismo tiempo.
+- **Inyección directa**: Escribe la contraseña o el usuario directamente en la ventana activa del terminal donde lanzaste el kitten. Ideal para prompts de `sudo` o inicios de sesión SSH.
+- **Soporte para el portapapeles**: Copia el usuario, la contraseña o el código TOTP con un solo atajo de teclado.
+- **Priorización de uso**: Las 10 entradas que más utilizas aparecen al principio de la lista, facilitando el acceso a lo más común.
+- **Atajos por carpeta**: Puedes configurar el kitten para que se abra pre-filtrado por una carpeta específica (por ejemplo, una para el trabajo y otra personal).
+
+## Instalación
+
+Para instalarlo, solo tienes que clonar el repositorio en tu directorio de configuración de kitty:
+
+```bash
+cd ~/.config/kitty
+git clone https://github.com/pcaro/kitty_rbw
+```
+
+Luego, añade un atajo de teclado en tu `kitty.conf`:
+
+```conf
+map kitty_mod+b kitten kitty_rbw/rbw.py
+```
+
+## Uso y atajos
+
+Una vez configurado, al pulsar el atajo (`Ctrl+Shift+b` por defecto) se abrirá un panel con tus credenciales. 
+
+| Tecla | Acción |
+|-------|--------|
+| `Enter` | Escribe la **contraseña** en el terminal |
+| `Ctrl+u` | Escribe el **nombre de usuario** |
+| `Ctrl+b` | Escribe **usuario**, pulsa `Tab` y luego **contraseña** |
+| `Ctrl+t` | Copia el código **TOTP** al portapapeles |
+| `Alt+p` | Copia la **contraseña** al portapapeles |
+| `Alt+u` | Copia el **usuario** al portapapeles |
+| `Alt+s` | Sincroniza el almacén (`rbw sync`) |
+
+Si quieres saber más o contribuir al proyecto, puedes encontrarlo en GitHub: [https://github.com/pcaro/kitty_rbw](https://github.com/pcaro/kitty_rbw)
