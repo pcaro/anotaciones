@@ -61,30 +61,30 @@
  
 
 <meta name="author" content="Pablo Caro" />
-<meta name="description" content="Si trabajas con Kubernetes, probablemente hayas sufrido el comando kubectl logs. Es útil para ver los logs de un pod específico, pero se queda corto cuando tienes múltiples réplicas de un servicio o cuando los pods se reinician y cambian de nombre. Aquí es donde entra Stern. Stern te permite …" />
-<meta name="keywords" content="kubernetes, cli, logs, devops, tools">
+<meta name="description" content="Cómo instalar y configurar rbw, una implementación en Rust del cliente de Bitwarden, y cómo integrarlo en tus flujos de trabajo con pi-agent." />
+<meta name="keywords" content="bitwarden, cli, rust, seguridad, pi-agent">
 
-<link rel="alternate" href="https://pablocaro.es/stern-kubernetes-logs" hreflang="es" />
-<link rel="alternate" href="https://pablocaro.es/en/stern-kubernetes-logs" hreflang="en" />
+<link rel="alternate" href="https://pablocaro.es/rbw-bitwarden-cli" hreflang="es" />
+<link rel="alternate" href="https://pablocaro.es/en/rbw-bitwarden-cli" hreflang="en" />
 
   <meta property="og:site_name" content="Anotaciones por Pablo Caro"/>
-  <meta property="og:title" content="Stern: Logs de Kubernetes con esteroides"/>
-  <meta property="og:description" content="Si trabajas con Kubernetes, probablemente hayas sufrido el comando kubectl logs. Es útil para ver los logs de un pod específico, pero se queda corto cuando tienes múltiples réplicas de un servicio o cuando los pods se reinician y cambian de nombre. Aquí es donde entra Stern. Stern te permite …"/>
+  <meta property="og:title" content="rbw: El cliente de Bitwarden para terminal que deberías usar"/>
+  <meta property="og:description" content="Cómo instalar y configurar rbw, una implementación en Rust del cliente de Bitwarden, y cómo integrarlo en tus flujos de trabajo con pi-agent."/>
   <meta property="og:locale" content="en_US"/>
-  <meta property="og:url" content="https://pablocaro.es/stern-kubernetes-logs"/>
+  <meta property="og:url" content="https://pablocaro.es/rbw-bitwarden-cli"/>
   <meta property="og:type" content="article"/>
-  <meta property="article:published_time" content="2026-02-20 00:00:00+01:00"/>
+  <meta property="article:published_time" content="2026-02-26 11:45:00+01:00"/>
   <meta property="article:modified_time" content=""/>
   <meta property="article:author" content="https://pablocaro.es/author/pablo-caro.html">
-  <meta property="article:section" content="DevOps"/>
-  <meta property="article:tag" content="kubernetes"/>
+  <meta property="article:section" content="Herramientas"/>
+  <meta property="article:tag" content="bitwarden"/>
   <meta property="article:tag" content="cli"/>
-  <meta property="article:tag" content="logs"/>
-  <meta property="article:tag" content="devops"/>
-  <meta property="article:tag" content="tools"/>
+  <meta property="article:tag" content="rust"/>
+  <meta property="article:tag" content="seguridad"/>
+  <meta property="article:tag" content="pi-agent"/>
   <meta property="og:image" content="/theme/img/profile.png">
 
-  <title>Anotaciones por Pablo Caro &ndash; Stern: Logs de Kubernetes con esteroides</title>
+  <title>Anotaciones por Pablo Caro &ndash; rbw: El cliente de Bitwarden para terminal que deberías usar</title>
 
 
 </head>
@@ -183,97 +183,83 @@
 <article class="single">
   <header>
           <div class="translations">
-            <a href="https://pablocaro.es/en/stern-kubernetes-logs">Read in English</a>
+            <a href="https://pablocaro.es/en/rbw-bitwarden-cli">Read in English</a>
     </div>
 
-    <h1 id="stern-kubernetes-logs">Stern: Logs de Kubernetes con esteroides</h1>
+    <h1 id="rbw-bitwarden-cli">rbw: El cliente de Bitwarden para terminal que deberías usar</h1>
     <p>
-      Publicado el 20 de February de 2026 en <a href="https://pablocaro.es/category/devops.html">DevOps</a>
+      Publicado el 26 de February de 2026 en <a href="https://pablocaro.es/category/herramientas.html">Herramientas</a>
 
     </p>
   </header>
 
 
   <div>
-    <p>Si trabajas con Kubernetes, probablemente hayas sufrido el comando <code>kubectl logs</code>. Es útil para ver los logs de un pod específico, pero se queda corto cuando tienes múltiples réplicas de un servicio o cuando los pods se reinician y cambian de nombre.</p>
-<p>Aquí es donde entra <strong><a href="https://github.com/stern/stern">Stern</a></strong>.</p>
-<p>Stern te permite hacer "tail" (seguir) logs de múltiples pods y contenedores dentro de Kubernetes simultáneamente. Lo mejor de todo es que utiliza expresiones regulares para seleccionar los pods, por lo que no necesitas copiar y pegar esos IDs aleatorios (<code>pod-1234567890-abcde</code>).</p>
+    <p>Aunque Bitwarden tiene un cliente oficial de línea de comandos, este puede resultar lento al estar basado en Node.js. Para los que buscamos algo más ágil, <a href="https://github.com/doy/rbw">rbw</a> es la solución ideal. Es una implementación no oficial en Rust que destaca por ser extremadamente rápida y por gestionar el desbloqueo del almacén mediante un agente, evitando que tengas que introducir tu contraseña maestra en cada comando.</p>
 <h2 id="instalacion">Instalación<a class="headerlink" href="#instalacion" title="Permanent link">&para;</a></h2>
-<p>Stern es muy popular y está disponible en la mayoría de gestores de paquetes.</p>
-<h3 id="usando-krew-recomendado">Usando Krew (recomendado)<a class="headerlink" href="#usando-krew-recomendado" title="Permanent link">&para;</a></h3>
-<p>Si ya usas <code>kubectl</code>, Krew es la forma más natural de instalar plugins:</p>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>krew<span class="w"> </span>install<span class="w"> </span>stern
+<p>La forma más sencilla de instalarlo es bajando el binario directamente desde sus releases de GitHub. Yo utilizo <code>gah</code> para este propósito:</p>
+<div class="highlight"><pre><span></span><code>gah<span class="w"> </span>install<span class="w"> </span>doy/rbw
 </code></pre></div>
 
-<h3 id="usando-homebrew">Usando Homebrew<a class="headerlink" href="#usando-homebrew" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>brew<span class="w"> </span>install<span class="w"> </span>stern
+<p>Este comando descargará el binario de <code>rbw</code> y el de <code>rbw-agent</code>.</p>
+<h2 id="configuracion-inicial">Configuración inicial<a class="headerlink" href="#configuracion-inicial" title="Permanent link">&para;</a></h2>
+<p>Lo primero es configurar tu cuenta y el servidor:</p>
+<div class="highlight"><pre><span></span><code>rbw<span class="w"> </span>login
 </code></pre></div>
 
-<h3 id="binario-directo">Binario directo<a class="headerlink" href="#binario-directo" title="Permanent link">&para;</a></h3>
-<p>También puedes descargar el binario directamente desde sus <a href="https://github.com/stern/stern/releases">releases en GitHub</a>.</p>
-<p>Si utilizas algún helper como <code>gah</code> (GitHub Asset Helper) o scripts personalizados, la instalación es tan sencilla como:</p>
-<div class="highlight"><pre><span></span><code>gah<span class="w"> </span>install<span class="w"> </span>stern/stern
+<p>Te pedirá tu email y la URL del servidor (puedes dejarla en blanco si usas el oficial de Bitwarden o poner la de tu instancia de Vaultwarden).</p>
+<p>Para empezar a usarlo, desbloquea el almacén:</p>
+<div class="highlight"><pre><span></span><code>rbw<span class="w"> </span>unlock
 </code></pre></div>
 
-<h2 id="caracteristicas-principales">Características principales<a class="headerlink" href="#caracteristicas-principales" title="Permanent link">&para;</a></h2>
-<h3 id="1-tailing-de-multiples-pods">1. Tailing de múltiples pods<a class="headerlink" href="#1-tailing-de-multiples-pods" title="Permanent link">&para;</a></h3>
-<p>En lugar de buscar el nombre exacto del pod, puedes usar una regex:</p>
-<div class="highlight"><pre><span></span><code>stern<span class="w"> </span>backend
+<p>A diferencia del cliente oficial, no necesitas exportar variables de entorno con tokens de sesión. El agente de <code>rbw</code> se encarga de todo en segundo plano.</p>
+<h2 id="uso-basico">Uso básico<a class="headerlink" href="#uso-basico" title="Permanent link">&para;</a></h2>
+<p>Para obtener una contraseña rápidamente:</p>
+<div class="highlight"><pre><span></span><code>rbw<span class="w"> </span>get<span class="w"> </span><span class="s2">&quot;Nombre del Elemento&quot;</span>
 </code></pre></div>
 
-<p>Esto mostrará los logs de todos los pods que contengan "backend" en su nombre (<code>backend-api</code>, <code>backend-worker</code>, etc.), intercalados y coloreados para distinguirlos fácilmente.</p>
-<h3 id="2-filtrado-y-exclusion">2. Filtrado y exclusión<a class="headerlink" href="#2-filtrado-y-exclusion" title="Permanent link">&para;</a></h3>
-<p>Puedes filtrar el contenido de los logs sobre la marcha sin necesidad de <code>grep</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># Solo mostrar líneas que contengan &quot;Error&quot;</span>
-stern<span class="w"> </span>backend<span class="w"> </span>-i<span class="w"> </span>Error
-
-<span class="c1"># Excluir líneas que contengan &quot;Health check&quot;</span>
-stern<span class="w"> </span>backend<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;Health check&quot;</span>
+<p>Si hay varios elementos con el mismo nombre, puedes usar filtros o el ID. También puedes obtener campos personalizados o el nombre de usuario:</p>
+<div class="highlight"><pre><span></span><code>rbw<span class="w"> </span>get<span class="w"> </span><span class="s2">&quot;OpenRouter&quot;</span><span class="w"> </span>--folder<span class="w"> </span><span class="s2">&quot;APIs&quot;</span>
+rbw<span class="w"> </span>get<span class="w"> </span>--username<span class="w"> </span><span class="s2">&quot;Twitter&quot;</span>
 </code></pre></div>
 
-<h3 id="3-selectores-de-kubernetes">3. Selectores de Kubernetes<a class="headerlink" href="#3-selectores-de-kubernetes" title="Permanent link">&para;</a></h3>
-<p>Además de regex por nombre, puedes usar selectores de etiquetas, lo cual es mucho más preciso para entornos de producción:</p>
-<div class="highlight"><pre><span></span><code>stern<span class="w"> </span>-l<span class="w"> </span><span class="nv">app</span><span class="o">=</span>mi-app<span class="w"> </span>-l<span class="w"> </span><span class="nv">tier</span><span class="o">=</span>frontend
+<h2 id="integracion-con-pi-agent">Integración con pi-agent<a class="headerlink" href="#integracion-con-pi-agent" title="Permanent link">&para;</a></h2>
+<p>Una de las mayores ventajas de tener un cliente CLI rápido y seguro es la capacidad de integrar secretos en tus herramientas de desarrollo.</p>
+<p><a href="https://github.com/mariozechner/pi-agent">pi-agent</a> permite ejecutar comandos para obtener claves de API dinámicamente. Esto evita tener que guardar claves en archivos de configuración en texto plano. En tu <code>settings.json</code>, puedes configurar el acceso a una clave de la siguiente manera:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span>
+<span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;api_key&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="nt">&quot;key&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;!rbw get &#39;OpenRouter&#39;&quot;</span><span class="w"> </span>
+<span class="p">}</span>
 </code></pre></div>
 
-<h3 id="4-formato-de-salida">4. Formato de salida<a class="headerlink" href="#4-formato-de-salida" title="Permanent link">&para;</a></h3>
-<p>Si tus logs están en JSON (como es buena práctica), Stern puede pasarlos tal cual para que los proceses con herramientas como <code>jq</code> o <code>fx</code>:</p>
-<div class="highlight"><pre><span></span><code>stern<span class="w"> </span>backend<span class="w"> </span>-o<span class="w"> </span>raw<span class="w"> </span><span class="p">|</span><span class="w"> </span>fx
-</code></pre></div>
-
-<h2 id="conclusion">Conclusión<a class="headerlink" href="#conclusion" title="Permanent link">&para;</a></h2>
-<p>Stern es una de esas herramientas que instalas el primer día y te preguntas cómo podías vivir sin ella. Hace que el debug en entornos distribuidos sea mucho menos doloroso al agregar la información de manera coherente.</p>
-<p>Dale una oportunidad y tus sesiones de debugging te lo agradecerán.</p>
+<p>El prefijo <code>!</code> indica a <code>pi-agent</code> que debe ejecutar el comando y usar su salida estándar como la clave. Gracias al agente de <code>rbw</code>, este comando se ejecutará instantáneamente sin pedirte la clave maestra cada vez, siempre que el almacén esté desbloqueado.</p>
   </div>
   <div class="tag-cloud">
     <p>
-      <a href="https://pablocaro.es/tag/kubernetes.html">kubernetes</a>
+      <a href="https://pablocaro.es/tag/bitwarden.html">bitwarden</a>
       <a href="https://pablocaro.es/tag/cli.html">cli</a>
-      <a href="https://pablocaro.es/tag/logs.html">logs</a>
-      <a href="https://pablocaro.es/tag/devops.html">devops</a>
-      <a href="https://pablocaro.es/tag/tools.html">tools</a>
+      <a href="https://pablocaro.es/tag/rust.html">rust</a>
+      <a href="https://pablocaro.es/tag/seguridad.html">seguridad</a>
+      <a href="https://pablocaro.es/tag/pi-agent.html">pi-agent</a>
     </p>
   </div>
 
 
 
   <div class="neighbors">
-    <a class="btn float-left" href="https://pablocaro.es/gestionando-instalaciones-desde-github-con-gah" title="Gestionando instalaciones desde GitHub con gah">
+    <a class="btn float-left" href="https://pablocaro.es/deepdiff-comparar-datos-python" title="DeepDiff: La navaja suiza para comparar datos en Python">
       <i class="fa fa-angle-left"></i> Artículo anterior
-    </a>
-    <a class="btn float-right" href="https://pablocaro.es/shot-scraper-capturas-pantalla-automatizadas" title="Shot-scraper: Capturas de pantalla automatizadas para la web">
-      Próximo artículo <i class="fa fa-angle-right"></i>
     </a>
   </div>
 
   <div class="related-posts">
     <h4>Te puede gustar</h4>
     <ul class="related-posts">
-      <li><a href="https://pablocaro.es/kubegres-postgresql-kubernetes">Kubegres: Gestión simplificada de PostgreSQL en Kubernetes</a></li>
       <li><a href="https://pablocaro.es/deepdiff-comparar-datos-python">DeepDiff: La navaja suiza para comparar datos en Python</a></li>
+      <li><a href="https://pablocaro.es/renderizando-markdown-en-la-terminal-con-glow">Renderizando Markdown en la terminal con Glow</a></li>
       <li><a href="https://pablocaro.es/shot-scraper-capturas-pantalla-automatizadas">Shot-scraper: Capturas de pantalla automatizadas para la web</a></li>
-      <li><a href="https://pablocaro.es/sysdig-seguridad-cloud-nativa">Sysdig: Plataforma de seguridad cloud-nativa con IA</a></li>
-      <li><a href="https://pablocaro.es/rbw-bitwarden-cli">rbw: El cliente de Bitwarden para terminal que deberías usar</a></li>
+      <li><a href="https://pablocaro.es/stern-kubernetes-logs">Stern: Logs de Kubernetes con esteroides</a></li>
+      <li><a href="https://pablocaro.es/gestionando-instalaciones-desde-github-con-gah">Gestionando instalaciones desde GitHub con gah</a></li>
     </ul>
   </div>
 

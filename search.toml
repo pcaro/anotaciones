@@ -3,6 +3,11 @@ html_selector = "main"
 base_directory = "/home/runner/work/anotaciones/anotaciones/output"
 
 [[input.files]]
+path = "rbw-bitwarden-cli.html"
+url = "/rbw-bitwarden-cli"
+title = "rbw: El cliente de Bitwarden para terminal que deberías usar"
+
+[[input.files]]
 path = "deepdiff-comparar-datos-python.html"
 url = "/deepdiff-comparar-datos-python"
 title = "DeepDiff: La navaja suiza para comparar datos en Python"
@@ -686,6 +691,11 @@ title = "Corrector ortográfico de firefox 2.0 en castellano"
 path = "primera-anotacion-de-prueba.html"
 url = "/primera-anotacion-de-prueba"
 title = "Primera anotación de prueba"
+
+[[input.files]]
+path = "rbw-bitwarden-cli-en.html"
+url = "/en/rbw-bitwarden-cli"
+title = "rbw: The Bitwarden terminal client you should be using"
 
 [[input.files]]
 path = "deepdiff-comparar-datos-python-en.html"

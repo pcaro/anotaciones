@@ -61,30 +61,30 @@
  
 
 <meta name="author" content="Pablo Caro" />
-<meta name="description" content="Sysdig offers a comprehensive security platform for cloud-native environments that combines AI, real-time visibility, and open source innovation" />
-<meta name="keywords" content="sysdig, security, cloud, kubernetes, falco">
+<meta name="description" content="How to install and configure rbw, a Rust implementation of the Bitwarden client, and how to integrate it into your workflows with pi-agent." />
+<meta name="keywords" content="bitwarden, cli, rust, security, pi-agent">
 
-<link rel="alternate" href="https://pablocaro.es/en/sysdig-seguridad-cloud-nativa" hreflang="en" />
-<link rel="alternate" href="https://pablocaro.es/en/../sysdig-seguridad-cloud-nativa" hreflang="es" />
+<link rel="alternate" href="https://pablocaro.es/en/rbw-bitwarden-cli" hreflang="en" />
+<link rel="alternate" href="https://pablocaro.es/en/../rbw-bitwarden-cli" hreflang="es" />
 
   <meta property="og:site_name" content="Annotations by Pablo Caro"/>
-  <meta property="og:title" content="Sysdig: Cloud-Native Security Platform with AI"/>
-  <meta property="og:description" content="Sysdig offers a comprehensive security platform for cloud-native environments that combines AI, real-time visibility, and open source innovation"/>
+  <meta property="og:title" content="rbw: The Bitwarden terminal client you should be using"/>
+  <meta property="og:description" content="How to install and configure rbw, a Rust implementation of the Bitwarden client, and how to integrate it into your workflows with pi-agent."/>
   <meta property="og:locale" content="en_US"/>
-  <meta property="og:url" content="https://pablocaro.es/en/sysdig-seguridad-cloud-nativa"/>
+  <meta property="og:url" content="https://pablocaro.es/en/rbw-bitwarden-cli"/>
   <meta property="og:type" content="article"/>
-  <meta property="article:published_time" content="2016-02-10 14:37:00+01:00"/>
+  <meta property="article:published_time" content="2026-02-26 11:45:00+01:00"/>
   <meta property="article:modified_time" content=""/>
   <meta property="article:author" content="https://pablocaro.es/en/author/pablo-caro.html">
   <meta property="article:section" content="Tools"/>
-  <meta property="article:tag" content="sysdig"/>
+  <meta property="article:tag" content="bitwarden"/>
+  <meta property="article:tag" content="cli"/>
+  <meta property="article:tag" content="rust"/>
   <meta property="article:tag" content="security"/>
-  <meta property="article:tag" content="cloud"/>
-  <meta property="article:tag" content="kubernetes"/>
-  <meta property="article:tag" content="falco"/>
+  <meta property="article:tag" content="pi-agent"/>
   <meta property="og:image" content="/theme/img/profile.png">
 
-  <title>Annotations by Pablo Caro &ndash; Sysdig: Cloud-Native Security Platform with AI</title>
+  <title>Annotations by Pablo Caro &ndash; rbw: The Bitwarden terminal client you should be using</title>
 
 
 </head>
@@ -183,75 +183,83 @@
 <article class="single">
   <header>
           <div class="translations">
-            <a href="https://pablocaro.es/en/../sysdig-seguridad-cloud-nativa">Leer en español</a>
+            <a href="https://pablocaro.es/en/../rbw-bitwarden-cli">Leer en español</a>
     </div>
 
-    <h1 id="sysdig-seguridad-cloud-nativa">Sysdig: Cloud-Native Security Platform with AI</h1>
+    <h1 id="rbw-bitwarden-cli">rbw: The Bitwarden terminal client you should be using</h1>
     <p>
-      Posted on Wed, 10 Feb 2016 in <a href="https://pablocaro.es/en/category/tools.html">Tools</a>
+      Posted on Thu, 26 Feb 2026 in <a href="https://pablocaro.es/en/category/tools.html">Tools</a>
 
     </p>
   </header>
 
 
   <div>
-    <p><strong>Sysdig</strong> is a cloud security platform that provides comprehensive, real-time security solutions for cloud-native environments, resolving the conflict between the needs of security and development teams.</p>
-<h2 id="key-features">Key Features<a class="headerlink" href="#key-features" title="Permanent link">&para;</a></h2>
-<h3 id="intelligent-security-ai">Intelligent Security AI<a class="headerlink" href="#intelligent-security-ai" title="Permanent link">&para;</a></h3>
-<ul>
-<li><strong>Contextual AI</strong> that understands cloud environments and guides actionable insights</li>
-<li><strong>76% reduction</strong> in mean time to resolution (MTTR)</li>
-</ul>
-<h3 id="real-time-visibility">Real-Time Visibility<a class="headerlink" href="#real-time-visibility" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Continuous monitoring of cloud activities and potential risks</li>
-<li><strong>Threat detection in 2 seconds</strong></li>
-<li>Filters noise to highlight only critical issues</li>
-</ul>
-<h3 id="open-innovation">Open Innovation<a class="headerlink" href="#open-innovation" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Based on open source technologies like <strong>Falco</strong></li>
-<li>Transparency and customization in cloud security</li>
-</ul>
-<h2 id="key-benefits">Key Benefits<a class="headerlink" href="#key-benefits" title="Permanent link">&para;</a></h2>
-<ul>
-<li><strong>95% savings</strong> in vulnerability management time</li>
-<li><strong>98% reduction</strong> in vulnerability noise</li>
-<li>Ultra-fast threat detection</li>
-</ul>
-<h2 id="value-proposition">Value Proposition<a class="headerlink" href="#value-proposition" title="Permanent link">&para;</a></h2>
-<p>Sysdig enables security and development teams to work more effectively, <strong>enabling rapid innovation without compromising security</strong>. The platform is used by major companies like IBM, Booking.com, and Neo4j to secure their cloud environments.</p>
-<p>This tool represents the future of cloud-native security: <strong>intelligent, fast, and uncompromising</strong>.</p>
-<p><em>Official site</em>: <a href="https://sysdig.com/">Sysdig</a></p>
+    <p>While Bitwarden has an official command-line client, it can be slow as it is Node.js-based. For those of us looking for something more agile, <a href="https://github.com/doy/rbw">rbw</a> is the ideal solution. It is an unofficial Rust implementation that stands out for being extremely fast and for managing vault unlocking through an agent, preventing you from having to enter your master password for every command.</p>
+<h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h2>
+<p>The easiest way to install it is by downloading the binary directly from its GitHub releases. I use <code>gah</code> for this purpose:</p>
+<div class="highlight"><pre><span></span><code>gah<span class="w"> </span>install<span class="w"> </span>doy/rbw
+</code></pre></div>
+
+<p>This command will download the <code>rbw</code> binary and the <code>rbw-agent</code> binary.</p>
+<h2 id="initial-setup">Initial Setup<a class="headerlink" href="#initial-setup" title="Permanent link">&para;</a></h2>
+<p>The first thing is to configure your account and the server:</p>
+<div class="highlight"><pre><span></span><code>rbw<span class="w"> </span>login
+</code></pre></div>
+
+<p>It will ask for your email and the server URL (you can leave it blank if you use the official Bitwarden one or enter the URL of your Vaultwarden instance).</p>
+<p>To start using it, unlock the vault:</p>
+<div class="highlight"><pre><span></span><code>rbw<span class="w"> </span>unlock
+</code></pre></div>
+
+<p>Unlike the official client, you don't need to export environment variables with session tokens. The <code>rbw</code> agent takes care of everything in the background.</p>
+<h2 id="basic-usage">Basic Usage<a class="headerlink" href="#basic-usage" title="Permanent link">&para;</a></h2>
+<p>To get a password quickly:</p>
+<div class="highlight"><pre><span></span><code>rbw<span class="w"> </span>get<span class="w"> </span><span class="s2">&quot;Item Name&quot;</span>
+</code></pre></div>
+
+<p>If there are multiple items with the same name, you can use filters or the ID. You can also get custom fields or the username:</p>
+<div class="highlight"><pre><span></span><code>rbw<span class="w"> </span>get<span class="w"> </span><span class="s2">&quot;OpenRouter&quot;</span><span class="w"> </span>--folder<span class="w"> </span><span class="s2">&quot;APIs&quot;</span>
+rbw<span class="w"> </span>get<span class="w"> </span>--username<span class="w"> </span><span class="s2">&quot;Twitter&quot;</span>
+</code></pre></div>
+
+<h2 id="integration-with-pi-agent">Integration with pi-agent<a class="headerlink" href="#integration-with-pi-agent" title="Permanent link">&para;</a></h2>
+<p>One of the greatest advantages of having a fast and secure CLI client is the ability to integrate secrets into your development tools.</p>
+<p><a href="https://github.com/mariozechner/pi-agent">pi-agent</a> allows executing commands to obtain API keys dynamically. This avoids having to save keys in plain text configuration files. In your <code>settings.json</code>, you can configure access to a key as follows:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span>
+<span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;api_key&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="nt">&quot;key&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;!rbw get &#39;OpenRouter&#39;&quot;</span><span class="w"> </span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>The <code>!</code> prefix tells <code>pi-agent</code> to execute the command and use its standard output as the key. Thanks to the <code>rbw</code> agent, this command will run instantly without asking for your master password every time, as long as the vault is unlocked.</p>
   </div>
   <div class="tag-cloud">
     <p>
-      <a href="https://pablocaro.es/en/tag/sysdig.html">sysdig</a>
+      <a href="https://pablocaro.es/en/tag/bitwarden.html">bitwarden</a>
+      <a href="https://pablocaro.es/en/tag/cli.html">cli</a>
+      <a href="https://pablocaro.es/en/tag/rust.html">rust</a>
       <a href="https://pablocaro.es/en/tag/security.html">security</a>
-      <a href="https://pablocaro.es/en/tag/cloud.html">cloud</a>
-      <a href="https://pablocaro.es/en/tag/kubernetes.html">kubernetes</a>
-      <a href="https://pablocaro.es/en/tag/falco.html">falco</a>
+      <a href="https://pablocaro.es/en/tag/pi-agent.html">pi-agent</a>
     </p>
   </div>
 
 
 
   <div class="neighbors">
-    <a class="btn float-left" href="https://pablocaro.es/en/python-generadores-repetibles" title="Python: Create Repeating Generators">
+    <a class="btn float-left" href="https://pablocaro.es/en/deepdiff-comparar-datos-python" title="DeepDiff: The Swiss Army Knife for Data Comparison in Python">
       <i class="fa fa-angle-left"></i> Previous Post
-    </a>
-    <a class="btn float-right" href="https://pablocaro.es/en/herramientas-desarrolladores-linea-comandos" title="Powerful Command Line Tools for Developers">
-      Next Post <i class="fa fa-angle-right"></i>
     </a>
   </div>
 
   <div class="related-posts">
     <h4>You might enjoy</h4>
     <ul class="related-posts">
-      <li><a href="https://pablocaro.es/en/rbw-bitwarden-cli">rbw: The Bitwarden terminal client you should be using</a></li>
-      <li><a href="https://pablocaro.es/en/encontrar-hosts-vivos-red">How to Find Live Hosts on Your Local Network</a></li>
+      <li><a href="https://pablocaro.es/en/deepdiff-comparar-datos-python">DeepDiff: The Swiss Army Knife for Data Comparison in Python</a></li>
+      <li><a href="https://pablocaro.es/en/renderizando-markdown-en-la-terminal-con-glow">Rendering Markdown in the terminal with Glow</a></li>
+      <li><a href="https://pablocaro.es/en/shot-scraper-capturas-pantalla-automatizadas">Shot-scraper: Automated Web Screenshots</a></li>
       <li><a href="https://pablocaro.es/en/stern-kubernetes-logs">Stern: Kubernetes Logs on Steroids</a></li>
-      <li><a href="https://pablocaro.es/en/kubegres-postgresql-kubernetes">Kubegres: Simplified PostgreSQL Management on Kubernetes</a></li>
+      <li><a href="https://pablocaro.es/en/gestionando-instalaciones-desde-github-con-gah">Managing GitHub installations with gah</a></li>
     </ul>
   </div>
 
