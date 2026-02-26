@@ -3,6 +3,11 @@ html_selector = "main"
 base_directory = "/home/runner/work/anotaciones/anotaciones/output"
 
 [[input.files]]
+path = "kitty-rbw-kitten.html"
+url = "/kitty-rbw-kitten"
+title = "kitty-rbw: Acceso rápido a Bitwarden desde tu terminal kitty"
+
+[[input.files]]
 path = "rbw-bitwarden-cli.html"
 url = "/rbw-bitwarden-cli"
 title = "rbw: El cliente de Bitwarden para terminal que deberías usar"
@@ -691,6 +696,11 @@ title = "Corrector ortográfico de firefox 2.0 en castellano"
 path = "primera-anotacion-de-prueba.html"
 url = "/primera-anotacion-de-prueba"
 title = "Primera anotación de prueba"
+
+[[input.files]]
+path = "kitty-rbw-kitten-en.html"
+url = "/en/kitty-rbw-kitten"
+title = "kitty-rbw: Fast Bitwarden access from your kitty terminal"
 
 [[input.files]]
 path = "rbw-bitwarden-cli-en.html"

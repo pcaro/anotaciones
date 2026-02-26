@@ -3,6 +3,11 @@ html_selector = "main"
 base_directory = "/home/runner/work/anotaciones/anotaciones/output/en"
 
 [[input.files]]
+path = "kitty-rbw-kitten.html"
+url = "/kitty-rbw-kitten"
+title = "kitty-rbw: Fast Bitwarden access from your kitty terminal"
+
+[[input.files]]
 path = "rbw-bitwarden-cli.html"
 url = "/rbw-bitwarden-cli"
 title = "rbw: The Bitwarden terminal client you should be using"
@@ -266,6 +271,11 @@ title = "Django: links in object list"
 path = "settings-vars-processor.html"
 url = "/settings-vars-processor"
 title = "Settings vars processor"
+
+[[input.files]]
+path = "kitty-rbw-kitten-es.html"
+url = "/../kitty-rbw-kitten"
+title = "kitty-rbw: Acceso rápido a Bitwarden desde tu terminal kitty"
 
 [[input.files]]
 path = "rbw-bitwarden-cli-es.html"

@@ -61,30 +61,30 @@
  
 
 <meta name="author" content="Pablo Caro" />
-<meta name="description" content="A quick guide to the most useful Kitty keyboard shortcuts to optimize your command-line workflow." />
-<meta name="keywords" content="kitty, terminal, shortcuts, keyboard, productivity">
+<meta name="description" content="Introducing kitty-rbw, a &#34;kitten&#34; for the kitty terminal that allows you to search and use rbw (Bitwarden) credentials instantly using fzf." />
+<meta name="keywords" content="bitwarden, cli, kitty, rust, productivity">
 
-<link rel="alternate" href="https://pablocaro.es/en/atajos-de-teclado-kitty" hreflang="en" />
-<link rel="alternate" href="https://pablocaro.es/en/../atajos-de-teclado-kitty" hreflang="es" />
+<link rel="alternate" href="https://pablocaro.es/en/kitty-rbw-kitten" hreflang="en" />
+<link rel="alternate" href="https://pablocaro.es/en/../kitty-rbw-kitten" hreflang="es" />
 
   <meta property="og:site_name" content="Annotations by Pablo Caro"/>
-  <meta property="og:title" content="Essential Keyboard Shortcuts in Kitty: Mastering Your Terminal"/>
-  <meta property="og:description" content="A quick guide to the most useful Kitty keyboard shortcuts to optimize your command-line workflow."/>
+  <meta property="og:title" content="kitty-rbw: Fast Bitwarden access from your kitty terminal"/>
+  <meta property="og:description" content="Introducing kitty-rbw, a &#34;kitten&#34; for the kitty terminal that allows you to search and use rbw (Bitwarden) credentials instantly using fzf."/>
   <meta property="og:locale" content="en_US"/>
-  <meta property="og:url" content="https://pablocaro.es/en/atajos-de-teclado-kitty"/>
+  <meta property="og:url" content="https://pablocaro.es/en/kitty-rbw-kitten"/>
   <meta property="og:type" content="article"/>
-  <meta property="article:published_time" content="2025-12-25 12:15:00+01:00"/>
+  <meta property="article:published_time" content="2026-02-26 14:20:00+01:00"/>
   <meta property="article:modified_time" content=""/>
   <meta property="article:author" content="https://pablocaro.es/en/author/pablo-caro.html">
-  <meta property="article:section" content="Systems"/>
+  <meta property="article:section" content="Tools"/>
+  <meta property="article:tag" content="bitwarden"/>
+  <meta property="article:tag" content="cli"/>
   <meta property="article:tag" content="kitty"/>
-  <meta property="article:tag" content="terminal"/>
-  <meta property="article:tag" content="shortcuts"/>
-  <meta property="article:tag" content="keyboard"/>
+  <meta property="article:tag" content="rust"/>
   <meta property="article:tag" content="productivity"/>
   <meta property="og:image" content="/theme/img/profile.png">
 
-  <title>Annotations by Pablo Caro &ndash; Essential Keyboard Shortcuts in Kitty: Mastering Your Terminal</title>
+  <title>Annotations by Pablo Caro &ndash; kitty-rbw: Fast Bitwarden access from your kitty terminal</title>
 
 
 </head>
@@ -183,72 +183,90 @@
 <article class="single">
   <header>
           <div class="translations">
-            <a href="https://pablocaro.es/en/../atajos-de-teclado-kitty">Leer en español</a>
+            <a href="https://pablocaro.es/en/../kitty-rbw-kitten">Leer en español</a>
     </div>
 
-    <h1 id="atajos-de-teclado-kitty">Essential Keyboard Shortcuts in Kitty: Mastering Your Terminal</h1>
+    <h1 id="kitty-rbw-kitten">kitty-rbw: Fast Bitwarden access from your kitty terminal</h1>
     <p>
-      Posted on Thu, 25 Dec 2025 in <a href="https://pablocaro.es/en/category/systems.html">Systems</a>
+      Posted on Thu, 26 Feb 2026 in <a href="https://pablocaro.es/en/category/tools.html">Tools</a>
 
     </p>
   </header>
 
 
   <div>
-    <p><strong>Kitty</strong> is a terminal that shines for its performance and high customizability, but where it truly excels is in its keyboard-driven interface. Mastering its shortcuts will allow you to navigate, manage, and manipulate your terminal sessions with amazing efficiency.</p>
-<h2 id="discover-your-shortcuts-show_shortcuts">Discover Your Shortcuts: <code>show_shortcuts</code><a class="headerlink" href="#discover-your-shortcuts-show_shortcuts" title="Permanent link">&para;</a></h2>
-<p>The fastest way to know all the keyboard shortcuts configured in your Kitty instance is by using its own functionality:</p>
-<div class="highlight"><pre><span></span><code>kitty<span class="w"> </span>+kitten<span class="w"> </span>show_shortcuts
+    <p>In the <a href="https://pablocaro.es/en/rbw-bitwarden-cli">previous post</a> we talked about <strong>rbw</strong>, the Bitwarden CLI client written in Rust that stands out for its speed and for using an agent to manage vault unlocking.</p>
+<p>Today I'm going a step further and introducing <strong><a href="https://github.com/pcaro/kitty_rbw">kitty-rbw</a></strong>, a <em>kitten</em> I've developed for the <strong>kitty</strong> terminal. Its goal is to let you search and use your Bitwarden credentials without leaving the terminal or typing complex commands, integrating perfectly into your workflow.</p>
+<p><img alt="kitty-rbw interface" src="https://pablocaro.es/en/images/kitty-rbw.png"></p>
+<h2 id="what-is-a-kitten">What is a kitten?<a class="headerlink" href="#what-is-a-kitten" title="Permanent link">&para;</a></h2>
+<p><em>Kittens</em> are small Python programs that extend the functionality of the kitty terminal. They can run in overlays, making them ideal for interactive tools that we don't want cluttering our terminal history.</p>
+<h2 id="key-features">Key Features<a class="headerlink" href="#key-features" title="Permanent link">&para;</a></h2>
+<p><code>kitty-rbw</code> uses <strong>fzf</strong> to provide extremely fast fuzzy searching over your rbw vault. Here are its most notable features:</p>
+<ul>
+<li><strong>Simultaneous search</strong>: Filter by name, username, and folder at the same time.</li>
+<li><strong>Direct injection</strong>: Types the password or username directly into the active terminal window where you launched the kitten. Ideal for <code>sudo</code> prompts or SSH logins.</li>
+<li><strong>Clipboard support</strong>: Copy the username, password, or TOTP code with a single keyboard shortcut.</li>
+<li><strong>Usage prioritization</strong>: The 10 entries you use most frequently appear at the top of the list, making it easy to access common credentials.</li>
+<li><strong>Folder shortcuts</strong>: You can configure the kitten to open pre-filtered by a specific folder (e.g., one for work and one for personal).</li>
+</ul>
+<h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h2>
+<p>To install it, simply clone the repository into your kitty configuration directory:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>~/.config/kitty
+git<span class="w"> </span>clone<span class="w"> </span>https://github.com/pcaro/kitty_rbw
 </code></pre></div>
 
-<p>This will open an interactive window where you can see all shortcuts, both the default ones and those customized in your <code>kitty.conf</code>.</p>
-<h2 id="essential-shortcuts-for-every-day">Essential Shortcuts for Every Day<a class="headerlink" href="#essential-shortcuts-for-every-day" title="Permanent link">&para;</a></h2>
-<p>Here are some of the most useful shortcuts that will help you optimize your workflow the most:</p>
-<h3 id="window-and-split-management-panes">Window and Split Management (Panes)<a class="headerlink" href="#window-and-split-management-panes" title="Permanent link">&para;</a></h3>
-<ul>
-<li><code>ctrl+shift+enter</code>: Opens a new Kitty window.</li>
-<li><code>ctrl+shift+w</code>: Closes the current Kitty window.</li>
-<li><code>ctrl+shift+o</code>: Splits the current window vertically (new pane to the right).</li>
-<li><code>ctrl+shift+e</code>: Splits the current window horizontally (new pane below).</li>
-<li><code>ctrl+shift+f</code>: Toggles between split panes (focus).</li>
-<li><code>ctrl+shift+[</code> / <code>ctrl+shift+]</code>: Navigates between panes (left/right).</li>
-<li><code>ctrl+shift+alt+[</code> / <code>ctrl+shift+alt+]</code>: Moves the active pane (left/right).</li>
-</ul>
-<h3 id="tab-management">Tab Management<a class="headerlink" href="#tab-management" title="Permanent link">&para;</a></h3>
-<ul>
-<li><code>ctrl+shift+t</code>: Opens a new tab.</li>
-<li><code>ctrl+shift+q</code>: Closes the current tab.</li>
-<li><code>ctrl+shift+.</code>: Moves to the next tab.</li>
-<li><code>ctrl+shift+,</code>: Moves to the previous tab.</li>
-<li><code>ctrl+shift+alt+.</code>: Moves the current tab to the right.</li>
-<li><code>ctrl+shift+alt+,</code>: Moves the current tab to the left.</li>
-</ul>
-<h3 id="copy-and-paste">Copy and Paste<a class="headerlink" href="#copy-and-paste" title="Permanent link">&para;</a></h3>
-<p>Kitty has its own copy/paste implementation, which can be more reliable than the system one when working in remote environments or with multiplexers:</p>
-<ul>
-<li><code>ctrl+shift+c</code>: Copies the selected text to the system clipboard.</li>
-<li><code>ctrl+shift+v</code>: Pastes text from the system clipboard.</li>
-</ul>
-<h3 id="font-and-appearance-control">Font and Appearance Control<a class="headerlink" href="#font-and-appearance-control" title="Permanent link">&para;</a></h3>
-<ul>
-<li><code>ctrl+shift+=</code> (or <code>+</code>): Increases the font size.</li>
-<li><code>ctrl+shift+-</code>: Decreases the font size.</li>
-<li><code>ctrl+shift+backspace</code>: Resets the font size to the default value.</li>
-<li><code>ctrl+shift+k</code>: Enters "scrollback" mode (to search or select historical text).</li>
-</ul>
-<h2 id="customizing-your-shortcuts-in-kittyconf">Customizing Your Shortcuts in <code>kitty.conf</code><a class="headerlink" href="#customizing-your-shortcuts-in-kittyconf" title="Permanent link">&para;</a></h2>
-<p>You can add or modify keyboard shortcuts in your configuration file <code>~/.config/kitty/kitty.conf</code> using the <code>map</code> directive. For example, to map <code>F1</code> for a custom script:</p>
-<div class="highlight"><pre><span></span><code><span class="nx">map</span><span class="w"> </span><span class="nx">f1</span><span class="w"> </span><span class="nx">launch</span><span class="w"> </span><span class="o">--</span><span class="k">type</span><span class="p">=</span><span class="nx">overlay</span><span class="w"> </span><span class="nx">bash</span><span class="w"> </span><span class="o">-</span><span class="nx">c</span><span class="w"> </span><span class="s">&quot;my_custom_script.sh&quot;</span>
+<p>Then, add a keyboard shortcut to your <code>kitty.conf</code>:</p>
+<div class="highlight"><pre><span></span><code>map kitty_mod+b kitten kitty_rbw/rbw.py
 </code></pre></div>
 
-<p>Mastering these shortcuts will transform your interaction with the terminal, making it more fluid and intuitive. Experiment and customize Kitty to perfectly adapt to your work style!</p>
+<h2 id="usage-and-shortcuts">Usage and Shortcuts<a class="headerlink" href="#usage-and-shortcuts" title="Permanent link">&para;</a></h2>
+<p>Once configured, pressing the shortcut (<code>Ctrl+Shift+b</code> by default) will open a panel with your credentials.</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Enter</code></td>
+<td>Type <strong>password</strong> into the terminal</td>
+</tr>
+<tr>
+<td><code>Ctrl+u</code></td>
+<td>Type <strong>username</strong></td>
+</tr>
+<tr>
+<td><code>Ctrl+b</code></td>
+<td>Type <strong>username</strong>, press <code>Tab</code>, then <strong>password</strong></td>
+</tr>
+<tr>
+<td><code>Ctrl+t</code></td>
+<td>Copy <strong>TOTP</strong> code to clipboard</td>
+</tr>
+<tr>
+<td><code>Alt+p</code></td>
+<td>Copy <strong>password</strong> to clipboard</td>
+</tr>
+<tr>
+<td><code>Alt+u</code></td>
+<td>Copy <strong>username</strong> to clipboard</td>
+</tr>
+<tr>
+<td><code>Alt+s</code></td>
+<td>Sync the vault (<code>rbw sync</code>)</td>
+</tr>
+</tbody>
+</table>
+<p>If you want to know more or contribute to the project, you can find it on GitHub: <a href="https://github.com/pcaro/kitty_rbw">https://github.com/pcaro/kitty_rbw</a></p>
   </div>
   <div class="tag-cloud">
     <p>
+      <a href="https://pablocaro.es/en/tag/bitwarden.html">bitwarden</a>
+      <a href="https://pablocaro.es/en/tag/cli.html">cli</a>
       <a href="https://pablocaro.es/en/tag/kitty.html">kitty</a>
-      <a href="https://pablocaro.es/en/tag/terminal.html">terminal</a>
-      <a href="https://pablocaro.es/en/tag/shortcuts.html">shortcuts</a>
-      <a href="https://pablocaro.es/en/tag/keyboard.html">keyboard</a>
+      <a href="https://pablocaro.es/en/tag/rust.html">rust</a>
       <a href="https://pablocaro.es/en/tag/productivity.html">productivity</a>
     </p>
   </div>
@@ -256,22 +274,19 @@
 
 
   <div class="neighbors">
-    <a class="btn float-left" href="https://pablocaro.es/en/de-yakuake-a-kitty" title="From Yakuake to Kitty: My Transition to a Modern Terminal">
+    <a class="btn float-left" href="https://pablocaro.es/en/rbw-bitwarden-cli" title="rbw: The Bitwarden terminal client you should be using">
       <i class="fa fa-angle-left"></i> Previous Post
-    </a>
-    <a class="btn float-right" href="https://pablocaro.es/en/kitty-acceso-rapido" title="Kitty as a Quick Access Terminal: The Convenience of a Dropdown">
-      Next Post <i class="fa fa-angle-right"></i>
     </a>
   </div>
 
   <div class="related-posts">
     <h4>You might enjoy</h4>
     <ul class="related-posts">
-      <li><a href="https://pablocaro.es/en/kitty-acceso-rapido">Kitty as a Quick Access Terminal: The Convenience of a Dropdown</a></li>
-      <li><a href="https://pablocaro.es/en/de-yakuake-a-kitty">From Yakuake to Kitty: My Transition to a Modern Terminal</a></li>
-      <li><a href="https://pablocaro.es/en/kitty-rbw-kitten">kitty-rbw: Fast Bitwarden access from your kitty terminal</a></li>
-      <li><a href="https://pablocaro.es/en/fresh-editor-terminal">`fresh`: My preferred terminal editor for daily use</a></li>
+      <li><a href="https://pablocaro.es/en/rbw-bitwarden-cli">rbw: The Bitwarden terminal client you should be using</a></li>
       <li><a href="https://pablocaro.es/en/renderizando-markdown-en-la-terminal-con-glow">Rendering Markdown in the terminal with Glow</a></li>
+      <li><a href="https://pablocaro.es/en/fresh-editor-terminal">`fresh`: My preferred terminal editor for daily use</a></li>
+      <li><a href="https://pablocaro.es/en/kitty-acceso-rapido">Kitty as a Quick Access Terminal: The Convenience of a Dropdown</a></li>
+      <li><a href="https://pablocaro.es/en/atajos-de-teclado-kitty">Essential Keyboard Shortcuts in Kitty: Mastering Your Terminal</a></li>
     </ul>
   </div>
 

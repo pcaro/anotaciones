@@ -1,5 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Anotaciones por Pablo Caro - rust</title><link href="https://pablocaro.es/" rel="alternate"></link><link href="https://pablocaro.es/feeds/tags/rust.atom.xml" rel="self"></link><id>https://pablocaro.es/</id><updated>2026-02-26T11:45:00+01:00</updated><subtitle>Anotaciones</subtitle><entry><title>rbw: El cliente de Bitwarden para terminal que deberías usar</title><link href="https://pablocaro.es/rbw-bitwarden-cli" rel="alternate"></link><published>2026-02-26T11:45:00+01:00</published><updated>2026-02-26T11:45:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-02-26:/rbw-bitwarden-cli</id><summary type="html">&lt;p&gt;Cómo instalar y configurar rbw, una implementación en Rust del cliente de Bitwarden, y cómo integrarlo en tus flujos de trabajo con pi-agent.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Aunque Bitwarden tiene un cliente oficial de línea de comandos, este puede resultar lento al estar basado en Node.js. Para los que buscamos algo más ágil, &lt;a href="https://github.com/doy/rbw"&gt;rbw&lt;/a&gt; es la solución ideal. Es una implementación no oficial en Rust que destaca por ser extremadamente rápida y por gestionar el desbloqueo del almacén mediante un agente, evitando que tengas que introducir tu contraseña maestra en cada comando.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Anotaciones por Pablo Caro - rust</title><link href="https://pablocaro.es/" rel="alternate"></link><link href="https://pablocaro.es/feeds/tags/rust.atom.xml" rel="self"></link><id>https://pablocaro.es/</id><updated>2026-02-26T14:20:00+01:00</updated><subtitle>Anotaciones</subtitle><entry><title>kitty-rbw: Acceso rápido a Bitwarden desde tu terminal kitty</title><link href="https://pablocaro.es/kitty-rbw-kitten" rel="alternate"></link><published>2026-02-26T14:20:00+01:00</published><updated>2026-02-26T14:20:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-02-26:/kitty-rbw-kitten</id><summary type="html">&lt;p&gt;Presentación de kitty-rbw, un "kitten" para el terminal kitty que permite buscar y usar credenciales de rbw (Bitwarden) de forma instantánea mediante fzf.&lt;/p&gt;</summary><content type="html">&lt;p&gt;En la &lt;a href="https://pablocaro.es/rbw-bitwarden-cli"&gt;entrada anterior&lt;/a&gt; hablamos de &lt;strong&gt;rbw&lt;/strong&gt;, el cliente de Bitwarden para terminal escrito en Rust que destaca por su velocidad y por usar un agente para gestionar el desbloqueo del almacén.&lt;/p&gt;
+&lt;p&gt;Hoy doy un paso más allá y presento &lt;strong&gt;&lt;a href="https://github.com/pcaro/kitty_rbw"&gt;kitty-rbw&lt;/a&gt;&lt;/strong&gt;, un &lt;em&gt;kitten&lt;/em&gt; que he desarrollado para el terminal &lt;strong&gt;kitty&lt;/strong&gt;. Su objetivo es permitirte buscar y usar tus credenciales de Bitwarden sin tener que salir del terminal ni escribir comandos complejos, integrándose perfectamente en tu flujo de trabajo.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Interfaz de kitty-rbw" src="https://pablocaro.es/images/kitty-rbw.png"&gt;&lt;/p&gt;
+&lt;h2 id="que-es-un-kitten"&gt;¿Qué es un kitten?&lt;a class="headerlink" href="#que-es-un-kitten" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Los &lt;em&gt;kittens&lt;/em&gt; son pequeños programas en Python que extienden las funcionalidades del terminal kitty. Pueden ejecutarse en ventanas superpuestas (overlays), lo que los hace ideales para herramientas interactivas que no queremos que ensucien nuestro historial del terminal.&lt;/p&gt;
+&lt;h2 id="caracteristicas-principales"&gt;Características principales&lt;a class="headerlink" href="#caracteristicas-principales" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;kitty-rbw&lt;/code&gt; utiliza &lt;strong&gt;fzf&lt;/strong&gt; para ofrecer una búsqueda difusa (fuzzy search) extremadamente rápida sobre tu almacén de rbw. Estas son sus funciones más destacadas:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Búsqueda simultánea&lt;/strong&gt;: Filtra por nombre, usuario y carpeta al mismo tiempo.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Inyección directa&lt;/strong&gt;: Escribe la contraseña o el usuario directamente en la ventana activa del terminal donde lanzaste el kitten. Ideal para prompts de &lt;code&gt;sudo&lt;/code&gt; o inicios de sesión SSH.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Soporte para el portapapeles&lt;/strong&gt;: Copia el usuario, la contraseña o el código TOTP con un solo atajo de teclado.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Priorización de uso&lt;/strong&gt;: Las 10 entradas que más utilizas aparecen al principio de la lista, facilitando el acceso a lo más común.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Atajos por carpeta&lt;/strong&gt;: Puedes configurar el kitten para que se abra pre-filtrado por una carpeta específica (por ejemplo, una para el trabajo y otra personal).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="instalacion"&gt;Instalación&lt;a class="headerlink" href="#instalacion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Para instalarlo, solo tienes que clonar el repositorio en tu directorio de configuración de kitty:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nb"&gt;cd&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;~/.config/kitty
+git&lt;span class="w"&gt; &lt;/span&gt;clone&lt;span class="w"&gt; &lt;/span&gt;https://github.com/pcaro/kitty_rbw
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Luego, añade un atajo de teclado en tu &lt;code&gt;kitty.conf&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;map kitty_mod+b kitten kitty_rbw/rbw.py
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="uso-y-atajos"&gt;Uso y atajos&lt;a class="headerlink" href="#uso-y-atajos" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Una vez configurado, al pulsar el atajo (&lt;code&gt;Ctrl+Shift+b&lt;/code&gt; por defecto) se abrirá un panel con tus credenciales. &lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Tecla&lt;/th&gt;
+&lt;th&gt;Acción&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;Enter&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Escribe la &lt;strong&gt;contraseña&lt;/strong&gt; en el terminal&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;Ctrl+u&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Escribe el &lt;strong&gt;nombre de usuario&lt;/strong&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;Ctrl+b&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Escribe &lt;strong&gt;usuario&lt;/strong&gt;, pulsa &lt;code&gt;Tab&lt;/code&gt; y luego &lt;strong&gt;contraseña&lt;/strong&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;Ctrl+t&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Copia el código &lt;strong&gt;TOTP&lt;/strong&gt; al portapapeles&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;Alt+p&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Copia la &lt;strong&gt;contraseña&lt;/strong&gt; al portapapeles&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;Alt+u&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Copia el &lt;strong&gt;usuario&lt;/strong&gt; al portapapeles&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;Alt+s&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Sincroniza el almacén (&lt;code&gt;rbw sync&lt;/code&gt;)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Si quieres saber más o contribuir al proyecto, puedes encontrarlo en GitHub: &lt;a href="https://github.com/pcaro/kitty_rbw"&gt;https://github.com/pcaro/kitty_rbw&lt;/a&gt;&lt;/p&gt;</content><category term="Herramientas"></category><category term="bitwarden"></category><category term="cli"></category><category term="kitty"></category><category term="rust"></category><category term="productividad"></category></entry><entry><title>rbw: El cliente de Bitwarden para terminal que deberías usar</title><link href="https://pablocaro.es/rbw-bitwarden-cli" rel="alternate"></link><published>2026-02-26T11:45:00+01:00</published><updated>2026-02-26T11:45:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-02-26:/rbw-bitwarden-cli</id><summary type="html">&lt;p&gt;Cómo instalar y configurar rbw, una implementación en Rust del cliente de Bitwarden, y cómo integrarlo en tus flujos de trabajo con pi-agent.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Aunque Bitwarden tiene un cliente oficial de línea de comandos, este puede resultar lento al estar basado en Node.js. Para los que buscamos algo más ágil, &lt;a href="https://github.com/doy/rbw"&gt;rbw&lt;/a&gt; es la solución ideal. Es una implementación no oficial en Rust que destaca por ser extremadamente rápida y por gestionar el desbloqueo del almacén mediante un agente, evitando que tengas que introducir tu contraseña maestra en cada comando.&lt;/p&gt;
 &lt;h2 id="instalacion"&gt;Instalación&lt;a class="headerlink" href="#instalacion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;La forma más sencilla de instalarlo es bajando el binario directamente desde sus releases de GitHub. Yo utilizo &lt;code&gt;gah&lt;/code&gt; para este propósito:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;gah&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;doy/rbw

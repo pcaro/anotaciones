@@ -1,5 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Annotations by Pablo Caro</title><link href="https://pablocaro.es/en/" rel="alternate"></link><link href="https://pablocaro.es/feeds/all.atom.xml" rel="self"></link><id>https://pablocaro.es/en/</id><updated>2026-02-26T11:45:00+01:00</updated><subtitle>Annotations</subtitle><entry><title>rbw: The Bitwarden terminal client you should be using</title><link href="https://pablocaro.es/en/rbw-bitwarden-cli" rel="alternate"></link><published>2026-02-26T11:45:00+01:00</published><updated>2026-02-26T11:45:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-02-26:/en/rbw-bitwarden-cli</id><summary type="html">&lt;p&gt;How to install and configure rbw, a Rust implementation of the Bitwarden client, and how to integrate it into your workflows with pi-agent.&lt;/p&gt;</summary><content type="html">&lt;p&gt;While Bitwarden has an official command-line client, it can be slow as it is Node.js-based. For those of us looking for something more agile, &lt;a href="https://github.com/doy/rbw"&gt;rbw&lt;/a&gt; is the ideal solution. It is an unofficial Rust implementation that stands out for being extremely fast and for managing vault unlocking through an agent, preventing you from having to enter your master password for every command.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Annotations by Pablo Caro</title><link href="https://pablocaro.es/en/" rel="alternate"></link><link href="https://pablocaro.es/feeds/all.atom.xml" rel="self"></link><id>https://pablocaro.es/en/</id><updated>2026-02-26T14:20:00+01:00</updated><subtitle>Annotations</subtitle><entry><title>kitty-rbw: Fast Bitwarden access from your kitty terminal</title><link href="https://pablocaro.es/en/kitty-rbw-kitten" rel="alternate"></link><published>2026-02-26T14:20:00+01:00</published><updated>2026-02-26T14:20:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-02-26:/en/kitty-rbw-kitten</id><summary type="html">&lt;p&gt;Introducing kitty-rbw, a "kitten" for the kitty terminal that allows you to search and use rbw (Bitwarden) credentials instantly using fzf.&lt;/p&gt;</summary><content type="html">&lt;p&gt;In the &lt;a href="https://pablocaro.es/en/rbw-bitwarden-cli"&gt;previous post&lt;/a&gt; we talked about &lt;strong&gt;rbw&lt;/strong&gt;, the Bitwarden CLI client written in Rust that stands out for its speed and for using an agent to manage vault unlocking.&lt;/p&gt;
+&lt;p&gt;Today I'm going a step further and introducing &lt;strong&gt;&lt;a href="https://github.com/pcaro/kitty_rbw"&gt;kitty-rbw&lt;/a&gt;&lt;/strong&gt;, a &lt;em&gt;kitten&lt;/em&gt; I've developed for the &lt;strong&gt;kitty&lt;/strong&gt; terminal. Its goal is to let you search and use your Bitwarden credentials without leaving the terminal or typing complex commands, integrating perfectly into your workflow.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="kitty-rbw interface" src="https://pablocaro.es/en/images/kitty-rbw.png"&gt;&lt;/p&gt;
+&lt;h2 id="what-is-a-kitten"&gt;What is a kitten?&lt;a class="headerlink" href="#what-is-a-kitten" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;Kittens&lt;/em&gt; are small Python programs that extend the functionality of the kitty terminal. They can run in overlays, making them ideal for interactive tools that we don't want cluttering our terminal history.&lt;/p&gt;
+&lt;h2 id="key-features"&gt;Key Features&lt;a class="headerlink" href="#key-features" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;kitty-rbw&lt;/code&gt; uses &lt;strong&gt;fzf&lt;/strong&gt; to provide extremely fast fuzzy searching over your rbw vault. Here are its most notable features:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Simultaneous search&lt;/strong&gt;: Filter by name, username, and folder at the same time.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Direct injection&lt;/strong&gt;: Types the password or username directly into the active terminal window where you launched the kitten. Ideal for &lt;code&gt;sudo&lt;/code&gt; prompts or SSH logins.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Clipboard support&lt;/strong&gt;: Copy the username, password, or TOTP code with a single keyboard shortcut.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Usage prioritization&lt;/strong&gt;: The 10 entries you use most frequently appear at the top of the list, making it easy to access common credentials.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Folder shortcuts&lt;/strong&gt;: You can configure the kitten to open pre-filtered by a specific folder (e.g., one for work and one for personal).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="installation"&gt;Installation&lt;a class="headerlink" href="#installation" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;To install it, simply clone the repository into your kitty configuration directory:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nb"&gt;cd&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;~/.config/kitty
+git&lt;span class="w"&gt; &lt;/span&gt;clone&lt;span class="w"&gt; &lt;/span&gt;https://github.com/pcaro/kitty_rbw
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Then, add a keyboard shortcut to your &lt;code&gt;kitty.conf&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;map kitty_mod+b kitten kitty_rbw/rbw.py
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="usage-and-shortcuts"&gt;Usage and Shortcuts&lt;a class="headerlink" href="#usage-and-shortcuts" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Once configured, pressing the shortcut (&lt;code&gt;Ctrl+Shift+b&lt;/code&gt; by default) will open a panel with your credentials.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Key&lt;/th&gt;
+&lt;th&gt;Action&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;Enter&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Type &lt;strong&gt;password&lt;/strong&gt; into the terminal&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;Ctrl+u&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Type &lt;strong&gt;username&lt;/strong&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;Ctrl+b&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Type &lt;strong&gt;username&lt;/strong&gt;, press &lt;code&gt;Tab&lt;/code&gt;, then &lt;strong&gt;password&lt;/strong&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;Ctrl+t&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Copy &lt;strong&gt;TOTP&lt;/strong&gt; code to clipboard&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;Alt+p&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Copy &lt;strong&gt;password&lt;/strong&gt; to clipboard&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;Alt+u&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Copy &lt;strong&gt;username&lt;/strong&gt; to clipboard&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;Alt+s&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Sync the vault (&lt;code&gt;rbw sync&lt;/code&gt;)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;If you want to know more or contribute to the project, you can find it on GitHub: &lt;a href="https://github.com/pcaro/kitty_rbw"&gt;https://github.com/pcaro/kitty_rbw&lt;/a&gt;&lt;/p&gt;</content><category term="Tools"></category><category term="bitwarden"></category><category term="cli"></category><category term="kitty"></category><category term="rust"></category><category term="productivity"></category></entry><entry><title>kitty-rbw: Acceso rápido a Bitwarden desde tu terminal kitty</title><link href="https://pablocaro.es/kitty-rbw-kitten" rel="alternate"></link><published>2026-02-26T14:20:00+01:00</published><updated>2026-02-26T14:20:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-02-26:/kitty-rbw-kitten</id><summary type="html">&lt;p&gt;Presentación de kitty-rbw, un "kitten" para el terminal kitty que permite buscar y usar credenciales de rbw (Bitwarden) de forma instantánea mediante fzf.&lt;/p&gt;</summary><content type="html">&lt;p&gt;En la &lt;a href="https://pablocaro.es/rbw-bitwarden-cli"&gt;entrada anterior&lt;/a&gt; hablamos de &lt;strong&gt;rbw&lt;/strong&gt;, el cliente de Bitwarden para terminal escrito en Rust que destaca por su velocidad y por usar un agente para gestionar el desbloqueo del almacén.&lt;/p&gt;
+&lt;p&gt;Hoy doy un paso más allá y presento &lt;strong&gt;&lt;a href="https://github.com/pcaro/kitty_rbw"&gt;kitty-rbw&lt;/a&gt;&lt;/strong&gt;, un &lt;em&gt;kitten&lt;/em&gt; que he desarrollado para el terminal &lt;strong&gt;kitty&lt;/strong&gt;. Su objetivo es permitirte buscar y usar tus credenciales de Bitwarden sin tener que salir del terminal ni escribir comandos complejos, integrándose perfectamente en tu flujo de trabajo.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Interfaz de kitty-rbw" src="https://pablocaro.es/en/images/kitty-rbw.png"&gt;&lt;/p&gt;
+&lt;h2 id="que-es-un-kitten"&gt;¿Qué es un kitten?&lt;a class="headerlink" href="#que-es-un-kitten" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Los &lt;em&gt;kittens&lt;/em&gt; son pequeños programas en Python que extienden las funcionalidades del terminal kitty. Pueden ejecutarse en ventanas superpuestas (overlays), lo que los hace ideales para herramientas interactivas que no queremos que ensucien nuestro historial del terminal.&lt;/p&gt;
+&lt;h2 id="caracteristicas-principales"&gt;Características principales&lt;a class="headerlink" href="#caracteristicas-principales" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;kitty-rbw&lt;/code&gt; utiliza &lt;strong&gt;fzf&lt;/strong&gt; para ofrecer una búsqueda difusa (fuzzy search) extremadamente rápida sobre tu almacén de rbw. Estas son sus funciones más destacadas:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Búsqueda simultánea&lt;/strong&gt;: Filtra por nombre, usuario y carpeta al mismo tiempo.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Inyección directa&lt;/strong&gt;: Escribe la contraseña o el usuario directamente en la ventana activa del terminal donde lanzaste el kitten. Ideal para prompts de &lt;code&gt;sudo&lt;/code&gt; o inicios de sesión SSH.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Soporte para el portapapeles&lt;/strong&gt;: Copia el usuario, la contraseña o el código TOTP con un solo atajo de teclado.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Priorización de uso&lt;/strong&gt;: Las 10 entradas que más utilizas aparecen al principio de la lista, facilitando el acceso a lo más común.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Atajos por carpeta&lt;/strong&gt;: Puedes configurar el kitten para que se abra pre-filtrado por una carpeta específica (por ejemplo, una para el trabajo y otra personal).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="instalacion"&gt;Instalación&lt;a class="headerlink" href="#instalacion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Para instalarlo, solo tienes que clonar el repositorio en tu directorio de configuración de kitty:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nb"&gt;cd&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;~/.config/kitty
+git&lt;span class="w"&gt; &lt;/span&gt;clone&lt;span class="w"&gt; &lt;/span&gt;https://github.com/pcaro/kitty_rbw
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Luego, añade un atajo de teclado en tu &lt;code&gt;kitty.conf&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;map kitty_mod+b kitten kitty_rbw/rbw.py
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="uso-y-atajos"&gt;Uso y atajos&lt;a class="headerlink" href="#uso-y-atajos" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Una vez configurado, al pulsar el atajo (&lt;code&gt;Ctrl+Shift+b&lt;/code&gt; por defecto) se abrirá un panel con tus credenciales. &lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Tecla&lt;/th&gt;
+&lt;th&gt;Acción&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;Enter&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Escribe la &lt;strong&gt;contraseña&lt;/strong&gt; en el terminal&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;Ctrl+u&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Escribe el &lt;strong&gt;nombre de usuario&lt;/strong&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;Ctrl+b&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Escribe &lt;strong&gt;usuario&lt;/strong&gt;, pulsa &lt;code&gt;Tab&lt;/code&gt; y luego &lt;strong&gt;contraseña&lt;/strong&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;Ctrl+t&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Copia el código &lt;strong&gt;TOTP&lt;/strong&gt; al portapapeles&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;Alt+p&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Copia la &lt;strong&gt;contraseña&lt;/strong&gt; al portapapeles&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;Alt+u&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Copia el &lt;strong&gt;usuario&lt;/strong&gt; al portapapeles&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;Alt+s&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Sincroniza el almacén (&lt;code&gt;rbw sync&lt;/code&gt;)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Si quieres saber más o contribuir al proyecto, puedes encontrarlo en GitHub: &lt;a href="https://github.com/pcaro/kitty_rbw"&gt;https://github.com/pcaro/kitty_rbw&lt;/a&gt;&lt;/p&gt;</content><category term="Herramientas"></category><category term="bitwarden"></category><category term="cli"></category><category term="kitty"></category><category term="rust"></category><category term="productividad"></category></entry><entry><title>rbw: The Bitwarden terminal client you should be using</title><link href="https://pablocaro.es/en/rbw-bitwarden-cli" rel="alternate"></link><published>2026-02-26T11:45:00+01:00</published><updated>2026-02-26T11:45:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-02-26:/en/rbw-bitwarden-cli</id><summary type="html">&lt;p&gt;How to install and configure rbw, a Rust implementation of the Bitwarden client, and how to integrate it into your workflows with pi-agent.&lt;/p&gt;</summary><content type="html">&lt;p&gt;While Bitwarden has an official command-line client, it can be slow as it is Node.js-based. For those of us looking for something more agile, &lt;a href="https://github.com/doy/rbw"&gt;rbw&lt;/a&gt; is the ideal solution. It is an unofficial Rust implementation that stands out for being extremely fast and for managing vault unlocking through an agent, preventing you from having to enter your master password for every command.&lt;/p&gt;
 &lt;h2 id="installation"&gt;Installation&lt;a class="headerlink" href="#installation" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The easiest way to install it is by downloading the binary directly from its GitHub releases. I use &lt;code&gt;gah&lt;/code&gt; for this purpose:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;gah&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;doy/rbw
@@ -5016,88 +5144,4 @@ script I have created this blog that now runs on &lt;a class="reference external
 relanzar este blog para lo de siempre: como bloc de notas.&lt;/p&gt;
 &lt;p&gt;He recuperado un fichero dump sql que tenía como copía de seguridad (desfasada eso sí) y con un pequeño
 script he creado este blog que ahora pasa a funcionar con &lt;a class="reference external" href="http://getpelican.com"&gt;Pelican&lt;/a&gt; (abandona Wordpress) y a alojarse en github pages.&lt;/p&gt;
-</content><category term="Personal"></category><category term="python"></category></entry><entry><title>Ajax view decorator</title><link href="https://pablocaro.es/en/decorador-vista-ajax" rel="alternate"></link><published>2014-11-21T11:12:00+01:00</published><updated>2014-11-21T11:12:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2014-11-21:/en/decorador-vista-ajax</id><summary type="html">&lt;p&gt;To force a &lt;a class="reference external" href="https://www.djangoproject.com/"&gt;django&lt;/a&gt; view to be called only via AJAX calls.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;ajax_required&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-&lt;span class="sd"&gt;    AJAX request required decorator&lt;/span&gt;
-&lt;span class="sd"&gt;    use it in your views:&lt;/span&gt;
-
-&lt;span class="sd"&gt;    @ajax_required&lt;/span&gt;
-&lt;span class="sd"&gt;    def my_view(request):&lt;/span&gt;
-&lt;span class="sd"&gt;        ....&lt;/span&gt;
-
-&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;wrap&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;is_ajax&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
-            &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;HttpResponseBadRequest&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="n"&gt;wrap&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="vm"&gt;__doc__&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="vm"&gt;__doc__&lt;/span&gt;
-    &lt;span class="n"&gt;wrap&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="vm"&gt;__name__ …&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;To force a &lt;a class="reference external" href="https://www.djangoproject.com/"&gt;django&lt;/a&gt; view to be called only via AJAX calls.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;ajax_required&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-&lt;span class="sd"&gt;    AJAX request required decorator&lt;/span&gt;
-&lt;span class="sd"&gt;    use it in your views:&lt;/span&gt;
-
-&lt;span class="sd"&gt;    @ajax_required&lt;/span&gt;
-&lt;span class="sd"&gt;    def my_view(request):&lt;/span&gt;
-&lt;span class="sd"&gt;        ....&lt;/span&gt;
-
-&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;wrap&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;is_ajax&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
-            &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;HttpResponseBadRequest&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="n"&gt;wrap&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="vm"&gt;__doc__&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="vm"&gt;__doc__&lt;/span&gt;
-    &lt;span class="n"&gt;wrap&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="vm"&gt;__name__&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="vm"&gt;__name__&lt;/span&gt;
-    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;wrap&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;A possible usage example:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nd"&gt;@login_required&lt;/span&gt;
-&lt;span class="nd"&gt;@ajax_required&lt;/span&gt;
-&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;update_starts&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="o"&gt;...&lt;/span&gt;
-    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;JsonResponse&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;result&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;ok&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;})&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-</content><category term="Programming"></category><category term="python"></category><category term="django"></category></entry><entry><title>Decorador vista ajax</title><link href="https://pablocaro.es/decorador-vista-ajax" rel="alternate"></link><published>2014-11-21T11:12:00+01:00</published><updated>2014-11-21T11:12:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2014-11-21:/decorador-vista-ajax</id><summary type="html">&lt;p&gt;Para obligar que una vista &lt;a class="reference external" href="https://www.djangoproject.com/"&gt;django&lt;/a&gt; sea llamada sólo mediante llamamas AJAX.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;ajax_required&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-&lt;span class="sd"&gt;    AJAX request required decorator&lt;/span&gt;
-&lt;span class="sd"&gt;    use it in your views:&lt;/span&gt;
-
-&lt;span class="sd"&gt;    @ajax_required&lt;/span&gt;
-&lt;span class="sd"&gt;    def my_view(request):&lt;/span&gt;
-&lt;span class="sd"&gt;        ....&lt;/span&gt;
-
-&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;wrap&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;is_ajax&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
-            &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;HttpResponseBadRequest&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="n"&gt;wrap&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="vm"&gt;__doc__&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="vm"&gt;__doc__&lt;/span&gt;
-    &lt;span class="n"&gt;wrap&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="vm"&gt;__name__ …&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;Para obligar que una vista &lt;a class="reference external" href="https://www.djangoproject.com/"&gt;django&lt;/a&gt; sea llamada sólo mediante llamamas AJAX.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;ajax_required&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-&lt;span class="sd"&gt;    AJAX request required decorator&lt;/span&gt;
-&lt;span class="sd"&gt;    use it in your views:&lt;/span&gt;
-
-&lt;span class="sd"&gt;    @ajax_required&lt;/span&gt;
-&lt;span class="sd"&gt;    def my_view(request):&lt;/span&gt;
-&lt;span class="sd"&gt;        ....&lt;/span&gt;
-
-&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;wrap&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;is_ajax&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
-            &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;HttpResponseBadRequest&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="n"&gt;wrap&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="vm"&gt;__doc__&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="vm"&gt;__doc__&lt;/span&gt;
-    &lt;span class="n"&gt;wrap&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="vm"&gt;__name__&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="vm"&gt;__name__&lt;/span&gt;
-    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;wrap&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Un posible ejemplo de uso:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nd"&gt;@login_required&lt;/span&gt;
-&lt;span class="nd"&gt;@ajax_required&lt;/span&gt;
-&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;update_starts&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="o"&gt;...&lt;/span&gt;
-    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;JsonResponse&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;result&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;ok&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;})&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-</content><category term="Programación"></category><category term="python"></category><category term="django"></category></entry></feed>
+</content><category term="Personal"></category><category term="python"></category></entry></feed>
