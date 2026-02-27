@@ -26,9 +26,7 @@ La forma moderna y recomendada de instalar herramientas en Python es usando `uv`
 
 ### Como herramienta de línea de comandos (CLI)
 
-Si solo quieres usar el comando `deep` en tu terminal para comparar archivos JSON o YAML:
-
-```bash
+Si solo quieres usar el comando `deep` en tu terminal para comparar archivos JSON o YAML:```bash
 uv tool install "deepdiff[cli]"
 ```
 
@@ -110,3 +108,5 @@ También puedes usarlo para extraer información o buscar dentro de archivos JSO
 DeepDiff es una de esas librerías que, una vez que conoces, no puedes dejar de usar. Su flexibilidad para ignorar ciertos campos (como timestamps o IDs autogenerados) la hace perfecta para tests de integración y validación de datos.
 
 Puedes ver la documentación completa en [zepworks.com/deepdiff](https://zepworks.com/deepdiff/current/).
+
+![deep help]({static}/images/deep_help.png)

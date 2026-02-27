@@ -10,9 +10,7 @@ While Bitwarden has an official command-line client, it can be slow as it is Nod
 
 ## Installation
 
-The easiest way to install it is by downloading the binary directly from its GitHub releases. I use `gah` for this purpose:
-
-```bash
+The easiest way to install it is by downloading the binary directly from its GitHub releases. I use `gah` for this purpose:```bash
 gah install doy/rbw
 ```
 
@@ -65,3 +63,5 @@ One of the greatest advantages of having a fast and secure CLI client is the abi
 ```
 
 The `!` prefix tells `pi-agent` to execute the command and use its standard output as the key. Thanks to the `rbw` agent, this command will run instantly without asking for your master password every time, as long as the vault is unlocked.
+
+![rbw help]({static}/images/rbw_help.png)

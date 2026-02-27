@@ -28,9 +28,7 @@ Today I'm going a step further and introducing **[kitty-rbw](https://github.com/
 
 ## Installation
 
-To install it, simply clone the repository into your kitty configuration directory:
-
-```bash
+To install it, simply clone the repository into your kitty configuration directory:```bash
 cd ~/.config/kitty
 git clone https://github.com/pcaro/kitty_rbw
 ```
@@ -56,3 +54,5 @@ Once configured, pressing the shortcut (`Ctrl+Shift+b` by default) will open a p
 | `Alt+s` | Sync the vault (`rbw sync`) |
 
 If you want to know more or contribute to the project, you can find it on GitHub: [https://github.com/pcaro/kitty_rbw](https://github.com/pcaro/kitty_rbw)
+
+![kitty help]({static}/images/kitty_help.png)

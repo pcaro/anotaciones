@@ -32,3 +32,5 @@ In short, broot is a terminal tool that allows you to explore your directories i
 *   **Git control:** If you work with Git, broot shows you the status of your files (modified, new, etc.), the current branch and change statistics. You can even see only the files that `git status` would show you!
 
 In short, broot is a Swiss Army knife for the terminal that makes your life much easier when interacting with your files and directories. If you spend a lot of time in the terminal, I recommend you take a look at it. You're going to love it!
+
+![broot help]({static}/images/broot_help.png)

@@ -28,9 +28,7 @@ Los *kittens* son pequeños programas en Python que extienden las funcionalidade
 
 ## Instalación
 
-Para instalarlo, solo tienes que clonar el repositorio en tu directorio de configuración de kitty:
-
-```bash
+Para instalarlo, solo tienes que clonar el repositorio en tu directorio de configuración de kitty:```bash
 cd ~/.config/kitty
 git clone https://github.com/pcaro/kitty_rbw
 ```
@@ -56,3 +54,5 @@ Una vez configurado, al pulsar el atajo (`Ctrl+Shift+b` por defecto) se abrirá 
 | `Alt+s` | Sincroniza el almacén (`rbw sync`) |
 
 Si quieres saber más o contribuir al proyecto, puedes encontrarlo en GitHub: [https://github.com/pcaro/kitty_rbw](https://github.com/pcaro/kitty_rbw)
+
+![kitty help]({static}/images/kitty_help.png)

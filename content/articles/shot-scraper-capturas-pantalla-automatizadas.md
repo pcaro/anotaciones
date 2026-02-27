@@ -11,9 +11,7 @@ Creada por Simon Willison, `shot-scraper` es una herramienta de línea de comand
 
 ## Instalación
 
-Al igual que con otras herramientas modernas de Python, la mejor forma de instalarla es usando `uv`:
-
-```bash
+Al igual que con otras herramientas modernas de Python, la mejor forma de instalarla es usando `uv`:```bash
 uv tool install shot-scraper
 ```
 
@@ -84,3 +82,5 @@ shot-scraper multi shots.yml
 Es una de esas herramientas que, una vez instaladas, encuentras usos para ella constantemente. Perfecta para integrar en pipelines de CI/CD para generar visuales de documentación automáticamente.
 
 Más info en la [documentación oficial](https://shot-scraper.datasette.io/).
+
+![shot-scraper help]({static}/images/shot_scraper_help.png)

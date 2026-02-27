@@ -13,9 +13,7 @@ Stern te permite hacer "tail" (seguir) logs de múltiples pods y contenedores de
 
 ## Instalación
 
-Stern es muy popular y está disponible en la mayoría de gestores de paquetes.
-
-### Usando Krew (recomendado)
+Stern es muy popular y está disponible en la mayoría de gestores de paquetes.### Usando Krew (recomendado)
 Si ya usas `kubectl`, Krew es la forma más natural de instalar plugins:
 
 ```bash
@@ -76,3 +74,5 @@ stern backend -o raw | fx
 Stern es una de esas herramientas que instalas el primer día y te preguntas cómo podías vivir sin ella. Hace que el debug en entornos distribuidos sea mucho menos doloroso al agregar la información de manera coherente.
 
 Dale una oportunidad y tus sesiones de debugging te lo agradecerán.
+
+![stern help]({static}/images/stern_help.png)

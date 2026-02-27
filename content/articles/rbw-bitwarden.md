@@ -10,9 +10,7 @@ Aunque Bitwarden tiene un cliente oficial de línea de comandos, este puede resu
 
 ## Instalación
 
-La forma más sencilla de instalarlo es bajando el binario directamente desde sus releases de GitHub. Yo utilizo `gah` para este propósito:
-
-```bash
+La forma más sencilla de instalarlo es bajando el binario directamente desde sus releases de GitHub. Yo utilizo `gah` para este propósito:```bash
 gah install doy/rbw
 ```
 
@@ -65,3 +63,5 @@ Una de las mayores ventajas de tener un cliente CLI rápido y seguro es la capac
 ```
 
 El prefijo `!` indica a `pi-agent` que debe ejecutar el comando y usar su salida estándar como la clave. Gracias al agente de `rbw`, este comando se ejecutará instantáneamente sin pedirte la clave maestra cada vez, siempre que el almacén esté desbloqueado.
+
+![rbw help]({static}/images/rbw_help.png)

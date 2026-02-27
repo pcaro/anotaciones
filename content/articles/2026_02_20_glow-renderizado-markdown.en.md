@@ -13,9 +13,7 @@ I find this tool especially useful now that I spend more time using the terminal
 
 ## Installation
 
-To install Glow, we will use [gah]({filename}2026_02_11_gestionando-instalaciones-desde-github-con-gah.en.rst), a tool that simplifies installing binaries from GitHub Releases.
-
-```bash
+To install Glow, we will use [gah]({filename}2026_02_11_gestionando-instalaciones-desde-github-con-gah.en.rst), a tool that simplifies installing binaries from GitHub Releases.```bash
 gah install charmbracelet/glow
 ```
 
@@ -37,3 +35,5 @@ Done!
 ```
 
 Once installed, simply run `glow` followed by the file you want to view, or even the URL of a README on GitHub.
+
+![glow help]({static}/images/glow_help.png)

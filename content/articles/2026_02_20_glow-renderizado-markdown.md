@@ -12,9 +12,7 @@ Esta herramienta me resulta especialmente útil ahora que paso más tiempo usand
 
 ## Instalación
 
-Para instalar Glow, utilizaremos [gah]({filename}2026_02_11_gestionando-instalaciones-desde-github-con-gah.rst), una herramienta que facilita la instalación de binarios desde GitHub Releases.
-
-```bash
+Para instalar Glow, utilizaremos [gah]({filename}2026_02_11_gestionando-instalaciones-desde-github-con-gah.rst), una herramienta que facilita la instalación de binarios desde GitHub Releases.```bash
 gah install charmbracelet/glow
 ```
 
@@ -36,3 +34,5 @@ Done!
 ```
 
 Una vez instalado, simplemente ejecuta `glow` seguido del archivo que quieras visualizar, o incluso la URL de un README en GitHub.
+
+![glow help]({static}/images/glow_help.png)

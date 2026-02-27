@@ -13,9 +13,7 @@ Stern allows you to "tail" logs from multiple pods and containers within Kuberne
 
 ## Installation
 
-Stern is very popular and available in most package managers.
-
-### Using Krew (recommended)
+Stern is very popular and available in most package managers.### Using Krew (recommended)
 If you already use `kubectl`, Krew is the most natural way to install plugins:
 
 ```bash
@@ -76,3 +74,5 @@ stern backend -o raw | fx
 Stern is one of those tools you install on day one and wonder how you ever lived without it. It makes debugging in distributed environments much less painful by aggregating information coherently.
 
 Give it a try and your debugging sessions will thank you.
+
+![stern help]({static}/images/stern_help.png)
