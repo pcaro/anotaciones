@@ -4,7 +4,7 @@ Date: 2026-02-20
 Tags: python, data, cli, tools, diff
 Category: Python
 Lang: es
-Featured-Image: /images/deep_help.png
+featured_image: /images/deep_help.png
 
 Cuando trabajamos con datos estructurados en Python, a menudo necesitamos comparar dos diccionarios, JSONs u objetos complejos para encontrar qué ha cambiado. Si bien la comparación directa (`==`) es útil, a veces necesitamos entender *exactamente qué* es diferente: qué claves se han añadido, cuáles se han eliminado, o dónde han cambiado los valores, incluso en estructuras profundamente anidadas.
 

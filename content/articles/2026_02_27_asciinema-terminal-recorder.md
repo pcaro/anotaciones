@@ -5,7 +5,7 @@ Lang: es
 Category: Herramientas
 Slug: asciinema-terminal-recorder
 Summary: Descubre asciinema, la herramienta perfecta para grabar tus sesiones de terminal de forma ligera, reproducible y fácil de compartir.
-Featured-Image: /images/asciinema_help.png
+featured_image: /images/asciinema_help.png
 
 A menudo necesitamos compartir lo que sucede en nuestra terminal, ya sea para un tutorial, demostrar un error o simplemente documentar un proceso. Aunque existen herramientas para grabar vídeo tradicional, **asciinema** ofrece una alternativa mucho más potente y ligera.
 
