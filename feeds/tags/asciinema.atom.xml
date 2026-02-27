@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Anotaciones por Pablo Caro - asciinema</title><link href="https://pablocaro.es/" rel="alternate"></link><link href="https://pablocaro.es/feeds/tags/asciinema.atom.xml" rel="self"></link><id>https://pablocaro.es/</id><updated>2026-02-27T12:00:00+01:00</updated><subtitle>Anotaciones</subtitle><entry><title>Graba y Comparte tus Sesiones de Terminal con asciinema</title><link href="https://pablocaro.es/asciinema-terminal-recorder" rel="alternate"></link><published>2026-02-27T12:00:00+01:00</published><updated>2026-02-27T12:00:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-02-27:/asciinema-terminal-recorder</id><summary type="html">&lt;p&gt;Descubre asciinema, la herramienta perfecta para grabar tus sesiones de terminal de forma ligera, reproducible y fácil de compartir.&lt;/p&gt;</summary><content type="html">&lt;p&gt;A menudo necesitamos compartir lo que sucede en nuestra terminal, ya sea para un tutorial, demostrar un error o simplemente documentar un proceso. Aunque existen herramientas para grabar vídeo tradicional, &lt;strong&gt;asciinema&lt;/strong&gt; ofrece una alternativa mucho más potente y ligera.&lt;/p&gt;
+&lt;h2 id="que-es-asciinema"&gt;¿Qué es asciinema?&lt;a class="headerlink" href="#que-es-asciinema" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://github.com/asciinema/asciinema"&gt;asciinema&lt;/a&gt; no graba vídeo en el sentido tradicional (píxeles). En su lugar, captura el flujo de texto de la terminal junto con los tiempos exactos. Esto tiene varias ventajas:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Archivos diminutos&lt;/strong&gt;: En lugar de megabytes de vídeo, obtienes archivos de texto muy pequeños.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Texto seleccionable&lt;/strong&gt;: Al reproducir una sesión en la web, puedes copiar y pegar el código directamente.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Calidad perfecta&lt;/strong&gt;: No hay pérdida de resolución ni artefactos de compresión.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="instalacion-y-ayuda"&gt;Instalación y Ayuda&lt;a class="headerlink" href="#instalacion-y-ayuda" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Ya tengo &lt;code&gt;asciinema&lt;/code&gt; instalado en mi sistema. Aquí puedes ver el resumen de comandos disponibles:## Ejemplo interactivo&lt;/p&gt;
+&lt;p&gt;A continuación puedes ver una pequeña demostración de &lt;code&gt;asciinema&lt;/code&gt; en acción, ejecutando el comando &lt;code&gt;cowsay Muuuuu&lt;/code&gt;:&lt;/p&gt;
+&lt;p&gt;&lt;link rel="stylesheet" type="text/css" href="/theme/asciinema-player/asciinema-player.css" /&gt;&lt;/p&gt;
+&lt;div id="demo-player"&gt;&lt;/div&gt;
+&lt;script src="/theme/asciinema-player/asciinema-player.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+    window.addEventListener('load', function() {
+        AsciinemaPlayer.create('/images/demo.cast', document.getElementById('demo-player'), {
+            cols: 80,
+            rows: 10,
+            autoPlay: true,
+            loop: true
+        });
+    });
+&lt;/script&gt;
+
+&lt;h2 id="comandos-basicos"&gt;Comandos básicos&lt;a class="headerlink" href="#comandos-basicos" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Para empezar a grabar, simplemente ejecuta:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;asciinema&lt;span class="w"&gt; &lt;/span&gt;rec&lt;span class="w"&gt; &lt;/span&gt;demo.cast
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Esto comenzará a grabar todo lo que ocurra en tu sesión actual de terminal. Cuando termines, simplemente presiona &lt;code&gt;Ctrl-D&lt;/code&gt; o escribe &lt;code&gt;exit&lt;/code&gt;. El resultado se guardará en el archivo &lt;code&gt;demo.cast&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Para reproducirlo localmente:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;asciinema&lt;span class="w"&gt; &lt;/span&gt;play&lt;span class="w"&gt; &lt;/span&gt;demo.cast
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Y si quieres compartirlo con el mundo, puedes subirlo a su servicio de alojamiento gratuito:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;asciinema&lt;span class="w"&gt; &lt;/span&gt;upload&lt;span class="w"&gt; &lt;/span&gt;demo.cast
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="por-que-usarlo"&gt;¿Por qué usarlo?&lt;a class="headerlink" href="#por-que-usarlo" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Es ideal para desarrolladores que escriben blogs técnicos (como este), ya que permite insertar las grabaciones directamente en el navegador con un reproductor ligero basado en JavaScript. ¡Adiós a los GIFs borrosos de 20MB!&lt;/p&gt;
+&lt;p&gt;&lt;img alt="asciinema help" src="https://pablocaro.es/images/asciinema_help.png"&gt;&lt;/p&gt;</content><category term="Herramientas"></category><category term="asciinema"></category><category term="terminal"></category><category term="linux"></category><category term="productivity"></category></entry></feed>

@@ -209,14 +209,16 @@
 <h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h2>
 <p>The modern and recommended way to install Python tools is using <code>uv</code>.</p>
 <h3 id="as-a-command-line-interface-cli-tool">As a Command Line Interface (CLI) Tool<a class="headerlink" href="#as-a-command-line-interface-cli-tool" title="Permanent link">&para;</a></h3>
-<p>If you just want to use the <code>deep</code> command in your terminal to compare JSON or YAML files:</p>
-<div class="highlight"><pre><span></span><code>uv<span class="w"> </span>tool<span class="w"> </span>install<span class="w"> </span><span class="s2">&quot;deepdiff[cli]&quot;</span>
-</code></pre></div>
+<p>If you just want to use the <code>deep</code> command in your terminal to compare JSON or YAML files:```bash
+uv tool install "deepdiff[cli]"</p>
+<div class="highlight"><pre><span></span><code><span class="n">This</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="k">install</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n n-Quoted">`deep`</span><span class="w"> </span><span class="n">command</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">your</span><span class="w"> </span><span class="k">system</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">an</span><span class="w"> </span><span class="n">isolated</span><span class="w"> </span><span class="n">environment</span><span class="p">.</span><span class="w"> </span><span class="n">Make</span><span class="w"> </span><span class="n">sure</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">include</span><span class="w"> </span><span class="n n-Quoted">`[cli]`</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="k">install</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">necessary</span><span class="w"> </span><span class="n">dependencies</span><span class="p">.</span>
 
-<p>This will install the <code>deep</code> command on your system in an isolated environment. Make sure to include <code>[cli]</code> to install the necessary dependencies.</p>
-<h3 id="as-a-library-in-your-project">As a Library in Your Project<a class="headerlink" href="#as-a-library-in-your-project" title="Permanent link">&para;</a></h3>
-<p>If you are going to use it within your Python scripts:</p>
-<div class="highlight"><pre><span></span><code>uv<span class="w"> </span>add<span class="w"> </span><span class="s2">&quot;deepdiff&quot;</span>
+<span class="c1">### As a Library in Your Project</span>
+
+<span class="k">If</span><span class="w"> </span><span class="n">you</span><span class="w"> </span><span class="n">are</span><span class="w"> </span><span class="n">going</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="k">use</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="n">within</span><span class="w"> </span><span class="n">your</span><span class="w"> </span><span class="n">Python</span><span class="w"> </span><span class="n">scripts</span><span class="o">:</span>
+
+<span class="n n-Quoted">`</span><span class="n n-Quoted n-Quoted-Escape">``</span><span class="n n-Quoted">bash</span>
+<span class="n n-Quoted">uv add &quot;deepdiff&quot;</span>
 </code></pre></div>
 
 <p>Or if you need the CLI inside your virtual environment as well:</p>
@@ -273,6 +275,7 @@ deep<span class="w"> </span>diff<span class="w"> </span>production.json<span cla
 <h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">&para;</a></h2>
 <p>DeepDiff is one of those libraries that, once you know about it, you can't stop using. Its flexibility to ignore certain fields (like timestamps or auto-generated IDs) makes it perfect for integration tests and data validation.</p>
 <p>You can view the full documentation at <a href="https://zepworks.com/deepdiff/current/">zepworks.com/deepdiff</a>.</p>
+<p><img alt="deep help" src="https://pablocaro.es/en/images/deep_help.png"></p>
   </div>
   <div class="tag-cloud">
     <p>

@@ -1,5 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Anotaciones por Pablo Caro - Herramientas</title><link href="https://pablocaro.es/" rel="alternate"></link><link href="https://pablocaro.es/feeds/categories/herramientas.atom.xml" rel="self"></link><id>https://pablocaro.es/</id><updated>2026-02-26T14:20:00+01:00</updated><subtitle>Anotaciones</subtitle><entry><title>kitty-rbw: Acceso rápido a Bitwarden desde tu terminal kitty</title><link href="https://pablocaro.es/kitty-rbw-kitten" rel="alternate"></link><published>2026-02-26T14:20:00+01:00</published><updated>2026-02-26T14:20:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-02-26:/kitty-rbw-kitten</id><summary type="html">&lt;p&gt;Presentación de kitty-rbw, un "kitten" para el terminal kitty que permite buscar y usar credenciales de rbw (Bitwarden) de forma instantánea mediante fzf.&lt;/p&gt;</summary><content type="html">&lt;p&gt;En la &lt;a href="https://pablocaro.es/rbw-bitwarden-cli"&gt;entrada anterior&lt;/a&gt; hablamos de &lt;strong&gt;rbw&lt;/strong&gt;, el cliente de Bitwarden para terminal escrito en Rust que destaca por su velocidad y por usar un agente para gestionar el desbloqueo del almacén.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Anotaciones por Pablo Caro - Herramientas</title><link href="https://pablocaro.es/" rel="alternate"></link><link href="https://pablocaro.es/feeds/categories/herramientas.atom.xml" rel="self"></link><id>https://pablocaro.es/</id><updated>2026-02-27T12:00:00+01:00</updated><subtitle>Anotaciones</subtitle><entry><title>Graba y Comparte tus Sesiones de Terminal con asciinema</title><link href="https://pablocaro.es/asciinema-terminal-recorder" rel="alternate"></link><published>2026-02-27T12:00:00+01:00</published><updated>2026-02-27T12:00:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-02-27:/asciinema-terminal-recorder</id><summary type="html">&lt;p&gt;Descubre asciinema, la herramienta perfecta para grabar tus sesiones de terminal de forma ligera, reproducible y fácil de compartir.&lt;/p&gt;</summary><content type="html">&lt;p&gt;A menudo necesitamos compartir lo que sucede en nuestra terminal, ya sea para un tutorial, demostrar un error o simplemente documentar un proceso. Aunque existen herramientas para grabar vídeo tradicional, &lt;strong&gt;asciinema&lt;/strong&gt; ofrece una alternativa mucho más potente y ligera.&lt;/p&gt;
+&lt;h2 id="que-es-asciinema"&gt;¿Qué es asciinema?&lt;a class="headerlink" href="#que-es-asciinema" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://github.com/asciinema/asciinema"&gt;asciinema&lt;/a&gt; no graba vídeo en el sentido tradicional (píxeles). En su lugar, captura el flujo de texto de la terminal junto con los tiempos exactos. Esto tiene varias ventajas:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Archivos diminutos&lt;/strong&gt;: En lugar de megabytes de vídeo, obtienes archivos de texto muy pequeños.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Texto seleccionable&lt;/strong&gt;: Al reproducir una sesión en la web, puedes copiar y pegar el código directamente.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Calidad perfecta&lt;/strong&gt;: No hay pérdida de resolución ni artefactos de compresión.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="instalacion-y-ayuda"&gt;Instalación y Ayuda&lt;a class="headerlink" href="#instalacion-y-ayuda" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Ya tengo &lt;code&gt;asciinema&lt;/code&gt; instalado en mi sistema. Aquí puedes ver el resumen de comandos disponibles:## Ejemplo interactivo&lt;/p&gt;
+&lt;p&gt;A continuación puedes ver una pequeña demostración de &lt;code&gt;asciinema&lt;/code&gt; en acción, ejecutando el comando &lt;code&gt;cowsay Muuuuu&lt;/code&gt;:&lt;/p&gt;
+&lt;p&gt;&lt;link rel="stylesheet" type="text/css" href="/theme/asciinema-player/asciinema-player.css" /&gt;&lt;/p&gt;
+&lt;div id="demo-player"&gt;&lt;/div&gt;
+&lt;script src="/theme/asciinema-player/asciinema-player.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+    window.addEventListener('load', function() {
+        AsciinemaPlayer.create('/images/demo.cast', document.getElementById('demo-player'), {
+            cols: 80,
+            rows: 10,
+            autoPlay: true,
+            loop: true
+        });
+    });
+&lt;/script&gt;
+
+&lt;h2 id="comandos-basicos"&gt;Comandos básicos&lt;a class="headerlink" href="#comandos-basicos" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Para empezar a grabar, simplemente ejecuta:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;asciinema&lt;span class="w"&gt; &lt;/span&gt;rec&lt;span class="w"&gt; &lt;/span&gt;demo.cast
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Esto comenzará a grabar todo lo que ocurra en tu sesión actual de terminal. Cuando termines, simplemente presiona &lt;code&gt;Ctrl-D&lt;/code&gt; o escribe &lt;code&gt;exit&lt;/code&gt;. El resultado se guardará en el archivo &lt;code&gt;demo.cast&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Para reproducirlo localmente:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;asciinema&lt;span class="w"&gt; &lt;/span&gt;play&lt;span class="w"&gt; &lt;/span&gt;demo.cast
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Y si quieres compartirlo con el mundo, puedes subirlo a su servicio de alojamiento gratuito:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;asciinema&lt;span class="w"&gt; &lt;/span&gt;upload&lt;span class="w"&gt; &lt;/span&gt;demo.cast
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="por-que-usarlo"&gt;¿Por qué usarlo?&lt;a class="headerlink" href="#por-que-usarlo" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Es ideal para desarrolladores que escriben blogs técnicos (como este), ya que permite insertar las grabaciones directamente en el navegador con un reproductor ligero basado en JavaScript. ¡Adiós a los GIFs borrosos de 20MB!&lt;/p&gt;
+&lt;p&gt;&lt;img alt="asciinema help" src="https://pablocaro.es/images/asciinema_help.png"&gt;&lt;/p&gt;</content><category term="Herramientas"></category><category term="asciinema"></category><category term="terminal"></category><category term="linux"></category><category term="productivity"></category></entry><entry><title>kitty-rbw: Acceso rápido a Bitwarden desde tu terminal kitty</title><link href="https://pablocaro.es/kitty-rbw-kitten" rel="alternate"></link><published>2026-02-26T14:20:00+01:00</published><updated>2026-02-26T14:20:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-02-26:/kitty-rbw-kitten</id><summary type="html">&lt;p&gt;Presentación de kitty-rbw, un "kitten" para el terminal kitty que permite buscar y usar credenciales de rbw (Bitwarden) de forma instantánea mediante fzf.&lt;/p&gt;</summary><content type="html">&lt;p&gt;En la &lt;a href="https://pablocaro.es/rbw-bitwarden-cli"&gt;entrada anterior&lt;/a&gt; hablamos de &lt;strong&gt;rbw&lt;/strong&gt;, el cliente de Bitwarden para terminal escrito en Rust que destaca por su velocidad y por usar un agente para gestionar el desbloqueo del almacén.&lt;/p&gt;
 &lt;p&gt;Hoy doy un paso más allá y presento &lt;strong&gt;&lt;a href="https://github.com/pcaro/kitty_rbw"&gt;kitty-rbw&lt;/a&gt;&lt;/strong&gt;, un &lt;em&gt;kitten&lt;/em&gt; que he desarrollado para el terminal &lt;strong&gt;kitty&lt;/strong&gt;. Su objetivo es permitirte buscar y usar tus credenciales de Bitwarden sin tener que salir del terminal ni escribir comandos complejos, integrándose perfectamente en tu flujo de trabajo.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Interfaz de kitty-rbw" src="https://pablocaro.es/images/kitty-rbw.png"&gt;&lt;/p&gt;
 &lt;h2 id="que-es-un-kitten"&gt;¿Qué es un kitten?&lt;a class="headerlink" href="#que-es-un-kitten" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
@@ -14,13 +55,13 @@
 &lt;li&gt;&lt;strong&gt;Atajos por carpeta&lt;/strong&gt;: Puedes configurar el kitten para que se abra pre-filtrado por una carpeta específica (por ejemplo, una para el trabajo y otra personal).&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id="instalacion"&gt;Instalación&lt;a class="headerlink" href="#instalacion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Para instalarlo, solo tienes que clonar el repositorio en tu directorio de configuración de kitty:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nb"&gt;cd&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;~/.config/kitty
-git&lt;span class="w"&gt; &lt;/span&gt;clone&lt;span class="w"&gt; &lt;/span&gt;https://github.com/pcaro/kitty_rbw
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Para instalarlo, solo tienes que clonar el repositorio en tu directorio de configuración de kitty:```bash
+cd ~/.config/kitty
+git clone https://github.com/pcaro/kitty_rbw&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;Luego, añade un atajo de teclado en tu &lt;span class="sb"&gt;`kitty.conf`&lt;/span&gt;:
 
-&lt;p&gt;Luego, añade un atajo de teclado en tu &lt;code&gt;kitty.conf&lt;/code&gt;:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;map kitty_mod+b kitten kitty_rbw/rbw.py
+```conf
+map kitty_mod+b kitten kitty_rbw/rbw.py
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;h2 id="uso-y-atajos"&gt;Uso y atajos&lt;a class="headerlink" href="#uso-y-atajos" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
@@ -63,16 +104,19 @@ git&lt;span class="w"&gt; &lt;/span&gt;clone&lt;span class="w"&gt; &lt;/span&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;p&gt;Si quieres saber más o contribuir al proyecto, puedes encontrarlo en GitHub: &lt;a href="https://github.com/pcaro/kitty_rbw"&gt;https://github.com/pcaro/kitty_rbw&lt;/a&gt;&lt;/p&gt;</content><category term="Herramientas"></category><category term="bitwarden"></category><category term="cli"></category><category term="kitty"></category><category term="rust"></category><category term="productividad"></category></entry><entry><title>rbw: El cliente de Bitwarden para terminal que deberías usar</title><link href="https://pablocaro.es/rbw-bitwarden-cli" rel="alternate"></link><published>2026-02-26T11:45:00+01:00</published><updated>2026-02-26T11:45:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-02-26:/rbw-bitwarden-cli</id><summary type="html">&lt;p&gt;Cómo instalar y configurar rbw, una implementación en Rust del cliente de Bitwarden, y cómo integrarlo en tus flujos de trabajo con pi-agent.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Aunque Bitwarden tiene un cliente oficial de línea de comandos, este puede resultar lento al estar basado en Node.js. Para los que buscamos algo más ágil, &lt;a href="https://github.com/doy/rbw"&gt;rbw&lt;/a&gt; es la solución ideal. Es una implementación no oficial en Rust que destaca por ser extremadamente rápida y por gestionar el desbloqueo del almacén mediante un agente, evitando que tengas que introducir tu contraseña maestra en cada comando.&lt;/p&gt;
+&lt;p&gt;Si quieres saber más o contribuir al proyecto, puedes encontrarlo en GitHub: &lt;a href="https://github.com/pcaro/kitty_rbw"&gt;https://github.com/pcaro/kitty_rbw&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="kitty help" src="https://pablocaro.es/images/kitty_help.png"&gt;&lt;/p&gt;</content><category term="Herramientas"></category><category term="bitwarden"></category><category term="cli"></category><category term="kitty"></category><category term="rust"></category><category term="productividad"></category></entry><entry><title>rbw: El cliente de Bitwarden para terminal que deberías usar</title><link href="https://pablocaro.es/rbw-bitwarden-cli" rel="alternate"></link><published>2026-02-26T11:45:00+01:00</published><updated>2026-02-26T11:45:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-02-26:/rbw-bitwarden-cli</id><summary type="html">&lt;p&gt;Cómo instalar y configurar rbw, una implementación en Rust del cliente de Bitwarden, y cómo integrarlo en tus flujos de trabajo con pi-agent.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Aunque Bitwarden tiene un cliente oficial de línea de comandos, este puede resultar lento al estar basado en Node.js. Para los que buscamos algo más ágil, &lt;a href="https://github.com/doy/rbw"&gt;rbw&lt;/a&gt; es la solución ideal. Es una implementación no oficial en Rust que destaca por ser extremadamente rápida y por gestionar el desbloqueo del almacén mediante un agente, evitando que tengas que introducir tu contraseña maestra en cada comando.&lt;/p&gt;
 &lt;h2 id="instalacion"&gt;Instalación&lt;a class="headerlink" href="#instalacion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;La forma más sencilla de instalarlo es bajando el binario directamente desde sus releases de GitHub. Yo utilizo &lt;code&gt;gah&lt;/code&gt; para este propósito:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;gah&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;doy/rbw
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;La forma más sencilla de instalarlo es bajando el binario directamente desde sus releases de GitHub. Yo utilizo &lt;code&gt;gah&lt;/code&gt; para este propósito:```bash
+gah install doy/rbw&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;Este&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;comando&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;descargará&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;el&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;binario&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;de&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n n-Quoted"&gt;`rbw`&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;el&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;de&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n n-Quoted"&gt;`rbw-agent`&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
 
-&lt;p&gt;Este comando descargará el binario de &lt;code&gt;rbw&lt;/code&gt; y el de &lt;code&gt;rbw-agent&lt;/code&gt;.&lt;/p&gt;
-&lt;h2 id="configuracion-inicial"&gt;Configuración inicial&lt;a class="headerlink" href="#configuracion-inicial" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Lo primero es configurar tu cuenta y el servidor:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;rbw&lt;span class="w"&gt; &lt;/span&gt;login
+&lt;span class="c1"&gt;## Configuración inicial&lt;/span&gt;
+
+&lt;span class="n"&gt;Lo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;primero&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;es&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;configurar&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;tu&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;cuenta&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;el&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;servidor&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+
+&lt;span class="n n-Quoted"&gt;`&lt;/span&gt;&lt;span class="n n-Quoted n-Quoted-Escape"&gt;``&lt;/span&gt;&lt;span class="n n-Quoted"&gt;bash&lt;/span&gt;
+&lt;span class="n n-Quoted"&gt;rbw login&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Te pedirá tu email y la URL del servidor (puedes dejarla en blanco si usas el oficial de Bitwarden o poner la de tu instancia de Vaultwarden).&lt;/p&gt;
@@ -100,7 +144,8 @@ rbw&lt;span class="w"&gt; &lt;/span&gt;get&lt;span class="w"&gt; &lt;/span&gt;--
 &lt;span class="p"&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;El prefijo &lt;code&gt;!&lt;/code&gt; indica a &lt;code&gt;pi-agent&lt;/code&gt; que debe ejecutar el comando y usar su salida estándar como la clave. Gracias al agente de &lt;code&gt;rbw&lt;/code&gt;, este comando se ejecutará instantáneamente sin pedirte la clave maestra cada vez, siempre que el almacén esté desbloqueado.&lt;/p&gt;</content><category term="Herramientas"></category><category term="bitwarden"></category><category term="cli"></category><category term="rust"></category><category term="seguridad"></category><category term="pi-agent"></category></entry><entry><title>YAML Multilínea: Entendiendo y probando cadenas de texto complejas</title><link href="https://pablocaro.es/yaml-multilinea-cadenas-complejas" rel="alternate"></link><published>2025-12-25T16:10:00+01:00</published><updated>2025-12-25T16:10:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2025-12-25:/yaml-multilinea-cadenas-complejas</id><summary type="html">&lt;p&gt;Explora las opciones de YAML para manejar cadenas de texto multilínea de forma efectiva, con una demo interactiva que te permite probarlas en tiempo real.&lt;/p&gt;</summary><content type="html">&lt;p&gt;YAML se ha convertido en el formato de facto para la configuración en muchos proyectos, desde Kubernetes hasta scripts de CI/CD. Una de sus funcionalidades más potentes, y a veces confusas, es la gestión de &lt;strong&gt;cadenas de texto multilínea&lt;/strong&gt;. Afortunadamente, existe una herramienta interactiva excepcional para dominar este aspecto: &lt;a href="https://yaml-multiline.info/"&gt;yaml-multiline.info&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;El prefijo &lt;code&gt;!&lt;/code&gt; indica a &lt;code&gt;pi-agent&lt;/code&gt; que debe ejecutar el comando y usar su salida estándar como la clave. Gracias al agente de &lt;code&gt;rbw&lt;/code&gt;, este comando se ejecutará instantáneamente sin pedirte la clave maestra cada vez, siempre que el almacén esté desbloqueado.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="rbw help" src="https://pablocaro.es/images/rbw_help.png"&gt;&lt;/p&gt;</content><category term="Herramientas"></category><category term="bitwarden"></category><category term="cli"></category><category term="rust"></category><category term="seguridad"></category><category term="pi-agent"></category></entry><entry><title>YAML Multilínea: Entendiendo y probando cadenas de texto complejas</title><link href="https://pablocaro.es/yaml-multilinea-cadenas-complejas" rel="alternate"></link><published>2025-12-25T16:10:00+01:00</published><updated>2025-12-25T16:10:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2025-12-25:/yaml-multilinea-cadenas-complejas</id><summary type="html">&lt;p&gt;Explora las opciones de YAML para manejar cadenas de texto multilínea de forma efectiva, con una demo interactiva que te permite probarlas en tiempo real.&lt;/p&gt;</summary><content type="html">&lt;p&gt;YAML se ha convertido en el formato de facto para la configuración en muchos proyectos, desde Kubernetes hasta scripts de CI/CD. Una de sus funcionalidades más potentes, y a veces confusas, es la gestión de &lt;strong&gt;cadenas de texto multilínea&lt;/strong&gt;. Afortunadamente, existe una herramienta interactiva excepcional para dominar este aspecto: &lt;a href="https://yaml-multiline.info/"&gt;yaml-multiline.info&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id="formatos-para-cadenas-multilinea-en-yaml"&gt;Formatos para Cadenas Multilínea en YAML&lt;a class="headerlink" href="#formatos-para-cadenas-multilinea-en-yaml" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;YAML ofrece principalmente dos enfoques para definir cadenas que abarcan varias líneas:&lt;/p&gt;
 &lt;ol&gt;

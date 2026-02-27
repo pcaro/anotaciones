@@ -3,12 +3,12 @@
 &lt;p&gt;Creada por Simon …&lt;/p&gt;</summary><content type="html">&lt;p&gt;¿Alguna vez has necesitado tomar capturas de pantalla de una página web de forma programática? Tal vez para documentar tu proyecto, monitorizar cambios en una UI, o generar imágenes para redes sociales. Existen muchas formas de hacerlo, pero &lt;strong&gt;&lt;a href="https://shot-scraper.datasette.io/"&gt;shot-scraper&lt;/a&gt;&lt;/strong&gt; destaca por su facilidad de uso y potencia.&lt;/p&gt;
 &lt;p&gt;Creada por Simon Willison, &lt;code&gt;shot-scraper&lt;/code&gt; es una herramienta de línea de comandos (CLI) que envuelve Playwright para hacer que tomar screenshots sea trivial.&lt;/p&gt;
 &lt;h2 id="instalacion"&gt;Instalación&lt;a class="headerlink" href="#instalacion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Al igual que con otras herramientas modernas de Python, la mejor forma de instalarla es usando &lt;code&gt;uv&lt;/code&gt;:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;uv&lt;span class="w"&gt; &lt;/span&gt;tool&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;shot-scraper
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Al igual que con otras herramientas modernas de Python, la mejor forma de instalarla es usando &lt;code&gt;uv&lt;/code&gt;:```bash
+uv tool install shot-scraper&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;Una vez instalada, necesitarás descargar el navegador que utiliza por debajo (Chromium):
 
-&lt;p&gt;Una vez instalada, necesitarás descargar el navegador que utiliza por debajo (Chromium):&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;shot-scraper&lt;span class="w"&gt; &lt;/span&gt;install
+```bash
+shot-scraper install
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;h2 id="uso-basico"&gt;Uso básico&lt;a class="headerlink" href="#uso-basico" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
@@ -53,4 +53,5 @@
 &lt;li&gt;&lt;strong&gt;HAR&lt;/strong&gt;: Grabar archivos HAR para analizar el tráfico de red (&lt;code&gt;shot-scraper har&lt;/code&gt;).&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Es una de esas herramientas que, una vez instaladas, encuentras usos para ella constantemente. Perfecta para integrar en pipelines de CI/CD para generar visuales de documentación automáticamente.&lt;/p&gt;
-&lt;p&gt;Más info en la &lt;a href="https://shot-scraper.datasette.io/"&gt;documentación oficial&lt;/a&gt;.&lt;/p&gt;</content><category term="Python"></category><category term="python"></category><category term="cli"></category><category term="tools"></category><category term="web"></category><category term="scraping"></category><category term="screenshots"></category></entry></feed>
+&lt;p&gt;Más info en la &lt;a href="https://shot-scraper.datasette.io/"&gt;documentación oficial&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="shot-scraper help" src="https://pablocaro.es/images/shot_scraper_help.png"&gt;&lt;/p&gt;</content><category term="Python"></category><category term="python"></category><category term="cli"></category><category term="tools"></category><category term="web"></category><category term="scraping"></category><category term="screenshots"></category></entry></feed>

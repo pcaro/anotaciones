@@ -13,14 +13,16 @@
 &lt;h2 id="instalacion"&gt;Instalación&lt;a class="headerlink" href="#instalacion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;La forma moderna y recomendada de instalar herramientas en Python es usando &lt;code&gt;uv&lt;/code&gt;.&lt;/p&gt;
 &lt;h3 id="como-herramienta-de-linea-de-comandos-cli"&gt;Como herramienta de línea de comandos (CLI)&lt;a class="headerlink" href="#como-herramienta-de-linea-de-comandos-cli" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;Si solo quieres usar el comando &lt;code&gt;deep&lt;/code&gt; en tu terminal para comparar archivos JSON o YAML:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;uv&lt;span class="w"&gt; &lt;/span&gt;tool&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;deepdiff[cli]&amp;quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Si solo quieres usar el comando &lt;code&gt;deep&lt;/code&gt; en tu terminal para comparar archivos JSON o YAML:```bash
+uv tool install "deepdiff[cli]"&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;Esto&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;instalará&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;el&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;comando&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n n-Quoted"&gt;`deep`&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;en&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;tu&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;sistema&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;de&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;forma&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;aislada&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Asegúrate&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;de&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;incluir&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n n-Quoted"&gt;`[cli]`&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;para&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;instalar&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;las&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;dependencias&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;necesarias&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
 
-&lt;p&gt;Esto instalará el comando &lt;code&gt;deep&lt;/code&gt; en tu sistema de forma aislada. Asegúrate de incluir &lt;code&gt;[cli]&lt;/code&gt; para instalar las dependencias necesarias.&lt;/p&gt;
-&lt;h3 id="como-biblioteca-en-tu-proyecto"&gt;Como biblioteca en tu proyecto&lt;a class="headerlink" href="#como-biblioteca-en-tu-proyecto" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;Si vas a usarlo dentro de tus scripts de Python:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;uv&lt;span class="w"&gt; &lt;/span&gt;add&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;deepdiff&amp;quot;&lt;/span&gt;
+&lt;span class="c1"&gt;### Como biblioteca en tu proyecto&lt;/span&gt;
+
+&lt;span class="n"&gt;Si&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;vas&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;usarlo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;dentro&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;de&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;tus&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;scripts&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;de&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Python&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+
+&lt;span class="n n-Quoted"&gt;`&lt;/span&gt;&lt;span class="n n-Quoted n-Quoted-Escape"&gt;``&lt;/span&gt;&lt;span class="n n-Quoted"&gt;bash&lt;/span&gt;
+&lt;span class="n n-Quoted"&gt;uv add &amp;quot;deepdiff&amp;quot;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;O si necesitas la CLI también dentro de tu entorno virtual:&lt;/p&gt;
@@ -76,4 +78,5 @@ deep&lt;span class="w"&gt; &lt;/span&gt;diff&lt;span class="w"&gt; &lt;/span&gt;
 &lt;p&gt;También puedes usarlo para extraer información o buscar dentro de archivos JSON/YAML grandes sin tener que escribir un script.&lt;/p&gt;
 &lt;h2 id="conclusion"&gt;Conclusión&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;DeepDiff es una de esas librerías que, una vez que conoces, no puedes dejar de usar. Su flexibilidad para ignorar ciertos campos (como timestamps o IDs autogenerados) la hace perfecta para tests de integración y validación de datos.&lt;/p&gt;
-&lt;p&gt;Puedes ver la documentación completa en &lt;a href="https://zepworks.com/deepdiff/current/"&gt;zepworks.com/deepdiff&lt;/a&gt;.&lt;/p&gt;</content><category term="Python"></category><category term="python"></category><category term="data"></category><category term="cli"></category><category term="tools"></category><category term="diff"></category></entry></feed>
+&lt;p&gt;Puedes ver la documentación completa en &lt;a href="https://zepworks.com/deepdiff/current/"&gt;zepworks.com/deepdiff&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="deep help" src="https://pablocaro.es/images/deep_help.png"&gt;&lt;/p&gt;</content><category term="Python"></category><category term="python"></category><category term="data"></category><category term="cli"></category><category term="tools"></category><category term="diff"></category></entry></feed>

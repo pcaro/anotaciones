@@ -1,5 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Annotations by Pablo Caro - productivity</title><link href="https://pablocaro.es/en/" rel="alternate"></link><link href="https://pablocaro.es/feeds/tags/productivity.atom.xml" rel="self"></link><id>https://pablocaro.es/en/</id><updated>2026-02-26T14:20:00+01:00</updated><subtitle>Annotations</subtitle><entry><title>kitty-rbw: Fast Bitwarden access from your kitty terminal</title><link href="https://pablocaro.es/en/kitty-rbw-kitten" rel="alternate"></link><published>2026-02-26T14:20:00+01:00</published><updated>2026-02-26T14:20:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-02-26:/en/kitty-rbw-kitten</id><summary type="html">&lt;p&gt;Introducing kitty-rbw, a "kitten" for the kitty terminal that allows you to search and use rbw (Bitwarden) credentials instantly using fzf.&lt;/p&gt;</summary><content type="html">&lt;p&gt;In the &lt;a href="https://pablocaro.es/en/rbw-bitwarden-cli"&gt;previous post&lt;/a&gt; we talked about &lt;strong&gt;rbw&lt;/strong&gt;, the Bitwarden CLI client written in Rust that stands out for its speed and for using an agent to manage vault unlocking.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Annotations by Pablo Caro - productivity</title><link href="https://pablocaro.es/en/" rel="alternate"></link><link href="https://pablocaro.es/feeds/tags/productivity.atom.xml" rel="self"></link><id>https://pablocaro.es/en/</id><updated>2026-02-27T12:00:00+01:00</updated><subtitle>Annotations</subtitle><entry><title>Record and Share your Terminal Sessions with asciinema</title><link href="https://pablocaro.es/en/asciinema-terminal-recorder" rel="alternate"></link><published>2026-02-27T12:00:00+01:00</published><updated>2026-02-27T12:00:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-02-27:/en/asciinema-terminal-recorder</id><summary type="html">&lt;p&gt;Discover asciinema, the perfect tool to record your terminal sessions in a lightweight, reproducible, and easy-to-share way.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Often we need to share what's happening in our terminal, whether for a tutorial, demonstrating a bug, or simply documenting a process. While traditional video recording tools exist, &lt;strong&gt;asciinema&lt;/strong&gt; offers a much more powerful and lightweight alternative.&lt;/p&gt;
+&lt;h2 id="what-is-asciinema"&gt;What is asciinema?&lt;a class="headerlink" href="#what-is-asciinema" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://github.com/asciinema/asciinema"&gt;asciinema&lt;/a&gt; doesn't record video in the traditional sense (pixels). Instead, it captures the terminal's text stream along with exact timings. This has several advantages:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Tiny files&lt;/strong&gt;: Instead of megabytes of video, you get very small text files.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Selectable text&lt;/strong&gt;: When playing back a session on the web, you can copy and paste the code directly.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Perfect quality&lt;/strong&gt;: No loss of resolution or compression artifacts.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="installation-and-help"&gt;Installation and Help&lt;a class="headerlink" href="#installation-and-help" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I already have &lt;code&gt;asciinema&lt;/code&gt; installed on my system. Here you can see the summary of available commands:## Interactive example&lt;/p&gt;
+&lt;p&gt;Below you can see a small demonstration of &lt;code&gt;asciinema&lt;/code&gt; in action, running the command &lt;code&gt;cowsay Muuuuu&lt;/code&gt;:&lt;/p&gt;
+&lt;p&gt;&lt;link rel="stylesheet" type="text/css" href="/theme/asciinema-player/asciinema-player.css" /&gt;&lt;/p&gt;
+&lt;div id="demo-player"&gt;&lt;/div&gt;
+&lt;script src="/theme/asciinema-player/asciinema-player.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+    window.addEventListener('load', function() {
+        AsciinemaPlayer.create('/images/demo.cast', document.getElementById('demo-player'), {
+            cols: 80,
+            rows: 10,
+            autoPlay: true,
+            loop: true
+        });
+    });
+&lt;/script&gt;
+
+&lt;h2 id="basic-commands"&gt;Basic commands&lt;a class="headerlink" href="#basic-commands" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;To start recording, simply run:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;asciinema&lt;span class="w"&gt; &lt;/span&gt;rec&lt;span class="w"&gt; &lt;/span&gt;demo.cast
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This will begin recording everything that happens in your current terminal session. When you're finished, simply press &lt;code&gt;Ctrl-D&lt;/code&gt; or type &lt;code&gt;exit&lt;/code&gt;. The result will be saved in the &lt;code&gt;demo.cast&lt;/code&gt; file.&lt;/p&gt;
+&lt;p&gt;To play it back locally:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;asciinema&lt;span class="w"&gt; &lt;/span&gt;play&lt;span class="w"&gt; &lt;/span&gt;demo.cast
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;And if you want to share it with the world, you can upload it to their free hosting service:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;asciinema&lt;span class="w"&gt; &lt;/span&gt;upload&lt;span class="w"&gt; &lt;/span&gt;demo.cast
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="why-use-it"&gt;Why use it?&lt;a class="headerlink" href="#why-use-it" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;It's ideal for developers writing technical blogs (like this one), as it allows you to embed the recordings directly into the browser with a lightweight JavaScript-based player. Goodbye, blurry 20MB GIFs!&lt;/p&gt;
+&lt;p&gt;&lt;img alt="asciinema help" src="https://pablocaro.es/en/images/asciinema_help.png"&gt;&lt;/p&gt;</content><category term="Tools"></category><category term="asciinema"></category><category term="terminal"></category><category term="linux"></category><category term="productivity"></category></entry><entry><title>kitty-rbw: Fast Bitwarden access from your kitty terminal</title><link href="https://pablocaro.es/en/kitty-rbw-kitten" rel="alternate"></link><published>2026-02-26T14:20:00+01:00</published><updated>2026-02-26T14:20:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-02-26:/en/kitty-rbw-kitten</id><summary type="html">&lt;p&gt;Introducing kitty-rbw, a "kitten" for the kitty terminal that allows you to search and use rbw (Bitwarden) credentials instantly using fzf.&lt;/p&gt;</summary><content type="html">&lt;p&gt;In the &lt;a href="https://pablocaro.es/en/rbw-bitwarden-cli"&gt;previous post&lt;/a&gt; we talked about &lt;strong&gt;rbw&lt;/strong&gt;, the Bitwarden CLI client written in Rust that stands out for its speed and for using an agent to manage vault unlocking.&lt;/p&gt;
 &lt;p&gt;Today I'm going a step further and introducing &lt;strong&gt;&lt;a href="https://github.com/pcaro/kitty_rbw"&gt;kitty-rbw&lt;/a&gt;&lt;/strong&gt;, a &lt;em&gt;kitten&lt;/em&gt; I've developed for the &lt;strong&gt;kitty&lt;/strong&gt; terminal. Its goal is to let you search and use your Bitwarden credentials without leaving the terminal or typing complex commands, integrating perfectly into your workflow.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="kitty-rbw interface" src="https://pablocaro.es/en/images/kitty-rbw.png"&gt;&lt;/p&gt;
 &lt;h2 id="what-is-a-kitten"&gt;What is a kitten?&lt;a class="headerlink" href="#what-is-a-kitten" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
@@ -14,13 +55,13 @@
 &lt;li&gt;&lt;strong&gt;Folder shortcuts&lt;/strong&gt;: You can configure the kitten to open pre-filtered by a specific folder (e.g., one for work and one for personal).&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id="installation"&gt;Installation&lt;a class="headerlink" href="#installation" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;To install it, simply clone the repository into your kitty configuration directory:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nb"&gt;cd&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;~/.config/kitty
-git&lt;span class="w"&gt; &lt;/span&gt;clone&lt;span class="w"&gt; &lt;/span&gt;https://github.com/pcaro/kitty_rbw
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;To install it, simply clone the repository into your kitty configuration directory:```bash
+cd ~/.config/kitty
+git clone https://github.com/pcaro/kitty_rbw&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;Then, add a keyboard shortcut to your &lt;span class="sb"&gt;`kitty.conf`&lt;/span&gt;:
 
-&lt;p&gt;Then, add a keyboard shortcut to your &lt;code&gt;kitty.conf&lt;/code&gt;:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;map kitty_mod+b kitten kitty_rbw/rbw.py
+```conf
+map kitty_mod+b kitten kitty_rbw/rbw.py
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;h2 id="usage-and-shortcuts"&gt;Usage and Shortcuts&lt;a class="headerlink" href="#usage-and-shortcuts" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
@@ -63,7 +104,8 @@ git&lt;span class="w"&gt; &lt;/span&gt;clone&lt;span class="w"&gt; &lt;/span&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;p&gt;If you want to know more or contribute to the project, you can find it on GitHub: &lt;a href="https://github.com/pcaro/kitty_rbw"&gt;https://github.com/pcaro/kitty_rbw&lt;/a&gt;&lt;/p&gt;</content><category term="Tools"></category><category term="bitwarden"></category><category term="cli"></category><category term="kitty"></category><category term="rust"></category><category term="productivity"></category></entry><entry><title>`fresh`: My preferred terminal editor for daily use</title><link href="https://pablocaro.es/en/fresh-editor-terminal" rel="alternate"></link><published>2025-12-25T15:45:00+01:00</published><updated>2025-12-25T15:45:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2025-12-25:/en/fresh-editor-terminal</id><summary type="html">&lt;p&gt;Discover &lt;code&gt;fresh&lt;/code&gt;, a fast, modern, modeless terminal text editor, ideal for casual file editing, surpassing &lt;code&gt;nano&lt;/code&gt; and &lt;code&gt;vim&lt;/code&gt; in simplicity for regular use.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Although &lt;code&gt;vim&lt;/code&gt; is an incredibly powerful tool and &lt;code&gt;nano&lt;/code&gt; stands out for its extreme simplicity, I often look for a middle ground for file editing in the terminal. An editor that is fast, modern, and doesn't force me to remember modes or complex key combinations for simple tasks. That's how I discovered &lt;strong&gt;&lt;code&gt;fresh&lt;/code&gt;&lt;/strong&gt;, and it has quickly become my preferred terminal editor for daily use.&lt;/p&gt;
+&lt;p&gt;If you want to know more or contribute to the project, you can find it on GitHub: &lt;a href="https://github.com/pcaro/kitty_rbw"&gt;https://github.com/pcaro/kitty_rbw&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="kitty help" src="https://pablocaro.es/en/images/kitty_help.png"&gt;&lt;/p&gt;</content><category term="Tools"></category><category term="bitwarden"></category><category term="cli"></category><category term="kitty"></category><category term="rust"></category><category term="productivity"></category></entry><entry><title>`fresh`: My preferred terminal editor for daily use</title><link href="https://pablocaro.es/en/fresh-editor-terminal" rel="alternate"></link><published>2025-12-25T15:45:00+01:00</published><updated>2025-12-25T15:45:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2025-12-25:/en/fresh-editor-terminal</id><summary type="html">&lt;p&gt;Discover &lt;code&gt;fresh&lt;/code&gt;, a fast, modern, modeless terminal text editor, ideal for casual file editing, surpassing &lt;code&gt;nano&lt;/code&gt; and &lt;code&gt;vim&lt;/code&gt; in simplicity for regular use.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Although &lt;code&gt;vim&lt;/code&gt; is an incredibly powerful tool and &lt;code&gt;nano&lt;/code&gt; stands out for its extreme simplicity, I often look for a middle ground for file editing in the terminal. An editor that is fast, modern, and doesn't force me to remember modes or complex key combinations for simple tasks. That's how I discovered &lt;strong&gt;&lt;code&gt;fresh&lt;/code&gt;&lt;/strong&gt;, and it has quickly become my preferred terminal editor for daily use.&lt;/p&gt;
 &lt;h2 id="what-is-fresh"&gt;What is &lt;code&gt;fresh&lt;/code&gt;?&lt;a class="headerlink" href="#what-is-fresh" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;&lt;code&gt;fresh&lt;/code&gt; is a text editor for the terminal designed to be &lt;strong&gt;simple, fast, and efficient&lt;/strong&gt;. Unlike &lt;code&gt;vim&lt;/code&gt;, &lt;code&gt;fresh&lt;/code&gt; is a modeless editor, which means you can start typing and editing text immediately, just like you would in a graphical editor. Unlike &lt;code&gt;nano&lt;/code&gt;, &lt;code&gt;fresh&lt;/code&gt; offers a more modern experience with features you expect from a current text editor.&lt;/p&gt;
 &lt;h2 id="why-do-i-prefer-it-over-nano-or-vim-for-regular-use"&gt;Why do I prefer it over &lt;code&gt;nano&lt;/code&gt; or &lt;code&gt;vim&lt;/code&gt; for regular use?&lt;a class="headerlink" href="#why-do-i-prefer-it-over-nano-or-vim-for-regular-use" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;

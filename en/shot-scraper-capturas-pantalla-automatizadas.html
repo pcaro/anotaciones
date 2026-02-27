@@ -199,12 +199,12 @@
     <p>Have you ever needed to take screenshots of a web page programmatically? Perhaps to document your project, monitor UI changes, or generate images for social media. There are many ways to do it, but <strong><a href="https://shot-scraper.datasette.io/">shot-scraper</a></strong> stands out for its ease of use and power.</p>
 <p>Created by Simon Willison, <code>shot-scraper</code> is a command line interface (CLI) tool that wraps Playwright to make taking screenshots trivial.</p>
 <h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h2>
-<p>As with other modern Python tools, the best way to install it is using <code>uv</code>:</p>
-<div class="highlight"><pre><span></span><code>uv<span class="w"> </span>tool<span class="w"> </span>install<span class="w"> </span>shot-scraper
-</code></pre></div>
+<p>As with other modern Python tools, the best way to install it is using <code>uv</code>:```bash
+uv tool install shot-scraper</p>
+<div class="highlight"><pre><span></span><code><span class="n">Once</span><span class="w"> </span><span class="n">installed</span><span class="p">,</span><span class="w"> </span><span class="n">you</span><span class="s1">&#39;ll need to download the browser it uses under the hood (Chromium):</span>
 
-<p>Once installed, you'll need to download the browser it uses under the hood (Chromium):</p>
-<div class="highlight"><pre><span></span><code>shot-scraper<span class="w"> </span>install
+<span class="err">```</span><span class="n">bash</span>
+<span class="n">shot</span><span class="o">-</span><span class="n">scraper</span><span class="w"> </span><span class="n">install</span>
 </code></pre></div>
 
 <h2 id="basic-usage">Basic Usage<a class="headerlink" href="#basic-usage" title="Permanent link">&para;</a></h2>
@@ -250,6 +250,7 @@
 </ul>
 <p>It's one of those tools that, once installed, you find uses for constantly. Perfect for integrating into CI/CD pipelines to generate documentation visuals automatically.</p>
 <p>More info in the <a href="https://shot-scraper.datasette.io/">official documentation</a>.</p>
+<p><img alt="shot-scraper help" src="https://pablocaro.es/en/images/shot_scraper_help.png"></p>
   </div>
   <div class="tag-cloud">
     <p>

@@ -198,26 +198,27 @@
     <p><a href="https://github.com/charmbracelet/glow">Glow</a> es un renderizador de Markdown para la línea de comandos. Permite leer archivos Markdown locales o remotos, y renderizarlos con resaltado de sintaxis y estilos, directamente en tu terminal.</p>
 <p>Esta herramienta me resulta especialmente útil ahora que paso más tiempo usando la terminal con <a href="https://pablocaro.es/de-yakuake-a-kitty">Kitty</a>, ya que me permite consultar documentación y READMEs sin tener que abrir un navegador o un editor gráfico.</p>
 <h2 id="instalacion">Instalación<a class="headerlink" href="#instalacion" title="Permanent link">&para;</a></h2>
-<p>Para instalar Glow, utilizaremos <a href="https://pablocaro.es/gestionando-instalaciones-desde-github-con-gah">gah</a>, una herramienta que facilita la instalación de binarios desde GitHub Releases.</p>
-<div class="highlight"><pre><span></span><code>gah<span class="w"> </span>install<span class="w"> </span>charmbracelet/glow
-</code></pre></div>
+<p>Para instalar Glow, utilizaremos <a href="https://pablocaro.es/gestionando-instalaciones-desde-github-con-gah">gah</a>, una herramienta que facilita la instalación de binarios desde GitHub Releases.```bash
+gah install charmbracelet/glow</p>
+<div class="highlight"><pre><span></span><code><span class="n">El</span><span class="w"> </span><span class="n">proceso</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">instalación</span><span class="w"> </span><span class="n">es</span><span class="w"> </span><span class="n">muy</span><span class="w"> </span><span class="nl">sencillo</span><span class="p">:</span>
 
-<p>El proceso de instalación es muy sencillo:</p>
-<div class="highlight"><pre><span></span><code>$ gah install charmbracelet/glow
-Fetching release info for: charmbracelet/glow [latest]
-Found release: v2.1.1
-Downloading: glow_2.1.1_Linux_x86_64.tar.gz
-############################################################################################################################################################################### 100.0%
-GitHub Release did not provide digest for glow_2.1.1_Linux_x86_64.tar.gz. Skipping verification.
-Extracting: glow_2.1.1_Linux_x86_64.tar.gz
-Installing: glow
-Give a new name or keep &#39;glow&#39;? (Leave empty to keep the same)
-New name: 
-Installed: glow
-Done!
+<span class="err">```</span><span class="nc">text</span>
+<span class="err">$</span><span class="w"> </span><span class="n">gah</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="n">charmbracelet</span><span class="o">/</span><span class="n">glow</span>
+<span class="n">Fetching</span><span class="w"> </span><span class="k">release</span><span class="w"> </span><span class="n">info</span><span class="w"> </span><span class="k">for</span><span class="err">:</span><span class="w"> </span><span class="n">charmbracelet</span><span class="o">/</span><span class="n">glow</span><span class="w"> </span><span class="o">[</span><span class="n">latest</span><span class="o">]</span>
+<span class="k">Found</span><span class="w"> </span><span class="k">release</span><span class="err">:</span><span class="w"> </span><span class="n">v2</span><span class="mf">.1.1</span>
+<span class="nl">Downloading</span><span class="p">:</span><span class="w"> </span><span class="n">glow_2</span><span class="mf">.1.1</span><span class="n">_Linux_x86_64</span><span class="p">.</span><span class="n">tar</span><span class="p">.</span><span class="n">gz</span>
+<span class="err">###############################################################################################################################################################################</span><span class="w"> </span><span class="mf">100.0</span><span class="o">%</span>
+<span class="n">GitHub</span><span class="w"> </span><span class="k">Release</span><span class="w"> </span><span class="n">did</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="n">provide</span><span class="w"> </span><span class="n">digest</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">glow_2</span><span class="mf">.1.1</span><span class="n">_Linux_x86_64</span><span class="p">.</span><span class="n">tar</span><span class="p">.</span><span class="n">gz</span><span class="p">.</span><span class="w"> </span><span class="n">Skipping</span><span class="w"> </span><span class="n">verification</span><span class="p">.</span>
+<span class="nl">Extracting</span><span class="p">:</span><span class="w"> </span><span class="n">glow_2</span><span class="mf">.1.1</span><span class="n">_Linux_x86_64</span><span class="p">.</span><span class="n">tar</span><span class="p">.</span><span class="n">gz</span>
+<span class="nl">Installing</span><span class="p">:</span><span class="w"> </span><span class="n">glow</span>
+<span class="n">Give</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="n">keep</span><span class="w"> </span><span class="s1">&#39;glow&#39;</span><span class="vm">?</span><span class="w"> </span><span class="p">(</span><span class="n">Leave</span><span class="w"> </span><span class="n">empty</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">keep</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">same</span><span class="p">)</span>
+<span class="k">New</span><span class="w"> </span><span class="nl">name</span><span class="p">:</span><span class="w"> </span>
+<span class="nl">Installed</span><span class="p">:</span><span class="w"> </span><span class="n">glow</span>
+<span class="n">Done</span><span class="err">!</span>
 </code></pre></div>
 
 <p>Una vez instalado, simplemente ejecuta <code>glow</code> seguido del archivo que quieras visualizar, o incluso la URL de un README en GitHub.</p>
+<p><img alt="glow help" src="https://pablocaro.es/images/glow_help.png"></p>
   </div>
   <div class="tag-cloud">
     <p>

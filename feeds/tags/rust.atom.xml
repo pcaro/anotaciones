@@ -14,13 +14,13 @@
 &lt;li&gt;&lt;strong&gt;Atajos por carpeta&lt;/strong&gt;: Puedes configurar el kitten para que se abra pre-filtrado por una carpeta específica (por ejemplo, una para el trabajo y otra personal).&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id="instalacion"&gt;Instalación&lt;a class="headerlink" href="#instalacion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Para instalarlo, solo tienes que clonar el repositorio en tu directorio de configuración de kitty:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nb"&gt;cd&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;~/.config/kitty
-git&lt;span class="w"&gt; &lt;/span&gt;clone&lt;span class="w"&gt; &lt;/span&gt;https://github.com/pcaro/kitty_rbw
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Para instalarlo, solo tienes que clonar el repositorio en tu directorio de configuración de kitty:```bash
+cd ~/.config/kitty
+git clone https://github.com/pcaro/kitty_rbw&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;Luego, añade un atajo de teclado en tu &lt;span class="sb"&gt;`kitty.conf`&lt;/span&gt;:
 
-&lt;p&gt;Luego, añade un atajo de teclado en tu &lt;code&gt;kitty.conf&lt;/code&gt;:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;map kitty_mod+b kitten kitty_rbw/rbw.py
+```conf
+map kitty_mod+b kitten kitty_rbw/rbw.py
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;h2 id="uso-y-atajos"&gt;Uso y atajos&lt;a class="headerlink" href="#uso-y-atajos" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
@@ -63,16 +63,19 @@ git&lt;span class="w"&gt; &lt;/span&gt;clone&lt;span class="w"&gt; &lt;/span&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;p&gt;Si quieres saber más o contribuir al proyecto, puedes encontrarlo en GitHub: &lt;a href="https://github.com/pcaro/kitty_rbw"&gt;https://github.com/pcaro/kitty_rbw&lt;/a&gt;&lt;/p&gt;</content><category term="Herramientas"></category><category term="bitwarden"></category><category term="cli"></category><category term="kitty"></category><category term="rust"></category><category term="productividad"></category></entry><entry><title>rbw: El cliente de Bitwarden para terminal que deberías usar</title><link href="https://pablocaro.es/rbw-bitwarden-cli" rel="alternate"></link><published>2026-02-26T11:45:00+01:00</published><updated>2026-02-26T11:45:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-02-26:/rbw-bitwarden-cli</id><summary type="html">&lt;p&gt;Cómo instalar y configurar rbw, una implementación en Rust del cliente de Bitwarden, y cómo integrarlo en tus flujos de trabajo con pi-agent.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Aunque Bitwarden tiene un cliente oficial de línea de comandos, este puede resultar lento al estar basado en Node.js. Para los que buscamos algo más ágil, &lt;a href="https://github.com/doy/rbw"&gt;rbw&lt;/a&gt; es la solución ideal. Es una implementación no oficial en Rust que destaca por ser extremadamente rápida y por gestionar el desbloqueo del almacén mediante un agente, evitando que tengas que introducir tu contraseña maestra en cada comando.&lt;/p&gt;
+&lt;p&gt;Si quieres saber más o contribuir al proyecto, puedes encontrarlo en GitHub: &lt;a href="https://github.com/pcaro/kitty_rbw"&gt;https://github.com/pcaro/kitty_rbw&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="kitty help" src="https://pablocaro.es/images/kitty_help.png"&gt;&lt;/p&gt;</content><category term="Herramientas"></category><category term="bitwarden"></category><category term="cli"></category><category term="kitty"></category><category term="rust"></category><category term="productividad"></category></entry><entry><title>rbw: El cliente de Bitwarden para terminal que deberías usar</title><link href="https://pablocaro.es/rbw-bitwarden-cli" rel="alternate"></link><published>2026-02-26T11:45:00+01:00</published><updated>2026-02-26T11:45:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-02-26:/rbw-bitwarden-cli</id><summary type="html">&lt;p&gt;Cómo instalar y configurar rbw, una implementación en Rust del cliente de Bitwarden, y cómo integrarlo en tus flujos de trabajo con pi-agent.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Aunque Bitwarden tiene un cliente oficial de línea de comandos, este puede resultar lento al estar basado en Node.js. Para los que buscamos algo más ágil, &lt;a href="https://github.com/doy/rbw"&gt;rbw&lt;/a&gt; es la solución ideal. Es una implementación no oficial en Rust que destaca por ser extremadamente rápida y por gestionar el desbloqueo del almacén mediante un agente, evitando que tengas que introducir tu contraseña maestra en cada comando.&lt;/p&gt;
 &lt;h2 id="instalacion"&gt;Instalación&lt;a class="headerlink" href="#instalacion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;La forma más sencilla de instalarlo es bajando el binario directamente desde sus releases de GitHub. Yo utilizo &lt;code&gt;gah&lt;/code&gt; para este propósito:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;gah&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;doy/rbw
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;La forma más sencilla de instalarlo es bajando el binario directamente desde sus releases de GitHub. Yo utilizo &lt;code&gt;gah&lt;/code&gt; para este propósito:```bash
+gah install doy/rbw&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;Este&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;comando&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;descargará&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;el&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;binario&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;de&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n n-Quoted"&gt;`rbw`&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;el&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;de&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n n-Quoted"&gt;`rbw-agent`&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
 
-&lt;p&gt;Este comando descargará el binario de &lt;code&gt;rbw&lt;/code&gt; y el de &lt;code&gt;rbw-agent&lt;/code&gt;.&lt;/p&gt;
-&lt;h2 id="configuracion-inicial"&gt;Configuración inicial&lt;a class="headerlink" href="#configuracion-inicial" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Lo primero es configurar tu cuenta y el servidor:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;rbw&lt;span class="w"&gt; &lt;/span&gt;login
+&lt;span class="c1"&gt;## Configuración inicial&lt;/span&gt;
+
+&lt;span class="n"&gt;Lo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;primero&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;es&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;configurar&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;tu&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;cuenta&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;el&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;servidor&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+
+&lt;span class="n n-Quoted"&gt;`&lt;/span&gt;&lt;span class="n n-Quoted n-Quoted-Escape"&gt;``&lt;/span&gt;&lt;span class="n n-Quoted"&gt;bash&lt;/span&gt;
+&lt;span class="n n-Quoted"&gt;rbw login&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Te pedirá tu email y la URL del servidor (puedes dejarla en blanco si usas el oficial de Bitwarden o poner la de tu instancia de Vaultwarden).&lt;/p&gt;
@@ -100,4 +103,5 @@ rbw&lt;span class="w"&gt; &lt;/span&gt;get&lt;span class="w"&gt; &lt;/span&gt;--
 &lt;span class="p"&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;El prefijo &lt;code&gt;!&lt;/code&gt; indica a &lt;code&gt;pi-agent&lt;/code&gt; que debe ejecutar el comando y usar su salida estándar como la clave. Gracias al agente de &lt;code&gt;rbw&lt;/code&gt;, este comando se ejecutará instantáneamente sin pedirte la clave maestra cada vez, siempre que el almacén esté desbloqueado.&lt;/p&gt;</content><category term="Herramientas"></category><category term="bitwarden"></category><category term="cli"></category><category term="rust"></category><category term="seguridad"></category><category term="pi-agent"></category></entry></feed>
+&lt;p&gt;El prefijo &lt;code&gt;!&lt;/code&gt; indica a &lt;code&gt;pi-agent&lt;/code&gt; que debe ejecutar el comando y usar su salida estándar como la clave. Gracias al agente de &lt;code&gt;rbw&lt;/code&gt;, este comando se ejecutará instantáneamente sin pedirte la clave maestra cada vez, siempre que el almacén esté desbloqueado.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="rbw help" src="https://pablocaro.es/images/rbw_help.png"&gt;&lt;/p&gt;</content><category term="Herramientas"></category><category term="bitwarden"></category><category term="cli"></category><category term="rust"></category><category term="seguridad"></category><category term="pi-agent"></category></entry></feed>

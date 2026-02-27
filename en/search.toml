@@ -3,6 +3,11 @@ html_selector = "main"
 base_directory = "/home/runner/work/anotaciones/anotaciones/output/en"
 
 [[input.files]]
+path = "asciinema-terminal-recorder.html"
+url = "/asciinema-terminal-recorder"
+title = "Record and Share your Terminal Sessions with asciinema"
+
+[[input.files]]
 path = "kitty-rbw-kitten.html"
 url = "/kitty-rbw-kitten"
 title = "kitty-rbw: Fast Bitwarden access from your kitty terminal"
@@ -271,6 +276,11 @@ title = "Django: links in object list"
 path = "settings-vars-processor.html"
 url = "/settings-vars-processor"
 title = "Settings vars processor"
+
+[[input.files]]
+path = "asciinema-terminal-recorder-es.html"
+url = "/../asciinema-terminal-recorder"
+title = "Graba y Comparte tus Sesiones de Terminal con asciinema"
 
 [[input.files]]
 path = "kitty-rbw-kitten-es.html"

@@ -197,14 +197,16 @@
   <div>
     <p>While Bitwarden has an official command-line client, it can be slow as it is Node.js-based. For those of us looking for something more agile, <a href="https://github.com/doy/rbw">rbw</a> is the ideal solution. It is an unofficial Rust implementation that stands out for being extremely fast and for managing vault unlocking through an agent, preventing you from having to enter your master password for every command.</p>
 <h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h2>
-<p>The easiest way to install it is by downloading the binary directly from its GitHub releases. I use <code>gah</code> for this purpose:</p>
-<div class="highlight"><pre><span></span><code>gah<span class="w"> </span>install<span class="w"> </span>doy/rbw
-</code></pre></div>
+<p>The easiest way to install it is by downloading the binary directly from its GitHub releases. I use <code>gah</code> for this purpose:```bash
+gah install doy/rbw</p>
+<div class="highlight"><pre><span></span><code><span class="n">This</span><span class="w"> </span><span class="n">command</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="n">download</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n n-Quoted">`rbw`</span><span class="w"> </span><span class="kt">binary</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n n-Quoted">`rbw-agent`</span><span class="w"> </span><span class="kt">binary</span><span class="p">.</span>
 
-<p>This command will download the <code>rbw</code> binary and the <code>rbw-agent</code> binary.</p>
-<h2 id="initial-setup">Initial Setup<a class="headerlink" href="#initial-setup" title="Permanent link">&para;</a></h2>
-<p>The first thing is to configure your account and the server:</p>
-<div class="highlight"><pre><span></span><code>rbw<span class="w"> </span>login
+<span class="c1">## Initial Setup</span>
+
+<span class="n">The</span><span class="w"> </span><span class="k">first</span><span class="w"> </span><span class="n">thing</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">configure</span><span class="w"> </span><span class="n">your</span><span class="w"> </span><span class="k">account</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">server</span><span class="o">:</span>
+
+<span class="n n-Quoted">`</span><span class="n n-Quoted n-Quoted-Escape">``</span><span class="n n-Quoted">bash</span>
+<span class="n n-Quoted">rbw login</span>
 </code></pre></div>
 
 <p>It will ask for your email and the server URL (you can leave it blank if you use the official Bitwarden one or enter the URL of your Vaultwarden instance).</p>
@@ -233,6 +235,7 @@ rbw<span class="w"> </span>get<span class="w"> </span>--username<span class="w">
 </code></pre></div>
 
 <p>The <code>!</code> prefix tells <code>pi-agent</code> to execute the command and use its standard output as the key. Thanks to the <code>rbw</code> agent, this command will run instantly without asking for your master password every time, as long as the vault is unlocked.</p>
+<p><img alt="rbw help" src="https://pablocaro.es/en/images/rbw_help.png"></p>
   </div>
   <div class="tag-cloud">
     <p>

@@ -197,14 +197,16 @@
   <div>
     <p>Aunque Bitwarden tiene un cliente oficial de línea de comandos, este puede resultar lento al estar basado en Node.js. Para los que buscamos algo más ágil, <a href="https://github.com/doy/rbw">rbw</a> es la solución ideal. Es una implementación no oficial en Rust que destaca por ser extremadamente rápida y por gestionar el desbloqueo del almacén mediante un agente, evitando que tengas que introducir tu contraseña maestra en cada comando.</p>
 <h2 id="instalacion">Instalación<a class="headerlink" href="#instalacion" title="Permanent link">&para;</a></h2>
-<p>La forma más sencilla de instalarlo es bajando el binario directamente desde sus releases de GitHub. Yo utilizo <code>gah</code> para este propósito:</p>
-<div class="highlight"><pre><span></span><code>gah<span class="w"> </span>install<span class="w"> </span>doy/rbw
-</code></pre></div>
+<p>La forma más sencilla de instalarlo es bajando el binario directamente desde sus releases de GitHub. Yo utilizo <code>gah</code> para este propósito:```bash
+gah install doy/rbw</p>
+<div class="highlight"><pre><span></span><code><span class="n">Este</span><span class="w"> </span><span class="n">comando</span><span class="w"> </span><span class="n">descargará</span><span class="w"> </span><span class="n">el</span><span class="w"> </span><span class="n">binario</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n n-Quoted">`rbw`</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="n">el</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n n-Quoted">`rbw-agent`</span><span class="p">.</span>
 
-<p>Este comando descargará el binario de <code>rbw</code> y el de <code>rbw-agent</code>.</p>
-<h2 id="configuracion-inicial">Configuración inicial<a class="headerlink" href="#configuracion-inicial" title="Permanent link">&para;</a></h2>
-<p>Lo primero es configurar tu cuenta y el servidor:</p>
-<div class="highlight"><pre><span></span><code>rbw<span class="w"> </span>login
+<span class="c1">## Configuración inicial</span>
+
+<span class="n">Lo</span><span class="w"> </span><span class="n">primero</span><span class="w"> </span><span class="n">es</span><span class="w"> </span><span class="n">configurar</span><span class="w"> </span><span class="n">tu</span><span class="w"> </span><span class="n">cuenta</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="n">el</span><span class="w"> </span><span class="n">servidor</span><span class="o">:</span>
+
+<span class="n n-Quoted">`</span><span class="n n-Quoted n-Quoted-Escape">``</span><span class="n n-Quoted">bash</span>
+<span class="n n-Quoted">rbw login</span>
 </code></pre></div>
 
 <p>Te pedirá tu email y la URL del servidor (puedes dejarla en blanco si usas el oficial de Bitwarden o poner la de tu instancia de Vaultwarden).</p>
@@ -233,6 +235,7 @@ rbw<span class="w"> </span>get<span class="w"> </span>--username<span class="w">
 </code></pre></div>
 
 <p>El prefijo <code>!</code> indica a <code>pi-agent</code> que debe ejecutar el comando y usar su salida estándar como la clave. Gracias al agente de <code>rbw</code>, este comando se ejecutará instantáneamente sin pedirte la clave maestra cada vez, siempre que el almacén esté desbloqueado.</p>
+<p><img alt="rbw help" src="https://pablocaro.es/images/rbw_help.png"></p>
   </div>
   <div class="tag-cloud">
     <p>

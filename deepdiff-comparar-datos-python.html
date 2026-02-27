@@ -209,14 +209,16 @@
 <h2 id="instalacion">Instalación<a class="headerlink" href="#instalacion" title="Permanent link">&para;</a></h2>
 <p>La forma moderna y recomendada de instalar herramientas en Python es usando <code>uv</code>.</p>
 <h3 id="como-herramienta-de-linea-de-comandos-cli">Como herramienta de línea de comandos (CLI)<a class="headerlink" href="#como-herramienta-de-linea-de-comandos-cli" title="Permanent link">&para;</a></h3>
-<p>Si solo quieres usar el comando <code>deep</code> en tu terminal para comparar archivos JSON o YAML:</p>
-<div class="highlight"><pre><span></span><code>uv<span class="w"> </span>tool<span class="w"> </span>install<span class="w"> </span><span class="s2">&quot;deepdiff[cli]&quot;</span>
-</code></pre></div>
+<p>Si solo quieres usar el comando <code>deep</code> en tu terminal para comparar archivos JSON o YAML:```bash
+uv tool install "deepdiff[cli]"</p>
+<div class="highlight"><pre><span></span><code><span class="n">Esto</span><span class="w"> </span><span class="n">instalará</span><span class="w"> </span><span class="n">el</span><span class="w"> </span><span class="n">comando</span><span class="w"> </span><span class="n n-Quoted">`deep`</span><span class="w"> </span><span class="n">en</span><span class="w"> </span><span class="n">tu</span><span class="w"> </span><span class="n">sistema</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">forma</span><span class="w"> </span><span class="n">aislada</span><span class="p">.</span><span class="w"> </span><span class="n">Asegúrate</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">incluir</span><span class="w"> </span><span class="n n-Quoted">`[cli]`</span><span class="w"> </span><span class="n">para</span><span class="w"> </span><span class="n">instalar</span><span class="w"> </span><span class="n">las</span><span class="w"> </span><span class="n">dependencias</span><span class="w"> </span><span class="n">necesarias</span><span class="p">.</span>
 
-<p>Esto instalará el comando <code>deep</code> en tu sistema de forma aislada. Asegúrate de incluir <code>[cli]</code> para instalar las dependencias necesarias.</p>
-<h3 id="como-biblioteca-en-tu-proyecto">Como biblioteca en tu proyecto<a class="headerlink" href="#como-biblioteca-en-tu-proyecto" title="Permanent link">&para;</a></h3>
-<p>Si vas a usarlo dentro de tus scripts de Python:</p>
-<div class="highlight"><pre><span></span><code>uv<span class="w"> </span>add<span class="w"> </span><span class="s2">&quot;deepdiff&quot;</span>
+<span class="c1">### Como biblioteca en tu proyecto</span>
+
+<span class="n">Si</span><span class="w"> </span><span class="n">vas</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">usarlo</span><span class="w"> </span><span class="n">dentro</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">tus</span><span class="w"> </span><span class="n">scripts</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">Python</span><span class="o">:</span>
+
+<span class="n n-Quoted">`</span><span class="n n-Quoted n-Quoted-Escape">``</span><span class="n n-Quoted">bash</span>
+<span class="n n-Quoted">uv add &quot;deepdiff&quot;</span>
 </code></pre></div>
 
 <p>O si necesitas la CLI también dentro de tu entorno virtual:</p>
@@ -273,6 +275,7 @@ deep<span class="w"> </span>diff<span class="w"> </span>production.json<span cla
 <h2 id="conclusion">Conclusión<a class="headerlink" href="#conclusion" title="Permanent link">&para;</a></h2>
 <p>DeepDiff es una de esas librerías que, una vez que conoces, no puedes dejar de usar. Su flexibilidad para ignorar ciertos campos (como timestamps o IDs autogenerados) la hace perfecta para tests de integración y validación de datos.</p>
 <p>Puedes ver la documentación completa en <a href="https://zepworks.com/deepdiff/current/">zepworks.com/deepdiff</a>.</p>
+<p><img alt="deep help" src="https://pablocaro.es/images/deep_help.png"></p>
   </div>
   <div class="tag-cloud">
     <p>

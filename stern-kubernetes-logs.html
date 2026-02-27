@@ -199,9 +199,8 @@
 <p>Aquí es donde entra <strong><a href="https://github.com/stern/stern">Stern</a></strong>.</p>
 <p>Stern te permite hacer "tail" (seguir) logs de múltiples pods y contenedores dentro de Kubernetes simultáneamente. Lo mejor de todo es que utiliza expresiones regulares para seleccionar los pods, por lo que no necesitas copiar y pegar esos IDs aleatorios (<code>pod-1234567890-abcde</code>).</p>
 <h2 id="instalacion">Instalación<a class="headerlink" href="#instalacion" title="Permanent link">&para;</a></h2>
-<p>Stern es muy popular y está disponible en la mayoría de gestores de paquetes.</p>
-<h3 id="usando-krew-recomendado">Usando Krew (recomendado)<a class="headerlink" href="#usando-krew-recomendado" title="Permanent link">&para;</a></h3>
-<p>Si ya usas <code>kubectl</code>, Krew es la forma más natural de instalar plugins:</p>
+<p>Stern es muy popular y está disponible en la mayoría de gestores de paquetes.### Usando Krew (recomendado)
+Si ya usas <code>kubectl</code>, Krew es la forma más natural de instalar plugins:</p>
 <div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>krew<span class="w"> </span>install<span class="w"> </span>stern
 </code></pre></div>
 
@@ -244,6 +243,7 @@ stern<span class="w"> </span>backend<span class="w"> </span>-e<span class="w"> <
 <h2 id="conclusion">Conclusión<a class="headerlink" href="#conclusion" title="Permanent link">&para;</a></h2>
 <p>Stern es una de esas herramientas que instalas el primer día y te preguntas cómo podías vivir sin ella. Hace que el debug en entornos distribuidos sea mucho menos doloroso al agregar la información de manera coherente.</p>
 <p>Dale una oportunidad y tus sesiones de debugging te lo agradecerán.</p>
+<p><img alt="stern help" src="https://pablocaro.es/images/stern_help.png"></p>
   </div>
   <div class="tag-cloud">
     <p>
