@@ -4,6 +4,7 @@ Date: 2026-02-20
 Tags: kubernetes, cli, logs, devops, tools
 Category: DevOps
 Lang: en
+Featured-Image: /images/stern_help.png
 
 If you work with Kubernetes, you've probably suffered through the `kubectl logs` command. It's useful for viewing the logs of a specific pod, but it falls short when you have multiple replicas of a service or when pods restart and change names.
 

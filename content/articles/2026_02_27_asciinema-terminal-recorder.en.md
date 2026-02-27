@@ -5,6 +5,7 @@ Lang: en
 Category: Tools
 Slug: asciinema-terminal-recorder
 Summary: Discover asciinema, the perfect tool to record your terminal sessions in a lightweight, reproducible, and easy-to-share way.
+Featured-Image: /images/asciinema_help.png
 
 Often we need to share what's happening in our terminal, whether for a tutorial, demonstrating a bug, or simply documenting a process. While traditional video recording tools exist, **asciinema** offers a much more powerful and lightweight alternative.
 

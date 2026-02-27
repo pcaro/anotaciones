@@ -6,6 +6,7 @@ Category: Linux
 Slug: renderizando-markdown-en-la-terminal-con-glow
 Lang: en
 Summary: Discover Glow, a tool to render Markdown directly in the terminal, ideal for reading documentation and READMEs.
+Featured-Image: /images/glow_help.png
 
 [Glow](https://github.com/charmbracelet/glow) is a command-line Markdown renderer. It allows you to read local or remote Markdown files, rendering them with syntax highlighting and styles, directly in your terminal.
 

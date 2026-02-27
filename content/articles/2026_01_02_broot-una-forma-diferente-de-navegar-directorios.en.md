@@ -6,6 +6,7 @@ Lang: en
 Category: Tools
 Slug: broot-una-forma-diferente-de-navegar-directorios
 Summary: broot is a terminal tool that allows you to explore your directories in an interactive way and much more powerful than traditional commands like ls or tree.
+Featured-Image: /images/broot_help.png
 Status: draft
 ---
 

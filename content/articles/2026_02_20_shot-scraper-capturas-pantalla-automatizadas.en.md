@@ -4,6 +4,7 @@ Date: 2026-02-20
 Tags: python, cli, tools, web, scraping, screenshots
 Category: Python
 Lang: en
+Featured-Image: /images/shot_scraper_help.png
 
 Have you ever needed to take screenshots of a web page programmatically? Perhaps to document your project, monitor UI changes, or generate images for social media. There are many ways to do it, but **[shot-scraper](https://shot-scraper.datasette.io/)** stands out for its ease of use and power.
 

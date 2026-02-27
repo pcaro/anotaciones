@@ -5,6 +5,7 @@ Tags: bitwarden, cli, rust, seguridad, pi-agent
 Slug: rbw-bitwarden-cli
 Lang: es
 Summary: Cómo instalar y configurar rbw, una implementación en Rust del cliente de Bitwarden, y cómo integrarlo en tus flujos de trabajo con pi-agent.
+Featured-Image: /images/rbw_help.png
 
 Aunque Bitwarden tiene un cliente oficial de línea de comandos, este puede resultar lento al estar basado en Node.js. Para los que buscamos algo más ágil, [rbw](https://github.com/doy/rbw) es la solución ideal. Es una implementación no oficial en Rust que destaca por ser extremadamente rápida y por gestionar el desbloqueo del almacén mediante un agente, evitando que tengas que introducir tu contraseña maestra en cada comando.
 
