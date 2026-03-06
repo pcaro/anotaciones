@@ -1,0 +1,363 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/stylesheet/style.min.css">
+
+
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+          href="https://pablocaro.es/theme/pygments/github.min.css">
+
+
+  <link rel="stylesheet"
+        type="text/css"
+        href="https://pablocaro.es/theme/stork/stork.css" />
+
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/font-awesome/css/solid.css">
+
+
+  <link rel="shortcut icon" href="/theme/img/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/theme/img/favicon.ico" type="image/x-icon">
+
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#333333">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#333333">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Microsoft EDGE -->
+  <meta name="msapplication-TileColor" content="#333333">
+
+  <link href="https://pablocaro.es/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Anotaciones por Pablo Caro Atom">
+
+  <link href="https://pablocaro.es/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Anotaciones por Pablo Caro RSS">
+
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-60035125-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Pablo Caro" />
+<meta name="description" content="Guía de equivalencias entre los comandos clásicos de net-tools (ifconfig, route, arp) y los modernos de iproute2 (ip)." />
+<meta name="keywords" content="linux, networking, iproute2, net-tools, terminal">
+
+<link rel="alternate" href="https://pablocaro.es/net-tools-to-iproute" hreflang="es" />
+<link rel="alternate" href="https://pablocaro.es/en/net-tools-to-iproute" hreflang="en" />
+
+  <meta property="og:site_name" content="Anotaciones por Pablo Caro"/>
+  <meta property="og:title" content="De net-tools a iproute2: equivalents de comandos"/>
+  <meta property="og:description" content="Guía de equivalencias entre los comandos clásicos de net-tools (ifconfig, route, arp) y los modernos de iproute2 (ip)."/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://pablocaro.es/net-tools-to-iproute"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2026-03-06 11:30:00+01:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://pablocaro.es/author/pablo-caro.html">
+  <meta property="article:section" content="Linux"/>
+  <meta property="article:tag" content="linux"/>
+  <meta property="article:tag" content="networking"/>
+  <meta property="article:tag" content="iproute2"/>
+  <meta property="article:tag" content="net-tools"/>
+  <meta property="article:tag" content="terminal"/>
+  <meta property="og:image" content="/theme/img/profile.png">
+
+  <title>Anotaciones por Pablo Caro &ndash; De net-tools a iproute2: equivalents de comandos</title>
+
+
+</head>
+<body class="light-theme">
+
+<aside>
+  <div>
+    <a href="https://pablocaro.es/">
+      <img src="/theme/img/profile.png" alt="Anotaciones" title="Anotaciones">
+    </a>
+
+    <h1>
+      <a href="https://pablocaro.es/">Anotaciones</a>
+    </h1>
+
+    <p>Anotaciones</p>
+
+    <div class="stork">
+      <input class="stork-input" type="text" autocomplete="off" name="q" data-stork="sitesearch" placeholder="Buscar..." onclick="loadStorkIndex()"/>
+      <div class="stork-output" data-stork="sitesearch-output"></div>
+    </div>
+
+    <nav>
+      <ul class="list">
+
+
+            <li>
+              <a target="_self"
+                 href="https://pablocaro.es/cv#cv">
+                Currículo
+              </a>
+            </li>
+
+          <li>
+            <a target="_self" href="http://x.com/pcaro" >pcaro@X</a>
+          </li>
+          <li>
+            <a target="_self" href="https://github.com/pcaro/" >pcaro@Github</a>
+          </li>
+          <li>
+            <a target="_self" href="https://www.linkedin.com/in/pcarorevuelta/" >LinkedIn</a>
+          </li>
+      </ul>
+    </nav>
+
+    <ul class="social">
+      <li>
+        <a class="sc-Twitter"
+           href="http://twitter.com/pcaro"
+           target="_blank">
+          <i class="fa-brands fa-Twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Github"
+           href="http://github.com/pcaro"
+           target="_blank">
+          <i class="fa-brands fa-Github"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Linkedin"
+           href="https://www.linkedin.com/in/pcarorevuelta"
+           target="_blank">
+          <i class="fa-brands fa-Linkedin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Facebook"
+           href="https://www.facebook.com/pablo.carorevuelta"
+           target="_blank">
+          <i class="fa-brands fa-Facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Email"
+           href="mailto:correo@pablocaro.es"
+           target="_blank">
+          <i class="fa-brands fa-Email"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+</aside>
+  <main>
+
+<nav>
+  <a href="https://pablocaro.es/">Inicio</a>
+
+  <a href="/archives.html">Archivo</a>
+  <a href="/categories.html">Categorías</a>
+  <a href="/tags.html">Etiquetas</a>
+  <a href="/search.html">Búsqueda</a>
+  <a href="/en/">English</a>
+
+  <a href="https://pablocaro.es/feeds/all.atom.xml">Atom</a>
+
+  <a href="https://pablocaro.es/feeds/all.rss.xml">RSS</a>
+</nav>
+
+<article class="single">
+  <header>
+          <div class="translations">
+            <a href="https://pablocaro.es/en/net-tools-to-iproute">Read in English</a>
+    </div>
+
+    <h1 id="net-tools-to-iproute">De net-tools a iproute2: equivalents de comandos</h1>
+    <p>
+      Publicado el 06 de March de 2026 en <a href="https://pablocaro.es/category/linux.html">Linux</a>
+
+    </p>
+  </header>
+
+
+  <div>
+    <p>Más de 30 años con Linux, y es difícil cambiar a lo que ya estás acostumbrado. En mi caso, siempre he usado <strong>ifconfig</strong>, <strong>arp</strong>, <strong>route</strong> y <strong>netstat</strong> para configurar y diagnosticar la red. Pero estos comandos pertenecen al paquete <strong>net-tools</strong>, que lleva años siendo reemplazado por <strong>iproute2</strong>.</p>
+<h2 id="net-tools-vs-iproute2">net-tools vs iproute2<a class="headerlink" href="#net-tools-vs-iproute2" title="Permanent link">&para;</a></h2>
+<p>Tradicionalmente ha habido dos formas de configurar la red en Linux:</p>
+<ul>
+<li><strong>La forma antigua</strong>: con comandos como <code>ifconfig</code>, <code>arp</code>, <code>route</code> y <code>netstat</code>, que pertenecen al paquete <em>net-tools</em></li>
+<li><strong>La forma nueva</strong>: mayormente (¡pero no enteramente!) encapsulada en un único comando <code>ip</code>, que pertenece al paquete <em>iproute2</em></li>
+</ul>
+<p>Parece que iproute2 fue marcado como "important" en Debian en 2008, lo que significa que cada lanzamiento desde Debian 5 "lenny" (!) ha incluido el comando <code>ip</code>.</p>
+<p>He estado entrenando lentamente a mi cerebro para usar los nuevos comandos, pero a veces olvido algunos. Aquí tienes una tabla de equivalencias:</p>
+<table>
+<thead>
+<tr>
+<th>net-tools</th>
+<th>iproute2</th>
+<th>Forma corta</th>
+<th>Función</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ifconfig</code></td>
+<td><code>ip address</code></td>
+<td><code>ip a</code></td>
+<td>Mostrar/configurar direcciones IP</td>
+</tr>
+<tr>
+<td><code>ifconfig -s</code></td>
+<td><code>ip link</code></td>
+<td><code>ip l</code></td>
+<td>Mostrar estado de enlaces (up/down, contadores)</td>
+</tr>
+<tr>
+<td><code>route</code></td>
+<td><code>ip route</code></td>
+<td><code>ip r</code></td>
+<td>Mostrar o modificar la tabla de rutas</td>
+</tr>
+<tr>
+<td><code>arp</code></td>
+<td><code>ip neigh</code></td>
+<td><code>ip n</code></td>
+<td>Mostrar tabla ARP/vecinos</td>
+</tr>
+<tr>
+<td><code>netstat</code></td>
+<td><code>ss</code></td>
+<td><code>ss</code></td>
+<td>Mostrar estadísticas de sockets</td>
+</tr>
+</tbody>
+</table>
+<h2 id="comparacion-visual">Comparación visual<a class="headerlink" href="#comparacion-visual" title="Permanent link">&para;</a></h2>
+<p>Aquí puedes ver la diferencia entre usar <code>ip a</code> y <code>ip -br -c a</code>:</p>
+<h3 id="ip-a-salida-completa"><code>ip a</code> (salida completa)<a class="headerlink" href="#ip-a-salida-completa" title="Permanent link">&para;</a></h3>
+<p><img alt="ip a output" src="/images/net-tools-ip-a.png"></p>
+<h3 id="ip-br-c-a-salida-resumida-y-coloreada"><code>ip -br -c a</code> (salida resumida y coloreada)<a class="headerlink" href="#ip-br-c-a-salida-resumida-y-coloreada" title="Permanent link">&para;</a></h3>
+<p><img alt="ip -br -c a output" src="/images/net-tools-ip-br.png"></p>
+<h2 id="mi-alias-favorito">Mi alias favorito<a class="headerlink" href="#mi-alias-favorito" title="Permanent link">&para;</a></h2>
+<p>También suelo crear un alias para que la salida sea más legible:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">alias</span><span class="w"> </span><span class="nv">ip</span><span class="o">=</span><span class="s1">&#39;ip -br -c&#39;</span>
+</code></pre></div>
+
+<p>Esto proporciona una salida mucho más bonita y legible, como puedes ver en la segunda imagen.</p>
+<p>¿Tú sigues usando los comandos antiguos o ya te has pasado a iproute2?</p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="https://pablocaro.es/tag/linux.html">linux</a>
+      <a href="https://pablocaro.es/tag/networking.html">networking</a>
+      <a href="https://pablocaro.es/tag/iproute2.html">iproute2</a>
+      <a href="https://pablocaro.es/tag/net-tools.html">net-tools</a>
+      <a href="https://pablocaro.es/tag/terminal.html">terminal</a>
+    </p>
+  </div>
+
+
+
+  <div class="neighbors">
+    <a class="btn float-left" href="https://pablocaro.es/rodney-chrome-wayland-error" title="Solución al Error de Rodney con Chrome en Wayland">
+      <i class="fa fa-angle-left"></i> Artículo anterior
+    </a>
+  </div>
+
+  <div class="related-posts">
+    <h4>Te puede gustar</h4>
+    <ul class="related-posts">
+      <li><a href="https://pablocaro.es/asciinema-terminal-recorder">Graba y Comparte tus Sesiones de Terminal con asciinema</a></li>
+      <li><a href="https://pablocaro.es/fresh-editor-terminal">`fresh`: Mi editor de terminal preferido para el día a día</a></li>
+      <li><a href="https://pablocaro.es/kitty-acceso-rapido">Kitty como terminal de acceso rápido: La comodidad de un desplegable</a></li>
+      <li><a href="https://pablocaro.es/de-yakuake-a-kitty">De Yakuake a Kitty: Mi transición a un terminal moderno</a></li>
+      <li><a href="https://pablocaro.es/rodney-chrome-wayland-error">Solución al Error de Rodney con Chrome en Wayland</a></li>
+    </ul>
+  </div>
+
+
+
+<!-- Disqus -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'anotaciones';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>
+    Por favor, habilita JavaScript para ver los comentarios.
+</noscript>
+<!-- End Disqus -->
+</article>
+
+<footer>
+<p>
+  &copy; 2025  - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+Construido con <a href="http://getpelican.com" target="_blank">Pelican</a> usando el tema <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> 
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/3.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/3.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Anotaciones por Pablo Caro ",
+  "url" : "https://pablocaro.es",
+  "image": "/theme/img/profile.png",
+  "description": ""
+}
+</script>  <script src="https://files.stork-search.net/releases/v1.6.0/stork.js"></script>
+  <script>
+    window.storkIndexLoaded = false;
+    window.loadStorkIndex = function () {
+      if (window.storkIndexLoaded) {
+        return;
+      }
+      if (typeof stork === 'undefined') {
+        console.error('Stork is not loaded yet, retrying...');
+        setTimeout(window.loadStorkIndex, 100);
+        return;
+      }
+      stork.register("sitesearch", "https://pablocaro.es/search-index.st", { showProgress: false });
+      stork.register("sitesearch-page", "https://pablocaro.es/search-index.st", { showProgress: false });
+      window.storkIndexLoaded = true;
+    }
+  </script>
+
+</body>
+</html>

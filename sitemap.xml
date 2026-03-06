@@ -5,42 +5,49 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://pablocaro.es/</loc>
-<lastmod>2026-03-06T08:45:20-00:00</lastmod>
+<lastmod>2026-03-06T11:00:12-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://pablocaro.es/tags.html</loc>
-<lastmod>2026-03-06T08:45:20-00:00</lastmod>
+<lastmod>2026-03-06T11:00:12-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://pablocaro.es/categories.html</loc>
-<lastmod>2026-03-06T08:45:20-00:00</lastmod>
+<lastmod>2026-03-06T11:00:12-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://pablocaro.es/archives.html</loc>
-<lastmod>2026-03-06T08:45:20-00:00</lastmod>
+<lastmod>2026-03-06T11:00:12-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://pablocaro.es/search.html</loc>
-<lastmod>2026-03-06T08:45:20-00:00</lastmod>
+<lastmod>2026-03-06T11:00:12-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://pablocaro.es/cv</loc>
-<lastmod>2026-03-06T08:45:20-00:00</lastmod>
+<lastmod>2026-03-06T11:00:12-00:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://pablocaro.es/net-tools-to-iproute</loc>
+<lastmod>2026-03-06T11:30:00+01:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
@@ -1069,7 +1076,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://pablocaro.es/category/linux.html</loc>
-<lastmod>2026-02-20T00:00:00+00:09</lastmod>
+<lastmod>2026-03-06T11:30:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -1159,6 +1166,41 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+<loc>https://pablocaro.es/tag/linux.html</loc>
+<lastmod>2026-03-06T11:30:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://pablocaro.es/tag/networking.html</loc>
+<lastmod>2026-03-06T11:30:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://pablocaro.es/tag/iproute2.html</loc>
+<lastmod>2026-03-06T11:30:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://pablocaro.es/tag/net-tools.html</loc>
+<lastmod>2026-03-06T11:30:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://pablocaro.es/tag/terminal.html</loc>
+<lastmod>2026-03-06T11:30:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
 <loc>https://pablocaro.es/tag/rodney.html</loc>
 <lastmod>2026-03-06T09:00:00+00:09</lastmod>
 <changefreq>daily</changefreq>
@@ -1180,13 +1222,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>https://pablocaro.es/tag/linux.html</loc>
-<lastmod>2026-03-06T09:00:00+00:09</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
 <loc>https://pablocaro.es/tag/debugging.html</loc>
 <lastmod>2026-03-06T09:00:00+00:09</lastmod>
 <changefreq>daily</changefreq>
@@ -1195,13 +1230,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://pablocaro.es/tag/asciinema.html</loc>
-<lastmod>2026-02-27T12:00:00+00:09</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>https://pablocaro.es/tag/terminal.html</loc>
 <lastmod>2026-02-27T12:00:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
@@ -2022,13 +2050,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>https://pablocaro.es/tag/netdiscover.html</loc>
 <lastmod>2016-06-27T07:59:00+00:09</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>https://pablocaro.es/tag/networking.html</loc>
-<lastmod>2016-06-07T11:36:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>

@@ -8,6 +8,11 @@ url = "/cv"
 title = "Resume"
 
 [[input.files]]
+path = "net-tools-to-iproute.html"
+url = "/net-tools-to-iproute"
+title = "From net-tools to iproute2: command equivalents"
+
+[[input.files]]
 path = "rodney-chrome-wayland-error.html"
 url = "/rodney-chrome-wayland-error"
 title = "Fixing Rodney Chrome Error on Wayland"
@@ -286,6 +291,11 @@ title = "Django: links in object list"
 path = "settings-vars-processor.html"
 url = "/settings-vars-processor"
 title = "Settings vars processor"
+
+[[input.files]]
+path = "net-tools-to-iproute-es.html"
+url = "/../net-tools-to-iproute"
+title = "De net-tools a iproute2: equivalents de comandos"
 
 [[input.files]]
 path = "rodney-chrome-wayland-error-es.html"
