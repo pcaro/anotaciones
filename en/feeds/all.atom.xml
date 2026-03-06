@@ -1,5 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Annotations by Pablo Caro</title><link href="https://pablocaro.es/en/" rel="alternate"></link><link href="https://pablocaro.es/feeds/all.atom.xml" rel="self"></link><id>https://pablocaro.es/en/</id><updated>2026-02-27T12:00:00+01:00</updated><subtitle>Annotations</subtitle><entry><title>Record and Share your Terminal Sessions with asciinema</title><link href="https://pablocaro.es/en/asciinema-terminal-recorder" rel="alternate"></link><published>2026-02-27T12:00:00+01:00</published><updated>2026-02-27T12:00:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-02-27:/en/asciinema-terminal-recorder</id><summary type="html">&lt;p&gt;Discover asciinema, the perfect tool to record your terminal sessions in a lightweight, reproducible, and easy-to-share way.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Often we need to share what's happening in our terminal, whether for a tutorial, demonstrating a bug, or simply documenting a process. While traditional video recording tools exist, &lt;strong&gt;asciinema&lt;/strong&gt; offers a much more powerful and lightweight alternative.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Annotations by Pablo Caro</title><link href="https://pablocaro.es/en/" rel="alternate"></link><link href="https://pablocaro.es/feeds/all.atom.xml" rel="self"></link><id>https://pablocaro.es/en/</id><updated>2026-03-06T09:00:00+01:00</updated><subtitle>Annotations</subtitle><entry><title>Fixing Rodney Chrome Error on Wayland</title><link href="https://pablocaro.es/en/rodney-chrome-wayland-error" rel="alternate"></link><published>2026-03-06T09:00:00+01:00</published><updated>2026-03-06T09:00:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-03-06:/en/rodney-chrome-wayland-error</id><summary type="html">&lt;p&gt;How to fix Rodney crash when starting Chrome on Wayland systems by using the system Chrome.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;a href="https://github.com/simonw/rodney/"&gt;Rodney&lt;/a&gt; is a CLI tool created by Simon Willison designed specifically for AI agents to control a Chrome instance using the Chrome DevTools Protocol. It's similar to Vercel's &lt;code&gt;agent-browser&lt;/code&gt;, but uses CDP instead of Playwright.&lt;/p&gt;
+&lt;h2 id="the-problem"&gt;The Problem&lt;a class="headerlink" href="#the-problem" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Running &lt;code&gt;uvx rodney open https://google.es&lt;/code&gt; without first starting Rodney with &lt;code&gt;rodney start&lt;/code&gt; fails because:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Rodney tries to start Chrome with the Chromium it automatically downloads to &lt;code&gt;~/.cache/rod/browser/&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;That Chromium (v128.0.6568.0) has a known bug with the Ozone backend on Wayland systems&lt;/li&gt;
+&lt;li&gt;The crash occurs due to the combination of flags &lt;code&gt;--single-process&lt;/code&gt; + &lt;code&gt;--ozone-platform=headless&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;The error in the logs shows: &lt;code&gt;gl_factory_ozone.cc(62): "Expected Mock or Stub, actual:0"&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="the-solution"&gt;The Solution&lt;a class="headerlink" href="#the-solution" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The easiest way to fix this is to configure Rodney to use your system's Chrome instead of the automatically downloaded Chromium. This is done via the &lt;code&gt;ROD_CHROME_BIN&lt;/code&gt; environment variable:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Add to ~/.bashrc or ~/.zshrc&lt;/span&gt;
+&lt;span class="nb"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;export ROD_CHROME_BIN=/usr/bin/google-chrome&amp;#39;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&amp;gt;&amp;gt;&lt;span class="w"&gt; &lt;/span&gt;~/.bashrc
+&lt;span class="nb"&gt;source&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;~/.bashrc
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;After setting this up, Rodney will work correctly:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;uvx&lt;span class="w"&gt; &lt;/span&gt;rodney&lt;span class="w"&gt; &lt;/span&gt;start
+uvx&lt;span class="w"&gt; &lt;/span&gt;rodney&lt;span class="w"&gt; &lt;/span&gt;open&lt;span class="w"&gt; &lt;/span&gt;https://google.es
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="working-example"&gt;Working example&lt;a class="headerlink" href="#working-example" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Once configured, the workflow looks like this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;~/src/anotaciones&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;cv&lt;span class="p"&gt;|&lt;/span&gt;…2&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;
+&lt;span class="m"&gt;09&lt;/span&gt;:39&lt;span class="w"&gt; &lt;/span&gt;$&lt;span class="w"&gt; &lt;/span&gt;uvx&lt;span class="w"&gt; &lt;/span&gt;rodney&lt;span class="w"&gt; &lt;/span&gt;start
+Chrome&lt;span class="w"&gt; &lt;/span&gt;started&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;PID&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;2981885&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+Debug&lt;span class="w"&gt; &lt;/span&gt;URL:&lt;span class="w"&gt; &lt;/span&gt;ws://127.0.0.1:34373/devtools/browser/319c905a-83a2-47d9-a6e0-8e6a4f2ff830
+~/src/anotaciones&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;cv&lt;span class="p"&gt;|&lt;/span&gt;…2&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;
+&lt;span class="m"&gt;09&lt;/span&gt;:39&lt;span class="w"&gt; &lt;/span&gt;$&lt;span class="w"&gt; &lt;/span&gt;uvx&lt;span class="w"&gt; &lt;/span&gt;rodney&lt;span class="w"&gt; &lt;/span&gt;open&lt;span class="w"&gt; &lt;/span&gt;https://google.es
+Google
+~/src/anotaciones&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;cv&lt;span class="p"&gt;|&lt;/span&gt;…2&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;
+&lt;span class="m"&gt;09&lt;/span&gt;:39&lt;span class="w"&gt; &lt;/span&gt;$&lt;span class="w"&gt; &lt;/span&gt;uvx&lt;span class="w"&gt; &lt;/span&gt;rodney&lt;span class="w"&gt; &lt;/span&gt;screenshot
+screenshot.png
+~/src/anotaciones&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;cv&lt;span class="p"&gt;|&lt;/span&gt;…3&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img alt="Rodney working example" src="https://pablocaro.es/en/images/rodney_example.png"&gt;&lt;/p&gt;
+&lt;h2 id="why-does-this-happen"&gt;Why does this happen?&lt;a class="headerlink" href="#why-does-this-happen" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The Chromium that Rodney downloads automatically has a known bug with the Ozone backend on Linux systems that use Wayland (the alternative to X11). When certain Chrome flag combinations are used, the process fails because the graphics system isn't configured as "Mock" or "Stub" (which is what the development builds expect).&lt;/p&gt;
+&lt;p&gt;Using the system Chrome avoids this problem because:
+- System Chrome is compiled with full Wayland support
+- It's generally a more stable and updated version
+- It doesn't have the same development flags that cause conflicts&lt;/p&gt;
+&lt;h2 id="link"&gt;Link&lt;a class="headerlink" href="#link" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/simonw/rodney/"&gt;Rodney GitHub Repository&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><category term="Problems"></category><category term="rodney"></category><category term="chrome"></category><category term="wayland"></category><category term="linux"></category><category term="debugging"></category></entry><entry><title>Solución al Error de Rodney con Chrome en Wayland</title><link href="https://pablocaro.es/rodney-chrome-wayland-error" rel="alternate"></link><published>2026-03-06T09:00:00+01:00</published><updated>2026-03-06T09:00:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-03-06:/rodney-chrome-wayland-error</id><summary type="html">&lt;p&gt;Cómo resolver el crash de Rodney al iniciar Chrome en sistemas Wayland usando el Chrome del sistema.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;a href="https://github.com/simonw/rodney/"&gt;Rodney&lt;/a&gt; es una herramienta CLI creada por Simon Willison diseñada específicamente para que agentes de IA puedan controlar una instancia de Chrome mediante el Chrome DevTools Protocol. Es similar a &lt;code&gt;agent-browser&lt;/code&gt; de Vercel, pero usando CDP en lugar de Playwright.&lt;/p&gt;
+&lt;h2 id="el-problema"&gt;El Problema&lt;a class="headerlink" href="#el-problema" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Al ejecutar &lt;code&gt;uvx rodney open https://google.es&lt;/code&gt; sin iniciar primero Rodney con &lt;code&gt;rodney start&lt;/code&gt;, el proceso falla porque:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Rodney intenta iniciar Chrome con el Chromium que descarga automáticamente en &lt;code&gt;~/.cache/rod/browser/&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Ese Chromium (v128.0.6568.0) tiene un bug conocido con el backend Ozone en sistemas Wayland&lt;/li&gt;
+&lt;li&gt;El crash ocurre debido a la combinación de flags &lt;code&gt;--single-process&lt;/code&gt; + &lt;code&gt;--ozone-platform=headless&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;El error en los logs indica: &lt;code&gt;gl_factory_ozone.cc(62): "Expected Mock or Stub, actual:0"&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="la-solucion"&gt;La Solución&lt;a class="headerlink" href="#la-solucion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;La forma más sencilla de solucionar este problema es configurar Rodney para que use el Chrome de tu sistema en lugar del Chromium descargado automáticamente. Esto se hace mediante la variable de entorno &lt;code&gt;ROD_CHROME_BIN&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Añadir a ~/.bashrc o ~/.zshrc&lt;/span&gt;
+&lt;span class="nb"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;export ROD_CHROME_BIN=/usr/bin/google-chrome&amp;#39;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&amp;gt;&amp;gt;&lt;span class="w"&gt; &lt;/span&gt;~/.bashrc
+&lt;span class="nb"&gt;source&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;~/.bashrc
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Después de configurar esto, Rodney funcionará correctamente:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;uvx&lt;span class="w"&gt; &lt;/span&gt;rodney&lt;span class="w"&gt; &lt;/span&gt;start
+uvx&lt;span class="w"&gt; &lt;/span&gt;rodney&lt;span class="w"&gt; &lt;/span&gt;open&lt;span class="w"&gt; &lt;/span&gt;https://google.es
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="ejemplo-de-funcionamiento"&gt;Ejemplo de funcionamiento&lt;a class="headerlink" href="#ejemplo-de-funcionamiento" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Una vez configurado, el flujo de trabajo es:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;~/src/anotaciones&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;cv&lt;span class="p"&gt;|&lt;/span&gt;…2&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;
+&lt;span class="m"&gt;09&lt;/span&gt;:39&lt;span class="w"&gt; &lt;/span&gt;$&lt;span class="w"&gt; &lt;/span&gt;uvx&lt;span class="w"&gt; &lt;/span&gt;rodney&lt;span class="w"&gt; &lt;/span&gt;start
+Chrome&lt;span class="w"&gt; &lt;/span&gt;started&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;PID&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;2981885&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+Debug&lt;span class="w"&gt; &lt;/span&gt;URL:&lt;span class="w"&gt; &lt;/span&gt;ws://127.0.0.1:34373/devtools/browser/319c905a-83a2-47d9-a6e0-8e6a4f2ff830
+~/src/anotaciones&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;cv&lt;span class="p"&gt;|&lt;/span&gt;…2&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;
+&lt;span class="m"&gt;09&lt;/span&gt;:39&lt;span class="w"&gt; &lt;/span&gt;$&lt;span class="w"&gt; &lt;/span&gt;uvx&lt;span class="w"&gt; &lt;/span&gt;rodney&lt;span class="w"&gt; &lt;/span&gt;open&lt;span class="w"&gt; &lt;/span&gt;https://google.es
+Google
+~/src/anotaciones&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;cv&lt;span class="p"&gt;|&lt;/span&gt;…2&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;
+&lt;span class="m"&gt;09&lt;/span&gt;:39&lt;span class="w"&gt; &lt;/span&gt;$&lt;span class="w"&gt; &lt;/span&gt;uvx&lt;span class="w"&gt; &lt;/span&gt;rodney&lt;span class="w"&gt; &lt;/span&gt;screenshot
+screenshot.png
+~/src/anotaciones&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;cv&lt;span class="p"&gt;|&lt;/span&gt;…3&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img alt="Ejemplo de Rodney funcionando" src="https://pablocaro.es/en/images/rodney_example.png"&gt;&lt;/p&gt;
+&lt;h2 id="por-que-pasa-esto"&gt;¿Por qué pasa esto?&lt;a class="headerlink" href="#por-que-pasa-esto" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;El Chromium que Rodney descarga automáticamente tiene un bug conocido con el backend Ozone en sistemas Linux que usan Wayland (la alternativa a X11). Cuando se usan ciertas combinaciones de flags de Chrome, el proceso falla porque el sistema gráfico no está configurado como "Mock" o "Stub" (que es lo que esperan las pruebas).&lt;/p&gt;
+&lt;p&gt;Usar el Chrome del sistema evita este problema porque:
+- El Chrome del sistema está compilado con soporte completo para Wayland
+- Generalmente es una versión más estable y actualizada
+- No tiene los mismos flags de desarrollo que causan conflictos&lt;/p&gt;
+&lt;h2 id="enlace"&gt;Enlace&lt;a class="headerlink" href="#enlace" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/simonw/rodney/"&gt;Repositorio de Rodney en GitHub&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><category term="Problemas"></category><category term="rodney"></category><category term="chrome"></category><category term="wayland"></category><category term="linux"></category><category term="debugging"></category></entry><entry><title>Record and Share your Terminal Sessions with asciinema</title><link href="https://pablocaro.es/en/asciinema-terminal-recorder" rel="alternate"></link><published>2026-02-27T12:00:00+01:00</published><updated>2026-02-27T12:00:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-02-27:/en/asciinema-terminal-recorder</id><summary type="html">&lt;p&gt;Discover asciinema, the perfect tool to record your terminal sessions in a lightweight, reproducible, and easy-to-share way.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Often we need to share what's happening in our terminal, whether for a tutorial, demonstrating a bug, or simply documenting a process. While traditional video recording tools exist, &lt;strong&gt;asciinema&lt;/strong&gt; offers a much more powerful and lightweight alternative.&lt;/p&gt;
 &lt;h2 id="what-is-asciinema"&gt;What is asciinema?&lt;a class="headerlink" href="#what-is-asciinema" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;&lt;a href="https://github.com/asciinema/asciinema"&gt;asciinema&lt;/a&gt; doesn't record video in the traditional sense (pixels). Instead, it captures the terminal's text stream along with exact timings. This has several advantages:&lt;/p&gt;
 &lt;ul&gt;
@@ -5222,16 +5314,4 @@ mis proyectos de forma simple a &lt;a class="reference external" href="http://gi
 (lo siento por &lt;a class="reference external" href="https://bitbucket.org/pcaro"&gt;bitbucket&lt;/a&gt; y sobre todo por &lt;a class="reference external" href="http://mercurial.selenic.com/"&gt;mercurial&lt;/a&gt;).&lt;/p&gt;
 &lt;p&gt;Su interfaz nunca fue la más amigable, ni tampoco consiguió gran popularidad pero todavía quedan proyectos interesantes
 en Google Code que supongo que pasarán a github o morirán para simpre.&lt;/p&gt;
-</content><category term="Programación"></category><category term="python"></category></entry><entry><title>pgcli the discovery of the day</title><link href="https://pablocaro.es/en/pgcli-el-descubrimiento-de-hoy" rel="alternate"></link><published>2015-03-02T08:26:00+01:00</published><updated>2015-03-02T08:26:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2015-03-02:/en/pgcli-el-descubrimiento-de-hoy</id><summary type="html">&lt;p class="first last"&gt;postresql command line&lt;/p&gt;
-</summary><content type="html">&lt;p&gt;Reading my RSS feeds I just came across a very useful tool. It is &lt;a class="reference external" href="http://pgcli.com/"&gt;pgcli&lt;/a&gt; which is nothing more than a
-command line interface for Postgres with auto-completion and syntax highlighting.
-Since I use the console with databases, and postgres is always my first choice,
-it comes in handy. with auto-completion and syntax highlighting&lt;/p&gt;
-&lt;p&gt;I recommend installing it via &lt;a class="reference external" href="https://github.com/mitsuhiko/pipsi"&gt;pipsi&lt;/a&gt;.&lt;/p&gt;
-</content><category term="Programming"></category><category term="postgresql"></category></entry><entry><title>pgcli el descubrimiento de hoy</title><link href="https://pablocaro.es/pgcli-el-descubrimiento-de-hoy" rel="alternate"></link><published>2015-03-02T08:26:00+01:00</published><updated>2015-03-02T08:26:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2015-03-02:/pgcli-el-descubrimiento-de-hoy</id><summary type="html">&lt;p class="first last"&gt;postresql command line&lt;/p&gt;
-</summary><content type="html">&lt;p&gt;Leyendo mis feeds RSS acabo de dar con una herramienta muy útil. Se trata de &lt;a class="reference external" href="http://pgcli.com/"&gt;pgcli&lt;/a&gt; que no es más que una
-interfaz de línea de comandos para Postgres con autocompletado y resaltado de sintáxis.
-Como soy de usar la consola con las bases de datos, y postgres siempre es mi primera elección,
-me biene de perlas. with auto-completion and syntax highlighting&lt;/p&gt;
-&lt;p&gt;Yo recommiendo instalarla mediante &lt;a class="reference external" href="https://github.com/mitsuhiko/pipsi"&gt;pipsi&lt;/a&gt;.&lt;/p&gt;
-</content><category term="Programación"></category><category term="postgresql"></category></entry></feed>
+</content><category term="Programación"></category><category term="python"></category></entry></feed>

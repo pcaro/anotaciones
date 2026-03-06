@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Annotations by Pablo Caro - chrome</title><link href="https://pablocaro.es/en/" rel="alternate"></link><link href="https://pablocaro.es/feeds/tags/chrome.atom.xml" rel="self"></link><id>https://pablocaro.es/en/</id><updated>2026-03-06T09:00:00+01:00</updated><subtitle>Annotations</subtitle><entry><title>Fixing Rodney Chrome Error on Wayland</title><link href="https://pablocaro.es/en/rodney-chrome-wayland-error" rel="alternate"></link><published>2026-03-06T09:00:00+01:00</published><updated>2026-03-06T09:00:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-03-06:/en/rodney-chrome-wayland-error</id><summary type="html">&lt;p&gt;How to fix Rodney crash when starting Chrome on Wayland systems by using the system Chrome.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;a href="https://github.com/simonw/rodney/"&gt;Rodney&lt;/a&gt; is a CLI tool created by Simon Willison designed specifically for AI agents to control a Chrome instance using the Chrome DevTools Protocol. It's similar to Vercel's &lt;code&gt;agent-browser&lt;/code&gt;, but uses CDP instead of Playwright.&lt;/p&gt;
+&lt;h2 id="the-problem"&gt;The Problem&lt;a class="headerlink" href="#the-problem" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Running &lt;code&gt;uvx rodney open https://google.es&lt;/code&gt; without first starting Rodney with &lt;code&gt;rodney start&lt;/code&gt; fails because:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Rodney tries to start Chrome with the Chromium it automatically downloads to &lt;code&gt;~/.cache/rod/browser/&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;That Chromium (v128.0.6568.0) has a known bug with the Ozone backend on Wayland systems&lt;/li&gt;
+&lt;li&gt;The crash occurs due to the combination of flags &lt;code&gt;--single-process&lt;/code&gt; + &lt;code&gt;--ozone-platform=headless&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;The error in the logs shows: &lt;code&gt;gl_factory_ozone.cc(62): "Expected Mock or Stub, actual:0"&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="the-solution"&gt;The Solution&lt;a class="headerlink" href="#the-solution" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The easiest way to fix this is to configure Rodney to use your system's Chrome instead of the automatically downloaded Chromium. This is done via the &lt;code&gt;ROD_CHROME_BIN&lt;/code&gt; environment variable:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Add to ~/.bashrc or ~/.zshrc&lt;/span&gt;
+&lt;span class="nb"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;export ROD_CHROME_BIN=/usr/bin/google-chrome&amp;#39;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&amp;gt;&amp;gt;&lt;span class="w"&gt; &lt;/span&gt;~/.bashrc
+&lt;span class="nb"&gt;source&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;~/.bashrc
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;After setting this up, Rodney will work correctly:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;uvx&lt;span class="w"&gt; &lt;/span&gt;rodney&lt;span class="w"&gt; &lt;/span&gt;start
+uvx&lt;span class="w"&gt; &lt;/span&gt;rodney&lt;span class="w"&gt; &lt;/span&gt;open&lt;span class="w"&gt; &lt;/span&gt;https://google.es
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="working-example"&gt;Working example&lt;a class="headerlink" href="#working-example" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Once configured, the workflow looks like this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;~/src/anotaciones&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;cv&lt;span class="p"&gt;|&lt;/span&gt;…2&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;
+&lt;span class="m"&gt;09&lt;/span&gt;:39&lt;span class="w"&gt; &lt;/span&gt;$&lt;span class="w"&gt; &lt;/span&gt;uvx&lt;span class="w"&gt; &lt;/span&gt;rodney&lt;span class="w"&gt; &lt;/span&gt;start
+Chrome&lt;span class="w"&gt; &lt;/span&gt;started&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;PID&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;2981885&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+Debug&lt;span class="w"&gt; &lt;/span&gt;URL:&lt;span class="w"&gt; &lt;/span&gt;ws://127.0.0.1:34373/devtools/browser/319c905a-83a2-47d9-a6e0-8e6a4f2ff830
+~/src/anotaciones&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;cv&lt;span class="p"&gt;|&lt;/span&gt;…2&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;
+&lt;span class="m"&gt;09&lt;/span&gt;:39&lt;span class="w"&gt; &lt;/span&gt;$&lt;span class="w"&gt; &lt;/span&gt;uvx&lt;span class="w"&gt; &lt;/span&gt;rodney&lt;span class="w"&gt; &lt;/span&gt;open&lt;span class="w"&gt; &lt;/span&gt;https://google.es
+Google
+~/src/anotaciones&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;cv&lt;span class="p"&gt;|&lt;/span&gt;…2&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;
+&lt;span class="m"&gt;09&lt;/span&gt;:39&lt;span class="w"&gt; &lt;/span&gt;$&lt;span class="w"&gt; &lt;/span&gt;uvx&lt;span class="w"&gt; &lt;/span&gt;rodney&lt;span class="w"&gt; &lt;/span&gt;screenshot
+screenshot.png
+~/src/anotaciones&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;cv&lt;span class="p"&gt;|&lt;/span&gt;…3&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img alt="Rodney working example" src="https://pablocaro.es/en/images/rodney_example.png"&gt;&lt;/p&gt;
+&lt;h2 id="why-does-this-happen"&gt;Why does this happen?&lt;a class="headerlink" href="#why-does-this-happen" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The Chromium that Rodney downloads automatically has a known bug with the Ozone backend on Linux systems that use Wayland (the alternative to X11). When certain Chrome flag combinations are used, the process fails because the graphics system isn't configured as "Mock" or "Stub" (which is what the development builds expect).&lt;/p&gt;
+&lt;p&gt;Using the system Chrome avoids this problem because:
+- System Chrome is compiled with full Wayland support
+- It's generally a more stable and updated version
+- It doesn't have the same development flags that cause conflicts&lt;/p&gt;
+&lt;h2 id="link"&gt;Link&lt;a class="headerlink" href="#link" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/simonw/rodney/"&gt;Rodney GitHub Repository&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><category term="Problems"></category><category term="rodney"></category><category term="chrome"></category><category term="wayland"></category><category term="linux"></category><category term="debugging"></category></entry></feed>

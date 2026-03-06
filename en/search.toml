@@ -3,6 +3,16 @@ html_selector = "main"
 base_directory = "/home/runner/work/anotaciones/anotaciones/output/en"
 
 [[input.files]]
+path = "cv.html"
+url = "/cv"
+title = "Resume"
+
+[[input.files]]
+path = "rodney-chrome-wayland-error.html"
+url = "/rodney-chrome-wayland-error"
+title = "Fixing Rodney Chrome Error on Wayland"
+
+[[input.files]]
 path = "asciinema-terminal-recorder.html"
 url = "/asciinema-terminal-recorder"
 title = "Record and Share your Terminal Sessions with asciinema"
@@ -276,6 +286,11 @@ title = "Django: links in object list"
 path = "settings-vars-processor.html"
 url = "/settings-vars-processor"
 title = "Settings vars processor"
+
+[[input.files]]
+path = "rodney-chrome-wayland-error-es.html"
+url = "/../rodney-chrome-wayland-error"
+title = "Solución al Error de Rodney con Chrome en Wayland"
 
 [[input.files]]
 path = "asciinema-terminal-recorder-es.html"

@@ -3,6 +3,16 @@ html_selector = "main"
 base_directory = "/home/runner/work/anotaciones/anotaciones/output"
 
 [[input.files]]
+path = "cv.html"
+url = "/cv"
+title = "Currículo"
+
+[[input.files]]
+path = "rodney-chrome-wayland-error.html"
+url = "/rodney-chrome-wayland-error"
+title = "Solución al Error de Rodney con Chrome en Wayland"
+
+[[input.files]]
 path = "asciinema-terminal-recorder.html"
 url = "/asciinema-terminal-recorder"
 title = "Graba y Comparte tus Sesiones de Terminal con asciinema"
@@ -701,6 +711,11 @@ title = "Corrector ortográfico de firefox 2.0 en castellano"
 path = "primera-anotacion-de-prueba.html"
 url = "/primera-anotacion-de-prueba"
 title = "Primera anotación de prueba"
+
+[[input.files]]
+path = "rodney-chrome-wayland-error-en.html"
+url = "/en/rodney-chrome-wayland-error"
+title = "Fixing Rodney Chrome Error on Wayland"
 
 [[input.files]]
 path = "asciinema-terminal-recorder-en.html"
