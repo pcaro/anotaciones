@@ -7,18 +7,6 @@ from invoke import task
 
 
 @task
-def build(c):
-    """Build the site using pelican"""
-    c.run("pelican -s pelicanconf.py -o output_dev", pty=True)
-
-
-@task
-def regenerate(c):
-    """Regenerate the site with auto-reload"""
-    c.run("pelican -r -s pelicanconf.py -o output_dev")
-
-
-@task
 def serve(c, port=7000):
     """Serve the site locally with URL rewriting for .html files"""
     import http.server
@@ -48,7 +36,7 @@ def serve(c, port=7000):
     os.chdir("output_dev")
     # Allow address reuse to avoid "Address already in use" errors after restart
     socketserver.TCPServer.allow_reuse_address = True
-    
+
     try:
         with socketserver.TCPServer(("", port), HTMLHandler) as httpd:
             sys.stdout.write(f"Serving on http://localhost:{port}\n")
@@ -60,23 +48,17 @@ def serve(c, port=7000):
 
 @task
 def develop(c, port=7000):
-    """Build and serve the site for development"""
-    build(c)
-    c.run(f"python3 -m invoke serve --port {port}", pty=True)
-
-
-@task
-def production(c):
-    """Build for production"""
-    c.run("pelican -s publishconf.py")
-
-
-@task
-def publish(c):
-    """Build and publish to GitHub Pages using ghp-import"""
-    production(c)
-    c.run("ghp-import -m 'Generate Pelican site' -b gh-pages output")
-    c.run("git push origin gh-pages")
+    """Build, serve and auto-reload the site upon file changes"""
+    # 1. Initial build to ensure index.html and output_dev exist
+    print("Performing initial build...")
+    c.run("pelican -s pelicanconf.py -o output_dev")
+    
+    # 2. Start pelican auto-reload in the background
+    print("Starting auto-reloader...")
+    c.run("pelican -r -s pelicanconf.py -o output_dev", asynchronous=True)
+    
+    # 3. Start the custom local server in the foreground
+    serve(c, port=port)
 
 
 @task
@@ -121,7 +103,6 @@ Status: draft
         print(f"File created -> {filename}")
 
 
-
 @task
 def format_code(c):
     """Format Python code with black"""
@@ -132,3 +113,4 @@ def format_code(c):
 def lint(c):
     """Lint code with ruff"""
     c.run("ruff check .")
+
