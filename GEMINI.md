@@ -78,7 +78,7 @@ All common tasks are automated using `invoke` (defined in `tasks.py`). Note that
     ```bash
     uv run invoke write "Title of your new post"
     ```
-    *(This will create a new reStructuredText file in `content/articles/` with a pre-filled template.)*
+    *(This will create a new Markdown file in `content/articles/` with a pre-filled template.)*
 
 ## Deployment
 
@@ -100,7 +100,10 @@ The site is automatically deployed to [GitHub Pages](https://pages.github.com/) 
 
 ## Development Conventions
 
-*   **Content Format**: Blog posts are written in reStructuredText (`.rst`) or Markdown (`.md`).
+*   **Content Format**: Blog posts are ALWAYS written in Markdown (`.md`). Older articles may still use reStructuredText (`.rst`), but all new content must be Markdown.
+*   **Bilingual Content**: Every new annotation MUST include both a Spanish and an English version (`.md` and `.en.md` respectively). Ensure internal links point to the corresponding language file (e.g., `.en.md` files should link to other `.en.md` files).
+*   **Writing Style**: Articles are written in a personal, informal tone, acting as thoughts, notes, or future reminders for the author ("writing for myself").
+*   **Visual Content**: When a link is provided for an article, a screenshot of the website should be taken and saved in `content/images/`. This image MUST be added both inside the article AND as `featured_image: /images/filename.png` in the Markdown metadata so it appears on the homepage.
 *   **Configuration**:
     *   `pelicanconf.py`: Main Pelican configuration (for both development and production).
     *   `publishconf.py`: (Optional) Overrides `pelicanconf.py` settings specifically for production builds (currently empty as all settings are consolidated in `pelicanconf.py`).
@@ -108,7 +111,6 @@ The site is automatically deployed to [GitHub Pages](https://pages.github.com/) 
 *   **Build Verification**: Always run a local build and verify it works correctly before committing to avoid breaking the automated deployment.
 *   **Asset Paths**: Ensure `SITEURL` in `pelicanconf.py` is set correctly to the root domain (`https://pablocaro.es`) and `RELATIVE_URLS = False` for production builds to avoid path issues. Static assets are managed under the `themes/Flex/static/` and `content/images/` directories.
 *   **Internal Linking**: Annotations should include links to other related annotations, always linking to the appropriate language version.
-*   **Bilingual Content**: Every new annotation must include both a Spanish and an English version (`.md` and `.en.md` respectively). Ensure internal links point to the corresponding language file (e.g., `.en.md` files should link to other `.en.md` files).
 
 ## Multi-language Support
 

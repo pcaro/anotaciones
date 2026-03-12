@@ -81,30 +81,45 @@ def publish(c):
 
 @task
 def write(c, title):
-    """Create a new post"""
+    """Create a new article template in Spanish and English (Markdown)"""
     today = datetime.today()
     slug = title.lower().strip().replace(" ", "-")
-    filename = (
-        f"content/articles/{today.year}_{today.month:02d}_{today.day:02d}_{slug}.rst"
-    )
 
-    template = f"""{title}
-{"#" * len(title)}
+    # Spanish version
+    filename_es = f"content/articles/{today.year}_{today.month:02d}_{today.day:02d}_{slug}.md"
+    template_es = f"""Title: {title}
+Date: {today.year}-{today.month:02d}-{today.day:02d} {today.hour:02d}:{today.minute:02d}
+Category: Programación
+Tags: 
+Slug: {slug}
+Lang: es
+featured_image: /images/
+Summary: 
+Status: draft
 
-:date: {today.year}-{today.month:02d}-{today.day:02d} {today.hour:02d}:{today.minute:02d}
-:tags:
-:lang: es
-:category: Programación
-:slug: {slug}
-:summary:
-:status: draft
-
+(Escribe aquí tus pensamientos o recordatorios en español...)
 """
 
-    with open(filename, "w", encoding="utf-8") as f:
-        f.write(template)
+    # English version
+    filename_en = f"content/articles/{today.year}_{today.month:02d}_{today.day:02d}_{slug}.en.md"
+    template_en = f"""Title: {title}
+Date: {today.year}-{today.month:02d}-{today.day:02d} {today.hour:02d}:{today.minute:02d}
+Category: Programación
+Tags: 
+Slug: {slug}
+Lang: en
+featured_image: /images/
+Summary: 
+Status: draft
 
-    print(f"File created -> {filename}")
+(Write your thoughts or future reminders here in English...)
+"""
+
+    for filename, template in [(filename_es, template_es), (filename_en, template_en)]:
+        with open(filename, "w", encoding="utf-8") as f:
+            f.write(template)
+        print(f"File created -> {filename}")
+
 
 
 @task
