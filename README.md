@@ -1,79 +1,44 @@
-# Anotaciones. Blog de Pablo Caro
+# Anotaciones - Blog de Pablo Caro
 
-These are my blog ([anotaciones](http://pablocaro.es)) contents for [Pelican](http://getpelican.com).
+Este repositorio contiene mi blog ([anotaciones](http://pablocaro.es)) generado con Pelican.
 
-## Getting up and running
+Las configuraciones y convenciones detalladas (pensadas para agentes e IAs) están documentadas en `GEMINI.md`. Este README es solo una referencia rápida (para mí) de los comandos de desarrollo.
 
-The steps below will get you up and running with a local development environment. We assume you have the following installed:
+## Flujo de Trabajo (Tasks)
 
-* **uv** ([https://docs.astral.sh/uv/](https://docs.astral.sh/uv/))
+Todo el flujo local se gestiona mediante `invoke` a través de `uv`.
 
-First install dependencies using `uv`:
-
-```bash
-uv sync
-```
-
-Then download theme and plugins:
-
-```bash
-git submodule update --init --recursive
-git clone https://github.com/getpelican/pelican-plugins.git plugins
-```
-
-### Development Commands
-
-Build the site:
-
-```bash
-uv run invoke build
-```
-
-Develop with local server:
+### Levantar el entorno de desarrollo
 
 ```bash
 uv run invoke develop
 ```
+Realiza una compilación inicial completa, arranca un servidor local en `http://localhost:7000` (con soporte para URLs limpias) y deja a Pelican "escuchando" en segundo plano. Cualquier cambio en los archivos `.md` reconstruirá el HTML al instante. 
+*(Para detenerlo y limpiar los procesos, pulsa `Ctrl+C`).*
 
-Build for production:
-
-```bash
-uv run invoke production
-```
-
-### Publishing
-
-The site is automatically deployed to GitHub Pages when you push to the `master` branch using GitHub Actions.
-
-For manual publishing:
+### Crear una nueva entrada
 
 ```bash
-uv run invoke publish
+uv run invoke write "Título de tu nueva entrada"
 ```
+Genera automáticamente las dos plantillas obligatorias (`.md` y `.en.md`) en `content/articles/` con los metadatos correctos (fecha, slug, etc.) listas para empezar a escribir.
 
-### New entries
-
-Create a new post:
+### Editar la última entrada generada/modificada
 
 ```bash
-uv run invoke write "título del post"
+uv run invoke edit-latest
+```
+Busca la entrada más reciente en la carpeta `content/articles/` (por fecha de modificación) y abre tanto su versión en español como en inglés simultáneamente en tu `$EDITOR` (por defecto `vim`). Es el comando ideal para revisar rápidamente las notas que te acaba de generar una IA.
+
+### Limpieza de código
+
+```bash
+uv run invoke format-code   # Formatea Python con black
+uv run invoke lint          # Revisa Python con ruff
 ```
 
-A new file is created with the current date and content like:
+---
 
-```markdown
-Title: título del post
-Date: 2026-02-26 14:20
-Category: Programación
-Tags:
-Slug: titulo-del-post
-Lang: es
-Summary:
-Status: draft
+## Despliegue
 
-(Content goes here)
-```
-
-*(Note: Although the task script defaults to `.rst`, the project now primarily uses `.md` for new entries.)*
-
-It's time to write entries!!!
+El blog se publica **automáticamente** vía GitHub Actions al hacer `git push` a `master`. No hagas push a master sin haber revisado los cambios en local previamente.
