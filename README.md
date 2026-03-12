@@ -2,7 +2,7 @@
 
 Este repositorio contiene mi blog ([anotaciones](http://pablocaro.es)) generado con Pelican.
 
-Las configuraciones y convenciones detalladas (pensadas para agentes e IAs) están documentadas en `GEMINI.md`. Este README es solo una referencia rápida (para mí) de los comandos de desarrollo.
+Las configuraciones y convenciones detalladas (pensadas para agentes e IAs) están documentadas en `AGENTS.md`. Este README es solo una referencia rápida (para mí) de los comandos de desarrollo.
 
 ## Flujo de Trabajo (Tasks)
 
