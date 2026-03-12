@@ -8,6 +8,11 @@ url = "/cv"
 title = "Resume"
 
 [[input.files]]
+path = "os-click-central-descarga-isos.html"
+url = "/os-click-central-descarga-isos"
+title = "os.click: Operating System ISO Download Center"
+
+[[input.files]]
 path = "net-tools-to-iproute.html"
 url = "/net-tools-to-iproute"
 title = "From net-tools to iproute2: command equivalents"
@@ -291,6 +296,11 @@ title = "Django: links in object list"
 path = "settings-vars-processor.html"
 url = "/settings-vars-processor"
 title = "Settings vars processor"
+
+[[input.files]]
+path = "os-click-central-descarga-isos-es.html"
+url = "/../os-click-central-descarga-isos"
+title = "os.click: Central de descarga de ISOs de sistemas operativos"
 
 [[input.files]]
 path = "net-tools-to-iproute-es.html"
