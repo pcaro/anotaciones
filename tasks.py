@@ -126,3 +126,50 @@ def lint(c):
     """Lint code with ruff"""
     c.run("ruff check .")
 
+
+@task
+def edit_latest(c):
+    """Open the most recently modified article (both ES and EN versions) in $EDITOR"""
+    import glob
+    
+    # Get all markdown files in the articles directory
+    files = glob.glob("content/articles/*.md")
+    if not files:
+        print("No articles found.")
+        return
+        
+    # Sort files by modification time, newest first
+    files.sort(key=os.path.getmtime, reverse=True)
+    
+    # Get the latest file
+    latest_file = files[0]
+    
+    # Determine the base name without language suffix
+    if latest_file.endswith(".en.md"):
+        base_name = latest_file[:-6]
+    else:
+        base_name = latest_file[:-3]
+        
+    # Construct paths for both versions
+    file_es = f"{base_name}.md"
+    file_en = f"{base_name}.en.md"
+    
+    # Check which ones actually exist to pass to the editor
+    files_to_edit = []
+    if os.path.exists(file_es):
+        files_to_edit.append(file_es)
+    if os.path.exists(file_en):
+        files_to_edit.append(file_en)
+        
+    if not files_to_edit:
+        print("Could not find the article files.")
+        return
+        
+    # Get the preferred editor (default to 'vim' if not set)
+    editor = os.environ.get("EDITOR", "vim")
+    
+    # Run the editor with the files
+    print(f"Opening with {editor}: {' and '.join(files_to_edit)}")
+    # Use pty=True so interactive editors like vim/nano work properly
+    c.run(f"{editor} {' '.join(files_to_edit)}", pty=True)
+
