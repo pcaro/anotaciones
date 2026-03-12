@@ -91,7 +91,7 @@ featured_image: /images/
 Summary: 
 Status: draft
 
-(Escribe aquí tus pensamientos o recordatorios en español...)
+(Escribe aquí directamente el contenido en tono personal, sin empezar con "Nota mental: "...)
 """
 
     # English version
@@ -106,7 +106,7 @@ featured_image: /images/
 Summary: 
 Status: draft
 
-(Write your thoughts or future reminders here in English...)
+(Write the content directly here in a personal tone, without starting with "Mental note: "...)
 """
 
     for filename, template in [(filename_es, template_es), (filename_en, template_en)]:

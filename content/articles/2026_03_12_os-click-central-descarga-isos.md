@@ -8,7 +8,7 @@ featured_image: /images/os-click.png
 Summary: Recordatorio sobre os.click para descargar ISOs oficiales rápidamente.
 Status: published
 
-Nota mental: la próxima vez que necesite una ISO de Windows o alguna distro Linux y no quiera estar media hora saltando entre menús de Microsoft o buscando el "mirror" correcto, entrar directamente en **[os.click](https://os.click/)**.
+La próxima vez que necesite una ISO de Windows o alguna distro Linux y no quiera estar media hora saltando entre menús de Microsoft o buscando el "mirror" correcto, entrar directamente en **[os.click](https://os.click/)**.
 
 Me ha pasado hoy buscando una ISO de Windows 11 para una VM; nunca me acuerdo de la URL exacta y os.click me ha salvado el rato. Lo bueno que tiene:
 
