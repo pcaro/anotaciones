@@ -84,6 +84,8 @@ All common tasks are automated using `invoke` (defined in `tasks.py`). Note that
 
 The site is automatically deployed to [GitHub Pages](https://pages.github.com/) via GitHub Actions whenever changes are pushed to the `master` branch.
 
+**CRITICAL RULE:** NEVER execute `git push` (especially to the `master` branch) without explicit, direct instruction from the user. Pushing to `master` instantly publishes the content to the public blog. The user MUST review all changes locally first. You may `git commit` work to save progress, but DO NOT push.
+
 *   **Workflow File**: `.github/workflows/deploy.yml`
 *   **Deployment Method**: The workflow builds the site and pushes the output to a `gh-pages` branch. GitHub Pages is configured to serve content from this `gh-pages` branch.
 
