@@ -49,16 +49,28 @@ def serve(c, port=7000):
 @task
 def develop(c, port=7000):
     """Build, serve and auto-reload the site upon file changes"""
+    import subprocess
+    import sys
+    
     # 1. Initial build to ensure index.html and output_dev exist
     print("Performing initial build...")
-    c.run("pelican -s pelicanconf.py -o output_dev")
+    c.run("pelican -s pelicanconf.py -o output_dev", pty=True)
     
     # 2. Start pelican auto-reload in the background
     print("Starting auto-reloader...")
-    c.run("pelican -r -s pelicanconf.py -o output_dev", asynchronous=True)
+    pelican_proc = subprocess.Popen(
+        ["pelican", "-r", "-s", "pelicanconf.py", "-o", "output_dev"],
+        stdout=sys.stdout,
+        stderr=sys.stderr
+    )
     
     # 3. Start the custom local server in the foreground
-    serve(c, port=port)
+    try:
+        serve(c, port=port)
+    finally:
+        print("\nStopping auto-reloader...")
+        pelican_proc.terminate()
+        pelican_proc.wait()
 
 
 @task
