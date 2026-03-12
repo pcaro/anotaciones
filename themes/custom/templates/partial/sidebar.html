@@ -16,13 +16,11 @@
     <p>{{ SITESUBTITLE }}</p>
     {% endif %}
 
+    {% if SIDEBAR_DESCRIPTION %}
     <p style="font-size: 0.9em; font-style: italic; margin-bottom: 20px;">
-    {% if DEFAULT_LANG == "en" %}
-      Personal blog of Pablo Caro with annotations that might be useful to others, but are primarily used as personal technical notes to free up head space.
-    {% else %}
-      Blog personal de Pablo Caro donde hago anotaciones que pueden ser útiles para otros pero las empleo fundamentalmente como notas técnicas personales para no llenar la cabeza.
-    {% endif %}
+      {{ SIDEBAR_DESCRIPTION }}
     </p>
+    {% endif %}
 
     {% if PLUGINS %}
     {% if ('tipue_search' in PLUGINS or 'pelican.plugins.tipue_search' in PLUGINS) %}

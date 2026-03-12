@@ -103,6 +103,7 @@ I18N_SUBSITES = {
     "en": {
         "SITENAME": "Annotations by Pablo Caro",
         "SITESUBTITLE": "Annotations",
+        "SIDEBAR_DESCRIPTION": "Dumping my brain onto the internet. A collection of technical notes and solutions written for my future self, shared here in case they save someone else a headache.",
         "LOCALE": "en_US.UTF-8",
         "THEME_STATIC_DIR": "theme",
         "THEME_STATIC_PATHS": ["static"],
@@ -203,6 +204,7 @@ TWITTER_USERNAME = "pcaro"
 # FEATURED_IMAGE defined in publishconf.py for production
 
 SITESUBTITLE = "Anotaciones"
+SIDEBAR_DESCRIPTION = "Volcando mi cerebro a internet. Colección de apuntes técnicos y soluciones que escribo para mi 'yo' del futuro, pero que comparto por si a alguien más le ahorran un dolor de cabeza."
 
 # Legal
 SITE_LICENSE = '<span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"> Anotaciones</span> de <a xmlns:cc="http://creativecommons.org/ns#" href="http://pablocaro.es" property="cc:attributionName" rel="cc:attributionURL">Pablo Caro</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>.'
