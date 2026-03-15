@@ -47,6 +47,79 @@ def serve(c, port=7000):
 
 
 @task
+def drafts(c):
+    """List all draft annotations (Status: draft)"""
+    import glob
+    import re
+
+    # Get all markdown files in the articles directory
+    files = glob.glob("content/articles/*.md")
+    if not files:
+        print("No articles found.")
+        return
+
+    draft_files = []
+
+    for filepath in files:
+        with open(filepath, "r", encoding="utf-8") as f:
+            content = f.read()
+
+        # Check if file has Status: draft in its metadata
+        if re.search(r"^Status:\s*draft\s*$", content, re.MULTILINE):
+            # Extract title from metadata
+            title_match = re.search(r"^Title:\s*(.+)$", content, re.MULTILINE)
+            title = title_match.group(1).strip() if title_match else "Unknown"
+
+            # Extract date from metadata
+            date_match = re.search(r"^Date:\s*(.+)$", content, re.MULTILINE)
+            date = date_match.group(1).strip() if date_match else "Unknown"
+
+            # Extract language (check if it's English version)
+            lang_match = re.search(r"^Lang:\s*(.+)$", content, re.MULTILINE)
+            lang = lang_match.group(1).strip() if lang_match else "es"
+
+            draft_files.append({
+                "filepath": filepath,
+                "title": title,
+                "date": date,
+                "lang": lang
+            })
+
+    if not draft_files:
+        print("No draft articles found.")
+        return
+
+    # Sort by filepath (which includes date in filename)
+    draft_files.sort(key=lambda x: x["filepath"], reverse=True)
+
+    # Group by base article (ES and EN versions together)
+    grouped = {}
+    for draft in draft_files:
+        # Extract base name (without .en.md or .md suffix)
+        base = draft["filepath"].replace(".en.md", "").replace(".md", "")
+        if base not in grouped:
+            grouped[base] = {}
+        grouped[base][draft["lang"]] = draft
+
+    print(f"\nFound {len(draft_files)} draft article(s) ({len(grouped)} unique):\n")
+
+    for base in sorted(grouped.keys(), reverse=True):
+        langs = grouped[base]
+        # Use Spanish version for display if available, otherwise English
+        article = langs.get("es", langs.get("en"))
+
+        print(f"📝 {article['title']}")
+        print(f"   Date: {article['date']}")
+
+        # Show file paths for available languages
+        lang_str = " + ".join(sorted(langs.keys()))
+        print(f"   Files: {lang_str}")
+        for lang, info in sorted(langs.items()):
+            print(f"          {info['filepath']}")
+        print()
+
+
+@task(drafts)
 def develop(c, port=7000):
     """Build, serve and auto-reload the site upon file changes"""
     import subprocess
