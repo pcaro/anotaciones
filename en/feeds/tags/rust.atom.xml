@@ -1,5 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Annotations by Pablo Caro - rust</title><link href="https://pablocaro.es/en/" rel="alternate"></link><link href="https://pablocaro.es/feeds/tags/rust.atom.xml" rel="self"></link><id>https://pablocaro.es/en/</id><updated>2026-02-26T14:20:00+01:00</updated><subtitle>Annotations</subtitle><entry><title>kitty-rbw: Fast Bitwarden access from your kitty terminal</title><link href="https://pablocaro.es/en/kitty-rbw-kitten" rel="alternate"></link><published>2026-02-26T14:20:00+01:00</published><updated>2026-02-26T14:20:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-02-26:/en/kitty-rbw-kitten</id><summary type="html">&lt;p&gt;Introducing kitty-rbw, a "kitten" for the kitty terminal that allows you to search and use rbw (Bitwarden) credentials instantly using fzf.&lt;/p&gt;</summary><content type="html">&lt;p&gt;In the &lt;a href="https://pablocaro.es/en/rbw-bitwarden-cli"&gt;previous post&lt;/a&gt; we talked about &lt;strong&gt;rbw&lt;/strong&gt;, the Bitwarden CLI client written in Rust that stands out for its speed and for using an agent to manage vault unlocking.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Annotations by Pablo Caro - rust</title><link href="https://pablocaro.es/en/" rel="alternate"></link><link href="https://pablocaro.es/feeds/tags/rust.atom.xml" rel="self"></link><id>https://pablocaro.es/en/</id><updated>2026-03-15T14:11:00+01:00</updated><subtitle>Annotations</subtitle><entry><title>sem: Semantic Version Control</title><link href="https://pablocaro.es/en/sem-semantic-version-control" rel="alternate"></link><published>2026-03-15T14:11:00+01:00</published><updated>2026-03-15T14:11:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-03-15:/en/sem-semantic-version-control</id><summary type="html">&lt;p&gt;Discovering sem, a CLI tool that understands your code's semantics and tells you what entities changed, not just what lines.&lt;/p&gt;</summary><content type="html">&lt;p&gt;I stumbled upon &lt;a href="https://github.com/Ataraxy-Labs/sem"&gt;sem&lt;/a&gt; a few weeks ago and I think it's a brilliant idea. It's a CLI that goes beyond traditional line-by-line diffs and understands the actual structure of your code.&lt;/p&gt;
+&lt;h2 id="the-difference-between-lines-and-entities"&gt;The difference between lines and entities&lt;a class="headerlink" href="#the-difference-between-lines-and-entities" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;When you do a traditional &lt;code&gt;git diff&lt;/code&gt;, you see something like:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="gd"&gt;- const oldAuth = function(user) { ... }&lt;/span&gt;
+&lt;span class="gi"&gt;+ const newAuth = async function(user) { ... }&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;But with &lt;code&gt;sem diff&lt;/code&gt; you see:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;⊕&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;function&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;validateToken&lt;/span&gt;&lt;span class="w"&gt;          &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;added&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;
+&lt;span class="err"&gt;∆&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;function&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;authenticateUser&lt;/span&gt;&lt;span class="w"&gt;       &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;modified&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;
+&lt;span class="err"&gt;⊖&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;function&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;legacyAuth&lt;/span&gt;&lt;span class="w"&gt;             &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;deleted&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;No lines added or deleted — &lt;strong&gt;entities&lt;/strong&gt; that changed: functions, classes, methods. Much more useful for understanding what actually happened in the PR.&lt;/p&gt;
+&lt;h2 id="available-commands"&gt;Available commands&lt;a class="headerlink" href="#available-commands" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;sem diff&lt;/code&gt;&lt;/strong&gt;: Shows what entities changed&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;sem impact &amp;lt;entity&amp;gt;&lt;/code&gt;&lt;/strong&gt;: Analyzes what would break if you change that entity (incoming dependencies)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;sem blame&lt;/code&gt;&lt;/strong&gt;: Entity-level blame — who changed each function/class&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;sem graph&lt;/code&gt;&lt;/strong&gt;: Shows the dependency graph between entities&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="practical-example"&gt;Practical example&lt;a class="headerlink" href="#practical-example" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# See what entities changed in working directory&lt;/span&gt;
+sem&lt;span class="w"&gt; &lt;/span&gt;diff
+
+&lt;span class="c1"&gt;# See only staged changes&lt;/span&gt;
+sem&lt;span class="w"&gt; &lt;/span&gt;diff&lt;span class="w"&gt; &lt;/span&gt;--staged
+
+&lt;span class="c1"&gt;# See changes from a specific commit&lt;/span&gt;
+sem&lt;span class="w"&gt; &lt;/span&gt;diff&lt;span class="w"&gt; &lt;/span&gt;--commit&lt;span class="w"&gt; &lt;/span&gt;abc1234
+
+&lt;span class="c1"&gt;# See impact of changing a function&lt;/span&gt;
+sem&lt;span class="w"&gt; &lt;/span&gt;impact&lt;span class="w"&gt; &lt;/span&gt;validateToken
+
+&lt;span class="c1"&gt;# JSON output for CI pipelines&lt;/span&gt;
+sem&lt;span class="w"&gt; &lt;/span&gt;diff&lt;span class="w"&gt; &lt;/span&gt;--format&lt;span class="w"&gt; &lt;/span&gt;json
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="installation"&gt;Installation&lt;a class="headerlink" href="#installation" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# macOS&lt;/span&gt;
+brew&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;sem-cli
+
+&lt;span class="c1"&gt;# Linux (my case)&lt;/span&gt;
+brew&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;sem-cli
+&lt;span class="c1"&gt;# or download binary from GitHub Releases&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Or build from source if you have Rust installed:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;git&lt;span class="w"&gt; &lt;/span&gt;clone&lt;span class="w"&gt; &lt;/span&gt;https://github.com/Ataraxy-Labs/sem
+&lt;span class="nb"&gt;cd&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;sem/crates
+cargo&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;--path&lt;span class="w"&gt; &lt;/span&gt;sem-cli
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="why-this-is-useful"&gt;Why this is useful&lt;a class="headerlink" href="#why-this-is-useful" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;For me, mainly two cases:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Faster code reviews&lt;/strong&gt; — You understand the real impact of a change in seconds&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Safe refactors&lt;/strong&gt; — Before renaming a critical function, &lt;code&gt;sem impact&lt;/code&gt; tells you what might break&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Supports 20 languages (including Python, Rust, Go, TypeScript, Java, C++, etc.) using tree-sitter to parse the code.&lt;/p&gt;
+&lt;p&gt;A tool that goes straight into my daily toolkit.&lt;/p&gt;</content><category term="Programming"></category><category term="cli"></category><category term="versioning"></category><category term="rust"></category><category term="tools"></category></entry><entry><title>kitty-rbw: Fast Bitwarden access from your kitty terminal</title><link href="https://pablocaro.es/en/kitty-rbw-kitten" rel="alternate"></link><published>2026-02-26T14:20:00+01:00</published><updated>2026-02-26T14:20:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-02-26:/en/kitty-rbw-kitten</id><summary type="html">&lt;p&gt;Introducing kitty-rbw, a "kitten" for the kitty terminal that allows you to search and use rbw (Bitwarden) credentials instantly using fzf.&lt;/p&gt;</summary><content type="html">&lt;p&gt;In the &lt;a href="https://pablocaro.es/en/rbw-bitwarden-cli"&gt;previous post&lt;/a&gt; we talked about &lt;strong&gt;rbw&lt;/strong&gt;, the Bitwarden CLI client written in Rust that stands out for its speed and for using an agent to manage vault unlocking.&lt;/p&gt;
 &lt;p&gt;Today I'm going a step further and introducing &lt;strong&gt;&lt;a href="https://github.com/pcaro/kitty_rbw"&gt;kitty-rbw&lt;/a&gt;&lt;/strong&gt;, a &lt;em&gt;kitten&lt;/em&gt; I've developed for the &lt;strong&gt;kitty&lt;/strong&gt; terminal. Its goal is to let you search and use your Bitwarden credentials without leaving the terminal or typing complex commands, integrating perfectly into your workflow.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="kitty-rbw interface" src="https://pablocaro.es/en/images/kitty-rbw.png"&gt;&lt;/p&gt;
 &lt;h2 id="what-is-a-kitten"&gt;What is a kitten?&lt;a class="headerlink" href="#what-is-a-kitten" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;

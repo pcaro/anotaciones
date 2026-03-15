@@ -61,30 +61,27 @@
  
 
 <meta name="author" content="Pablo Caro" />
-<meta name="description" content="If you work with Kubernetes, you&#39;ve probably suffered through the kubectl logs command. It&#39;s useful for viewing the logs of a specific pod, but it falls short when you have multiple replicas of a service or when pods restart and change names. This is where Stern comes in. Stern allows …" />
-<meta name="keywords" content="kubernetes, cli, logs, devops, tools">
+<meta name="description" content="Discovering sem, a CLI tool that understands your code&#39;s semantics and tells you what entities changed, not just what lines." />
+<meta name="keywords" content="cli, versioning, rust, tools">
 
-<link rel="alternate" href="https://pablocaro.es/en/stern-kubernetes-logs" hreflang="en" />
-<link rel="alternate" href="https://pablocaro.es/en/../stern-kubernetes-logs" hreflang="es" />
 
   <meta property="og:site_name" content="Annotations by Pablo Caro"/>
-  <meta property="og:title" content="Stern: Kubernetes Logs on Steroids"/>
-  <meta property="og:description" content="If you work with Kubernetes, you&#39;ve probably suffered through the kubectl logs command. It&#39;s useful for viewing the logs of a specific pod, but it falls short when you have multiple replicas of a service or when pods restart and change names. This is where Stern comes in. Stern allows …"/>
+  <meta property="og:title" content="sem: Semantic Version Control"/>
+  <meta property="og:description" content="Discovering sem, a CLI tool that understands your code&#39;s semantics and tells you what entities changed, not just what lines."/>
   <meta property="og:locale" content="en_US"/>
-  <meta property="og:url" content="https://pablocaro.es/en/stern-kubernetes-logs"/>
+  <meta property="og:url" content="https://pablocaro.es/en/sem-semantic-version-control"/>
   <meta property="og:type" content="article"/>
-  <meta property="article:published_time" content="2026-02-20 00:00:00+01:00"/>
+  <meta property="article:published_time" content="2026-03-15 14:11:00+01:00"/>
   <meta property="article:modified_time" content=""/>
   <meta property="article:author" content="https://pablocaro.es/en/author/pablo-caro.html">
-  <meta property="article:section" content="DevOps"/>
-  <meta property="article:tag" content="kubernetes"/>
+  <meta property="article:section" content="Programming"/>
   <meta property="article:tag" content="cli"/>
-  <meta property="article:tag" content="logs"/>
-  <meta property="article:tag" content="devops"/>
+  <meta property="article:tag" content="versioning"/>
+  <meta property="article:tag" content="rust"/>
   <meta property="article:tag" content="tools"/>
   <meta property="og:image" content="/theme/img/profile.png">
 
-  <title>Annotations by Pablo Caro &ndash; Stern: Kubernetes Logs on Steroids</title>
+  <title>Annotations by Pablo Caro &ndash; sem: Semantic Version Control</title>
 
 
 </head>
@@ -192,75 +189,83 @@
 
 <article class="single">
   <header>
-          <div class="translations">
-            <a href="https://pablocaro.es/en/../stern-kubernetes-logs">Leer en español</a>
-    </div>
-
-    <h1 id="stern-kubernetes-logs">Stern: Kubernetes Logs on Steroids</h1>
+      
+    <h1 id="sem-semantic-version-control">sem: Semantic Version Control</h1>
     <p>
-      Posted on Fri, 20 Feb 2026 in <a href="https://pablocaro.es/en/category/devops.html">DevOps</a>
+      Posted on Sun, 15 Mar 2026 in <a href="https://pablocaro.es/en/category/programming.html">Programming</a>
 
     </p>
   </header>
 
 
   <div>
-    <p>If you work with Kubernetes, you've probably suffered through the <code>kubectl logs</code> command. It's useful for viewing the logs of a specific pod, but it falls short when you have multiple replicas of a service or when pods restart and change names.</p>
-<p>This is where <strong><a href="https://github.com/stern/stern">Stern</a></strong> comes in.</p>
-<p>Stern allows you to "tail" logs from multiple pods and containers within Kubernetes simultaneously. Best of all, it uses regular expressions to select pods, so you don't need to copy and paste those random IDs (<code>pod-1234567890-abcde</code>).</p>
+    <p>I stumbled upon <a href="https://github.com/Ataraxy-Labs/sem">sem</a> a few weeks ago and I think it's a brilliant idea. It's a CLI that goes beyond traditional line-by-line diffs and understands the actual structure of your code.</p>
+<h2 id="the-difference-between-lines-and-entities">The difference between lines and entities<a class="headerlink" href="#the-difference-between-lines-and-entities" title="Permanent link">&para;</a></h2>
+<p>When you do a traditional <code>git diff</code>, you see something like:</p>
+<div class="highlight"><pre><span></span><code><span class="gd">- const oldAuth = function(user) { ... }</span>
+<span class="gi">+ const newAuth = async function(user) { ... }</span>
+</code></pre></div>
+
+<p>But with <code>sem diff</code> you see:</p>
+<div class="highlight"><pre><span></span><code><span class="err">⊕</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="n">validateToken</span><span class="w">          </span><span class="o">[</span><span class="n">added</span><span class="o">]</span>
+<span class="err">∆</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="n">authenticateUser</span><span class="w">       </span><span class="o">[</span><span class="n">modified</span><span class="o">]</span>
+<span class="err">⊖</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="n">legacyAuth</span><span class="w">             </span><span class="o">[</span><span class="n">deleted</span><span class="o">]</span>
+</code></pre></div>
+
+<p>No lines added or deleted — <strong>entities</strong> that changed: functions, classes, methods. Much more useful for understanding what actually happened in the PR.</p>
+<h2 id="available-commands">Available commands<a class="headerlink" href="#available-commands" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong><code>sem diff</code></strong>: Shows what entities changed</li>
+<li><strong><code>sem impact &lt;entity&gt;</code></strong>: Analyzes what would break if you change that entity (incoming dependencies)</li>
+<li><strong><code>sem blame</code></strong>: Entity-level blame — who changed each function/class</li>
+<li><strong><code>sem graph</code></strong>: Shows the dependency graph between entities</li>
+</ul>
+<h2 id="practical-example">Practical example<a class="headerlink" href="#practical-example" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="c1"># See what entities changed in working directory</span>
+sem<span class="w"> </span>diff
+
+<span class="c1"># See only staged changes</span>
+sem<span class="w"> </span>diff<span class="w"> </span>--staged
+
+<span class="c1"># See changes from a specific commit</span>
+sem<span class="w"> </span>diff<span class="w"> </span>--commit<span class="w"> </span>abc1234
+
+<span class="c1"># See impact of changing a function</span>
+sem<span class="w"> </span>impact<span class="w"> </span>validateToken
+
+<span class="c1"># JSON output for CI pipelines</span>
+sem<span class="w"> </span>diff<span class="w"> </span>--format<span class="w"> </span>json
+</code></pre></div>
+
 <h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h2>
-<p>Stern is very popular and available in most package managers.### Using Krew (recommended)
-If you already use <code>kubectl</code>, Krew is the most natural way to install plugins:</p>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>krew<span class="w"> </span>install<span class="w"> </span>stern
+<div class="highlight"><pre><span></span><code><span class="c1"># macOS</span>
+brew<span class="w"> </span>install<span class="w"> </span>sem-cli
+
+<span class="c1"># Linux (my case)</span>
+brew<span class="w"> </span>install<span class="w"> </span>sem-cli
+<span class="c1"># or download binary from GitHub Releases</span>
 </code></pre></div>
 
-<h3 id="using-homebrew">Using Homebrew<a class="headerlink" href="#using-homebrew" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>brew<span class="w"> </span>install<span class="w"> </span>stern
+<p>Or build from source if you have Rust installed:</p>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/Ataraxy-Labs/sem
+<span class="nb">cd</span><span class="w"> </span>sem/crates
+cargo<span class="w"> </span>install<span class="w"> </span>--path<span class="w"> </span>sem-cli
 </code></pre></div>
 
-<h3 id="direct-binary">Direct Binary<a class="headerlink" href="#direct-binary" title="Permanent link">&para;</a></h3>
-<p>You can also download the binary directly from their <a href="https://github.com/stern/stern/releases">GitHub releases</a>.</p>
-<p>If you use a helper like <code>gah</code> (GitHub Asset Helper) or custom scripts, installation is as simple as:</p>
-<div class="highlight"><pre><span></span><code>gah<span class="w"> </span>install<span class="w"> </span>stern/stern
-</code></pre></div>
-
-<h2 id="key-features">Key Features<a class="headerlink" href="#key-features" title="Permanent link">&para;</a></h2>
-<h3 id="1-multi-pod-tailing">1. Multi-pod Tailing<a class="headerlink" href="#1-multi-pod-tailing" title="Permanent link">&para;</a></h3>
-<p>Instead of searching for the exact pod name, you can use a regex:</p>
-<div class="highlight"><pre><span></span><code>stern<span class="w"> </span>backend
-</code></pre></div>
-
-<p>This will show logs from all pods containing "backend" in their name (<code>backend-api</code>, <code>backend-worker</code>, etc.), interleaved and colored to easily distinguish them.</p>
-<h3 id="2-filtering-and-exclusion">2. Filtering and Exclusion<a class="headerlink" href="#2-filtering-and-exclusion" title="Permanent link">&para;</a></h3>
-<p>You can filter log content on the fly without needing <code>grep</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># Only show lines containing &quot;Error&quot;</span>
-stern<span class="w"> </span>backend<span class="w"> </span>-i<span class="w"> </span>Error
-
-<span class="c1"># Exclude lines containing &quot;Health check&quot;</span>
-stern<span class="w"> </span>backend<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;Health check&quot;</span>
-</code></pre></div>
-
-<h3 id="3-kubernetes-selectors">3. Kubernetes Selectors<a class="headerlink" href="#3-kubernetes-selectors" title="Permanent link">&para;</a></h3>
-<p>In addition to regex by name, you can use label selectors, which is much more precise for production environments:</p>
-<div class="highlight"><pre><span></span><code>stern<span class="w"> </span>-l<span class="w"> </span><span class="nv">app</span><span class="o">=</span>my-app<span class="w"> </span>-l<span class="w"> </span><span class="nv">tier</span><span class="o">=</span>frontend
-</code></pre></div>
-
-<h3 id="4-output-formatting">4. Output Formatting<a class="headerlink" href="#4-output-formatting" title="Permanent link">&para;</a></h3>
-<p>If your logs are in JSON (as is best practice), Stern can pass them through as is so you can process them with tools like <code>jq</code> or <code>fx</code>:</p>
-<div class="highlight"><pre><span></span><code>stern<span class="w"> </span>backend<span class="w"> </span>-o<span class="w"> </span>raw<span class="w"> </span><span class="p">|</span><span class="w"> </span>fx
-</code></pre></div>
-
-<h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">&para;</a></h2>
-<p>Stern is one of those tools you install on day one and wonder how you ever lived without it. It makes debugging in distributed environments much less painful by aggregating information coherently.</p>
-<p>Give it a try and your debugging sessions will thank you.</p>
-<p><img alt="stern help" src="https://pablocaro.es/en/images/stern_help.png"></p>
+<h2 id="why-this-is-useful">Why this is useful<a class="headerlink" href="#why-this-is-useful" title="Permanent link">&para;</a></h2>
+<p>For me, mainly two cases:</p>
+<ol>
+<li><strong>Faster code reviews</strong> — You understand the real impact of a change in seconds</li>
+<li><strong>Safe refactors</strong> — Before renaming a critical function, <code>sem impact</code> tells you what might break</li>
+</ol>
+<p>Supports 20 languages (including Python, Rust, Go, TypeScript, Java, C++, etc.) using tree-sitter to parse the code.</p>
+<p>A tool that goes straight into my daily toolkit.</p>
   </div>
   <div class="tag-cloud">
     <p>
-      <a href="https://pablocaro.es/en/tag/kubernetes.html">kubernetes</a>
       <a href="https://pablocaro.es/en/tag/cli.html">cli</a>
-      <a href="https://pablocaro.es/en/tag/logs.html">logs</a>
-      <a href="https://pablocaro.es/en/tag/devops.html">devops</a>
+      <a href="https://pablocaro.es/en/tag/versioning.html">versioning</a>
+      <a href="https://pablocaro.es/en/tag/rust.html">rust</a>
       <a href="https://pablocaro.es/en/tag/tools.html">tools</a>
     </p>
   </div>
@@ -268,19 +273,16 @@ stern<span class="w"> </span>backend<span class="w"> </span>-e<span class="w"> <
 
 
   <div class="neighbors">
-    <a class="btn float-left" href="https://pablocaro.es/en/gestionando-instalaciones-desde-github-con-gah" title="Managing GitHub installations with gah">
+    <a class="btn float-left" href="https://pablocaro.es/en/os-click-central-descarga-isos" title="os.click: Operating System ISO Download Center">
       <i class="fa fa-angle-left"></i> Previous Post
-    </a>
-    <a class="btn float-right" href="https://pablocaro.es/en/shot-scraper-capturas-pantalla-automatizadas" title="Shot-scraper: Automated Web Screenshots">
-      Next Post <i class="fa fa-angle-right"></i>
     </a>
   </div>
 
   <div class="related-posts">
     <h4>You might enjoy</h4>
     <ul class="related-posts">
-      <li><a href="https://pablocaro.es/en/kubegres-postgresql-kubernetes">Kubegres: Simplified PostgreSQL Management on Kubernetes</a></li>
-      <li><a href="https://pablocaro.es/en/sem-semantic-version-control">sem: Semantic Version Control</a></li>
+      <li><a href="https://pablocaro.es/en/kitty-rbw-kitten">kitty-rbw: Fast Bitwarden access from your kitty terminal</a></li>
+      <li><a href="https://pablocaro.es/en/rbw-bitwarden-cli">rbw: The Bitwarden terminal client you should be using</a></li>
       <li><a href="https://pablocaro.es/en/deepdiff-comparar-datos-python">DeepDiff: The Swiss Army Knife for Data Comparison in Python</a></li>
       <li><a href="https://pablocaro.es/en/renderizando-markdown-en-la-terminal-con-glow">Rendering Markdown in the terminal with Glow</a></li>
       <li><a href="https://pablocaro.es/en/shot-scraper-capturas-pantalla-automatizadas">Shot-scraper: Automated Web Screenshots</a></li>

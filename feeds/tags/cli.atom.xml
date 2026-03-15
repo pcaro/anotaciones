@@ -1,5 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Anotaciones por Pablo Caro - cli</title><link href="https://pablocaro.es/" rel="alternate"></link><link href="https://pablocaro.es/feeds/tags/cli.atom.xml" rel="self"></link><id>https://pablocaro.es/</id><updated>2026-02-26T14:20:00+01:00</updated><subtitle>Anotaciones</subtitle><entry><title>kitty-rbw: Acceso rápido a Bitwarden desde tu terminal kitty</title><link href="https://pablocaro.es/kitty-rbw-kitten" rel="alternate"></link><published>2026-02-26T14:20:00+01:00</published><updated>2026-02-26T14:20:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-02-26:/kitty-rbw-kitten</id><summary type="html">&lt;p&gt;Presentación de kitty-rbw, un "kitten" para el terminal kitty que permite buscar y usar credenciales de rbw (Bitwarden) de forma instantánea mediante fzf.&lt;/p&gt;</summary><content type="html">&lt;p&gt;En la &lt;a href="https://pablocaro.es/rbw-bitwarden-cli"&gt;entrada anterior&lt;/a&gt; hablamos de &lt;strong&gt;rbw&lt;/strong&gt;, el cliente de Bitwarden para terminal escrito en Rust que destaca por su velocidad y por usar un agente para gestionar el desbloqueo del almacén.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Anotaciones por Pablo Caro - cli</title><link href="https://pablocaro.es/" rel="alternate"></link><link href="https://pablocaro.es/feeds/tags/cli.atom.xml" rel="self"></link><id>https://pablocaro.es/</id><updated>2026-03-15T14:11:00+01:00</updated><subtitle>Anotaciones</subtitle><entry><title>sem: Control de versiones semántico</title><link href="https://pablocaro.es/sem-control-de-versiones-semantico" rel="alternate"></link><published>2026-03-15T14:11:00+01:00</published><updated>2026-03-15T14:11:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-03-15:/sem-control-de-versiones-semantico</id><summary type="html">&lt;p&gt;Descubriendo sem, una herramienta CLI que entiende la semántica de tu código y te dice qué entidades cambiaron, no solo qué líneas.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Me encontré con &lt;a href="https://github.com/Ataraxy-Labs/sem"&gt;sem&lt;/a&gt; hace unas semanas y me parece una idea brutal. Es un CLI que va más allá del diff tradicional línea a línea y entiende la estructura real del código.&lt;/p&gt;
+&lt;h2 id="la-diferencia-entre-lineas-y-entidades"&gt;La diferencia entre líneas y entidades&lt;a class="headerlink" href="#la-diferencia-entre-lineas-y-entidades" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Cuando haces un &lt;code&gt;git diff&lt;/code&gt; tradicional, ves algo como:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="gd"&gt;- const oldAuth = function(user) { ... }&lt;/span&gt;
+&lt;span class="gi"&gt;+ const newAuth = async function(user) { ... }&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Pero con &lt;code&gt;sem diff&lt;/code&gt; ves:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;⊕&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;function&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;validateToken&lt;/span&gt;&lt;span class="w"&gt;          &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;added&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;
+&lt;span class="err"&gt;∆&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;function&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;authenticateUser&lt;/span&gt;&lt;span class="w"&gt;       &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;modified&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;
+&lt;span class="err"&gt;⊖&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;function&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;legacyAuth&lt;/span&gt;&lt;span class="w"&gt;             &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;deleted&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;No líneas añadidas o eliminadas, sino &lt;strong&gt;entidades&lt;/strong&gt; que cambiaron: funciones, clases, métodos. Mucho más útil para entender qué pasó realmente en el PR.&lt;/p&gt;
+&lt;h2 id="comandos-disponibles"&gt;Comandos disponibles&lt;a class="headerlink" href="#comandos-disponibles" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;sem diff&lt;/code&gt;&lt;/strong&gt;: Muestra qué entidades cambiaron&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;sem impact &amp;lt;entidad&amp;gt;&lt;/code&gt;&lt;/strong&gt;: Analiza qué se rompería si cambias esa entidad (dependencias entrantes)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;sem blame&lt;/code&gt;&lt;/strong&gt;: Blame a nivel de entidad — quién cambió cada función/clase&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;sem graph&lt;/code&gt;&lt;/strong&gt;: Muestra el grafo de dependencias entre entidades&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="ejemplo-practico"&gt;Ejemplo práctico&lt;a class="headerlink" href="#ejemplo-practico" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Ver qué entidades cambiaron en working directory&lt;/span&gt;
+sem&lt;span class="w"&gt; &lt;/span&gt;diff
+
+&lt;span class="c1"&gt;# Ver solo cambios staged&lt;/span&gt;
+sem&lt;span class="w"&gt; &lt;/span&gt;diff&lt;span class="w"&gt; &lt;/span&gt;--staged
+
+&lt;span class="c1"&gt;# Ver cambios de un commit específico&lt;/span&gt;
+sem&lt;span class="w"&gt; &lt;/span&gt;diff&lt;span class="w"&gt; &lt;/span&gt;--commit&lt;span class="w"&gt; &lt;/span&gt;abc1234
+
+&lt;span class="c1"&gt;# Ver impacto de cambiar una función&lt;/span&gt;
+sem&lt;span class="w"&gt; &lt;/span&gt;impact&lt;span class="w"&gt; &lt;/span&gt;validateToken
+
+&lt;span class="c1"&gt;# Salida JSON para pipelines CI&lt;/span&gt;
+sem&lt;span class="w"&gt; &lt;/span&gt;diff&lt;span class="w"&gt; &lt;/span&gt;--format&lt;span class="w"&gt; &lt;/span&gt;json
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="instalacion"&gt;Instalación&lt;a class="headerlink" href="#instalacion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# macOS&lt;/span&gt;
+brew&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;sem-cli
+
+&lt;span class="c1"&gt;# Linux (mi caso)&lt;/span&gt;
+brew&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;sem-cli
+&lt;span class="c1"&gt;# o descargar binario de GitHub Releases&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;O build from source si tienes Rust instalado:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;git&lt;span class="w"&gt; &lt;/span&gt;clone&lt;span class="w"&gt; &lt;/span&gt;https://github.com/Ataraxy-Labs/sem
+&lt;span class="nb"&gt;cd&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;sem/crates
+cargo&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;--path&lt;span class="w"&gt; &lt;/span&gt;sem-cli
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="why-esto-es-util"&gt;Why esto es útil&lt;a class="headerlink" href="#why-esto-es-util" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Para mí, principalmente dos casos:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Code reviews más rápidas&lt;/strong&gt; — Entiendes el impacto real de un cambio en segundos&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Refactors seguros&lt;/strong&gt; — Antes de renombrar una función crítica, &lt;code&gt;sem impact&lt;/code&gt; te dice qué puede romperse&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Soporta 20 lenguajes (incluyendo Python, Rust, Go, TypeScript, Java, C++, etc.) usando tree-sitter para parsear el código.&lt;/p&gt;
+&lt;p&gt;Una herramienta que va directo a mi toolkit diario.&lt;/p&gt;</content><category term="Programación"></category><category term="cli"></category><category term="versionado"></category><category term="rust"></category><category term="herramientas"></category></entry><entry><title>kitty-rbw: Acceso rápido a Bitwarden desde tu terminal kitty</title><link href="https://pablocaro.es/kitty-rbw-kitten" rel="alternate"></link><published>2026-02-26T14:20:00+01:00</published><updated>2026-02-26T14:20:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-02-26:/kitty-rbw-kitten</id><summary type="html">&lt;p&gt;Presentación de kitty-rbw, un "kitten" para el terminal kitty que permite buscar y usar credenciales de rbw (Bitwarden) de forma instantánea mediante fzf.&lt;/p&gt;</summary><content type="html">&lt;p&gt;En la &lt;a href="https://pablocaro.es/rbw-bitwarden-cli"&gt;entrada anterior&lt;/a&gt; hablamos de &lt;strong&gt;rbw&lt;/strong&gt;, el cliente de Bitwarden para terminal escrito en Rust que destaca por su velocidad y por usar un agente para gestionar el desbloqueo del almacén.&lt;/p&gt;
 &lt;p&gt;Hoy doy un paso más allá y presento &lt;strong&gt;&lt;a href="https://github.com/pcaro/kitty_rbw"&gt;kitty-rbw&lt;/a&gt;&lt;/strong&gt;, un &lt;em&gt;kitten&lt;/em&gt; que he desarrollado para el terminal &lt;strong&gt;kitty&lt;/strong&gt;. Su objetivo es permitirte buscar y usar tus credenciales de Bitwarden sin tener que salir del terminal ni escribir comandos complejos, integrándose perfectamente en tu flujo de trabajo.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Interfaz de kitty-rbw" src="https://pablocaro.es/images/kitty-rbw.png"&gt;&lt;/p&gt;
 &lt;h2 id="que-es-un-kitten"&gt;¿Qué es un kitten?&lt;a class="headerlink" href="#que-es-un-kitten" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
