@@ -1,5 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Anotaciones por Pablo Caro</title><link href="https://pablocaro.es/" rel="alternate"></link><link href="https://pablocaro.es/feeds/all.atom.xml" rel="self"></link><id>https://pablocaro.es/</id><updated>2026-03-15T14:11:00+01:00</updated><subtitle>Anotaciones</subtitle><entry><title>sem: Control de versiones semántico</title><link href="https://pablocaro.es/sem-control-de-versiones-semantico" rel="alternate"></link><published>2026-03-15T14:11:00+01:00</published><updated>2026-03-15T14:11:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-03-15:/sem-control-de-versiones-semantico</id><summary type="html">&lt;p&gt;Descubriendo sem, una herramienta CLI que entiende la semántica de tu código y te dice qué entidades cambiaron, no solo qué líneas.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Me encontré con &lt;a href="https://github.com/Ataraxy-Labs/sem"&gt;sem&lt;/a&gt; hace unas semanas y me parece una idea brutal. Es un CLI que va más allá del diff tradicional línea a línea y entiende la estructura real del código.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Anotaciones por Pablo Caro</title><link href="https://pablocaro.es/" rel="alternate"></link><link href="https://pablocaro.es/feeds/all.atom.xml" rel="self"></link><id>https://pablocaro.es/</id><updated>2026-03-16T10:00:00+01:00</updated><subtitle>Anotaciones</subtitle><entry><title>Tailscale Aperture: Gateway de IA sin distribuir API keys</title><link href="https://pablocaro.es/tailscale-aperture-gateway-ia-seguro" rel="alternate"></link><published>2026-03-16T10:00:00+01:00</published><updated>2026-03-16T10:00:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-03-16:/tailscale-aperture-gateway-ia-seguro</id><summary type="html">&lt;p&gt;Aperture de Tailscale centraliza el acceso a LLMs eliminando la necesidad de distribuir API keys a desarrolladores, usando la identidad de Tailscale para autenticación.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Una de las cosas que me quitó el sueño cuando empecé a usar LLMs en el trabajo fue: &lt;strong&gt;¿dónde guardo las API keys?&lt;/strong&gt; En repositorios privados, en &lt;code&gt;.env&lt;/code&gt; files que se me olvidaban gitignorear, en notas del móvil... Un desastre.&lt;/p&gt;
+&lt;p&gt;Tailscale anunció recientemente &lt;a href="https://tailscale.com/docs/features/aperture"&gt;Aperture&lt;/a&gt;, un AI gateway que corre dentro de tu tailnet y que elimina completamente ese problema.&lt;/p&gt;
+&lt;h2 id="el-problema-de-las-api-keys-distribuidas"&gt;El problema de las API keys distribuidas&lt;a class="headerlink" href="#el-problema-de-las-api-keys-distribuidas" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Cuando los desarrolladores necesitan acceso a OpenAI, Anthropic, o cualquier otro proveedor de LLM, la práctica habitual ha sido:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Crear una API key&lt;/li&gt;
+&lt;li&gt;Compartirla por Slack, email, o pegada en un repo privado&lt;/li&gt;
+&lt;li&gt;Rezar porque no se filtrre&lt;/li&gt;
+&lt;li&gt;Cuando alguien se va, rotar manualmente todas las keys&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Esto escama mal. Una organización con 50 desarrolladores puede tener cientos de keys flotando en documentos, scripts de CI/CD, y machines de desarrolladores que ya no están en la empresa.&lt;/p&gt;
+&lt;h2 id="aperture-centralizacion-con-identidad-real"&gt;Aperture: centralización con identidad real&lt;a class="headerlink" href="#aperture-centralizacion-con-identidad-real" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;La solución de Tailscale es elegante: &lt;strong&gt;usar la identidad del tailnet para autenticar, no keys distribuidas&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Cómo funciona:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Configuras Aperture en tu tailnet&lt;/strong&gt; con las API keys de tus proveedores (OpenAI, Anthropic, Google, OpenRouter, etc.)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Los desarrolladores se conectan a Aperture&lt;/strong&gt; usando su identidad de Tailscale&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Aperture inyecta las credenciales&lt;/strong&gt; del proveedor correspondiente y reenvía la petición&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Telemetría completa&lt;/strong&gt;: tokens usados, costos, sesiones, todo en un dashboard&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Los desarrolladores nunca ven las API keys reales. Aperture las mantiene centralizadas y las inyecta server-side.&lt;/p&gt;
+&lt;h2 id="integracion-con-herramientas-existentes"&gt;Integración con herramientas existentes&lt;a class="headerlink" href="#integracion-con-herramientas-existentes" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Lo bueno es que funciona con las herramientas que ya usas:&lt;/p&gt;
+&lt;p&gt;-&lt;strong&gt;Claude Code&lt;/strong&gt;: Configuras &lt;code&gt;ANTHROPIC_BASE_URL=http://ai&lt;/code&gt; y listo
+- &lt;strong&gt;Codex&lt;/strong&gt;: Base URL a Aperture
+- &lt;strong&gt;Gemini CLI, Roo Code, Cline&lt;/strong&gt;: Similar, cambias la URL base
+- &lt;strong&gt;Custom apps&lt;/strong&gt;: Funciona con cualquier cliente que use OpenAI-compatible APIs&lt;/p&gt;
+&lt;p&gt;Desde el punto de vista del cliente, Aperture se ve como el proveedor mismo. Detecta el modelo en el request body y enruta al proveedor correcto.&lt;/p&gt;
+&lt;h2 id="pi-ts-aperture-plugin-para-pi"&gt;pi-ts-aperture: Plugin para Pi&lt;a class="headerlink" href="#pi-ts-aperture-plugin-para-pi" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Hay un plugin oficial de Pi para routearte automáticamente a través de Aperture:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pi&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;npm:@aliou/pi-ts-aperture
+/aperture:setup
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;El asistente te pide:
+1. URL de tu Aperture (ej: &lt;code&gt;ai.your-tailnet.ts.net&lt;/code&gt;)
+2. Qué proveedores routear&lt;/p&gt;
+&lt;p&gt;Guarda la configuración en &lt;code&gt;~/.pi/agent/extensions/aperture.json&lt;/code&gt; y modifica los providers para usar Aperture como proxy.&lt;/p&gt;
+&lt;h2 id="visibilidad-y-control"&gt;Visibilidad y control&lt;a class="headerlink" href="#visibilidad-y-control" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;El dashboardde Aperture te da:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Tokens por modelo y usuario&lt;/strong&gt;: ¿Cuánto gasta cada persona?&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Sesiones agrupadas&lt;/strong&gt;: Una sesión de Claude Code puede tener 50 requests; las ves como una unidad coherente&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Tool use&lt;/strong&gt;: Qué herramientas se están invocando y con qué frecuencia&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Adopción&lt;/strong&gt;: Quién está usando qué, y quién probó una vez y no volvió&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Export a S3&lt;/strong&gt;: Para integrar con tu SIEM habitual&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Para equipos de plataforma o seguridad que necesitan auditoria, esto es oro.&lt;/p&gt;
+&lt;h2 id="requisitos"&gt;Requisitos&lt;a class="headerlink" href="#requisitos" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Un tailnet de Tailscale (fundamental, toda la autenticación depende de la identidad de Tailscale)&lt;/li&gt;
+&lt;li&gt;API keys de los proveedores que quieras usar&lt;/li&gt;
+&lt;li&gt;El dispositivo que corre Pi debe estar en el tailnet&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="en-resumen"&gt;En resumen&lt;a class="headerlink" href="#en-resumen" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Si tu organización está adoptando herramientas de IA y no quieres lidiar con API keys circulando por todos lados, Aperture es una solución limpia. Centraliza credenciales, da visibilidad real del uso, y usa la infraestructura de identidad que ya tienes con Tailscale.&lt;/p&gt;
+&lt;p&gt;Está en alpha todaví a, pero disponible gratuitodurante el periodo de testing. Vale la pena probarlo si ya usas Tailscale.&lt;/p&gt;</content><category term="Herramientas"></category><category term="tailscale"></category><category term="seguridad"></category><category term="ia"></category><category term="api"></category><category term="gateway"></category></entry><entry><title>Tailscale Aperture: AI Gateway Without Distributing API Keys</title><link href="https://pablocaro.es/en/tailscale-aperture-gateway-ia-seguro" rel="alternate"></link><published>2026-03-16T10:00:00+01:00</published><updated>2026-03-16T10:00:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-03-16:/en/tailscale-aperture-gateway-ia-seguro</id><summary type="html">&lt;p&gt;Tailscale's Aperture centralizes LLM access by eliminating the need to distribute API keys to developers, using Tailscale identity for authentication.&lt;/p&gt;</summary><content type="html">&lt;p&gt;One thing that kept me up at night when I started using LLMs at work was: &lt;strong&gt;where do I store the API keys?&lt;/strong&gt; In private repos, in &lt;code&gt;.env&lt;/code&gt; files I forgot to gitignore, in phone notes... A mess.&lt;/p&gt;
+&lt;p&gt;Tailscale recently announced &lt;a href="https://tailscale.com/docs/features/aperture"&gt;Aperture&lt;/a&gt;, an AI gateway that runs inside your tailnet and completely eliminates that problem.&lt;/p&gt;
+&lt;h2 id="the-problem-with-distributed-api-keys"&gt;The Problem with Distributed API Keys&lt;a class="headerlink" href="#the-problem-with-distributed-api-keys" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;When developers need access to OpenAI, Anthropic, or any other LLM provider, the common practice has been:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Create an API key&lt;/li&gt;
+&lt;li&gt;Share it via Slack, email, or pasted in a private repo&lt;/li&gt;
+&lt;li&gt;Pray it doesn't leak&lt;/li&gt;
+&lt;li&gt;When someone leaves, manually rotate all keys&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;This doesn't scale. An organization with 50 developers can have hundreds of keys floating around in documents, CI/CD scripts, and developer machines that are no longer at the company.&lt;/p&gt;
+&lt;h2 id="aperture-centralization-with-real-identity"&gt;Aperture: Centralization with Real Identity&lt;a class="headerlink" href="#aperture-centralization-with-real-identity" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Tailscale's solution is elegant: &lt;strong&gt;use tailnet identity for authentication, not distributed keys&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;How it works:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Configure Aperture in your tailnet&lt;/strong&gt; with your provider API keys (OpenAI, Anthropic, Google, OpenRouter, etc.)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Developers connect to Aperture&lt;/strong&gt; using their Tailscale identity&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Aperture injects the credentials&lt;/strong&gt; for the corresponding provider and forwards the request&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Complete telemetry&lt;/strong&gt;: tokens used, costs, sessions, all in a dashboard&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Developers never see the real API keys. Aperture keeps them centralized and injects them server-side.&lt;/p&gt;
+&lt;h2 id="integration-with-existing-tools"&gt;Integration with Existing Tools&lt;a class="headerlink" href="#integration-with-existing-tools" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The good news is it works with the tools you already use:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Claude Code&lt;/strong&gt;: Set &lt;code&gt;ANTHROPIC_BASE_URL=http://ai&lt;/code&gt; and you're done&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Codex&lt;/strong&gt;: Base URL to Aperture&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Gemini CLI, Roo Code, Cline&lt;/strong&gt;: Similar, change the base URL&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Custom apps&lt;/strong&gt;: Works with any client using OpenAI-compatible APIs&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;From the client's perspective, Aperture looks like the provider itself. It detects the model in the request body and routes to the correct provider.&lt;/p&gt;
+&lt;h2 id="pi-ts-aperture-plugin-for-pi"&gt;pi-ts-aperture: Plugin for Pi&lt;a class="headerlink" href="#pi-ts-aperture-plugin-for-pi" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;There's an official Pi plugin to automatically route through Aperture:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pi&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;npm:@aliou/pi-ts-aperture
+/aperture:setup
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The wizard asks for:
+1. Your Aperture URL (e.g., &lt;code&gt;ai.your-tailnet.ts.net&lt;/code&gt;)
+2. Which providers to route&lt;/p&gt;
+&lt;p&gt;It saves configuration to &lt;code&gt;~/.pi/agent/extensions/aperture.json&lt;/code&gt; and modifies providers to use Aperture as proxy.&lt;/p&gt;
+&lt;h2 id="visibility-and-control"&gt;Visibility and Control&lt;a class="headerlink" href="#visibility-and-control" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Aperture'sdashboard gives you:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Tokens by model and user&lt;/strong&gt;: How much does each person spend?&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Grouped sessions&lt;/strong&gt;: A Claude Code session can have50 requests; you see them as a coherent unit&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Tool use&lt;/strong&gt;: Which tools are being invoked and how frequently&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Adoption&lt;/strong&gt;: Who's using what, and who tried once and didn't come back&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Export to S3&lt;/strong&gt;: To integrate with your usual SIEM&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;For platform or security teams that need auditing, this is gold.&lt;/p&gt;
+&lt;h2 id="requirements"&gt;Requirements&lt;a class="headerlink" href="#requirements" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;A Tailscale tailnet (fundamental, all authentication depends on Tailscale identity)&lt;/li&gt;
+&lt;li&gt;API keys for the providers you want to use&lt;/li&gt;
+&lt;li&gt;The device running Pi must be on the tailnet&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="in-summary"&gt;In Summary&lt;a class="headerlink" href="#in-summary" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;If your organization is adopting AI tools and you don't want to deal with API keys circulating everywhere, Aperture is a clean solution. It centralizes credentials, gives real visibility into usage, and uses the identity infrastructure you already have with Tailscale.&lt;/p&gt;
+&lt;p&gt;It's still in alpha, but available for free during the testing period. Worth trying if you already use Tailscale.&lt;/p&gt;</content><category term="Tools"></category><category term="tailscale"></category><category term="security"></category><category term="ai"></category><category term="api"></category><category term="gateway"></category></entry><entry><title>sem: Control de versiones semántico</title><link href="https://pablocaro.es/sem-control-de-versiones-semantico" rel="alternate"></link><published>2026-03-15T14:11:00+01:00</published><updated>2026-03-15T14:11:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-03-15:/sem-control-de-versiones-semantico</id><summary type="html">&lt;p&gt;Descubriendo sem, una herramienta CLI que entiende la semántica de tu código y te dice qué entidades cambiaron, no solo qué líneas.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Me encontré con &lt;a href="https://github.com/Ataraxy-Labs/sem"&gt;sem&lt;/a&gt; hace unas semanas y me parece una idea brutal. Es un CLI que va más allá del diff tradicional línea a línea y entiende la estructura real del código.&lt;/p&gt;
 &lt;h2 id="la-diferencia-entre-lineas-y-entidades"&gt;La diferencia entre líneas y entidades&lt;a class="headerlink" href="#la-diferencia-entre-lineas-y-entidades" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Cuando haces un &lt;code&gt;git diff&lt;/code&gt; tradicional, ves algo como:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="gd"&gt;- const oldAuth = function(user) { ... }&lt;/span&gt;
@@ -5329,64 +5443,4 @@ en lugar de la típica entrada en cron.&lt;/p&gt;
 &lt;p&gt;Deciros que paro estos hilos y limpio recursos en el evento de callback para shutdown que es de lo mejor de &lt;code&gt;daemonocle&lt;/code&gt;.
 Ya sabéis que python no es capaz de paralelizar del todo los hilos debido a al GIL, pero para tareas simples como estas con muy poca carga
 es simple y funciona a la perfección.&lt;/p&gt;
-</content><category term="Programación"></category><category term="python"></category></entry><entry><title>Repeating a function with threads</title><link href="https://pablocaro.es/en/repetiendo-una-funci%C3%B3n-con-hilos" rel="alternate"></link><published>2015-05-03T21:00:00+02:00</published><updated>2015-05-03T21:00:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2015-05-03:/en/repetiendo-una-función-con-hilos</id><summary type="html">&lt;p class="first last"&gt;Let's use threads in python to periodically execute a function&lt;/p&gt;
-</summary><content type="html">&lt;p&gt;I have a service (with &lt;a class="reference external" href="https://github.com/jnrbsn/daemonocle"&gt;daemonocle&lt;/a&gt; which I will talk about another day) running all the time on an &lt;a class="reference external" href="http://www.hardkernel.com/main/products/prdt_info.php"&gt;odroid c1&lt;/a&gt;.
-I considered it was better to control with threads some periodic tasks that I have to repeat (which I was already using)
-instead of the typical cron entry.&lt;/p&gt;
-&lt;p&gt;This way I can better control their operation. The advantages for me in this case and for these specific tasks:&lt;/p&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;I already have the logging configuration performed by the main process. These tasks leave their info in my rotational logs.&lt;/li&gt;
-&lt;li&gt;Stopping (starting) the service stops everything at once.&lt;/li&gt;
-&lt;li&gt;I measure resource consumption as a whole&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Here is the snippet used.&lt;/p&gt;
-&lt;p&gt;In &lt;code&gt;utils.py&lt;/code&gt;:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# -*- coding: utf-8 -*-&lt;/span&gt;
-&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;__future__&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;unicode_literals&lt;/span&gt;
-&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;threading&lt;/span&gt;
-
-
-&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;RepeatedTimer&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;object&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-
-    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="fm"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;interval&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;function&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;_timer&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;
-        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;interval&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;interval&lt;/span&gt;
-        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;function&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;function&lt;/span&gt;
-        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;args&lt;/span&gt;
-        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;kwargs&lt;/span&gt;
-        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;is_running&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;False&lt;/span&gt;
-        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;start&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-
-    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;_run&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;is_running&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;False&lt;/span&gt;
-        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;start&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;start&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;is_running&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-            &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;_timer&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;threading&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Timer&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;interval&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;_run&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-            &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;_timer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;start&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-            &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;is_running&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;True&lt;/span&gt;
-
-    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;stop&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;_timer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cancel&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;is_running&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;False&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;In &lt;code&gt;main.py&lt;/code&gt; you can see its usage, one of the functions receives a parameter:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;setup_logging&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;span class="n"&gt;youtube&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;youtube_api&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get_authenticated_service&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;events_thread&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;RepeatedTimer&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;UPDATE_EVENTS_SECONDS&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;backend_api&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;update_events_database&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;streams_thread&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;RepeatedTimer&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;UPDATE_STREAM_SECONDS&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;youtube_api&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;update_streams_database&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;youtube&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;I should tell you that I stop these threads and clean resources in the shutdown callback event which is one of the best things about &lt;code&gt;daemonocle&lt;/code&gt;.
-You already know that python is not capable of fully parallelizing threads due to the GIL, but for simple tasks like these with very little load
-it is simple and works perfectly.&lt;/p&gt;
-</content><category term="Programming"></category><category term="python"></category></entry><entry><title>Instalar InSync en Opensuse</title><link href="https://pablocaro.es/instalar-insync-en-opensuse" rel="alternate"></link><published>2015-04-20T18:18:00+02:00</published><updated>2015-04-20T18:18:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2015-04-20:/instalar-insync-en-opensuse</id><summary type="html"></summary><content type="html">&lt;p&gt;Llevo varios dias probando &lt;a class="reference external" href="https://www.insynchq.com/"&gt;insync&lt;/a&gt; y creo que lo voy a pagar con gusto.&lt;/p&gt;
-&lt;p&gt;Me he descargado dos paquetes, uno para el menu contextual de dolphin y otro (el de fedora) para el propio programa en sí:&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-20:39 $ rpm -qa | grep insync
-insync-1.2.7.35123-fc20.x86_64
-insync-dolphin-1.2.7.35123-fc17.noarch
-&lt;/pre&gt;
-&lt;p&gt;Todo funcionando perfectamente en mi opensuse&lt;/p&gt;
-</content><category term="Sistemas"></category><category term="django"></category><category term="python"></category></entry></feed>
+</content><category term="Programación"></category><category term="python"></category></entry></feed>

@@ -8,6 +8,11 @@ url = "/cv"
 title = "Currículo"
 
 [[input.files]]
+path = "tailscale-aperture-gateway-ia-seguro.html"
+url = "/tailscale-aperture-gateway-ia-seguro"
+title = "Tailscale Aperture: Gateway de IA sin distribuir API keys"
+
+[[input.files]]
 path = "sem-control-de-versiones-semantico.html"
 url = "/sem-control-de-versiones-semantico"
 title = "sem: Control de versiones semántico"
@@ -726,6 +731,11 @@ title = "Corrector ortográfico de firefox 2.0 en castellano"
 path = "primera-anotacion-de-prueba.html"
 url = "/primera-anotacion-de-prueba"
 title = "Primera anotación de prueba"
+
+[[input.files]]
+path = "tailscale-aperture-gateway-ia-seguro-en.html"
+url = "/en/tailscale-aperture-gateway-ia-seguro"
+title = "Tailscale Aperture: AI Gateway Without Distributing API Keys"
 
 [[input.files]]
 path = "os-click-central-descarga-isos-en.html"

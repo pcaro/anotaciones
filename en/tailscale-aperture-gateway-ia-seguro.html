@@ -1,0 +1,360 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://pablocaro.es/en/theme/stylesheet/style.min.css">
+
+
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+          href="https://pablocaro.es/en/theme/pygments/github.min.css">
+
+
+  <link rel="stylesheet"
+        type="text/css"
+        href="https://pablocaro.es/en/theme/stork/stork.css" />
+
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/en/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/en/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/en/theme/font-awesome/css/solid.css">
+
+
+  <link rel="shortcut icon" href="/theme/img/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/theme/img/favicon.ico" type="image/x-icon">
+
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#333333">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#333333">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Microsoft EDGE -->
+  <meta name="msapplication-TileColor" content="#333333">
+
+  <link href="https://pablocaro.es/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Annotations by Pablo Caro Atom">
+
+  <link href="https://pablocaro.es/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Annotations by Pablo Caro RSS">
+
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-60035125-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Pablo Caro" />
+<meta name="description" content="Tailscale&#39;s Aperture centralizes LLM access by eliminating the need to distribute API keys to developers, using Tailscale identity for authentication." />
+<meta name="keywords" content="tailscale, security, ai, api, gateway">
+
+<link rel="alternate" href="https://pablocaro.es/en/tailscale-aperture-gateway-ia-seguro" hreflang="en" />
+<link rel="alternate" href="https://pablocaro.es/en/../tailscale-aperture-gateway-ia-seguro" hreflang="es" />
+
+  <meta property="og:site_name" content="Annotations by Pablo Caro"/>
+  <meta property="og:title" content="Tailscale Aperture: AI Gateway Without Distributing API Keys"/>
+  <meta property="og:description" content="Tailscale&#39;s Aperture centralizes LLM access by eliminating the need to distribute API keys to developers, using Tailscale identity for authentication."/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://pablocaro.es/en/tailscale-aperture-gateway-ia-seguro"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2026-03-16 10:00:00+01:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://pablocaro.es/en/author/pablo-caro.html">
+  <meta property="article:section" content="Tools"/>
+  <meta property="article:tag" content="tailscale"/>
+  <meta property="article:tag" content="security"/>
+  <meta property="article:tag" content="ai"/>
+  <meta property="article:tag" content="api"/>
+  <meta property="article:tag" content="gateway"/>
+  <meta property="og:image" content="/theme/img/profile.png">
+
+  <title>Annotations by Pablo Caro &ndash; Tailscale Aperture: AI Gateway Without Distributing API Keys</title>
+
+
+</head>
+<body class="light-theme">
+
+<aside>
+  <div>
+    <a href="https://pablocaro.es/en/">
+      <img src="/theme/img/profile.png" alt="Anotaciones" title="Anotaciones">
+    </a>
+
+    <h1>
+      <a href="https://pablocaro.es/en/">Anotaciones</a>
+    </h1>
+
+    <p>Annotations</p>
+
+    <p style="font-size: 0.9em; font-style: italic; margin-bottom: 20px;">
+      Dumping my brain onto the internet. A collection of technical notes and solutions written for my future self, shared here in case they save someone else a headache.
+    </p>
+
+    <div class="stork">
+      <input class="stork-input" type="text" autocomplete="off" name="q" data-stork="sitesearch" placeholder="Search..." onclick="loadStorkIndex()"/>
+      <div class="stork-output" data-stork="sitesearch-output"></div>
+    </div>
+
+    <nav>
+      <ul class="list">
+
+
+            <li>
+              <a target="_self"
+                 href="https://pablocaro.es/en/cv#cv">
+                Resume
+              </a>
+            </li>
+
+          <li>
+            <a target="_self" href="http://x.com/pcaro" >pcaro@X</a>
+          </li>
+          <li>
+            <a target="_self" href="https://github.com/pcaro/" >pcaro@Github</a>
+          </li>
+          <li>
+            <a target="_self" href="https://www.linkedin.com/in/pcarorevuelta/" >LinkedIn</a>
+          </li>
+      </ul>
+    </nav>
+
+    <ul class="social">
+      <li>
+        <a class="sc-Twitter"
+           href="http://twitter.com/pcaro"
+           target="_blank">
+          <i class="fa-brands fa-Twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Github"
+           href="http://github.com/pcaro"
+           target="_blank">
+          <i class="fa-brands fa-Github"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Linkedin"
+           href="https://www.linkedin.com/in/pcarorevuelta"
+           target="_blank">
+          <i class="fa-brands fa-Linkedin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Facebook"
+           href="https://www.facebook.com/pablo.carorevuelta"
+           target="_blank">
+          <i class="fa-brands fa-Facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Email"
+           href="mailto:correo@pablocaro.es"
+           target="_blank">
+          <i class="fa-brands fa-Email"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+</aside>
+  <main>
+
+<nav>
+  <a href="https://pablocaro.es/en/">Home</a>
+
+  <a href="/en/archives.html">Archives</a>
+  <a href="/en/categories.html">Categories</a>
+  <a href="/en/tags.html">Tags</a>
+  <a href="/en/search.html">Search</a>
+  <a href="/">Español</a>
+
+  <a href="https://pablocaro.es/feeds/all.atom.xml">Atom</a>
+
+  <a href="https://pablocaro.es/feeds/all.rss.xml">RSS</a>
+</nav>
+
+<article class="single">
+  <header>
+          <div class="translations">
+            <a href="https://pablocaro.es/en/../tailscale-aperture-gateway-ia-seguro">Leer en español</a>
+    </div>
+
+    <h1 id="tailscale-aperture-gateway-ia-seguro">Tailscale Aperture: AI Gateway Without Distributing API Keys</h1>
+    <p>
+      Posted on Mon, 16 Mar 2026 in <a href="https://pablocaro.es/en/category/tools.html">Tools</a>
+
+    </p>
+  </header>
+
+
+  <div>
+    <p>One thing that kept me up at night when I started using LLMs at work was: <strong>where do I store the API keys?</strong> In private repos, in <code>.env</code> files I forgot to gitignore, in phone notes... A mess.</p>
+<p>Tailscale recently announced <a href="https://tailscale.com/docs/features/aperture">Aperture</a>, an AI gateway that runs inside your tailnet and completely eliminates that problem.</p>
+<h2 id="the-problem-with-distributed-api-keys">The Problem with Distributed API Keys<a class="headerlink" href="#the-problem-with-distributed-api-keys" title="Permanent link">&para;</a></h2>
+<p>When developers need access to OpenAI, Anthropic, or any other LLM provider, the common practice has been:</p>
+<ol>
+<li>Create an API key</li>
+<li>Share it via Slack, email, or pasted in a private repo</li>
+<li>Pray it doesn't leak</li>
+<li>When someone leaves, manually rotate all keys</li>
+</ol>
+<p>This doesn't scale. An organization with 50 developers can have hundreds of keys floating around in documents, CI/CD scripts, and developer machines that are no longer at the company.</p>
+<h2 id="aperture-centralization-with-real-identity">Aperture: Centralization with Real Identity<a class="headerlink" href="#aperture-centralization-with-real-identity" title="Permanent link">&para;</a></h2>
+<p>Tailscale's solution is elegant: <strong>use tailnet identity for authentication, not distributed keys</strong>.</p>
+<p>How it works:</p>
+<ol>
+<li><strong>Configure Aperture in your tailnet</strong> with your provider API keys (OpenAI, Anthropic, Google, OpenRouter, etc.)</li>
+<li><strong>Developers connect to Aperture</strong> using their Tailscale identity</li>
+<li><strong>Aperture injects the credentials</strong> for the corresponding provider and forwards the request</li>
+<li><strong>Complete telemetry</strong>: tokens used, costs, sessions, all in a dashboard</li>
+</ol>
+<p>Developers never see the real API keys. Aperture keeps them centralized and injects them server-side.</p>
+<h2 id="integration-with-existing-tools">Integration with Existing Tools<a class="headerlink" href="#integration-with-existing-tools" title="Permanent link">&para;</a></h2>
+<p>The good news is it works with the tools you already use:</p>
+<ul>
+<li><strong>Claude Code</strong>: Set <code>ANTHROPIC_BASE_URL=http://ai</code> and you're done</li>
+<li><strong>Codex</strong>: Base URL to Aperture</li>
+<li><strong>Gemini CLI, Roo Code, Cline</strong>: Similar, change the base URL</li>
+<li><strong>Custom apps</strong>: Works with any client using OpenAI-compatible APIs</li>
+</ul>
+<p>From the client's perspective, Aperture looks like the provider itself. It detects the model in the request body and routes to the correct provider.</p>
+<h2 id="pi-ts-aperture-plugin-for-pi">pi-ts-aperture: Plugin for Pi<a class="headerlink" href="#pi-ts-aperture-plugin-for-pi" title="Permanent link">&para;</a></h2>
+<p>There's an official Pi plugin to automatically route through Aperture:</p>
+<div class="highlight"><pre><span></span><code>pi<span class="w"> </span>install<span class="w"> </span>npm:@aliou/pi-ts-aperture
+/aperture:setup
+</code></pre></div>
+
+<p>The wizard asks for:
+1. Your Aperture URL (e.g., <code>ai.your-tailnet.ts.net</code>)
+2. Which providers to route</p>
+<p>It saves configuration to <code>~/.pi/agent/extensions/aperture.json</code> and modifies providers to use Aperture as proxy.</p>
+<h2 id="visibility-and-control">Visibility and Control<a class="headerlink" href="#visibility-and-control" title="Permanent link">&para;</a></h2>
+<p>Aperture'sdashboard gives you:</p>
+<ul>
+<li><strong>Tokens by model and user</strong>: How much does each person spend?</li>
+<li><strong>Grouped sessions</strong>: A Claude Code session can have50 requests; you see them as a coherent unit</li>
+<li><strong>Tool use</strong>: Which tools are being invoked and how frequently</li>
+<li><strong>Adoption</strong>: Who's using what, and who tried once and didn't come back</li>
+<li><strong>Export to S3</strong>: To integrate with your usual SIEM</li>
+</ul>
+<p>For platform or security teams that need auditing, this is gold.</p>
+<h2 id="requirements">Requirements<a class="headerlink" href="#requirements" title="Permanent link">&para;</a></h2>
+<ul>
+<li>A Tailscale tailnet (fundamental, all authentication depends on Tailscale identity)</li>
+<li>API keys for the providers you want to use</li>
+<li>The device running Pi must be on the tailnet</li>
+</ul>
+<h2 id="in-summary">In Summary<a class="headerlink" href="#in-summary" title="Permanent link">&para;</a></h2>
+<p>If your organization is adopting AI tools and you don't want to deal with API keys circulating everywhere, Aperture is a clean solution. It centralizes credentials, gives real visibility into usage, and uses the identity infrastructure you already have with Tailscale.</p>
+<p>It's still in alpha, but available for free during the testing period. Worth trying if you already use Tailscale.</p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="https://pablocaro.es/en/tag/tailscale.html">tailscale</a>
+      <a href="https://pablocaro.es/en/tag/security.html">security</a>
+      <a href="https://pablocaro.es/en/tag/ai.html">ai</a>
+      <a href="https://pablocaro.es/en/tag/api.html">api</a>
+      <a href="https://pablocaro.es/en/tag/gateway.html">gateway</a>
+    </p>
+  </div>
+
+
+
+  <div class="neighbors">
+    <a class="btn float-left" href="https://pablocaro.es/en/sem-semantic-version-control" title="sem: Semantic Version Control">
+      <i class="fa fa-angle-left"></i> Previous Post
+    </a>
+  </div>
+
+  <div class="related-posts">
+    <h4>You might enjoy</h4>
+    <ul class="related-posts">
+      <li><a href="https://pablocaro.es/en/rbw-bitwarden-cli">rbw: The Bitwarden terminal client you should be using</a></li>
+      <li><a href="https://pablocaro.es/en/encontrar-hosts-vivos-red">How to Find Live Hosts on Your Local Network</a></li>
+      <li><a href="https://pablocaro.es/en/sysdig-seguridad-cloud-nativa">Sysdig: Cloud-Native Security Platform with AI</a></li>
+    </ul>
+  </div>
+
+
+
+<!-- Disqus -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'anotaciones';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>
+    Please enable JavaScript to view comments.
+</noscript>
+<!-- End Disqus -->
+</article>
+
+<footer>
+<p>
+  &copy; 2025  - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/3.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/3.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Annotations by Pablo Caro ",
+  "url" : "https://pablocaro.es/en",
+  "image": "/theme/img/profile.png",
+  "description": ""
+}
+</script>  <script src="https://files.stork-search.net/releases/v1.6.0/stork.js"></script>
+  <script>
+    window.storkIndexLoaded = false;
+    window.loadStorkIndex = function () {
+      if (window.storkIndexLoaded) {
+        return;
+      }
+      if (typeof stork === 'undefined') {
+        console.error('Stork is not loaded yet, retrying...');
+        setTimeout(window.loadStorkIndex, 100);
+        return;
+      }
+      stork.register("sitesearch", "https://pablocaro.es/en/search-index.st", { showProgress: false });
+      stork.register("sitesearch-page", "https://pablocaro.es/en/search-index.st", { showProgress: false });
+      window.storkIndexLoaded = true;
+    }
+  </script>
+
+</body>
+</html>

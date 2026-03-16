@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Anotaciones por Pablo Caro - api</title><link href="https://pablocaro.es/" rel="alternate"></link><link href="https://pablocaro.es/feeds/tags/api.atom.xml" rel="self"></link><id>https://pablocaro.es/</id><updated>2026-03-16T10:00:00+01:00</updated><subtitle>Anotaciones</subtitle><entry><title>Tailscale Aperture: Gateway de IA sin distribuir API keys</title><link href="https://pablocaro.es/tailscale-aperture-gateway-ia-seguro" rel="alternate"></link><published>2026-03-16T10:00:00+01:00</published><updated>2026-03-16T10:00:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-03-16:/tailscale-aperture-gateway-ia-seguro</id><summary type="html">&lt;p&gt;Aperture de Tailscale centraliza el acceso a LLMs eliminando la necesidad de distribuir API keys a desarrolladores, usando la identidad de Tailscale para autenticación.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Una de las cosas que me quitó el sueño cuando empecé a usar LLMs en el trabajo fue: &lt;strong&gt;¿dónde guardo las API keys?&lt;/strong&gt; En repositorios privados, en &lt;code&gt;.env&lt;/code&gt; files que se me olvidaban gitignorear, en notas del móvil... Un desastre.&lt;/p&gt;
+&lt;p&gt;Tailscale anunció recientemente &lt;a href="https://tailscale.com/docs/features/aperture"&gt;Aperture&lt;/a&gt;, un AI gateway que corre dentro de tu tailnet y que elimina completamente ese problema.&lt;/p&gt;
+&lt;h2 id="el-problema-de-las-api-keys-distribuidas"&gt;El problema de las API keys distribuidas&lt;a class="headerlink" href="#el-problema-de-las-api-keys-distribuidas" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Cuando los desarrolladores necesitan acceso a OpenAI, Anthropic, o cualquier otro proveedor de LLM, la práctica habitual ha sido:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Crear una API key&lt;/li&gt;
+&lt;li&gt;Compartirla por Slack, email, o pegada en un repo privado&lt;/li&gt;
+&lt;li&gt;Rezar porque no se filtrre&lt;/li&gt;
+&lt;li&gt;Cuando alguien se va, rotar manualmente todas las keys&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Esto escama mal. Una organización con 50 desarrolladores puede tener cientos de keys flotando en documentos, scripts de CI/CD, y machines de desarrolladores que ya no están en la empresa.&lt;/p&gt;
+&lt;h2 id="aperture-centralizacion-con-identidad-real"&gt;Aperture: centralización con identidad real&lt;a class="headerlink" href="#aperture-centralizacion-con-identidad-real" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;La solución de Tailscale es elegante: &lt;strong&gt;usar la identidad del tailnet para autenticar, no keys distribuidas&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Cómo funciona:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Configuras Aperture en tu tailnet&lt;/strong&gt; con las API keys de tus proveedores (OpenAI, Anthropic, Google, OpenRouter, etc.)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Los desarrolladores se conectan a Aperture&lt;/strong&gt; usando su identidad de Tailscale&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Aperture inyecta las credenciales&lt;/strong&gt; del proveedor correspondiente y reenvía la petición&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Telemetría completa&lt;/strong&gt;: tokens usados, costos, sesiones, todo en un dashboard&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Los desarrolladores nunca ven las API keys reales. Aperture las mantiene centralizadas y las inyecta server-side.&lt;/p&gt;
+&lt;h2 id="integracion-con-herramientas-existentes"&gt;Integración con herramientas existentes&lt;a class="headerlink" href="#integracion-con-herramientas-existentes" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Lo bueno es que funciona con las herramientas que ya usas:&lt;/p&gt;
+&lt;p&gt;-&lt;strong&gt;Claude Code&lt;/strong&gt;: Configuras &lt;code&gt;ANTHROPIC_BASE_URL=http://ai&lt;/code&gt; y listo
+- &lt;strong&gt;Codex&lt;/strong&gt;: Base URL a Aperture
+- &lt;strong&gt;Gemini CLI, Roo Code, Cline&lt;/strong&gt;: Similar, cambias la URL base
+- &lt;strong&gt;Custom apps&lt;/strong&gt;: Funciona con cualquier cliente que use OpenAI-compatible APIs&lt;/p&gt;
+&lt;p&gt;Desde el punto de vista del cliente, Aperture se ve como el proveedor mismo. Detecta el modelo en el request body y enruta al proveedor correcto.&lt;/p&gt;
+&lt;h2 id="pi-ts-aperture-plugin-para-pi"&gt;pi-ts-aperture: Plugin para Pi&lt;a class="headerlink" href="#pi-ts-aperture-plugin-para-pi" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Hay un plugin oficial de Pi para routearte automáticamente a través de Aperture:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pi&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;npm:@aliou/pi-ts-aperture
+/aperture:setup
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;El asistente te pide:
+1. URL de tu Aperture (ej: &lt;code&gt;ai.your-tailnet.ts.net&lt;/code&gt;)
+2. Qué proveedores routear&lt;/p&gt;
+&lt;p&gt;Guarda la configuración en &lt;code&gt;~/.pi/agent/extensions/aperture.json&lt;/code&gt; y modifica los providers para usar Aperture como proxy.&lt;/p&gt;
+&lt;h2 id="visibilidad-y-control"&gt;Visibilidad y control&lt;a class="headerlink" href="#visibilidad-y-control" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;El dashboardde Aperture te da:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Tokens por modelo y usuario&lt;/strong&gt;: ¿Cuánto gasta cada persona?&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Sesiones agrupadas&lt;/strong&gt;: Una sesión de Claude Code puede tener 50 requests; las ves como una unidad coherente&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Tool use&lt;/strong&gt;: Qué herramientas se están invocando y con qué frecuencia&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Adopción&lt;/strong&gt;: Quién está usando qué, y quién probó una vez y no volvió&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Export a S3&lt;/strong&gt;: Para integrar con tu SIEM habitual&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Para equipos de plataforma o seguridad que necesitan auditoria, esto es oro.&lt;/p&gt;
+&lt;h2 id="requisitos"&gt;Requisitos&lt;a class="headerlink" href="#requisitos" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Un tailnet de Tailscale (fundamental, toda la autenticación depende de la identidad de Tailscale)&lt;/li&gt;
+&lt;li&gt;API keys de los proveedores que quieras usar&lt;/li&gt;
+&lt;li&gt;El dispositivo que corre Pi debe estar en el tailnet&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="en-resumen"&gt;En resumen&lt;a class="headerlink" href="#en-resumen" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Si tu organización está adoptando herramientas de IA y no quieres lidiar con API keys circulando por todos lados, Aperture es una solución limpia. Centraliza credenciales, da visibilidad real del uso, y usa la infraestructura de identidad que ya tienes con Tailscale.&lt;/p&gt;
+&lt;p&gt;Está en alpha todaví a, pero disponible gratuitodurante el periodo de testing. Vale la pena probarlo si ya usas Tailscale.&lt;/p&gt;</content><category term="Herramientas"></category><category term="tailscale"></category><category term="seguridad"></category><category term="ia"></category><category term="api"></category><category term="gateway"></category></entry></feed>
