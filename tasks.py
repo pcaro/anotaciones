@@ -119,25 +119,25 @@ def drafts(c):
         print()
 
 
-@task(drafts)
+@task
 def develop(c, port=7000):
     """Build, serve and auto-reload the site upon file changes"""
     import subprocess
     import sys
-    
-    # 1. Initial build to ensure index.html and output_dev exist
-    print("Performing initial build...")
-    c.run("pelican -s pelicanconf.py -o output_dev", pty=True)
-    
-    # 2. Start pelican auto-reload in the background
+
+    # 1. Initial build
+    print("Building site...")
+    c.run("uv run pelican -s pelicanconf.py -o output_dev", pty=True)
+
+    # 2. Start pelican auto-reload in background
     print("Starting auto-reloader...")
     pelican_proc = subprocess.Popen(
-        ["pelican", "-r", "-s", "pelicanconf.py", "-o", "output_dev"],
+        ["uv", "run", "pelican", "-r", "-s", "pelicanconf.py", "-o", "output_dev"],
         stdout=sys.stdout,
         stderr=sys.stderr
     )
-    
-    # 3. Start the custom local server in the foreground
+
+    # 3. Start local server
     try:
         serve(c, port=port)
     finally:
