@@ -8,6 +8,11 @@ url = "/cv"
 title = "Currículo"
 
 [[input.files]]
+path = "agent-browser-navegacion-agentes.html"
+url = "/agent-browser-navegacion-agentes"
+title = "Agent Browser: Navegación para Agentes"
+
+[[input.files]]
 path = "tailscale-aperture-gateway-ia-seguro.html"
 url = "/tailscale-aperture-gateway-ia-seguro"
 title = "Tailscale Aperture: Gateway de IA sin distribuir API keys"
