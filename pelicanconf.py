@@ -38,12 +38,13 @@ ARTICLE_SAVE_AS = "{slug}.html"
 PAGE_URL = "{slug}"
 PAGE_SAVE_AS = "{slug}.html"
 
-# Feed generation is usually not desired when developing
-FEED_ALL_ATOM = None
+# Feed generation
+FEED_ALL_ATOM = "feeds/all.atom.xml"
 CATEGORY_FEED_ATOM = None
 TRANSLATION_FEED_ATOM = None
 AUTHOR_FEED_ATOM = None
 AUTHOR_FEED_RSS = None
+FEED_MAX_ITEMS = None  # No limit on feed items
 
 # Blogroll
 LINKS = (
@@ -65,7 +66,7 @@ SOCIAL = (
 
 DEFAULT_PAGINATION = 5
 
-PLUGIN_PATHS = ["plugins"]
+PLUGIN_PATHS = ["plugins", "local_plugins"]
 
 # Uncomment following line if you want document-relative URLs when developing
 RELATIVE_URLS = False
@@ -92,6 +93,7 @@ PLUGINS = [
     "related_posts",
     "search",
     "i18n_subsites",
+    "i18n_feed_filter",
 ]
 
 # I18N
@@ -102,6 +104,8 @@ I18N_UNTRANSLATED_PAGES = "remove"
 I18N_SUBSITES = {
     "en": {
         "SITENAME": "Annotations by Pablo Caro",
+        "SITEURL": "/en",
+        "FEED_DOMAIN": "/en",
         "SITESUBTITLE": "Annotations",
         "SIDEBAR_DESCRIPTION": "Dumping my brain onto the internet. A collection of technical notes and solutions written for my future self, shared here in case they save someone else a headache.",
         "LOCALE": "en_US.UTF-8",
@@ -116,6 +120,8 @@ I18N_SUBSITES = {
         ),
         "SITESUBTITLE": "Annotations",
         "SITE_DESCRIPTION": "My name is Pablo Caro — a software engineer. I am pcaro on Github and twitter. I build software of all kinds. This is my personal blog.",
+        "FEED_ALL_ATOM": "feeds/all.atom.xml",
+        "FEED_MAX_ITEMS": None,  # No limit on feed items
         "LANDING_PAGE_ABOUT": {
             "title": "Building software innovatively",
             "details": """<div itemscope itemtype="http://schema.org/Person">

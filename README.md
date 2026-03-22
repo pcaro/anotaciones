@@ -39,6 +39,13 @@ uv run invoke lint          # Revisa Python con ruff
 
 ---
 
-## Despliegue
+## Feeds (Atom)
 
-El blog se publica **automáticamente** vía GitHub Actions al hacer `git push` a `master`. No hagas push a master sin haber revisado los cambios en local previamente.
+El blog ofrece feeds Atom para suscribirse a las actualizaciones:
+
+| Idioma | URL |
+|--------|-----|
+| Español | `https://pablocaro.es/feeds/all.atom.xml` |
+| Inglés | `https://pablocaro.es/en/feeds/all.atom.xml` |
+
+Cada feed contiene únicamente los artículos en su idioma correspondiente.
