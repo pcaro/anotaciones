@@ -8,6 +8,11 @@ url = "/cv"
 title = "Resume"
 
 [[input.files]]
+path = "powerline-footer-hidden-gems.html"
+url = "/powerline-footer-hidden-gems"
+title = "Hidden gems in pi-powerline-footer"
+
+[[input.files]]
 path = "agent-browser-navigation-agents.html"
 url = "/agent-browser-navigation-agents"
 title = "Agent Browser: Browser Navigation for AI Agents"
@@ -311,6 +316,11 @@ title = "Django: links in object list"
 path = "settings-vars-processor.html"
 url = "/settings-vars-processor"
 title = "Settings vars processor"
+
+[[input.files]]
+path = "powerline-footer-hidden-gems-es.html"
+url = "/../powerline-footer-hidden-gems"
+title = "Joyas ocultas en pi-powerline-footer"
 
 [[input.files]]
 path = "tailscale-aperture-gateway-ia-seguro-es.html"

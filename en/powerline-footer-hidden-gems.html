@@ -61,29 +61,28 @@
  
 
 <meta name="author" content="Pablo Caro" />
-<meta name="description" content="Discover asciinema, the perfect tool to record your terminal sessions in a lightweight, reproducible, and easy-to-share way." />
-<meta name="keywords" content="asciinema, terminal, linux, productivity">
+<meta name="description" content="Two features of the pi-powerline-footer plugin that go beyond the typical footer with model information." />
+<meta name="keywords" content="pi, terminal, productivity">
 
-<link rel="alternate" href="https://pablocaro.es/en/asciinema-terminal-recorder" hreflang="en" />
-<link rel="alternate" href="https://pablocaro.es/en/../asciinema-terminal-recorder" hreflang="es" />
+<link rel="alternate" href="https://pablocaro.es/en/powerline-footer-hidden-gems" hreflang="en" />
+<link rel="alternate" href="https://pablocaro.es/en/../powerline-footer-hidden-gems" hreflang="es" />
 
   <meta property="og:site_name" content="Annotations by Pablo Caro"/>
-  <meta property="og:title" content="Record and Share your Terminal Sessions with asciinema"/>
-  <meta property="og:description" content="Discover asciinema, the perfect tool to record your terminal sessions in a lightweight, reproducible, and easy-to-share way."/>
+  <meta property="og:title" content="Hidden gems in pi-powerline-footer"/>
+  <meta property="og:description" content="Two features of the pi-powerline-footer plugin that go beyond the typical footer with model information."/>
   <meta property="og:locale" content="en_US"/>
-  <meta property="og:url" content="https://pablocaro.es/en/asciinema-terminal-recorder"/>
+  <meta property="og:url" content="https://pablocaro.es/en/powerline-footer-hidden-gems"/>
   <meta property="og:type" content="article"/>
-  <meta property="article:published_time" content="2026-02-27 12:00:00+01:00"/>
+  <meta property="article:published_time" content="2026-03-22 00:00:00+01:00"/>
   <meta property="article:modified_time" content=""/>
   <meta property="article:author" content="https://pablocaro.es/en/author/pablo-caro.html">
-  <meta property="article:section" content="Tools"/>
-  <meta property="article:tag" content="asciinema"/>
+  <meta property="article:section" content="DevOps"/>
+  <meta property="article:tag" content="pi"/>
   <meta property="article:tag" content="terminal"/>
-  <meta property="article:tag" content="linux"/>
   <meta property="article:tag" content="productivity"/>
   <meta property="og:image" content="/theme/img/profile.png">
 
-  <title>Annotations by Pablo Caro &ndash; Record and Share your Terminal Sessions with asciinema</title>
+  <title>Annotations by Pablo Caro &ndash; Hidden gems in pi-powerline-footer</title>
 
 
 </head>
@@ -192,66 +191,46 @@
 <article class="single">
   <header>
           <div class="translations">
-            <a href="https://pablocaro.es/en/../asciinema-terminal-recorder">Leer en español</a>
+            <a href="https://pablocaro.es/en/../powerline-footer-hidden-gems">Leer en español</a>
     </div>
 
-    <h1 id="asciinema-terminal-recorder">Record and Share your Terminal Sessions with asciinema</h1>
+    <h1 id="powerline-footer-hidden-gems">Hidden gems in pi-powerline-footer</h1>
     <p>
-      Posted on Fri, 27 Feb 2026 in <a href="https://pablocaro.es/en/category/tools.html">Tools</a>
+      Posted on Sun, 22 Mar 2026 in <a href="https://pablocaro.es/en/category/devops.html">DevOps</a>
 
     </p>
   </header>
 
 
   <div>
-    <p>Often we need to share what's happening in our terminal, whether for a tutorial, demonstrating a bug, or simply documenting a process. While traditional video recording tools exist, <strong>asciinema</strong> offers a much more powerful and lightweight alternative.</p>
-<h2 id="what-is-asciinema">What is asciinema?<a class="headerlink" href="#what-is-asciinema" title="Permanent link">&para;</a></h2>
-<p><a href="https://github.com/asciinema/asciinema">asciinema</a> doesn't record video in the traditional sense (pixels). Instead, it captures the terminal's text stream along with exact timings. This has several advantages:</p>
-<ul>
-<li><strong>Tiny files</strong>: Instead of megabytes of video, you get very small text files.</li>
-<li><strong>Selectable text</strong>: When playing back a session on the web, you can copy and paste the code directly.</li>
-<li><strong>Perfect quality</strong>: No loss of resolution or compression artifacts.</li>
-</ul>
-<h2 id="installation-and-help">Installation and Help<a class="headerlink" href="#installation-and-help" title="Permanent link">&para;</a></h2>
-<p>I already have <code>asciinema</code> installed on my system. Here you can see the summary of available commands:## Interactive example</p>
-<p>Below you can see a small demonstration of <code>asciinema</code> in action, running the command <code>cowsay Muuuuu</code>:</p>
-<p><link rel="stylesheet" type="text/css" href="/theme/asciinema-player/asciinema-player.css" /></p>
-<div id="demo-player"></div>
-<script src="/theme/asciinema-player/asciinema-player.js"></script>
-<script>
-    window.addEventListener('load', function() {
-        AsciinemaPlayer.create('/images/demo.cast', document.getElementById('demo-player'), {
-            cols: 80,
-            rows: 10,
-            autoPlay: true,
-            loop: true
-        });
-    });
-</script>
-
-<h2 id="basic-commands">Basic commands<a class="headerlink" href="#basic-commands" title="Permanent link">&para;</a></h2>
-<p>To start recording, simply run:</p>
-<div class="highlight"><pre><span></span><code>asciinema<span class="w"> </span>rec<span class="w"> </span>demo.cast
+    <p><img alt="Screenshot of the pi-powerline-footer plugin" src="/images/pi-powerline-footer.png"></p>
+<p>I've been using <a href="https://github.com/nicobailon/pi-powerline-footer">pi-powerline-footer</a> for a while, mainly for its main feature: that footer showing useful model info, context, tokens, and cost. But recently I discovered two features that have changed how I work with pi day-to-day.</p>
+<h2 id="editor-stash-your-integrated-temporary-clipboard">Editor Stash: your integrated temporary clipboard<a class="headerlink" href="#editor-stash-your-integrated-temporary-clipboard" title="Permanent link">&para;</a></h2>
+<p>With <code>Alt+S</code> you can save the current editor content, clear it, write something quick (for example, a short question to another agent), and when it's done, your original text comes back automatically.</p>
+<p>It's perfect when you're in the middle of a complex task and need to make a quick query without losing context. Or when you want to save a code block you'll reuse later.</p>
+<p>Plus, you have shortcuts to copy (<code>ctrl+alt+c</code>) and cut (<code>ctrl+alt+x</code>) the full editor content, and a stash history accessible with <code>ctrl+alt+h</code> that persists between sessions.</p>
+<h2 id="model-profiles-quick-navigation-between-model-configurations">Model Profiles: quick navigation between model configurations<a class="headerlink" href="#model-profiles-quick-navigation-between-model-configurations" title="Permanent link">&para;</a></h2>
+<p>This is the feature I use the most right now. With several active providers —mainly <a href="https://openrouter.ai/">OpenRouter</a> (with its many models), <a href="https://ai.google.dev/">Google Gemini</a>, and <a href="https://opencode.ai/">OpenCode</a>— switching between models was a mess.</p>
+<p>Model Profiles save model + thinking level combinations. I define them in <code>~/.pi/agent/settings.json</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;modelProfiles&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;model&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;google/gemini-3-pro&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;thinking&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;high&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Gemini Deep&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;model&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;anthropic/claude-opus-4-5&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;thinking&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;xhigh&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Opus Ultra&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;model&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;openai/codex-5.3&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;thinking&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;low&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Codex Fast&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
 </code></pre></div>
 
-<p>This will begin recording everything that happens in your current terminal session. When you're finished, simply press <code>Ctrl-D</code> or type <code>exit</code>. The result will be saved in the <code>demo.cast</code> file.</p>
-<p>To play it back locally:</p>
-<div class="highlight"><pre><span></span><code>asciinema<span class="w"> </span>play<span class="w"> </span>demo.cast
-</code></pre></div>
-
-<p>And if you want to share it with the world, you can upload it to their free hosting service:</p>
-<div class="highlight"><pre><span></span><code>asciinema<span class="w"> </span>upload<span class="w"> </span>demo.cast
-</code></pre></div>
-
-<h2 id="why-use-it">Why use it?<a class="headerlink" href="#why-use-it" title="Permanent link">&para;</a></h2>
-<p>It's ideal for developers writing technical blogs (like this one), as it allows you to embed the recordings directly into the browser with a lightweight JavaScript-based player. Goodbye, blurry 20MB GIFs!</p>
-<p><img alt="asciinema help" src="https://pablocaro.es/en/images/asciinema_help.png"></p>
+<p>With <code>alt+shift+tab</code> I cycle through profiles and with <code>ctrl+alt+m</code> I open a visual selector. The change is instant — no more endless menus searching for the exact model.</p>
+<p>It's especially useful with OpenRouter, where the model list is huge. Instead of navigating through all of them, I have my 3-4 preferred configurations and switch between them based on the task.</p>
+<h2 id="the-footer-is-just-the-beginning">The footer is just the beginning<a class="headerlink" href="#the-footer-is-just-the-beginning" title="Permanent link">&para;</a></h2>
+<p>The plugin documentation is full of small utilities: <a href="https://github.com/nicobailon/pi-powerline-footer?tab=readme-ov-file#working-vibes">Working Vibes</a> for themed loading messages, configurable keyboard shortcuts, git integration... But these two features I've described are the ones that have the most impact on my daily workflow.</p>
+<p>If you haven't tried it yet: <code>pi install npm:pi-powerline-footer</code> and then <code>/reload</code>.</p>
   </div>
   <div class="tag-cloud">
     <p>
-      <a href="https://pablocaro.es/en/tag/asciinema.html">asciinema</a>
+      <a href="https://pablocaro.es/en/tag/pi.html">pi</a>
       <a href="https://pablocaro.es/en/tag/terminal.html">terminal</a>
-      <a href="https://pablocaro.es/en/tag/linux.html">linux</a>
       <a href="https://pablocaro.es/en/tag/productivity.html">productivity</a>
     </p>
   </div>
@@ -259,22 +238,19 @@
 
 
   <div class="neighbors">
-    <a class="btn float-left" href="https://pablocaro.es/en/kitty-rbw-kitten" title="kitty-rbw: Fast Bitwarden access from your kitty terminal">
+    <a class="btn float-left" href="https://pablocaro.es/en/agent-browser-navigation-agents" title="Agent Browser: Browser Navigation for AI Agents">
       <i class="fa fa-angle-left"></i> Previous Post
-    </a>
-    <a class="btn float-right" href="https://pablocaro.es/en/rodney-chrome-wayland-error" title="Fixing Rodney Chrome Error on Wayland">
-      Next Post <i class="fa fa-angle-right"></i>
     </a>
   </div>
 
   <div class="related-posts">
     <h4>You might enjoy</h4>
     <ul class="related-posts">
+      <li><a href="https://pablocaro.es/en/asciinema-terminal-recorder">Record and Share your Terminal Sessions with asciinema</a></li>
       <li><a href="https://pablocaro.es/en/fresh-editor-terminal">`fresh`: My preferred terminal editor for daily use</a></li>
       <li><a href="https://pablocaro.es/en/kitty-acceso-rapido">Kitty as a Quick Access Terminal: The Convenience of a Dropdown</a></li>
+      <li><a href="https://pablocaro.es/en/atajos-de-teclado-kitty">Essential Keyboard Shortcuts in Kitty: Mastering Your Terminal</a></li>
       <li><a href="https://pablocaro.es/en/de-yakuake-a-kitty">From Yakuake to Kitty: My Transition to a Modern Terminal</a></li>
-      <li><a href="https://pablocaro.es/en/powerline-footer-hidden-gems">Hidden gems in pi-powerline-footer</a></li>
-      <li><a href="https://pablocaro.es/en/net-tools-to-iproute">From net-tools to iproute2: command equivalents</a></li>
     </ul>
   </div>
 
