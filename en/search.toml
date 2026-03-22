@@ -8,6 +8,11 @@ url = "/cv"
 title = "Resume"
 
 [[input.files]]
+path = "crit-review-loop-agents.html"
+url = "/crit-review-loop-agents"
+title = "Crit: The Review Loop for Agents"
+
+[[input.files]]
 path = "powerline-footer-hidden-gems.html"
 url = "/powerline-footer-hidden-gems"
 title = "Hidden gems in pi-powerline-footer"
@@ -316,6 +321,11 @@ title = "Django: links in object list"
 path = "settings-vars-processor.html"
 url = "/settings-vars-processor"
 title = "Settings vars processor"
+
+[[input.files]]
+path = "crit-review-loop-agents-es.html"
+url = "/../crit-review-loop-agents"
+title = "Crit: El bucle de revisión para Agentes"
 
 [[input.files]]
 path = "powerline-footer-hidden-gems-es.html"

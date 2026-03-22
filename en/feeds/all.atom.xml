@@ -1,5 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Annotations by Pablo Caro</title><link href="https://pablocaro.es/en/" rel="alternate"></link><link href="https://pablocaro.es/feeds/all.atom.xml" rel="self"></link><id>https://pablocaro.es/en/</id><updated>2026-03-22T00:00:00+01:00</updated><subtitle>Annotations</subtitle><entry><title>Hidden gems in pi-powerline-footer</title><link href="https://pablocaro.es/en/powerline-footer-hidden-gems" rel="alternate"></link><published>2026-03-22T00:00:00+01:00</published><updated>2026-03-22T00:00:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-03-22:/en/powerline-footer-hidden-gems</id><summary type="html">&lt;p&gt;Two features of the pi-powerline-footer plugin that go beyond the typical footer with model information.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="Screenshot of the pi-powerline-footer plugin" src="/images/pi-powerline-footer.png"&gt;&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Annotations by Pablo Caro</title><link href="https://pablocaro.es/en/" rel="alternate"></link><link href="https://pablocaro.es/feeds/all.atom.xml" rel="self"></link><id>https://pablocaro.es/en/</id><updated>2026-03-22T14:49:00+01:00</updated><subtitle>Annotations</subtitle><entry><title>Crit: The Review Loop for Agents</title><link href="https://pablocaro.es/en/crit-review-loop-agents" rel="alternate"></link><published>2026-03-22T14:49:00+01:00</published><updated>2026-03-22T14:49:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-03-22:/en/crit-review-loop-agents</id><summary type="html">&lt;p&gt;Crit is a tool designed to close the code review loop for AI-generated code, providing an intuitive and efficient web interface.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Reviewing what an AI agent writes directly in the terminal is often a nightmare. You can't point to a specific line, provide structured feedback, and when the agent updates the file, you have to re-read everything to see what actually changed.&lt;/p&gt;
+&lt;p&gt;That's where &lt;strong&gt;Crit&lt;/strong&gt; comes in.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Crit review UI" src="/images/crit-demo.png"&gt;&lt;/p&gt;
+&lt;p&gt;Crit opens files generated or modified by your agent in the browser with a GitHub-style interface. You can leave comments on specific lines, suggestions for changes, and, best of all, see diffs between different iteration rounds.&lt;/p&gt;
+&lt;p&gt;What I liked most is its &lt;strong&gt;multi-agent&lt;/strong&gt; nature and its &lt;strong&gt;usability&lt;/strong&gt;. It doesn't matter if you use Claude Code, Cursor, Aider, or, as in my case, &lt;strong&gt;OpenCode&lt;/strong&gt;. Crit integrates beautifully.&lt;/p&gt;
+&lt;h3 id="installation-and-setup"&gt;Installation and Setup&lt;a class="headerlink" href="#installation-and-setup" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Installation is as simple as:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;gah&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;tomasz-tomczyk/crit
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Once installed, integrating it with OpenCode is just a matter of one command:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;crit&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;opencode
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This installs the necessary commands and &lt;em&gt;skills&lt;/em&gt; for agents to use Crit. By running &lt;code&gt;/crit&lt;/code&gt; in OpenCode, the review loop begins: the agent proposes a plan or changes, Crit opens the web interface for you to approve or correct, and the agent receives your structured feedback in a &lt;code&gt;.crit.json&lt;/code&gt; file to act accordingly.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Note to my future self:&lt;/strong&gt; If you use &lt;a href="https://shittycodingagent.ai/"&gt;pi-agent&lt;/a&gt; instead of OpenCode, you can copy the OpenCode command as a prompt and copy the crit skill as-is — it works perfectly. In fact, this very annotation was reviewed using pi-agent with Crit.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id="why-use-it"&gt;Why Use It&lt;a class="headerlink" href="#why-use-it" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Web Interface, not TUI&lt;/strong&gt;: Markdown rendering and persistent visual diffs.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Round-to-round diffs&lt;/strong&gt;: You see exactly what has changed since your last comment.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Agent agnostic&lt;/strong&gt;: Works with any tool, allowing for a consistent workflow.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Direct suggestions&lt;/strong&gt;: You can insert suggestions that the agent can apply as-is.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;For example, the very change that fixed the comma issue in this annotation:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Crit review example" src="/images/crit-review-example.png"&gt;&lt;/p&gt;
+&lt;p&gt;It is undoubtedly the missing piece to make working with agents truly collaborative rather than a succession of copy-pasting and tedious manual reviews.&lt;/p&gt;</content><category term="Programación"></category><category term="ai"></category><category term="agents"></category><category term="review"></category><category term="opencode"></category><category term="productivity"></category></entry><entry><title>Crit: El bucle de revisión para Agentes</title><link href="https://pablocaro.es/crit-review-loop-agents" rel="alternate"></link><published>2026-03-22T14:49:00+01:00</published><updated>2026-03-22T14:49:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-03-22:/crit-review-loop-agents</id><summary type="html">&lt;p&gt;Crit es una herramienta diseñada para cerrar el bucle de revisión de código generado por agentes de IA, proporcionando una interfaz web intuitiva y eficiente.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Revisar lo que un agente de IA escribe directamente en la terminal es, a menudo, una pesadilla. No puedes señalar una línea concreta, dar feedback estructurado y, cuando el agente actualiza el archivo, te toca volver a leerlo todo para ver qué ha cambiado realmente. &lt;/p&gt;
+&lt;p&gt;Ahí es donde entra &lt;strong&gt;Crit&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Crit review UI" src="/images/crit-demo.png"&gt;&lt;/p&gt;
+&lt;p&gt;Crit abre los archivos generados o modificados por tu agente en el navegador con una interfaz al estilo GitHub. Puedes dejar comentarios en líneas específicas, sugerencias de cambio y, lo mejor de todo, ver los diffs entre las distintas rondas de iteración. &lt;/p&gt;
+&lt;p&gt;Lo que más me ha gustado es su enfoque &lt;strong&gt;multi-agente&lt;/strong&gt; y su &lt;strong&gt;usabilidad&lt;/strong&gt;. No importa si usas Claude Code, Cursor, Aider o, como en mi caso, &lt;strong&gt;OpenCode&lt;/strong&gt;. Crit se integra de maravilla.&lt;/p&gt;
+&lt;h3 id="instalacion-y-configuracion"&gt;Instalación y configuración&lt;a class="headerlink" href="#instalacion-y-configuracion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;La instalación es tan sencilla como:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;gah&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;tomasz-tomczyk/crit
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Una vez instalado, integrarlo con OpenCode es cuestión de un comando:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;crit&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;opencode
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Esto instala los comandos y las &lt;em&gt;skills&lt;/em&gt; necesarias para que los agentes puedan usar Crit. Al ejecutar &lt;code&gt;/crit&lt;/code&gt; en OpenCode, se inicia el bucle de revisión: el agente propone un plan o cambios, Crit abre la interfaz web para que tú des el visto bueno o corrijas, y el agente recibe tu feedback estructurado en un archivo &lt;code&gt;.crit.json&lt;/code&gt; para actuar en consecuencia.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Nota para mi yo del futuro:&lt;/strong&gt; Si usas &lt;a href="https://shittycodingagent.ai/"&gt;pi-agent&lt;/a&gt; en vez de OpenCode, puedes copiar el comando de OpenCode como prompt y copiar el skill de crit tal cual — funciona perfectamente. De hecho, esta misma anotación ha sido revisada usando pi-agent con Crit.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id="por-que-usarlo"&gt;Por qué usarlo&lt;a class="headerlink" href="#por-que-usarlo" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Interfaz Web, no TUI&lt;/strong&gt;: Renderizado de Markdown y diffs visuales persistentes.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Diffs entre rondas&lt;/strong&gt;: Ves exactamente qué ha cambiado desde tu último comentario.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Agnóstico al agente&lt;/strong&gt;: Funciona con cualquier herramienta, permitiendo un flujo de trabajo consistente.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Sugerencias directas&lt;/strong&gt;: Puedes insertar sugerencias que el agente puede aplicar tal cual.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Por ejemplo, el propio cambio que subsanó el problema de la coma de esta misma anotación:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Ejemplo de revisión con Crit" src="/images/crit-review-example.png"&gt;&lt;/p&gt;
+&lt;p&gt;Es, sin duda, la pieza que faltaba para que el trabajo con agentes sea realmente colaborativo y no una sucesión de "copy-pasted" y revisiones manuales tediosas.&lt;/p&gt;</content><category term="Programación"></category><category term="ai"></category><category term="agents"></category><category term="review"></category><category term="opencode"></category><category term="productivity"></category></entry><entry><title>Hidden gems in pi-powerline-footer</title><link href="https://pablocaro.es/en/powerline-footer-hidden-gems" rel="alternate"></link><published>2026-03-22T00:00:00+01:00</published><updated>2026-03-22T00:00:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-03-22:/en/powerline-footer-hidden-gems</id><summary type="html">&lt;p&gt;Two features of the pi-powerline-footer plugin that go beyond the typical footer with model information.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="Screenshot of the pi-powerline-footer plugin" src="/images/pi-powerline-footer.png"&gt;&lt;/p&gt;
 &lt;p&gt;I've been using &lt;a href="https://github.com/nicobailon/pi-powerline-footer"&gt;pi-powerline-footer&lt;/a&gt; for a while, mainly for its main feature: that footer showing useful model info, context, tokens, and cost. But recently I discovered two features that have changed how I work with pi day-to-day.&lt;/p&gt;
 &lt;h2 id="editor-stash-your-integrated-temporary-clipboard"&gt;Editor Stash: your integrated temporary clipboard&lt;a class="headerlink" href="#editor-stash-your-integrated-temporary-clipboard" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;With &lt;code&gt;Alt+S&lt;/code&gt; you can save the current editor content, clear it, write something quick (for example, a short question to another agent), and when it's done, your original text comes back automatically.&lt;/p&gt;
@@ -5227,111 +5281,4 @@ tail&lt;span class="w"&gt; &lt;/span&gt;-f&lt;span class="w"&gt; &lt;/span&gt;/v
 &lt;h2 id="security-considerations"&gt;Security Considerations&lt;a class="headerlink" href="#security-considerations" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;⚠️ &lt;strong&gt;Important&lt;/strong&gt;: X-Forwarded-* headers can be forged by clients. In production environments, ensure that only your proxy sets them.&lt;/p&gt;
 &lt;p&gt;This configuration is essential to maintain &lt;strong&gt;full traceability&lt;/strong&gt; in reverse proxy architectures.&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;Original source&lt;/em&gt;: &lt;a href="http://www.networkinghowtos.com/howto/set-the-x-forwarded-for-header-on-a-nginx-reverse-proxy-setup/"&gt;Networking How To's&lt;/a&gt;&lt;/p&gt;</content><category term="DevOps"></category><category term="nginx"></category><category term="reverse-proxy"></category><category term="x-forwarded-for"></category><category term="real-ip"></category><category term="configuration"></category></entry><entry><title>SQL: Select Rows with Max Value per Group</title><link href="https://pablocaro.es/en/sql-select-rows-max-value" rel="alternate"></link><published>2015-10-21T23:05:00+02:00</published><updated>2015-10-21T23:05:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2015-10-21:/en/sql-select-rows-max-value</id><summary type="html">&lt;p&gt;SQL techniques to select complete rows with the maximum value of a column within groups, comparing performance of subqueries, joins, and window functions&lt;/p&gt;</summary><content type="html">&lt;p&gt;A common problem in SQL: &lt;strong&gt;how to select the complete rows that contain the maximum value of a column for each group?&lt;/strong&gt; Not just the maximum value, but the &lt;strong&gt;entire row&lt;/strong&gt;.&lt;/p&gt;
-&lt;h2 id="the-problem"&gt;The Problem&lt;a class="headerlink" href="#the-problem" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Given a table with &lt;code&gt;id&lt;/code&gt; and &lt;code&gt;rev&lt;/code&gt; (revision), we want to get the complete row with the highest &lt;code&gt;rev&lt;/code&gt; for each &lt;code&gt;id&lt;/code&gt;.&lt;/p&gt;
-&lt;h2 id="solution-1-subquery-with-in"&gt;Solution 1: Subquery with IN&lt;a class="headerlink" href="#solution-1-subquery-with-in" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;SELECT&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;
-&lt;span class="k"&gt;FROM&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;YourTable&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;
-&lt;span class="k"&gt;WHERE&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;id&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;rev&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;IN&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;SELECT&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;id&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;MAX&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;rev&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;FROM&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;YourTable&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;GROUP&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;BY&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;id&lt;/span&gt;
-&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;strong&gt;Pros&lt;/strong&gt;: Simple and readable
-&lt;strong&gt;Cons&lt;/strong&gt;: Can be slow on large tables&lt;/p&gt;
-&lt;h2 id="solution-2-join-with-subquery"&gt;Solution 2: Join with Subquery&lt;a class="headerlink" href="#solution-2-join-with-subquery" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;SELECT&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;
-&lt;span class="k"&gt;FROM&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;YourTable&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;
-&lt;span class="k"&gt;INNER&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;JOIN&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;SELECT&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;id&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;MAX&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;rev&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;as&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;maxrev&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;FROM&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;YourTable&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;GROUP&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;BY&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;id&lt;/span&gt;
-&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;ON&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;id&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;id&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;AND&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;rev&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;maxrev&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;strong&gt;Pros&lt;/strong&gt;: Better performance than IN
-&lt;strong&gt;Cons&lt;/strong&gt;: More verbose&lt;/p&gt;
-&lt;h2 id="solution-3-window-functions-mysql-8"&gt;Solution 3: Window Functions (MySQL 8+)&lt;a class="headerlink" href="#solution-3-window-functions-mysql-8" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;SELECT&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;
-&lt;span class="k"&gt;FROM&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;SELECT&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;id&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;rev&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;ROW_NUMBER&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;OVER&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;PARTITION&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;BY&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;id&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;ORDER&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;BY&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;rev&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;DESC&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;ranked_order&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;FROM&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;YourTable&lt;/span&gt;
-&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;
-&lt;span class="k"&gt;WHERE&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ranked_order&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;strong&gt;Pros&lt;/strong&gt;: More efficient for large datasets
-&lt;strong&gt;Cons&lt;/strong&gt;: Requires modern SQL versions&lt;/p&gt;
-&lt;h2 id="performance-considerations"&gt;Performance Considerations&lt;a class="headerlink" href="#performance-considerations" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Window functions&lt;/strong&gt; are usually the most efficient&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Joins&lt;/strong&gt; balance readability and performance&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Subqueries with IN&lt;/strong&gt; are the simplest but less scalable&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="when-to-use-each"&gt;When to Use Each?&lt;a class="headerlink" href="#when-to-use-each" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Subquery&lt;/strong&gt;: Small tables, simple code&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Join&lt;/strong&gt;: Balance between performance and compatibility&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Window functions&lt;/strong&gt;: Large datasets, modern SQL available&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;The most robust and modern pattern is &lt;strong&gt;window functions&lt;/strong&gt;, which also allow handling ties and edge cases more elegantly.&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;Original source&lt;/em&gt;: &lt;a href="http://stackoverflow.com/questions/7745609/sql-select-only-rows-with-max-value-on-a-column#7745635"&gt;Stack Overflow&lt;/a&gt;&lt;/p&gt;</content><category term="SQL"></category><category term="sql"></category><category term="mysql"></category><category term="queries"></category><category term="window-functions"></category><category term="joins"></category></entry><entry><title>La historia detrás de X-Forwarded-For y X-Real-IP</title><link href="https://pablocaro.es/historia-x-forwarded-for-x-real-ip" rel="alternate"></link><published>2015-10-21T23:05:00+02:00</published><updated>2015-10-21T23:05:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2015-10-21:/historia-x-forwarded-for-x-real-ip</id><summary type="html">&lt;p&gt;Análisis de los headers X-Forwarded-For y X-Real-IP, sus orígenes, diferencias y cómo determinar la IP real del cliente en arquitecturas con múltiples proxies&lt;/p&gt;</summary><content type="html">&lt;p&gt;Determinar la &lt;strong&gt;IP real del cliente&lt;/strong&gt; en arquitecturas con proxies es más complejo de lo que parece. Los headers &lt;code&gt;X-Forwarded-For&lt;/code&gt; y &lt;code&gt;X-Real-IP&lt;/code&gt; tienen diferentes propósitos y limitaciones.&lt;/p&gt;
-&lt;h2 id="x-forwarded-for-la-cadena-completa"&gt;X-Forwarded-For: La cadena completa&lt;a class="headerlink" href="#x-forwarded-for-la-cadena-completa" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;h3 id="formato-y-proposito"&gt;Formato y propósito&lt;a class="headerlink" href="#formato-y-proposito" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nv"&gt;X&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;Forwarded&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="k"&gt;For&lt;/span&gt;:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;client&lt;/span&gt;,&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;proxy1&lt;/span&gt;,&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;proxy2&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Rastrea la IP original&lt;/strong&gt; del cliente a través de múltiples saltos&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Acumula IPs&lt;/strong&gt; conforme pasa por proxies&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;No es obligatorio&lt;/strong&gt; para todos los proxies&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id="limitaciones-criticas"&gt;Limitaciones críticas&lt;a class="headerlink" href="#limitaciones-criticas" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;⚠️ &lt;strong&gt;Fácilmente falsificable&lt;/strong&gt;: Un cliente puede añadir IPs falsas&lt;br&gt;
-⚠️ &lt;strong&gt;Potencialmente no confiable&lt;/strong&gt; para determinar la IP real&lt;/p&gt;
-&lt;h2 id="x-real-ip-el-enfoque-directo"&gt;X-Real-IP: El enfoque directo&lt;a class="headerlink" href="#x-real-ip-el-enfoque-directo" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;h3 id="caracteristicas"&gt;Características&lt;a class="headerlink" href="#caracteristicas" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Menos documentación&lt;/strong&gt; oficial disponible&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Comúnmente usado&lt;/strong&gt; junto con X-Forwarded-For&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Enfoque más simple&lt;/strong&gt; para pasar la IP del cliente&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id="limitacion"&gt;Limitación&lt;a class="headerlink" href="#limitacion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
-&lt;blockquote&gt;
-&lt;p&gt;"Not many good info or specs about this one" - No hay estándares definitivos&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id="configuracion-nginx-recomendada"&gt;Configuración Nginx recomendada&lt;a class="headerlink" href="#configuracion-nginx-recomendada" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Para extraer la IP más precisa:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Configurar proxies conocidos&lt;/span&gt;
-&lt;span class="k"&gt;set_real_ip_from&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="s"&gt;.0.0.0/8&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="k"&gt;set_real_ip_from&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;172&lt;/span&gt;&lt;span class="s"&gt;.16.0.0/12&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="k"&gt;set_real_ip_from&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;192&lt;/span&gt;&lt;span class="s"&gt;.168.0.0/16&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-
-&lt;span class="c1"&gt;# Activar procesamiento recursivo&lt;/span&gt;
-&lt;span class="k"&gt;real_ip_recursive&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="no"&gt;on&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-
-&lt;span class="c1"&gt;# Usar X-Forwarded-For como fuente&lt;/span&gt;
-&lt;span class="k"&gt;real_ip_header&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;X-Forwarded-For&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h2 id="el-desafio-real"&gt;El desafío real&lt;a class="headerlink" href="#el-desafio-real" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;Determinar la IP "real" del cliente es inherentemente complejo&lt;/strong&gt; debido a:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;strong&gt;Múltiples saltos de red&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Proxies no cooperativos&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Potencial spoofing de IP&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Lack de estándares uniformes&lt;/strong&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id="buenas-practicas"&gt;Buenas prácticas&lt;a class="headerlink" href="#buenas-practicas" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;strong&gt;Validar fuentes confiables&lt;/strong&gt; de headers&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Configurar correctamente&lt;/strong&gt; proxies conocidos&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;No confiar ciegamente&lt;/strong&gt; en headers de cliente&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Implementar logging&lt;/strong&gt; para debugging&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;La &lt;strong&gt;confiabilidad real&lt;/strong&gt; depende más de tu arquitectura de red que de los headers específicos utilizados.&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;Fuente original&lt;/em&gt;: &lt;a href="http://distinctplace.com/infrastructure/2014/04/23/story-behind-x-forwarded-for-and-x-real-ip-headers/"&gt;Distinct Place&lt;/a&gt;&lt;/p&gt;</content><category term="Redes"></category><category term="headers"></category><category term="x-forwarded-for"></category><category term="x-real-ip"></category><category term="proxy"></category><category term="nginx"></category></entry></feed>
+&lt;p&gt;&lt;em&gt;Original source&lt;/em&gt;: &lt;a href="http://www.networkinghowtos.com/howto/set-the-x-forwarded-for-header-on-a-nginx-reverse-proxy-setup/"&gt;Networking How To's&lt;/a&gt;&lt;/p&gt;</content><category term="DevOps"></category><category term="nginx"></category><category term="reverse-proxy"></category><category term="x-forwarded-for"></category><category term="real-ip"></category><category term="configuration"></category></entry></feed>

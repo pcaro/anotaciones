@@ -61,29 +61,30 @@
  
 
 <meta name="author" content="Pablo Caro" />
-<meta name="description" content="agent-browser es una herramienta de Vercel que permite a los agentes de IA navegar por la web y realizar acciones como lo haría un humano, integrándose fácilmente con frameworks de agentes." />
-<meta name="keywords" content="agent-browser, ai, agents, automation, llm, pi-agent">
+<meta name="description" content="Crit es una herramienta diseñada para cerrar el bucle de revisión de código generado por agentes de IA, proporcionando una interfaz web intuitiva y eficiente." />
+<meta name="keywords" content="ai, agents, review, opencode, productivity">
 
+<link rel="alternate" href="https://pablocaro.es/crit-review-loop-agents" hreflang="es" />
+<link rel="alternate" href="https://pablocaro.es/en/crit-review-loop-agents" hreflang="en" />
 
   <meta property="og:site_name" content="Anotaciones por Pablo Caro"/>
-  <meta property="og:title" content="Agent Browser: Navegación para Agentes"/>
-  <meta property="og:description" content="agent-browser es una herramienta de Vercel que permite a los agentes de IA navegar por la web y realizar acciones como lo haría un humano, integrándose fácilmente con frameworks de agentes."/>
+  <meta property="og:title" content="Crit: El bucle de revisión para Agentes"/>
+  <meta property="og:description" content="Crit es una herramienta diseñada para cerrar el bucle de revisión de código generado por agentes de IA, proporcionando una interfaz web intuitiva y eficiente."/>
   <meta property="og:locale" content="en_US"/>
-  <meta property="og:url" content="https://pablocaro.es/agent-browser-navegacion-agentes"/>
+  <meta property="og:url" content="https://pablocaro.es/crit-review-loop-agents"/>
   <meta property="og:type" content="article"/>
-  <meta property="article:published_time" content="2026-03-18 09:00:00+01:00"/>
+  <meta property="article:published_time" content="2026-03-22 14:49:00+01:00"/>
   <meta property="article:modified_time" content=""/>
   <meta property="article:author" content="https://pablocaro.es/author/pablo-caro.html">
-  <meta property="article:section" content="Herramientas"/>
-  <meta property="article:tag" content="agent-browser"/>
+  <meta property="article:section" content="Programación"/>
   <meta property="article:tag" content="ai"/>
   <meta property="article:tag" content="agents"/>
-  <meta property="article:tag" content="automation"/>
-  <meta property="article:tag" content="llm"/>
-  <meta property="article:tag" content="pi-agent"/>
+  <meta property="article:tag" content="review"/>
+  <meta property="article:tag" content="opencode"/>
+  <meta property="article:tag" content="productivity"/>
   <meta property="og:image" content="/theme/img/profile.png">
 
-  <title>Anotaciones por Pablo Caro &ndash; Agent Browser: Navegación para Agentes</title>
+  <title>Anotaciones por Pablo Caro &ndash; Crit: El bucle de revisión para Agentes</title>
 
 
 </head>
@@ -191,48 +192,72 @@
 
 <article class="single">
   <header>
-      
-    <h1 id="agent-browser-navegacion-agentes">Agent Browser: Navegación para Agentes</h1>
+          <div class="translations">
+            <a href="https://pablocaro.es/en/crit-review-loop-agents">Read in English</a>
+    </div>
+
+    <h1 id="crit-review-loop-agents">Crit: El bucle de revisión para Agentes</h1>
     <p>
-      Publicado el 18 de March de 2026 en <a href="https://pablocaro.es/category/herramientas.html">Herramientas</a>
+      Publicado el 22 de March de 2026 en <a href="https://pablocaro.es/category/programacion.html">Programación</a>
 
     </p>
   </header>
 
 
   <div>
-    <p><code>agent-browser</code> (https://github.com/vercel-labs/agent-browser) me permite que los agentes de IA puedan navegar por la web y realizar acciones complejas como si fueran un humano. </p>
-<p>Lo tengo integrado en una skill y lo uso habitualmente con <code>pi agent</code> para automatizar tareas que requieren interacción con el navegador. Es brutal lo que se puede conseguir cuando el agente puede "ver" y "actuar" en la web directamente.</p>
-<p><img alt="Agent Browser Screenshot" src="/images/agent-browser.png"></p>
+    <p>Revisar lo que un agente de IA escribe directamente en la terminal es, a menudo, una pesadilla. No puedes señalar una línea concreta, dar feedback estructurado y, cuando el agente actualiza el archivo, te toca volver a leerlo todo para ver qué ha cambiado realmente. </p>
+<p>Ahí es donde entra <strong>Crit</strong>.</p>
+<p><img alt="Crit review UI" src="/images/crit-demo.png"></p>
+<p>Crit abre los archivos generados o modificados por tu agente en el navegador con una interfaz al estilo GitHub. Puedes dejar comentarios en líneas específicas, sugerencias de cambio y, lo mejor de todo, ver los diffs entre las distintas rondas de iteración. </p>
+<p>Lo que más me ha gustado es su enfoque <strong>multi-agente</strong> y su <strong>usabilidad</strong>. No importa si usas Claude Code, Cursor, Aider o, como en mi caso, <strong>OpenCode</strong>. Crit se integra de maravilla.</p>
+<h3 id="instalacion-y-configuracion">Instalación y configuración<a class="headerlink" href="#instalacion-y-configuracion" title="Permanent link">&para;</a></h3>
+<p>La instalación es tan sencilla como:</p>
+<div class="highlight"><pre><span></span><code>gah<span class="w"> </span>install<span class="w"> </span>tomasz-tomczyk/crit
+</code></pre></div>
+
+<p>Una vez instalado, integrarlo con OpenCode es cuestión de un comando:</p>
+<div class="highlight"><pre><span></span><code>crit<span class="w"> </span>install<span class="w"> </span>opencode
+</code></pre></div>
+
+<p>Esto instala los comandos y las <em>skills</em> necesarias para que los agentes puedan usar Crit. Al ejecutar <code>/crit</code> en OpenCode, se inicia el bucle de revisión: el agente propone un plan o cambios, Crit abre la interfaz web para que tú des el visto bueno o corrijas, y el agente recibe tu feedback estructurado en un archivo <code>.crit.json</code> para actuar en consecuencia.</p>
+<blockquote>
+<p><strong>Nota para mi yo del futuro:</strong> Si usas <a href="https://shittycodingagent.ai/">pi-agent</a> en vez de OpenCode, puedes copiar el comando de OpenCode como prompt y copiar el skill de crit tal cual — funciona perfectamente. De hecho, esta misma anotación ha sido revisada usando pi-agent con Crit.</p>
+</blockquote>
+<h3 id="por-que-usarlo">Por qué usarlo<a class="headerlink" href="#por-que-usarlo" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Interfaz Web, no TUI</strong>: Renderizado de Markdown y diffs visuales persistentes.</li>
+<li><strong>Diffs entre rondas</strong>: Ves exactamente qué ha cambiado desde tu último comentario.</li>
+<li><strong>Agnóstico al agente</strong>: Funciona con cualquier herramienta, permitiendo un flujo de trabajo consistente.</li>
+<li><strong>Sugerencias directas</strong>: Puedes insertar sugerencias que el agente puede aplicar tal cual.</li>
+</ul>
+<p>Por ejemplo, el propio cambio que subsanó el problema de la coma de esta misma anotación:</p>
+<p><img alt="Ejemplo de revisión con Crit" src="/images/crit-review-example.png"></p>
+<p>Es, sin duda, la pieza que faltaba para que el trabajo con agentes sea realmente colaborativo y no una sucesión de "copy-pasted" y revisiones manuales tediosas.</p>
   </div>
   <div class="tag-cloud">
     <p>
-      <a href="https://pablocaro.es/tag/agent-browser.html">agent-browser</a>
       <a href="https://pablocaro.es/tag/ai.html">ai</a>
       <a href="https://pablocaro.es/tag/agents.html">agents</a>
-      <a href="https://pablocaro.es/tag/automation.html">automation</a>
-      <a href="https://pablocaro.es/tag/llm.html">llm</a>
-      <a href="https://pablocaro.es/tag/pi-agent.html">pi-agent</a>
+      <a href="https://pablocaro.es/tag/review.html">review</a>
+      <a href="https://pablocaro.es/tag/opencode.html">opencode</a>
+      <a href="https://pablocaro.es/tag/productivity.html">productivity</a>
     </p>
   </div>
 
 
 
   <div class="neighbors">
-    <a class="btn float-left" href="https://pablocaro.es/tailscale-aperture-gateway-ia-seguro" title="Tailscale Aperture: Gateway de IA sin distribuir API keys">
+    <a class="btn float-left" href="https://pablocaro.es/powerline-footer-hidden-gems" title="Joyas ocultas en pi-powerline-footer">
       <i class="fa fa-angle-left"></i> Artículo anterior
-    </a>
-    <a class="btn float-right" href="https://pablocaro.es/powerline-footer-hidden-gems" title="Joyas ocultas en pi-powerline-footer">
-      Próximo artículo <i class="fa fa-angle-right"></i>
     </a>
   </div>
 
   <div class="related-posts">
     <h4>Te puede gustar</h4>
     <ul class="related-posts">
-      <li><a href="https://pablocaro.es/crit-review-loop-agents">Crit: El bucle de revisión para Agentes</a></li>
-      <li><a href="https://pablocaro.es/documentacion-tecnica-sphinx-paver-cog">Documentación técnica con Sphinx, Paver y Cog</a></li>
-      <li><a href="https://pablocaro.es/rbw-bitwarden-cli">rbw: El cliente de Bitwarden para terminal que deberías usar</a></li>
+      <li><a href="https://pablocaro.es/agent-browser-navegacion-agentes">Agent Browser: Navegación para Agentes</a></li>
+      <li><a href="https://pablocaro.es/powerline-footer-hidden-gems">Joyas ocultas en pi-powerline-footer</a></li>
+      <li><a href="https://pablocaro.es/asciinema-terminal-recorder">Graba y Comparte tus Sesiones de Terminal con asciinema</a></li>
     </ul>
   </div>
 
