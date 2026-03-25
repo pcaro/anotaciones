@@ -182,7 +182,7 @@ BROWSER_COLOR = "#333333"
 PYGMENTS_STYLE = "github"
 
 # Footer
-COPYRIGHT_YEAR = 2025
+COPYRIGHT_YEAR = 2026
 CC_LICENSE = {
     "name": "Creative Commons Attribution-ShareAlike",
     "version": "3.0",
