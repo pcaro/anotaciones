@@ -271,4 +271,7 @@ LANDING_PAGE_ABOUT = {
        </div>""",
 }
 
+# Analytics
+GOATCOUNTER_DOMAIN = "pcaro.goatcounter.com"
+
 # Trigger rebuild
