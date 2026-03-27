@@ -54,30 +54,30 @@
  
 
 <meta name="author" content="Pablo Caro" />
-<meta name="description" content="Si trabajas con Kubernetes, probablemente hayas sufrido el comando kubectl logs. Es útil para ver los logs de un pod específico, pero se queda corto cuando tienes múltiples réplicas de un servicio o cuando los pods se reinician y cambian de nombre. Aquí es donde entra Stern. Stern te permite …" />
-<meta name="keywords" content="kubernetes, cli, logs, devops, tools">
+<meta name="description" content="Cómo usar rbw para exportar variables de entorno desde Bitwarden, útil para establecer API keys de forma segura sin almacenarlas en el disco." />
+<meta name="keywords" content="bitwarden, cli, environment, productivity, security">
 
-<link rel="alternate" href="https://pablocaro.es/stern-kubernetes-logs" hreflang="es" />
-<link rel="alternate" href="https://pablocaro.es/en/stern-kubernetes-logs" hreflang="en" />
+<link rel="alternate" href="https://pablocaro.es/rbw-env" hreflang="es" />
+<link rel="alternate" href="https://pablocaro.es/en/rbw-env" hreflang="en" />
 
   <meta property="og:site_name" content="Anotaciones por Pablo Caro"/>
-  <meta property="og:title" content="Stern: Logs de Kubernetes con esteroides"/>
-  <meta property="og:description" content="Si trabajas con Kubernetes, probablemente hayas sufrido el comando kubectl logs. Es útil para ver los logs de un pod específico, pero se queda corto cuando tienes múltiples réplicas de un servicio o cuando los pods se reinician y cambian de nombre. Aquí es donde entra Stern. Stern te permite …"/>
+  <meta property="og:title" content="rbw-env: Exportar variables de entorno desde Bitwarden"/>
+  <meta property="og:description" content="Cómo usar rbw para exportar variables de entorno desde Bitwarden, útil para establecer API keys de forma segura sin almacenarlas en el disco."/>
   <meta property="og:locale" content="en_US"/>
-  <meta property="og:url" content="https://pablocaro.es/stern-kubernetes-logs"/>
+  <meta property="og:url" content="https://pablocaro.es/rbw-env"/>
   <meta property="og:type" content="article"/>
-  <meta property="article:published_time" content="2026-02-20 00:00:00+01:00"/>
+  <meta property="article:published_time" content="2026-03-26 20:55:00+01:00"/>
   <meta property="article:modified_time" content=""/>
   <meta property="article:author" content="https://pablocaro.es/author/pablo-caro.html">
-  <meta property="article:section" content="DevOps"/>
-  <meta property="article:tag" content="kubernetes"/>
+  <meta property="article:section" content="Herramientas"/>
+  <meta property="article:tag" content="bitwarden"/>
   <meta property="article:tag" content="cli"/>
-  <meta property="article:tag" content="logs"/>
-  <meta property="article:tag" content="devops"/>
-  <meta property="article:tag" content="tools"/>
+  <meta property="article:tag" content="environment"/>
+  <meta property="article:tag" content="productivity"/>
+  <meta property="article:tag" content="security"/>
   <meta property="og:image" content="/theme/img/profile.png">
 
-  <title>Anotaciones por Pablo Caro &ndash; Stern: Logs de Kubernetes con esteroides</title>
+  <title>Anotaciones por Pablo Caro &ndash; rbw-env: Exportar variables de entorno desde Bitwarden</title>
 
 
 </head>
@@ -186,97 +186,83 @@
 <article class="single">
   <header>
           <div class="translations">
-            <a href="https://pablocaro.es/en/stern-kubernetes-logs">Read in English</a>
+            <a href="https://pablocaro.es/en/rbw-env">Read in English</a>
     </div>
 
-    <h1 id="stern-kubernetes-logs">Stern: Logs de Kubernetes con esteroides</h1>
+    <h1 id="rbw-env">rbw-env: Exportar variables de entorno desde Bitwarden</h1>
     <p>
-      Publicado el 20 de February de 2026 en <a href="https://pablocaro.es/category/devops.html">DevOps</a>
+      Publicado el 26 de March de 2026 en <a href="https://pablocaro.es/category/herramientas.html">Herramientas</a>
 
     </p>
   </header>
 
 
   <div>
-    <p>Si trabajas con Kubernetes, probablemente hayas sufrido el comando <code>kubectl logs</code>. Es útil para ver los logs de un pod específico, pero se queda corto cuando tienes múltiples réplicas de un servicio o cuando los pods se reinician y cambian de nombre.</p>
-<p>Aquí es donde entra <strong><a href="https://github.com/stern/stern">Stern</a></strong>.</p>
-<p>Stern te permite hacer "tail" (seguir) logs de múltiples pods y contenedores dentro de Kubernetes simultáneamente. Lo mejor de todo es que utiliza expresiones regulares para seleccionar los pods, por lo que no necesitas copiar y pegar esos IDs aleatorios (<code>pod-1234567890-abcde</code>).</p>
-<h2 id="instalacion">Instalación<a class="headerlink" href="#instalacion" title="Permanent link">&para;</a></h2>
-<p>Stern es muy popular y está disponible en la mayoría de gestores de paquetes.### Usando Krew (recomendado)
-Si ya usas <code>kubectl</code>, Krew es la forma más natural de instalar plugins:</p>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>krew<span class="w"> </span>install<span class="w"> </span>stern
+    <p>Siguiendo con la saga de <a href="https://pablocaro.es/kitty-rbw-kitten">kitty-rbw</a>, hoy presento otro script del mismo proyecto: <strong>rbw-env</strong>.</p>
+<p><img alt="Selección de carpeta en rbw-env" src="https://pablocaro.es/images/rbw-env-example.png"></p>
+<h2 id="el-problema">El problema<a class="headerlink" href="#el-problema" title="Permanent link">&para;</a></h2>
+<p>Uso <strong>pi-agent</strong> con diferentes modelos de IA (Claude, OpenAI, Gemini...) y cada uno requiere su propia <code>API_KEY</code>. Mantener estas claves en el disco es un riesgo de seguridad, y tener que introducirlas cada vez es tedioso.</p>
+<h2 id="la-solucion-rbw-env">La solución: rbw-env<a class="headerlink" href="#la-solucion-rbw-env" title="Permanent link">&para;</a></h2>
+<p>El script permite exportar entradas de Bitwarden como variables de entorno. La idea es sencilla pero efectiva:</p>
+<ol>
+<li><strong>Seleccionas una carpeta</strong> con <code>fzf</code> (por ejemplo, "ai-providers")</li>
+<li><strong>rbw-env exporta cada entrada</strong> como <code>export VARIABLE='valor'</code></li>
+<li><strong>El archivo temporal se borra solo</strong> después de hacer <code>source</code></li>
+</ol>
+<h2 id="uso">Uso<a class="headerlink" href="#uso" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="c1"># Seleccionar carpeta interactivamente</span>
+kitty<span class="w"> </span>@<span class="w"> </span>kitten<span class="w"> </span>kitty_rbw/rbw_env.py
+
+<span class="c1"># O pasar la carpeta como argumento</span>
+kitty<span class="w"> </span>@<span class="w"> </span>kitten<span class="w"> </span>kitty_rbw/rbw_env.py<span class="w"> </span>ai-providers
 </code></pre></div>
 
-<h3 id="usando-homebrew">Usando Homebrew<a class="headerlink" href="#usando-homebrew" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>brew<span class="w"> </span>install<span class="w"> </span>stern
+<p>El comando crea un archivo temporal en <code>/tmp/kitty_rbw_env_*</code> y envía el comando <code>source</code> a la ventana:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">source</span><span class="w"> </span>/tmp/kitty_rbw_env_qfdhyh_b
 </code></pre></div>
 
-<h3 id="binario-directo">Binario directo<a class="headerlink" href="#binario-directo" title="Permanent link">&para;</a></h3>
-<p>También puedes descargar el binario directamente desde sus <a href="https://github.com/stern/stern/releases">releases en GitHub</a>.</p>
-<p>Si utilizas algún helper como <code>gah</code> (GitHub Asset Helper) o scripts personalizados, la instalación es tan sencilla como:</p>
-<div class="highlight"><pre><span></span><code>gah<span class="w"> </span>install<span class="w"> </span>stern/stern
+<p>La última línea del archivo temporal es el borrado del propio archivo:</p>
+<div class="highlight"><pre><span></span><code>rm<span class="w"> </span>-f<span class="w"> </span>/tmp/kitty_rbw_env_qfdhyh_b
 </code></pre></div>
 
-<h2 id="caracteristicas-principales">Características principales<a class="headerlink" href="#caracteristicas-principales" title="Permanent link">&para;</a></h2>
-<h3 id="1-tailing-de-multiples-pods">1. Tailing de múltiples pods<a class="headerlink" href="#1-tailing-de-multiples-pods" title="Permanent link">&para;</a></h3>
-<p>En lugar de buscar el nombre exacto del pod, puedes usar una regex:</p>
-<div class="highlight"><pre><span></span><code>stern<span class="w"> </span>backend
-</code></pre></div>
-
-<p>Esto mostrará los logs de todos los pods que contengan "backend" en su nombre (<code>backend-api</code>, <code>backend-worker</code>, etc.), intercalados y coloreados para distinguirlos fácilmente.</p>
-<h3 id="2-filtrado-y-exclusion">2. Filtrado y exclusión<a class="headerlink" href="#2-filtrado-y-exclusion" title="Permanent link">&para;</a></h3>
-<p>Puedes filtrar el contenido de los logs sobre la marcha sin necesidad de <code>grep</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># Solo mostrar líneas que contengan &quot;Error&quot;</span>
-stern<span class="w"> </span>backend<span class="w"> </span>-i<span class="w"> </span>Error
-
-<span class="c1"># Excluir líneas que contengan &quot;Health check&quot;</span>
-stern<span class="w"> </span>backend<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;Health check&quot;</span>
-</code></pre></div>
-
-<h3 id="3-selectores-de-kubernetes">3. Selectores de Kubernetes<a class="headerlink" href="#3-selectores-de-kubernetes" title="Permanent link">&para;</a></h3>
-<p>Además de regex por nombre, puedes usar selectores de etiquetas, lo cual es mucho más preciso para entornos de producción:</p>
-<div class="highlight"><pre><span></span><code>stern<span class="w"> </span>-l<span class="w"> </span><span class="nv">app</span><span class="o">=</span>mi-app<span class="w"> </span>-l<span class="w"> </span><span class="nv">tier</span><span class="o">=</span>frontend
-</code></pre></div>
-
-<h3 id="4-formato-de-salida">4. Formato de salida<a class="headerlink" href="#4-formato-de-salida" title="Permanent link">&para;</a></h3>
-<p>Si tus logs están en JSON (como es buena práctica), Stern puede pasarlos tal cual para que los proceses con herramientas como <code>jq</code> o <code>fx</code>:</p>
-<div class="highlight"><pre><span></span><code>stern<span class="w"> </span>backend<span class="w"> </span>-o<span class="w"> </span>raw<span class="w"> </span><span class="p">|</span><span class="w"> </span>fx
-</code></pre></div>
-
-<h2 id="conclusion">Conclusión<a class="headerlink" href="#conclusion" title="Permanent link">&para;</a></h2>
-<p>Stern es una de esas herramientas que instalas el primer día y te preguntas cómo podías vivir sin ella. Hace que el debug en entornos distribuidos sea mucho menos doloroso al agregar la información de manera coherente.</p>
-<p>Dale una oportunidad y tus sesiones de debugging te lo agradecerán.</p>
-<p><img alt="stern help" src="https://pablocaro.es/images/stern_help.png"></p>
+<p>La idea es no hacer los export directamente en la terminal para que no se vean por pantalla (a veces grabo tutoriales por ejemplo)</p>
+<h2 id="estructura-en-bitwarden">Estructura en Bitwarden<a class="headerlink" href="#estructura-en-bitwarden" title="Permanent link">&para;</a></h2>
+<p>Cada entrada en la carpeta exportada usa:</p>
+<ul>
+<li><strong>Usuario</strong>: nombre de la variable (ej: <code>ANTHROPIC_API_KEY</code>)</li>
+<li><strong>Contraseña</strong>: valor de la variable (ej: <code>sk-ant-...</code>)</li>
+<li><strong>Nombre</strong>: descripción opcional</li>
+</ul>
+<p>Si alguna entrada tiene usuario o nombre igual a <code>NOEXPORT</code>, se ignora (útil para notas).</p>
+<h2 id="integracion-con-kitty-rbw">Integración con kitty-rbw<a class="headerlink" href="#integracion-con-kitty-rbw" title="Permanent link">&para;</a></h2>
+<p>En la <a href="https://pablocaro.es/kitty-rbw-kitten">entrada anterior</a> explico cómo instalar kitty-rbw. Con <code>Ctrl+Alt+Shift+b</code> tengo el selector de carpetas para exportar las variables de entorno.</p>
   </div>
   <div class="tag-cloud">
     <p>
-      <a href="https://pablocaro.es/tag/kubernetes.html">kubernetes</a>
+      <a href="https://pablocaro.es/tag/bitwarden.html">bitwarden</a>
       <a href="https://pablocaro.es/tag/cli.html">cli</a>
-      <a href="https://pablocaro.es/tag/logs.html">logs</a>
-      <a href="https://pablocaro.es/tag/devops.html">devops</a>
-      <a href="https://pablocaro.es/tag/tools.html">tools</a>
+      <a href="https://pablocaro.es/tag/environment.html">environment</a>
+      <a href="https://pablocaro.es/tag/productivity.html">productivity</a>
+      <a href="https://pablocaro.es/tag/security.html">security</a>
     </p>
   </div>
 
 
 
   <div class="neighbors">
-    <a class="btn float-left" href="https://pablocaro.es/gestionando-instalaciones-desde-github-con-gah" title="Gestionando instalaciones desde GitHub con gah">
+    <a class="btn float-left" href="https://pablocaro.es/crit-review-loop-agents" title="Crit: El bucle de revisión para Agentes">
       <i class="fa fa-angle-left"></i> Artículo anterior
-    </a>
-    <a class="btn float-right" href="https://pablocaro.es/shot-scraper-capturas-pantalla-automatizadas" title="Shot-scraper: Capturas de pantalla automatizadas para la web">
-      Próximo artículo <i class="fa fa-angle-right"></i>
     </a>
   </div>
 
   <div class="related-posts">
     <h4>Te puede gustar</h4>
     <ul class="related-posts">
-      <li><a href="https://pablocaro.es/kubegres-postgresql-kubernetes">Kubegres: Gestión simplificada de PostgreSQL en Kubernetes</a></li>
+      <li><a href="https://pablocaro.es/kitty-rbw-kitten">kitty-rbw: Acceso rápido a Bitwarden desde tu terminal kitty</a></li>
+      <li><a href="https://pablocaro.es/rbw-bitwarden-cli">rbw: El cliente de Bitwarden para terminal que deberías usar</a></li>
+      <li><a href="https://pablocaro.es/sem-control-de-versiones-semantico">sem: Control de versiones semántico</a></li>
       <li><a href="https://pablocaro.es/deepdiff-comparar-datos-python">DeepDiff: La navaja suiza para comparar datos en Python</a></li>
-      <li><a href="https://pablocaro.es/shot-scraper-capturas-pantalla-automatizadas">Shot-scraper: Capturas de pantalla automatizadas para la web</a></li>
-      <li><a href="https://pablocaro.es/sysdig-seguridad-cloud-nativa">Sysdig: Plataforma de seguridad cloud-nativa con IA</a></li>
-      <li><a href="https://pablocaro.es/rbw-env">rbw-env: Exportar variables de entorno desde Bitwarden</a></li>
+      <li><a href="https://pablocaro.es/renderizando-markdown-en-la-terminal-con-glow">Renderizando Markdown en la terminal con Glow</a></li>
     </ul>
   </div>
 

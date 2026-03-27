@@ -8,6 +8,11 @@ url = "/cv"
 title = "Resume"
 
 [[input.files]]
+path = "rbw-env.html"
+url = "/rbw-env"
+title = "rbw-env: Export environment variables from Bitwarden"
+
+[[input.files]]
 path = "crit-review-loop-agents.html"
 url = "/crit-review-loop-agents"
 title = "Crit: The Review Loop for Agents"
@@ -321,6 +326,11 @@ title = "Django: links in object list"
 path = "settings-vars-processor.html"
 url = "/settings-vars-processor"
 title = "Settings vars processor"
+
+[[input.files]]
+path = "rbw-env-es.html"
+url = "/../rbw-env"
+title = "rbw-env: Exportar variables de entorno desde Bitwarden"
 
 [[input.files]]
 path = "crit-review-loop-agents-es.html"

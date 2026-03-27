@@ -54,30 +54,30 @@
  
 
 <meta name="author" content="Pablo Caro" />
-<meta name="description" content="Crit is a tool designed to close the code review loop for AI-generated code, providing an intuitive and efficient web interface." />
-<meta name="keywords" content="ai, agents, review, opencode, productivity">
+<meta name="description" content="Using rbw to export environment variables from Bitwarden, useful for setting API keys securely without storing them on disk." />
+<meta name="keywords" content="bitwarden, cli, environment, productivity, security">
 
-<link rel="alternate" href="/en/crit-review-loop-agents" hreflang="en" />
-<link rel="alternate" href="/en/../crit-review-loop-agents" hreflang="es" />
+<link rel="alternate" href="/en/rbw-env" hreflang="en" />
+<link rel="alternate" href="/en/../rbw-env" hreflang="es" />
 
   <meta property="og:site_name" content="Annotations by Pablo Caro"/>
-  <meta property="og:title" content="Crit: The Review Loop for Agents"/>
-  <meta property="og:description" content="Crit is a tool designed to close the code review loop for AI-generated code, providing an intuitive and efficient web interface."/>
+  <meta property="og:title" content="rbw-env: Export environment variables from Bitwarden"/>
+  <meta property="og:description" content="Using rbw to export environment variables from Bitwarden, useful for setting API keys securely without storing them on disk."/>
   <meta property="og:locale" content="en_US"/>
-  <meta property="og:url" content="/en/crit-review-loop-agents"/>
+  <meta property="og:url" content="/en/rbw-env"/>
   <meta property="og:type" content="article"/>
-  <meta property="article:published_time" content="2026-03-22 14:49:00+01:00"/>
+  <meta property="article:published_time" content="2026-03-26 20:55:00+01:00"/>
   <meta property="article:modified_time" content=""/>
   <meta property="article:author" content="/en/author/pablo-caro.html">
-  <meta property="article:section" content="Programación"/>
-  <meta property="article:tag" content="ai"/>
-  <meta property="article:tag" content="agents"/>
-  <meta property="article:tag" content="review"/>
-  <meta property="article:tag" content="opencode"/>
+  <meta property="article:section" content="Tools"/>
+  <meta property="article:tag" content="bitwarden"/>
+  <meta property="article:tag" content="cli"/>
+  <meta property="article:tag" content="environment"/>
   <meta property="article:tag" content="productivity"/>
+  <meta property="article:tag" content="security"/>
   <meta property="og:image" content="/theme/img/profile.png">
 
-  <title>Annotations by Pablo Caro &ndash; Crit: The Review Loop for Agents</title>
+  <title>Annotations by Pablo Caro &ndash; rbw-env: Export environment variables from Bitwarden</title>
 
 
 </head>
@@ -186,76 +186,82 @@
 <article class="single">
   <header>
           <div class="translations">
-            <a href="/en/../crit-review-loop-agents">Leer en español</a>
+            <a href="/en/../rbw-env">Leer en español</a>
     </div>
 
-    <h1 id="crit-review-loop-agents">Crit: The Review Loop for Agents</h1>
+    <h1 id="rbw-env">rbw-env: Export environment variables from Bitwarden</h1>
     <p>
-      Posted on Sun, 22 Mar 2026 in <a href="/en/category/programacion.html">Programación</a>
+      Posted on Thu, 26 Mar 2026 in <a href="/en/category/tools.html">Tools</a>
 
     </p>
   </header>
 
 
   <div>
-    <p>Reviewing what an AI agent writes directly in the terminal is often a nightmare. You can't point to a specific line, provide structured feedback, and when the agent updates the file, you have to re-read everything to see what actually changed.</p>
-<p>That's where <strong>Crit</strong> comes in.</p>
-<p><img alt="Crit review UI" src="/images/crit-demo.png"></p>
-<p>Crit opens files generated or modified by your agent in the browser with a GitHub-style interface. You can leave comments on specific lines, suggestions for changes, and, best of all, see diffs between different iteration rounds.</p>
-<p>What I liked most is its <strong>multi-agent</strong> nature and its <strong>usability</strong>. It doesn't matter if you use Claude Code, Cursor, Aider, or, as in my case, <strong>OpenCode</strong>. Crit integrates beautifully.</p>
-<h3 id="installation-and-setup">Installation and Setup<a class="headerlink" href="#installation-and-setup" title="Permanent link">&para;</a></h3>
-<p>Installation is as simple as:</p>
-<div class="highlight"><pre><span></span><code>gah<span class="w"> </span>install<span class="w"> </span>tomasz-tomczyk/crit
+    <p>Continuing the <a href="/en/rbw-env">kitty-rbw</a> saga, today I present another script from the same project: <strong>rbw-env</strong>.</p>
+<p><img alt="Folder selection in rbw-env" src="/en/images/rbw-env-example.png"></p>
+<h2 id="the-problem">The problem<a class="headerlink" href="#the-problem" title="Permanent link">&para;</a></h2>
+<p>I use <strong>pi-agent</strong> with different AI models (Claude, OpenAI, Gemini...) and each requires its own <code>API_KEY</code>. Keeping these keys on disk is a security risk, and having to enter them every time is tedious.</p>
+<h2 id="the-solution-rbw-env">The solution: rbw-env<a class="headerlink" href="#the-solution-rbw-env" title="Permanent link">&para;</a></h2>
+<p>The script exports Bitwarden entries as environment variables. The idea is simple but effective:</p>
+<ol>
+<li><strong>Select a folder</strong> with <code>fzf</code> (e.g., "ai-providers")</li>
+<li><strong>rbw-env exports each entry</strong> as <code>export VARIABLE='value'</code></li>
+<li><strong>The temp file deletes itself</strong> after sourcing</li>
+</ol>
+<h2 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="c1"># Interactive folder selection</span>
+kitty<span class="w"> </span>@<span class="w"> </span>kitten<span class="w"> </span>kitty_rbw/rbw_env.py
+
+<span class="c1"># Or pass folder as argument</span>
+kitty<span class="w"> </span>@<span class="w"> </span>kitten<span class="w"> </span>kitty_rbw/rbw_env.py<span class="w"> </span>ai-providers
 </code></pre></div>
 
-<p>Once installed, integrating it with OpenCode is just a matter of one command:</p>
-<div class="highlight"><pre><span></span><code>crit<span class="w"> </span>install<span class="w"> </span>opencode
+<p>The command creates a temporary file in <code>/tmp/kitty_rbw_env_*</code> and sends the <code>source</code> command to the window:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">source</span><span class="w"> </span>/tmp/kitty_rbw_env_qfdhyh_b
 </code></pre></div>
 
-<p>This installs the necessary commands and <em>skills</em> for agents to use Crit. By running <code>/crit</code> in OpenCode, the review loop begins: the agent proposes a plan or changes, Crit opens the web interface for you to approve or correct, and the agent receives your structured feedback in a <code>.crit.json</code> file to act accordingly.</p>
-<blockquote>
-<p><strong>Note to my future self:</strong> If you use <a href="https://shittycodingagent.ai/">pi-agent</a> instead of OpenCode, you can copy the OpenCode command as a prompt and copy the crit skill as-is — it works perfectly. In fact, this very annotation was reviewed using pi-agent with Crit.</p>
-</blockquote>
-<h3 id="why-use-it">Why Use It<a class="headerlink" href="#why-use-it" title="Permanent link">&para;</a></h3>
+<p>The last line of the temp file is the deletion of the file itself:</p>
+<div class="highlight"><pre><span></span><code>rm<span class="w"> </span>-f<span class="w"> </span>/tmp/kitty_rbw_env_qfdhyh_b
+</code></pre></div>
+
+<h2 id="bitwarden-structure">Bitwarden structure<a class="headerlink" href="#bitwarden-structure" title="Permanent link">&para;</a></h2>
+<p>Each entry in the exported folder uses:</p>
 <ul>
-<li><strong>Web Interface, not TUI</strong>: Markdown rendering and persistent visual diffs.</li>
-<li><strong>Round-to-round diffs</strong>: You see exactly what has changed since your last comment.</li>
-<li><strong>Agent agnostic</strong>: Works with any tool, allowing for a consistent workflow.</li>
-<li><strong>Direct suggestions</strong>: You can insert suggestions that the agent can apply as-is.</li>
+<li><strong>Username</strong>: variable name (e.g., <code>ANTHROPIC_API_KEY</code>)</li>
+<li><strong>Password</strong>: variable value (e.g., <code>sk-ant-...</code>)</li>
+<li><strong>Name</strong>: optional description</li>
 </ul>
-<p>For example, the very change that fixed the comma issue in this annotation:</p>
-<p><img alt="Crit review example" src="/images/crit-review-example.png"></p>
-<p>It is undoubtedly the missing piece to make working with agents truly collaborative rather than a succession of copy-pasting and tedious manual reviews.</p>
+<p>If any entry has username or name equal to <code>NOEXPORT</code>, it's skipped (useful for notes).</p>
+<h2 id="integration-with-kitty-rbw">Integration with kitty-rbw<a class="headerlink" href="#integration-with-kitty-rbw" title="Permanent link">&para;</a></h2>
+<p>In the <a href="/en/kitty-rbw-kitten">previous post</a> I explained how to install kitty-rbw. With <code>Ctrl+Alt+Shift+b</code> I get the folder selector to export environment variables.</p>
   </div>
   <div class="tag-cloud">
     <p>
-      <a href="/en/tag/ai.html">ai</a>
-      <a href="/en/tag/agents.html">agents</a>
-      <a href="/en/tag/review.html">review</a>
-      <a href="/en/tag/opencode.html">opencode</a>
+      <a href="/en/tag/bitwarden.html">bitwarden</a>
+      <a href="/en/tag/cli.html">cli</a>
+      <a href="/en/tag/environment.html">environment</a>
       <a href="/en/tag/productivity.html">productivity</a>
+      <a href="/en/tag/security.html">security</a>
     </p>
   </div>
 
 
 
   <div class="neighbors">
-    <a class="btn float-left" href="/en/powerline-footer-hidden-gems" title="Hidden gems in pi-powerline-footer">
+    <a class="btn float-left" href="/en/crit-review-loop-agents" title="Crit: The Review Loop for Agents">
       <i class="fa fa-angle-left"></i> Previous Post
-    </a>
-    <a class="btn float-right" href="/en/rbw-env" title="rbw-env: Export environment variables from Bitwarden">
-      Next Post <i class="fa fa-angle-right"></i>
     </a>
   </div>
 
   <div class="related-posts">
     <h4>You might enjoy</h4>
     <ul class="related-posts">
-      <li><a href="/en/agent-browser-navigation-agents">Agent Browser: Browser Navigation for AI Agents</a></li>
-      <li><a href="/en/tailscale-aperture-gateway-ia-seguro">Tailscale Aperture: AI Gateway Without Distributing API Keys</a></li>
-      <li><a href="/en/rbw-env">rbw-env: Export environment variables from Bitwarden</a></li>
-      <li><a href="/en/powerline-footer-hidden-gems">Hidden gems in pi-powerline-footer</a></li>
-      <li><a href="/en/asciinema-terminal-recorder">Record and Share your Terminal Sessions with asciinema</a></li>
+      <li><a href="/en/kitty-rbw-kitten">kitty-rbw: Fast Bitwarden access from your kitty terminal</a></li>
+      <li><a href="/en/rbw-bitwarden-cli">rbw: The Bitwarden terminal client you should be using</a></li>
+      <li><a href="/en/fresh-editor-terminal">`fresh`: My preferred terminal editor for daily use</a></li>
+      <li><a href="/en/direnv-gestion-entornos">`direnv`: Manage your development environments intelligently</a></li>
+      <li><a href="/en/sem-semantic-version-control">sem: Semantic Version Control</a></li>
     </ul>
   </div>
 

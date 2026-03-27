@@ -1,5 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Annotations by Pablo Caro - environment</title><link href="/en/" rel="alternate"></link><link href="/en/feeds/tags/environment.atom.xml" rel="self"></link><id>/en/</id><updated>2025-12-25T14:30:00+01:00</updated><subtitle>Annotations</subtitle><entry><title>`direnv`: Manage your development environments intelligently</title><link href="/en/direnv-gestion-entornos" rel="alternate"></link><published>2025-12-25T14:30:00+01:00</published><updated>2025-12-25T14:30:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:None,2025-12-25:/en/direnv-gestion-entornos</id><summary type="html">&lt;p&gt;Discover &lt;code&gt;direnv&lt;/code&gt;, a shell extension that automatically loads and unloads environment variables when changing directories, keeping your configuration clean and organized.&lt;/p&gt;</summary><content type="html">&lt;p&gt;In the daily life of a developer, it is common to work with multiple projects, each with its own environment variables, paths (&lt;code&gt;PATH&lt;/code&gt;), tool versions, or credentials. Manually managing these variables can lead to messy configurations in your &lt;code&gt;.profile&lt;/code&gt; or &lt;code&gt;.bashrc&lt;/code&gt;, or errors due to using the wrong environment. This is where &lt;strong&gt;&lt;code&gt;direnv&lt;/code&gt;&lt;/strong&gt; shines, offering an elegant and automatic solution.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Annotations by Pablo Caro - environment</title><link href="/en/" rel="alternate"></link><link href="/en/feeds/tags/environment.atom.xml" rel="self"></link><id>/en/</id><updated>2026-03-26T20:55:00+01:00</updated><subtitle>Annotations</subtitle><entry><title>rbw-env: Export environment variables from Bitwarden</title><link href="/en/rbw-env" rel="alternate"></link><published>2026-03-26T20:55:00+01:00</published><updated>2026-03-26T20:55:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:None,2026-03-26:/en/rbw-env</id><summary type="html">&lt;p&gt;Using rbw to export environment variables from Bitwarden, useful for setting API keys securely without storing them on disk.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Continuing the &lt;a href="/en/rbw-env"&gt;kitty-rbw&lt;/a&gt; saga, today I present another script from the same project: &lt;strong&gt;rbw-env&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Folder selection in rbw-env" src="/en/images/rbw-env-example.png"&gt;&lt;/p&gt;
+&lt;h2 id="the-problem"&gt;The problem&lt;a class="headerlink" href="#the-problem" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I use &lt;strong&gt;pi-agent&lt;/strong&gt; with different AI models (Claude, OpenAI, Gemini...) and each requires its own &lt;code&gt;API_KEY&lt;/code&gt;. Keeping these keys on disk is a security risk, and having to enter them every time is tedious.&lt;/p&gt;
+&lt;h2 id="the-solution-rbw-env"&gt;The solution: rbw-env&lt;a class="headerlink" href="#the-solution-rbw-env" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The script exports Bitwarden entries as environment variables. The idea is simple but effective:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Select a folder&lt;/strong&gt; with &lt;code&gt;fzf&lt;/code&gt; (e.g., "ai-providers")&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;rbw-env exports each entry&lt;/strong&gt; as &lt;code&gt;export VARIABLE='value'&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The temp file deletes itself&lt;/strong&gt; after sourcing&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="usage"&gt;Usage&lt;a class="headerlink" href="#usage" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Interactive folder selection&lt;/span&gt;
+kitty&lt;span class="w"&gt; &lt;/span&gt;@&lt;span class="w"&gt; &lt;/span&gt;kitten&lt;span class="w"&gt; &lt;/span&gt;kitty_rbw/rbw_env.py
+
+&lt;span class="c1"&gt;# Or pass folder as argument&lt;/span&gt;
+kitty&lt;span class="w"&gt; &lt;/span&gt;@&lt;span class="w"&gt; &lt;/span&gt;kitten&lt;span class="w"&gt; &lt;/span&gt;kitty_rbw/rbw_env.py&lt;span class="w"&gt; &lt;/span&gt;ai-providers
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The command creates a temporary file in &lt;code&gt;/tmp/kitty_rbw_env_*&lt;/code&gt; and sends the &lt;code&gt;source&lt;/code&gt; command to the window:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nb"&gt;source&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;/tmp/kitty_rbw_env_qfdhyh_b
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The last line of the temp file is the deletion of the file itself:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;rm&lt;span class="w"&gt; &lt;/span&gt;-f&lt;span class="w"&gt; &lt;/span&gt;/tmp/kitty_rbw_env_qfdhyh_b
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="bitwarden-structure"&gt;Bitwarden structure&lt;a class="headerlink" href="#bitwarden-structure" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Each entry in the exported folder uses:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Username&lt;/strong&gt;: variable name (e.g., &lt;code&gt;ANTHROPIC_API_KEY&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Password&lt;/strong&gt;: variable value (e.g., &lt;code&gt;sk-ant-...&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Name&lt;/strong&gt;: optional description&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;If any entry has username or name equal to &lt;code&gt;NOEXPORT&lt;/code&gt;, it's skipped (useful for notes).&lt;/p&gt;
+&lt;h2 id="integration-with-kitty-rbw"&gt;Integration with kitty-rbw&lt;a class="headerlink" href="#integration-with-kitty-rbw" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;In the &lt;a href="/en/kitty-rbw-kitten"&gt;previous post&lt;/a&gt; I explained how to install kitty-rbw. With &lt;code&gt;Ctrl+Alt+Shift+b&lt;/code&gt; I get the folder selector to export environment variables.&lt;/p&gt;</content><category term="Tools"></category><category term="bitwarden"></category><category term="cli"></category><category term="environment"></category><category term="productivity"></category><category term="security"></category></entry><entry><title>`direnv`: Manage your development environments intelligently</title><link href="/en/direnv-gestion-entornos" rel="alternate"></link><published>2025-12-25T14:30:00+01:00</published><updated>2025-12-25T14:30:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:None,2025-12-25:/en/direnv-gestion-entornos</id><summary type="html">&lt;p&gt;Discover &lt;code&gt;direnv&lt;/code&gt;, a shell extension that automatically loads and unloads environment variables when changing directories, keeping your configuration clean and organized.&lt;/p&gt;</summary><content type="html">&lt;p&gt;In the daily life of a developer, it is common to work with multiple projects, each with its own environment variables, paths (&lt;code&gt;PATH&lt;/code&gt;), tool versions, or credentials. Manually managing these variables can lead to messy configurations in your &lt;code&gt;.profile&lt;/code&gt; or &lt;code&gt;.bashrc&lt;/code&gt;, or errors due to using the wrong environment. This is where &lt;strong&gt;&lt;code&gt;direnv&lt;/code&gt;&lt;/strong&gt; shines, offering an elegant and automatic solution.&lt;/p&gt;
 &lt;h2 id="what-is-direnv"&gt;What is &lt;code&gt;direnv&lt;/code&gt;?&lt;a class="headerlink" href="#what-is-direnv" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;&lt;code&gt;direnv&lt;/code&gt; is an extension for your shell (Bash, Zsh, Fish, etc.) that automatically detects when you change directories. When you enter a directory containing an &lt;code&gt;.envrc&lt;/code&gt; file, &lt;code&gt;direnv&lt;/code&gt; loads it; when you leave it, it unloads it. This means your shell environment dynamically adapts to your current project without you having to do anything manually.&lt;/p&gt;
 &lt;h2 id="how-does-it-work"&gt;How does it work?&lt;a class="headerlink" href="#how-does-it-work" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
