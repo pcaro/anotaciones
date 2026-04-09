@@ -11,7 +11,9 @@ Aunque Bitwarden tiene un cliente oficial de línea de comandos, este puede resu
 
 ## Instalación
 
-La forma más sencilla de instalarlo es bajando el binario directamente desde sus releases de GitHub. Yo utilizo `gah` para este propósito:```bash
+La forma más sencilla de instalarlo es bajando el binario directamente desde sus releases de GitHub. Yo utilizo `gah` para este propósito:
+
+```bash
 gah install doy/rbw
 ```
 

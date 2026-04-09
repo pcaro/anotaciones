@@ -11,7 +11,9 @@ While Bitwarden has an official command-line client, it can be slow as it is Nod
 
 ## Installation
 
-The easiest way to install it is by downloading the binary directly from its GitHub releases. I use `gah` for this purpose:```bash
+The easiest way to install it is by downloading the binary directly from its GitHub releases. I use `gah` for this purpose:
+
+```bash
 gah install doy/rbw
 ```
 
