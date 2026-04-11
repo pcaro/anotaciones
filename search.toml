@@ -8,6 +8,11 @@ url = "/cv"
 title = "Currículo"
 
 [[input.files]]
+path = "rbw-sync-access-token.html"
+url = "/rbw-sync-access-token"
+title = "rbw sync: missing field `access_token`"
+
+[[input.files]]
 path = "rbw-env.html"
 url = "/rbw-env"
 title = "rbw-env: Exportar variables de entorno desde Bitwarden"
@@ -751,6 +756,11 @@ title = "Corrector ortográfico de firefox 2.0 en castellano"
 path = "primera-anotacion-de-prueba.html"
 url = "/primera-anotacion-de-prueba"
 title = "Primera anotación de prueba"
+
+[[input.files]]
+path = "rbw-sync-access-token-en.html"
+url = "/en/rbw-sync-access-token"
+title = "rbw sync: missing field `access_token`"
 
 [[input.files]]
 path = "rbw-env-en.html"

@@ -1,0 +1,317 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="/en/theme/stylesheet/style.min.css">
+
+
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+          href="/en/theme/pygments/github.min.css">
+
+
+  <link rel="stylesheet"
+        type="text/css"
+        href="/en/theme/stork/stork.css" />
+
+  <link rel="stylesheet" type="text/css" href="/en/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="/en/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="/en/theme/font-awesome/css/solid.css">
+
+
+  <link rel="shortcut icon" href="/theme/img/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/theme/img/favicon.ico" type="image/x-icon">
+
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#333333">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#333333">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Microsoft EDGE -->
+  <meta name="msapplication-TileColor" content="#333333">
+
+  <link href="/en/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Annotations by Pablo Caro Atom">
+
+  <link href="/en/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Annotations by Pablo Caro RSS">
+
+<script data-goatcounter="https://pcaro.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Pablo Caro" />
+<meta name="description" content="Known rbw bug when syncing with Bitwarden or Vaultwarden: &#34;failed to parse JSON: missing field access_token&#34;. The fix is to clear the local cache." />
+<meta name="keywords" content="bitwarden, cli, bug, linux">
+
+<link rel="alternate" href="/en/rbw-sync-access-token" hreflang="en" />
+<link rel="alternate" href="/en/../rbw-sync-access-token" hreflang="es" />
+
+  <meta property="og:site_name" content="Annotations by Pablo Caro"/>
+  <meta property="og:title" content="rbw sync: missing field `access_token`"/>
+  <meta property="og:description" content="Known rbw bug when syncing with Bitwarden or Vaultwarden: &#34;failed to parse JSON: missing field access_token&#34;. The fix is to clear the local cache."/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="/en/rbw-sync-access-token"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2026-04-11 19:30:00+02:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="/en/author/pablo-caro.html">
+  <meta property="article:section" content="Linux"/>
+  <meta property="article:tag" content="bitwarden"/>
+  <meta property="article:tag" content="cli"/>
+  <meta property="article:tag" content="bug"/>
+  <meta property="article:tag" content="linux"/>
+  <meta property="og:image" content="/theme/img/profile.png">
+
+  <title>Annotations by Pablo Caro &ndash; rbw sync: missing field `access_token`</title>
+
+
+</head>
+<body class="light-theme">
+
+<aside>
+  <div>
+    <a href="/en/">
+      <img src="/theme/img/profile.png" alt="Anotaciones" title="Anotaciones">
+    </a>
+
+    <h1>
+      <a href="/en/">Anotaciones</a>
+    </h1>
+
+    <p>Annotations</p>
+
+    <p style="font-size: 0.9em; font-style: italic; margin-bottom: 20px;">
+      Dumping my brain onto the internet. A collection of technical notes and solutions written for my future self, shared here in case they save someone else a headache.
+    </p>
+
+    <div class="stork">
+      <input class="stork-input" type="text" autocomplete="off" name="q" data-stork="sitesearch" placeholder="Search..." onclick="loadStorkIndex()"/>
+      <div class="stork-output" data-stork="sitesearch-output"></div>
+    </div>
+
+    <nav>
+      <ul class="list">
+
+
+            <li>
+              <a target="_self"
+                 href="/en/cv#cv">
+                Resume
+              </a>
+            </li>
+
+          <li>
+            <a target="_self" href="http://x.com/pcaro" >pcaro@X</a>
+          </li>
+          <li>
+            <a target="_self" href="https://github.com/pcaro/" >pcaro@Github</a>
+          </li>
+          <li>
+            <a target="_self" href="https://www.linkedin.com/in/pcarorevuelta/" >LinkedIn</a>
+          </li>
+      </ul>
+    </nav>
+
+    <ul class="social">
+      <li>
+        <a class="sc-Twitter"
+           href="http://twitter.com/pcaro"
+           target="_blank">
+          <i class="fa-brands fa-Twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Github"
+           href="http://github.com/pcaro"
+           target="_blank">
+          <i class="fa-brands fa-Github"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Linkedin"
+           href="https://www.linkedin.com/in/pcarorevuelta"
+           target="_blank">
+          <i class="fa-brands fa-Linkedin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Facebook"
+           href="https://www.facebook.com/pablo.carorevuelta"
+           target="_blank">
+          <i class="fa-brands fa-Facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Email"
+           href="mailto:correo@pablocaro.es"
+           target="_blank">
+          <i class="fa-brands fa-Email"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+</aside>
+  <main>
+
+<nav>
+  <a href="/en/">Home</a>
+
+  <a href="/en/archives.html">Archives</a>
+  <a href="/en/categories.html">Categories</a>
+  <a href="/en/tags.html">Tags</a>
+  <a href="/en/search.html">Search</a>
+  <a href="/">Español</a>
+
+  <a href="/en/feeds/all.atom.xml">Atom</a>
+
+  <a href="/en/feeds/all.rss.xml">RSS</a>
+</nav>
+
+<article class="single">
+  <header>
+          <div class="translations">
+            <a href="/en/../rbw-sync-access-token">Leer en español</a>
+    </div>
+
+    <h1 id="rbw-sync-access-token">rbw sync: missing field `access_token`</h1>
+    <p>
+      Posted on Sat, 11 Apr 2026 in <a href="/en/category/linux.html">Linux</a>
+
+    </p>
+  </header>
+
+
+  <div>
+    <p>Today I ran into this error when trying to sync my Bitwarden vault with <strong>rbw</strong>:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>rbw<span class="w"> </span>sync
+rbw<span class="w"> </span>sync:<span class="w"> </span>failed<span class="w"> </span>to<span class="w"> </span>sync<span class="w"> </span>database<span class="w"> </span>from<span class="w"> </span>server:<span class="w"> </span>failed<span class="w"> </span>to<span class="w"> </span>parse<span class="w"> </span>JSON:<span class="w"> </span>missing<span class="w"> </span>field<span class="w"> </span>access_token<span class="w"> </span>at<span class="w"> </span>line<span class="w"> </span><span class="m">1</span><span class="w"> </span>column<span class="w"> </span><span class="m">393</span>
+</code></pre></div>
+
+<p><img alt="Issue #202 in the rbw repo" src="/en/images/rbw-sync-access-token.png"></p>
+<h2 id="diagnosis">Diagnosis<a class="headerlink" href="#diagnosis" title="Permanent link">&para;</a></h2>
+<p>This is a known rbw bug that has existed since 2020 (<a href="https://github.com/doy/rbw/issues/32">#32</a>) and remains open. It happens with both official Bitwarden and Vaultwarden. It's not related to your Vaultwarden version.</p>
+<p><strong>Cause:</strong> rbw stores a session token locally that gets corrupted or expires. When trying to sync, the server returns a JSON response without the <code>access_token</code> field that rbw expects. The local rbw cache ends up in an invalid state.</p>
+<h2 id="solution">Solution<a class="headerlink" href="#solution" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>rbw<span class="w"> </span>purge
+rbw<span class="w"> </span>sync
+</code></pre></div>
+
+<p><code>rbw purge</code> clears the local vault cache. Then <code>rbw sync</code> will ask for your master password and re-download everything from scratch.</p>
+<h2 id="bug-context">Bug context<a class="headerlink" href="#bug-context" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Open since December 2020 (<a href="https://github.com/doy/rbw/issues/32">#32</a>), 19 👍, no fix</li>
+<li>Reopened in August 2024 (<a href="https://github.com/doy/rbw/issues/202">#202</a>) with the same symptoms</li>
+<li>The maintainer (doy) hasn't been able to reproduce it → still unfixed</li>
+<li>Tends to happen after adding new entries (TOTP, SSH keys) from another client (browser extension, web vault) and then trying to sync from rbw</li>
+</ul>
+<p><strong>TL;DR:</strong> <code>rbw purge &amp;&amp; rbw sync</code> and you should be good.</p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="/en/tag/bitwarden.html">bitwarden</a>
+      <a href="/en/tag/cli.html">cli</a>
+      <a href="/en/tag/bug.html">bug</a>
+      <a href="/en/tag/linux.html">linux</a>
+    </p>
+  </div>
+
+
+
+  <div class="neighbors">
+    <a class="btn float-left" href="/en/rbw-env" title="rbw-env: Export environment variables from Bitwarden">
+      <i class="fa fa-angle-left"></i> Previous Post
+    </a>
+  </div>
+
+  <div class="related-posts">
+    <h4>You might enjoy</h4>
+    <ul class="related-posts">
+      <li><a href="/en/rbw-env">rbw-env: Export environment variables from Bitwarden</a></li>
+      <li><a href="/en/kitty-rbw-kitten">kitty-rbw: Fast Bitwarden access from your kitty terminal</a></li>
+      <li><a href="/en/rbw-bitwarden-cli">rbw: The Bitwarden terminal client you should be using</a></li>
+      <li><a href="/en/renderizando-markdown-en-la-terminal-con-glow">Rendering Markdown in the terminal with Glow</a></li>
+      <li><a href="/en/gestionando-instalaciones-desde-github-con-gah">Managing GitHub installations with gah</a></li>
+    </ul>
+  </div>
+
+
+
+<!-- Disqus -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'anotaciones';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>
+    Please enable JavaScript to view comments.
+</noscript>
+<!-- End Disqus -->
+</article>
+
+<footer>
+<p>
+  &copy; 2026  - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/3.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/3.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Annotations by Pablo Caro ",
+  "url" : "/en",
+  "image": "/theme/img/profile.png",
+  "description": ""
+}
+</script>  <script src="https://files.stork-search.net/releases/v1.6.0/stork.js"></script>
+  <script>
+    window.storkIndexLoaded = false;
+    window.loadStorkIndex = function () {
+      if (window.storkIndexLoaded) {
+        return;
+      }
+      if (typeof stork === 'undefined') {
+        console.error('Stork is not loaded yet, retrying...');
+        setTimeout(window.loadStorkIndex, 100);
+        return;
+      }
+      stork.register("sitesearch", "/en/search-index.st", { showProgress: false });
+      stork.register("sitesearch-page", "/en/search-index.st", { showProgress: false });
+      window.storkIndexLoaded = true;
+    }
+  </script>
+
+</body>
+</html>
