@@ -1,0 +1,328 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/stylesheet/style.min.css">
+
+
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+          href="https://pablocaro.es/theme/pygments/github.min.css">
+
+
+  <link rel="stylesheet"
+        type="text/css"
+        href="https://pablocaro.es/theme/stork/stork.css" />
+
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/font-awesome/css/solid.css">
+
+
+  <link rel="shortcut icon" href="/theme/img/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/theme/img/favicon.ico" type="image/x-icon">
+
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#333333">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#333333">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Microsoft EDGE -->
+  <meta name="msapplication-TileColor" content="#333333">
+
+  <link href="https://pablocaro.es/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Anotaciones por Pablo Caro Atom">
+
+  <link href="https://pablocaro.es/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Anotaciones por Pablo Caro RSS">
+
+<script data-goatcounter="https://pcaro.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Pablo Caro" />
+<meta name="description" content="Análisis de Google Stitch como herramienta para generar interfaces de usuario y prototipos interactivos mediante inteligencia artificial." />
+<meta name="keywords" content="AI, UI, Design, Gemini, prototipado">
+
+<link rel="alternate" href="https://pablocaro.es/google-stitch" hreflang="es" />
+<link rel="alternate" href="https://pablocaro.es/en/google-stitch" hreflang="en" />
+
+  <meta property="og:site_name" content="Anotaciones por Pablo Caro"/>
+  <meta property="og:title" content="Google Stitch: Generación y prototipado UI con AI"/>
+  <meta property="og:description" content="Análisis de Google Stitch como herramienta para generar interfaces de usuario y prototipos interactivos mediante inteligencia artificial."/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://pablocaro.es/google-stitch"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2026-04-13 12:38:00+02:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://pablocaro.es/author/pablo-caro.html">
+  <meta property="article:section" content="Herramientas"/>
+  <meta property="article:tag" content="AI"/>
+  <meta property="article:tag" content="UI"/>
+  <meta property="article:tag" content="Design"/>
+  <meta property="article:tag" content="Gemini"/>
+  <meta property="article:tag" content="prototipado"/>
+  <meta property="og:image" content="/theme/img/profile.png">
+
+  <title>Anotaciones por Pablo Caro &ndash; Google Stitch: Generación y prototipado UI con AI</title>
+
+
+</head>
+<body class="light-theme">
+
+<aside>
+  <div>
+    <a href="https://pablocaro.es/">
+      <img src="/theme/img/profile.png" alt="Anotaciones" title="Anotaciones">
+    </a>
+
+    <h1>
+      <a href="https://pablocaro.es/">Anotaciones</a>
+    </h1>
+
+    <p>Anotaciones</p>
+
+    <p style="font-size: 0.9em; font-style: italic; margin-bottom: 20px;">
+      Volcando mi cerebro a internet. Colección de apuntes técnicos y soluciones que escribo para mi 'yo' del futuro, pero que comparto por si a alguien más le ahorran un dolor de cabeza.
+    </p>
+
+    <div class="stork">
+      <input class="stork-input" type="text" autocomplete="off" name="q" data-stork="sitesearch" placeholder="Buscar..." onclick="loadStorkIndex()"/>
+      <div class="stork-output" data-stork="sitesearch-output"></div>
+    </div>
+
+    <nav>
+      <ul class="list">
+
+
+            <li>
+              <a target="_self"
+                 href="https://pablocaro.es/cv#cv">
+                Currículo
+              </a>
+            </li>
+
+          <li>
+            <a target="_self" href="http://x.com/pcaro" >pcaro@X</a>
+          </li>
+          <li>
+            <a target="_self" href="https://github.com/pcaro/" >pcaro@Github</a>
+          </li>
+          <li>
+            <a target="_self" href="https://www.linkedin.com/in/pcarorevuelta/" >LinkedIn</a>
+          </li>
+      </ul>
+    </nav>
+
+    <ul class="social">
+      <li>
+        <a class="sc-Twitter"
+           href="http://twitter.com/pcaro"
+           target="_blank">
+          <i class="fa-brands fa-Twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Github"
+           href="http://github.com/pcaro"
+           target="_blank">
+          <i class="fa-brands fa-Github"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Linkedin"
+           href="https://www.linkedin.com/in/pcarorevuelta"
+           target="_blank">
+          <i class="fa-brands fa-Linkedin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Facebook"
+           href="https://www.facebook.com/pablo.carorevuelta"
+           target="_blank">
+          <i class="fa-brands fa-Facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Email"
+           href="mailto:correo@pablocaro.es"
+           target="_blank">
+          <i class="fa-brands fa-Email"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+</aside>
+  <main>
+
+<nav>
+  <a href="https://pablocaro.es/">Inicio</a>
+
+  <a href="/archives.html">Archivo</a>
+  <a href="/categories.html">Categorías</a>
+  <a href="/tags.html">Etiquetas</a>
+  <a href="/search.html">Búsqueda</a>
+  <a href="/en/">English</a>
+
+  <a href="https://pablocaro.es/feeds/all.atom.xml">Atom</a>
+
+  <a href="https://pablocaro.es/feeds/all.rss.xml">RSS</a>
+</nav>
+
+<article class="single">
+  <header>
+          <div class="translations">
+            <a href="https://pablocaro.es/en/google-stitch">Read in English</a>
+    </div>
+
+    <h1 id="google-stitch">Google Stitch: Generación y prototipado UI con AI</h1>
+    <p>
+      Publicado el 13 de April de 2026 en <a href="https://pablocaro.es/category/herramientas.html">Herramientas</a>
+
+    </p>
+  </header>
+
+
+  <div>
+    <p><a href="https://stitch.withgoogle.com/">Google Stitch</a> es una herramienta de diseño AI-native impulsada por Gemini para generar interfaces de usuario a partir de texto o imágenes. </p>
+<p><img alt="Google Stitch" src="https://pablocaro.es/images/stitch.png"></p>
+<h2 id="el-caso-de-uso">El caso de uso<a class="headerlink" href="#el-caso-de-uso" title="Permanent link">&para;</a></h2>
+<p>Diseñar flujos de UI y prototipos rápidos (dashboards, formularios, CRUDs) es un proceso repetitivo. Herramientas tradicionales como Figma son el estándar para diseño detallado, pero para la ideación rápida o para desarrolladores sin perfil de diseño, la generación mediante AI reduce drásticamente el tiempo.</p>
+<h2 id="caracteristicas-principales">Características principales<a class="headerlink" href="#caracteristicas-principales" title="Permanent link">&para;</a></h2>
+<p>Tras la gran actualización de marzo de 2026, Stitch incluye:</p>
+<ul>
+<li><strong>Canvas infinito AI-native</strong>: Soporte para texto, imágenes y código simultáneamente.</li>
+<li><strong>Generación múltiple</strong>: Creación de hasta 5 pantallas conectadas a la vez.</li>
+<li><strong>Prototipado interactivo instantáneo</strong>: Transición entre pantallas generadas y autocompletado de flujos.</li>
+<li><strong>Soporte de voz</strong>: Posibilidad de dictar modificaciones o críticas de diseño en tiempo real.</li>
+<li><strong>DESIGN.md</strong>: Archivo markdown exportable que estandariza las reglas de diseño para ser consumidas por otros agentes o proyectos.</li>
+</ul>
+<h2 id="exportacion-y-codigo">Exportación y código<a class="headerlink" href="#exportacion-y-codigo" title="Permanent link">&para;</a></h2>
+<p>Una de las ventajas es que Stitch no genera solo imágenes, sino código funcional exportable:</p>
+<ul>
+<li><strong>Frameworks soportados</strong>: HTML/CSS, Tailwind, Vue.js, Angular, Flutter y SwiftUI.</li>
+<li><strong>Integración con Figma</strong>: Permite exportar los diseños directamente a Figma para su refinamiento.</li>
+<li><strong>MCP y Google AI Studio</strong>: Facilita la conexión de Stitch con entornos de código y agentes como Antigravity.</li>
+</ul>
+<h2 id="precios-y-limites">Precios y límites<a class="headerlink" href="#precios-y-limites" title="Permanent link">&para;</a></h2>
+<p>Actualmente Stitch opera dentro de Google Labs y es de uso <strong>gratuito</strong>, pero con cuotas:</p>
+<ul>
+<li><strong>350 generaciones</strong> mensuales estándar (Gemini 3 Flash)</li>
+<li><strong>200 generaciones</strong> mensuales experimentales o Pro (Gemini 3 Pro)</li>
+</ul>
+<h2 id="consideraciones-frente-a-figma">Consideraciones frente a Figma<a class="headerlink" href="#consideraciones-frente-a-figma" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Cuándo usar Stitch</strong>: Para prototipado ultra rápido, MVPs, flujos estándar (CRUDs) y para desarrolladores o product managers que necesiten materializar ideas sin dominar una herramienta de diseño.</li>
+<li><strong>Cuándo usar Figma</strong>: Para sistemas de diseño corporativos, identidades visuales complejas, colaboración multijugador masiva en tiempo real y flujos de trabajo fuertemente integrados.</li>
+</ul>
+<p>Aunque la irrupción de Stitch amenaza el monopolio del diseño basado en "arrastrar rectángulos" para interfaces estándar, la exportación a Figma permite usarlos conjuntamente.</p>
+<p><em>Fuentes</em>: 
+- <a href="https://blog.google/innovation-and-ai/models-and-research/google-labs/stitch-ai-ui-design/">Google Blog: Design UI using AI</a>
+- <a href="https://www.nxcode.io/resources/news/google-stitch-vs-figma-ai-design-comparison-2026">NxCode: Google Stitch vs Figma</a></p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="https://pablocaro.es/tag/ai.html">AI</a>
+      <a href="https://pablocaro.es/tag/ui.html">UI</a>
+      <a href="https://pablocaro.es/tag/design.html">Design</a>
+      <a href="https://pablocaro.es/tag/gemini.html">Gemini</a>
+      <a href="https://pablocaro.es/tag/prototipado.html">prototipado</a>
+    </p>
+  </div>
+
+
+
+  <div class="neighbors">
+    <a class="btn float-left" href="https://pablocaro.es/rbw-sync-access-token" title="rbw sync: missing field `access_token`">
+      <i class="fa fa-angle-left"></i> Artículo anterior
+    </a>
+  </div>
+
+  <div class="related-posts">
+    <h4>Te puede gustar</h4>
+    <ul class="related-posts">
+      <li><a href="https://pablocaro.es/crit-review-loop-agents">Crit: El bucle de revisión para Agentes</a></li>
+      <li><a href="https://pablocaro.es/agent-browser-navegacion-agentes">Agent Browser: Navegación para Agentes</a></li>
+    </ul>
+  </div>
+
+
+
+<!-- Disqus -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'anotaciones';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>
+    Por favor, habilita JavaScript para ver los comentarios.
+</noscript>
+<!-- End Disqus -->
+</article>
+
+<footer>
+<p>
+  &copy; 2026  - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+Construido con <a href="http://getpelican.com" target="_blank">Pelican</a> usando el tema <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> 
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/3.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/3.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Anotaciones por Pablo Caro ",
+  "url" : "https://pablocaro.es",
+  "image": "/theme/img/profile.png",
+  "description": ""
+}
+</script>  <script src="https://files.stork-search.net/releases/v1.6.0/stork.js"></script>
+  <script>
+    window.storkIndexLoaded = false;
+    window.loadStorkIndex = function () {
+      if (window.storkIndexLoaded) {
+        return;
+      }
+      if (typeof stork === 'undefined') {
+        console.error('Stork is not loaded yet, retrying...');
+        setTimeout(window.loadStorkIndex, 100);
+        return;
+      }
+      stork.register("sitesearch", "https://pablocaro.es/search-index.st", { showProgress: false });
+      stork.register("sitesearch-page", "https://pablocaro.es/search-index.st", { showProgress: false });
+      window.storkIndexLoaded = true;
+    }
+  </script>
+
+</body>
+</html>

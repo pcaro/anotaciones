@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Anotaciones por Pablo Caro - UI</title><link href="https://pablocaro.es/" rel="alternate"></link><link href="https://pablocaro.es/feeds/tags/ui.atom.xml" rel="self"></link><id>https://pablocaro.es/</id><updated>2026-04-13T12:38:00+02:00</updated><subtitle>Anotaciones</subtitle><entry><title>Google Stitch: Generación y prototipado UI con AI</title><link href="https://pablocaro.es/google-stitch" rel="alternate"></link><published>2026-04-13T12:38:00+02:00</published><updated>2026-04-13T12:38:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-04-13:/google-stitch</id><summary type="html">&lt;p&gt;Análisis de Google Stitch como herramienta para generar interfaces de usuario y prototipos interactivos mediante inteligencia artificial.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;a href="https://stitch.withgoogle.com/"&gt;Google Stitch&lt;/a&gt; es una herramienta de diseño AI-native impulsada por Gemini para generar interfaces de usuario a partir de texto o imágenes. &lt;/p&gt;
+&lt;p&gt;&lt;img alt="Google Stitch" src="https://pablocaro.es/images/stitch.png"&gt;&lt;/p&gt;
+&lt;h2 id="el-caso-de-uso"&gt;El caso de uso&lt;a class="headerlink" href="#el-caso-de-uso" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Diseñar flujos de UI y prototipos rápidos (dashboards, formularios, CRUDs) es un proceso repetitivo. Herramientas tradicionales como Figma son el estándar para diseño detallado, pero para la ideación rápida o para desarrolladores sin perfil de diseño, la generación mediante AI reduce drásticamente el tiempo.&lt;/p&gt;
+&lt;h2 id="caracteristicas-principales"&gt;Características principales&lt;a class="headerlink" href="#caracteristicas-principales" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Tras la gran actualización de marzo de 2026, Stitch incluye:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Canvas infinito AI-native&lt;/strong&gt;: Soporte para texto, imágenes y código simultáneamente.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Generación múltiple&lt;/strong&gt;: Creación de hasta 5 pantallas conectadas a la vez.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Prototipado interactivo instantáneo&lt;/strong&gt;: Transición entre pantallas generadas y autocompletado de flujos.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Soporte de voz&lt;/strong&gt;: Posibilidad de dictar modificaciones o críticas de diseño en tiempo real.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;DESIGN.md&lt;/strong&gt;: Archivo markdown exportable que estandariza las reglas de diseño para ser consumidas por otros agentes o proyectos.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="exportacion-y-codigo"&gt;Exportación y código&lt;a class="headerlink" href="#exportacion-y-codigo" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Una de las ventajas es que Stitch no genera solo imágenes, sino código funcional exportable:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Frameworks soportados&lt;/strong&gt;: HTML/CSS, Tailwind, Vue.js, Angular, Flutter y SwiftUI.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Integración con Figma&lt;/strong&gt;: Permite exportar los diseños directamente a Figma para su refinamiento.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;MCP y Google AI Studio&lt;/strong&gt;: Facilita la conexión de Stitch con entornos de código y agentes como Antigravity.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="precios-y-limites"&gt;Precios y límites&lt;a class="headerlink" href="#precios-y-limites" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Actualmente Stitch opera dentro de Google Labs y es de uso &lt;strong&gt;gratuito&lt;/strong&gt;, pero con cuotas:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;350 generaciones&lt;/strong&gt; mensuales estándar (Gemini 3 Flash)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;200 generaciones&lt;/strong&gt; mensuales experimentales o Pro (Gemini 3 Pro)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="consideraciones-frente-a-figma"&gt;Consideraciones frente a Figma&lt;a class="headerlink" href="#consideraciones-frente-a-figma" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Cuándo usar Stitch&lt;/strong&gt;: Para prototipado ultra rápido, MVPs, flujos estándar (CRUDs) y para desarrolladores o product managers que necesiten materializar ideas sin dominar una herramienta de diseño.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Cuándo usar Figma&lt;/strong&gt;: Para sistemas de diseño corporativos, identidades visuales complejas, colaboración multijugador masiva en tiempo real y flujos de trabajo fuertemente integrados.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Aunque la irrupción de Stitch amenaza el monopolio del diseño basado en "arrastrar rectángulos" para interfaces estándar, la exportación a Figma permite usarlos conjuntamente.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Fuentes&lt;/em&gt;: 
+- &lt;a href="https://blog.google/innovation-and-ai/models-and-research/google-labs/stitch-ai-ui-design/"&gt;Google Blog: Design UI using AI&lt;/a&gt;
+- &lt;a href="https://www.nxcode.io/resources/news/google-stitch-vs-figma-ai-design-comparison-2026"&gt;NxCode: Google Stitch vs Figma&lt;/a&gt;&lt;/p&gt;</content><category term="Herramientas"></category><category term="AI"></category><category term="UI"></category><category term="Design"></category><category term="Gemini"></category><category term="prototipado"></category></entry></feed>

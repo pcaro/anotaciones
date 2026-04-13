@@ -8,6 +8,11 @@ url = "/cv"
 title = "Resume"
 
 [[input.files]]
+path = "google-stitch.html"
+url = "/google-stitch"
+title = "Google Stitch: UI generation and prototyping with AI"
+
+[[input.files]]
 path = "rbw-sync-access-token.html"
 url = "/rbw-sync-access-token"
 title = "rbw sync: missing field `access_token`"
@@ -331,6 +336,11 @@ title = "Django: links in object list"
 path = "settings-vars-processor.html"
 url = "/settings-vars-processor"
 title = "Settings vars processor"
+
+[[input.files]]
+path = "google-stitch-es.html"
+url = "/../google-stitch"
+title = "Google Stitch: Generación y prototipado UI con AI"
 
 [[input.files]]
 path = "rbw-sync-access-token-es.html"
