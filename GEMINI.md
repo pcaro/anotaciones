@@ -106,12 +106,18 @@ The site is automatically deployed to [GitHub Pages](https://pages.github.com/) 
 
 
 
-## Development Conventions
+## Writing Style
+
+**See `estilo_escritura.md` for the complete style guide.**
 
 *   **Content Format**: Blog posts are ALWAYS written in Markdown (`.md`). Older articles may still use reStructuredText (`.rst`), but all new content must be Markdown.
 *   **Bilingual Content**: Every new annotation MUST include both a Spanish and an English version (`.md` and `.en.md` respectively). Ensure internal links point to the corresponding language file (e.g., `.en.md` files should link to other `.en.md` files).
-*   **Writing Style**: Articles are written in a personal, informal tone, acting as thoughts, notes, or future reminders for the author ("writing for myself"). **CRITICAL:** Do NOT start articles with explicit phrases like "Nota mental:" or "Nota para recordar:". Just dive straight into the content and keep the tone naturally personal.
+*   **Writing Style**: Articles are written in a personal, informal tone, acting as thoughts, notes, or future reminders for the author ("writing for myself"). **CRITICAL:** Do NOT start articles with explicit phrases like "Nota mental:", "Nota para recordar:", or "Otra nota recordatoria:". Just dive straight into the content and keep the tone naturally personal.
 *   **Visual Content**: When a link is provided for an article, a screenshot of the website should be taken and saved in `content/images/`. This image MUST be added both inside the article AND as `featured_image: /images/filename.png` in the Markdown metadata so it appears on the homepage.
+
+
+## Development Conventions
+
 *   **Configuration**:
     *   `pelicanconf.py`: Main Pelican configuration (for both development and production).
     *   `publishconf.py`: (Optional) Overrides `pelicanconf.py` settings specifically for production builds (currently empty as all settings are consolidated in `pelicanconf.py`).
