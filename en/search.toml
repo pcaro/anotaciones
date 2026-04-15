@@ -3,11 +3,6 @@ html_selector = "main"
 base_directory = "/home/runner/work/anotaciones/anotaciones/output/en"
 
 [[input.files]]
-path = "cv.html"
-url = "/cv"
-title = "Resume"
-
-[[input.files]]
 path = "google-stitch.html"
 url = "/google-stitch"
 title = "Google Stitch: UI generation and prototyping with AI"
