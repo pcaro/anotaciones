@@ -2,6 +2,7 @@
 title: Resume
 slug: cv
 lang: en
+status: hidden
 ---
 
 **Senior Software Developer | Python Specialist**
@@ -14,7 +15,7 @@ lang: en
 
 ## About Me
 
-Software developer with over **15 years of experience** designing and building valuable technology. I wish to work where I can make a difference: not just by creating great software, but also by improving the way development is done.
+Software developer with over **20 years of experience** designing and building valuable technology. I wish to work where I can make a difference: not just by creating great software, but also by improving the way development is done.
 
 I take pride in keeping up with technology trends to evaluate, select, and apply the best tools and practices to deliver high value software. **Proud Linux user and open-source supporter for over 20 years.**
 
@@ -23,7 +24,29 @@ I take pride in keeping up with technology trends to evaluate, select, and apply
 ## Professional Experience
 
 ### Backend Engineer | **CARTO SL** | Seville
-*2019 - Present*
+*2022 - 2026*
+
+*CARTO is a Location Intelligence Platform where customers solve spatial problems with data and analysis.*
+
+- Work with geospatial data (PostGIS) and develop async Python-based backends
+- Big data processing for large companies (advertising and communications)
+- Docker and Google Cloud Platform (Storage, BigQuery), AWS and Microsoft Azure
+
+---
+
+### Staff Software Engineer | **Netskope** | Remote
+*2021 - 2022*
+
+*Netskope is a leading cloud security company.*
+
+- Working on RBI (Remote Browser Isolation) implementation
+- System especially programmed in Go
+- Focused on automated testing
+
+---
+
+### Backend Engineer | **CARTO SL** | Seville
+*2022 - Present*
 
 *CARTO is a Location Intelligence Platform where customers solve spatial problems with data and analysis.*
 
@@ -36,11 +59,10 @@ I take pride in keeping up with technology trends to evaluate, select, and apply
 ### Backend Engineer | **Gigas SL** | Madrid (remote)
 *2017 - 2019*
 
-*Gigas is mainly a provider of cloud services for businesses.*
+*Gigas is a provider of cloud services for businesses.*
 
-- Python-based backend system with RabbitMQ for KVM virtual machines management
-- New VM backend using VMware to complement the existing libvirt-based one
-- User notification and progress estimation system using async websockets and Node.js
+- Python backend system with RabbitMQ for KVM virtual machines management
+- New VM backend with VMware and notification system with websockets + Node.js
 
 ---
 
@@ -48,18 +70,16 @@ I take pride in keeping up with technology trends to evaluate, select, and apply
 *2015 - 2017*
 
 - Functional test infrastructure with unittest, Selenium Grid and Galen Framework
-- Plone web cache infrastructures with Varnish
-- JavaScript HTML5 video player focused on accessibility
+- Web cache with Varnish and HTML5 video player focused on accessibility
 
 ---
 
 ### CTO | **Duix Soluciones** | Seville
 *2014 - 2015*
 
-- Introduced Git for development, TDD and processes to improve productivity and reduce errors
-- Build-chain focusing on optimization and cross-platform compatibility (using Docker)
-- Django projects development: payment gateways, CMS integration, bootstrapping
-- Zope/Plone work for Universidad de Extremadura: responsive design, accessibility, Fabric deployment
+- Implementation of Git, TDD and processes to improve productivity and reduce errors
+- Django projects and Zope/Plone work for Universidad de Extremadura
+- Deployment system with Fabric, architecture and performance with Varnish
 
 ---
 
@@ -67,10 +87,9 @@ I take pride in keeping up with technology trends to evaluate, select, and apply
 *2010 - 2013*
 
 - Led the company area responsible for production of custom software for public institutions and large clients
-- Directed a team for development of a new BPM product (Tangram) and its implementation in universities and large corporations
-- Designed SOA architecture using Enterprise Service Bus with Liferay Portal, Alfresco, Activiti and custom Django manager
-- Managed engineering staff toward meeting milestones from project roadmaps
-- Met with clients on both technical and business levels
+- BPM product development (Tangram) with SOA architecture: Liferay, Alfresco, Activiti
+- Managed teams and projects up to 5 developers x 15 months
+- Department planning, budgeting and client meetings at technical and business level
 
 ---
 
@@ -78,10 +97,9 @@ I take pride in keeping up with technology trends to evaluate, select, and apply
 *2007 - 2011*
 
 - Led multiple projects and served as scrum master for the engineering team
-- Worked on all aspects of software development life cycle: requirements analysis, functional specification, technical design, implementation, and maintenance
-- Coding, debugging, system design, mentoring, technical lead, responsibility for project delivery
-- Managed projects as large as 5 developers x 15 months
-- Designed and developed internal production control software
+- Coding, debugging, system design, mentoring, technical lead
+- Managed projects up to 5 developers x 15 months
+- Developed internal software: vacation calendar, change control, timesheets
 - Trained newly hired staff
 
 ---
@@ -91,9 +109,8 @@ I take pride in keeping up with technology trends to evaluate, select, and apply
 
 - First position at Yaco Sistemas
 - Built new modules and features, led large-scale migration efforts
-- Taught courses: Introduction to Python Programming, Plone Programming, Plone Systems Administration
-- Designed and architected object-oriented systems
-- Developed code in Python for Plone CMS
+- Taught courses: Introduction to Python, Plone Programming, Plone Systems Administration
+- Designed and architected object-oriented systems in Python for Plone CMS
 
 ---
 
@@ -108,13 +125,13 @@ I take pride in keeping up with technology trends to evaluate, select, and apply
 ## Technical Skills
 
 ### Programming Languages
-**Python** (since 2002, extensive use) | JavaScript | SQL | PHP | Ruby | C#
+**Python** (since 2002, extensive use) | JavaScript/Typescrypt | SQL | PHP | C#
 
 ### Backend
 Django | Celery | REST | RabbitMQ | PostgreSQL | PostGIS | PgBouncer
 
 ### Cloud & DevOps
-Docker | AWS | Google Cloud Platform (BigQuery, Storage) | Microsoft Azure | Git | Fabric
+Docker | Kubernetes | Google Cloud Platform (BigQuery, Storage) | AWS | Git | Fabric
 
 ### Frontend
 JavaScript | HTML5 | CoffeeScript | Backbone | Responsive Design
@@ -155,8 +172,6 @@ Plone | Zope | Varnish | Selenium | Liferay | Alfresco
 ## Contact
 
 📧 **Email:** [correo@pablocaro.es](mailto:correo@pablocaro.es)
-
-📱 **Phone:** +34 600 649 515
 
 📍 **Location:** Bormujos (Seville, Spain)
 

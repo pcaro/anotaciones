@@ -2,6 +2,7 @@
 title: Currículo
 slug: cv
 lang: es
+status: hidden
 ---
 
 **Senior Software Developer | Python Specialist**
@@ -14,7 +15,7 @@ lang: es
 
 ## Sobre mí
 
-Desarrollador de software con más de **15 años de experiencia** diseñando y construyendo tecnología valiosa. Busco trabajar donde pueda marcar la diferencia: no solo creando excelente software, sino también mejorando la forma en que se desarrolla.
+Desarrollador de software con más de **20 años de experiencia** diseñando y construyendo tecnología valiosa. Busco trabajar donde pueda marcar la diferencia: no solo creando excelente software, sino también mejorando la forma en que se desarrolla.
 
 Me enorgullezco de mantenerme al día con las tendencias tecnológicas para evaluar, seleccionar y aplicar las mejores herramientas y prácticas que entreguen software de alto valor. **Usuario de Linux y defensor del código abierto desde hace más de 20 años.**
 
@@ -23,7 +24,29 @@ Me enorgullezco de mantenerme al día con las tendencias tecnológicas para eval
 ## Experiencia Profesional
 
 ### Backend Engineer | **CARTO SL** | Sevilla
-*2019 - Presente*
+*2022 - 2026*
+
+*CARTO es una Plataforma de Location Intelligence donde los clientes resuelven problemas espaciales con datos y análisis.*
+
+- Trabajo con datos geoespaciales (PostGIS) y desarrollo de backends asíncronos en Python
+- Procesamiento de big data para grandes empresas (publicidad y comunicaciones)
+- Docker y Google Cloud Platform (Storage, BigQuery), AWS y Microsoft Azure
+
+---
+
+### Staff Software Engineer | **Netskope** | Remoto
+*2021 - 2022*
+
+*Netskope es una empresa líder en seguridad en la nube.*
+
+- Trabajando en la implementación de RBI (Remote Browser Isolation)
+- Sistema programado en Go
+- Centrado en la creación de pruebas automáticas
+
+---
+
+### Backend Engineer | **CARTO SL** | Sevilla
+*2022 - Presente*
 
 *CARTO es una Plataforma de Location Intelligence donde los clientes resuelven problemas espaciales con datos y análisis.*
 
@@ -102,13 +125,13 @@ Me enorgullezco de mantenerme al día con las tendencias tecnológicas para eval
 ## Habilidades Técnicas
 
 ### Lenguajes de Programación
-**Python** (desde 2002, uso extenso) | JavaScript | SQL | PHP | Ruby | C#
+**Python** (desde 2002, uso extenso) | JavaScript/Typescrypt | SQL | PHP | C#
 
 ### Backend
 Django | Celery | REST | RabbitMQ | PostgreSQL | PostGIS | PgBouncer
 
 ### Cloud & DevOps
-Docker | AWS | Google Cloud Platform (BigQuery, Storage) | Microsoft Azure | Git | Fabric
+Docker | Kubernetes | Google Cloud Platform (BigQuery, Storage) | AWS | Git | Fabric
 
 ### Frontend
 JavaScript | HTML5 | CoffeeScript | Backbone | Responsive Design
@@ -149,8 +172,6 @@ Plone | Zope | Varnish | Selenium | Liferay | Alfresco
 ## Contacto
 
 📧 **Email:** [correo@pablocaro.es](mailto:correo@pablocaro.es)
-
-📱 **Teléfono:** +34 600 649 515
 
 📍 **Ubicación:** Bormujos (Sevilla, España)
 
