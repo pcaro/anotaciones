@@ -5,36 +5,43 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/en/</loc>
-<lastmod>2026-04-15T00:04:51-00:00</lastmod>
+<lastmod>2026-04-15T10:31:08-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/en/tags.html</loc>
-<lastmod>2026-04-15T00:04:51-00:00</lastmod>
+<lastmod>2026-04-15T10:31:08-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/en/categories.html</loc>
-<lastmod>2026-04-15T00:04:51-00:00</lastmod>
+<lastmod>2026-04-15T10:31:08-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/en/archives.html</loc>
-<lastmod>2026-04-15T00:04:51-00:00</lastmod>
+<lastmod>2026-04-15T10:31:08-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/en/search.html</loc>
-<lastmod>2026-04-15T00:04:51-00:00</lastmod>
+<lastmod>2026-04-15T10:31:08-00:00</lastmod>
 <changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/en/video-gemini-sevilla</loc>
+<lastmod>2026-04-15T00:00:00+02:00</lastmod>
+<changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
@@ -544,7 +551,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/en/category/miscellaneous.html</loc>
-<lastmod>2025-12-25T14:45:00+00:09</lastmod>
+<lastmod>2026-04-15T00:00:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -634,6 +641,41 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+<loc>/en/tag/ia.html</loc>
+<lastmod>2026-04-15T00:00:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/en/tag/gemini.html</loc>
+<lastmod>2026-04-15T00:00:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/en/tag/google.html</loc>
+<lastmod>2026-04-15T00:00:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/en/tag/video.html</loc>
+<lastmod>2026-04-15T00:00:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/en/tag/sevilla.html</loc>
+<lastmod>2026-04-15T00:00:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
 <loc>/en/tag/ai.html</loc>
 <lastmod>2026-04-13T12:38:00+00:09</lastmod>
 <changefreq>daily</changefreq>
@@ -649,13 +691,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/en/tag/design.html</loc>
-<lastmod>2026-04-13T12:38:00+00:09</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>/en/tag/gemini.html</loc>
 <lastmod>2026-04-13T12:38:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>

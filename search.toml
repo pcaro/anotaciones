@@ -3,6 +3,11 @@ html_selector = "main"
 base_directory = "/home/runner/work/anotaciones/anotaciones/output"
 
 [[input.files]]
+path = "video-gemini-sevilla.html"
+url = "/video-gemini-sevilla"
+title = "Creación de vídeo con Gemini: personajes de Sevilla"
+
+[[input.files]]
 path = "google-stitch.html"
 url = "/google-stitch"
 title = "Google Stitch: Generación y prototipado UI con AI"
@@ -756,6 +761,11 @@ title = "Corrector ortográfico de firefox 2.0 en castellano"
 path = "primera-anotacion-de-prueba.html"
 url = "/primera-anotacion-de-prueba"
 title = "Primera anotación de prueba"
+
+[[input.files]]
+path = "video-gemini-sevilla-en.html"
+url = "/en/video-gemini-sevilla"
+title = "Video Creation with Gemini: Seville Characters"
 
 [[input.files]]
 path = "google-stitch-en.html"

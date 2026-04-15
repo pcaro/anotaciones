@@ -3,6 +3,11 @@ html_selector = "main"
 base_directory = "/home/runner/work/anotaciones/anotaciones/output/en"
 
 [[input.files]]
+path = "video-gemini-sevilla.html"
+url = "/video-gemini-sevilla"
+title = "Video Creation with Gemini: Seville Characters"
+
+[[input.files]]
 path = "google-stitch.html"
 url = "/google-stitch"
 title = "Google Stitch: UI generation and prototyping with AI"
@@ -331,6 +336,11 @@ title = "Django: links in object list"
 path = "settings-vars-processor.html"
 url = "/settings-vars-processor"
 title = "Settings vars processor"
+
+[[input.files]]
+path = "video-gemini-sevilla-es.html"
+url = "/../video-gemini-sevilla"
+title = "Creación de vídeo con Gemini: personajes de Sevilla"
 
 [[input.files]]
 path = "google-stitch-es.html"
