@@ -43,7 +43,7 @@ All common tasks are automated using `invoke` (defined in `tasks.py`). Note that
 
 *   **Build the site**:
     ```bash
-    uv run invoke build
+    uv run pelican content -o output -s pelicanconf.py
     ```
 
 *   **Run a local development server**:
@@ -69,8 +69,9 @@ All common tasks are automated using `invoke` (defined in `tasks.py`). Note that
 
 *   **Build for production**:
     ```bash
-    uv run invoke production
+    uv run pelican content -o output -s pelicanconf.py
     ```
+    *(Production uses the same config; `SITEURL` and other settings are already set correctly in `pelicanconf.py`.)*
 
 *   **Create a new post**:
     ```bash
@@ -121,8 +122,8 @@ The site is automatically deployed to [GitHub Pages](https://pages.github.com/) 
 *   **Configuration**:
     *   `pelicanconf.py`: Main Pelican configuration (for both development and production).
     *   `publishconf.py`: (Optional) Overrides `pelicanconf.py` settings specifically for production builds (currently empty as all settings are consolidated in `pelicanconf.py`).
-*   **Local Development**: `uv run invoke develop` is recommended for immediate feedback.
-*   **Build Verification**: Always run a local build and verify it works correctly before committing to avoid breaking the automated deployment.
+*   **Local Development**: `uv run invoke develop` is recommended for immediate feedback with auto-reload.
+*   **Build Verification**: Always run `uv run pelican content -o output -s pelicanconf.py` and verify it works correctly before committing to avoid breaking the automated deployment.
 *   **Asset Paths**: Ensure `SITEURL` in `pelicanconf.py` is set correctly to the root domain (`https://pablocaro.es`) and `RELATIVE_URLS = False` for production builds to avoid path issues. Static assets are managed under the `themes/Flex/static/` and `content/images/` directories.
 *   **Internal Linking**: Annotations should include links to other related annotations, always linking to the appropriate language version.
 
