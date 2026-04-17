@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Annotations by Pablo Caro - orangepi</title><link href="/en/" rel="alternate"></link><link href="/en/feeds/tags/orangepi.atom.xml" rel="self"></link><id>/en/</id><updated>2026-04-17T00:00:00+02:00</updated><subtitle>Annotations</subtitle><entry><title>Velvet OS: modern kernels for old ARM hardware</title><link href="/en/velvet-os" rel="alternate"></link><published>2026-04-17T00:00:00+02:00</published><updated>2026-04-17T00:00:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:None,2026-04-17:/en/velvet-os</id><summary type="html">&lt;p&gt;Mental note about Velvet OS, an interesting project to update kernels on old ARM devices.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="Velvet OS" src="/images/velvet-os.png"&gt;&lt;/p&gt;
+&lt;p&gt;Mental note about &lt;a href="https://velvet-os.github.io/"&gt;Velvet OS&lt;/a&gt;, a project I discovered through &lt;a href="https://raspberryparatorpes.net/proyectos/odroid-u3-kernel-6-velvet-os/"&gt;this post on Raspberry Pi para Torpes&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Velvet OS is a simple framework for building bootable SD card images with Debian or Ubuntu for various ARM devices. The goal is to provide modern Linux kernels for hardware that no longer has official support or was left abandoned.&lt;/p&gt;
+&lt;p&gt;What makes the project interesting:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Supports more than 30 different systems&lt;/strong&gt;, from ARM Chromebooks to SBCs like Odroid and OrangePi&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Updated kernels&lt;/strong&gt; (currently 6.12) for hardware stuck on 3.x or 4.x kernels&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Ready-to-use images&lt;/strong&gt;, no need to compile anything&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Actively maintained&lt;/strong&gt; by hexdump0815&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The name "Velvet OS" comes from the author's habit of covering scratched Chromebook lids with self-adhesive velvet, making the commercial branding disappear. The idea is that using these images should be as pleasant an experience as touching velvet.&lt;/p&gt;
+&lt;p&gt;I have several old gadgets lying around the house, including two OrangePi boards. I should find some time to update them with modern kernels and give them a second life.&lt;/p&gt;
+&lt;p&gt;The Raspberry Pi para Torpes tutorial explains in detail how to update a 2013 ODROID-U3 to kernel 6.12, including steps to configure U-Boot, copy the kernel, generate the initrd, and adjust the &lt;code&gt;boot.ini&lt;/code&gt;. The whole process is very well documented.&lt;/p&gt;
+&lt;p&gt;Links:
+- &lt;a href="https://velvet-os.github.io/"&gt;Velvet OS&lt;/a&gt;
+- &lt;a href="https://github.com/hexdump0815/linux-mainline-and-mali-generic-stable-kernel"&gt;Precompiled kernels for Exynos4412&lt;/a&gt;
+- &lt;a href="https://raspberryparatorpes.net/proyectos/odroid-u3-kernel-6-velvet-os/"&gt;Tutorial: ODROID-U3 with kernel 6.12&lt;/a&gt;&lt;/p&gt;</content><category term="Miscellaneous"></category><category term="linux"></category><category term="kernel"></category><category term="arm"></category><category term="odroid"></category><category term="orangepi"></category><category term="velvet-os"></category></entry></feed>

@@ -3,6 +3,11 @@ html_selector = "main"
 base_directory = "/home/runner/work/anotaciones/anotaciones/output"
 
 [[input.files]]
+path = "velvet-os.html"
+url = "/velvet-os"
+title = "Velvet OS: kernels modernos para hardware ARM antiguo"
+
+[[input.files]]
 path = "video-gemini-sevilla.html"
 url = "/video-gemini-sevilla"
 title = "Creación de vídeo con Gemini: personajes de Sevilla"
@@ -761,6 +766,11 @@ title = "Corrector ortográfico de firefox 2.0 en castellano"
 path = "primera-anotacion-de-prueba.html"
 url = "/primera-anotacion-de-prueba"
 title = "Primera anotación de prueba"
+
+[[input.files]]
+path = "velvet-os-en.html"
+url = "/en/velvet-os"
+title = "Velvet OS: modern kernels for old ARM hardware"
 
 [[input.files]]
 path = "video-gemini-sevilla-en.html"

@@ -5,36 +5,43 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/en/</loc>
-<lastmod>2026-04-15T10:31:08-00:00</lastmod>
+<lastmod>2026-04-17T17:16:00-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/en/tags.html</loc>
-<lastmod>2026-04-15T10:31:08-00:00</lastmod>
+<lastmod>2026-04-17T17:16:00-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/en/categories.html</loc>
-<lastmod>2026-04-15T10:31:08-00:00</lastmod>
+<lastmod>2026-04-17T17:16:00-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/en/archives.html</loc>
-<lastmod>2026-04-15T10:31:08-00:00</lastmod>
+<lastmod>2026-04-17T17:16:00-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/en/search.html</loc>
-<lastmod>2026-04-15T10:31:08-00:00</lastmod>
+<lastmod>2026-04-17T17:16:00-00:00</lastmod>
 <changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/en/velvet-os</loc>
+<lastmod>2026-04-17T00:00:00+02:00</lastmod>
+<changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
@@ -551,7 +558,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/en/category/miscellaneous.html</loc>
-<lastmod>2026-04-15T00:00:00+00:09</lastmod>
+<lastmod>2026-04-17T00:00:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -641,6 +648,48 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+<loc>/en/tag/linux.html</loc>
+<lastmod>2026-04-17T00:00:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/en/tag/kernel.html</loc>
+<lastmod>2026-04-17T00:00:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/en/tag/arm.html</loc>
+<lastmod>2026-04-17T00:00:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/en/tag/odroid.html</loc>
+<lastmod>2026-04-17T00:00:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/en/tag/orangepi.html</loc>
+<lastmod>2026-04-17T00:00:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/en/tag/velvet-os.html</loc>
+<lastmod>2026-04-17T00:00:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
 <loc>/en/tag/ia.html</loc>
 <lastmod>2026-04-15T00:00:00+00:09</lastmod>
 <changefreq>daily</changefreq>
@@ -719,13 +768,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/en/tag/bug.html</loc>
-<lastmod>2026-04-11T19:30:00+00:09</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>/en/tag/linux.html</loc>
 <lastmod>2026-04-11T19:30:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>

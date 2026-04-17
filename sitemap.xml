@@ -5,36 +5,43 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://pablocaro.es/</loc>
-<lastmod>2026-04-15T10:31:07-00:00</lastmod>
+<lastmod>2026-04-17T17:15:59-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://pablocaro.es/tags.html</loc>
-<lastmod>2026-04-15T10:31:07-00:00</lastmod>
+<lastmod>2026-04-17T17:15:59-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://pablocaro.es/categories.html</loc>
-<lastmod>2026-04-15T10:31:07-00:00</lastmod>
+<lastmod>2026-04-17T17:15:59-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://pablocaro.es/archives.html</loc>
-<lastmod>2026-04-15T10:31:07-00:00</lastmod>
+<lastmod>2026-04-17T17:15:59-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://pablocaro.es/search.html</loc>
-<lastmod>2026-04-15T10:31:07-00:00</lastmod>
+<lastmod>2026-04-17T17:15:59-00:00</lastmod>
 <changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://pablocaro.es/velvet-os</loc>
+<lastmod>2026-04-17T00:00:00+02:00</lastmod>
+<changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
@@ -1146,7 +1153,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://pablocaro.es/category/miscellaneous.html</loc>
-<lastmod>2026-04-15T00:00:00+00:09</lastmod>
+<lastmod>2026-04-17T00:00:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -1236,6 +1243,48 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+<loc>https://pablocaro.es/tag/linux.html</loc>
+<lastmod>2026-04-17T00:00:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://pablocaro.es/tag/kernel.html</loc>
+<lastmod>2026-04-17T00:00:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://pablocaro.es/tag/arm.html</loc>
+<lastmod>2026-04-17T00:00:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://pablocaro.es/tag/odroid.html</loc>
+<lastmod>2026-04-17T00:00:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://pablocaro.es/tag/orangepi.html</loc>
+<lastmod>2026-04-17T00:00:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://pablocaro.es/tag/velvet-os.html</loc>
+<lastmod>2026-04-17T00:00:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
 <loc>https://pablocaro.es/tag/ia.html</loc>
 <lastmod>2026-04-15T00:00:00+00:09</lastmod>
 <changefreq>daily</changefreq>
@@ -1314,13 +1363,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://pablocaro.es/tag/bug.html</loc>
-<lastmod>2026-04-11T19:30:00+00:09</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>https://pablocaro.es/tag/linux.html</loc>
 <lastmod>2026-04-11T19:30:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
