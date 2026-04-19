@@ -141,6 +141,50 @@ The blog supports multi-language content (Spanish and English) using `pelican-i1
     4.  The plugin will automatically link them and generate the subsite.
 *   **Configuration**: managed in `pelicanconf.py` under `I18N_SUBSITES`.
 
+## Social Media Content
+
+**After completing a blog post and committing, ask the user if they want social media content.** If yes, generate:
+
+### 1. LinkedIn Content
+
+**a. Main post** (short, in English, based on the English version of the post):
+- Title/hook + key conclusions or summary
+- Use the `linkedin-post-formatter` skill for Unicode bold/italic formatting
+- Keep it under 3000 characters, but aim for ~500-800 for optimal engagement
+- No URLs in the post body (LinkedIn suppresses reach)
+- End with "Link in comments" CTA and relevant hashtags
+
+**b. First comment** (with links to both versions):
+```
+Here's the full comparison:
+🇬🇧 English: https://pablocaro.es/en/<slug>
+🇪🇸 Español: https://pablocaro.es/<slug>
+```
+
+### 2. Tweet for X
+
+Short, engaging tweet to drive traffic from X. Structure:
+- Hook/question
+- Key finding or verdict
+- Links to both English and Spanish versions
+- 2-3 relevant hashtags
+
+Example:
+```
+GitHub CLI vs Vercel Skills for AI agents?
+
+Just published a comparison.
+
+Verdict: `npx skills` wins for multi-agent workflows.
+
+Full breakdown:
+
+https://pablocaro.es/en/installing-github-skills
+https://pablocaro.es/instalando-skills-de-github
+
+#AIAgents #DeveloperTools
+```
+
 ### How It Works
 
 1. **Plugin Integration**: The `pelican-search` plugin is configured in `pelicanconf.py`:
