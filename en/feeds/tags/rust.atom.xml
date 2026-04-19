@@ -162,4 +162,87 @@ rbw&lt;span class="w"&gt; &lt;/span&gt;get&lt;span class="w"&gt; &lt;/span&gt;--
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;The &lt;code&gt;!&lt;/code&gt; prefix tells &lt;code&gt;pi-agent&lt;/code&gt; to execute the command and use its standard output as the key. Thanks to the &lt;code&gt;rbw&lt;/code&gt; agent, this command will run instantly without asking for your master password every time, as long as the vault is unlocked.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="rbw help" src="/en/images/rbw_help.png"&gt;&lt;/p&gt;</content><category term="Tools"></category><category term="bitwarden"></category><category term="cli"></category><category term="rust"></category><category term="security"></category><category term="pi-agent"></category></entry></feed>
+&lt;p&gt;&lt;img alt="rbw help" src="/en/images/rbw_help.png"&gt;&lt;/p&gt;</content><category term="Tools"></category><category term="bitwarden"></category><category term="cli"></category><category term="rust"></category><category term="security"></category><category term="pi-agent"></category></entry><entry><title>broot, a different way to navigate your directories</title><link href="/en/broot-una-forma-diferente-de-navegar-directorios" rel="alternate"></link><published>2026-01-02T10:00:00+01:00</published><updated>2026-01-02T10:00:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:None,2026-01-02:/en/broot-una-forma-diferente-de-navegar-directorios</id><summary type="html">&lt;p&gt;broot is a terminal tool for interactive directory exploration with fuzzy search, multiple panels, and file preview.&lt;/p&gt;</summary><content type="html">&lt;p&gt;I've been looking for a replacement for &lt;code&gt;ls&lt;/code&gt; and &lt;code&gt;tree&lt;/code&gt; that would let me navigate large directories without losing context. broot is the tool I needed.&lt;/p&gt;
+&lt;h2 id="installation"&gt;Installation&lt;a class="headerlink" href="#installation" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# With cargo (Rust)&lt;/span&gt;
+cargo&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;broot
+
+&lt;span class="c1"&gt;# Or with your package manager&lt;/span&gt;
+brew&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;broot&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="c1"&gt;# macOS&lt;/span&gt;
+apt&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;broot&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="c1"&gt;# Debian/Ubuntu&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="getting-started"&gt;Getting started&lt;a class="headerlink" href="#getting-started" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The basic command is simply &lt;code&gt;br&lt;/code&gt; (you can create an alias to replace &lt;code&gt;cd&lt;/code&gt;):&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;br
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This opens an interactive tree view of the current directory. Main keys:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;↓&lt;/code&gt; / &lt;code&gt;↑&lt;/code&gt; - Navigate between files and directories&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;/&lt;/code&gt; - Fuzzy search (e.g., &lt;code&gt;/config&lt;/code&gt; finds all files with "config" in the name)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Enter&lt;/code&gt; - Enter a directory&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;alt + Enter&lt;/code&gt; - &lt;code&gt;cd&lt;/code&gt; to the selected directory and exit broot&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;:e&lt;/code&gt; - Open the selected file with your &lt;code&gt;$EDITOR&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;:q&lt;/code&gt; - Quit&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="features-i-use"&gt;Features I use&lt;a class="headerlink" href="#features-i-use" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="search-without-losing-context"&gt;Search without losing context&lt;a class="headerlink" href="#search-without-losing-context" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Unlike &lt;code&gt;find&lt;/code&gt;, broot shows where each result is located within the directory tree:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;br
+/pytest&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="c1"&gt;# Finds all files/directories with &amp;quot;pytest&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This is useful when you know a filename but don't remember which folder it's in.&lt;/p&gt;
+&lt;h3 id="multiple-panels"&gt;Multiple panels&lt;a class="headerlink" href="#multiple-panels" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;You can split the view to compare or move files between directories:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;:pp  # Create right panel
+:pc  # Create bottom panel
+:pt  # Swap panels
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;In each panel you can navigate independently and use verbs like &lt;code&gt;:copy&lt;/code&gt; or &lt;code&gt;:move&lt;/code&gt;.&lt;/p&gt;
+&lt;h3 id="file-preview"&gt;File preview&lt;a class="headerlink" href="#file-preview" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Select a file and use &lt;code&gt;:preview&lt;/code&gt; to see its content without leaving broot. For images in terminals that support it (kitty, iterm2):&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;:preview
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id="show-only-relevant-files"&gt;Show only relevant files&lt;a class="headerlink" href="#show-only-relevant-files" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;broot automatically hides Git-ignored files and common directories like &lt;code&gt;node_modules&lt;/code&gt;. To see them:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;:show_git_ignored
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id="custom-verbs"&gt;Custom verbs&lt;a class="headerlink" href="#custom-verbs" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;In &lt;code&gt;~/.config/broot/conf.toml&lt;/code&gt; you can add custom commands:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;[[verbs]]&lt;/span&gt;
+&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;edit&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;invocation&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;e&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;execution&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;$EDITOR {file}&amp;quot;&lt;/span&gt;
+
+&lt;span class="k"&gt;[[verbs]]&lt;/span&gt;
+&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;git status&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;invocation&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;gs&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;execution&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;git status&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="shell-integration"&gt;Shell integration&lt;a class="headerlink" href="#shell-integration" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;To use &lt;code&gt;br&lt;/code&gt; as a &lt;code&gt;cd&lt;/code&gt; replacement, add this to your &lt;code&gt;.bashrc&lt;/code&gt; or &lt;code&gt;.zshrc&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# This allows br to change the parent shell&amp;#39;s directory&lt;/span&gt;
+&lt;span class="nb"&gt;source&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;/usr/share/broot/launcher/bash/br
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Now &lt;code&gt;br directory&lt;/code&gt; leaves you in that directory when you exit.&lt;/p&gt;
+&lt;h2 id="when-to-use-broot"&gt;When to use broot&lt;a class="headerlink" href="#when-to-use-broot" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Navigating large projects with many folders&lt;/li&gt;
+&lt;li&gt;Finding files when you don't remember the exact path&lt;/li&gt;
+&lt;li&gt;Moving/copying files between distant directories&lt;/li&gt;
+&lt;li&gt;Exploring directories with many Git-ignored files&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="links"&gt;Links&lt;a class="headerlink" href="#links" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://dystroy.org/broot/"&gt;Official documentation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/Canop/broot"&gt;GitHub repository&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;em&gt;Original source&lt;/em&gt;: &lt;a href="https://dystroy.org/broot/"&gt;broot documentation&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="broot terminal interface" src="/en/images/broot_terminal.png"&gt;&lt;/p&gt;</content><category term="Tools"></category><category term="terminal"></category><category term="cli"></category><category term="broot"></category><category term="rust"></category><category term="tools"></category></entry></feed>

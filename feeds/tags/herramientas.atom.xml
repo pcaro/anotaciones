@@ -109,7 +109,90 @@ gah install charmbracelet/glow&lt;/p&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Gah se encarga de descargar el asset correcto para tu arquitectura, descomprimirlo y colocarlo en tu path.&lt;/p&gt;
 &lt;/div&gt;
-</content><category term="Linux"></category><category term="linux"></category><category term="herramientas"></category><category term="cli"></category></entry><entry><title>YAML Multilínea: Entendiendo y probando cadenas de texto complejas</title><link href="https://pablocaro.es/yaml-multilinea-cadenas-complejas" rel="alternate"></link><published>2025-12-25T16:10:00+01:00</published><updated>2025-12-25T16:10:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2025-12-25:/yaml-multilinea-cadenas-complejas</id><summary type="html">&lt;p&gt;Explora las opciones de YAML para manejar cadenas de texto multilínea de forma efectiva, con una demo interactiva que te permite probarlas en tiempo real.&lt;/p&gt;</summary><content type="html">&lt;p&gt;YAML se ha convertido en el formato de facto para la configuración en muchos proyectos, desde Kubernetes hasta scripts de CI/CD. Una de sus funcionalidades más potentes, y a veces confusas, es la gestión de &lt;strong&gt;cadenas de texto multilínea&lt;/strong&gt;. Afortunadamente, existe una herramienta interactiva excepcional para dominar este aspecto: &lt;a href="https://yaml-multiline.info/"&gt;yaml-multiline.info&lt;/a&gt;.&lt;/p&gt;
+</content><category term="Linux"></category><category term="linux"></category><category term="herramientas"></category><category term="cli"></category></entry><entry><title>broot, una forma diferente de navegar por tus directorios</title><link href="https://pablocaro.es/broot-una-forma-diferente-de-navegar-directorios" rel="alternate"></link><published>2026-01-02T10:00:00+01:00</published><updated>2026-01-02T10:00:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-01-02:/broot-una-forma-diferente-de-navegar-directorios</id><summary type="html">&lt;p&gt;broot es una herramienta para la terminal que permite explorar directorios de forma interactiva, con búsqueda fuzzy, paneles múltiples y previsualización de archivos.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Llevaba tiempo buscando un reemplazo para &lt;code&gt;ls&lt;/code&gt; y &lt;code&gt;tree&lt;/code&gt; que me permitiera navegar por directorios grandes sin perder el contexto. broot es la herramienta que necesitaba.&lt;/p&gt;
+&lt;h2 id="instalacion"&gt;Instalación&lt;a class="headerlink" href="#instalacion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Con cargo (Rust)&lt;/span&gt;
+cargo&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;broot
+
+&lt;span class="c1"&gt;# O con tu gestor de paquetes&lt;/span&gt;
+brew&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;broot&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="c1"&gt;# macOS&lt;/span&gt;
+apt&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;broot&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="c1"&gt;# Debian/Ubuntu&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="primeros-pasos"&gt;Primeros pasos&lt;a class="headerlink" href="#primeros-pasos" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;El comando básico es simplemente &lt;code&gt;br&lt;/code&gt; (puedes crear un alias para que reemplace a &lt;code&gt;cd&lt;/code&gt;):&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;br
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Esto abre una vista de árbol interactiva del directorio actual. Las teclas principales:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;↓&lt;/code&gt; / &lt;code&gt;↑&lt;/code&gt; - Navegar entre archivos y directorios&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;/&lt;/code&gt; - Búsqueda fuzzy (ej: &lt;code&gt;/config&lt;/code&gt; encuentra todos los archivos con "config" en el nombre)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Enter&lt;/code&gt; - Entrar en un directorio&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;alt + Enter&lt;/code&gt; - Hacer &lt;code&gt;cd&lt;/code&gt; al directorio seleccionado y salir de broot&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;:e&lt;/code&gt; - Abrir el archivo seleccionado con el editor definido en &lt;code&gt;$EDITOR&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;:q&lt;/code&gt; - Salir&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="caracteristicas-que-uso"&gt;Características que uso&lt;a class="headerlink" href="#caracteristicas-que-uso" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="busqueda-sin-perder-el-contexto"&gt;Búsqueda sin perder el contexto&lt;a class="headerlink" href="#busqueda-sin-perder-el-contexto" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;A diferencia de &lt;code&gt;find&lt;/code&gt;, broot muestra dónde está cada resultado dentro del árbol de directorios:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;br
+/pytest&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="c1"&gt;# Encuentra todos los archivos/directorios con &amp;quot;pytest&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Esto es útil cuando sabes el nombre de un archivo pero no recuerdas en qué carpeta está.&lt;/p&gt;
+&lt;h3 id="paneles-multiples"&gt;Paneles múltiples&lt;a class="headerlink" href="#paneles-multiples" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Puedes dividir la vista para comparar o mover archivos entre directorios:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;:pp  # Crear panel derecho
+:pc  # Crear panel inferior
+:pt  # Intercambiar paneles
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;En cada panel puedes navegar independientemente y usar verbos como &lt;code&gt;:copy&lt;/code&gt; o &lt;code&gt;:move&lt;/code&gt;.&lt;/p&gt;
+&lt;h3 id="previsualizacion-de-archivos"&gt;Previsualización de archivos&lt;a class="headerlink" href="#previsualizacion-de-archivos" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Selecciona un archivo y usa &lt;code&gt;:preview&lt;/code&gt; para ver su contenido sin salir de broot. Para imágenes en terminales que lo soporten (kitty, iterm2):&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;:preview
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id="ver-solo-archivos-relevantes"&gt;Ver solo archivos relevantes&lt;a class="headerlink" href="#ver-solo-archivos-relevantes" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;broot oculta automáticamente archivos ignorados por Git y directorios comunes como &lt;code&gt;node_modules&lt;/code&gt;. Para verlos:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;:show_git_ignored
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id="verbos-personalizados"&gt;Verbos personalizados&lt;a class="headerlink" href="#verbos-personalizados" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;En &lt;code&gt;~/.config/broot/conf.toml&lt;/code&gt; puedes añadir comandos personalizados:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;[[verbs]]&lt;/span&gt;
+&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;edit&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;invocation&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;e&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;execution&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;$EDITOR {file}&amp;quot;&lt;/span&gt;
+
+&lt;span class="k"&gt;[[verbs]]&lt;/span&gt;
+&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;git status&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;invocation&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;gs&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;execution&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;git status&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="integracion-con-el-shell"&gt;Integración con el shell&lt;a class="headerlink" href="#integracion-con-el-shell" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Para usar &lt;code&gt;br&lt;/code&gt; como reemplazo de &lt;code&gt;cd&lt;/code&gt;, añade esto a tu &lt;code&gt;.bashrc&lt;/code&gt; o &lt;code&gt;.zshrc&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Esto permite que br cambie el directorio del shell padre&lt;/span&gt;
+&lt;span class="nb"&gt;source&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;/usr/share/broot/launcher/bash/br
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Ahora &lt;code&gt;br directorio&lt;/code&gt; te deja en ese directorio al salir.&lt;/p&gt;
+&lt;h2 id="cuando-usar-broot"&gt;Cuándo usar broot&lt;a class="headerlink" href="#cuando-usar-broot" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Navegar por proyectos grandes con muchas carpetas&lt;/li&gt;
+&lt;li&gt;Buscar archivos cuando no recuerdas la ruta exacta&lt;/li&gt;
+&lt;li&gt;Mover/copiar archivos entre directorios distantes&lt;/li&gt;
+&lt;li&gt;Explorar directorios con muchos archivos ignorados por Git&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="enlaces"&gt;Enlaces&lt;a class="headerlink" href="#enlaces" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://dystroy.org/broot/"&gt;Documentación oficial&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/Canop/broot"&gt;Repositorio GitHub&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;em&gt;Fuente original&lt;/em&gt;: &lt;a href="https://dystroy.org/broot/"&gt;Documentación de broot&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="broot terminal interface" src="https://pablocaro.es/images/broot_terminal.png"&gt;&lt;/p&gt;</content><category term="Herramientas"></category><category term="terminal"></category><category term="cli"></category><category term="broot"></category><category term="rust"></category><category term="herramientas"></category></entry><entry><title>YAML Multilínea: Entendiendo y probando cadenas de texto complejas</title><link href="https://pablocaro.es/yaml-multilinea-cadenas-complejas" rel="alternate"></link><published>2025-12-25T16:10:00+01:00</published><updated>2025-12-25T16:10:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2025-12-25:/yaml-multilinea-cadenas-complejas</id><summary type="html">&lt;p&gt;Explora las opciones de YAML para manejar cadenas de texto multilínea de forma efectiva, con una demo interactiva que te permite probarlas en tiempo real.&lt;/p&gt;</summary><content type="html">&lt;p&gt;YAML se ha convertido en el formato de facto para la configuración en muchos proyectos, desde Kubernetes hasta scripts de CI/CD. Una de sus funcionalidades más potentes, y a veces confusas, es la gestión de &lt;strong&gt;cadenas de texto multilínea&lt;/strong&gt;. Afortunadamente, existe una herramienta interactiva excepcional para dominar este aspecto: &lt;a href="https://yaml-multiline.info/"&gt;yaml-multiline.info&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id="formatos-para-cadenas-multilinea-en-yaml"&gt;Formatos para Cadenas Multilínea en YAML&lt;a class="headerlink" href="#formatos-para-cadenas-multilinea-en-yaml" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;YAML ofrece principalmente dos enfoques para definir cadenas que abarcan varias líneas:&lt;/p&gt;
 &lt;ol&gt;

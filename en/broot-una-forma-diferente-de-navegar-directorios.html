@@ -1,0 +1,377 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="/en/theme/stylesheet/style.min.css">
+
+
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+          href="/en/theme/pygments/github.min.css">
+
+
+  <link rel="stylesheet"
+        type="text/css"
+        href="/en/theme/stork/stork.css" />
+
+  <link rel="stylesheet" type="text/css" href="/en/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="/en/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="/en/theme/font-awesome/css/solid.css">
+
+
+  <link rel="shortcut icon" href="/theme/img/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/theme/img/favicon.ico" type="image/x-icon">
+
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#333333">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#333333">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Microsoft EDGE -->
+  <meta name="msapplication-TileColor" content="#333333">
+
+  <link href="/en/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Annotations by Pablo Caro Atom">
+
+  <link href="/en/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Annotations by Pablo Caro RSS">
+
+<script data-goatcounter="https://pcaro.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Pablo Caro" />
+<meta name="description" content="broot is a terminal tool for interactive directory exploration with fuzzy search, multiple panels, and file preview." />
+<meta name="keywords" content="terminal, cli, broot, rust, tools">
+
+<link rel="alternate" href="/en/broot-una-forma-diferente-de-navegar-directorios" hreflang="en" />
+<link rel="alternate" href="/en/../broot-una-forma-diferente-de-navegar-directorios" hreflang="es" />
+
+  <meta property="og:site_name" content="Annotations by Pablo Caro"/>
+  <meta property="og:title" content="broot, a different way to navigate your directories"/>
+  <meta property="og:description" content="broot is a terminal tool for interactive directory exploration with fuzzy search, multiple panels, and file preview."/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="/en/broot-una-forma-diferente-de-navegar-directorios"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2026-01-02 10:00:00+01:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="/en/author/pablo-caro.html">
+  <meta property="article:section" content="Tools"/>
+  <meta property="article:tag" content="terminal"/>
+  <meta property="article:tag" content="cli"/>
+  <meta property="article:tag" content="broot"/>
+  <meta property="article:tag" content="rust"/>
+  <meta property="article:tag" content="tools"/>
+  <meta property="og:image" content="/theme/img/profile.png">
+
+  <title>Annotations by Pablo Caro &ndash; broot, a different way to navigate your directories</title>
+
+
+</head>
+<body class="light-theme">
+
+<aside>
+  <div>
+    <a href="/en/">
+      <img src="/theme/img/profile.png" alt="Anotaciones" title="Anotaciones">
+    </a>
+
+    <h1>
+      <a href="/en/">Anotaciones</a>
+    </h1>
+
+    <p>Annotations</p>
+
+    <p style="font-size: 0.9em; font-style: italic; margin-bottom: 20px;">
+      Dumping my brain onto the internet. A collection of technical notes and solutions written for my future self, shared here in case they save someone else a headache.
+    </p>
+
+    <div class="stork">
+      <input class="stork-input" type="text" autocomplete="off" name="q" data-stork="sitesearch" placeholder="Search..." onclick="loadStorkIndex()"/>
+      <div class="stork-output" data-stork="sitesearch-output"></div>
+    </div>
+
+    <nav>
+      <ul class="list">
+
+
+
+          <li>
+            <a target="_self" href="http://x.com/pcaro" >pcaro@X</a>
+          </li>
+          <li>
+            <a target="_self" href="https://github.com/pcaro/" >pcaro@Github</a>
+          </li>
+          <li>
+            <a target="_self" href="https://www.linkedin.com/in/pcarorevuelta/" >LinkedIn</a>
+          </li>
+      </ul>
+    </nav>
+
+    <ul class="social">
+      <li>
+        <a class="sc-Twitter"
+           href="http://twitter.com/pcaro"
+           target="_blank">
+          <i class="fa-brands fa-Twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Github"
+           href="http://github.com/pcaro"
+           target="_blank">
+          <i class="fa-brands fa-Github"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Linkedin"
+           href="https://www.linkedin.com/in/pcarorevuelta"
+           target="_blank">
+          <i class="fa-brands fa-Linkedin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Facebook"
+           href="https://www.facebook.com/pablo.carorevuelta"
+           target="_blank">
+          <i class="fa-brands fa-Facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Email"
+           href="mailto:correo@pablocaro.es"
+           target="_blank">
+          <i class="fa-brands fa-Email"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+</aside>
+  <main>
+
+<nav>
+  <a href="/en/">Home</a>
+
+  <a href="/en/archives.html">Archives</a>
+  <a href="/en/categories.html">Categories</a>
+  <a href="/en/tags.html">Tags</a>
+  <a href="/en/search.html">Search</a>
+  <a href="/">Español</a>
+
+  <a href="/en/feeds/all.atom.xml">Atom</a>
+
+  <a href="/en/feeds/all.rss.xml">RSS</a>
+</nav>
+
+<article class="single">
+  <header>
+          <div class="translations">
+            <a href="/en/../broot-una-forma-diferente-de-navegar-directorios">Leer en español</a>
+    </div>
+
+    <h1 id="broot-una-forma-diferente-de-navegar-directorios">broot, a different way to navigate your directories</h1>
+    <p>
+      Posted on Fri, 02 Jan 2026 in <a href="/en/category/tools.html">Tools</a>
+
+    </p>
+  </header>
+
+
+  <div>
+    <p>I've been looking for a replacement for <code>ls</code> and <code>tree</code> that would let me navigate large directories without losing context. broot is the tool I needed.</p>
+<h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="c1"># With cargo (Rust)</span>
+cargo<span class="w"> </span>install<span class="w"> </span>broot
+
+<span class="c1"># Or with your package manager</span>
+brew<span class="w"> </span>install<span class="w"> </span>broot<span class="w">  </span><span class="c1"># macOS</span>
+apt<span class="w"> </span>install<span class="w"> </span>broot<span class="w">   </span><span class="c1"># Debian/Ubuntu</span>
+</code></pre></div>
+
+<h2 id="getting-started">Getting started<a class="headerlink" href="#getting-started" title="Permanent link">&para;</a></h2>
+<p>The basic command is simply <code>br</code> (you can create an alias to replace <code>cd</code>):</p>
+<div class="highlight"><pre><span></span><code>br
+</code></pre></div>
+
+<p>This opens an interactive tree view of the current directory. Main keys:</p>
+<ul>
+<li><code>↓</code> / <code>↑</code> - Navigate between files and directories</li>
+<li><code>/</code> - Fuzzy search (e.g., <code>/config</code> finds all files with "config" in the name)</li>
+<li><code>Enter</code> - Enter a directory</li>
+<li><code>alt + Enter</code> - <code>cd</code> to the selected directory and exit broot</li>
+<li><code>:e</code> - Open the selected file with your <code>$EDITOR</code></li>
+<li><code>:q</code> - Quit</li>
+</ul>
+<h2 id="features-i-use">Features I use<a class="headerlink" href="#features-i-use" title="Permanent link">&para;</a></h2>
+<h3 id="search-without-losing-context">Search without losing context<a class="headerlink" href="#search-without-losing-context" title="Permanent link">&para;</a></h3>
+<p>Unlike <code>find</code>, broot shows where each result is located within the directory tree:</p>
+<div class="highlight"><pre><span></span><code>br
+/pytest<span class="w">  </span><span class="c1"># Finds all files/directories with &quot;pytest&quot;</span>
+</code></pre></div>
+
+<p>This is useful when you know a filename but don't remember which folder it's in.</p>
+<h3 id="multiple-panels">Multiple panels<a class="headerlink" href="#multiple-panels" title="Permanent link">&para;</a></h3>
+<p>You can split the view to compare or move files between directories:</p>
+<div class="highlight"><pre><span></span><code>:pp  # Create right panel
+:pc  # Create bottom panel
+:pt  # Swap panels
+</code></pre></div>
+
+<p>In each panel you can navigate independently and use verbs like <code>:copy</code> or <code>:move</code>.</p>
+<h3 id="file-preview">File preview<a class="headerlink" href="#file-preview" title="Permanent link">&para;</a></h3>
+<p>Select a file and use <code>:preview</code> to see its content without leaving broot. For images in terminals that support it (kitty, iterm2):</p>
+<div class="highlight"><pre><span></span><code>:preview
+</code></pre></div>
+
+<h3 id="show-only-relevant-files">Show only relevant files<a class="headerlink" href="#show-only-relevant-files" title="Permanent link">&para;</a></h3>
+<p>broot automatically hides Git-ignored files and common directories like <code>node_modules</code>. To see them:</p>
+<div class="highlight"><pre><span></span><code>:show_git_ignored
+</code></pre></div>
+
+<h3 id="custom-verbs">Custom verbs<a class="headerlink" href="#custom-verbs" title="Permanent link">&para;</a></h3>
+<p>In <code>~/.config/broot/conf.toml</code> you can add custom commands:</p>
+<div class="highlight"><pre><span></span><code><span class="k">[[verbs]]</span>
+<span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;edit&quot;</span>
+<span class="n">invocation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;e&quot;</span>
+<span class="n">execution</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;$EDITOR {file}&quot;</span>
+
+<span class="k">[[verbs]]</span>
+<span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;git status&quot;</span>
+<span class="n">invocation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;gs&quot;</span>
+<span class="n">execution</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;git status&quot;</span>
+</code></pre></div>
+
+<h2 id="shell-integration">Shell integration<a class="headerlink" href="#shell-integration" title="Permanent link">&para;</a></h2>
+<p>To use <code>br</code> as a <code>cd</code> replacement, add this to your <code>.bashrc</code> or <code>.zshrc</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># This allows br to change the parent shell&#39;s directory</span>
+<span class="nb">source</span><span class="w"> </span>/usr/share/broot/launcher/bash/br
+</code></pre></div>
+
+<p>Now <code>br directory</code> leaves you in that directory when you exit.</p>
+<h2 id="when-to-use-broot">When to use broot<a class="headerlink" href="#when-to-use-broot" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Navigating large projects with many folders</li>
+<li>Finding files when you don't remember the exact path</li>
+<li>Moving/copying files between distant directories</li>
+<li>Exploring directories with many Git-ignored files</li>
+</ul>
+<h2 id="links">Links<a class="headerlink" href="#links" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://dystroy.org/broot/">Official documentation</a></li>
+<li><a href="https://github.com/Canop/broot">GitHub repository</a></li>
+</ul>
+<p><em>Original source</em>: <a href="https://dystroy.org/broot/">broot documentation</a></p>
+<p><img alt="broot terminal interface" src="/en/images/broot_terminal.png"></p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="/en/tag/terminal.html">terminal</a>
+      <a href="/en/tag/cli.html">cli</a>
+      <a href="/en/tag/broot.html">broot</a>
+      <a href="/en/tag/rust.html">rust</a>
+      <a href="/en/tag/tools.html">tools</a>
+    </p>
+  </div>
+
+
+
+  <div class="neighbors">
+    <a class="btn float-left" href="/en/yaml-multilinea-cadenas-complejas" title="Multiline YAML: Understanding and testing complex strings">
+      <i class="fa fa-angle-left"></i> Previous Post
+    </a>
+    <a class="btn float-right" href="/en/gestionando-instalaciones-desde-github-con-gah" title="Managing GitHub installations with gah">
+      Next Post <i class="fa fa-angle-right"></i>
+    </a>
+  </div>
+
+  <div class="related-posts">
+    <h4>You might enjoy</h4>
+    <ul class="related-posts">
+      <li><a href="/en/fresh-editor-terminal">`fresh`: My preferred terminal editor for daily use</a></li>
+      <li><a href="/en/sem-semantic-version-control">sem: Semantic Version Control</a></li>
+      <li><a href="/en/de-yakuake-a-kitty">From Yakuake to Kitty: My Transition to a Modern Terminal</a></li>
+      <li><a href="/en/kitty-rbw-kitten">kitty-rbw: Fast Bitwarden access from your kitty terminal</a></li>
+      <li><a href="/en/rbw-bitwarden-cli">rbw: The Bitwarden terminal client you should be using</a></li>
+    </ul>
+  </div>
+
+
+
+<!-- Disqus -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'anotaciones';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>
+    Please enable JavaScript to view comments.
+</noscript>
+<!-- End Disqus -->
+</article>
+
+<footer>
+<p>
+  &copy; 2026  - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/3.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/3.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Annotations by Pablo Caro ",
+  "url" : "/en",
+  "image": "/theme/img/profile.png",
+  "description": ""
+}
+</script>  <script src="https://files.stork-search.net/releases/v1.6.0/stork.js"></script>
+  <script>
+    window.storkIndexLoaded = false;
+    window.loadStorkIndex = function () {
+      if (window.storkIndexLoaded) {
+        return;
+      }
+      if (typeof stork === 'undefined') {
+        console.error('Stork is not loaded yet, retrying...');
+        setTimeout(window.loadStorkIndex, 100);
+        return;
+      }
+      stork.register("sitesearch", "/en/search-index.st", { showProgress: false });
+      stork.register("sitesearch-page", "/en/search-index.st", { showProgress: false });
+      window.storkIndexLoaded = true;
+    }
+  </script>
+
+</body>
+</html>
