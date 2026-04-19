@@ -5,33 +5,120 @@ Tags: terminal, cli, broot, rust, tools
 Lang: en
 Category: Tools
 Slug: broot-una-forma-diferente-de-navegar-directorios
-Summary: broot is a terminal tool that allows you to explore your directories in an interactive way and much more powerful than traditional commands like ls or tree.
-featured_image: /images/broot_help.png
-Status: draft
+Summary: broot is a terminal tool for interactive directory exploration with fuzzy search, multiple panels, and file preview.
+featured_image: /images/broot_terminal.png
 ---
 
-Hello! How are you? Today I want to tell you about a tool that blew my mind for moving through directories on my computer: it's called **broot**. If you are one of those who get tangled up with `ls` or `cd` and always end up lost, you are going to love this.
+I've been looking for a replacement for `ls` and `tree` that would let me navigate large directories without losing context. broot is the tool I needed.
 
-### broot, a different way to navigate your directories
+## Installation
 
-Imagine you have a bunch of folders and files, and you want to find something quickly or just understand what's there. With the usual commands, sometimes it's a drag, right? Well, broot comes to solve that in a super visual and efficient way.
+```bash
+# With cargo (Rust)
+cargo install broot
 
-**What is broot?**
+# Or with your package manager
+brew install broot  # macOS
+apt install broot   # Debian/Ubuntu
+```
 
-In short, broot is a terminal tool that allows you to explore your directories in an interactive way and much more powerful than traditional commands like `ls` or `tree`. It's like having a graphical file explorer, but directly in your terminal.
+## Getting started
 
-**What is it for? Its main features:**
+The basic command is simply `br` (you can create an alias to replace `cd`):
 
-*   **Instant overview:** It gives you a tree view of your directories, even if they are huge, but intelligently. It doesn't overwhelm you with thousands of lines, but hides what is not relevant (like files ignored by Git) so you can focus on what matters. But if you want to see them, you can too!
-*   **Fast navigation:** Remember that directory you don't know where you put? With broot, you just have to type a few letters of what you are looking for, and it finds it for you. You can move between results, go up and down the hierarchy, and when you find the place, an `alt + enter` takes you directly to that directory in your terminal. Goodbye to `cd ../../stuff/more_stuff`!
-*   **Don't get lost in the search:** Unlike other searchers, broot always shows you where the file or directory you are looking for is within the folder structure. So, you never lose context. You can search by name, by file content, and even use regular expressions!
-*   **Blind file manipulation:** Need to move, copy, delete or create a directory? With broot, you can do it seeing the file structure at all times. It is much safer and visual than doing it "blindly" with `mv` or `cp`.
-*   **Panels to work better:** One of the coolest things is that you can open multiple panels. Imagine you want to copy something from one folder to another: you open a panel with the source, another with the destination, and drag (well, not drag, but almost) the files between them. Ideal for organizing!
-*   **File preview:** If you select a file, you can preview its content directly in a side panel. Even images if your terminal supports it!
-*   **Execute commands on files:** You find a file you want to edit, type `:e` and `enter`, and broot opens it with your favorite editor. You can configure your own "verbs" (commands) to do whatever you want with the selected files.
-*   **Replaces `ls` on steroids:** If you want to see sizes, dates, permissions, etc., broot shows it to you clearly and orderly. In addition, you can sort by size or date to see what is taking up the most space or what you have modified recently.
-*   **Git control:** If you work with Git, broot shows you the status of your files (modified, new, etc.), the current branch and change statistics. You can even see only the files that `git status` would show you!
+```bash
+br
+```
 
-In short, broot is a Swiss Army knife for the terminal that makes your life much easier when interacting with your files and directories. If you spend a lot of time in the terminal, I recommend you take a look at it. You're going to love it!
+This opens an interactive tree view of the current directory. Main keys:
 
-![broot help]({static}/images/broot_help.png)
+- `↓` / `↑` - Navigate between files and directories
+- `/` - Fuzzy search (e.g., `/config` finds all files with "config" in the name)
+- `Enter` - Enter a directory
+- `alt + Enter` - `cd` to the selected directory and exit broot
+- `:e` - Open the selected file with your `$EDITOR`
+- `:q` - Quit
+
+## Features I use
+
+### Search without losing context
+
+Unlike `find`, broot shows where each result is located within the directory tree:
+
+```bash
+br
+/pytest  # Finds all files/directories with "pytest"
+```
+
+This is useful when you know a filename but don't remember which folder it's in.
+
+### Multiple panels
+
+You can split the view to compare or move files between directories:
+
+```
+:pp  # Create right panel
+:pc  # Create bottom panel
+:pt  # Swap panels
+```
+
+In each panel you can navigate independently and use verbs like `:copy` or `:move`.
+
+### File preview
+
+Select a file and use `:preview` to see its content without leaving broot. For images in terminals that support it (kitty, iterm2):
+
+```bash
+:preview
+```
+
+### Show only relevant files
+
+broot automatically hides Git-ignored files and common directories like `node_modules`. To see them:
+
+```bash
+:show_git_ignored
+```
+
+### Custom verbs
+
+In `~/.config/broot/conf.toml` you can add custom commands:
+
+```toml
+[[verbs]]
+name = "edit"
+invocation = "e"
+execution = "$EDITOR {file}"
+
+[[verbs]]
+name = "git status"
+invocation = "gs"
+execution = "git status"
+```
+
+## Shell integration
+
+To use `br` as a `cd` replacement, add this to your `.bashrc` or `.zshrc`:
+
+```bash
+# This allows br to change the parent shell's directory
+source /usr/share/broot/launcher/bash/br
+```
+
+Now `br directory` leaves you in that directory when you exit.
+
+## When to use broot
+
+- Navigating large projects with many folders
+- Finding files when you don't remember the exact path
+- Moving/copying files between distant directories
+- Exploring directories with many Git-ignored files
+
+## Links
+
+- [Official documentation](https://dystroy.org/broot/)
+- [GitHub repository](https://github.com/Canop/broot)
+
+*Original source*: [broot documentation](https://dystroy.org/broot/)
+
+![broot terminal interface]({static}/images/broot_terminal.png)
