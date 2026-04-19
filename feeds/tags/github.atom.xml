@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Anotaciones por Pablo Caro - GitHub</title><link href="https://pablocaro.es/" rel="alternate"></link><link href="https://pablocaro.es/feeds/tags/github.atom.xml" rel="self"></link><id>https://pablocaro.es/</id><updated>2026-04-19T12:00:00+02:00</updated><subtitle>Anotaciones</subtitle><entry><title>Instalando skills de GitHub</title><link href="https://pablocaro.es/instalando-skills-de-github" rel="alternate"></link><published>2026-04-19T12:00:00+02:00</published><updated>2026-04-19T12:00:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-04-19:/instalando-skills-de-github</id><summary type="html">&lt;p&gt;Comparando &lt;code&gt;gh skill&lt;/code&gt; vs &lt;code&gt;npx skills&lt;/code&gt; para instalar y gestionar skills de agentes de IA.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Dos formas principales de instalar skills para agentes de IA (Claude Code, Codex, Cursor, etc.): el nuevo subcomando &lt;code&gt;gh skill&lt;/code&gt; de GitHub CLI y la herramienta &lt;code&gt;npx skills&lt;/code&gt; de Vercel Labs.&lt;/p&gt;
+&lt;h2 id="gh-skill-el-enfoque-oficial-de-github"&gt;&lt;code&gt;gh skill&lt;/code&gt; — el enfoque oficial de GitHub&lt;a class="headerlink" href="#gh-skill-el-enfoque-oficial-de-github" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;GitHub CLI ahora tiene un subcomando nativo para gestionar skills:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Buscar skills&lt;/span&gt;
+gh&lt;span class="w"&gt; &lt;/span&gt;skill&lt;span class="w"&gt; &lt;/span&gt;search&lt;span class="w"&gt; &lt;/span&gt;terraform
+
+&lt;span class="c1"&gt;# Instalar un skill específico&lt;/span&gt;
+gh&lt;span class="w"&gt; &lt;/span&gt;skill&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;github/awesome-copilot&lt;span class="w"&gt; &lt;/span&gt;documentation-writer
+
+&lt;span class="c1"&gt;# Previsualizar antes de instalar&lt;/span&gt;
+gh&lt;span class="w"&gt; &lt;/span&gt;skill&lt;span class="w"&gt; &lt;/span&gt;preview&lt;span class="w"&gt; &lt;/span&gt;github/awesome-copilot&lt;span class="w"&gt; &lt;/span&gt;documentation-writer
+
+&lt;span class="c1"&gt;# Actualizar todos los skills instalados&lt;/span&gt;
+gh&lt;span class="w"&gt; &lt;/span&gt;skill&lt;span class="w"&gt; &lt;/span&gt;update&lt;span class="w"&gt; &lt;/span&gt;--all
+
+&lt;span class="c1"&gt;# Validar skills antes de publicar&lt;/span&gt;
+gh&lt;span class="w"&gt; &lt;/span&gt;skill&lt;span class="w"&gt; &lt;/span&gt;publish&lt;span class="w"&gt; &lt;/span&gt;--dry-run
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Cómo instala&lt;/strong&gt;: &lt;code&gt;gh skill&lt;/code&gt; &lt;strong&gt;copia&lt;/strong&gt; los archivos (no usa symlinks) e inyecta metadata de tracking directamente en el frontmatter del &lt;code&gt;SKILL.md&lt;/code&gt; (repositorio, ref, tree SHA). Esta metadata permite que &lt;code&gt;gh skill update&lt;/code&gt; detecte cambios reales de contenido comparando el tree SHA local vs el remoto.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Dónde instala&lt;/strong&gt;: Por defecto en &lt;strong&gt;scope de proyecto&lt;/strong&gt; (dentro del repositorio git actual), pero puedes usar &lt;code&gt;--scope user&lt;/code&gt; para instalar en tu home directory y que esté disponible globalmente. Los directorios por agente son:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Agente&lt;/th&gt;
+&lt;th&gt;Proyecto&lt;/th&gt;
+&lt;th&gt;Usuario&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;GitHub Copilot&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;.agents/skills&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;~/.copilot/skills&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Claude Code&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;.claude/skills&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;~/.claude/skills&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Cursor&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;.agents/skills&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;~/.cursor/skills&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Codex&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;.agents/skills&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;~/.codex/skills&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Gemini CLI&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;.agents/skills&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;~/.gemini/skills&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Antigravity&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;.agents/skills&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;~/.gemini/antigravity/skills&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Nota: GitHub Copilot, Cursor, Codex, Gemini CLI, Antigravity y Pi comparten &lt;code&gt;.agents/skills&lt;/code&gt; a nivel de proyecto.&lt;/p&gt;
+&lt;p&gt;Lo interesante es que está integrado directamente en &lt;code&gt;gh&lt;/code&gt;, así que si ya usas GitHub CLI para todo, no necesitas otra dependencia más. Pero la búsqueda es bastante básica y limitada al ecosistema de GitHub.&lt;/p&gt;
+&lt;h2 id="npx-skills-la-herramienta-de-vercel-labs"&gt;&lt;code&gt;npx skills&lt;/code&gt; — la herramienta de Vercel Labs&lt;a class="headerlink" href="#npx-skills-la-herramienta-de-vercel-labs" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Llevo tiempo usando &lt;a href="https://github.com/vercel-labs/skills"&gt;&lt;code&gt;npx skills&lt;/code&gt;&lt;/a&gt; de Vercel Labs y me parece más completa para el día a día:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Listar skills disponibles en un repo&lt;/span&gt;
+npx&lt;span class="w"&gt; &lt;/span&gt;skills&lt;span class="w"&gt; &lt;/span&gt;add&lt;span class="w"&gt; &lt;/span&gt;github/awesome-copilot&lt;span class="w"&gt; &lt;/span&gt;--list
+
+&lt;span class="c1"&gt;# Instalar un skill específico&lt;/span&gt;
+npx&lt;span class="w"&gt; &lt;/span&gt;skills&lt;span class="w"&gt; &lt;/span&gt;add&lt;span class="w"&gt; &lt;/span&gt;github/awesome-copilot&lt;span class="w"&gt; &lt;/span&gt;--skill&lt;span class="w"&gt; &lt;/span&gt;publish-to-pages
+
+&lt;span class="c1"&gt;# Instalar todos los skills de un repo&lt;/span&gt;
+npx&lt;span class="w"&gt; &lt;/span&gt;skills&lt;span class="w"&gt; &lt;/span&gt;add&lt;span class="w"&gt; &lt;/span&gt;vercel-labs/agent-skills&lt;span class="w"&gt; &lt;/span&gt;--all
+
+&lt;span class="c1"&gt;# Actualizar skills&lt;/span&gt;
+npx&lt;span class="w"&gt; &lt;/span&gt;skills&lt;span class="w"&gt; &lt;/span&gt;update
+
+&lt;span class="c1"&gt;# Buscar skills de forma interactiva&lt;/span&gt;
+npx&lt;span class="w"&gt; &lt;/span&gt;skills&lt;span class="w"&gt; &lt;/span&gt;find
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Ventajas que le veo:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Soporte multi-agente&lt;/strong&gt;: Funciona con Pi, Claude Code, Codex, Cursor, OpenCode, Gemini CLI, y más de 40 agentes. Cada uno tiene su directorio de skills y &lt;code&gt;npx skills&lt;/code&gt; los gestiona todos.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Instalación flexible&lt;/strong&gt;: Puedes instalar skills de forma global (&lt;code&gt;-g&lt;/code&gt;) o por proyecto, y elegir entre symlink (recomendado para actualizar fácil) o copiar archivos.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Búsqueda interactiva&lt;/strong&gt;: El comando &lt;code&gt;npx skills find&lt;/code&gt; te da una interfaz tipo &lt;code&gt;fzf&lt;/code&gt; para explorar skills disponibles.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Actualizaciones más granulares&lt;/strong&gt;: Puedes actualizar skills individuales o todos, y elegir si son los globales o los del proyecto.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;El punto débil es que la búsqueda no funciona del todo bien cuando un repo tiene múltiples skills — a veces no los encuentra todos o no los lista como esperas.&lt;/p&gt;
+&lt;p&gt;Pero donde &lt;code&gt;npx skills&lt;/code&gt; realmente brilla es con &lt;code&gt;npx skills find&lt;/code&gt; — una interfaz interactiva tipo &lt;code&gt;fzf&lt;/code&gt; para explorar y buscar skills disponibles. Es muchísimo mejor que la búsqueda básica de &lt;code&gt;gh skill&lt;/code&gt;:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="npx skills find" src="/images/npx-skills-find.png"&gt;&lt;/p&gt;
+&lt;p&gt;Puedes buscar por palabra clave, navegar interactivamente por los resultados, ver el número de instalaciones y lanzar el comando de instalación directamente. Para descubrir nuevas skills, esta es la mejor opción sin duda.&lt;/p&gt;
+&lt;h2 id="comparativa-tecnica"&gt;Comparativa técnica&lt;a class="headerlink" href="#comparativa-tecnica" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Característica&lt;/th&gt;
+&lt;th&gt;&lt;code&gt;gh skill&lt;/code&gt;&lt;/th&gt;
+&lt;th&gt;&lt;code&gt;npx skills&lt;/code&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Método de instalación&lt;/td&gt;
+&lt;td&gt;Copia archivos&lt;/td&gt;
+&lt;td&gt;Symlink (recomendado) o copia&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Scope por defecto&lt;/td&gt;
+&lt;td&gt;Proyecto&lt;/td&gt;
+&lt;td&gt;Proyecto&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Scope global&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;--scope user&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;-g&lt;/code&gt; / &lt;code&gt;--global&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Tracking de versión&lt;/td&gt;
+&lt;td&gt;Tree SHA en frontmatter&lt;/td&gt;
+&lt;td&gt;Metadata similar&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Update&lt;/td&gt;
+&lt;td&gt;Compara tree SHA local vs remoto&lt;/td&gt;
+&lt;td&gt;Git pull en el repo&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Agentes soportados&lt;/td&gt;
+&lt;td&gt;6 (Copilot, Claude, Cursor, Codex, Gemini, Antigravity)&lt;/td&gt;
+&lt;td&gt;40+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Búsqueda interactiva&lt;/td&gt;
+&lt;td&gt;No (&lt;code&gt;gh skill search&lt;/code&gt; es básico)&lt;/td&gt;
+&lt;td&gt;Sí (&lt;code&gt;npx skills find&lt;/code&gt; con fzf)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Integración&lt;/td&gt;
+&lt;td&gt;Nativo en gh CLI&lt;/td&gt;
+&lt;td&gt;Herramienta independiente&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id="skills-lockjson-el-archivo-de-lock-de-npx-skills"&gt;&lt;code&gt;skills-lock.json&lt;/code&gt; — el archivo de lock de &lt;code&gt;npx skills&lt;/code&gt;&lt;a class="headerlink" href="#skills-lockjson-el-archivo-de-lock-de-npx-skills" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;npx skills&lt;/code&gt; mantiene un archivo de lock global en &lt;code&gt;~/.agents/.skill-lock.json&lt;/code&gt; (formato v3) que registra:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Todos los skills instalados globalmente&lt;/li&gt;
+&lt;li&gt;Su origen (repo, URL, tipo de fuente)&lt;/li&gt;
+&lt;li&gt;Hash de la carpeta para detectar cambios&lt;/li&gt;
+&lt;li&gt;Fechas de instalación y última actualización&lt;/li&gt;
+&lt;li&gt;Preferencias del usuario (agentes seleccionados)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Actualmente funciona como &lt;strong&gt;registro&lt;/strong&gt; para que &lt;code&gt;npx skills update&lt;/code&gt; sepa qué verificar, pero &lt;strong&gt;no como manifiesto declarativo&lt;/strong&gt; — no hay un comando &lt;code&gt;npx skills install&lt;/code&gt; que restaure skills desde cero leyendo el lock (como haría &lt;code&gt;npm ci&lt;/code&gt;). Es decir, si borras tus skills instalados, el lock file solo sirve como referencia, no para restaurar automáticamente.&lt;/p&gt;
+&lt;h2 id="mi-flujo-actual"&gt;Mi flujo actual&lt;a class="headerlink" href="#mi-flujo-actual" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Para instalar skills nuevos:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Ver qué skills tiene un repo&lt;/span&gt;
+npx&lt;span class="w"&gt; &lt;/span&gt;skills&lt;span class="w"&gt; &lt;/span&gt;add&lt;span class="w"&gt; &lt;/span&gt;github/awesome-copilot&lt;span class="w"&gt; &lt;/span&gt;--list
+
+&lt;span class="c1"&gt;# Instalar solo los que me interesan&lt;/span&gt;
+npx&lt;span class="w"&gt; &lt;/span&gt;skills&lt;span class="w"&gt; &lt;/span&gt;add&lt;span class="w"&gt; &lt;/span&gt;github/awesome-copilot&lt;span class="w"&gt; &lt;/span&gt;--skill&lt;span class="w"&gt; &lt;/span&gt;publish-to-pages&lt;span class="w"&gt; &lt;/span&gt;--skill&lt;span class="w"&gt; &lt;/span&gt;documentation-writer
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Y para mantenerlos actualizados:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;npx&lt;span class="w"&gt; &lt;/span&gt;skills&lt;span class="w"&gt; &lt;/span&gt;update
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;En resumen: me quedo con &lt;code&gt;npx skills&lt;/code&gt; de Vercel sin duda. GitHub CLI está bien si solo usas Copilot y quieres todo integrado en &lt;code&gt;gh&lt;/code&gt;, pero si trabajas con múltiples agentes (como yo, que uso Pi como principal), &lt;code&gt;npx skills&lt;/code&gt; es muy superior por su soporte multi-agente, flexibilidad y sobre todo por &lt;code&gt;npx skills find&lt;/code&gt; para descubrir nuevas skills.&lt;/p&gt;
+&lt;h2 id="enlaces"&gt;Enlaces&lt;a class="headerlink" href="#enlaces" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://cli.github.com/manual/gh_skill"&gt;&lt;code&gt;gh skill&lt;/code&gt; documentation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/vercel-labs/skills"&gt;&lt;code&gt;npx skills&lt;/code&gt; repo&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://skills.sh"&gt;Skills directory&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><category term="Programación"></category><category term="GitHub"></category><category term="CLI"></category><category term="Agentes IA"></category><category term="Skills"></category></entry></feed>

@@ -1,5 +1,179 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Annotations by Pablo Caro - cli</title><link href="/en/" rel="alternate"></link><link href="/en/feeds/tags/cli.atom.xml" rel="self"></link><id>/en/</id><updated>2026-04-11T19:30:00+02:00</updated><subtitle>Annotations</subtitle><entry><title>rbw sync: missing field `access_token`</title><link href="/en/rbw-sync-access-token" rel="alternate"></link><published>2026-04-11T19:30:00+02:00</published><updated>2026-04-11T19:30:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:None,2026-04-11:/en/rbw-sync-access-token</id><summary type="html">&lt;p&gt;Known rbw bug when syncing with Bitwarden or Vaultwarden: "failed to parse JSON: missing field access_token". The fix is to clear the local cache.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Today I ran into this error when trying to sync my Bitwarden vault with &lt;strong&gt;rbw&lt;/strong&gt;:&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Annotations by Pablo Caro - CLI</title><link href="/en/" rel="alternate"></link><link href="/en/feeds/tags/cli.atom.xml" rel="self"></link><id>/en/</id><updated>2026-04-19T12:00:00+02:00</updated><subtitle>Annotations</subtitle><entry><title>Installing GitHub Skills</title><link href="/en/installing-github-skills" rel="alternate"></link><published>2026-04-19T12:00:00+02:00</published><updated>2026-04-19T12:00:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:None,2026-04-19:/en/installing-github-skills</id><summary type="html">&lt;p&gt;Comparing &lt;code&gt;gh skill&lt;/code&gt; vs &lt;code&gt;npx skills&lt;/code&gt; for installing and managing AI agent skills.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Two main ways to install skills for AI agents (Claude Code, Codex, Cursor, etc.): the new &lt;code&gt;gh skill&lt;/code&gt; subcommand from GitHub CLI and the &lt;code&gt;npx skills&lt;/code&gt; tool from Vercel Labs.&lt;/p&gt;
+&lt;h2 id="gh-skill-githubs-official-approach"&gt;&lt;code&gt;gh skill&lt;/code&gt; — GitHub's official approach&lt;a class="headerlink" href="#gh-skill-githubs-official-approach" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;GitHub CLI now has a native subcommand for managing skills:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Search for skills&lt;/span&gt;
+gh&lt;span class="w"&gt; &lt;/span&gt;skill&lt;span class="w"&gt; &lt;/span&gt;search&lt;span class="w"&gt; &lt;/span&gt;terraform
+
+&lt;span class="c1"&gt;# Install a specific skill&lt;/span&gt;
+gh&lt;span class="w"&gt; &lt;/span&gt;skill&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;github/awesome-copilot&lt;span class="w"&gt; &lt;/span&gt;documentation-writer
+
+&lt;span class="c1"&gt;# Preview before installing&lt;/span&gt;
+gh&lt;span class="w"&gt; &lt;/span&gt;skill&lt;span class="w"&gt; &lt;/span&gt;preview&lt;span class="w"&gt; &lt;/span&gt;github/awesome-copilot&lt;span class="w"&gt; &lt;/span&gt;documentation-writer
+
+&lt;span class="c1"&gt;# Update all installed skills&lt;/span&gt;
+gh&lt;span class="w"&gt; &lt;/span&gt;skill&lt;span class="w"&gt; &lt;/span&gt;update&lt;span class="w"&gt; &lt;/span&gt;--all
+
+&lt;span class="c1"&gt;# Validate skills before publishing&lt;/span&gt;
+gh&lt;span class="w"&gt; &lt;/span&gt;skill&lt;span class="w"&gt; &lt;/span&gt;publish&lt;span class="w"&gt; &lt;/span&gt;--dry-run
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;How it installs&lt;/strong&gt;: &lt;code&gt;gh skill&lt;/code&gt; &lt;strong&gt;copies&lt;/strong&gt; files (no symlinks) and injects tracking metadata directly into the &lt;code&gt;SKILL.md&lt;/code&gt; frontmatter (repository, ref, tree SHA). This metadata enables &lt;code&gt;gh skill update&lt;/code&gt; to detect actual content changes by comparing local vs remote tree SHAs.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Where it installs&lt;/strong&gt;: Defaults to &lt;strong&gt;project scope&lt;/strong&gt; (inside the current git repository), but you can use &lt;code&gt;--scope user&lt;/code&gt; to install to your home directory for global availability. Per-agent directories:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Agent&lt;/th&gt;
+&lt;th&gt;Project&lt;/th&gt;
+&lt;th&gt;User&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;GitHub Copilot&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;.agents/skills&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;~/.copilot/skills&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Claude Code&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;.claude/skills&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;~/.claude/skills&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Cursor&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;.agents/skills&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;~/.cursor/skills&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Codex&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;.agents/skills&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;~/.codex/skills&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Gemini CLI&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;.agents/skills&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;~/.gemini/skills&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Antigravity&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;.agents/skills&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;~/.gemini/antigravity/skills&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Note: GitHub Copilot, Cursor, Codex, Gemini CLI, Antigravity, and Pi share &lt;code&gt;.agents/skills&lt;/code&gt; at project scope.&lt;/p&gt;
+&lt;p&gt;The nice thing is that it's built directly into &lt;code&gt;gh&lt;/code&gt;, so if you already use GitHub CLI for everything, you don't need another dependency. But the search is pretty basic and limited to GitHub's ecosystem.&lt;/p&gt;
+&lt;h2 id="npx-skills-vercel-labs-tool"&gt;&lt;code&gt;npx skills&lt;/code&gt; — Vercel Labs' tool&lt;a class="headerlink" href="#npx-skills-vercel-labs-tool" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I've been using &lt;a href="https://github.com/vercel-labs/skills"&gt;&lt;code&gt;npx skills&lt;/code&gt;&lt;/a&gt; from Vercel Labs for a while and find it more comprehensive for day-to-day work:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# List available skills in a repo&lt;/span&gt;
+npx&lt;span class="w"&gt; &lt;/span&gt;skills&lt;span class="w"&gt; &lt;/span&gt;add&lt;span class="w"&gt; &lt;/span&gt;github/awesome-copilot&lt;span class="w"&gt; &lt;/span&gt;--list
+
+&lt;span class="c1"&gt;# Install a specific skill&lt;/span&gt;
+npx&lt;span class="w"&gt; &lt;/span&gt;skills&lt;span class="w"&gt; &lt;/span&gt;add&lt;span class="w"&gt; &lt;/span&gt;github/awesome-copilot&lt;span class="w"&gt; &lt;/span&gt;--skill&lt;span class="w"&gt; &lt;/span&gt;publish-to-pages
+
+&lt;span class="c1"&gt;# Install all skills from a repo&lt;/span&gt;
+npx&lt;span class="w"&gt; &lt;/span&gt;skills&lt;span class="w"&gt; &lt;/span&gt;add&lt;span class="w"&gt; &lt;/span&gt;vercel-labs/agent-skills&lt;span class="w"&gt; &lt;/span&gt;--all
+
+&lt;span class="c1"&gt;# Update skills&lt;/span&gt;
+npx&lt;span class="w"&gt; &lt;/span&gt;skills&lt;span class="w"&gt; &lt;/span&gt;update
+
+&lt;span class="c1"&gt;# Search skills interactively&lt;/span&gt;
+npx&lt;span class="w"&gt; &lt;/span&gt;skills&lt;span class="w"&gt; &lt;/span&gt;find
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Advantages I see:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Multi-agent support&lt;/strong&gt;: Works with Pi, Claude Code, Codex, Cursor, OpenCode, Gemini CLI, and 40+ other agents. Each has its own skills directory and &lt;code&gt;npx skills&lt;/code&gt; manages them all.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Flexible installation&lt;/strong&gt;: You can install skills globally (&lt;code&gt;-g&lt;/code&gt;) or per-project, and choose between symlinking (recommended for easy updates) or copying files.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Interactive search&lt;/strong&gt;: The &lt;code&gt;npx skills find&lt;/code&gt; command gives you an &lt;code&gt;fzf&lt;/code&gt;-style interface to browse available skills.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Granular updates&lt;/strong&gt;: You can update individual skills or all of them, and choose whether to update global or project skills.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The downside is that search doesn't work perfectly when a repo has multiple skills — sometimes it doesn't find them all or doesn't list them as expected.&lt;/p&gt;
+&lt;p&gt;But where &lt;code&gt;npx skills&lt;/code&gt; really shines is with &lt;code&gt;npx skills find&lt;/code&gt; — an interactive &lt;code&gt;fzf&lt;/code&gt;-style interface to explore and search available skills. It's way better than the basic search from &lt;code&gt;gh skill&lt;/code&gt;:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="npx skills find" src="/images/npx-skills-find.png"&gt;&lt;/p&gt;
+&lt;p&gt;You can search by keyword, interactively browse results, see install counts, and run the install command directly. For discovering new skills, this is hands down the best option.&lt;/p&gt;
+&lt;h2 id="technical-comparison"&gt;Technical comparison&lt;a class="headerlink" href="#technical-comparison" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Feature&lt;/th&gt;
+&lt;th&gt;&lt;code&gt;gh skill&lt;/code&gt;&lt;/th&gt;
+&lt;th&gt;&lt;code&gt;npx skills&lt;/code&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Installation method&lt;/td&gt;
+&lt;td&gt;Copies files&lt;/td&gt;
+&lt;td&gt;Symlink (recommended) or copy&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Default scope&lt;/td&gt;
+&lt;td&gt;Project&lt;/td&gt;
+&lt;td&gt;Project&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Global scope&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;--scope user&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;-g&lt;/code&gt; / &lt;code&gt;--global&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Version tracking&lt;/td&gt;
+&lt;td&gt;Tree SHA in frontmatter&lt;/td&gt;
+&lt;td&gt;Similar metadata&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Update mechanism&lt;/td&gt;
+&lt;td&gt;Compares local vs remote tree SHA&lt;/td&gt;
+&lt;td&gt;Git pull on repo&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Supported agents&lt;/td&gt;
+&lt;td&gt;6 (Copilot, Claude, Cursor, Codex, Gemini, Antigravity)&lt;/td&gt;
+&lt;td&gt;40+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Interactive search&lt;/td&gt;
+&lt;td&gt;No (&lt;code&gt;gh skill search&lt;/code&gt; is basic)&lt;/td&gt;
+&lt;td&gt;Yes (&lt;code&gt;npx skills find&lt;/code&gt; with fzf)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Integration&lt;/td&gt;
+&lt;td&gt;Native in gh CLI&lt;/td&gt;
+&lt;td&gt;Standalone tool&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id="skills-lockjson-npx-skills-lock-file"&gt;&lt;code&gt;skills-lock.json&lt;/code&gt; — npx skills' lock file&lt;a class="headerlink" href="#skills-lockjson-npx-skills-lock-file" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;npx skills&lt;/code&gt; maintains a global lock file at &lt;code&gt;~/.agents/.skill-lock.json&lt;/code&gt; (v3 format) that tracks:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;All globally installed skills&lt;/li&gt;
+&lt;li&gt;Their source (repo, URL, source type)&lt;/li&gt;
+&lt;li&gt;Folder hash for change detection&lt;/li&gt;
+&lt;li&gt;Installation and last update timestamps&lt;/li&gt;
+&lt;li&gt;User preferences (selected agents)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Currently it works as a &lt;strong&gt;registry&lt;/strong&gt; for &lt;code&gt;npx skills update&lt;/code&gt; to know what to check, but &lt;strong&gt;not as a declarative manifest&lt;/strong&gt; — there's no &lt;code&gt;npx skills install&lt;/code&gt; command to restore skills from scratch reading the lock (like &lt;code&gt;npm ci&lt;/code&gt; would). So if you delete your installed skills, the lock file only serves as reference, not for automatic restoration.&lt;/p&gt;
+&lt;h2 id="my-current-workflow"&gt;My current workflow&lt;a class="headerlink" href="#my-current-workflow" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;For installing new skills:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# See what skills a repo has&lt;/span&gt;
+npx&lt;span class="w"&gt; &lt;/span&gt;skills&lt;span class="w"&gt; &lt;/span&gt;add&lt;span class="w"&gt; &lt;/span&gt;github/awesome-copilot&lt;span class="w"&gt; &lt;/span&gt;--list
+
+&lt;span class="c1"&gt;# Install only the ones I need&lt;/span&gt;
+npx&lt;span class="w"&gt; &lt;/span&gt;skills&lt;span class="w"&gt; &lt;/span&gt;add&lt;span class="w"&gt; &lt;/span&gt;github/awesome-copilot&lt;span class="w"&gt; &lt;/span&gt;--skill&lt;span class="w"&gt; &lt;/span&gt;publish-to-pages&lt;span class="w"&gt; &lt;/span&gt;--skill&lt;span class="w"&gt; &lt;/span&gt;documentation-writer
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;And for keeping them updated:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;npx&lt;span class="w"&gt; &lt;/span&gt;skills&lt;span class="w"&gt; &lt;/span&gt;update
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Bottom line: I'm sticking with Vercel's &lt;code&gt;npx skills&lt;/code&gt; without a doubt. GitHub CLI is fine if you only use Copilot and want everything integrated in &lt;code&gt;gh&lt;/code&gt;, but if you work with multiple agents (like me, using Pi as my main agent), &lt;code&gt;npx skills&lt;/code&gt; is far superior for its multi-agent support, flexibility, and especially &lt;code&gt;npx skills find&lt;/code&gt; for discovering new skills.&lt;/p&gt;
+&lt;h2 id="links"&gt;Links&lt;a class="headerlink" href="#links" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://cli.github.com/manual/gh_skill"&gt;&lt;code&gt;gh skill&lt;/code&gt; documentation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/vercel-labs/skills"&gt;&lt;code&gt;npx skills&lt;/code&gt; repo&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://skills.sh"&gt;Skills directory&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><category term="Programming"></category><category term="GitHub"></category><category term="CLI"></category><category term="AI Agents"></category><category term="Skills"></category></entry><entry><title>rbw sync: missing field `access_token`</title><link href="/en/rbw-sync-access-token" rel="alternate"></link><published>2026-04-11T19:30:00+02:00</published><updated>2026-04-11T19:30:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:None,2026-04-11:/en/rbw-sync-access-token</id><summary type="html">&lt;p&gt;Known rbw bug when syncing with Bitwarden or Vaultwarden: "failed to parse JSON: missing field access_token". The fix is to clear the local cache.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Today I ran into this error when trying to sync my Bitwarden vault with &lt;strong&gt;rbw&lt;/strong&gt;:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$&lt;span class="w"&gt; &lt;/span&gt;rbw&lt;span class="w"&gt; &lt;/span&gt;sync
 rbw&lt;span class="w"&gt; &lt;/span&gt;sync:&lt;span class="w"&gt; &lt;/span&gt;failed&lt;span class="w"&gt; &lt;/span&gt;to&lt;span class="w"&gt; &lt;/span&gt;sync&lt;span class="w"&gt; &lt;/span&gt;database&lt;span class="w"&gt; &lt;/span&gt;from&lt;span class="w"&gt; &lt;/span&gt;server:&lt;span class="w"&gt; &lt;/span&gt;failed&lt;span class="w"&gt; &lt;/span&gt;to&lt;span class="w"&gt; &lt;/span&gt;parse&lt;span class="w"&gt; &lt;/span&gt;JSON:&lt;span class="w"&gt; &lt;/span&gt;missing&lt;span class="w"&gt; &lt;/span&gt;field&lt;span class="w"&gt; &lt;/span&gt;access_token&lt;span class="w"&gt; &lt;/span&gt;at&lt;span class="w"&gt; &lt;/span&gt;line&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;column&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;393&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;

@@ -3,6 +3,11 @@ html_selector = "main"
 base_directory = "/home/runner/work/anotaciones/anotaciones/output"
 
 [[input.files]]
+path = "instalando-skills-de-github.html"
+url = "/instalando-skills-de-github"
+title = "Instalando skills de GitHub"
+
+[[input.files]]
 path = "velvet-os.html"
 url = "/velvet-os"
 title = "Velvet OS: kernels modernos para hardware ARM antiguo"

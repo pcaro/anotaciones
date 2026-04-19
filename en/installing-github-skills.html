@@ -1,0 +1,458 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="/en/theme/stylesheet/style.min.css">
+
+
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+          href="/en/theme/pygments/github.min.css">
+
+
+  <link rel="stylesheet"
+        type="text/css"
+        href="/en/theme/stork/stork.css" />
+
+  <link rel="stylesheet" type="text/css" href="/en/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="/en/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="/en/theme/font-awesome/css/solid.css">
+
+
+  <link rel="shortcut icon" href="/theme/img/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/theme/img/favicon.ico" type="image/x-icon">
+
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#333333">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#333333">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Microsoft EDGE -->
+  <meta name="msapplication-TileColor" content="#333333">
+
+  <link href="/en/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Annotations by Pablo Caro Atom">
+
+  <link href="/en/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Annotations by Pablo Caro RSS">
+
+<script data-goatcounter="https://pcaro.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Pablo Caro" />
+<meta name="description" content="Comparing gh skill vs npx skills for installing and managing AI agent skills." />
+<meta name="keywords" content="GitHub, CLI, AI Agents, Skills">
+
+
+  <meta property="og:site_name" content="Annotations by Pablo Caro"/>
+  <meta property="og:title" content="Installing GitHub Skills"/>
+  <meta property="og:description" content="Comparing gh skill vs npx skills for installing and managing AI agent skills."/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="/en/installing-github-skills"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2026-04-19 12:00:00+02:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="/en/author/pablo-caro.html">
+  <meta property="article:section" content="Programming"/>
+  <meta property="article:tag" content="GitHub"/>
+  <meta property="article:tag" content="CLI"/>
+  <meta property="article:tag" content="AI Agents"/>
+  <meta property="article:tag" content="Skills"/>
+  <meta property="og:image" content="/theme/img/profile.png">
+
+  <title>Annotations by Pablo Caro &ndash; Installing GitHub Skills</title>
+
+
+</head>
+<body class="light-theme">
+
+<aside>
+  <div>
+    <a href="/en/">
+      <img src="/theme/img/profile.png" alt="Anotaciones" title="Anotaciones">
+    </a>
+
+    <h1>
+      <a href="/en/">Anotaciones</a>
+    </h1>
+
+    <p>Annotations</p>
+
+    <p style="font-size: 0.9em; font-style: italic; margin-bottom: 20px;">
+      Dumping my brain onto the internet. A collection of technical notes and solutions written for my future self, shared here in case they save someone else a headache.
+    </p>
+
+    <div class="stork">
+      <input class="stork-input" type="text" autocomplete="off" name="q" data-stork="sitesearch" placeholder="Search..." onclick="loadStorkIndex()"/>
+      <div class="stork-output" data-stork="sitesearch-output"></div>
+    </div>
+
+    <nav>
+      <ul class="list">
+
+
+
+          <li>
+            <a target="_self" href="http://x.com/pcaro" >pcaro@X</a>
+          </li>
+          <li>
+            <a target="_self" href="https://github.com/pcaro/" >pcaro@Github</a>
+          </li>
+          <li>
+            <a target="_self" href="https://www.linkedin.com/in/pcarorevuelta/" >LinkedIn</a>
+          </li>
+      </ul>
+    </nav>
+
+    <ul class="social">
+      <li>
+        <a class="sc-Twitter"
+           href="http://twitter.com/pcaro"
+           target="_blank">
+          <i class="fa-brands fa-Twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Github"
+           href="http://github.com/pcaro"
+           target="_blank">
+          <i class="fa-brands fa-Github"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Linkedin"
+           href="https://www.linkedin.com/in/pcarorevuelta"
+           target="_blank">
+          <i class="fa-brands fa-Linkedin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Facebook"
+           href="https://www.facebook.com/pablo.carorevuelta"
+           target="_blank">
+          <i class="fa-brands fa-Facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Email"
+           href="mailto:correo@pablocaro.es"
+           target="_blank">
+          <i class="fa-brands fa-Email"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+</aside>
+  <main>
+
+<nav>
+  <a href="/en/">Home</a>
+
+  <a href="/en/archives.html">Archives</a>
+  <a href="/en/categories.html">Categories</a>
+  <a href="/en/tags.html">Tags</a>
+  <a href="/en/search.html">Search</a>
+  <a href="/">Español</a>
+
+  <a href="/en/feeds/all.atom.xml">Atom</a>
+
+  <a href="/en/feeds/all.rss.xml">RSS</a>
+</nav>
+
+<article class="single">
+  <header>
+      
+    <h1 id="installing-github-skills">Installing GitHub Skills</h1>
+    <p>
+      Posted on Sun, 19 Apr 2026 in <a href="/en/category/programming.html">Programming</a>
+
+    </p>
+  </header>
+
+
+  <div>
+    <p>Two main ways to install skills for AI agents (Claude Code, Codex, Cursor, etc.): the new <code>gh skill</code> subcommand from GitHub CLI and the <code>npx skills</code> tool from Vercel Labs.</p>
+<h2 id="gh-skill-githubs-official-approach"><code>gh skill</code> — GitHub's official approach<a class="headerlink" href="#gh-skill-githubs-official-approach" title="Permanent link">&para;</a></h2>
+<p>GitHub CLI now has a native subcommand for managing skills:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Search for skills</span>
+gh<span class="w"> </span>skill<span class="w"> </span>search<span class="w"> </span>terraform
+
+<span class="c1"># Install a specific skill</span>
+gh<span class="w"> </span>skill<span class="w"> </span>install<span class="w"> </span>github/awesome-copilot<span class="w"> </span>documentation-writer
+
+<span class="c1"># Preview before installing</span>
+gh<span class="w"> </span>skill<span class="w"> </span>preview<span class="w"> </span>github/awesome-copilot<span class="w"> </span>documentation-writer
+
+<span class="c1"># Update all installed skills</span>
+gh<span class="w"> </span>skill<span class="w"> </span>update<span class="w"> </span>--all
+
+<span class="c1"># Validate skills before publishing</span>
+gh<span class="w"> </span>skill<span class="w"> </span>publish<span class="w"> </span>--dry-run
+</code></pre></div>
+
+<p><strong>How it installs</strong>: <code>gh skill</code> <strong>copies</strong> files (no symlinks) and injects tracking metadata directly into the <code>SKILL.md</code> frontmatter (repository, ref, tree SHA). This metadata enables <code>gh skill update</code> to detect actual content changes by comparing local vs remote tree SHAs.</p>
+<p><strong>Where it installs</strong>: Defaults to <strong>project scope</strong> (inside the current git repository), but you can use <code>--scope user</code> to install to your home directory for global availability. Per-agent directories:</p>
+<table>
+<thead>
+<tr>
+<th>Agent</th>
+<th>Project</th>
+<th>User</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GitHub Copilot</td>
+<td><code>.agents/skills</code></td>
+<td><code>~/.copilot/skills</code></td>
+</tr>
+<tr>
+<td>Claude Code</td>
+<td><code>.claude/skills</code></td>
+<td><code>~/.claude/skills</code></td>
+</tr>
+<tr>
+<td>Cursor</td>
+<td><code>.agents/skills</code></td>
+<td><code>~/.cursor/skills</code></td>
+</tr>
+<tr>
+<td>Codex</td>
+<td><code>.agents/skills</code></td>
+<td><code>~/.codex/skills</code></td>
+</tr>
+<tr>
+<td>Gemini CLI</td>
+<td><code>.agents/skills</code></td>
+<td><code>~/.gemini/skills</code></td>
+</tr>
+<tr>
+<td>Antigravity</td>
+<td><code>.agents/skills</code></td>
+<td><code>~/.gemini/antigravity/skills</code></td>
+</tr>
+</tbody>
+</table>
+<p>Note: GitHub Copilot, Cursor, Codex, Gemini CLI, Antigravity, and Pi share <code>.agents/skills</code> at project scope.</p>
+<p>The nice thing is that it's built directly into <code>gh</code>, so if you already use GitHub CLI for everything, you don't need another dependency. But the search is pretty basic and limited to GitHub's ecosystem.</p>
+<h2 id="npx-skills-vercel-labs-tool"><code>npx skills</code> — Vercel Labs' tool<a class="headerlink" href="#npx-skills-vercel-labs-tool" title="Permanent link">&para;</a></h2>
+<p>I've been using <a href="https://github.com/vercel-labs/skills"><code>npx skills</code></a> from Vercel Labs for a while and find it more comprehensive for day-to-day work:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># List available skills in a repo</span>
+npx<span class="w"> </span>skills<span class="w"> </span>add<span class="w"> </span>github/awesome-copilot<span class="w"> </span>--list
+
+<span class="c1"># Install a specific skill</span>
+npx<span class="w"> </span>skills<span class="w"> </span>add<span class="w"> </span>github/awesome-copilot<span class="w"> </span>--skill<span class="w"> </span>publish-to-pages
+
+<span class="c1"># Install all skills from a repo</span>
+npx<span class="w"> </span>skills<span class="w"> </span>add<span class="w"> </span>vercel-labs/agent-skills<span class="w"> </span>--all
+
+<span class="c1"># Update skills</span>
+npx<span class="w"> </span>skills<span class="w"> </span>update
+
+<span class="c1"># Search skills interactively</span>
+npx<span class="w"> </span>skills<span class="w"> </span>find
+</code></pre></div>
+
+<p>Advantages I see:</p>
+<ul>
+<li><strong>Multi-agent support</strong>: Works with Pi, Claude Code, Codex, Cursor, OpenCode, Gemini CLI, and 40+ other agents. Each has its own skills directory and <code>npx skills</code> manages them all.</li>
+<li><strong>Flexible installation</strong>: You can install skills globally (<code>-g</code>) or per-project, and choose between symlinking (recommended for easy updates) or copying files.</li>
+<li><strong>Interactive search</strong>: The <code>npx skills find</code> command gives you an <code>fzf</code>-style interface to browse available skills.</li>
+<li><strong>Granular updates</strong>: You can update individual skills or all of them, and choose whether to update global or project skills.</li>
+</ul>
+<p>The downside is that search doesn't work perfectly when a repo has multiple skills — sometimes it doesn't find them all or doesn't list them as expected.</p>
+<p>But where <code>npx skills</code> really shines is with <code>npx skills find</code> — an interactive <code>fzf</code>-style interface to explore and search available skills. It's way better than the basic search from <code>gh skill</code>:</p>
+<p><img alt="npx skills find" src="/images/npx-skills-find.png"></p>
+<p>You can search by keyword, interactively browse results, see install counts, and run the install command directly. For discovering new skills, this is hands down the best option.</p>
+<h2 id="technical-comparison">Technical comparison<a class="headerlink" href="#technical-comparison" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th><code>gh skill</code></th>
+<th><code>npx skills</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Installation method</td>
+<td>Copies files</td>
+<td>Symlink (recommended) or copy</td>
+</tr>
+<tr>
+<td>Default scope</td>
+<td>Project</td>
+<td>Project</td>
+</tr>
+<tr>
+<td>Global scope</td>
+<td><code>--scope user</code></td>
+<td><code>-g</code> / <code>--global</code></td>
+</tr>
+<tr>
+<td>Version tracking</td>
+<td>Tree SHA in frontmatter</td>
+<td>Similar metadata</td>
+</tr>
+<tr>
+<td>Update mechanism</td>
+<td>Compares local vs remote tree SHA</td>
+<td>Git pull on repo</td>
+</tr>
+<tr>
+<td>Supported agents</td>
+<td>6 (Copilot, Claude, Cursor, Codex, Gemini, Antigravity)</td>
+<td>40+</td>
+</tr>
+<tr>
+<td>Interactive search</td>
+<td>No (<code>gh skill search</code> is basic)</td>
+<td>Yes (<code>npx skills find</code> with fzf)</td>
+</tr>
+<tr>
+<td>Integration</td>
+<td>Native in gh CLI</td>
+<td>Standalone tool</td>
+</tr>
+</tbody>
+</table>
+<h2 id="skills-lockjson-npx-skills-lock-file"><code>skills-lock.json</code> — npx skills' lock file<a class="headerlink" href="#skills-lockjson-npx-skills-lock-file" title="Permanent link">&para;</a></h2>
+<p><code>npx skills</code> maintains a global lock file at <code>~/.agents/.skill-lock.json</code> (v3 format) that tracks:</p>
+<ul>
+<li>All globally installed skills</li>
+<li>Their source (repo, URL, source type)</li>
+<li>Folder hash for change detection</li>
+<li>Installation and last update timestamps</li>
+<li>User preferences (selected agents)</li>
+</ul>
+<p>Currently it works as a <strong>registry</strong> for <code>npx skills update</code> to know what to check, but <strong>not as a declarative manifest</strong> — there's no <code>npx skills install</code> command to restore skills from scratch reading the lock (like <code>npm ci</code> would). So if you delete your installed skills, the lock file only serves as reference, not for automatic restoration.</p>
+<h2 id="my-current-workflow">My current workflow<a class="headerlink" href="#my-current-workflow" title="Permanent link">&para;</a></h2>
+<p>For installing new skills:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># See what skills a repo has</span>
+npx<span class="w"> </span>skills<span class="w"> </span>add<span class="w"> </span>github/awesome-copilot<span class="w"> </span>--list
+
+<span class="c1"># Install only the ones I need</span>
+npx<span class="w"> </span>skills<span class="w"> </span>add<span class="w"> </span>github/awesome-copilot<span class="w"> </span>--skill<span class="w"> </span>publish-to-pages<span class="w"> </span>--skill<span class="w"> </span>documentation-writer
+</code></pre></div>
+
+<p>And for keeping them updated:</p>
+<div class="highlight"><pre><span></span><code>npx<span class="w"> </span>skills<span class="w"> </span>update
+</code></pre></div>
+
+<p>Bottom line: I'm sticking with Vercel's <code>npx skills</code> without a doubt. GitHub CLI is fine if you only use Copilot and want everything integrated in <code>gh</code>, but if you work with multiple agents (like me, using Pi as my main agent), <code>npx skills</code> is far superior for its multi-agent support, flexibility, and especially <code>npx skills find</code> for discovering new skills.</p>
+<h2 id="links">Links<a class="headerlink" href="#links" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://cli.github.com/manual/gh_skill"><code>gh skill</code> documentation</a></li>
+<li><a href="https://github.com/vercel-labs/skills"><code>npx skills</code> repo</a></li>
+<li><a href="https://skills.sh">Skills directory</a></li>
+</ul>
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="/en/tag/github.html">GitHub</a>
+      <a href="/en/tag/cli.html">CLI</a>
+      <a href="/en/tag/ai-agents.html">AI Agents</a>
+      <a href="/en/tag/skills.html">Skills</a>
+    </p>
+  </div>
+
+
+
+  <div class="neighbors">
+    <a class="btn float-left" href="/en/velvet-os" title="Velvet OS: modern kernels for old ARM hardware">
+      <i class="fa fa-angle-left"></i> Previous Post
+    </a>
+  </div>
+
+  <div class="related-posts">
+    <h4>You might enjoy</h4>
+    <ul class="related-posts">
+      <li><a href="/en/rbw-sync-access-token">rbw sync: missing field `access_token`</a></li>
+      <li><a href="/en/rbw-env">rbw-env: Export environment variables from Bitwarden</a></li>
+      <li><a href="/en/sem-semantic-version-control">sem: Semantic Version Control</a></li>
+      <li><a href="/en/kitty-rbw-kitten">kitty-rbw: Fast Bitwarden access from your kitty terminal</a></li>
+      <li><a href="/en/rbw-bitwarden-cli">rbw: The Bitwarden terminal client you should be using</a></li>
+    </ul>
+  </div>
+
+
+
+<!-- Disqus -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'anotaciones';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>
+    Please enable JavaScript to view comments.
+</noscript>
+<!-- End Disqus -->
+</article>
+
+<footer>
+<p>
+  &copy; 2026  - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/3.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/3.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Annotations by Pablo Caro ",
+  "url" : "/en",
+  "image": "/theme/img/profile.png",
+  "description": ""
+}
+</script>  <script src="https://files.stork-search.net/releases/v1.6.0/stork.js"></script>
+  <script>
+    window.storkIndexLoaded = false;
+    window.loadStorkIndex = function () {
+      if (window.storkIndexLoaded) {
+        return;
+      }
+      if (typeof stork === 'undefined') {
+        console.error('Stork is not loaded yet, retrying...');
+        setTimeout(window.loadStorkIndex, 100);
+        return;
+      }
+      stork.register("sitesearch", "/en/search-index.st", { showProgress: false });
+      stork.register("sitesearch-page", "/en/search-index.st", { showProgress: false });
+      window.storkIndexLoaded = true;
+    }
+  </script>
+
+</body>
+</html>
