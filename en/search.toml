@@ -8,6 +8,11 @@ url = "/rust-ebooks-nightly"
 title = "Rust eBooks Nightly — Rust books in EPUB, AZW3, MOBI, and PDF"
 
 [[input.files]]
+path = "disable-git-autocrlf.html"
+url = "/disable-git-autocrlf"
+title = "Disable git autocrlf"
+
+[[input.files]]
 path = "installing-github-skills.html"
 url = "/installing-github-skills"
 title = "Installing GitHub Skills"
