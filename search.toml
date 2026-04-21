@@ -3,6 +3,11 @@ html_selector = "main"
 base_directory = "/home/runner/work/anotaciones/anotaciones/output"
 
 [[input.files]]
+path = "rust-ebooks-nightly.html"
+url = "/rust-ebooks-nightly"
+title = "Rust eBooks Nightly — libros de Rust en EPUB, AZW3, MOBI y PDF"
+
+[[input.files]]
 path = "instalando-skills-de-github.html"
 url = "/instalando-skills-de-github"
 title = "Instalando skills de GitHub"
@@ -776,6 +781,11 @@ title = "Corrector ortográfico de firefox 2.0 en castellano"
 path = "primera-anotacion-de-prueba.html"
 url = "/primera-anotacion-de-prueba"
 title = "Primera anotación de prueba"
+
+[[input.files]]
+path = "rust-ebooks-nightly-en.html"
+url = "/en/rust-ebooks-nightly"
+title = "Rust eBooks Nightly — Rust books in EPUB, AZW3, MOBI, and PDF"
 
 [[input.files]]
 path = "velvet-os-en.html"

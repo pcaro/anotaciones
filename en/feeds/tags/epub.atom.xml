@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Annotations by Pablo Caro - EPUB</title><link href="/en/" rel="alternate"></link><link href="/en/feeds/tags/epub.atom.xml" rel="self"></link><id>/en/</id><updated>2026-04-21T22:00:00+02:00</updated><subtitle>Annotations</subtitle><entry><title>Rust eBooks Nightly — Rust books in EPUB, AZW3, MOBI, and PDF</title><link href="/en/rust-ebooks-nightly" rel="alternate"></link><published>2026-04-21T22:00:00+02:00</published><updated>2026-04-21T22:00:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:None,2026-04-21:/en/rust-ebooks-nightly</id><summary type="html">&lt;p&gt;Artur Sulej's project that automatically builds and publishes the latest versions of top Rust books as eBooks. Updated daily.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;a href="https://artur-sulej.github.io/rust-ebooks/"&gt;Rust eBooks Nightly&lt;/a&gt; is a project by Artur Sulej that automatically builds and publishes the latest versions of the most important Rust books in EPUB, AZW3, MOBI and PDF formats. Updated daily via GitHub Actions.&lt;/p&gt;
+&lt;p&gt;Available books right now:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;The Rust Programming Language&lt;/strong&gt; (the official book from rust-lang.org)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Rust By Example&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The Rust Reference&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The Rustonomicon&lt;/strong&gt; — all about unsafe code in Rust&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The Cargo Book&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Rust Cookbook&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Asynchronous Programming in Rust&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Learning Rust With Entirely Too Many Linked Lists&lt;/strong&gt; — my favorite for learning alienist patterns&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Rust Unsafe Code Guidelines&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The Embedded Rust Book&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The wasm-bindgen Guide&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Real-Time Interrupt-driven Concurrency&lt;/strong&gt; (RTIC)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The Rust and WebAssembly Book&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The nice thing about this project is that it's nightly — every day it clones each book's repository, builds the content with mdBook, converts it to different formats with Calibre, and uploads to GitHub Pages. If a book fails to build, it's skipped and an issue is created automatically. The others keep going.&lt;/p&gt;
+&lt;p&gt;I've been using a Likebook Muses for a while now, and having Rust books always at hand is quite useful.&lt;/p&gt;
+&lt;p&gt;These books cover the official documentation, so they're nicely complemented by paid titles like &lt;em&gt;Programming Rust&lt;/em&gt; (O'Reilly), &lt;em&gt;Rust for Rustaceans&lt;/em&gt; by Jon Gjengset, or &lt;em&gt;Black Hat Rust&lt;/em&gt; by Sylvain Kerkour.&lt;/p&gt;
+&lt;p&gt;Link: &lt;a href="https://artur-sulej.github.io/rust-ebooks/"&gt;https://artur-sulej.github.io/rust-ebooks/&lt;/a&gt;
+Repo: &lt;a href="https://github.com/Artur-Sulej/rust-ebooks"&gt;https://github.com/Artur-Sulej/rust-ebooks&lt;/a&gt;&lt;/p&gt;</content><category term="Programming"></category><category term="Rust"></category><category term="eBooks"></category><category term="EPUB"></category><category term="Calibre"></category><category term="GitHub Actions"></category></entry></feed>

@@ -3,6 +3,11 @@ html_selector = "main"
 base_directory = "/home/runner/work/anotaciones/anotaciones/output/en"
 
 [[input.files]]
+path = "rust-ebooks-nightly.html"
+url = "/rust-ebooks-nightly"
+title = "Rust eBooks Nightly — Rust books in EPUB, AZW3, MOBI, and PDF"
+
+[[input.files]]
 path = "installing-github-skills.html"
 url = "/installing-github-skills"
 title = "Installing GitHub Skills"
@@ -351,6 +356,11 @@ title = "Django: links in object list"
 path = "settings-vars-processor.html"
 url = "/settings-vars-processor"
 title = "Settings vars processor"
+
+[[input.files]]
+path = "rust-ebooks-nightly-es.html"
+url = "/../rust-ebooks-nightly"
+title = "Rust eBooks Nightly — libros de Rust en EPUB, AZW3, MOBI y PDF"
 
 [[input.files]]
 path = "velvet-os-es.html"
