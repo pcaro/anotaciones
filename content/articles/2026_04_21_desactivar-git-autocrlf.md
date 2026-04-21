@@ -7,6 +7,8 @@ Lang: es
 featured_image: /images/git-disable-autocrlf.png
 Summary: Si usas Windows (o WSL), Git te está convirtiendo los saltos de línea en silencio. Un solo comando lo arregla.
 
+No soy usuario habitual de Windows, pero si me viese obligado una temporada WSL sería para mí casi una obligación. No está de más tener esta nota a mano (por Ryan Harrison).
+
 Si usas Windows, Git lleva años modificando tus saltos de línea sin que te des cuenta. El culpable es `core.autocrlf`, activado por defecto.
 
 ```bash

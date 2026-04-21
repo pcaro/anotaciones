@@ -7,6 +7,8 @@ Lang: en
 featured_image: /images/git-disable-autocrlf.png
 Summary: If you use Windows (or WSL), Git has been silently converting your line endings. One command fixes it.
 
+I'm not a regular Windows user, but if I were forced to use it for a while, WSL would be almost mandatory. Good to have this note handy (by Ryan Harrison).
+
 If you're on Windows, Git has been silently messing with your line endings since the day you installed it. The culprit is `core.autocrlf`, enabled by default.
 
 ```bash
