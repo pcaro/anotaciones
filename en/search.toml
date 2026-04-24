@@ -3,6 +3,11 @@ html_selector = "main"
 base_directory = "/home/runner/work/anotaciones/anotaciones/output/en"
 
 [[input.files]]
+path = "probando-aurora-mi-primer-vistazo-al-futuro-del-escritorio-linux.html"
+url = "/probando-aurora-mi-primer-vistazo-al-futuro-del-escritorio-linux"
+title = "Trying Aurora: my first look at the future of the Linux desktop"
+
+[[input.files]]
 path = "rust-ebooks-nightly.html"
 url = "/rust-ebooks-nightly"
 title = "Rust eBooks Nightly — Rust books in EPUB, AZW3, MOBI, and PDF"
@@ -361,6 +366,11 @@ title = "Django: links in object list"
 path = "settings-vars-processor.html"
 url = "/settings-vars-processor"
 title = "Settings vars processor"
+
+[[input.files]]
+path = "probando-aurora-mi-primer-vistazo-al-futuro-del-escritorio-linux-es.html"
+url = "/../probando-aurora-mi-primer-vistazo-al-futuro-del-escritorio-linux"
+title = "Probando Aurora: mi primer vistazo al futuro del escritorio Linux"
 
 [[input.files]]
 path = "rust-ebooks-nightly-es.html"

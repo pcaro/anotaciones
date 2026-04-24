@@ -1,0 +1,364 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/stylesheet/style.min.css">
+
+
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+          href="https://pablocaro.es/theme/pygments/github.min.css">
+
+
+  <link rel="stylesheet"
+        type="text/css"
+        href="https://pablocaro.es/theme/stork/stork.css" />
+
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/font-awesome/css/solid.css">
+
+
+  <link rel="shortcut icon" href="/theme/img/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/theme/img/favicon.ico" type="image/x-icon">
+
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#333333">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#333333">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Microsoft EDGE -->
+  <meta name="msapplication-TileColor" content="#333333">
+
+  <link href="https://pablocaro.es/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Anotaciones por Pablo Caro Atom">
+
+  <link href="https://pablocaro.es/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Anotaciones por Pablo Caro RSS">
+
+<script data-goatcounter="https://pcaro.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Pablo Caro" />
+<meta name="description" content="Aurora: Image-based, actualizaciones atómicas, devcontainers, homebrew y toda la experiencia DX que estoy probando en una VM." />
+<meta name="keywords" content="aurora, linux, kde, escritorio, devcontainers, homebrew">
+
+<link rel="alternate" href="https://pablocaro.es/probando-aurora-mi-primer-vistazo-al-futuro-del-escritorio-linux" hreflang="es" />
+<link rel="alternate" href="https://pablocaro.es/en/probando-aurora-mi-primer-vistazo-al-futuro-del-escritorio-linux" hreflang="en" />
+
+  <meta property="og:site_name" content="Anotaciones por Pablo Caro"/>
+  <meta property="og:title" content="Probando Aurora: mi primer vistazo al futuro del escritorio Linux"/>
+  <meta property="og:description" content="Aurora: Image-based, actualizaciones atómicas, devcontainers, homebrew y toda la experiencia DX que estoy probando en una VM."/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://pablocaro.es/probando-aurora-mi-primer-vistazo-al-futuro-del-escritorio-linux"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2026-04-24 09:51:00+02:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://pablocaro.es/author/pablo-caro.html">
+  <meta property="article:section" content="Linux"/>
+  <meta property="article:tag" content="aurora"/>
+  <meta property="article:tag" content="linux"/>
+  <meta property="article:tag" content="kde"/>
+  <meta property="article:tag" content="escritorio"/>
+  <meta property="article:tag" content="devcontainers"/>
+  <meta property="article:tag" content="homebrew"/>
+  <meta property="og:image" content="/theme/img/profile.png">
+
+  <title>Anotaciones por Pablo Caro &ndash; Probando Aurora: mi primer vistazo al futuro del escritorio Linux</title>
+
+
+</head>
+<body class="light-theme">
+
+<aside>
+  <div>
+    <a href="https://pablocaro.es/">
+      <img src="/theme/img/profile.png" alt="Anotaciones" title="Anotaciones">
+    </a>
+
+    <h1>
+      <a href="https://pablocaro.es/">Anotaciones</a>
+    </h1>
+
+    <p>Anotaciones</p>
+
+    <p style="font-size: 0.9em; font-style: italic; margin-bottom: 20px;">
+      Volcando mi cerebro a internet. Colección de apuntes técnicos y soluciones que escribo para mi 'yo' del futuro, pero que comparto por si a alguien más le ahorran un dolor de cabeza.
+    </p>
+
+    <div class="stork">
+      <input class="stork-input" type="text" autocomplete="off" name="q" data-stork="sitesearch" placeholder="Buscar..." onclick="loadStorkIndex()"/>
+      <div class="stork-output" data-stork="sitesearch-output"></div>
+    </div>
+
+    <nav>
+      <ul class="list">
+
+
+
+          <li>
+            <a target="_self" href="http://x.com/pcaro" >pcaro@X</a>
+          </li>
+          <li>
+            <a target="_self" href="https://github.com/pcaro/" >pcaro@Github</a>
+          </li>
+          <li>
+            <a target="_self" href="https://www.linkedin.com/in/pcarorevuelta/" >LinkedIn</a>
+          </li>
+      </ul>
+    </nav>
+
+    <ul class="social">
+      <li>
+        <a class="sc-Twitter"
+           href="http://twitter.com/pcaro"
+           target="_blank">
+          <i class="fa-brands fa-Twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Github"
+           href="http://github.com/pcaro"
+           target="_blank">
+          <i class="fa-brands fa-Github"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Linkedin"
+           href="https://www.linkedin.com/in/pcarorevuelta"
+           target="_blank">
+          <i class="fa-brands fa-Linkedin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Facebook"
+           href="https://www.facebook.com/pablo.carorevuelta"
+           target="_blank">
+          <i class="fa-brands fa-Facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Email"
+           href="mailto:correo@pablocaro.es"
+           target="_blank">
+          <i class="fa-brands fa-Email"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+</aside>
+  <main>
+
+<nav>
+  <a href="https://pablocaro.es/">Inicio</a>
+
+  <a href="/archives.html">Archivo</a>
+  <a href="/categories.html">Categorías</a>
+  <a href="/tags.html">Etiquetas</a>
+  <a href="/search.html">Búsqueda</a>
+  <a href="/en/">English</a>
+
+  <a href="https://pablocaro.es/feeds/all.atom.xml">Atom</a>
+
+  <a href="https://pablocaro.es/feeds/all.rss.xml">RSS</a>
+</nav>
+
+<article class="single">
+  <header>
+          <div class="translations">
+            <a href="https://pablocaro.es/en/probando-aurora-mi-primer-vistazo-al-futuro-del-escritorio-linux">Read in English</a>
+    </div>
+
+    <h1 id="probando-aurora-mi-primer-vistazo-al-futuro-del-escritorio-linux">Probando Aurora: mi primer vistazo al futuro del escritorio Linux</h1>
+    <p>
+      Publicado el 24 de April de 2026 en <a href="https://pablocaro.es/category/linux.html">Linux</a>
+
+    </p>
+  </header>
+
+
+  <div>
+    <p>Siempre he sido de KDE. Con distros Suse o Debian. Desde hace unos años mi escritorio principal es KDE Neon.</p>
+<p>Pero últimamente he estado siguiendo el proyecto <a href="https://getaurora.dev/en/">Aurora</a> y decidí darle una oportunidad en una máquina virtual. 
+Y tengo que decirlo: tiene muy buena pinta.</p>
+<h2 id="que-es-aurora">¿Qué es Aurora?<a class="headerlink" href="#que-es-aurora" title="Permanent link">&para;</a></h2>
+<p>Aurora es una distribución Linux basada en Fedora que está replanteando cómo debería funcionar un escritorio moderno. No es solo "otra distro con KDE" — es un cambio de paradigma completo.</p>
+<p>Lo primero que llama la atención es que usa un <strong>modelo image-based</strong>. En lugar de actualizar paquetes individuales con <code>dnf</code> o <code>apt</code>, el sistema operativo completo se actualiza como una imagen atómica. Esto significa:</p>
+<ul>
+<li><strong>Actualizaciones en segundo plano</strong> que se aplican al reiniciar</li>
+<li><strong>Rollback instantáneo</strong> si algo sale mal (puedes arrancar en la versión anterior desde el grub)</li>
+<li><strong>Sistema inmutable</strong> que es mucho más difícil de romper</li>
+</ul>
+<p>Para alguien que viene de un sistema tradicional, con muchos años a sus espaldas, esto es un gran gran cambio.</p>
+<h2 id="kde-pero-diferente">KDE, pero diferente<a class="headerlink" href="#kde-pero-diferente" title="Permanent link">&para;</a></h2>
+<p>Aurora usa KDE Plasma, pero no es el KDE simple original que se solía encontrar en Fedora (nunca fue la mejor distro para este gui).
+Está cuidadosamente personalizado para ofrecer una experiencia "out of the box" que simplemente funciona. No hay que configurar nada, no hay que instalar tweaks ni ajustes raros.</p>
+<p>Y aun así, mantiene la esencia de KDE: es flexible, es potente, y se siente familiar desde el primer momento.</p>
+<h2 id="aurora-dx-el-verdadero-atractivo">Aurora DX: el verdadero atractivo<a class="headerlink" href="#aurora-dx-el-verdadero-atractivo" title="Permanent link">&para;</a></h2>
+<p>Pero donde Aurora realmente brilla es en la <strong>Developer Experience (DX)</strong>. Llevo días trasteando con esto y cada vez que descubro algo nuevo, parace una buena decisión.
+Eso sí, he de tener en cuenta que tengo mucho linux a mis espaldas y es difícil cambiar viejas costumbres.</p>
+<h3 id="devcontainers-por-defecto">Devcontainers por defecto<a class="headerlink" href="#devcontainers-por-defecto" title="Permanent link">&para;</a></h3>
+<p>El IDE preinstalado es Visual Studio Code con la extensión de <strong>DevContainers</strong> ya configurada. Todo el desarrollo ocurre dentro de contenedores, no en el host. Esto significa:</p>
+<ul>
+<li>Tu sistema operativo no se ensucia con dependencias de proyectos</li>
+<li>Cada proyecto puede tener su propio entorno aislado</li>
+<li>Puedes descartar y recrear entornos en segundos</li>
+</ul>
+<h3 id="homebrew-integrado">Homebrew integrado<a class="headerlink" href="#homebrew-integrado" title="Permanent link">&para;</a></h3>
+<p>Aurora incluye <strong>Homebrew</strong> preinstalado y configurado para no tocar el sistema base. Quieres una herramienta CLI nueva? <code>brew install</code>. Listo. Sin conflictos con los paquetes del sistema, sin necesidad de sudo, sin romper nada. Ya sabéis que me gusta mantener algunas tools pequeñas muy actualizadas y usar gah para instalar.</p>
+<p>Tienen incluso un <code>ujust bbrew</code> que te da un menú interactivo para instalar categorías enteras de herramientas: fonts, k8s-tools, ai, cncf...</p>
+<h3 id="ujust-comandos-que-simplifican-la-vida">ujust: comandos que simplifican la vida<a class="headerlink" href="#ujust-comandos-que-simplifican-la-vida" title="Permanent link">&para;</a></h3>
+<p><code>ujust</code> es como un alias con superpoderes. Comandos como:</p>
+<div class="highlight"><pre><span></span><code>ujust<span class="w"> </span>devmode<span class="w">        </span><span class="c1"># Activa el modo desarrollador</span>
+ujust<span class="w"> </span>dx-group<span class="w">       </span><span class="c1"># Te añade a los grupos necesarios</span>
+ujust<span class="w"> </span>jetbrains-toolbox<span class="w">  </span><span class="c1"># Instala JetBrains Toolbox</span>
+ujust<span class="w"> </span>cncf<span class="w">           </span><span class="c1"># Navega e instala herramientas CNCF</span>
+</code></pre></div>
+
+<p>Cada comando te guía paso a paso. Es como tener un asistente que sabe exactamente qué necesitas.</p>
+<h3 id="tailscale-y-herramientas-cloud-native">Tailscale y herramientas cloud-native<a class="headerlink" href="#tailscale-y-herramientas-cloud-native" title="Permanent link">&para;</a></h3>
+<p>Tailscale viene preconfigurado para VPN. Cockpit para gestión del sistema. Herramientas de profiling como <code>sysprof</code>, <code>bcc</code>, <code>bpftrace</code>. Todo lo que necesitarías para desarrollo cloud-native está ahí, listo para usar.</p>
+<h3 id="terminal-con-soporte-de-contenedores">Terminal con soporte de contenedores<a class="headerlink" href="#terminal-con-soporte-de-contenedores" title="Permanent link">&para;</a></h3>
+<p>El terminal por defecto es <strong>Ptyxis</strong>, que tiene integración nativa con Distrobox. Puedes tener contenedores "pet" interactivos y cambiar entre ellos y el host con un atajo. Es muy cómodo.</p>
+<h2 id="las-grandes-diferencias">Las grandes diferencias<a class="headerlink" href="#las-grandes-diferencias" title="Permanent link">&para;</a></h2>
+<p>En Aurora, el sistema se cuida solo:</p>
+<ol>
+<li><strong>No puedes romperlo fácilmente</strong> — el sistema base es inmutable</li>
+<li><strong>Las actualizaciones son atómicas</strong> — o funcionan completas, o no se aplican</li>
+<li><strong>Todo está en contenedores</strong> — tus herramientas, tus entornos, tus dependencias</li>
+<li><strong>Si algo falla, hay rollback</strong> — arrancas la versión anterior y listo</li>
+</ol>
+<p>Es como la diferencia entre cuidar un jardín y vivir en un hotel. En un hotel, todo simplemente funciona.</p>
+<h2 id="dejare-kde-neon">¿Dejaré KDE Neon?<a class="headerlink" href="#dejare-kde-neon" title="Permanent link">&para;</a></h2>
+<p>No lo sé aún. Llevo años en KDE Neon y tengo mi flujo de trabajo montado. Pero Aurora me está haciendo replantear cosas.</p>
+<p>Lo que más me tira:</p>
+<ul>
+<li><strong>El DX</strong> es simplemente superior para desarrollo moderno</li>
+<li><strong>Las actualizaciones automáticas</strong> sin tener que estar pendiente</li>
+<li><strong>La filosofía</strong> de "todo en contenedores" tiene mucho sentido</li>
+</ul>
+<p>Lo que me da miedo:</p>
+<ul>
+<li><strong>La inmutabilidad</strong> — al principio se siente restrictivo</li>
+<li><strong>El cambio de mentalidad</strong> — dejar de tener control total</li>
+<li><strong>¿Y si necesito algo específico? (que me a ocurrir seguro)</strong> — aunque con homebrew y contenedores, probablemente no sea mucho</li>
+</ul>
+<hr>
+<p><strong>Enlaces:</strong></p>
+<ul>
+<li><a href="https://getaurora.dev/en/">Aurora Website</a></li>
+<li><a href="https://docs.getaurora.dev/dx/aurora-dx-intro/">Aurora DX Documentation</a></li>
+<li><a href="https://universal-blue.org">Universal Blue (el proyecto detrás)</a></li>
+</ul>
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="https://pablocaro.es/tag/aurora.html">aurora</a>
+      <a href="https://pablocaro.es/tag/linux.html">linux</a>
+      <a href="https://pablocaro.es/tag/kde.html">kde</a>
+      <a href="https://pablocaro.es/tag/escritorio.html">escritorio</a>
+      <a href="https://pablocaro.es/tag/devcontainers.html">devcontainers</a>
+      <a href="https://pablocaro.es/tag/homebrew.html">homebrew</a>
+    </p>
+  </div>
+
+
+
+  <div class="neighbors">
+    <a class="btn float-left" href="https://pablocaro.es/rust-ebooks-nightly" title="Rust eBooks Nightly — libros de Rust en EPUB, AZW3, MOBI y PDF">
+      <i class="fa fa-angle-left"></i> Artículo anterior
+    </a>
+  </div>
+
+  <div class="related-posts">
+    <h4>Te puede gustar</h4>
+    <ul class="related-posts">
+      <li><a href="https://pablocaro.es/velvet-os">Velvet OS: kernels modernos para hardware ARM antiguo</a></li>
+      <li><a href="https://pablocaro.es/rbw-sync-access-token">rbw sync: missing field `access_token`</a></li>
+      <li><a href="https://pablocaro.es/os-click-central-descarga-isos">os.click: Central de descarga de ISOs de sistemas operativos</a></li>
+      <li><a href="https://pablocaro.es/net-tools-to-iproute">De net-tools a iproute2: equivalents de comandos</a></li>
+      <li><a href="https://pablocaro.es/rodney-chrome-wayland-error">Solución al Error de Rodney con Chrome en Wayland</a></li>
+    </ul>
+  </div>
+
+
+
+<!-- Disqus -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'anotaciones';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>
+    Por favor, habilita JavaScript para ver los comentarios.
+</noscript>
+<!-- End Disqus -->
+</article>
+
+<footer>
+<p>
+  &copy; 2026  - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+Construido con <a href="http://getpelican.com" target="_blank">Pelican</a> usando el tema <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> 
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/3.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/3.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Anotaciones por Pablo Caro ",
+  "url" : "https://pablocaro.es",
+  "image": "/theme/img/profile.png",
+  "description": ""
+}
+</script>  <script src="https://files.stork-search.net/releases/v1.6.0/stork.js"></script>
+  <script>
+    window.storkIndexLoaded = false;
+    window.loadStorkIndex = function () {
+      if (window.storkIndexLoaded) {
+        return;
+      }
+      if (typeof stork === 'undefined') {
+        console.error('Stork is not loaded yet, retrying...');
+        setTimeout(window.loadStorkIndex, 100);
+        return;
+      }
+      stork.register("sitesearch", "https://pablocaro.es/search-index.st", { showProgress: false });
+      stork.register("sitesearch-page", "https://pablocaro.es/search-index.st", { showProgress: false });
+      window.storkIndexLoaded = true;
+    }
+  </script>
+
+</body>
+</html>

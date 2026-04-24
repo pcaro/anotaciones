@@ -5,36 +5,43 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/en/</loc>
-<lastmod>2026-04-21T21:23:32-00:00</lastmod>
+<lastmod>2026-04-24T09:25:22-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/en/tags.html</loc>
-<lastmod>2026-04-21T21:23:32-00:00</lastmod>
+<lastmod>2026-04-24T09:25:22-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/en/categories.html</loc>
-<lastmod>2026-04-21T21:23:32-00:00</lastmod>
+<lastmod>2026-04-24T09:25:22-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/en/archives.html</loc>
-<lastmod>2026-04-21T21:23:32-00:00</lastmod>
+<lastmod>2026-04-24T09:25:22-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/en/search.html</loc>
-<lastmod>2026-04-21T21:23:32-00:00</lastmod>
+<lastmod>2026-04-24T09:25:22-00:00</lastmod>
 <changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/en/probando-aurora-mi-primer-vistazo-al-futuro-del-escritorio-linux</loc>
+<lastmod>2026-04-24T09:51:00+02:00</lastmod>
+<changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
@@ -586,7 +593,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/en/category/linux.html</loc>
-<lastmod>2026-04-11T19:30:00+00:09</lastmod>
+<lastmod>2026-04-24T09:51:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -683,6 +690,48 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+<loc>/en/tag/aurora.html</loc>
+<lastmod>2026-04-24T09:51:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/en/tag/linux.html</loc>
+<lastmod>2026-04-24T09:51:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/en/tag/kde.html</loc>
+<lastmod>2026-04-24T09:51:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/en/tag/desktop.html</loc>
+<lastmod>2026-04-24T09:51:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/en/tag/devcontainers.html</loc>
+<lastmod>2026-04-24T09:51:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/en/tag/homebrew.html</loc>
+<lastmod>2026-04-24T09:51:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
 <loc>/en/tag/rust.html</loc>
 <lastmod>2026-04-21T22:00:00+00:09</lastmod>
 <changefreq>daily</changefreq>
@@ -769,13 +818,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>/en/tag/skills.html</loc>
 <lastmod>2026-04-19T12:00:00+00:09</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>/en/tag/linux.html</loc>
-<lastmod>2026-04-17T00:00:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
