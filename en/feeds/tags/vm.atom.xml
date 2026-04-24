@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Annotations by Pablo Caro - vm</title><link href="/en/" rel="alternate"></link><link href="/en/feeds/tags/vm.atom.xml" rel="self"></link><id>/en/</id><updated>2026-04-24T00:00:00+02:00</updated><subtitle>Annotations</subtitle><entry><title>Expand Aurora VM disk on Unraid and resize partitions</title><link href="/en/ampliar-disco-vm-aurora-unraid" rel="alternate"></link><published>2026-04-24T00:00:00+02:00</published><updated>2026-04-24T00:00:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:None,2026-04-24:/en/ampliar-disco-vm-aurora-unraid</id><summary type="html">&lt;p&gt;How to expand the virtual disk of an Aurora VM running on Unraid and resize Btrfs partitions within the operating system.&lt;/p&gt;</summary><content type="html">&lt;h1 id="expand-aurora-vm-disk-on-unraid-and-resize-partitions"&gt;Expand Aurora VM disk on Unraid and resize partitions&lt;a class="headerlink" href="#expand-aurora-vm-disk-on-unraid-and-resize-partitions" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;I ran out of space on my &lt;strong&gt;Aurora Linux&lt;/strong&gt; distribution test. Since I run it as a VM on my Unraid NAS, I simply increased the virtual disk and then resized the partitions inside the OS.&lt;/p&gt;
+&lt;p&gt;This is a &lt;strong&gt;Fedora Kinoite&lt;/strong&gt;-based distribution (OSTree/bootc images) from the Universal Blue project, which uses a &lt;strong&gt;Btrfs&lt;/strong&gt; filesystem with subvolumes.&lt;/p&gt;
+&lt;h2 id="initial-disk-situation"&gt;Initial disk situation&lt;a class="headerlink" href="#initial-disk-situation" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Before expansion, the disk had approximately &lt;strong&gt;20GB&lt;/strong&gt; and the main partition was at its limit:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Disk expansion diagram - before and after" src="/images/ampliar-disco-vm-aurora-unraid.png"&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;NAME&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="n"&gt;MAJ&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;MIN&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;RM&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;SIZE&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;RO&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;TYPE&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;MOUNTPOINTS&lt;/span&gt;
+&lt;span class="n"&gt;vda&lt;/span&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="mi"&gt;253&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="mi"&gt;60&lt;/span&gt;&lt;span class="n"&gt;G&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;disk&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;
+&lt;span class="err"&gt;├─&lt;/span&gt;&lt;span class="n"&gt;vda1&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;253&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="mi"&gt;600&lt;/span&gt;&lt;span class="n"&gt;M&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;part&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;boot&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;efi&lt;/span&gt;
+&lt;span class="err"&gt;├─&lt;/span&gt;&lt;span class="n"&gt;vda2&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;253&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="n"&gt;G&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;part&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;boot&lt;/span&gt;
+&lt;span class="err"&gt;└─&lt;/span&gt;&lt;span class="n"&gt;vda3&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;253&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;12&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="n"&gt;G&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;part&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="k"&gt;var&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;home&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="k"&gt;var&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;...&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The Btrfs filesystem showed:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;Device size:         12.41GiB
+Device unallocated:    1.00MiB
+Free (estimated):    512.12MiB (min: 512.12MiB)
+Usage:               93%
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="step-1-expand-the-disk-on-unraid"&gt;Step 1: Expand the disk on Unraid&lt;a class="headerlink" href="#step-1-expand-the-disk-on-unraid" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;From the Unraid terminal, with the VM powered off:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Shut down the VM&lt;/span&gt;
+virsh&lt;span class="w"&gt; &lt;/span&gt;shutdown&lt;span class="w"&gt; &lt;/span&gt;Aurora
+
+&lt;span class="c1"&gt;# Expand the disk to 60GB (tripling the original size)&lt;/span&gt;
+qemu-img&lt;span class="w"&gt; &lt;/span&gt;resize&lt;span class="w"&gt; &lt;/span&gt;-f&lt;span class="w"&gt; &lt;/span&gt;raw&lt;span class="w"&gt; &lt;/span&gt;/mnt/user/domains/Aurora/vdisk1.img&lt;span class="w"&gt; &lt;/span&gt;60G
+
+&lt;span class="c1"&gt;# Verify the new size&lt;/span&gt;
+ls&lt;span class="w"&gt; &lt;/span&gt;-lh&lt;span class="w"&gt; &lt;/span&gt;/mnt/user/domains/Aurora/vdisk1.img
+qemu-img&lt;span class="w"&gt; &lt;/span&gt;info&lt;span class="w"&gt; &lt;/span&gt;/mnt/user/domains/Aurora/vdisk1.img
+
+&lt;span class="c1"&gt;# Start the VM&lt;/span&gt;
+virsh&lt;span class="w"&gt; &lt;/span&gt;start&lt;span class="w"&gt; &lt;/span&gt;Aurora
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="step-2-install-growpart-on-aurora"&gt;Step 2: Install growpart on Aurora&lt;a class="headerlink" href="#step-2-install-growpart-on-aurora" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Aurora is an immutable OSTree-based system, so I needed to install the &lt;code&gt;growpart&lt;/code&gt; tool using &lt;code&gt;rpm-ostree&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Install cloud-utils-growpart&lt;/span&gt;
+sudo&lt;span class="w"&gt; &lt;/span&gt;rpm-ostree&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;cloud-utils-growpart
+
+&lt;span class="c1"&gt;# Reboot (required after rpm-ostree install)&lt;/span&gt;
+systemctl&lt;span class="w"&gt; &lt;/span&gt;reboot
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="step-3-expand-the-partition"&gt;Step 3: Expand the partition&lt;a class="headerlink" href="#step-3-expand-the-partition" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Once the system rebooted, I expanded partition 3 to occupy all the disk space:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Expand partition 3 on /dev/vda&lt;/span&gt;
+sudo&lt;span class="w"&gt; &lt;/span&gt;growpart&lt;span class="w"&gt; &lt;/span&gt;/dev/vda&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;3&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Output:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;CHANGED&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;partition&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;start&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;5425152&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;old&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;size&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;26030080&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;end&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;31455231&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;new&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;size&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;120403935&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;end&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;125829086&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="step-4-resize-the-btrfs-filesystem"&gt;Step 4: Resize the Btrfs filesystem&lt;a class="headerlink" href="#step-4-resize-the-btrfs-filesystem" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Aurora uses a special structure with multiple Btrfs subvolumes:
+- &lt;code&gt;root&lt;/code&gt; (ID 256) - base system (mounted read-only on /sysroot)
+- &lt;code&gt;home&lt;/code&gt; (ID 257) - user directories
+- &lt;code&gt;var&lt;/code&gt; (ID 258) - system variables&lt;/p&gt;
+&lt;p&gt;The trick is that &lt;code&gt;/sysroot&lt;/code&gt; is mounted as &lt;strong&gt;read-only&lt;/strong&gt; (because it's an immutable OSTree), but I can do the resize from any writable mount point of the same Btrfs filesystem:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Resize from /var (which has write access)&lt;/span&gt;
+sudo&lt;span class="w"&gt; &lt;/span&gt;btrfs&lt;span class="w"&gt; &lt;/span&gt;filesystem&lt;span class="w"&gt; &lt;/span&gt;resize&lt;span class="w"&gt; &lt;/span&gt;max&lt;span class="w"&gt; &lt;/span&gt;/var
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Output:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;Resize device id 1 (/dev/vda3) from 12.41GiB to max
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="final-result"&gt;Final result&lt;a class="headerlink" href="#final-result" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;After resizing, the Btrfs filesystem shows:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;Device size:         57.41GiB    ← Was 12.41GiB ✓
+Device unallocated:  45.00GiB    ← Available space
+Device slack:          3.50KiB   ← Was 45.00GiB ✓
+Free (estimated):    45.50GiB    ← Free space to use
+Usage:               ~20%        ← Was 93%
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Verifying with &lt;code&gt;lsblk&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;NAME&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="n"&gt;MAJ&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;MIN&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;RM&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;SIZE&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;RO&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;TYPE&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;MOUNTPOINTS&lt;/span&gt;
+&lt;span class="n"&gt;vda&lt;/span&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="mi"&gt;253&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="mi"&gt;60&lt;/span&gt;&lt;span class="n"&gt;G&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;disk&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;
+&lt;span class="err"&gt;├─&lt;/span&gt;&lt;span class="n"&gt;vda1&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;253&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="mi"&gt;600&lt;/span&gt;&lt;span class="n"&gt;M&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;part&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;boot&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;efi&lt;/span&gt;
+&lt;span class="err"&gt;├─&lt;/span&gt;&lt;span class="n"&gt;vda2&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;253&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="n"&gt;G&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;part&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;boot&lt;/span&gt;
+&lt;span class="err"&gt;└─&lt;/span&gt;&lt;span class="n"&gt;vda3&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;253&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;57&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="n"&gt;G&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;part&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="k"&gt;var&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;home&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="k"&gt;var&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;...&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="command-summary"&gt;Command summary&lt;a class="headerlink" href="#command-summary" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# === ON UNRAID (VM off) ===&lt;/span&gt;
+qemu-img&lt;span class="w"&gt; &lt;/span&gt;resize&lt;span class="w"&gt; &lt;/span&gt;-f&lt;span class="w"&gt; &lt;/span&gt;raw&lt;span class="w"&gt; &lt;/span&gt;/mnt/user/domains/Aurora/vdisk1.img&lt;span class="w"&gt; &lt;/span&gt;60G
+
+&lt;span class="c1"&gt;# === ON AURORA ===&lt;/span&gt;
+sudo&lt;span class="w"&gt; &lt;/span&gt;rpm-ostree&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;cloud-utils-growpart
+systemctl&lt;span class="w"&gt; &lt;/span&gt;reboot
+sudo&lt;span class="w"&gt; &lt;/span&gt;growpart&lt;span class="w"&gt; &lt;/span&gt;/dev/vda&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;3&lt;/span&gt;
+sudo&lt;span class="w"&gt; &lt;/span&gt;btrfs&lt;span class="w"&gt; &lt;/span&gt;filesystem&lt;span class="w"&gt; &lt;/span&gt;resize&lt;span class="w"&gt; &lt;/span&gt;max&lt;span class="w"&gt; &lt;/span&gt;/var
+
+&lt;span class="c1"&gt;# === VERIFY ===&lt;/span&gt;
+lsblk
+df&lt;span class="w"&gt; &lt;/span&gt;-h&lt;span class="w"&gt; &lt;/span&gt;/var
+df&lt;span class="w"&gt; &lt;/span&gt;-h&lt;span class="w"&gt; &lt;/span&gt;/var/home
+df&lt;span class="w"&gt; &lt;/span&gt;-h&lt;span class="w"&gt; &lt;/span&gt;/etc
+sudo&lt;span class="w"&gt; &lt;/span&gt;btrfs&lt;span class="w"&gt; &lt;/span&gt;filesystem&lt;span class="w"&gt; &lt;/span&gt;usage&lt;span class="w"&gt; &lt;/span&gt;/var
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="important-notes"&gt;Important notes&lt;a class="headerlink" href="#important-notes" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;OSTree systems&lt;/strong&gt;: On immutable distributions like Aurora, the base system is read-only. The resize must be done from a writable subvolume (&lt;code&gt;/var&lt;/code&gt;, &lt;code&gt;/etc&lt;/code&gt;, or &lt;code&gt;/var/home&lt;/code&gt;).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Btrfs is dynamic&lt;/strong&gt;: Space in Btrfs is allocated dynamically to subvolumes as needed. There's no need to assign specific space to each subvolume.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Reboot required&lt;/strong&gt;: After &lt;code&gt;rpm-ostree install&lt;/code&gt;, you always need to reboot for changes to take effect.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Backup&lt;/strong&gt;: Although the process is safe, it's always recommended to have a backup before operating on partitions.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;</content><category term="Linux"></category><category term="[aurora"></category><category term="linux"></category><category term="unraid"></category><category term="vm"></category><category term="btrfs"></category><category term="disk]"></category></entry></feed>

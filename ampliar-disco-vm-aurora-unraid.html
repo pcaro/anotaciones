@@ -1,0 +1,414 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/stylesheet/style.min.css">
+
+
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+          href="https://pablocaro.es/theme/pygments/github.min.css">
+
+
+  <link rel="stylesheet"
+        type="text/css"
+        href="https://pablocaro.es/theme/stork/stork.css" />
+
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/font-awesome/css/solid.css">
+
+
+  <link rel="shortcut icon" href="/theme/img/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/theme/img/favicon.ico" type="image/x-icon">
+
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#333333">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#333333">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Microsoft EDGE -->
+  <meta name="msapplication-TileColor" content="#333333">
+
+  <link href="https://pablocaro.es/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Anotaciones por Pablo Caro Atom">
+
+  <link href="https://pablocaro.es/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Anotaciones por Pablo Caro RSS">
+
+<script data-goatcounter="https://pcaro.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Pablo Caro" />
+<meta name="description" content="Cómo expandir el disco virtual de una VM Aurora ejecutándose en Unraid y redimensionar las particiones Btrfs dentro del sistema operativo." />
+<meta name="keywords" content="[aurora, linux, unraid, vm, btrfs, disco]">
+
+<link rel="alternate" href="https://pablocaro.es/ampliar-disco-vm-aurora-unraid" hreflang="es" />
+<link rel="alternate" href="https://pablocaro.es/en/ampliar-disco-vm-aurora-unraid" hreflang="en" />
+
+  <meta property="og:site_name" content="Anotaciones por Pablo Caro"/>
+  <meta property="og:title" content="Ampliar disco de VM Aurora en Unraid y redimensionar particiones"/>
+  <meta property="og:description" content="Cómo expandir el disco virtual de una VM Aurora ejecutándose en Unraid y redimensionar las particiones Btrfs dentro del sistema operativo."/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://pablocaro.es/ampliar-disco-vm-aurora-unraid"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2026-04-24 00:00:00+02:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://pablocaro.es/author/pablo-caro.html">
+  <meta property="article:section" content="Linux"/>
+  <meta property="article:tag" content="[aurora"/>
+  <meta property="article:tag" content="linux"/>
+  <meta property="article:tag" content="unraid"/>
+  <meta property="article:tag" content="vm"/>
+  <meta property="article:tag" content="btrfs"/>
+  <meta property="article:tag" content="disco]"/>
+  <meta property="og:image" content="/theme/img/profile.png">
+
+  <title>Anotaciones por Pablo Caro &ndash; Ampliar disco de VM Aurora en Unraid y redimensionar particiones</title>
+
+
+</head>
+<body class="light-theme">
+
+<aside>
+  <div>
+    <a href="https://pablocaro.es/">
+      <img src="/theme/img/profile.png" alt="Anotaciones" title="Anotaciones">
+    </a>
+
+    <h1>
+      <a href="https://pablocaro.es/">Anotaciones</a>
+    </h1>
+
+    <p>Anotaciones</p>
+
+    <p style="font-size: 0.9em; font-style: italic; margin-bottom: 20px;">
+      Volcando mi cerebro a internet. Colección de apuntes técnicos y soluciones que escribo para mi 'yo' del futuro, pero que comparto por si a alguien más le ahorran un dolor de cabeza.
+    </p>
+
+    <div class="stork">
+      <input class="stork-input" type="text" autocomplete="off" name="q" data-stork="sitesearch" placeholder="Buscar..." onclick="loadStorkIndex()"/>
+      <div class="stork-output" data-stork="sitesearch-output"></div>
+    </div>
+
+    <nav>
+      <ul class="list">
+
+
+
+          <li>
+            <a target="_self" href="http://x.com/pcaro" >pcaro@X</a>
+          </li>
+          <li>
+            <a target="_self" href="https://github.com/pcaro/" >pcaro@Github</a>
+          </li>
+          <li>
+            <a target="_self" href="https://www.linkedin.com/in/pcarorevuelta/" >LinkedIn</a>
+          </li>
+      </ul>
+    </nav>
+
+    <ul class="social">
+      <li>
+        <a class="sc-Twitter"
+           href="http://twitter.com/pcaro"
+           target="_blank">
+          <i class="fa-brands fa-Twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Github"
+           href="http://github.com/pcaro"
+           target="_blank">
+          <i class="fa-brands fa-Github"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Linkedin"
+           href="https://www.linkedin.com/in/pcarorevuelta"
+           target="_blank">
+          <i class="fa-brands fa-Linkedin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Facebook"
+           href="https://www.facebook.com/pablo.carorevuelta"
+           target="_blank">
+          <i class="fa-brands fa-Facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Email"
+           href="mailto:correo@pablocaro.es"
+           target="_blank">
+          <i class="fa-brands fa-Email"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+</aside>
+  <main>
+
+<nav>
+  <a href="https://pablocaro.es/">Inicio</a>
+
+  <a href="/archives.html">Archivo</a>
+  <a href="/categories.html">Categorías</a>
+  <a href="/tags.html">Etiquetas</a>
+  <a href="/search.html">Búsqueda</a>
+  <a href="/en/">English</a>
+
+  <a href="https://pablocaro.es/feeds/all.atom.xml">Atom</a>
+
+  <a href="https://pablocaro.es/feeds/all.rss.xml">RSS</a>
+</nav>
+
+<article class="single">
+  <header>
+          <div class="translations">
+            <a href="https://pablocaro.es/en/ampliar-disco-vm-aurora-unraid">Read in English</a>
+    </div>
+
+    <h1 id="ampliar-disco-vm-aurora-unraid">Ampliar disco de VM Aurora en Unraid y redimensionar particiones</h1>
+    <p>
+      Publicado el 24 de April de 2026 en <a href="https://pablocaro.es/category/linux.html">Linux</a>
+
+    </p>
+  </header>
+
+
+  <div>
+    <h1 id="ampliar-disco-de-vm-aurora-en-unraid-y-redimensionar-particiones">Ampliar disco de VM Aurora en Unraid y redimensionar particiones<a class="headerlink" href="#ampliar-disco-de-vm-aurora-en-unraid-y-redimensionar-particiones" title="Permanent link">&para;</a></h1>
+<p>Me quedé sin espacio en mi prueba de la distribución <strong>Aurora Linux</strong>. Como la ejecuto en una VM en mi NAS Unraid, simplemente aumenté el disco virtual y luego redimensioné las particiones dentro del sistema.</p>
+<p>Esta es una distribución basada en <strong>Fedora Kinoite</strong> (imágenes OSTree/bootc) del proyecto Universal Blue, que usa un sistema de archivos <strong>Btrfs</strong> con subvolúmenes.</p>
+<h2 id="situacion-inicial-del-disco">Situación inicial del disco<a class="headerlink" href="#situacion-inicial-del-disco" title="Permanent link">&para;</a></h2>
+<p>Antes de la expansión, el disco tenía aproximadamente <strong>15GB</strong> y la partición principal estaba al límite:</p>
+<p><img alt="Diagrama de expansión del disco - antes y después" src="/images/ampliar-disco-vm-aurora-unraid.png"></p>
+<div class="highlight"><pre><span></span><code><span class="n">NAME</span><span class="w">   </span><span class="n">MAJ</span><span class="p">:</span><span class="n">MIN</span><span class="w"> </span><span class="n">RM</span><span class="w">  </span><span class="n">SIZE</span><span class="w"> </span><span class="n">RO</span><span class="w"> </span><span class="n">TYPE</span><span class="w"> </span><span class="n">MOUNTPOINTS</span>
+<span class="n">vda</span><span class="w">    </span><span class="mi">253</span><span class="p">:</span><span class="mi">0</span><span class="w">    </span><span class="mi">0</span><span class="w">   </span><span class="mi">60</span><span class="n">G</span><span class="w">  </span><span class="mi">0</span><span class="w"> </span><span class="n">disk</span><span class="w"> </span>
+<span class="err">├─</span><span class="n">vda1</span><span class="w"> </span><span class="mi">253</span><span class="p">:</span><span class="mi">1</span><span class="w">    </span><span class="mi">0</span><span class="w">  </span><span class="mi">600</span><span class="n">M</span><span class="w">  </span><span class="mi">0</span><span class="w"> </span><span class="n">part</span><span class="w"> </span><span class="o">/</span><span class="n">boot</span><span class="o">/</span><span class="n">efi</span>
+<span class="err">├─</span><span class="n">vda2</span><span class="w"> </span><span class="mi">253</span><span class="p">:</span><span class="mi">2</span><span class="w">    </span><span class="mi">0</span><span class="w">    </span><span class="mi">2</span><span class="n">G</span><span class="w">  </span><span class="mi">0</span><span class="w"> </span><span class="n">part</span><span class="w"> </span><span class="o">/</span><span class="n">boot</span>
+<span class="err">└─</span><span class="n">vda3</span><span class="w"> </span><span class="mi">253</span><span class="p">:</span><span class="mi">3</span><span class="w">    </span><span class="mi">0</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="mi">4</span><span class="n">G</span><span class="w">  </span><span class="mi">0</span><span class="w"> </span><span class="n">part</span><span class="w"> </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">home</span><span class="p">,</span><span class="w"> </span><span class="o">/</span><span class="k">var</span><span class="p">,</span><span class="w"> </span><span class="o">/</span><span class="n">etc</span><span class="o">...</span>
+</code></pre></div>
+
+<p>El filesystem Btrfs mostraba:</p>
+<div class="highlight"><pre><span></span><code>Device size:         12.41GiB
+Device unallocated:    1.00MiB
+Free (estimated):    512.12MiB (min: 512.12MiB)
+Usage:               93%
+</code></pre></div>
+
+<h2 id="paso-1-expandir-el-disco-en-unraid">Paso 1: Expandir el disco en Unraid<a class="headerlink" href="#paso-1-expandir-el-disco-en-unraid" title="Permanent link">&para;</a></h2>
+<p>Desde la terminal de Unraid, con la VM apagada:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Apagar la VM</span>
+virsh<span class="w"> </span>shutdown<span class="w"> </span>Aurora
+
+<span class="c1"># Expandir el disco a 60GB (triplicando el tamaño original)</span>
+qemu-img<span class="w"> </span>resize<span class="w"> </span>-f<span class="w"> </span>raw<span class="w"> </span>/mnt/user/domains/Aurora/vdisk1.img<span class="w"> </span>60G
+
+<span class="c1"># Verificar el nuevo tamaño</span>
+ls<span class="w"> </span>-lh<span class="w"> </span>/mnt/user/domains/Aurora/vdisk1.img
+qemu-img<span class="w"> </span>info<span class="w"> </span>/mnt/user/domains/Aurora/vdisk1.img
+
+<span class="c1"># Encender la VM</span>
+virsh<span class="w"> </span>start<span class="w"> </span>Aurora
+</code></pre></div>
+
+<h2 id="paso-2-instalar-growpart-en-aurora">Paso 2: Instalar growpart en Aurora<a class="headerlink" href="#paso-2-instalar-growpart-en-aurora" title="Permanent link">&para;</a></h2>
+<p>Aurora es un sistema inmutable basado en OSTree, así que necesité instalar la herramienta <code>growpart</code> usando <code>rpm-ostree</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Instalar cloud-utils-growpart</span>
+sudo<span class="w"> </span>rpm-ostree<span class="w"> </span>install<span class="w"> </span>cloud-utils-growpart
+
+<span class="c1"># Reiniciar (requerido después de rpm-ostree install)</span>
+systemctl<span class="w"> </span>reboot
+</code></pre></div>
+
+<h2 id="paso-3-expandir-la-particion">Paso 3: Expandir la partición<a class="headerlink" href="#paso-3-expandir-la-particion" title="Permanent link">&para;</a></h2>
+<p>Una vez reiniciado el sistema, expandí la partición 3 para ocupar todo el espacio del disco:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Expandir la partición 3 del disco /dev/vda</span>
+sudo<span class="w"> </span>growpart<span class="w"> </span>/dev/vda<span class="w"> </span><span class="m">3</span>
+</code></pre></div>
+
+<p>Output:</p>
+<div class="highlight"><pre><span></span><code><span class="n">CHANGED</span><span class="o">:</span><span class="w"> </span><span class="n">partition</span><span class="o">=</span><span class="mi">3</span><span class="w"> </span><span class="n">start</span><span class="o">=</span><span class="mi">5425152</span><span class="w"> </span><span class="n">old</span><span class="o">:</span><span class="w"> </span><span class="n">size</span><span class="o">=</span><span class="mi">26030080</span><span class="w"> </span><span class="n">end</span><span class="o">=</span><span class="mi">31455231</span><span class="w"> </span><span class="k">new</span><span class="o">:</span><span class="w"> </span><span class="n">size</span><span class="o">=</span><span class="mi">120403935</span><span class="w"> </span><span class="n">end</span><span class="o">=</span><span class="mi">125829086</span>
+</code></pre></div>
+
+<h2 id="paso-4-redimensionar-el-filesystem-btrfs">Paso 4: Redimensionar el filesystem Btrfs<a class="headerlink" href="#paso-4-redimensionar-el-filesystem-btrfs" title="Permanent link">&para;</a></h2>
+<p>Aurora usa una estructura especial con múltiples subvolúmenes Btrfs:
+- <code>root</code> (ID 256) - sistema base (montado read-only en /sysroot)
+- <code>home</code> (ID 257) - directorios de usuario
+- <code>var</code> (ID 258) - variables del sistema</p>
+<p>El truco está en que <code>/sysroot</code> está montado como <strong>read-only</strong> (por ser OSTree inmutable), pero puedo hacer el resize desde cualquier mount point con escritura del mismo filesystem Btrfs:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Redimensionar desde /var (que tiene escritura)</span>
+sudo<span class="w"> </span>btrfs<span class="w"> </span>filesystem<span class="w"> </span>resize<span class="w"> </span>max<span class="w"> </span>/var
+</code></pre></div>
+
+<p>Output:</p>
+<div class="highlight"><pre><span></span><code>Resize device id 1 (/dev/vda3) from 12.41GiB to max
+</code></pre></div>
+
+<h2 id="resultado-final">Resultado final<a class="headerlink" href="#resultado-final" title="Permanent link">&para;</a></h2>
+<p>Después del redimensionamiento, el filesystem Btrfs muestra:</p>
+<div class="highlight"><pre><span></span><code>Device size:         57.41GiB    ← Antes era 12.41GiB ✓
+Device unallocated:  45.00GiB    ← Espacio disponible
+Device slack:          3.50KiB   ← Antes era 45.00GiB ✓
+Free (estimated):    45.50GiB    ← Espacio libre para usar
+Usage:               ~20%        ← Antes estaba al 93%
+</code></pre></div>
+
+<p>Verificando con <code>lsblk</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">NAME</span><span class="w">   </span><span class="n">MAJ</span><span class="p">:</span><span class="n">MIN</span><span class="w"> </span><span class="n">RM</span><span class="w">  </span><span class="n">SIZE</span><span class="w"> </span><span class="n">RO</span><span class="w"> </span><span class="n">TYPE</span><span class="w"> </span><span class="n">MOUNTPOINTS</span>
+<span class="n">vda</span><span class="w">    </span><span class="mi">253</span><span class="p">:</span><span class="mi">0</span><span class="w">    </span><span class="mi">0</span><span class="w">   </span><span class="mi">60</span><span class="n">G</span><span class="w">  </span><span class="mi">0</span><span class="w"> </span><span class="n">disk</span><span class="w"> </span>
+<span class="err">├─</span><span class="n">vda1</span><span class="w"> </span><span class="mi">253</span><span class="p">:</span><span class="mi">1</span><span class="w">    </span><span class="mi">0</span><span class="w">  </span><span class="mi">600</span><span class="n">M</span><span class="w">  </span><span class="mi">0</span><span class="w"> </span><span class="n">part</span><span class="w"> </span><span class="o">/</span><span class="n">boot</span><span class="o">/</span><span class="n">efi</span>
+<span class="err">├─</span><span class="n">vda2</span><span class="w"> </span><span class="mi">253</span><span class="p">:</span><span class="mi">2</span><span class="w">    </span><span class="mi">0</span><span class="w">    </span><span class="mi">2</span><span class="n">G</span><span class="w">  </span><span class="mi">0</span><span class="w"> </span><span class="n">part</span><span class="w"> </span><span class="o">/</span><span class="n">boot</span>
+<span class="err">└─</span><span class="n">vda3</span><span class="w"> </span><span class="mi">253</span><span class="p">:</span><span class="mi">3</span><span class="w">    </span><span class="mi">0</span><span class="w"> </span><span class="mi">57</span><span class="p">,</span><span class="mi">4</span><span class="n">G</span><span class="w">  </span><span class="mi">0</span><span class="w"> </span><span class="n">part</span><span class="w"> </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">home</span><span class="p">,</span><span class="w"> </span><span class="o">/</span><span class="k">var</span><span class="p">,</span><span class="w"> </span><span class="o">/</span><span class="n">etc</span><span class="o">...</span>
+</code></pre></div>
+
+<h2 id="resumen-de-comandos">Resumen de comandos<a class="headerlink" href="#resumen-de-comandos" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="c1"># === EN UNRAID (VM apagada) ===</span>
+qemu-img<span class="w"> </span>resize<span class="w"> </span>-f<span class="w"> </span>raw<span class="w"> </span>/mnt/user/domains/Aurora/vdisk1.img<span class="w"> </span>60G
+
+<span class="c1"># === EN AURORA ===</span>
+sudo<span class="w"> </span>rpm-ostree<span class="w"> </span>install<span class="w"> </span>cloud-utils-growpart
+systemctl<span class="w"> </span>reboot
+sudo<span class="w"> </span>growpart<span class="w"> </span>/dev/vda<span class="w"> </span><span class="m">3</span>
+sudo<span class="w"> </span>btrfs<span class="w"> </span>filesystem<span class="w"> </span>resize<span class="w"> </span>max<span class="w"> </span>/var
+
+<span class="c1"># === VERIFICAR ===</span>
+lsblk
+df<span class="w"> </span>-h<span class="w"> </span>/var
+df<span class="w"> </span>-h<span class="w"> </span>/var/home
+df<span class="w"> </span>-h<span class="w"> </span>/etc
+sudo<span class="w"> </span>btrfs<span class="w"> </span>filesystem<span class="w"> </span>usage<span class="w"> </span>/var
+</code></pre></div>
+
+<h2 id="notas-importantes">Notas importantes<a class="headerlink" href="#notas-importantes" title="Permanent link">&para;</a></h2>
+<ol>
+<li>
+<p><strong>Sistemas OSTree</strong>: En distribuciones inmutables como Aurora, el sistema base es read-only. El resize debe hacerse desde un subvolumen con escritura (<code>/var</code>, <code>/etc</code>, o <code>/var/home</code>).</p>
+</li>
+<li>
+<p><strong>Btrfs dinámico</strong>: El espacio en Btrfs se asigna dinámicamente a los subvolúmenes según necesidad. No es necesario asignar espacio específico a cada subvolumen.</p>
+</li>
+<li>
+<p><strong>Reinicio requerido</strong>: Después de <code>rpm-ostree install</code>, siempre hay que reiniciar para que los cambios surtan efecto.</p>
+</li>
+<li>
+<p><strong>Backup</strong>: Aunque el proceso es seguro, siempre es recomendable tener backup antes de operar sobre particiones. En mi caso no hizo falta por no tener nada importante. Es una VM de prueba.</p>
+</li>
+</ol>
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="https://pablocaro.es/tag/aurora.html">[aurora</a>
+      <a href="https://pablocaro.es/tag/linux.html">linux</a>
+      <a href="https://pablocaro.es/tag/unraid.html">unraid</a>
+      <a href="https://pablocaro.es/tag/vm.html">vm</a>
+      <a href="https://pablocaro.es/tag/btrfs.html">btrfs</a>
+      <a href="https://pablocaro.es/tag/disco.html">disco]</a>
+    </p>
+  </div>
+
+
+
+  <div class="neighbors">
+    <a class="btn float-left" href="https://pablocaro.es/rust-ebooks-nightly" title="Rust eBooks Nightly — libros de Rust en EPUB, AZW3, MOBI y PDF">
+      <i class="fa fa-angle-left"></i> Artículo anterior
+    </a>
+    <a class="btn float-right" href="https://pablocaro.es/probando-aurora-mi-primer-vistazo-al-futuro-del-escritorio-linux" title="Probando Aurora: mi primer vistazo al futuro del escritorio Linux">
+      Próximo artículo <i class="fa fa-angle-right"></i>
+    </a>
+  </div>
+
+  <div class="related-posts">
+    <h4>Te puede gustar</h4>
+    <ul class="related-posts">
+      <li><a href="https://pablocaro.es/probando-aurora-mi-primer-vistazo-al-futuro-del-escritorio-linux">Probando Aurora: mi primer vistazo al futuro del escritorio Linux</a></li>
+      <li><a href="https://pablocaro.es/velvet-os">Velvet OS: kernels modernos para hardware ARM antiguo</a></li>
+      <li><a href="https://pablocaro.es/rbw-sync-access-token">rbw sync: missing field `access_token`</a></li>
+      <li><a href="https://pablocaro.es/os-click-central-descarga-isos">os.click: Central de descarga de ISOs de sistemas operativos</a></li>
+      <li><a href="https://pablocaro.es/net-tools-to-iproute">De net-tools a iproute2: equivalents de comandos</a></li>
+    </ul>
+  </div>
+
+
+
+<!-- Disqus -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'anotaciones';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>
+    Por favor, habilita JavaScript para ver los comentarios.
+</noscript>
+<!-- End Disqus -->
+</article>
+
+<footer>
+<p>
+  &copy; 2026  - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+Construido con <a href="http://getpelican.com" target="_blank">Pelican</a> usando el tema <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> 
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/3.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/3.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Anotaciones por Pablo Caro ",
+  "url" : "https://pablocaro.es",
+  "image": "/theme/img/profile.png",
+  "description": ""
+}
+</script>  <script src="https://files.stork-search.net/releases/v1.6.0/stork.js"></script>
+  <script>
+    window.storkIndexLoaded = false;
+    window.loadStorkIndex = function () {
+      if (window.storkIndexLoaded) {
+        return;
+      }
+      if (typeof stork === 'undefined') {
+        console.error('Stork is not loaded yet, retrying...');
+        setTimeout(window.loadStorkIndex, 100);
+        return;
+      }
+      stork.register("sitesearch", "https://pablocaro.es/search-index.st", { showProgress: false });
+      stork.register("sitesearch-page", "https://pablocaro.es/search-index.st", { showProgress: false });
+      window.storkIndexLoaded = true;
+    }
+  </script>
+
+</body>
+</html>
