@@ -136,9 +136,22 @@ The blog supports multi-language content (Spanish and English) using `pelican-i1
 *   **English Subsite**: Generated at `/en/`.
 *   **Translation Workflow**:
     1.  Write the original article in Spanish (default).
-    2.  Create a translated version with the same slug but different filename (e.g., `slug.en.rst`).
-    3.  Add `:lang: en` metadata to the translated file.
+    2.  Create a translated version with the **same slug** but different filename (e.g., `slug.md` and `slug.en.md`).
+    3.  Add `Lang: en` metadata to the English file and `Lang: es` to the Spanish file.
     4.  The plugin will automatically link them and generate the subsite.
+
+*   **CRITICAL: Translation Pairing Rules**:
+    - Both files **MUST have the EXACT SAME `slug:`** in their metadata. This is how Pelican pairs translations.
+    - File naming: `<slug>.md` (Spanish) and `<slug>.en.md` (English)
+    - Both files must have `Lang:` metadata: `Lang: es` and `Lang: en` respectively
+    - **Both files must have the SAME `featured_image:`** in metadata if the article has one. The featured image is NOT inherited from the Spanish version.
+    - **Add the featured image inline in the content** of both versions (Spanish and English) using Markdown syntax: `![Alt text](/images/filename.png)`. Place it after the relevant section that introduces the topic.
+    - If slugs differ, Pelican will treat them as separate articles and you'll see errors like:
+      ```
+      WARNING: There are 2 items "with slug "xxx"" with lang en
+      CRITICAL RuntimeError: File ... is to be overwritten
+      ```
+
 *   **Configuration**: managed in `pelicanconf.py` under `I18N_SUBSITES`.
 
 ## Social Media Content
