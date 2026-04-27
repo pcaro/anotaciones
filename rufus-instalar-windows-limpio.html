@@ -54,27 +54,28 @@
  
 
 <meta name="author" content="Pablo Caro" />
-<meta name="description" content="Si usas Windows (o WSL), Git te está convirtiendo los saltos de línea en silencio. Un solo comando lo arregla." />
-<meta name="keywords" content="Git, Windows, WSL, Line Endings">
+<meta name="description" content="Rufus, gran herramienta para crear medios de instalación de Windows, permitiendo deshabilitar las integraciones forzosas de IA de Microsoft." />
+<meta name="keywords" content="rufus, windows, instalacion">
 
+<link rel="alternate" href="https://pablocaro.es/rufus-instalar-windows-limpio" hreflang="es" />
+<link rel="alternate" href="https://pablocaro.es/en/rufus-instalar-windows-limpio" hreflang="en" />
 
   <meta property="og:site_name" content="Anotaciones por Pablo Caro"/>
-  <meta property="og:title" content="Desactivar git autocrlf"/>
-  <meta property="og:description" content="Si usas Windows (o WSL), Git te está convirtiendo los saltos de línea en silencio. Un solo comando lo arregla."/>
+  <meta property="og:title" content="Rufus, la mejor forma de instalar un Windows limpio"/>
+  <meta property="og:description" content="Rufus, gran herramienta para crear medios de instalación de Windows, permitiendo deshabilitar las integraciones forzosas de IA de Microsoft."/>
   <meta property="og:locale" content="en_US"/>
-  <meta property="og:url" content="https://pablocaro.es/desactivar-git-autocrlf"/>
+  <meta property="og:url" content="https://pablocaro.es/rufus-instalar-windows-limpio"/>
   <meta property="og:type" content="article"/>
-  <meta property="article:published_time" content="2026-04-21 12:00:00+02:00"/>
+  <meta property="article:published_time" content="2026-04-27 12:00:00+02:00"/>
   <meta property="article:modified_time" content=""/>
   <meta property="article:author" content="https://pablocaro.es/author/pablo-caro.html">
-  <meta property="article:section" content="Git"/>
-  <meta property="article:tag" content="Git"/>
-  <meta property="article:tag" content="Windows"/>
-  <meta property="article:tag" content="WSL"/>
-  <meta property="article:tag" content="Line Endings"/>
+  <meta property="article:section" content="Software"/>
+  <meta property="article:tag" content="rufus"/>
+  <meta property="article:tag" content="windows"/>
+  <meta property="article:tag" content="instalacion"/>
   <meta property="og:image" content="/theme/img/profile.png">
 
-  <title>Anotaciones por Pablo Caro &ndash; Desactivar git autocrlf</title>
+  <title>Anotaciones por Pablo Caro &ndash; Rufus, la mejor forma de instalar un Windows limpio</title>
 
 
 </head>
@@ -176,60 +177,47 @@
 
 <article class="single">
   <header>
-      
-    <h1 id="desactivar-git-autocrlf">Desactivar git autocrlf</h1>
+          <div class="translations">
+            <a href="https://pablocaro.es/en/rufus-instalar-windows-limpio">Read in English</a>
+    </div>
+
+    <h1 id="rufus-instalar-windows-limpio">Rufus, la mejor forma de instalar un Windows limpio</h1>
     <p>
-      Publicado el 21 de April de 2026 en <a href="https://pablocaro.es/category/git.html">Git</a>
+      Publicado el 27 de April de 2026 en <a href="https://pablocaro.es/category/software.html">Software</a>
 
     </p>
   </header>
 
 
   <div>
-    <p>No soy usuario habitual de Windows, pero si me viese obligado una temporada WSL sería para mí casi una obligación. No está de más tener esta nota a mano (por Ryan Harrison).</p>
-<p>Si usas Windows, Git lleva años modificando tus saltos de línea sin que te des cuenta. El culpable es <code>core.autocrlf</code>, activado por defecto.</p>
-<div class="highlight"><pre><span></span><code>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>core.autocrlf<span class="w"> </span><span class="nb">false</span>
-</code></pre></div>
-
-<h2 id="que-hace-coreautocrlf">Qué hace <code>core.autocrlf</code><a class="headerlink" href="#que-hace-coreautocrlf" title="Permanent link">&para;</a></h2>
-<p>Windows usa históricamente <code>CRLF</code> (<code>\r\n</code>) como salto de línea, mientras que Linux y macOS usan <code>LF</code> (<code>\n</code>). Con <code>autocrlf true</code> (el default en Windows):</p>
+    <p><img alt="Captura de Rufus 4.14 en acción" src="/images/rufus-4-14-interfaz.png"></p>
+<p>Leo en <a href="https://informatica-sinlimites-ii.blogspot.com/2026/04/rufus-414-aumenta-capacidad-contra.html">informática sin límites</a> que Rufus 4.14 (en fase beta) mejora sustancialmente su capacidad para instalar un Windows limpio.</p>
+<p>Rufus lleva años siendo la referencia para crear medios de instalación de Windows. La nueva versión va más allá:</p>
 <ul>
-<li>En <strong>checkout</strong>: Git convierte <code>LF</code> del repositorio a <code>CRLF</code> en tu working directory</li>
-<li>En <strong>commit</strong>: Git convierte <code>CRLF</code> de vuelta a <code>LF</code> antes de guardar</li>
+<li><strong>Deshabilita Teams, Outlook, Copilot y otros</strong> programas innecesarios de Microsoft</li>
+<li><strong>Permite usar cuentas locales</strong> en lugar de obligar a usar cuentas Microsoft</li>
+<li><strong>Elimina BitLocker</strong> (el cifrado que trae de cabeza a usuarios y empresas)</li>
+<li><strong>Nuevo modo desatendido</strong>: automatización completa de la instalación sin intervención del usuario</li>
 </ul>
-<p>En teoría, tus ficheros locales quedan en formato Windows y el repositorio se mantiene limpio con <code>LF</code>. En la práctica, es fuente constante de problemas.</p>
-<h2 id="por-que-es-un-mal-default">Por qué es un mal default<a class="headerlink" href="#por-que-es-un-mal-default" title="Permanent link">&para;</a></h2>
-<p><strong>WSL lo agrava.</strong> Tu entorno Linux espera <code>LF</code>, pero Git ha convertido todo a <code>CRLF</code>. Resultado: cada script y config file tiene un <code>\r</code> fantasma al final de cada línea, provocando fallos silenciosos. Y si no has visto el warning de marras, es que ya te has acostumbrado a ignorarlo:</p>
-<div class="highlight"><pre><span></span><code><span class="n">warning</span><span class="o">:</span><span class="w"> </span><span class="n">LF</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">replaced</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="n">CRLF</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">some</span><span class="o">-</span><span class="n">file</span><span class="o">.</span><span class="na">sh</span><span class="o">.</span>
-<span class="n">The</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="n">have</span><span class="w"> </span><span class="n">its</span><span class="w"> </span><span class="n">original</span><span class="w"> </span><span class="n">line</span><span class="w"> </span><span class="n">endings</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">your</span><span class="w"> </span><span class="n">working</span><span class="w"> </span><span class="n">directory</span>
-</code></pre></div>
-
-<p><strong>Los editores modernos soportan LF sin problema.</strong> El argumento original era que el Bloc de notas de Windows no podía manejar <code>LF</code> — algo que era cierto en 2003. Desde Windows 10 (2018) el Bloc de notas soporta <code>LF</code>. VS Code, Sublime, Vim, IntelliJ, Notepad++... todos lo manejan perfectamente desde hace años.</p>
-<p><strong>La conversión es pérdida en la práctica.</strong> Ficheros binarios se pueden corromper si Git los clasifica mal como texto. Y si en un equipo alguien tiene <code>autocrlf true</code> y otro <code>false</code>, aparecerán commits que son solo cambios de saltos de línea.</p>
-<h2 id="la-solucion-desactivalo-y-usa-gitattributes">La solución: desactívalo y usa <code>.gitattributes</code><a class="headerlink" href="#la-solucion-desactivalo-y-usa-gitattributes" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>core.autocrlf<span class="w"> </span><span class="nb">false</span>
-</code></pre></div>
-
-<p>A partir de ahí, Git deja tus saltos de línea tal cual — sin conversiones silenciosas. Para equipos, un fichero <code>.gitattributes</code> en el repositorio es un enfoque mucho mejor, porque aplica las mismas reglas para todos independientemente de su config local.</p>
-<p>Usa <code>LF</code> en todas partes, configura tu editor para que guarde con <code>LF</code> por defecto, y no pienses más en ello.</p>
-<p><em>Fuente original</em>: <a href="https://ryanharrison.co.uk/2026/04/21/git-disable-autocrlf.html">Git - Disable autocrlf (Ryan Harrison)</a></p>
+<p>Si necesitas un Windows sin toda la basura que Microsoft intenta imponer, Rufus es la herramienta.</p>
+<p><em>Fuente original</em>: <a href="https://informatica-sinlimites-ii.blogspot.com/2026/04/rufus-414-aumenta-capacidad-contra.html">Rufus 4.14 - Informática sin límites</a></p>
+<p><em>Proyecto</em>: <a href="https://github.com/pbatard/rufus">github.com/pbatard/rufus</a></p>
   </div>
   <div class="tag-cloud">
     <p>
-      <a href="https://pablocaro.es/tag/git.html">Git</a>
-      <a href="https://pablocaro.es/tag/windows.html">Windows</a>
-      <a href="https://pablocaro.es/tag/wsl.html">WSL</a>
-      <a href="https://pablocaro.es/tag/line-endings.html">Line Endings</a>
+      <a href="https://pablocaro.es/tag/rufus.html">rufus</a>
+      <a href="https://pablocaro.es/tag/windows.html">windows</a>
+      <a href="https://pablocaro.es/tag/instalacion.html">instalacion</a>
     </p>
   </div>
 
 
 
   <div class="neighbors">
-    <a class="btn float-left" href="https://pablocaro.es/instalando-skills-de-github" title="Instalando skills de GitHub">
+    <a class="btn float-left" href="https://pablocaro.es/probando-aurora-mi-primer-vistazo-al-futuro-del-escritorio-linux" title="Probando Aurora: mi primer vistazo al futuro del escritorio Linux">
       <i class="fa fa-angle-left"></i> Artículo anterior
     </a>
-    <a class="btn float-right" href="https://pablocaro.es/rust-ebooks-nightly" title="Rust eBooks Nightly — libros de Rust en EPUB, AZW3, MOBI y PDF">
+    <a class="btn float-right" href="https://pablocaro.es/neofetch" title="neofetch">
       Próximo artículo <i class="fa fa-angle-right"></i>
     </a>
   </div>
@@ -237,8 +225,7 @@
   <div class="related-posts">
     <h4>Te puede gustar</h4>
     <ul class="related-posts">
-      <li><a href="https://pablocaro.es/como-uso-git-worktrees">Cómo uso git worktrees para trabajo concurrente</a></li>
-      <li><a href="https://pablocaro.es/rufus-instalar-windows-limpio">Rufus, la mejor forma de instalar un Windows limpio</a></li>
+      <li><a href="https://pablocaro.es/desactivar-git-autocrlf">Desactivar git autocrlf</a></li>
       <li><a href="https://pablocaro.es/os-click-central-descarga-isos">os.click: Central de descarga de ISOs de sistemas operativos</a></li>
     </ul>
   </div>
