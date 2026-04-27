@@ -3,6 +3,11 @@ html_selector = "main"
 base_directory = "/home/runner/work/anotaciones/anotaciones/output"
 
 [[input.files]]
+path = "neofetch.html"
+url = "/neofetch"
+title = "neofetch"
+
+[[input.files]]
 path = "probando-aurora-mi-primer-vistazo-al-futuro-del-escritorio-linux.html"
 url = "/probando-aurora-mi-primer-vistazo-al-futuro-del-escritorio-linux"
 title = "Probando Aurora: mi primer vistazo al futuro del escritorio Linux"
@@ -796,6 +801,11 @@ title = "Corrector ortográfico de firefox 2.0 en castellano"
 path = "primera-anotacion-de-prueba.html"
 url = "/primera-anotacion-de-prueba"
 title = "Primera anotación de prueba"
+
+[[input.files]]
+path = "neofetch-en.html"
+url = "/en/neofetch"
+title = "neofetch"
 
 [[input.files]]
 path = "probando-aurora-mi-primer-vistazo-al-futuro-del-escritorio-linux-en.html"

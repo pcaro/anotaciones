@@ -5,36 +5,43 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/en/</loc>
-<lastmod>2026-04-24T10:50:52-00:00</lastmod>
+<lastmod>2026-04-27T09:45:26-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/en/tags.html</loc>
-<lastmod>2026-04-24T10:50:52-00:00</lastmod>
+<lastmod>2026-04-27T09:45:26-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/en/categories.html</loc>
-<lastmod>2026-04-24T10:50:52-00:00</lastmod>
+<lastmod>2026-04-27T09:45:26-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/en/archives.html</loc>
-<lastmod>2026-04-24T10:50:52-00:00</lastmod>
+<lastmod>2026-04-27T09:45:26-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/en/search.html</loc>
-<lastmod>2026-04-24T10:50:52-00:00</lastmod>
+<lastmod>2026-04-27T09:45:26-00:00</lastmod>
 <changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/en/neofetch</loc>
+<lastmod>2026-04-27T18:00:00+02:00</lastmod>
+<changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
@@ -607,7 +614,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/en/category/miscellaneous.html</loc>
-<lastmod>2026-04-17T00:00:00+00:09</lastmod>
+<lastmod>2026-04-27T18:00:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -697,14 +704,28 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>/en/tag/aurora.html</loc>
-<lastmod>2026-04-24T09:51:00+00:09</lastmod>
+<loc>/en/tag/linux.html</loc>
+<lastmod>2026-04-27T18:00:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/en/tag/linux.html</loc>
+<loc>/en/tag/terminal.html</loc>
+<lastmod>2026-04-27T18:00:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/en/tag/tools.html</loc>
+<lastmod>2026-04-27T18:00:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/en/tag/aurora.html</loc>
 <lastmod>2026-04-24T09:51:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
@@ -1019,13 +1040,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>/en/tag/terminal.html</loc>
-<lastmod>2026-03-22T00:00:00+00:09</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
 <loc>/en/tag/agent-browser.html</loc>
 <lastmod>2026-03-18T09:00:00+00:09</lastmod>
 <changefreq>daily</changefreq>
@@ -1076,13 +1090,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/en/tag/versioning.html</loc>
-<lastmod>2026-03-15T14:11:00+00:09</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>/en/tag/tools.html</loc>
 <lastmod>2026-03-15T14:11:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
