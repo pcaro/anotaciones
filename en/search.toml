@@ -3,6 +3,11 @@ html_selector = "main"
 base_directory = "/home/runner/work/anotaciones/anotaciones/output/en"
 
 [[input.files]]
+path = "muerte-cacharritos.html"
+url = "/muerte-cacharritos"
+title = "The Price Hike of SBCs (Single Board Computers)"
+
+[[input.files]]
 path = "neofetch.html"
 url = "/neofetch"
 title = "neofetch"
@@ -381,6 +386,11 @@ title = "Django: links in object list"
 path = "settings-vars-processor.html"
 url = "/settings-vars-processor"
 title = "Settings vars processor"
+
+[[input.files]]
+path = "muerte-cacharritos-es.html"
+url = "/../muerte-cacharritos"
+title = "La subida de precio de los SBC (Single Board Computers)"
 
 [[input.files]]
 path = "neofetch-es.html"

@@ -5,36 +5,43 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/en/</loc>
-<lastmod>2026-04-27T10:33:04-00:00</lastmod>
+<lastmod>2026-04-28T11:23:14-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/en/tags.html</loc>
-<lastmod>2026-04-27T10:33:04-00:00</lastmod>
+<lastmod>2026-04-28T11:23:14-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/en/categories.html</loc>
-<lastmod>2026-04-27T10:33:04-00:00</lastmod>
+<lastmod>2026-04-28T11:23:14-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/en/archives.html</loc>
-<lastmod>2026-04-27T10:33:04-00:00</lastmod>
+<lastmod>2026-04-28T11:23:14-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/en/search.html</loc>
-<lastmod>2026-04-27T10:33:04-00:00</lastmod>
+<lastmod>2026-04-28T11:23:14-00:00</lastmod>
 <changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/en/muerte-cacharritos</loc>
+<lastmod>2026-04-28T00:00:00+02:00</lastmod>
+<changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
@@ -621,7 +628,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/en/category/miscellaneous.html</loc>
-<lastmod>2026-04-27T18:00:00+00:09</lastmod>
+<lastmod>2026-04-28T00:00:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -713,6 +720,27 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>/en/category/tricks.html</loc>
 <lastmod>2017-04-11T14:07:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/en/tag/raspberry-pi.html</loc>
+<lastmod>2026-04-28T00:00:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/en/tag/sbc.html</loc>
+<lastmod>2026-04-28T00:00:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/en/tag/hardware.html</loc>
+<lastmod>2026-04-28T00:00:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -1832,13 +1860,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/en/tag/lshw.html</loc>
-<lastmod>2016-07-13T20:28:00+00:09</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>/en/tag/hardware.html</loc>
 <lastmod>2016-07-13T20:28:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
