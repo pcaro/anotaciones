@@ -3,6 +3,11 @@ html_selector = "main"
 base_directory = "/home/runner/work/anotaciones/anotaciones/output"
 
 [[input.files]]
+path = "marksman-lsp-markdown.html"
+url = "/marksman-lsp-markdown"
+title = "marksman: LSP para Markdown"
+
+[[input.files]]
 path = "muerte-cacharritos.html"
 url = "/muerte-cacharritos"
 title = "La subida de precio de los SBC (Single Board Computers)"
@@ -811,6 +816,11 @@ title = "Corrector ortográfico de firefox 2.0 en castellano"
 path = "primera-anotacion-de-prueba.html"
 url = "/primera-anotacion-de-prueba"
 title = "Primera anotación de prueba"
+
+[[input.files]]
+path = "marksman-lsp-markdown-en.html"
+url = "/en/marksman-lsp-markdown"
+title = "marksman: Markdown LSP"
 
 [[input.files]]
 path = "muerte-cacharritos-en.html"
