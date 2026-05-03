@@ -1,5 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Anotaciones por Pablo Caro - linux</title><link href="https://pablocaro.es/" rel="alternate"></link><link href="https://pablocaro.es/feeds/tags/linux.atom.xml" rel="self"></link><id>https://pablocaro.es/</id><updated>2026-04-29T22:46:00+02:00</updated><subtitle>Anotaciones</subtitle><entry><title>marksman: LSP para Markdown</title><link href="https://pablocaro.es/marksman-lsp-markdown" rel="alternate"></link><published>2026-04-29T22:46:00+02:00</published><updated>2026-04-29T22:46:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-04-29:/marksman-lsp-markdown</id><summary type="html">&lt;p&gt;marksman es un servidor de protocolo de lenguaje (LSP) para Markdown que añade autocompletado, navegación entre archivos y detección de errores a cualquier editor compatible.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Escribo bastante en Markdown — este blog, notas, documentación — y hasta ahora me las apañaba sin más. Pero tras acostumbrarme a los beneficios del LSP en código, empecé a echar en falta algo similar para mis archivos &lt;code&gt;.md&lt;/code&gt;. Enlaces rotos, referencias a notas inexistentes, falta de autocompletado entre documentos... todo eso se acumula cuando mantienes varios ficheros.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Anotaciones por Pablo Caro - linux</title><link href="https://pablocaro.es/" rel="alternate"></link><link href="https://pablocaro.es/feeds/tags/linux.atom.xml" rel="self"></link><id>https://pablocaro.es/</id><updated>2026-05-03T10:01:00+02:00</updated><subtitle>Anotaciones</subtitle><entry><title>Bloqueo DNS de enlaces de AliExpress con NextDNS</title><link href="https://pablocaro.es/bloqueo-dns-aliexpress-nextdns" rel="alternate"></link><published>2026-05-03T10:01:00+02:00</published><updated>2026-05-03T10:01:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-05-03:/bloqueo-dns-aliexpress-nextdns</id><summary type="html">&lt;p&gt;Al usar una blocklist DNS demasiado agresiva en NextDNS, los enlaces de afiliado de AliExpress dejaban de funcionar. Diagnóstico con dig y solución con HaGeZi Multi PRO.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="DNS blocking illustration" src="/images/dns-blocking-nextdns.jpg"&gt;&lt;/p&gt;
+&lt;p&gt;Llevaba unos días con un problema raro: los enlaces de AliExpress que aparecen en descripciones de vídeos de productos no cargaban. Firefox mostraba "Servidor no encontrado". Sabía que tenía pinta de ser un bloqueo DNS, porque al activar la VPN de PIA (Private Internet Access) el problema desaparecía.&lt;/p&gt;
+&lt;h2 id="el-diagnostico"&gt;El diagnóstico&lt;a class="headerlink" href="#el-diagnostico" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;El comando &lt;code&gt;dig&lt;/code&gt; lo confirmó enseguida:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Consultando al router (que usa NextDNS)&lt;/span&gt;
+$&lt;span class="w"&gt; &lt;/span&gt;dig&lt;span class="w"&gt; &lt;/span&gt;s.click.aliexpress.com&lt;span class="w"&gt; &lt;/span&gt;@192.168.1.1
+
+&lt;span class="p"&gt;;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;ANSWER&lt;span class="w"&gt; &lt;/span&gt;SECTION:
+s.click.aliexpress.com.&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;300&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;IN&lt;span class="w"&gt;  &lt;/span&gt;A&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="m"&gt;0&lt;/span&gt;.0.0.0
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Consultando a Google DNS&lt;/span&gt;
+$&lt;span class="w"&gt; &lt;/span&gt;dig&lt;span class="w"&gt; &lt;/span&gt;s.click.aliexpress.com&lt;span class="w"&gt; &lt;/span&gt;@8.8.8.8
+
+&lt;span class="p"&gt;;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;ANSWER&lt;span class="w"&gt; &lt;/span&gt;SECTION:
+s.click.aliexpress.com.&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;300&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;IN&lt;span class="w"&gt;  &lt;/span&gt;A&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="m"&gt;23&lt;/span&gt;.40.114.185
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;El router devolvía &lt;code&gt;0.0.0.0&lt;/code&gt; para &lt;code&gt;s.click.aliexpress.com&lt;/code&gt;. Eso no es un NXDOMAIN —dominio inexistente—, es un bloqueo deliberado: el dominio resuelve a una IP nula y el navegador no puede conectar.&lt;/p&gt;
+&lt;p&gt;Con la VPN activa, las consultas DNS pasaban por los servidores de PIA, que no aplican blocklists, y los enlaces funcionaban sin problema.&lt;/p&gt;
+&lt;h2 id="la-causa"&gt;La causa&lt;a class="headerlink" href="#la-causa" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;El router tenía configurado &lt;strong&gt;NextDNS&lt;/strong&gt; con la lista de bloqueo por defecto. Bloqueaba bien el malware y el phishing, pero también estaba tocando dominios legítimos como los de redirección de afiliados. Demasiado agresiva para mi día a día.&lt;/p&gt;
+&lt;h2 id="la-solucion"&gt;La solución&lt;a class="headerlink" href="#la-solucion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;La solución más simple habría sido añadir &lt;code&gt;s.click.aliexpress.com&lt;/code&gt; a la lista blanca de NextDNS y ya está. Pero aproveché para revisar qué lista estaba usando y cambiarla por &lt;strong&gt;HaGeZi - Multi PRO&lt;/strong&gt;, que de paso resolvía el problema.&lt;/p&gt;
+&lt;p&gt;Según la &lt;a href="https://github.com/hagezi/dns-blocklists/wiki/FAQ#whatshouldiuse"&gt;guía oficial de HaGeZi&lt;/a&gt;:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Lista&lt;/th&gt;
+&lt;th&gt;Nivel de bloqueo&lt;/th&gt;
+&lt;th&gt;Falsos positivos&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Light&lt;/td&gt;
+&lt;td&gt;Relajado&lt;/td&gt;
+&lt;td&gt;Ninguno&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Normal&lt;/td&gt;
+&lt;td&gt;Relajado/Equilibrado&lt;/td&gt;
+&lt;td&gt;Casi ninguno&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Pro&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;Equilibrado&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;Muy raros&lt;/strong&gt; ← recomendada&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Pro++&lt;/td&gt;
+&lt;td&gt;Equilibrado/Agresivo&lt;/td&gt;
+&lt;td&gt;Algunos&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Ultimate&lt;/td&gt;
+&lt;td&gt;Agresivo&lt;/td&gt;
+&lt;td&gt;Frecuentes&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Multi PRO (~420k dominios, ~200k comprimidos) es la &lt;strong&gt;recomendación personal del autor&lt;/strong&gt; de HaGeZi para un bloqueo efectivo sin problemas. Bloquea anuncios, trackers, telemetría, phishing, malware, scam, cryptojacking y "crap", con muy pocos falsos positivos.&lt;/p&gt;
+&lt;h2 id="el-detalle-clave-dominios-de-referral"&gt;El detalle clave: dominios de referral&lt;a class="headerlink" href="#el-detalle-clave-dominios-de-referral" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;La FAQ de HaGeZi dedica una sección entera a explicar que los &lt;strong&gt;dominios de referral&lt;/strong&gt; —enlaces de afiliado/tracking como &lt;code&gt;s.click.aliexpress.com&lt;/code&gt;— están &lt;strong&gt;permitidos en todas las listas&lt;/strong&gt;, salvo unos pocos que también funcionan como trackers puros y solo se bloquean en Pro++ y Ultimate.&lt;/p&gt;
+&lt;p&gt;Estos dominios solo se activan tras un click manual del usuario y no se usan para mostrar publicidad. Bloquearlos rompe enlaces de resultados de búsqueda, ofertas, emails de confirmación, etc.&lt;/p&gt;
+&lt;h2 id="resumen"&gt;Resumen&lt;a class="headerlink" href="#resumen" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Una blocklist DNS demasiado agresiva bloquea dominios que no son publicidad ni malware, sino mecanismos de redirección del comercio electrónico. El equilibrio está en &lt;strong&gt;Multi PRO&lt;/strong&gt;: buena protección de privacidad sin romper funcionalidad cotidiana.&lt;/p&gt;
+&lt;p&gt;Si en algún momento necesito más agresividad, el precio será tener que desbloquear falsos positivos manualmente. Por ahora, Multi PRO va perfecto.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Más información&lt;/em&gt;: &lt;a href="https://github.com/hagezi/dns-blocklists"&gt;HaGeZi DNS Blocklists&lt;/a&gt;&lt;/p&gt;</content><category term="Redes"></category><category term="dns"></category><category term="nextdns"></category><category term="aliexpress"></category><category term="bloqueo"></category><category term="redes"></category><category term="linux"></category></entry><entry><title>marksman: LSP para Markdown</title><link href="https://pablocaro.es/marksman-lsp-markdown" rel="alternate"></link><published>2026-04-29T22:46:00+02:00</published><updated>2026-04-29T22:46:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-04-29:/marksman-lsp-markdown</id><summary type="html">&lt;p&gt;marksman es un servidor de protocolo de lenguaje (LSP) para Markdown que añade autocompletado, navegación entre archivos y detección de errores a cualquier editor compatible.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Escribo bastante en Markdown — este blog, notas, documentación — y hasta ahora me las apañaba sin más. Pero tras acostumbrarme a los beneficios del LSP en código, empecé a echar en falta algo similar para mis archivos &lt;code&gt;.md&lt;/code&gt;. Enlaces rotos, referencias a notas inexistentes, falta de autocompletado entre documentos... todo eso se acumula cuando mantienes varios ficheros.&lt;/p&gt;
 &lt;p&gt;Así que he instalado &lt;strong&gt;marksman&lt;/strong&gt;, un servidor LSP dedicado exclusivamente a Markdown.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Marksman splash" src="/images/marksman-splash.png"&gt;&lt;/p&gt;
 &lt;h2 id="que-es-marksman"&gt;¿Qué es marksman?&lt;a class="headerlink" href="#que-es-marksman" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;

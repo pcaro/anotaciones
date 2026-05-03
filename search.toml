@@ -3,6 +3,11 @@ html_selector = "main"
 base_directory = "/home/runner/work/anotaciones/anotaciones/output"
 
 [[input.files]]
+path = "bloqueo-dns-aliexpress-nextdns.html"
+url = "/bloqueo-dns-aliexpress-nextdns"
+title = "Bloqueo DNS de enlaces de AliExpress con NextDNS"
+
+[[input.files]]
 path = "marksman-lsp-markdown.html"
 url = "/marksman-lsp-markdown"
 title = "marksman: LSP para Markdown"
@@ -816,6 +821,11 @@ title = "Corrector ortográfico de firefox 2.0 en castellano"
 path = "primera-anotacion-de-prueba.html"
 url = "/primera-anotacion-de-prueba"
 title = "Primera anotación de prueba"
+
+[[input.files]]
+path = "bloqueo-dns-aliexpress-nextdns-en.html"
+url = "/en/bloqueo-dns-aliexpress-nextdns"
+title = "DNS blocking of AliExpress links with NextDNS"
 
 [[input.files]]
 path = "marksman-lsp-markdown-en.html"
