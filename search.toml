@@ -8,6 +8,11 @@ url = "/bloqueo-dns-aliexpress-nextdns"
 title = "Bloqueo DNS de enlaces de AliExpress con NextDNS"
 
 [[input.files]]
+path = "escaneo-doble-cara-brother-dcp-l3560cdw.html"
+url = "/escaneo-doble-cara-brother-dcp-l3560cdw"
+title = "Escaneo a doble cara con la Brother DCP-L3560CDW"
+
+[[input.files]]
 path = "marksman-lsp-markdown.html"
 url = "/marksman-lsp-markdown"
 title = "marksman: LSP para Markdown"
@@ -826,6 +831,11 @@ title = "Primera anotación de prueba"
 path = "bloqueo-dns-aliexpress-nextdns-en.html"
 url = "/en/bloqueo-dns-aliexpress-nextdns"
 title = "DNS blocking of AliExpress links with NextDNS"
+
+[[input.files]]
+path = "escaneo-doble-cara-brother-dcp-l3560cdw-en.html"
+url = "/en/escaneo-doble-cara-brother-dcp-l3560cdw"
+title = "Double-sided scanning with the Brother DCP-L3560CDW"
 
 [[input.files]]
 path = "marksman-lsp-markdown-en.html"

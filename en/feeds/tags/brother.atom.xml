@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Annotations by Pablo Caro - brother</title><link href="/en/" rel="alternate"></link><link href="/en/feeds/tags/brother.atom.xml" rel="self"></link><id>/en/</id><updated>2026-05-03T00:00:00+02:00</updated><subtitle>Annotations</subtitle><entry><title>Double-sided scanning with the Brother DCP-L3560CDW</title><link href="/en/escaneo-doble-cara-brother-dcp-l3560cdw" rel="alternate"></link><published>2026-05-03T00:00:00+02:00</published><updated>2026-05-03T00:00:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:None,2026-05-03:/en/escaneo-doble-cara-brother-dcp-l3560cdw</id><summary type="html">&lt;p&gt;Workaround for scanning double-sided documents with the Brother DCP-L3560CDW and its simplex document feeder.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="Brother DCP-L3560CDW and scattered papers" src="/images/brother-escaneo-doble-pagina.png"&gt;&lt;/p&gt;
+&lt;p&gt;My new &lt;a href="https://www.manua.ls/brother/dcp-l3560cdw/manual"&gt;Brother DCP-L3560CDW&lt;/a&gt; multifunction printer doesn't scan both sides from the document feeder. The ADF is simplex-only, even though the printer does support duplex printing.&lt;/p&gt;
+&lt;p&gt;For single-sided documents, the workflow is seamless: I load the pages into the feeder, press &lt;em&gt;Scan&lt;/em&gt; on the 3.7-inch touchscreen, and the document lands directly in Paperless's Samba share. No PC needed.&lt;/p&gt;
+&lt;p&gt;The issue comes with double-sided documents. Here's the workaround I use:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Scan all odd pages through the feeder&lt;/li&gt;
+&lt;li&gt;Flip the stack, place the last page facing up, and scan the even pages&lt;/li&gt;
+&lt;li&gt;In &lt;a href="https://gitlab.gnome.org/GNOME/simple-scan"&gt;Document Scanner&lt;/a&gt; (simple-scan): hamburger menu → &lt;em&gt;Reorder pages&lt;/em&gt; → &lt;em&gt;Combine sides (reverse)&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Save the PDF&lt;/li&gt;
+&lt;li&gt;Move it to the network folder for Paperless to ingest&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;I checked KDE alternatives (Skanpage, Skanlite) but none have the manual interleave feature that Document Scanner offers. Skanlite can't even combine multiple pages into a single PDF.&lt;/p&gt;
+&lt;p&gt;I'll keep looking for a more direct approach. For now, this workflow does the job.&lt;/p&gt;</content><category term="Miscellaneous"></category><category term="brother"></category><category term="printer"></category><category term="scanner"></category><category term="linux"></category><category term="simple-scan"></category><category term="paperless"></category></entry></feed>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Anotaciones por Pablo Caro - paperless</title><link href="https://pablocaro.es/" rel="alternate"></link><link href="https://pablocaro.es/feeds/tags/paperless.atom.xml" rel="self"></link><id>https://pablocaro.es/</id><updated>2026-05-03T00:00:00+02:00</updated><subtitle>Anotaciones</subtitle><entry><title>Escaneo a doble cara con la Brother DCP-L3560CDW</title><link href="https://pablocaro.es/escaneo-doble-cara-brother-dcp-l3560cdw" rel="alternate"></link><published>2026-05-03T00:00:00+02:00</published><updated>2026-05-03T00:00:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-05-03:/escaneo-doble-cara-brother-dcp-l3560cdw</id><summary type="html">&lt;p&gt;Workaround para escanear documentos a doble cara con la Brother DCP-L3560CDW y su alimentador simplex.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="Brother DCP-L3560CDW y papeles desordenados" src="/images/brother-escaneo-doble-pagina.png"&gt;&lt;/p&gt;
+&lt;p&gt;Mi nueva multifunción &lt;a href="https://www.manua.ls/brother/dcp-l3560cdw/manual"&gt;Brother DCP-L3560CDW&lt;/a&gt; no escanea a doble cara desde el alimentador. El ADF es solo simple cara, aunque la impresora sí imprime a dúplex.&lt;/p&gt;
+&lt;p&gt;Para documentos a una cara, el flujo es perfecto: meto las hojas en el alimentador, pulso &lt;em&gt;Scan&lt;/em&gt; en la pantalla táctil de 3.7 pulgadas y el documento aparece directamente en la carpeta Samba de Paperless. Sin tocar el PC.&lt;/p&gt;
+&lt;p&gt;El problema llega con documentos a doble cara. La solución que uso:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Escaneo todas las páginas impares con el alimentador&lt;/li&gt;
+&lt;li&gt;Doy la vuelta al taco, pongo la última página boca arriba y escaneo las pares&lt;/li&gt;
+&lt;li&gt;En &lt;a href="https://gitlab.gnome.org/GNOME/simple-scan"&gt;Document Scanner&lt;/a&gt; (simple-scan): menú hamburguesa → &lt;em&gt;Reorder pages&lt;/em&gt; → &lt;em&gt;Combine sides (reverse)&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Guardo el PDF&lt;/li&gt;
+&lt;li&gt;Lo muevo a la carpeta de red para que Paperless lo ingiera&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;He mirado alternativas en KDE (Skanpage, Skanlite) pero ninguna tiene la función de intercalado manual que ofrece Document Scanner. Skanlite ni siquiera permite juntar varias páginas en un mismo PDF.&lt;/p&gt;
+&lt;p&gt;Seguiré investigando si hay alguna forma más directa. De momento, este flujo funciona.&lt;/p&gt;</content><category term="Miscellaneous"></category><category term="brother"></category><category term="impresora"></category><category term="escaner"></category><category term="linux"></category><category term="simple-scan"></category><category term="paperless"></category></entry></feed>
