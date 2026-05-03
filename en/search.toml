@@ -3,6 +3,11 @@ html_selector = "main"
 base_directory = "/home/runner/work/anotaciones/anotaciones/output/en"
 
 [[input.files]]
+path = "extensiones-subagentes-pi.html"
+url = "/extensiones-subagentes-pi"
+title = "Pi subagent extensions: TintinWeb, NicoBailon and Taskplane"
+
+[[input.files]]
 path = "bloqueo-dns-aliexpress-nextdns.html"
 url = "/bloqueo-dns-aliexpress-nextdns"
 title = "DNS blocking of AliExpress links with NextDNS"
@@ -401,6 +406,11 @@ title = "Django: links in object list"
 path = "settings-vars-processor.html"
 url = "/settings-vars-processor"
 title = "Settings vars processor"
+
+[[input.files]]
+path = "extensiones-subagentes-pi-es.html"
+url = "/../extensiones-subagentes-pi"
+title = "Extensiones de subagentes para pi: TintinWeb, NicoBailon y Taskplane"
 
 [[input.files]]
 path = "bloqueo-dns-aliexpress-nextdns-es.html"

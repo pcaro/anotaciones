@@ -3,6 +3,11 @@ html_selector = "main"
 base_directory = "/home/runner/work/anotaciones/anotaciones/output"
 
 [[input.files]]
+path = "extensiones-subagentes-pi.html"
+url = "/extensiones-subagentes-pi"
+title = "Extensiones de subagentes para pi: TintinWeb, NicoBailon y Taskplane"
+
+[[input.files]]
 path = "bloqueo-dns-aliexpress-nextdns.html"
 url = "/bloqueo-dns-aliexpress-nextdns"
 title = "Bloqueo DNS de enlaces de AliExpress con NextDNS"
@@ -826,6 +831,11 @@ title = "Corrector ortográfico de firefox 2.0 en castellano"
 path = "primera-anotacion-de-prueba.html"
 url = "/primera-anotacion-de-prueba"
 title = "Primera anotación de prueba"
+
+[[input.files]]
+path = "extensiones-subagentes-pi-en.html"
+url = "/en/extensiones-subagentes-pi"
+title = "Pi subagent extensions: TintinWeb, NicoBailon and Taskplane"
 
 [[input.files]]
 path = "bloqueo-dns-aliexpress-nextdns-en.html"

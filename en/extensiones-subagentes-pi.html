@@ -1,0 +1,371 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="/en/theme/stylesheet/style.min.css">
+
+
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+          href="/en/theme/pygments/github.min.css">
+
+
+  <link rel="stylesheet"
+        type="text/css"
+        href="/en/theme/stork/stork.css" />
+
+  <link rel="stylesheet" type="text/css" href="/en/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="/en/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="/en/theme/font-awesome/css/solid.css">
+
+
+  <link rel="shortcut icon" href="/theme/img/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/theme/img/favicon.ico" type="image/x-icon">
+
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#333333">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#333333">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Microsoft EDGE -->
+  <meta name="msapplication-TileColor" content="#333333">
+
+  <link href="/en/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Annotations by Pablo Caro Atom">
+
+  <link href="/en/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Annotations by Pablo Caro RSS">
+
+<script data-goatcounter="https://pcaro.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Pablo Caro" />
+<meta name="description" content="A comparison of three extensions for running subagents in pi — TintinWeb, NicoBailon, and Taskplane — each with a different approach." />
+<meta name="keywords" content="pi, coding-agent, subagents, extensions, CLI, tools">
+
+<link rel="alternate" href="/en/extensiones-subagentes-pi" hreflang="en" />
+<link rel="alternate" href="/en/../extensiones-subagentes-pi" hreflang="es" />
+
+  <meta property="og:site_name" content="Annotations by Pablo Caro"/>
+  <meta property="og:title" content="Pi subagent extensions: TintinWeb, NicoBailon and Taskplane"/>
+  <meta property="og:description" content="A comparison of three extensions for running subagents in pi — TintinWeb, NicoBailon, and Taskplane — each with a different approach."/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="/en/extensiones-subagentes-pi"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2026-05-03 15:23:00+02:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="/en/author/pablo-caro.html">
+  <meta property="article:section" content="Programming"/>
+  <meta property="article:tag" content="pi"/>
+  <meta property="article:tag" content="coding-agent"/>
+  <meta property="article:tag" content="subagents"/>
+  <meta property="article:tag" content="extensions"/>
+  <meta property="article:tag" content="CLI"/>
+  <meta property="article:tag" content="tools"/>
+  <meta property="og:image" content="/theme/img/profile.png">
+
+  <title>Annotations by Pablo Caro &ndash; Pi subagent extensions: TintinWeb, NicoBailon and Taskplane</title>
+
+
+</head>
+<body class="light-theme">
+
+<aside>
+  <div>
+    <a href="/en/">
+      <img src="/theme/img/profile.png" alt="Anotaciones" title="Anotaciones">
+    </a>
+
+    <h1>
+      <a href="/en/">Anotaciones</a>
+    </h1>
+
+    <p>Annotations</p>
+
+    <p style="font-size: 0.9em; font-style: italic; margin-bottom: 20px;">
+      Dumping my brain onto the internet. A collection of technical notes and solutions written for my future self, shared here in case they save someone else a headache.
+    </p>
+
+    <div class="stork">
+      <input class="stork-input" type="text" autocomplete="off" name="q" data-stork="sitesearch" placeholder="Search..." onclick="loadStorkIndex()"/>
+      <div class="stork-output" data-stork="sitesearch-output"></div>
+    </div>
+
+    <nav>
+      <ul class="list">
+
+
+
+          <li>
+            <a target="_self" href="http://x.com/pcaro" >pcaro@X</a>
+          </li>
+          <li>
+            <a target="_self" href="https://github.com/pcaro/" >pcaro@Github</a>
+          </li>
+          <li>
+            <a target="_self" href="https://www.linkedin.com/in/pcarorevuelta/" >LinkedIn</a>
+          </li>
+      </ul>
+    </nav>
+
+    <ul class="social">
+      <li>
+        <a class="sc-Twitter"
+           href="http://twitter.com/pcaro"
+           target="_blank">
+          <i class="fa-brands fa-Twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Github"
+           href="http://github.com/pcaro"
+           target="_blank">
+          <i class="fa-brands fa-Github"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Linkedin"
+           href="https://www.linkedin.com/in/pcarorevuelta"
+           target="_blank">
+          <i class="fa-brands fa-Linkedin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Facebook"
+           href="https://www.facebook.com/pablo.carorevuelta"
+           target="_blank">
+          <i class="fa-brands fa-Facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Email"
+           href="mailto:correo@pablocaro.es"
+           target="_blank">
+          <i class="fa-brands fa-Email"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+</aside>
+  <main>
+
+<nav>
+  <a href="/en/">Home</a>
+
+  <a href="/en/archives.html">Archives</a>
+  <a href="/en/categories.html">Categories</a>
+  <a href="/en/tags.html">Tags</a>
+  <a href="/en/search.html">Search</a>
+  <a href="/">Español</a>
+
+  <a href="/en/feeds/all.atom.xml">Atom</a>
+
+  <a href="/en/feeds/all.rss.xml">RSS</a>
+</nav>
+
+<article class="single">
+  <header>
+          <div class="translations">
+            <a href="/en/../extensiones-subagentes-pi">Leer en español</a>
+    </div>
+
+    <h1 id="extensiones-subagentes-pi">Pi subagent extensions: TintinWeb, NicoBailon and Taskplane</h1>
+    <p>
+      Posted on Sun, 03 May 2026 in <a href="/en/category/programming.html">Programming</a>
+
+    </p>
+  </header>
+
+
+  <div>
+    <p>The biggest advantage of <a href="https://pi.dev/">pi</a> over other coding agents is its <strong>extensions</strong>. Pi doesn't come with subagents, plan mode, or MCP. It gives you the primitives to build what you need. If you don't want to build it yourself, install a <a href="https://pi.dev/packages">third-party package</a> and you're done.</p>
+<p><img alt="Three stylized figures running in parallel, passing a glowing baton" src="/images/pi-subagentes.png"></p>
+<p>I have several custom extensions in <a href="https://github.com/pcaro/pcaropi">my pcaropi repo</a>, but here I'm comparing three different approaches for delegating work to subagents — which is one of the most useful things when working with pi on real projects.</p>
+<h2 id="the-three-options">The three options<a class="headerlink" href="#the-three-options" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><strong>TintinWeb</strong></th>
+<th><strong>NicoBailon</strong></th>
+<th><strong>Taskplane (HenryLach)</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Paradigm</strong></td>
+<td>Single subagents, Claude Code style</td>
+<td>Generic orchestration (single/chain/parallel)</td>
+<td>Batch orchestration with waves, lanes, and DAG</td>
+</tr>
+<tr>
+<td><strong>Install</strong></td>
+<td><code>pi install npm:@tintinweb/pi-subagents</code></td>
+<td><code>pi install npm:pi-subagents</code></td>
+<td><code>pi install npm:taskplane</code></td>
+</tr>
+<tr>
+<td><strong>Built-in agents</strong></td>
+<td>3 (Explore, Plan, general-purpose)</td>
+<td>8 (scout, researcher, planner, worker, reviewer…)</td>
+<td>4 (supervisor, task-worker, task-reviewer, task-merger)</td>
+</tr>
+<tr>
+<td><strong>Chains / Parallel</strong></td>
+<td>❌</td>
+<td>✅ Sequences + fan-out/fan-in</td>
+<td>✅ Waves with parallel lanes via DAG</td>
+</tr>
+<tr>
+<td><strong>Git worktrees</strong></td>
+<td>✅ Basic</td>
+<td>✅ Advanced</td>
+<td>✅ Core of the system</td>
+</tr>
+<tr>
+<td><strong>Web Dashboard</strong></td>
+<td>❌</td>
+<td>❌</td>
+<td>✅ Live dashboard with SSE</td>
+</tr>
+<tr>
+<td><strong>Maturity</strong></td>
+<td>Early (0.6.3)</td>
+<td>Mature (0.24.0)</td>
+<td>Initial release</td>
+</tr>
+</tbody>
+</table>
+<h3 id="tintinweb-subagents-claude-code-style">TintinWeb — Subagents, Claude Code style<a class="headerlink" href="#tintinweb-subagents-claude-code-style" title="Permanent link">&para;</a></h3>
+<p><a href="https://github.com/tintinweb/pi-subagents">@tintinweb/pi-subagents</a> replicates the Claude Code model: <code>Agent</code>, <code>get_subagent_result</code>, and <code>steer_subagent</code> tools. Few agents (Explore, Plan, general-purpose), but highly polished UX: animated widget, interactive conversation viewer, mid-run steering to redirect running agents.</p>
+<p>Its most unique features: <strong>persistent memory</strong> across sessions (project/local/user) and an <strong>RPC event bus</strong> so other extensions can spawn subagents.</p>
+<p>Great if you're coming from Claude Code and want something familiar.</p>
+<h3 id="nicobailon-the-full-orchestrator">NicoBailon — The full orchestrator<a class="headerlink" href="#nicobailon-the-full-orchestrator" title="Permanent link">&para;</a></h3>
+<p><a href="https://github.com/nicobailon/pi-subagents">NicoBailon's pi-subagents</a> is the most mature of the three (0.24.0, 20K lines of TypeScript). A single <code>subagent</code> tool with single, chain, and parallel modes. Comes with 8 built-in agents, 6 predefined prompt templates, and a preview TUI to edit steps before launching.</p>
+<p>Things I like: <strong>cascading model fallback</strong> (if a model fails on quota, it tries the next one), <strong>agent packages</strong> with namespacing, and <code>pi-intercom</code> integration for child→parent communication.</p>
+<p>This is the one I use day to day. Flexible, battle-tested, well documented.</p>
+<h3 id="taskplane-batch-orchestration">Taskplane — Batch orchestration<a class="headerlink" href="#taskplane-batch-orchestration" title="Permanent link">&para;</a></h3>
+<p><a href="https://github.com/HenryLach/taskplane">Taskplane by HenryLach</a> is a different beast. It's not a generic subagent framework — it's a <strong>batch task orchestration system</strong>. Tasks are defined in <code>PROMPT.md</code> + <code>STATUS.md</code> files with steps, dependencies, and checkboxes. A DAG organizes tasks into waves, each wave runs lanes in parallel with isolated worktrees, and a merge agent integrates everything at the end.</p>
+<p>It has impressive features: a <strong>live web dashboard</strong> with SSE, <strong>multi-step workers</strong> that keep context between steps, automatic <strong>inline reviews</strong>, and <strong>auto-recovery</strong> that retries crashed workers. It even supports <strong>polyrepo</strong> with cross-repo dependencies.</p>
+<p>For projects where you have a batch of well-defined features with dependencies, it's unbeatable.</p>
+<h2 id="which-one-to-use">Which one to use?<a class="headerlink" href="#which-one-to-use" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Delegate individual tasks with a clean UX</strong> → TintinWeb</li>
+<li><strong>Flexible orchestration with chains, parallel, and templates</strong> → NicoBailon</li>
+<li><strong>Run a batch of features with dependencies and automatic reviews</strong> → Taskplane</li>
+</ul>
+<p>All three install with a single <code>pi install npm:...</code>. TintinWeb and NicoBailon can coexist since they use differently named tools. Taskplane has its own paradigm and shouldn't conflict with either.</p>
+<p>More pi extensions and configs in <a href="https://github.com/pcaro/pcaropi">my pcaropi repo</a>.</p>
+<p><em>Fuente original</em>: <a href="https://pi.dev/">pi.dev</a></p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="/en/tag/pi.html">pi</a>
+      <a href="/en/tag/coding-agent.html">coding-agent</a>
+      <a href="/en/tag/subagents.html">subagents</a>
+      <a href="/en/tag/extensions.html">extensions</a>
+      <a href="/en/tag/cli.html">CLI</a>
+      <a href="/en/tag/tools.html">tools</a>
+    </p>
+  </div>
+
+
+
+  <div class="neighbors">
+    <a class="btn float-left" href="/en/bloqueo-dns-aliexpress-nextdns" title="DNS blocking of AliExpress links with NextDNS">
+      <i class="fa fa-angle-left"></i> Previous Post
+    </a>
+  </div>
+
+  <div class="related-posts">
+    <h4>You might enjoy</h4>
+    <ul class="related-posts">
+      <li><a href="/en/sem-semantic-version-control">sem: Semantic Version Control</a></li>
+      <li><a href="/en/deepdiff-comparar-datos-python">DeepDiff: The Swiss Army Knife for Data Comparison in Python</a></li>
+      <li><a href="/en/renderizando-markdown-en-la-terminal-con-glow">Rendering Markdown in the terminal with Glow</a></li>
+      <li><a href="/en/shot-scraper-capturas-pantalla-automatizadas">Shot-scraper: Automated Web Screenshots</a></li>
+      <li><a href="/en/stern-kubernetes-logs">Stern: Kubernetes Logs on Steroids</a></li>
+    </ul>
+  </div>
+
+
+
+<!-- Disqus -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'anotaciones';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>
+    Please enable JavaScript to view comments.
+</noscript>
+<!-- End Disqus -->
+</article>
+
+<footer>
+<p>
+  &copy; 2026  - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/3.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/3.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Annotations by Pablo Caro ",
+  "url" : "/en",
+  "image": "/theme/img/profile.png",
+  "description": ""
+}
+</script>  <script src="https://files.stork-search.net/releases/v1.6.0/stork.js"></script>
+  <script>
+    window.storkIndexLoaded = false;
+    window.loadStorkIndex = function () {
+      if (window.storkIndexLoaded) {
+        return;
+      }
+      if (typeof stork === 'undefined') {
+        console.error('Stork is not loaded yet, retrying...');
+        setTimeout(window.loadStorkIndex, 100);
+        return;
+      }
+      stork.register("sitesearch", "/en/search-index.st", { showProgress: false });
+      stork.register("sitesearch-page", "/en/search-index.st", { showProgress: false });
+      window.storkIndexLoaded = true;
+    }
+  </script>
+
+</body>
+</html>
