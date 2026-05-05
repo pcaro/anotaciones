@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*- #
 
 AUTHOR = "Pablo Caro"
 SITENAME = "Anotaciones por Pablo Caro"
@@ -76,6 +75,7 @@ RELATIVE_URLS = False
 # THEME = 'pelican-themes/svbhack'
 THEME = "themes/Flex"
 THEME_TEMPLATES_OVERRIDES = ["themes/custom/templates"]
+CUSTOM_CSS = "extras/custom.css"
 
 SITEMAP = {
     "format": "xml",
@@ -106,7 +106,6 @@ I18N_SUBSITES = {
         "SITENAME": "Annotations by Pablo Caro",
         "SITEURL": "/en",
         "FEED_DOMAIN": "/en",
-        "SITESUBTITLE": "Annotations",
         "SIDEBAR_DESCRIPTION": "Dumping my brain onto the internet. A collection of technical notes and solutions written for my future self, shared here in case they save someone else a headache.",
         "LOCALE": "en_US.UTF-8",
         "THEME_STATIC_DIR": "theme",
@@ -118,7 +117,6 @@ I18N_SUBSITES = {
             ("Search", "/en/search.html"),
             ("Español", "/"),
         ),
-        "SITESUBTITLE": "Annotations",
         "SITE_DESCRIPTION": "My name is Pablo Caro — a software engineer. I am pcaro on Github and twitter. I build software of all kinds. This is my personal blog.",
         "FEED_ALL_ATOM": "feeds/all.atom.xml",
         "FEED_MAX_ITEMS": None,  # No limit on feed items
