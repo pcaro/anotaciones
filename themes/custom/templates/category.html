@@ -1,0 +1,16 @@
+{% extends "index.html" %} {% block title %} &ndash; {{ _('Category %(name)s',
+name=category) }}{% endblock %} {% set summarise = True %} {% block content %}
+<div class="category-header">
+  <h1>{{ category }}</h1>
+  {% if category.slug in ['programacion', 'herramientas', 'linux',
+  'infraestructura', 'ia', 'personal', 'documentacion', 'finanzas'] %}
+  <div class="category-hero">
+    <img
+      src="{{ SITEURL }}/images/categories/{{ category.slug }}.png"
+      alt="{{ category }}"
+      loading="lazy"
+    />
+  </div>
+  {% endif %}
+</div>
+{{ super() }} {% endblock %}

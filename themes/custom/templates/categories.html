@@ -1,0 +1,28 @@
+{% extends "base.html" %} {% block title %} &ndash; {{ _('Categories') }}{%
+endblock %} {% block content %}
+<article class="single">
+  <header>
+    <h1 id="categories">{{ _('Categories') }}</h1>
+  </header>
+  <div>
+    <div class="category-grid">
+      {% for category, articles in categories|sort %}
+      <a href="{{ SITEURL }}/{{ category.url }}" class="category-box">
+        {% if category.slug in ['programacion', 'herramientas', 'linux',
+        'infraestructura', 'ia', 'personal', 'documentacion', 'finanzas'] %}
+        <img
+          src="{{ SITEURL }}/images/categories/{{ category.slug }}.png"
+          alt="{{ category }}"
+          loading="lazy"
+        />
+        {% endif %}
+        <span class="category-name">{{ category }}</span>
+        <span class="category-count"
+          >{{ articles|count }} {{ _('articles') }}</span
+        >
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</article>
+{% endblock %}
