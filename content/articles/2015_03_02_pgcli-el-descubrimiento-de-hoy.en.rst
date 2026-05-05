@@ -4,7 +4,7 @@ pgcli the discovery of the day
 :date: 2015-3-2 8:26
 :tags: postgresql
 :lang: en
-:category: Programming
+:category: Programación
 :slug: pgcli-el-descubrimiento-de-hoy
 :summary: postresql command line
 

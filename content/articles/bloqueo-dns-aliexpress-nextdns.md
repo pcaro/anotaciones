@@ -1,9 +1,9 @@
 ---
 title: Bloqueo DNS de enlaces de AliExpress con NextDNS
 date: 2026-05-03 10:01
-tags: dns, nextdns, aliexpress, bloqueo, redes, linux
+tags: dns, nextdns, aliexpress, bloqueo, linux
 lang: es
-category: Redes
+category: Infraestructura
 slug: bloqueo-dns-aliexpress-nextdns
 summary: Al usar una blocklist DNS demasiado agresiva en NextDNS, los enlaces de afiliado de AliExpress dejaban de funcionar. Diagnóstico con dig y solución con HaGeZi Multi PRO.
 featured_image: /images/dns-blocking-nextdns.jpg

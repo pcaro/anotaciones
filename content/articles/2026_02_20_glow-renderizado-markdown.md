@@ -1,6 +1,6 @@
 Title: Renderizando Markdown en la terminal con Glow
 Date: 2026-02-20
-Tags: cli, markdown, herramientas, linux, kitty
+Tags: cli, markdown, herramientas, kitty
 Category: Linux
 Slug: renderizando-markdown-en-la-terminal-con-glow
 Lang: es

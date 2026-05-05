@@ -1,8 +1,8 @@
 Title: PosteRazor: Create Giant Posters from Any Image
 Date: 2017-02-24 20:06
-Tags: posterazor, printing, posters, diy, tools
+Tags: posterazor, printing, posters, diy
 Lang: en
-Category: Tools
+Category: Herramientas
 Slug: posterazor-crear-posters-grandes
 Summary: PosteRazor converts any image into a giant poster by splitting the image into printable pages that you can assemble
 

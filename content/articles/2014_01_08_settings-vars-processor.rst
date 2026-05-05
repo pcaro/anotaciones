@@ -2,7 +2,7 @@ Settings vars processor
 #######################
 
 :date: 2014-1-08 11:23
-:tags: python, django
+:tags: django
 :lang: es
 :category: Programación
 :slug: settings-vars-processor

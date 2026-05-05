@@ -2,9 +2,9 @@ Django: links in object list
 ################################
 
 :date: 2014-5-21 10:42
-:tags: django, python
+:tags: django
 :lang: en
-:category: Programming
+:category: Programación
 :slug: enlaces-en-listado-de-objectos
 :subtitle: change_list
 

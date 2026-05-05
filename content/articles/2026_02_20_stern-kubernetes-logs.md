@@ -1,8 +1,8 @@
 Title: Stern: Logs de Kubernetes con esteroides
 Slug: stern-kubernetes-logs
 Date: 2026-02-20
-Tags: kubernetes, cli, logs, devops, tools
-Category: DevOps
+Tags: kubernetes, cli, logs, herramientas
+Category: Infraestructura
 Lang: es
 featured_image: /images/stern_help.png
 

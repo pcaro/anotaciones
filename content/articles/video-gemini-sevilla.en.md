@@ -1,9 +1,10 @@
 Title: Video Creation with Gemini: Seville Characters
 Date: 2026-04-15
-Tags: ia, gemini, google, video, sevilla
+Tags: gemini, google, video, sevilla
 Lang: en
 Slug: video-gemini-sevilla
 Summary: Testing Gemini's video generation with Seville-based characters.
+Category: IA
 
 Generative AI video creation is improving by leaps and bounds. The latest experiment I've tried is generating videos from images with Gemini.
 

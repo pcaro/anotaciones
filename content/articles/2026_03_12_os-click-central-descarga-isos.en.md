@@ -1,6 +1,6 @@
 Title: os.click: Operating System ISO Download Center
 Date: 2026-03-12 10:00
-Tags: linux, windows, iso, operating systems, tools
+Tags: linux, windows, iso, operating systems, herramientas
 Category: Programación
 Slug: os-click-central-descarga-isos
 Lang: en

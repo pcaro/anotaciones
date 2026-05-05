@@ -1,9 +1,9 @@
 ---
 title: Kubegres: Gestión simplificada de PostgreSQL en Kubernetes
 date: 2025-12-25 14:00
-tags: kubernetes, postgresql, kubegres, operador, base-de-datos, devops
+tags: kubernetes, postgresql, kubegres, operador, base-de-datos
 lang: es
-category: DevOps
+category: Infraestructura
 slug: kubegres-postgresql-kubernetes
 summary: Descubre Kubegres, un operador de Kubernetes que simplifica la implementación y gestión de clusters PostgreSQL altamente disponibles y escalables.
 ---

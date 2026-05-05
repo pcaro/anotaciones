@@ -1,7 +1,7 @@
 Title: rbw-env: Export environment variables from Bitwarden
 Date: 2026-03-26 20:55
-Category: Tools
-Tags: bitwarden, cli, environment, productivity, security
+Category: Herramientas
+Tags: bitwarden, cli, entorno, productividad, seguridad
 Slug: rbw-env
 Lang: en
 Summary: Using rbw to export environment variables from Bitwarden, useful for setting API keys securely without storing them on disk.

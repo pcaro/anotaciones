@@ -2,9 +2,9 @@ Repeating a function with threads
 #################################
 
 :date: 2015-5-3 21:00
-:tags: python
+:tags: 
 :lang: en
-:category: Programming
+:category: Programación
 :slug: repetiendo-una-función-con-hilos
 :summary: Let's use threads in python to periodically execute a function
 

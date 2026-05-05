@@ -1,9 +1,9 @@
 ---
 Title: broot, a different way to navigate your directories
 Date: 2026-01-02 10:00
-Tags: terminal, cli, broot, rust, tools
+Tags: terminal, cli, broot, rust
 Lang: en
-Category: Tools
+Category: Herramientas
 Slug: broot-una-forma-diferente-de-navegar-directorios
 Summary: broot is a terminal tool for interactive directory exploration with fuzzy search, multiple panels, and file preview.
 featured_image: /images/broot_terminal.png

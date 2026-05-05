@@ -1,7 +1,7 @@
 Title: Instalando skills de GitHub
 Date: 2026-04-19 12:00
 Category: Programación
-Tags: GitHub, CLI, Agentes IA, Skills
+Tags: github, cli, agentes-ia, skills
 Slug: instalando-skills-de-github
 Lang: es
 featured_image: /images/gh-skill-vs-npx-skills.jpg

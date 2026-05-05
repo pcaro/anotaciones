@@ -1,6 +1,6 @@
 Title: Determinar slots de RAM en uso en Linux
 Date: 2016-07-13 20:28
-Tags: linux, ram, dmidecode, lshw, hardware, memoria
+Tags: ram, dmidecode, lshw, hardware, memoria
 Lang: es
 Category: Linux
 Slug: determinar-slots-ram-uso-linux

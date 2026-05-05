@@ -2,7 +2,7 @@ Title: Solución al Error de Rodney con Chrome en Wayland
 Date: 2026-03-06 09:00
 Tags: rodney, chrome, wayland, linux, debugging
 Lang: es
-Category: Problemas
+Category: Herramientas
 Slug: rodney-chrome-wayland-error
 Summary: Cómo resolver el crash de Rodney al iniciar Chrome en sistemas Wayland usando el Chrome del sistema.
 

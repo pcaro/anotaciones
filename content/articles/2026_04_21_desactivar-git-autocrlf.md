@@ -1,7 +1,7 @@
 Title: Desactivar git autocrlf
 Date: 2026-04-21 12:00
-Category: Git
-Tags: Git, Windows, WSL, Line Endings
+Category: Programación
+Tags: git, windows, wsl, line endings
 Slug: desactivar-git-autocrlf
 Lang: es
 featured_image: /images/git-disable-autocrlf.png

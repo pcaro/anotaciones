@@ -1,9 +1,9 @@
 ---
 title: `docker-http-https-echo`: An Essential Tool for Network Debugging
 date: 2025-12-25 14:15
-tags: docker, http, https, debugging, networking, tools, containers
+tags: docker, http, https, debugging, redes, contenedores
 lang: en
-category: Tools
+category: Herramientas
 slug: docker-http-https-echo
 summary: `mendhak/docker-http-https-echo` is a simple Docker container that facilitates debugging network configurations, proxies, and load balancers.
 ---

@@ -5,6 +5,7 @@ Slug: escaneo-doble-cara-brother-dcp-l3560cdw
 Lang: es
 Featured_image: /images/brother-escaneo-doble-pagina.png
 Summary: Workaround para escanear documentos a doble cara con la Brother DCP-L3560CDW y su alimentador simplex.
+Category: Infraestructura
 
 ![Brother DCP-L3560CDW y papeles desordenados](/images/brother-escaneo-doble-pagina.png)
 

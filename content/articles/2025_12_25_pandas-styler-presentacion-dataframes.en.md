@@ -1,9 +1,9 @@
 ---
 title: Pandas Styler: Improve the Presentation of your DataFrames
 date: 2025-12-25 15:55
-tags: pandas, python, data-science, visualization, style
+tags: pandas, data-science, visualizacion, estilo
 lang: en
-category: Programming
+category: Programación
 slug: pandas-styler-presentacion-dataframes
 summary: Discover how the Pandas `Styler` object allows you to apply conditional formatting and CSS styles to your DataFrames for better data visualization and presentation.
 ---

@@ -1,8 +1,8 @@
 Title: Technical Documentation with Sphinx, Paver, and Cog
 Date: 2016-07-14 00:47
-Tags: sphinx, paver, cog, documentation, rst, automation
+Tags: sphinx, paver, cog, rst, automation
 Lang: en
-Category: Documentation
+Category: Documentación
 Slug: documentacion-tecnica-sphinx-paver-cog
 Summary: Automated workflow to create technical documentation using Sphinx, Paver, and Cog, eliminating repetitive tasks and manual errors in code examples
 

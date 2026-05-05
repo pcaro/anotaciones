@@ -4,7 +4,7 @@ Instalar InSync en Opensuse
 :date: 2015-4-20 18:18
 :tags: django, python
 :lang: es
-:category: Sistemas
+:category: Infraestructura
 :slug: instalar-insync-en-opensuse
 :summary:
 :keywords: linux

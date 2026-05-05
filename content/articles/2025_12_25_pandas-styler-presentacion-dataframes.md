@@ -1,7 +1,7 @@
 ---
 title: Pandas Styler: Mejora la presentación de tus DataFrames
 date: 2025-12-25 15:55
-tags: pandas, python, data-science, visualizacion, estilo
+tags: pandas, data-science, visualizacion, estilo
 lang: es
 category: Programación
 slug: pandas-styler-presentacion-dataframes

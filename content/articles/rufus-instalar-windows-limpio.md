@@ -1,7 +1,7 @@
 Title: Rufus, la mejor forma de instalar un Windows limpio
 Slug: rufus-instalar-windows-limpio
 Date: 2026-04-27 12:00
-Category: Software
+Category: Herramientas
 Tags: rufus, windows, instalacion
 Lang: es
 Summary: Rufus, gran herramienta para crear medios de instalación de Windows, permitiendo deshabilitar las integraciones forzosas de IA de Microsoft.

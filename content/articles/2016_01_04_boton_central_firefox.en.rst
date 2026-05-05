@@ -4,7 +4,7 @@ Middle click in firefox
 :date: 2016-01-01 07:00
 :tags: linux
 :lang: en
-:category: Systems
+:category: Infraestructura
 :slug: boton_central_firefox
 :summary: Stop firefox from opening the pasted url with the middle mouse button
 

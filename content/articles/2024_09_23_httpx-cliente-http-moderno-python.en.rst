@@ -2,9 +2,9 @@ HTTPX: Modern HTTP Client for Python
 ####################################
 
 :date: 2024-09-23 00:07
-:tags: python, http, httpx, async, requests
+:tags: http, httpx, async, requests
 :lang: en
-:category: Programming
+:category: Programación
 :slug: httpx-cliente-http-moderno-python
 :summary: HTTPX emerges as the natural successor to requests, offering async support, HTTP/2, and a modern API for contemporary Python applications.
 

@@ -1,9 +1,9 @@
 ---
 title: OpenEvidence: The Leading Medical Information Platform for Professionals
 date: 2025-12-25 14:45
-tags: open-evidence, medicine, health, medical-information, health-professionals, research, clinical
+tags: open-evidence, medicina, salud, informacion-medica, profesionales-salud, investigacion, clinica
 lang: en
-category: Miscellaneous
+category: Personal
 slug: open-evidence-plataforma-medica
 summary: Exploring OpenEvidence, a leading platform that consolidates medical information, clinical findings, and practice guidelines for healthcare professionals in the US.
 ---

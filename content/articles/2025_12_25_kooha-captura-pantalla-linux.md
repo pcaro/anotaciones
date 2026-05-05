@@ -1,7 +1,7 @@
 ---
 title: Kooha: Captura de pantalla sencilla y elegante en Linux
 date: 2025-12-25 15:00
-tags: linux, kooha, screen-recorder, productividad, herramientas, open-source
+tags: linux, kooha, screen-recorder, productividad, open-source
 lang: es
 category: Herramientas
 slug: kooha-captura-pantalla-linux

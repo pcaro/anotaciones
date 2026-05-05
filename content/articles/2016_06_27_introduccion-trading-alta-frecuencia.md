@@ -1,6 +1,6 @@
 Title: Introducción a los sistemas de trading de alta frecuencia
 Date: 2016-06-27 11:51
-Tags: trading, hft, high-frequency, algoritmos, finanzas
+Tags: trading, hft, high-frequency, algoritmos
 Lang: es
 Category: Finanzas
 Slug: introduccion-trading-alta-frecuencia

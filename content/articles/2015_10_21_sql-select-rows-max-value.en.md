@@ -1,8 +1,8 @@
 Title: SQL: Select Rows with Max Value per Group
 Date: 2015-10-21 23:05
-Tags: sql, mysql, queries, window-functions, joins
+Tags: sql, mysql, consultas, window-functions, joins
 Lang: en
-Category: SQL
+Category: Programación
 Slug: sql-select-rows-max-value
 Summary: SQL techniques to select complete rows with the maximum value of a column within groups, comparing performance of subqueries, joins, and window functions
 

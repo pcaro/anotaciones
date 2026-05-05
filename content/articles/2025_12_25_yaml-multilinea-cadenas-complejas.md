@@ -1,7 +1,7 @@
 ---
 title: YAML Multilínea: Entendiendo y probando cadenas de texto complejas
 date: 2025-12-25 16:10
-tags: yaml, configuracion, desarrollo, herramientas, multiline, strings
+tags: yaml, configuracion, desarrollo, multiline, strings
 lang: es
 category: Herramientas
 slug: yaml-multilinea-cadenas-complejas

@@ -2,7 +2,7 @@ Decorador vista ajax
 ####################
 
 :date: 2014-11-21 11:12
-:tags: python, django
+:tags: django
 :lang: es
 :category: Programación
 :slug: decorador-vista-ajax

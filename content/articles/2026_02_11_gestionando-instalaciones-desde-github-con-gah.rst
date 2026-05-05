@@ -2,7 +2,7 @@ Gestionando instalaciones desde GitHub con gah
 ##############################################
 
 :date: 2026-02-11 20:23
-:tags: linux, herramientas, cli
+:tags: herramientas, cli
 :lang: es
 :category: Linux
 :slug: gestionando-instalaciones-desde-github-con-gah

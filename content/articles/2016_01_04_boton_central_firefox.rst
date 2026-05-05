@@ -4,7 +4,7 @@ Botón central en firefox
 :date: 2016-01-01 07:00
 :tags: linux
 :lang: es
-:category: Sistemas
+:category: Infraestructura
 :slug: boton_central_firefox
 :summary: Que firefox deje de abrir la url pegada con el botón central del ratón
 

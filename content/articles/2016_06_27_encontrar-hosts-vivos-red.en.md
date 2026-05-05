@@ -1,8 +1,8 @@
 Title: How to Find Live Hosts on Your Local Network
 Date: 2016-06-27 07:59
-Tags: nmap, network-discovery, arp-scan, netdiscover, security
+Tags: nmap, network-discovery, arp-scan, netdiscover
 Lang: en
-Category: Security
+Category: Infraestructura
 Slug: encontrar-hosts-vivos-red
 Summary: Methods and tools to discover active devices on local networks using nmap, arp-scan, netdiscover, and other reconnaissance techniques
 

@@ -3,7 +3,7 @@ title: De Yakuake a Kitty: Mi transición a un terminal moderno
 date: 2025-12-25 12:00
 tags: kitty, yakuake, terminal, linux, productividad, herramientas
 lang: es
-category: Sistemas
+category: Infraestructura
 slug: de-yakuake-a-kitty
 summary: Explorando las razones y beneficios de cambiar de Yakuake a Kitty para una experiencia de terminal más potente y personalizable.
 ---

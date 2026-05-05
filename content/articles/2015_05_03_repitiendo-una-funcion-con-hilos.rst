@@ -2,7 +2,7 @@ Repitiendo una función con hilos
 #################################
 
 :date: 2015-5-3 21:00
-:tags: python
+:tags: 
 :lang: es
 :category: Programación
 :slug: repetiendo-una-función-con-hilos

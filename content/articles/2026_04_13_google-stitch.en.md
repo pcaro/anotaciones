@@ -1,7 +1,7 @@
 Title: Google Stitch: UI generation and prototyping with AI
 Date: 2026-04-13 12:38
 Category: Herramientas
-Tags: AI, UI, Design, Gemini, prototipado
+Tags: ia, ui, design, gemini, prototipado
 Slug: google-stitch
 Lang: en
 featured_image: /images/stitch.png

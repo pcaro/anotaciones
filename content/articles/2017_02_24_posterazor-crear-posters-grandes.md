@@ -1,6 +1,6 @@
 Title: PosteRazor: Crea pósters gigantes desde cualquier imagen
 Date: 2017-02-24 20:06
-Tags: posterazor, impresión, pósters, diy, herramientas
+Tags: posterazor, impresión, posters, diy
 Lang: es
 Category: Herramientas
 Slug: posterazor-crear-posters-grandes

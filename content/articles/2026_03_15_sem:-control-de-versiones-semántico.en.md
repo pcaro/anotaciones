@@ -1,7 +1,7 @@
 Title: sem: Semantic Version Control
 Date: 2026-03-15 14:11
-Category: Programming
-Tags: cli, versioning, rust, tools
+Category: Programación
+Tags: cli, versionado, rust, herramientas
 Slug: sem-semantic-version-control
 Lang: en
 featured_image: /images/sem-cli.png

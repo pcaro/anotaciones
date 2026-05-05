@@ -2,7 +2,7 @@ Title: Galen Framework: Automated Testing for Responsive Design
 Date: 2015-11-13 18:20
 Tags: galen, testing, responsive, layout, selenium
 Lang: en
-Category: Testing
+Category: Programación
 Slug: galen-framework-testing-responsive
 Summary: Galen Framework simplifies automated testing of responsive layouts by verifying the position and appearance of elements across different devices
 

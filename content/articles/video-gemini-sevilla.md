@@ -1,10 +1,11 @@
 Title: Creación de vídeo con Gemini: personajes de Sevilla
 Date: 2026-04-15
-Tags: ia, gemini, google, video, sevilla
+Tags: gemini, google, video, sevilla
 Slug: video-gemini-sevilla
 Lang: es
 Featured_image: /images/Sevi.webp
 Summary: Probando la generación de vídeo de Gemini con personajes basados en Sevilla.
+Category: IA
 
 La creación de vídeo con IA generativa está mejorando a pasos agigantados. El último experimento que he probado es generar vídeos a partir de imágenes con Gemini.
 

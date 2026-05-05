@@ -2,7 +2,7 @@ HTTPX: Cliente HTTP moderno para Python
 #######################################
 
 :date: 2024-09-23 00:07
-:tags: python, http, httpx, async, requests
+:tags: http, httpx, async, requests
 :lang: es
 :category: Programación
 :slug: httpx-cliente-http-moderno-python

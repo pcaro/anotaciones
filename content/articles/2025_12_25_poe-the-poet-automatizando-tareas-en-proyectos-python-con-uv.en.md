@@ -1,9 +1,9 @@
 ---
 title: Poe the Poet: Automating Tasks in Python Projects with uv
 date: 2025-12-25 11:00
-tags: python, uv, poethepoet, automation, pyproject.toml
+tags: uv, poethepoet, automation, pyproject.toml
 lang: en
-category: Programming
+category: Programación
 slug: poe-the-poet-automatizando-tareas-en-proyectos-python-con-uv
 summary: Discover how Poe the Poet allows you to define and execute custom commands directly from your pyproject.toml, optimizing your workflow in uv environments.
 ---

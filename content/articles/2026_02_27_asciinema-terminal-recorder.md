@@ -1,6 +1,6 @@
 Title: Graba y Comparte tus Sesiones de Terminal con asciinema
 Date: 2026-02-27 12:00
-Tags: asciinema, terminal, linux, productivity
+Tags: asciinema, terminal, linux, productividad
 Lang: es
 Category: Herramientas
 Slug: asciinema-terminal-recorder

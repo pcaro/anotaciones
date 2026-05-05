@@ -2,9 +2,9 @@ How I Use Git Worktrees for Concurrent Work
 ###########################################
 
 :date: 2025-07-23 06:12
-:tags: git, worktrees, workflow, productivity
+:tags: git, worktrees, flujo-trabajo, productividad
 :lang: en
-:category: Programming
+:category: Programación
 :slug: como-uso-git-worktrees
 :summary: A practical approach to using git worktrees and maximizing productivity with multiple simultaneous work contexts
 

@@ -1,8 +1,8 @@
 Title: Introduction to High-Frequency Trading Systems
 Date: 2016-06-27 11:51
-Tags: trading, hft, high-frequency, algorithms, finance
+Tags: trading, hft, high-frequency, algoritmos
 Lang: en
-Category: Finance
+Category: Finanzas
 Slug: introduccion-trading-alta-frecuencia
 Summary: Fundamental concepts about High-Frequency Trading (HFT) systems, programs that execute thousands of trades per day in fractions of a second
 

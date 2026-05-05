@@ -2,9 +2,9 @@ Geospatial Data Conflation with DuckDB and Embeddings
 #######################################################
 
 :date: 2024-10-01 07:12
-:tags: duckdb, geospatial, embeddings, ollama, h3
+:tags: duckdb, geoespacial, embeddings, ollama, h3
 :lang: en
-:category: Programming
+:category: Programación
 :slug: conflacion-datos-geoespaciales-duckdb
 :summary: Advanced techniques to integrate geospatial data sources using DuckDB, H3, Ollama, and embedding models
 

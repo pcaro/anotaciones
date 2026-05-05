@@ -1,7 +1,7 @@
 Title: Agent Browser: Navegación para Agentes
 Date: 2026-03-18 09:00
 Category: Herramientas
-Tags: agent-browser, ai, agents, automation, llm, pi-agent
+Tags: agent-browser, ia, agents, automation, llm, pi-agent
 Slug: agent-browser-navegacion-agentes
 Lang: es
 featured_image: /images/agent-browser.png

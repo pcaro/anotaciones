@@ -1,8 +1,8 @@
 Title: Powerful Command Line Tools for Developers
 Date: 2016-06-07 11:36
-Tags: cli, tools, development, networking, testing
+Tags: cli, desarrollo, redes, testing
 Lang: en
-Category: Tools
+Category: Herramientas
 Slug: herramientas-desarrolladores-linea-comandos
 Summary: Collection of essential command line tools for developers: curl, ngrep, netcat, sshuttle, siege, and mitmproxy
 

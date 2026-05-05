@@ -3,7 +3,7 @@ title: Ampliar disco de VM Aurora en Unraid y redimensionar particiones
 slug: ampliar-disco-vm-aurora-unraid
 date: 2026-04-24
 category: Linux
-tags: [aurora, linux, unraid, vm, btrfs, disco]
+tags: aurora, unraid, vm, btrfs, disco
 lang: es
 summary: Cómo expandir el disco virtual de una VM Aurora ejecutándose en Unraid y redimensionar las particiones Btrfs dentro del sistema operativo.
 featured_image: /images/ampliar-disco-vm-aurora-unraid.png
@@ -23,7 +23,7 @@ Antes de la expansión, el disco tenía aproximadamente **15GB** y la partición
 
 ```
 NAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINTS
-vda    253:0    0   60G  0 disk 
+vda    253:0    0   60G  0 disk
 ├─vda1 253:1    0  600M  0 part /boot/efi
 ├─vda2 253:2    0    2G  0 part /boot
 └─vda3 253:3    0 12,4G  0 part /var/home, /var, /etc...
@@ -79,6 +79,7 @@ sudo growpart /dev/vda 3
 ```
 
 Output:
+
 ```
 CHANGED: partition=3 start=5425152 old: size=26030080 end=31455231 new: size=120403935 end=125829086
 ```
@@ -86,6 +87,7 @@ CHANGED: partition=3 start=5425152 old: size=26030080 end=31455231 new: size=120
 ## Paso 4: Redimensionar el filesystem Btrfs
 
 Aurora usa una estructura especial con múltiples subvolúmenes Btrfs:
+
 - `root` (ID 256) - sistema base (montado read-only en /sysroot)
 - `home` (ID 257) - directorios de usuario
 - `var` (ID 258) - variables del sistema
@@ -98,6 +100,7 @@ sudo btrfs filesystem resize max /var
 ```
 
 Output:
+
 ```
 Resize device id 1 (/dev/vda3) from 12.41GiB to max
 ```
@@ -118,7 +121,7 @@ Verificando con `lsblk`:
 
 ```
 NAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINTS
-vda    253:0    0   60G  0 disk 
+vda    253:0    0   60G  0 disk
 ├─vda1 253:1    0  600M  0 part /boot/efi
 ├─vda2 253:2    0    2G  0 part /boot
 └─vda3 253:3    0 57,4G  0 part /var/home, /var, /etc...

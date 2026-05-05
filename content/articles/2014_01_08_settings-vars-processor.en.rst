@@ -2,9 +2,9 @@ Settings vars processor
 #######################
 
 :date: 2014-1-08 11:23
-:tags: python, django
+:tags: django
 :lang: en
-:category: Programming
+:category: Programación
 :slug: settings-vars-processor
 
 I usually use this at the beginning of projects.

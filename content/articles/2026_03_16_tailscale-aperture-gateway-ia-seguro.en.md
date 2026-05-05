@@ -1,7 +1,7 @@
 Title: Tailscale Aperture: AI Gateway Without Distributing API Keys
 Date: 2026-03-16 10:00
-Category: Tools
-Tags: tailscale, security, ai, api, gateway
+Category: Herramientas
+Tags: tailscale, seguridad, ia, api, gateway
 Slug: tailscale-aperture-gateway-ia-seguro
 Lang: en
 featured_image: /images/tailscale-aperture.png

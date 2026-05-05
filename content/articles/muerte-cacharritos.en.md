@@ -5,6 +5,7 @@ Lang: en
 Tags: raspberry-pi, sbc, hardware
 Summary: La subida de los 'cacharritos'
 featured_image: /images/subida-precio-sbc.png
+Category: Linux
 
 ![An SBC with a red upward price arrow and a sweaty buyer](/images/subida-precio-sbc.png)
 

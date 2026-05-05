@@ -2,9 +2,9 @@ About Versions
 ##############
 
 :date: 2017-5-1 18:04
-:tags: python
+:tags: 
 :lang: en
-:category: Programming
+:category: Programación
 :slug: una-de-versiones
 :summary:
 

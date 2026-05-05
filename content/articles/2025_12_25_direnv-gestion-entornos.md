@@ -1,7 +1,7 @@
 ---
 title: `direnv`: Gestiona tus entornos de desarrollo de forma inteligente
 date: 2025-12-25 14:30
-tags: direnv, shell, entorno, productividad, desarrollo, linux, herramientas
+tags: direnv, shell, entorno, productividad, desarrollo, linux
 lang: es
 category: Herramientas
 slug: direnv-gestion-entornos

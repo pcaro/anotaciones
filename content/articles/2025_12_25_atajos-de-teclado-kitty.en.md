@@ -1,9 +1,9 @@
 ---
 title: Essential Keyboard Shortcuts in Kitty: Mastering Your Terminal
 date: 2025-12-25 12:15
-tags: kitty, terminal, shortcuts, keyboard, productivity
+tags: kitty, terminal, atajos, teclado, productividad
 lang: en
-category: Systems
+category: Infraestructura
 slug: atajos-de-teclado-kitty
 summary: A quick guide to the most useful Kitty keyboard shortcuts to optimize your command-line workflow.
 ---

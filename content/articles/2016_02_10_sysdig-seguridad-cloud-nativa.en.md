@@ -1,8 +1,8 @@
 Title: Sysdig: Cloud-Native Security Platform with AI
 Date: 2016-02-10 14:37
-Tags: sysdig, security, cloud, kubernetes, falco
+Tags: sysdig, seguridad, cloud, kubernetes, falco
 Lang: en
-Category: Tools
+Category: Herramientas
 Slug: sysdig-seguridad-cloud-nativa
 Summary: Sysdig offers a comprehensive security platform for cloud-native environments that combines AI, real-time visibility, and open source innovation
 

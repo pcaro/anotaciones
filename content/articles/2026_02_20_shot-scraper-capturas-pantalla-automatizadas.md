@@ -1,8 +1,8 @@
 Title: Shot-scraper: Capturas de pantalla automatizadas para la web
 Slug: shot-scraper-capturas-pantalla-automatizadas
 Date: 2026-02-20
-Tags: python, cli, tools, web, scraping, screenshots
-Category: Python
+Tags: cli, herramientas, web, scraping, screenshots
+Category: Programación
 Lang: es
 featured_image: /images/shot_scraper_help.png
 

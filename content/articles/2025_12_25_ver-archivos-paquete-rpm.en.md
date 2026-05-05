@@ -1,9 +1,9 @@
 ---
 title: How to View Files in an RPM Package on Linux
 date: 2025-12-25 15:15
-tags: linux, rpm, packages, commands, systems, administration, dnf, yum
+tags: linux, rpm, paquetes, comandos, administracion, dnf, yum
 lang: en
-category: Systems
+category: Infraestructura
 slug: ver-archivos-paquete-rpm
 summary: Quick guide to inspecting the contents of RPM packages and determining which packages own specific files on your Linux system.
 ---

@@ -1,9 +1,9 @@
 ---
 title: Reduce Noise in Your Python Logs: A Smart Approach
 date: 2025-12-25 13:00
-tags: python, logging, logs, debugging, development
+tags: logging, logs, debugging, desarrollo
 lang: en
-category: Programming
+category: Programación
 slug: reduce-ruido-logs-python
 summary: Learn how to configure Python's `logging` module to avoid message overload from third-party libraries, keeping your logs clean and useful.
 ---

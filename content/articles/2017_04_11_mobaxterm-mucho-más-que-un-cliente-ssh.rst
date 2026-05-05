@@ -4,7 +4,7 @@ MobaXterm. Mucho más que un cliente ssh
 :date: 2017-4-11 14:07
 :tags: linux
 :lang: es
-:category: Trucos
+:category: Herramientas
 :slug: mobaxterm-mucho-más-que-un-cliente-ssh
 :summary:
 :keywords: linux

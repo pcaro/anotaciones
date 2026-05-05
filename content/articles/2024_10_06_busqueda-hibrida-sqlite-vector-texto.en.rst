@@ -2,9 +2,9 @@ Hybrid Search with SQLite: Vector + Full-Text
 ###################################################
 
 :date: 2024-10-06 11:43
-:tags: sqlite, search, vectors, fts, sql
+:tags: sqlite, busqueda, vectores, fts, sql
 :lang: en
-:category: Programming
+:category: Programación
 :slug: busqueda-hibrida-sqlite-vector-texto
 :summary: Combining vector search and full-text search in SQLite using Reciprocal Rank Fusion for better results
 

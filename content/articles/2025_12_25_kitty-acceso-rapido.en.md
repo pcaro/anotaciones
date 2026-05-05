@@ -1,9 +1,9 @@
 ---
 title: Kitty as a Quick Access Terminal: The Convenience of a Dropdown
 date: 2025-12-25 12:30
-tags: kitty, terminal, quick-access, productivity, linux, shortcuts
+tags: kitty, terminal, acceso-rapido, productividad, linux, atajos
 lang: en
-category: Systems
+category: Infraestructura
 slug: kitty-acceso-rapido
 summary: Configure Kitty for instant and efficient access, combining the power of a modern terminal with the convenience of a dropdown.
 ---

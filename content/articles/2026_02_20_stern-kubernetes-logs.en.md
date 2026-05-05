@@ -1,8 +1,8 @@
 Title: Stern: Kubernetes Logs on Steroids
 Slug: stern-kubernetes-logs
 Date: 2026-02-20
-Tags: kubernetes, cli, logs, devops, tools
-Category: DevOps
+Tags: kubernetes, cli, logs, herramientas
+Category: Infraestructura
 Lang: en
 featured_image: /images/stern_help.png
 

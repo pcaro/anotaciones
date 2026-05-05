@@ -1,8 +1,8 @@
 Title: Record and Share your Terminal Sessions with asciinema
 Date: 2026-02-27 12:00
-Tags: asciinema, terminal, linux, productivity
+Tags: asciinema, terminal, linux, productividad
 Lang: en
-Category: Tools
+Category: Herramientas
 Slug: asciinema-terminal-recorder
 Summary: Discover asciinema, the perfect tool to record your terminal sessions in a lightweight, reproducible, and easy-to-share way.
 featured_image: /images/asciinema_help.png

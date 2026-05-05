@@ -1,9 +1,9 @@
 ---
 title: TCP Connection States in GNU/Linux: netstat and ss
 date: 2025-12-25 13:30
-tags: linux, networking, tcp, netstat, ss, systems
+tags: linux, tcp, netstat, ss
 lang: en
-category: Systems
+category: Infraestructura
 slug: estados-conexion-tcp-netstat-ss
 summary: Understand the different TCP connection states reported by netstat and ss, from establishment to termination, for better network diagnosis.
 ---

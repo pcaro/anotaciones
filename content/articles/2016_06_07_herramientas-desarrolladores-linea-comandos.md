@@ -1,6 +1,6 @@
 Title: Potentes herramientas para desarrolladores desde línea de comandos
 Date: 2016-06-07 11:36
-Tags: cli, herramientas, desarrollo, networking, testing
+Tags: cli, desarrollo, redes, testing
 Lang: es
 Category: Herramientas
 Slug: herramientas-desarrolladores-linea-comandos

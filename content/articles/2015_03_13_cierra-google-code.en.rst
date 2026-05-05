@@ -2,9 +2,9 @@ Google Code is Closing
 ########################
 
 :date: 2015-3-13 17:11
-:tags: python
+:tags: 
 :lang: en
-:category: Programming
+:category: Programación
 :slug: cierra-google-code
 
 

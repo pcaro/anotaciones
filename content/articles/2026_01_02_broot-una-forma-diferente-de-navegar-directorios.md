@@ -1,7 +1,7 @@
 ---
 Title: broot, una forma diferente de navegar por tus directorios
 Date: 2026-01-02 10:00
-Tags: terminal, cli, broot, rust, herramientas
+Tags: terminal, cli, broot, rust
 Lang: es
 Category: Herramientas
 Slug: broot-una-forma-diferente-de-navegar-directorios

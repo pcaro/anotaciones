@@ -4,7 +4,7 @@ Correo no leído en pestaña principal de gmail
 :date: 2016-07-28 18:00
 :tags: linux
 :lang: es
-:category: Trucos
+:category: Herramientas
 :slug: gmail_correo_no_leido_solo_en_principal
 
 Lo de siempre, otra nota recordatoria.

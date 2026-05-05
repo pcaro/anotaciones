@@ -4,7 +4,7 @@ NetHogs ver ancho de banda consumido
 :date: 2015-4-16 11:37
 :tags: linux
 :lang: es
-:category: Sistemas
+:category: Infraestructura
 :slug: nethogs-ver-ancho-de-banda-consumido
 
 

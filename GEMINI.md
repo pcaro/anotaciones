@@ -118,6 +118,38 @@ The site is automatically deployed to [GitHub Pages](https://pages.github.com/) 
 *   **Visual Content**: When a link is provided for an article, a screenshot of the website should be taken and saved in `content/images/`. This image MUST be added both inside the article AND as `featured_image: /images/filename.png` in the Markdown metadata so it appears on the homepage.
 
 
+## Image Generation Templates
+
+When generating images for blog posts, use one of these two prompt templates to maintain a consistent visual style across the blog.
+
+### Template 1: General Illustrations
+
+Use this template for conceptual illustrations, character scenes, and general blog post images.
+
+```
+A flat vector illustration of [DESCRIBE LA SITUACIÓN, ej: a programmer looking confused at a laptop screen showing a bug], clear dark outlines, clean line art, modern software tech blog style. The character has a comic-book style expressive face showing [EMOCIÓN, ej: confusion]. Include details like [DETALLES DEL ENTORNO, ej: a coffee mug, sticky notes, server racks]. Simple cell-shading, solid colors. Accent colors should feature tech blue and burnt orange, with neutral grey details. Soft light off-white or pale greyish-blue background, not pure white. High quality, crisp lines.
+```
+
+**Example:**
+
+```
+A flat vector illustration of a female developer happily deploying software on a modern laptop, clear dark outlines, clean line art, modern software tech blog style. The character has a comic-book style expressive face showing success and joy. Include details like a plant on the desk and floating code brackets. Simple cell-shading, solid colors. Accent colors should feature tech blue and burnt orange, with neutral grey details. Soft light off-white or pale greyish-blue background, not pure white. High quality, crisp lines.
+```
+
+### Template 2: Diagrams and Technical Infographics
+
+Use this template for technical diagrams, comparisons, schematics, and informational graphics (e.g., before/after comparisons, database diagrams, server layouts).
+
+```
+A technical flat vector diagram showing [QUÉ MUESTRA EL DIAGRAMA, ej: a Before and After comparison of server storage optimization], clean dark outlines, minimalist tech UI/UX style. Include tech icons such as [ICONOS QUE NECESITAS, ej: hard drives, database cylinders, loading bars]. Use status colors: [COLORES DE ESTADO, ej: red for critical/full, green for optimized/free space]. Include the text '[TEXTO EXACTO 1]' and '[TEXTO EXACTO 2]'. Overall color palette features tech blue, burnt orange, and medium grey. Soft light off-white background, not pure white. High quality, crisp line art, clear typography.
+```
+
+**Example:**
+
+```
+A technical flat vector diagram showing a Before and After comparison of cloud server CPU usage, clean dark outlines, minimalist tech UI/UX style. Include tech icons such as server racks and performance gauges. Use status colors: red for high CPU load in the Before section, green for low CPU load in the After section. Include the text 'Antes (Before)' and 'Después (After)'. Overall color palette features tech blue, burnt orange, and medium grey. Soft light off-white background, not pure white. High quality, crisp line art, clear typography.
+```
+
 ## Development Conventions
 
 *   **Configuration**:

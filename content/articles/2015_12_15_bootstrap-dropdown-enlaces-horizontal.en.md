@@ -2,7 +2,7 @@ Title: Bootstrap: Two Links in the Same Row in Dropdown
 Date: 2015-12-15 10:40
 Tags: bootstrap, css, dropdown, flexbox, html
 Lang: en
-Category: Frontend
+Category: Programación
 Slug: bootstrap-dropdown-enlaces-horizontal
 Summary: CSS technique to place two links on the same horizontal row within a Bootstrap dropdown menu using flexbox
 

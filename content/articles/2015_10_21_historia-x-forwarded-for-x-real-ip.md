@@ -2,7 +2,7 @@ Title: La historia detrás de X-Forwarded-For y X-Real-IP
 Date: 2015-10-21 23:05
 Tags: headers, x-forwarded-for, x-real-ip, proxy, nginx
 Lang: es
-Category: Redes
+Category: Infraestructura
 Slug: historia-x-forwarded-for-x-real-ip
 Summary: Análisis de los headers X-Forwarded-For y X-Real-IP, sus orígenes, diferencias y cómo determinar la IP real del cliente en arquitecturas con múltiples proxies
 

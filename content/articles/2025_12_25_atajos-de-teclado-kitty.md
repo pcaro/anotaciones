@@ -3,7 +3,7 @@ title: Atajos de teclado esenciales en Kitty: Dominando tu terminal
 date: 2025-12-25 12:15
 tags: kitty, terminal, atajos, teclado, productividad
 lang: es
-category: Sistemas
+category: Infraestructura
 slug: atajos-de-teclado-kitty
 summary: Una guía rápida a los atajos de teclado más útiles de Kitty para optimizar tu flujo de trabajo en la línea de comandos.
 ---

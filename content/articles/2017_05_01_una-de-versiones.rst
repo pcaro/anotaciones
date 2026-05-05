@@ -2,9 +2,9 @@ Una de versiones
 ################
 
 :date: 2017-5-1 18:04
-:tags: python
+:tags: 
 :lang: es
-:category: Progamación
+:category: Programación
 :slug: una-de-versiones
 :summary:
 

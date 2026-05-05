@@ -2,6 +2,7 @@ Anotaciones. Blog de Pablo Caro
 ===============================
 
 :date: 2020-01-01
+:category: Personal
 :status: hidden
 
 This are my blog output (anotaciones_) for use in gitpages.

@@ -2,7 +2,7 @@ Title: SQL: Seleccionar filas con valor máximo por grupo
 Date: 2015-10-21 23:05
 Tags: sql, mysql, consultas, window-functions, joins
 Lang: es
-Category: SQL
+Category: Programación
 Slug: sql-select-rows-max-value
 Summary: Técnicas SQL para seleccionar filas completas con el valor máximo de una columna dentro de grupos, comparando rendimiento de subqueries, joins y window functions
 

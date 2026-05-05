@@ -1,9 +1,9 @@
 ---
 title: `fresh`: My preferred terminal editor for daily use
 date: 2025-12-25 15:45
-tags: fresh, terminal, editor, productivity, linux, tools, cli
+tags: fresh, terminal, editor, productividad, linux, cli
 lang: en
-category: Tools
+category: Herramientas
 slug: fresh-editor-terminal
 summary: Discover `fresh`, a fast, modern, modeless terminal text editor, ideal for casual file editing, surpassing `nano` and `vim` in simplicity for regular use.
 ---

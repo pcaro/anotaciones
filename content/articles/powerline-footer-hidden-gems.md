@@ -1,7 +1,7 @@
 Title: Joyas ocultas en pi-powerline-footer
 Date: 2026-03-22
-Category: DevOps
-Tags: pi, terminal, productivity
+Category: Infraestructura
+Tags: pi, terminal, productividad
 Slug: powerline-footer-hidden-gems
 Summary: Dos características del plugin pi-powerline-footer que van más allá del típico footer con información del modelo.
 featured_image: /images/pi-powerline-footer.png

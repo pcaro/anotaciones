@@ -1,8 +1,8 @@
 Title: Server-Sent Events: Simplified Real-Time Communication
 Date: 2024-09-23 00:01
-Tags: javascript, sse, real-time, web-apis
+Tags: javascript, sse, tiempo-real, web-apis
 Lang: en
-Category: Programming
+Category: Programación
 Slug: server-sent-events-comunicacion-tiempo-real
 Summary: Server-Sent Events offer a simple and efficient alternative to WebSockets for unidirectional server-to-client communication in web applications
 

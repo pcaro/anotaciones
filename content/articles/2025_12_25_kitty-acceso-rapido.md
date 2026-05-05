@@ -3,7 +3,7 @@ title: Kitty como terminal de acceso rápido: La comodidad de un desplegable
 date: 2025-12-25 12:30
 tags: kitty, terminal, acceso-rapido, productividad, linux, atajos
 lang: es
-category: Sistemas
+category: Infraestructura
 slug: kitty-acceso-rapido
 summary: Configura Kitty para un acceso instantáneo y eficiente, combinando la potencia de un terminal moderno con la conveniencia de un desplegable.
 ---

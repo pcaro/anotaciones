@@ -1,9 +1,9 @@
 ---
 title: Kooha: Simple and Elegant Screen Recording on Linux
 date: 2025-12-25 15:00
-tags: linux, kooha, screen-recorder, productivity, tools, open-source
+tags: linux, kooha, screen-recorder, productividad, open-source
 lang: en
-category: Tools
+category: Herramientas
 slug: kooha-captura-pantalla-linux
 summary: Discover Kooha, a minimalist screen recording application for Linux that combines ease of use with essential features.
 ---

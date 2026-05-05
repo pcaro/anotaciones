@@ -2,9 +2,9 @@ Generic function to use as upload_to
 #######################################
 
 :date: 2014-10-11 11:02
-:tags: django, python
+:tags: django
 :lang: en
-:category: Programming
+:category: Programación
 :slug: funcion-generica-para-usar-como-upload_to
 
 FileFields in Django need an `upload_to`_ function that determines where the file will be uploaded.

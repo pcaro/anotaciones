@@ -1,9 +1,9 @@
 ---
 title: `direnv`: Manage your development environments intelligently
 date: 2025-12-25 14:30
-tags: direnv, shell, environment, productivity, development, linux, tools
+tags: direnv, shell, entorno, productividad, desarrollo, linux
 lang: en
-category: Tools
+category: Herramientas
 slug: direnv-gestion-entornos
 summary: Discover `direnv`, a shell extension that automatically loads and unloads environment variables when changing directories, keeping your configuration clean and organized.
 ---

@@ -2,9 +2,9 @@ Ajax view decorator
 ###################
 
 :date: 2014-11-21 11:12
-:tags: python, django
+:tags: django
 :lang: en
-:category: Programming
+:category: Programación
 :slug: decorador-vista-ajax
 
 To force a `django`_ view to be called only via AJAX calls.

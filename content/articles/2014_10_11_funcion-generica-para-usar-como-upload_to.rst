@@ -2,7 +2,7 @@ Función genérica para usar como upload_to
 ###########################################
 
 :date: 2014-10-11 11:02
-:tags: django, python
+:tags: django
 :lang: es
 :category: Programación
 :slug: funcion-generica-para-usar-como-upload_to

@@ -3,7 +3,7 @@ title: OpenEvidence: La plataforma líder en información médica para profesion
 date: 2025-12-25 14:45
 tags: open-evidence, medicina, salud, informacion-medica, profesionales-salud, investigacion, clinica
 lang: es
-category: Sin Categoría
+category: Linux
 slug: open-evidence-plataforma-medica
 summary: Explorando OpenEvidence, una plataforma líder que consolida información médica, hallazgos clínicos y guías de práctica para profesionales de la salud en EE.UU.
 ---

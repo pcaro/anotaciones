@@ -1,7 +1,7 @@
 Title: Crit: El bucle de revisión para Agentes
 Date: 2026-03-22 14:49
 Category: Programación
-Tags: ai, agents, review, opencode, productivity
+Tags: ia, agents, review, opencode, productividad
 Slug: crit-review-loop-agents
 Lang: es
 featured_image: /images/crit-demo.png

@@ -2,7 +2,7 @@ Django: enlaces en listado de objectos
 ######################################
 
 :date: 2014-5-21 10:42
-:tags: django, python
+:tags: django
 :lang: es
 :category: Programación
 :slug: enlaces-en-listado-de-objectos

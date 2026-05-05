@@ -1,7 +1,7 @@
 Title: rbw: The Bitwarden terminal client you should be using
 Date: 2026-02-26 11:45
-Category: Tools
-Tags: bitwarden, cli, rust, security, pi-agent
+Category: Herramientas
+Tags: bitwarden, cli, rust, seguridad, pi-agent
 Slug: rbw-bitwarden-cli
 Lang: en
 Summary: How to install and configure rbw, a Rust implementation of the Bitwarden client, and how to integrate it into your workflows with pi-agent.

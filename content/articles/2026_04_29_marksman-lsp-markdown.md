@@ -1,7 +1,7 @@
 ---
 title: marksman: LSP para Markdown
 date: 2026-04-29 22:46
-tags: markdown, lsp, fresh, editor, herramientas, linux
+tags: markdown, lsp, fresh, editor, linux
 lang: es
 category: Herramientas
 slug: marksman-lsp-markdown

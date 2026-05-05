@@ -1,9 +1,9 @@
 ---
 title: Multiline YAML: Understanding and testing complex strings
 date: 2025-12-25 16:10
-tags: yaml, configuration, development, tools, multiline, strings
+tags: yaml, configuracion, desarrollo, multiline, strings
 lang: en
-category: Tools
+category: Herramientas
 slug: yaml-multilinea-cadenas-complejas
 summary: Explore YAML options for effectively handling multiline strings, with an interactive demo that allows you to test them in real-time.
 ---

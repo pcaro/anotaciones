@@ -4,7 +4,7 @@ Unread Mail in Gmail's Primary Tab
 :date: 2016-07-28 18:00
 :tags: linux
 :lang: en
-:category: Tricks
+:category: Herramientas
 :slug: gmail_correo_no_leido_solo_en_principal
 
 As always, another reminder note.

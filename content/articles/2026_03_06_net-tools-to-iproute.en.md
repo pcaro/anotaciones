@@ -1,6 +1,6 @@
 Title: From net-tools to iproute2: command equivalents
 Date: 2026-03-06 11:30
-Tags: linux, networking, iproute2, net-tools, terminal
+Tags: redes, iproute2, net-tools, terminal
 Category: Linux
 Slug: net-tools-to-iproute
 Summary: A guide to equivalents between classic net-tools commands (ifconfig, route, arp) and modern iproute2 commands (ip).

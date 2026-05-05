@@ -1,7 +1,7 @@
 ---
 title: `fresh`: Mi editor de terminal preferido para el día a día
 date: 2025-12-25 15:45
-tags: fresh, terminal, editor, productividad, linux, herramientas, cli
+tags: fresh, terminal, editor, productividad, linux, cli
 lang: es
 category: Herramientas
 slug: fresh-editor-terminal

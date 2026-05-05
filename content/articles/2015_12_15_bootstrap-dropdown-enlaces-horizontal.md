@@ -2,7 +2,7 @@ Title: Bootstrap: Dos enlaces en la misma fila en dropdown
 Date: 2015-12-15 10:40
 Tags: bootstrap, css, dropdown, flexbox, html
 Lang: es
-Category: Frontend
+Category: Programación
 Slug: bootstrap-dropdown-enlaces-horizontal
 Summary: Técnica CSS para colocar dos enlaces en la misma fila horizontal dentro de un menú dropdown de Bootstrap usando flexbox
 

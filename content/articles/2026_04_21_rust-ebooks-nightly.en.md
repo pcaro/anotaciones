@@ -1,7 +1,7 @@
 Title: Rust eBooks Nightly — Rust books in EPUB, AZW3, MOBI, and PDF
 Date: 2026-04-21 22:00
-Category: Programming
-Tags: Rust, eBooks, EPUB, Calibre, GitHub Actions
+Category: Programación
+Tags: rust, ebooks, epub, calibre, github actions
 Slug: rust-ebooks-nightly
 Lang: en
 featured_image: /images/rust-ebooks-nightly.png

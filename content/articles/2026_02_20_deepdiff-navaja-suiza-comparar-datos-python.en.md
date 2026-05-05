@@ -1,8 +1,8 @@
 Title: DeepDiff: The Swiss Army Knife for Data Comparison in Python
 Slug: deepdiff-comparar-datos-python
 Date: 2026-02-20
-Tags: python, data, cli, tools, diff
-Category: Python
+Tags: data, cli, herramientas, diff
+Category: Programación
 Lang: en
 featured_image: /images/deep_help.png
 

@@ -1,7 +1,7 @@
 ---
 title: Reduce el Ruido en tus Logs de Python: Un enfoque inteligente
 date: 2025-12-25 13:00
-tags: python, logging, logs, depuracion, desarrollo
+tags: logging, logs, depuracion, desarrollo
 lang: es
 category: Programación
 slug: reduce-ruido-logs-python

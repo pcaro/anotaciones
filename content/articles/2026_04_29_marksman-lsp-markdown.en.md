@@ -1,9 +1,9 @@
 ---
 title: marksman: Markdown LSP
 date: 2026-04-29 22:46
-tags: markdown, lsp, fresh, editor, tools, linux
+tags: markdown, lsp, fresh, editor, linux
 lang: en
-category: Tools
+category: Herramientas
 slug: marksman-lsp-markdown
 summary: marksman is a language server protocol (LSP) implementation for Markdown that adds autocompletion, cross-file navigation, and error detection to any compatible editor.
 featured_image: /images/marksman-splash.png

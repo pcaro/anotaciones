@@ -1,8 +1,8 @@
 Title: Nginx: Configuring X-Forwarded-For in Reverse Proxy
 Date: 2015-10-21 23:05
-Tags: nginx, reverse-proxy, x-forwarded-for, real-ip, configuration
+Tags: nginx, reverse-proxy, x-forwarded-for, ip-real, configuracion
 Lang: en
-Category: DevOps
+Category: Infraestructura
 Slug: nginx-x-forwarded-for-reverse-proxy
 Summary: How to configure Nginx to pass the client's real IP to backend servers using the X-Forwarded-For header in reverse proxy configurations
 

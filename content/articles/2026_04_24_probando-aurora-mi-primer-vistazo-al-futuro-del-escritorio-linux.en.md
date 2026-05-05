@@ -1,7 +1,7 @@
 Title: Trying Aurora: my first look at the future of the Linux desktop
 Date: 2026-04-24 09:51
 Category: Linux
-Tags: aurora, linux, kde, desktop, devcontainers, homebrew
+Tags: aurora, kde, escritorio, devcontainers, homebrew
 Slug: probando-aurora-mi-primer-vistazo-al-futuro-del-escritorio-linux
 Lang: en
 featured_image: /images/aurora-desktop-2026-04-24.png

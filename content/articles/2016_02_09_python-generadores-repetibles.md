@@ -1,8 +1,8 @@
 Title: Python: Crear generadores repetibles (repeating generators)
 Date: 2016-02-09 10:10
-Tags: python, generadores, itertools, decoradores, yield
+Tags: generadores, itertools, decoradores, yield
 Lang: es
-Category: Python
+Category: Programación
 Slug: python-generadores-repetibles
 Summary: Técnicas en Python para crear generadores que se pueden iterar múltiples veces, superando la limitación de "una sola vez" de los generadores estándar
 

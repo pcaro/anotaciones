@@ -1,10 +1,11 @@
 Title: Double-sided scanning with the Brother DCP-L3560CDW
 Date: 2026-05-03
-Tags: brother, printer, scanner, linux, simple-scan, paperless
+Tags: brother, impresora, escaner, linux, simple-scan, paperless
 Lang: en
 Slug: escaneo-doble-cara-brother-dcp-l3560cdw
 Featured_image: /images/brother-escaneo-doble-pagina.png
 Summary: Workaround for scanning double-sided documents with the Brother DCP-L3560CDW and its simplex document feeder.
+Category: Infraestructura
 
 ![Brother DCP-L3560CDW and scattered papers](/images/brother-escaneo-doble-pagina.png)
 
