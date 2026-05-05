@@ -70,7 +70,7 @@
   <meta property="article:published_time" content="2026-03-22 00:00:00+01:00"/>
   <meta property="article:modified_time" content=""/>
   <meta property="article:author" content="/en/author/pablo-caro.html">
-  <meta property="article:section" content="Infraestructura"/>
+  <meta property="article:section" content="IA"/>
   <meta property="article:tag" content="pi"/>
   <meta property="article:tag" content="terminal"/>
   <meta property="article:tag" content="productividad"/>
@@ -184,7 +184,7 @@
 
     <h1 id="powerline-footer-hidden-gems">Hidden gems in pi-powerline-footer</h1>
     <p>
-      Posted on Sun, 22 Mar 2026 in <a href="/en/category/infraestructura.html">Infraestructura</a>
+      Posted on Sun, 22 Mar 2026 in <a href="/en/category/ia.html">IA</a>
 
     </p>
   </header>
@@ -202,8 +202,16 @@
 <p>Model Profiles save model + thinking level combinations. I define them in <code>~/.pi/agent/settings.json</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;modelProfiles&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;model&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;google/gemini-3-pro&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;thinking&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;high&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Gemini Deep&quot;</span><span class="w"> </span><span class="p">},</span>
-<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;model&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;anthropic/claude-opus-4-5&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;thinking&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;xhigh&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Opus Ultra&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;model&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;google/gemini-3-pro&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;thinking&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;high&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Gemini Deep&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;model&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;anthropic/claude-opus-4-5&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;thinking&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;xhigh&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Opus Ultra&quot;</span>
+<span class="w">    </span><span class="p">},</span>
 <span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;model&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;openai/codex-5.3&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;thinking&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;low&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Codex Fast&quot;</span><span class="w"> </span><span class="p">}</span>
 <span class="w">  </span><span class="p">]</span>
 <span class="p">}</span>

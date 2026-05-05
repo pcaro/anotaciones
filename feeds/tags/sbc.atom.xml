@@ -5,4 +5,22 @@
 &lt;p&gt;El culpable es el precio de la RAM. La demanda de memorias para GPUs de IA ha inflado los precios de todos los chips desde finales de 2025. Los fabricantes no pueden competir sin RAM, así que terminan subiendo precios o dejando de fabricar.&lt;/p&gt;
 &lt;p&gt;A mí me gustan los clusters de racks de 10 pulgadas. Una docena de placas para montar un mini-datacenter casero. Hoy eso costaría lo mismo que un servidor de segunda mano con más potencia y menos quebraderos de cabeza.&lt;/p&gt;
 &lt;p&gt;Los cacharritos han muerto. O mejor dicho: dejaron de ser el chollo que eran.&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;Fuente original&lt;/em&gt;: &lt;a href="https://www.cnx-software.com/2026/04/28/what-a-difference-two-years-make-comparing-sbc-prices-in-2024-and-2026/"&gt;CNX Software&lt;/a&gt;&lt;/p&gt;</content><category term="Linux"></category><category term="raspberry-pi"></category><category term="sbc"></category><category term="hardware"></category></entry></feed>
+&lt;p&gt;&lt;em&gt;Fuente original&lt;/em&gt;: &lt;a href="https://www.cnx-software.com/2026/04/28/what-a-difference-two-years-make-comparing-sbc-prices-in-2024-and-2026/"&gt;CNX Software&lt;/a&gt;&lt;/p&gt;</content><category term="Linux"></category><category term="raspberry-pi"></category><category term="sbc"></category><category term="hardware"></category></entry><entry><title>Velvet OS: kernels modernos para hardware ARM antiguo</title><link href="https://pablocaro.es/velvet-os" rel="alternate"></link><published>2026-04-17T00:00:00+02:00</published><updated>2026-04-17T00:00:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-04-17:/velvet-os</id><summary type="html">&lt;p&gt;Nota mental sobre Velvet OS, un proyecto interesante para actualizar kernels en dispositivos ARM antiguos.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="Velvet OS" src="/images/velvet-os.png"&gt;&lt;/p&gt;
+&lt;p&gt;Nota mental sobre &lt;a href="https://velvet-os.github.io/"&gt;Velvet OS&lt;/a&gt;, un proyecto que descubrí a través de &lt;a href="https://raspberryparatorpes.net/proyectos/odroid-u3-kernel-6-velvet-os/"&gt;esta entrada en Raspberry Pi para Torpes&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Velvet OS es un framework sencillo para construir imágenes de tarjetas SD arrancables con Debian o Ubuntu para diversos dispositivos ARM. El objetivo es proporcionar kernels de Linux modernos para hardware que ya no tiene soporte oficial o que quedó abandonado.&lt;/p&gt;
+&lt;p&gt;Lo interesante del proyecto:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Soporta más de 30 sistemas diferentes&lt;/strong&gt;, desde Chromebooks ARM hasta SBCs como Odroid y OrangePi&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Kernels actualizados&lt;/strong&gt; (actualmente 6.12) para hardware que se quedó estancado en kernels 3.x o 4.x&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Imágenes listas para usar&lt;/strong&gt;, sin necesidad de compilar nada&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Proyecto mantenido activamente&lt;/strong&gt; por hexdump0815&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;El nombre "Velvet OS" viene de que el autor suele cubrir las tapas rayadas de sus Chromebooks con terciopelo autoadhesivo, haciendo desaparecer el branding comercial. La idea es que usar estas imágenes sea una experiencia tan agradable como tocar terciopelo.&lt;/p&gt;
+&lt;p&gt;Tengo varios cacharritos antiguos por casa, incluyendo dos OrangePi. A ver si saco un ratito para actualizarlos con kernels modernos y darles una segunda vida.&lt;/p&gt;
+&lt;p&gt;El tutorial de Raspberry Pi para Torpes explica en detalle cómo actualizar una ODROID-U3 de 2013 al kernel 6.12, incluyendo los pasos para configurar el U-Boot, copiar el kernel, generar el initrd y ajustar el &lt;code&gt;boot.ini&lt;/code&gt;. Todo el proceso está muy bien documentado.&lt;/p&gt;
+&lt;p&gt;Enlaces:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://velvet-os.github.io/"&gt;Velvet OS&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/hexdump0815/linux-mainline-and-mali-generic-stable-kernel"&gt;Kernels precompilados para Exynos4412&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://raspberryparatorpes.net/proyectos/odroid-u3-kernel-6-velvet-os/"&gt;Tutorial: ODROID-U3 con kernel 6.12&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><category term="Linux"></category><category term="kernel"></category><category term="arm"></category><category term="odroid"></category><category term="orangepi"></category><category term="velvet-os"></category><category term="sbc"></category></entry></feed>
