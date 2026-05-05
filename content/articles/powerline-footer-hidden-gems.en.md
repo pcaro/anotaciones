@@ -28,8 +28,16 @@ Model Profiles save model + thinking level combinations. I define them in `~/.pi
 ```json
 {
   "modelProfiles": [
-    { "model": "google/gemini-3-pro", "thinking": "high", "label": "Gemini Deep" },
-    { "model": "anthropic/claude-opus-4-5", "thinking": "xhigh", "label": "Opus Ultra" },
+    {
+      "model": "google/gemini-3-pro",
+      "thinking": "high",
+      "label": "Gemini Deep"
+    },
+    {
+      "model": "anthropic/claude-opus-4-5",
+      "thinking": "xhigh",
+      "label": "Opus Ultra"
+    },
     { "model": "openai/codex-5.3", "thinking": "low", "label": "Codex Fast" }
   ]
 }
