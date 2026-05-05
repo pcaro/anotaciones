@@ -1,6 +1,6 @@
 Title: Hidden gems in pi-powerline-footer
 Date: 2026-03-22
-Category: Infraestructura
+Category: IA
 Tags: pi, terminal, productividad
 Slug: powerline-footer-hidden-gems
 Summary: Two features of the pi-powerline-footer plugin that go beyond the typical footer with model information.

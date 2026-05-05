@@ -1,0 +1,40 @@
+{% extends "base.html" %} {% block title %} &ndash; {{ _('Tags') }}{% endblock
+%} {% block content %}
+<article class="single">
+  <header>
+    <h1 id="tags">{{ _('Tags') }}</h1>
+  </header>
+  <div>
+    {% set priority_slugs = CATEGORY_ORDER %} {% set ns = namespace(sorted=[])
+    %} {% for slug in priority_slugs %} {% for category, tags in
+    category_tags|dictsort %} {% if category.slug == slug %} {% set ns.sorted =
+    ns.sorted + [(category, tags)] %} {% endif %} {% endfor %} {% endfor %} {%
+    for category, tags in category_tags|dictsort %} {% if category.slug not in
+    priority_slugs %} {% set ns.sorted = ns.sorted + [(category, tags)] %} {%
+    endif %} {% endfor %}
+
+    <div class="category-grid tags-grid">
+      {% for category, tags in ns.sorted %}
+      <div class="category-box">
+        {% if category.slug in ['programacion', 'herramientas', 'linux',
+        'infraestructura', 'ia', 'personal', 'documentacion', 'finanzas'] %}
+        <img
+          src="{{ SITEURL }}/images/categories/{{ category.slug }}.png"
+          alt="{{ category }}"
+          loading="lazy"
+        />
+        {% endif %}
+        <span class="category-name">{{ category }}</span>
+        <div class="category-tags">
+          {% for tag, count in tags %}
+          <a href="{{ SITEURL }}/{{ tag.url }}">
+            {% if count > 1 %}<strong>{{ tag }} ({{ count }})</strong>{% else
+            %}{{ tag }}{% endif %} </a
+          >{% if not loop.last %}, {% endif %} {% endfor %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</article>
+{% endblock %}

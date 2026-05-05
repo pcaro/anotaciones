@@ -1,6 +1,6 @@
 Title: Extensiones de subagentes para pi: TintinWeb, NicoBailon y Taskplane
 Date: 2026-05-03 15:23
-Category: Programación
+Category: IA
 Tags: pi, coding-agent, subagentes, extensiones, cli, herramientas
 Slug: extensiones-subagentes-pi
 Lang: es

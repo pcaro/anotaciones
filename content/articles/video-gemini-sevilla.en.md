@@ -1,6 +1,6 @@
 Title: Video Creation with Gemini: Seville Characters
 Date: 2026-04-15
-Tags: gemini, google, video, sevilla
+Tags: gemini, google, video, sevilla, ia
 Lang: en
 Slug: video-gemini-sevilla
 Summary: Testing Gemini's video generation with Seville-based characters.
@@ -29,4 +29,4 @@ The results were satisfactory. The characters move coherently, maintain visual c
 
 It's impressive to see how AI can understand the context of an image and apply animations that look natural. There's still work to be done on details like hands and certain deformations, but the progress is evident.
 
-*Original source*: [Tweet on X](https://x.com/pcaro/status/2044359553412706669)
+_Original source_: [Tweet on X](https://x.com/pcaro/status/2044359553412706669)

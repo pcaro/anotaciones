@@ -31,6 +31,9 @@ DATE_FORMATS = {
 # (Alternative to i18n_subsites plugin which has compatibility issues)
 
 DEFAULT_CATEGORY = "Miscellaneous"
+
+# Category order in listings (unlisted categories appear alphabetically at the end)
+CATEGORY_ORDER = ["ia", "programacion", "linux", "herramientas", "infraestructura"]
 USE_FOLDER_AS_CATEGORY = False
 ARTICLE_URL = "{slug}"
 ARTICLE_SAVE_AS = "{slug}.html"
@@ -94,6 +97,7 @@ PLUGINS = [
     "search",
     "i18n_subsites",
     "i18n_feed_filter",
+    "category_tags",
 ]
 
 # I18N

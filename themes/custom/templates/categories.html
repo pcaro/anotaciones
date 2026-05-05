@@ -5,8 +5,16 @@ endblock %} {% block content %}
     <h1 id="categories">{{ _('Categories') }}</h1>
   </header>
   <div>
+    {% set priority_slugs = CATEGORY_ORDER %} {% set ns = namespace(sorted=[])
+    %} {% for slug in priority_slugs %} {% for category, articles in categories
+    %} {% if category.slug == slug %} {% set ns.sorted = ns.sorted + [(category,
+    articles)] %} {% endif %} {% endfor %} {% endfor %} {% for category,
+    articles in categories|sort %} {% if category.slug not in priority_slugs %}
+    {% set ns.sorted = ns.sorted + [(category, articles)] %} {% endif %} {%
+    endfor %}
+
     <div class="category-grid">
-      {% for category, articles in categories|sort %}
+      {% for category, articles in ns.sorted %}
       <a href="{{ SITEURL }}/{{ category.url }}" class="category-box">
         {% if category.slug in ['programacion', 'herramientas', 'linux',
         'infraestructura', 'ia', 'personal', 'documentacion', 'finanzas'] %}

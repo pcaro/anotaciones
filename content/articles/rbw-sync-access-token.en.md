@@ -1,7 +1,7 @@
 Title: rbw sync: missing field `access_token`
 Date: 2026-04-11 19:30
 Category: Linux
-Tags: bitwarden, cli, bug
+Tags: bitwarden, cli, bug, vaultwarden
 Slug: rbw-sync-access-token
 Lang: en
 Summary: Known rbw bug when syncing with Bitwarden or Vaultwarden: "failed to parse JSON: missing field access_token". The fix is to clear the local cache.

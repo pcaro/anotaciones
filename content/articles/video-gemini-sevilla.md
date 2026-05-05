@@ -1,6 +1,6 @@
 Title: Creación de vídeo con Gemini: personajes de Sevilla
 Date: 2026-04-15
-Tags: gemini, google, video, sevilla
+Tags: gemini, google, video, sevilla, ia
 Slug: video-gemini-sevilla
 Lang: es
 Featured_image: /images/Sevi.webp
@@ -30,4 +30,4 @@ Los resultados fueron satisfactorios. Los personajes se mueven de forma coherent
 
 Es impresionante ver cómo la IA puede entender el contexto de una imagen y aplicar animaciones que parecen naturales. Todavía hay trabajo en detalles como las manos y ciertas deformaciones, pero el progreso es evidente.
 
-*Fuente original*: [Tweet en X](https://x.com/pcaro/status/2044359553412706669)
+_Fuente original_: [Tweet en X](https://x.com/pcaro/status/2044359553412706669)
