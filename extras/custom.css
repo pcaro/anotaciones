@@ -1,0 +1,64 @@
+.category-header {
+	margin: 0 8% 2% 8%;
+}
+
+.category-header h1 {
+	margin-bottom: 1rem;
+}
+
+.category-hero {
+	margin: 0 0 2rem 0;
+}
+
+.category-hero img {
+	max-width: 100%;
+	height: auto;
+	border-radius: 8px;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.category-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+	gap: 1.5rem;
+	padding: 1rem 0;
+}
+
+.category-box {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	padding: 1rem;
+	border-radius: 8px;
+	background: rgba(0, 0, 0, 0.03);
+	text-decoration: none;
+	color: inherit;
+	transition:
+		transform 0.15s ease,
+		box-shadow 0.15s ease;
+}
+
+.category-box:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.category-box img {
+	width: 100%;
+	max-width: 140px;
+	height: auto;
+	border-radius: 6px;
+	margin-bottom: 0.75rem;
+}
+
+.category-box .category-name {
+	font-weight: 600;
+	font-size: 1em;
+	margin-bottom: 0.25rem;
+}
+
+.category-box .category-count {
+	font-size: 0.85em;
+	color: #666;
+}

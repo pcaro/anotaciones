@@ -25,6 +25,7 @@
   <link rel="stylesheet" type="text/css" href="/en/theme/font-awesome/css/brands.css">
   <link rel="stylesheet" type="text/css" href="/en/theme/font-awesome/css/solid.css">
 
+  <link rel="stylesheet" type="text/css" href="/extras/custom.css">
 
   <link rel="shortcut icon" href="/theme/img/favicon.ico" type="image/x-icon">
   <link rel="icon" href="/theme/img/favicon.ico" type="image/x-icon">
@@ -55,7 +56,7 @@
 
 <meta name="author" content="Pablo Caro" />
 <meta name="description" content="How to expand the virtual disk of an Aurora VM running on Unraid and resize Btrfs partitions within the operating system." />
-<meta name="keywords" content="[aurora, linux, unraid, vm, btrfs, disk]">
+<meta name="keywords" content="aurora, unraid, vm, btrfs, disco">
 
 <link rel="alternate" href="/en/ampliar-disco-vm-aurora-unraid" hreflang="en" />
 <link rel="alternate" href="/en/../ampliar-disco-vm-aurora-unraid" hreflang="es" />
@@ -70,12 +71,11 @@
   <meta property="article:modified_time" content=""/>
   <meta property="article:author" content="/en/author/pablo-caro.html">
   <meta property="article:section" content="Linux"/>
-  <meta property="article:tag" content="[aurora"/>
-  <meta property="article:tag" content="linux"/>
+  <meta property="article:tag" content="aurora"/>
   <meta property="article:tag" content="unraid"/>
   <meta property="article:tag" content="vm"/>
   <meta property="article:tag" content="btrfs"/>
-  <meta property="article:tag" content="disk]"/>
+  <meta property="article:tag" content="disco"/>
   <meta property="og:image" content="/theme/img/profile.png">
 
   <title>Annotations by Pablo Caro &ndash; Expand Aurora VM disk on Unraid and resize partitions</title>
@@ -94,7 +94,7 @@
       <a href="/en/">Anotaciones</a>
     </h1>
 
-    <p>Annotations</p>
+    <p>Anotaciones</p>
 
     <p style="font-size: 0.9em; font-style: italic; margin-bottom: 20px;">
       Dumping my brain onto the internet. A collection of technical notes and solutions written for my future self, shared here in case they save someone else a headache.
@@ -200,7 +200,7 @@
 <p>Before expansion, the disk had approximately <strong>20GB</strong> and the main partition was at its limit:</p>
 <p><img alt="Disk expansion diagram - before and after" src="/images/ampliar-disco-vm-aurora-unraid.png"></p>
 <div class="highlight"><pre><span></span><code><span class="n">NAME</span><span class="w">   </span><span class="n">MAJ</span><span class="p">:</span><span class="n">MIN</span><span class="w"> </span><span class="n">RM</span><span class="w">  </span><span class="n">SIZE</span><span class="w"> </span><span class="n">RO</span><span class="w"> </span><span class="n">TYPE</span><span class="w"> </span><span class="n">MOUNTPOINTS</span>
-<span class="n">vda</span><span class="w">    </span><span class="mi">253</span><span class="p">:</span><span class="mi">0</span><span class="w">    </span><span class="mi">0</span><span class="w">   </span><span class="mi">60</span><span class="n">G</span><span class="w">  </span><span class="mi">0</span><span class="w"> </span><span class="n">disk</span><span class="w"> </span>
+<span class="n">vda</span><span class="w">    </span><span class="mi">253</span><span class="p">:</span><span class="mi">0</span><span class="w">    </span><span class="mi">0</span><span class="w">   </span><span class="mi">60</span><span class="n">G</span><span class="w">  </span><span class="mi">0</span><span class="w"> </span><span class="n">disk</span>
 <span class="err">├─</span><span class="n">vda1</span><span class="w"> </span><span class="mi">253</span><span class="p">:</span><span class="mi">1</span><span class="w">    </span><span class="mi">0</span><span class="w">  </span><span class="mi">600</span><span class="n">M</span><span class="w">  </span><span class="mi">0</span><span class="w"> </span><span class="n">part</span><span class="w"> </span><span class="o">/</span><span class="n">boot</span><span class="o">/</span><span class="n">efi</span>
 <span class="err">├─</span><span class="n">vda2</span><span class="w"> </span><span class="mi">253</span><span class="p">:</span><span class="mi">2</span><span class="w">    </span><span class="mi">0</span><span class="w">    </span><span class="mi">2</span><span class="n">G</span><span class="w">  </span><span class="mi">0</span><span class="w"> </span><span class="n">part</span><span class="w"> </span><span class="o">/</span><span class="n">boot</span>
 <span class="err">└─</span><span class="n">vda3</span><span class="w"> </span><span class="mi">253</span><span class="p">:</span><span class="mi">3</span><span class="w">    </span><span class="mi">0</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="mi">4</span><span class="n">G</span><span class="w">  </span><span class="mi">0</span><span class="w"> </span><span class="n">part</span><span class="w"> </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">home</span><span class="p">,</span><span class="w"> </span><span class="o">/</span><span class="k">var</span><span class="p">,</span><span class="w"> </span><span class="o">/</span><span class="n">etc</span><span class="o">...</span>
@@ -249,10 +249,12 @@ sudo<span class="w"> </span>growpart<span class="w"> </span>/dev/vda<span class=
 </code></pre></div>
 
 <h2 id="step-4-resize-the-btrfs-filesystem">Step 4: Resize the Btrfs filesystem<a class="headerlink" href="#step-4-resize-the-btrfs-filesystem" title="Permanent link">&para;</a></h2>
-<p>Aurora uses a special structure with multiple Btrfs subvolumes:
-- <code>root</code> (ID 256) - base system (mounted read-only on /sysroot)
-- <code>home</code> (ID 257) - user directories
-- <code>var</code> (ID 258) - system variables</p>
+<p>Aurora uses a special structure with multiple Btrfs subvolumes:</p>
+<ul>
+<li><code>root</code> (ID 256) - base system (mounted read-only on /sysroot)</li>
+<li><code>home</code> (ID 257) - user directories</li>
+<li><code>var</code> (ID 258) - system variables</li>
+</ul>
 <p>The trick is that <code>/sysroot</code> is mounted as <strong>read-only</strong> (because it's an immutable OSTree), but I can do the resize from any writable mount point of the same Btrfs filesystem:</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># Resize from /var (which has write access)</span>
 sudo<span class="w"> </span>btrfs<span class="w"> </span>filesystem<span class="w"> </span>resize<span class="w"> </span>max<span class="w"> </span>/var
@@ -273,7 +275,7 @@ Usage:               ~20%        ← Was 93%
 
 <p>Verifying with <code>lsblk</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="n">NAME</span><span class="w">   </span><span class="n">MAJ</span><span class="p">:</span><span class="n">MIN</span><span class="w"> </span><span class="n">RM</span><span class="w">  </span><span class="n">SIZE</span><span class="w"> </span><span class="n">RO</span><span class="w"> </span><span class="n">TYPE</span><span class="w"> </span><span class="n">MOUNTPOINTS</span>
-<span class="n">vda</span><span class="w">    </span><span class="mi">253</span><span class="p">:</span><span class="mi">0</span><span class="w">    </span><span class="mi">0</span><span class="w">   </span><span class="mi">60</span><span class="n">G</span><span class="w">  </span><span class="mi">0</span><span class="w"> </span><span class="n">disk</span><span class="w"> </span>
+<span class="n">vda</span><span class="w">    </span><span class="mi">253</span><span class="p">:</span><span class="mi">0</span><span class="w">    </span><span class="mi">0</span><span class="w">   </span><span class="mi">60</span><span class="n">G</span><span class="w">  </span><span class="mi">0</span><span class="w"> </span><span class="n">disk</span>
 <span class="err">├─</span><span class="n">vda1</span><span class="w"> </span><span class="mi">253</span><span class="p">:</span><span class="mi">1</span><span class="w">    </span><span class="mi">0</span><span class="w">  </span><span class="mi">600</span><span class="n">M</span><span class="w">  </span><span class="mi">0</span><span class="w"> </span><span class="n">part</span><span class="w"> </span><span class="o">/</span><span class="n">boot</span><span class="o">/</span><span class="n">efi</span>
 <span class="err">├─</span><span class="n">vda2</span><span class="w"> </span><span class="mi">253</span><span class="p">:</span><span class="mi">2</span><span class="w">    </span><span class="mi">0</span><span class="w">    </span><span class="mi">2</span><span class="n">G</span><span class="w">  </span><span class="mi">0</span><span class="w"> </span><span class="n">part</span><span class="w"> </span><span class="o">/</span><span class="n">boot</span>
 <span class="err">└─</span><span class="n">vda3</span><span class="w"> </span><span class="mi">253</span><span class="p">:</span><span class="mi">3</span><span class="w">    </span><span class="mi">0</span><span class="w"> </span><span class="mi">57</span><span class="p">,</span><span class="mi">4</span><span class="n">G</span><span class="w">  </span><span class="mi">0</span><span class="w"> </span><span class="n">part</span><span class="w"> </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">home</span><span class="p">,</span><span class="w"> </span><span class="o">/</span><span class="k">var</span><span class="p">,</span><span class="w"> </span><span class="o">/</span><span class="n">etc</span><span class="o">...</span>
@@ -315,12 +317,11 @@ sudo<span class="w"> </span>btrfs<span class="w"> </span>filesystem<span class="
   </div>
   <div class="tag-cloud">
     <p>
-      <a href="/en/tag/aurora.html">[aurora</a>
-      <a href="/en/tag/linux.html">linux</a>
+      <a href="/en/tag/aurora.html">aurora</a>
       <a href="/en/tag/unraid.html">unraid</a>
       <a href="/en/tag/vm.html">vm</a>
       <a href="/en/tag/btrfs.html">btrfs</a>
-      <a href="/en/tag/disk.html">disk]</a>
+      <a href="/en/tag/disco.html">disco</a>
     </p>
   </div>
 
@@ -339,10 +340,6 @@ sudo<span class="w"> </span>btrfs<span class="w"> </span>filesystem<span class="
     <h4>You might enjoy</h4>
     <ul class="related-posts">
       <li><a href="/en/probando-aurora-mi-primer-vistazo-al-futuro-del-escritorio-linux">Trying Aurora: my first look at the future of the Linux desktop</a></li>
-      <li><a href="/en/bloqueo-dns-aliexpress-nextdns">DNS blocking of AliExpress links with NextDNS</a></li>
-      <li><a href="/en/escaneo-doble-cara-brother-dcp-l3560cdw">Double-sided scanning with the Brother DCP-L3560CDW</a></li>
-      <li><a href="/en/marksman-lsp-markdown">marksman: Markdown LSP</a></li>
-      <li><a href="/en/neofetch">neofetch</a></li>
     </ul>
   </div>
 

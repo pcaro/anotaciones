@@ -1,0 +1,503 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Annotations by Pablo Caro - productividad</title><link href="/en/" rel="alternate"></link><link href="/en/feeds/tags/productividad.atom.xml" rel="self"></link><id>/en/</id><updated>2026-03-26T20:55:00+01:00</updated><subtitle>Anotaciones</subtitle><entry><title>rbw-env: Export environment variables from Bitwarden</title><link href="/en/rbw-env" rel="alternate"></link><published>2026-03-26T20:55:00+01:00</published><updated>2026-03-26T20:55:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:None,2026-03-26:/en/rbw-env</id><summary type="html">&lt;p&gt;Using rbw to export environment variables from Bitwarden, useful for setting API keys securely without storing them on disk.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Continuing the &lt;a href="/en/rbw-env"&gt;kitty-rbw&lt;/a&gt; saga, today I present another script from the same project: &lt;strong&gt;rbw-env&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Folder selection in rbw-env" src="/en/images/rbw-env-example.png"&gt;&lt;/p&gt;
+&lt;h2 id="the-problem"&gt;The problem&lt;a class="headerlink" href="#the-problem" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I use &lt;strong&gt;pi-agent&lt;/strong&gt; with different AI models (Claude, OpenAI, Gemini...) and each requires its own &lt;code&gt;API_KEY&lt;/code&gt;. Keeping these keys on disk is a security risk, and having to enter them every time is tedious.&lt;/p&gt;
+&lt;h2 id="the-solution-rbw-env"&gt;The solution: rbw-env&lt;a class="headerlink" href="#the-solution-rbw-env" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The script exports Bitwarden entries as environment variables. The idea is simple but effective:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Select a folder&lt;/strong&gt; with &lt;code&gt;fzf&lt;/code&gt; (e.g., "ai-providers")&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;rbw-env exports each entry&lt;/strong&gt; as &lt;code&gt;export VARIABLE='value'&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The temp file deletes itself&lt;/strong&gt; after sourcing&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="usage"&gt;Usage&lt;a class="headerlink" href="#usage" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Interactive folder selection&lt;/span&gt;
+kitty&lt;span class="w"&gt; &lt;/span&gt;@&lt;span class="w"&gt; &lt;/span&gt;kitten&lt;span class="w"&gt; &lt;/span&gt;kitty_rbw/rbw_env.py
+
+&lt;span class="c1"&gt;# Or pass folder as argument&lt;/span&gt;
+kitty&lt;span class="w"&gt; &lt;/span&gt;@&lt;span class="w"&gt; &lt;/span&gt;kitten&lt;span class="w"&gt; &lt;/span&gt;kitty_rbw/rbw_env.py&lt;span class="w"&gt; &lt;/span&gt;ai-providers
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The command creates a temporary file in &lt;code&gt;/tmp/kitty_rbw_env_*&lt;/code&gt; and sends the &lt;code&gt;source&lt;/code&gt; command to the window:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nb"&gt;source&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;/tmp/kitty_rbw_env_qfdhyh_b
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The last line of the temp file is the deletion of the file itself:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;rm&lt;span class="w"&gt; &lt;/span&gt;-f&lt;span class="w"&gt; &lt;/span&gt;/tmp/kitty_rbw_env_qfdhyh_b
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="bitwarden-structure"&gt;Bitwarden structure&lt;a class="headerlink" href="#bitwarden-structure" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Each entry in the exported folder uses:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Username&lt;/strong&gt;: variable name (e.g., &lt;code&gt;ANTHROPIC_API_KEY&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Password&lt;/strong&gt;: variable value (e.g., &lt;code&gt;sk-ant-...&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Name&lt;/strong&gt;: optional description&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;If any entry has username or name equal to &lt;code&gt;NOEXPORT&lt;/code&gt;, it's skipped (useful for notes).&lt;/p&gt;
+&lt;h2 id="integration-with-kitty-rbw"&gt;Integration with kitty-rbw&lt;a class="headerlink" href="#integration-with-kitty-rbw" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;In the &lt;a href="/en/kitty-rbw-kitten"&gt;previous post&lt;/a&gt; I explained how to install kitty-rbw. With &lt;code&gt;Ctrl+Alt+Shift+b&lt;/code&gt; I get the folder selector to export environment variables.&lt;/p&gt;</content><category term="Herramientas"></category><category term="bitwarden"></category><category term="cli"></category><category term="entorno"></category><category term="productividad"></category><category term="seguridad"></category></entry><entry><title>Crit: The Review Loop for Agents</title><link href="/en/crit-review-loop-agents" rel="alternate"></link><published>2026-03-22T14:49:00+01:00</published><updated>2026-03-22T14:49:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:None,2026-03-22:/en/crit-review-loop-agents</id><summary type="html">&lt;p&gt;Crit is a tool designed to close the code review loop for AI-generated code, providing an intuitive and efficient web interface.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Reviewing what an AI agent writes directly in the terminal is often a nightmare. You can't point to a specific line, provide structured feedback, and when the agent updates the file, you have to re-read everything to see what actually changed.&lt;/p&gt;
+&lt;p&gt;That's where &lt;strong&gt;Crit&lt;/strong&gt; comes in.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Crit review UI" src="/images/crit-demo.png"&gt;&lt;/p&gt;
+&lt;p&gt;Crit opens files generated or modified by your agent in the browser with a GitHub-style interface. You can leave comments on specific lines, suggestions for changes, and, best of all, see diffs between different iteration rounds.&lt;/p&gt;
+&lt;p&gt;What I liked most is its &lt;strong&gt;multi-agent&lt;/strong&gt; nature and its &lt;strong&gt;usability&lt;/strong&gt;. It doesn't matter if you use Claude Code, Cursor, Aider, or, as in my case, &lt;strong&gt;OpenCode&lt;/strong&gt;. Crit integrates beautifully.&lt;/p&gt;
+&lt;h3 id="installation-and-setup"&gt;Installation and Setup&lt;a class="headerlink" href="#installation-and-setup" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Installation is as simple as:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;gah&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;tomasz-tomczyk/crit
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Once installed, integrating it with OpenCode is just a matter of one command:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;crit&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;opencode
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This installs the necessary commands and &lt;em&gt;skills&lt;/em&gt; for agents to use Crit. By running &lt;code&gt;/crit&lt;/code&gt; in OpenCode, the review loop begins: the agent proposes a plan or changes, Crit opens the web interface for you to approve or correct, and the agent receives your structured feedback in a &lt;code&gt;.crit.json&lt;/code&gt; file to act accordingly.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Note to my future self:&lt;/strong&gt; If you use &lt;a href="https://shittycodingagent.ai/"&gt;pi-agent&lt;/a&gt; instead of OpenCode, you can copy the OpenCode command as a prompt and copy the crit skill as-is — it works perfectly. In fact, this very annotation was reviewed using pi-agent with Crit.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id="why-use-it"&gt;Why Use It&lt;a class="headerlink" href="#why-use-it" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Web Interface, not TUI&lt;/strong&gt;: Markdown rendering and persistent visual diffs.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Round-to-round diffs&lt;/strong&gt;: You see exactly what has changed since your last comment.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Agent agnostic&lt;/strong&gt;: Works with any tool, allowing for a consistent workflow.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Direct suggestions&lt;/strong&gt;: You can insert suggestions that the agent can apply as-is.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;For example, the very change that fixed the comma issue in this annotation:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Crit review example" src="/images/crit-review-example.png"&gt;&lt;/p&gt;
+&lt;p&gt;It is undoubtedly the missing piece to make working with agents truly collaborative rather than a succession of copy-pasting and tedious manual reviews.&lt;/p&gt;</content><category term="Programación"></category><category term="ia"></category><category term="agents"></category><category term="review"></category><category term="opencode"></category><category term="productividad"></category></entry><entry><title>Hidden gems in pi-powerline-footer</title><link href="/en/powerline-footer-hidden-gems" rel="alternate"></link><published>2026-03-22T00:00:00+01:00</published><updated>2026-03-22T00:00:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:None,2026-03-22:/en/powerline-footer-hidden-gems</id><summary type="html">&lt;p&gt;Two features of the pi-powerline-footer plugin that go beyond the typical footer with model information.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="Screenshot of the pi-powerline-footer plugin" src="/images/pi-powerline-footer.png"&gt;&lt;/p&gt;
+&lt;p&gt;I've been using &lt;a href="https://github.com/nicobailon/pi-powerline-footer"&gt;pi-powerline-footer&lt;/a&gt; for a while, mainly for its main feature: that footer showing useful model info, context, tokens, and cost. But recently I discovered two features that have changed how I work with pi day-to-day.&lt;/p&gt;
+&lt;h2 id="editor-stash-your-integrated-temporary-clipboard"&gt;Editor Stash: your integrated temporary clipboard&lt;a class="headerlink" href="#editor-stash-your-integrated-temporary-clipboard" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;With &lt;code&gt;Alt+S&lt;/code&gt; you can save the current editor content, clear it, write something quick (for example, a short question to another agent), and when it's done, your original text comes back automatically.&lt;/p&gt;
+&lt;p&gt;It's perfect when you're in the middle of a complex task and need to make a quick query without losing context. Or when you want to save a code block you'll reuse later.&lt;/p&gt;
+&lt;p&gt;Plus, you have shortcuts to copy (&lt;code&gt;ctrl+alt+c&lt;/code&gt;) and cut (&lt;code&gt;ctrl+alt+x&lt;/code&gt;) the full editor content, and a stash history accessible with &lt;code&gt;ctrl+alt+h&lt;/code&gt; that persists between sessions.&lt;/p&gt;
+&lt;h2 id="model-profiles-quick-navigation-between-model-configurations"&gt;Model Profiles: quick navigation between model configurations&lt;a class="headerlink" href="#model-profiles-quick-navigation-between-model-configurations" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;This is the feature I use the most right now. With several active providers —mainly &lt;a href="https://openrouter.ai/"&gt;OpenRouter&lt;/a&gt; (with its many models), &lt;a href="https://ai.google.dev/"&gt;Google Gemini&lt;/a&gt;, and &lt;a href="https://opencode.ai/"&gt;OpenCode&lt;/a&gt;— switching between models was a mess.&lt;/p&gt;
+&lt;p&gt;Model Profiles save model + thinking level combinations. I define them in &lt;code&gt;~/.pi/agent/settings.json&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;modelProfiles&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;model&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;google/gemini-3-pro&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;thinking&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;high&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;label&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Gemini Deep&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;model&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;anthropic/claude-opus-4-5&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;thinking&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;xhigh&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;label&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Opus Ultra&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;model&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;openai/codex-5.3&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;thinking&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;low&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;label&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Codex Fast&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;With &lt;code&gt;alt+shift+tab&lt;/code&gt; I cycle through profiles and with &lt;code&gt;ctrl+alt+m&lt;/code&gt; I open a visual selector. The change is instant — no more endless menus searching for the exact model.&lt;/p&gt;
+&lt;p&gt;It's especially useful with OpenRouter, where the model list is huge. Instead of navigating through all of them, I have my 3-4 preferred configurations and switch between them based on the task.&lt;/p&gt;
+&lt;h2 id="the-footer-is-just-the-beginning"&gt;The footer is just the beginning&lt;a class="headerlink" href="#the-footer-is-just-the-beginning" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The plugin documentation is full of small utilities: &lt;a href="https://github.com/nicobailon/pi-powerline-footer?tab=readme-ov-file#working-vibes"&gt;Working Vibes&lt;/a&gt; for themed loading messages, configurable keyboard shortcuts, git integration... But these two features I've described are the ones that have the most impact on my daily workflow.&lt;/p&gt;
+&lt;p&gt;If you haven't tried it yet: &lt;code&gt;pi install npm:pi-powerline-footer&lt;/code&gt; and then &lt;code&gt;/reload&lt;/code&gt;.&lt;/p&gt;</content><category term="Infraestructura"></category><category term="pi"></category><category term="terminal"></category><category term="productividad"></category></entry><entry><title>Record and Share your Terminal Sessions with asciinema</title><link href="/en/asciinema-terminal-recorder" rel="alternate"></link><published>2026-02-27T12:00:00+01:00</published><updated>2026-02-27T12:00:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:None,2026-02-27:/en/asciinema-terminal-recorder</id><summary type="html">&lt;p&gt;Discover asciinema, the perfect tool to record your terminal sessions in a lightweight, reproducible, and easy-to-share way.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Often we need to share what's happening in our terminal, whether for a tutorial, demonstrating a bug, or simply documenting a process. While traditional video recording tools exist, &lt;strong&gt;asciinema&lt;/strong&gt; offers a much more powerful and lightweight alternative.&lt;/p&gt;
+&lt;h2 id="what-is-asciinema"&gt;What is asciinema?&lt;a class="headerlink" href="#what-is-asciinema" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://github.com/asciinema/asciinema"&gt;asciinema&lt;/a&gt; doesn't record video in the traditional sense (pixels). Instead, it captures the terminal's text stream along with exact timings. This has several advantages:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Tiny files&lt;/strong&gt;: Instead of megabytes of video, you get very small text files.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Selectable text&lt;/strong&gt;: When playing back a session on the web, you can copy and paste the code directly.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Perfect quality&lt;/strong&gt;: No loss of resolution or compression artifacts.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="installation-and-help"&gt;Installation and Help&lt;a class="headerlink" href="#installation-and-help" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I already have &lt;code&gt;asciinema&lt;/code&gt; installed on my system. Here you can see the summary of available commands:## Interactive example&lt;/p&gt;
+&lt;p&gt;Below you can see a small demonstration of &lt;code&gt;asciinema&lt;/code&gt; in action, running the command &lt;code&gt;cowsay Muuuuu&lt;/code&gt;:&lt;/p&gt;
+&lt;p&gt;&lt;link rel="stylesheet" type="text/css" href="/theme/asciinema-player/asciinema-player.css" /&gt;&lt;/p&gt;
+&lt;div id="demo-player"&gt;&lt;/div&gt;
+&lt;script src="/theme/asciinema-player/asciinema-player.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+    window.addEventListener('load', function() {
+        AsciinemaPlayer.create('/images/demo.cast', document.getElementById('demo-player'), {
+            cols: 80,
+            rows: 10,
+            autoPlay: true,
+            loop: true
+        });
+    });
+&lt;/script&gt;
+
+&lt;h2 id="basic-commands"&gt;Basic commands&lt;a class="headerlink" href="#basic-commands" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;To start recording, simply run:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;asciinema&lt;span class="w"&gt; &lt;/span&gt;rec&lt;span class="w"&gt; &lt;/span&gt;demo.cast
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This will begin recording everything that happens in your current terminal session. When you're finished, simply press &lt;code&gt;Ctrl-D&lt;/code&gt; or type &lt;code&gt;exit&lt;/code&gt;. The result will be saved in the &lt;code&gt;demo.cast&lt;/code&gt; file.&lt;/p&gt;
+&lt;p&gt;To play it back locally:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;asciinema&lt;span class="w"&gt; &lt;/span&gt;play&lt;span class="w"&gt; &lt;/span&gt;demo.cast
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;And if you want to share it with the world, you can upload it to their free hosting service:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;asciinema&lt;span class="w"&gt; &lt;/span&gt;upload&lt;span class="w"&gt; &lt;/span&gt;demo.cast
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="why-use-it"&gt;Why use it?&lt;a class="headerlink" href="#why-use-it" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;It's ideal for developers writing technical blogs (like this one), as it allows you to embed the recordings directly into the browser with a lightweight JavaScript-based player. Goodbye, blurry 20MB GIFs!&lt;/p&gt;
+&lt;p&gt;&lt;img alt="asciinema help" src="/en/images/asciinema_help.png"&gt;&lt;/p&gt;</content><category term="Herramientas"></category><category term="asciinema"></category><category term="terminal"></category><category term="linux"></category><category term="productividad"></category></entry><entry><title>kitty-rbw: Fast Bitwarden access from your kitty terminal</title><link href="/en/kitty-rbw-kitten" rel="alternate"></link><published>2026-02-26T14:20:00+01:00</published><updated>2026-02-26T14:20:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:None,2026-02-26:/en/kitty-rbw-kitten</id><summary type="html">&lt;p&gt;Introducing kitty-rbw, a "kitten" for the kitty terminal that allows you to search and use rbw (Bitwarden) credentials instantly using fzf.&lt;/p&gt;</summary><content type="html">&lt;p&gt;In the &lt;a href="/en/rbw-bitwarden-cli"&gt;previous post&lt;/a&gt; we talked about &lt;strong&gt;rbw&lt;/strong&gt;, the Bitwarden CLI client written in Rust that stands out for its speed and for using an agent to manage vault unlocking.&lt;/p&gt;
+&lt;p&gt;Today I'm going a step further and introducing &lt;strong&gt;&lt;a href="https://github.com/pcaro/kitty_rbw"&gt;kitty-rbw&lt;/a&gt;&lt;/strong&gt;, a &lt;em&gt;kitten&lt;/em&gt; I've developed for the &lt;strong&gt;kitty&lt;/strong&gt; terminal. Its goal is to let you search and use your Bitwarden credentials without leaving the terminal or typing complex commands, integrating perfectly into your workflow.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="kitty-rbw interface" src="/en/images/kitty-rbw.png"&gt;&lt;/p&gt;
+&lt;h2 id="what-is-a-kitten"&gt;What is a kitten?&lt;a class="headerlink" href="#what-is-a-kitten" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;Kittens&lt;/em&gt; are small Python programs that extend the functionality of the kitty terminal. They can run in overlays, making them ideal for interactive tools that we don't want cluttering our terminal history.&lt;/p&gt;
+&lt;h2 id="key-features"&gt;Key Features&lt;a class="headerlink" href="#key-features" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;kitty-rbw&lt;/code&gt; uses &lt;strong&gt;fzf&lt;/strong&gt; to provide extremely fast fuzzy searching over your rbw vault. Here are its most notable features:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Simultaneous search&lt;/strong&gt;: Filter by name, username, and folder at the same time.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Direct injection&lt;/strong&gt;: Types the password or username directly into the active terminal window where you launched the kitten. Ideal for &lt;code&gt;sudo&lt;/code&gt; prompts or SSH logins.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Clipboard support&lt;/strong&gt;: Copy the username, password, or TOTP code with a single keyboard shortcut.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Usage prioritization&lt;/strong&gt;: The 10 entries you use most frequently appear at the top of the list, making it easy to access common credentials.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Folder shortcuts&lt;/strong&gt;: You can configure the kitten to open pre-filtered by a specific folder (e.g., one for work and one for personal).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="installation"&gt;Installation&lt;a class="headerlink" href="#installation" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;To install it, simply clone the repository into your kitty configuration directory:```bash
+cd ~/.config/kitty
+git clone https://github.com/pcaro/kitty_rbw&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;Then, add a keyboard shortcut to your &lt;span class="sb"&gt;`kitty.conf`&lt;/span&gt;:
+
+```conf
+map kitty_mod+b kitten kitty_rbw/rbw.py
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="usage-and-shortcuts"&gt;Usage and Shortcuts&lt;a class="headerlink" href="#usage-and-shortcuts" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Once configured, pressing the shortcut (&lt;code&gt;Ctrl+Shift+b&lt;/code&gt; by default) will open a panel with your credentials.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Key&lt;/th&gt;
+&lt;th&gt;Action&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;Enter&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Type &lt;strong&gt;password&lt;/strong&gt; into the terminal&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;Ctrl+u&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Type &lt;strong&gt;username&lt;/strong&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;Ctrl+b&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Type &lt;strong&gt;username&lt;/strong&gt;, press &lt;code&gt;Tab&lt;/code&gt;, then &lt;strong&gt;password&lt;/strong&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;Ctrl+t&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Copy &lt;strong&gt;TOTP&lt;/strong&gt; code to clipboard&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;Alt+p&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Copy &lt;strong&gt;password&lt;/strong&gt; to clipboard&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;Alt+u&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Copy &lt;strong&gt;username&lt;/strong&gt; to clipboard&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;Alt+s&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Sync the vault (&lt;code&gt;rbw sync&lt;/code&gt;)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;If you want to know more or contribute to the project, you can find it on GitHub: &lt;a href="https://github.com/pcaro/kitty_rbw"&gt;https://github.com/pcaro/kitty_rbw&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="kitty help" src="/en/images/kitty_help.png"&gt;&lt;/p&gt;</content><category term="Herramientas"></category><category term="bitwarden"></category><category term="cli"></category><category term="kitty"></category><category term="rust"></category><category term="productividad"></category></entry><entry><title>`fresh`: My preferred terminal editor for daily use</title><link href="/en/fresh-editor-terminal" rel="alternate"></link><published>2025-12-25T15:45:00+01:00</published><updated>2025-12-25T15:45:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:None,2025-12-25:/en/fresh-editor-terminal</id><summary type="html">&lt;p&gt;Discover &lt;code&gt;fresh&lt;/code&gt;, a fast, modern, modeless terminal text editor, ideal for casual file editing, surpassing &lt;code&gt;nano&lt;/code&gt; and &lt;code&gt;vim&lt;/code&gt; in simplicity for regular use.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Although &lt;code&gt;vim&lt;/code&gt; is an incredibly powerful tool and &lt;code&gt;nano&lt;/code&gt; stands out for its extreme simplicity, I often look for a middle ground for file editing in the terminal. An editor that is fast, modern, and doesn't force me to remember modes or complex key combinations for simple tasks. That's how I discovered &lt;strong&gt;&lt;code&gt;fresh&lt;/code&gt;&lt;/strong&gt;, and it has quickly become my preferred terminal editor for daily use.&lt;/p&gt;
+&lt;h2 id="what-is-fresh"&gt;What is &lt;code&gt;fresh&lt;/code&gt;?&lt;a class="headerlink" href="#what-is-fresh" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;fresh&lt;/code&gt; is a text editor for the terminal designed to be &lt;strong&gt;simple, fast, and efficient&lt;/strong&gt;. Unlike &lt;code&gt;vim&lt;/code&gt;, &lt;code&gt;fresh&lt;/code&gt; is a modeless editor, which means you can start typing and editing text immediately, just like you would in a graphical editor. Unlike &lt;code&gt;nano&lt;/code&gt;, &lt;code&gt;fresh&lt;/code&gt; offers a more modern experience with features you expect from a current text editor.&lt;/p&gt;
+&lt;h2 id="why-do-i-prefer-it-over-nano-or-vim-for-regular-use"&gt;Why do I prefer it over &lt;code&gt;nano&lt;/code&gt; or &lt;code&gt;vim&lt;/code&gt; for regular use?&lt;a class="headerlink" href="#why-do-i-prefer-it-over-nano-or-vim-for-regular-use" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Modeless&lt;/strong&gt;: The main advantage over &lt;code&gt;vim&lt;/code&gt;. You don't need to learn to switch between insert, normal, visual modes, etc. You simply open the file and edit.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Modern and Fast&lt;/strong&gt;: Despite running in the terminal, &lt;code&gt;fresh&lt;/code&gt; feels responsive and offers a clean interface.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Syntax Highlighting&lt;/strong&gt;: Support for syntax coloring for a wide variety of languages.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Mouse Support&lt;/strong&gt;: You can click to move the cursor, select text, or even use the wheel to scroll.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Multi-Cursor&lt;/strong&gt;: A very powerful feature that &lt;code&gt;nano&lt;/code&gt; does not offer and &lt;code&gt;vim&lt;/code&gt; requires more complexity to use.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Undo/Redo&lt;/strong&gt;: Full &lt;code&gt;undo&lt;/code&gt;/&lt;code&gt;redo&lt;/code&gt; functionality.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Search and Replace&lt;/strong&gt;: Simple and intuitive search and replace functions.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;While &lt;code&gt;vim&lt;/code&gt; remains my choice for complex edits or advanced scripting, for "opening a &lt;code&gt;.conf&lt;/code&gt;", modifying a &lt;code&gt;.bashrc&lt;/code&gt;, or writing a small note, &lt;code&gt;fresh&lt;/code&gt; is unbeatable in speed and convenience. &lt;code&gt;nano&lt;/code&gt; is perhaps too basic for my needs, lacking most of the modern features that &lt;code&gt;fresh&lt;/code&gt; offers.&lt;/p&gt;
+&lt;h2 id="installation"&gt;Installation&lt;a class="headerlink" href="#installation" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;fresh&lt;/code&gt; is easy to install on most Linux distributions. For example, on Debian/Ubuntu-based systems:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;apt&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;fresh
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Or you can follow the instructions in the official repository to compile it from source or use other package managers.&lt;/p&gt;
+&lt;h2 id="conclusion"&gt;Conclusion&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;If you are looking for a terminal editor that is a perfect hybrid between the power of &lt;code&gt;vim&lt;/code&gt; and the simplicity of &lt;code&gt;nano&lt;/code&gt;, but with a modern touch and focused on immediate usability, &lt;code&gt;fresh&lt;/code&gt; is an excellent choice. Give it a try, it might become your new favorite!&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Official repository&lt;/em&gt;: &lt;a href="https://sinelaw.github.io/fresh/"&gt;&lt;code&gt;fresh&lt;/code&gt; on GitHub&lt;/a&gt;&lt;/p&gt;</content><category term="Herramientas"></category><category term="fresh"></category><category term="terminal"></category><category term="editor"></category><category term="productividad"></category><category term="linux"></category><category term="cli"></category></entry><entry><title>Kooha: Simple and Elegant Screen Recording on Linux</title><link href="/en/kooha-captura-pantalla-linux" rel="alternate"></link><published>2025-12-25T15:00:00+01:00</published><updated>2025-12-25T15:00:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:None,2025-12-25:/en/kooha-captura-pantalla-linux</id><summary type="html">&lt;p&gt;Discover Kooha, a minimalist screen recording application for Linux that combines ease of use with essential features.&lt;/p&gt;</summary><content type="html">&lt;p&gt;In Linux, the need to record the screen simply and efficiently is common, whether to create tutorials, presentations, bug reports, or simply share an experience. Although there are many tools, &lt;strong&gt;Kooha&lt;/strong&gt; stands out for its minimalist approach and its intuitive user interface, based on GTK.&lt;/p&gt;
+&lt;h2 id="what-is-kooha"&gt;What is Kooha?&lt;a class="headerlink" href="#what-is-kooha" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Kooha is a free and open-source screen recording application, designed specifically for Linux desktop environments. Its main goal is to offer a hassle-free user experience, focusing on the essential functionalities of a screen recorder.&lt;/p&gt;
+&lt;h2 id="why-choose-kooha"&gt;Why Choose Kooha?&lt;a class="headerlink" href="#why-choose-kooha" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Ease of Use&lt;/strong&gt;: Its interface is clear and direct. No complex menus or overwhelming options, making it ideal for users of all levels.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Minimalist Design&lt;/strong&gt;: It integrates perfectly with the look of GNOME and other GTK environments, offering a clean and pleasant visual experience.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Key Features&lt;/strong&gt;: Despite its simplicity, it includes all the necessary options for most recording tasks.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Open Source&lt;/strong&gt;: Being open-source, it benefits from the community and allows users to inspect and contribute to the code.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="main-features"&gt;Main Features&lt;a class="headerlink" href="#main-features" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Full Screen Recording&lt;/strong&gt;: Captures everything that happens on your monitor.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Specific Window Recording&lt;/strong&gt;: Choose a particular application or window to record.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Selected Area Recording&lt;/strong&gt;: Define a rectangular area on your screen for capture.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Audio Recording&lt;/strong&gt;: Includes audio from your microphone.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Webcam Recording&lt;/strong&gt;: Integrates your webcam image into the recording.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Common Formats&lt;/strong&gt;: Support for popular formats like WebM and MP4.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Quality Options&lt;/strong&gt;: Settings for frame rate (FPS) and video quality.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="installation"&gt;Installation&lt;a class="headerlink" href="#installation" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The most recommended way to install Kooha is via Flatpak, which ensures you get the latest version and all necessary dependencies:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;flatpak&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;flathub&lt;span class="w"&gt; &lt;/span&gt;com.github.SeaDve.Kooha
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;It may also be available in the repositories of some Linux distributions or as a Snap package.&lt;/p&gt;
+&lt;h2 id="conclusion"&gt;Conclusion&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Kooha is the perfect tool for those looking for a screen recording solution on Linux that is powerful without being complicated. Its elegance and simplicity make it an excellent addition to any Linux user's productivity arsenal.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Official repository&lt;/em&gt;: &lt;a href="https://github.com/SeaDve/Kooha"&gt;SeaDve/Kooha on GitHub&lt;/a&gt;&lt;/p&gt;</content><category term="Herramientas"></category><category term="linux"></category><category term="kooha"></category><category term="screen-recorder"></category><category term="productividad"></category><category term="open-source"></category></entry><entry><title>`direnv`: Manage your development environments intelligently</title><link href="/en/direnv-gestion-entornos" rel="alternate"></link><published>2025-12-25T14:30:00+01:00</published><updated>2025-12-25T14:30:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:None,2025-12-25:/en/direnv-gestion-entornos</id><summary type="html">&lt;p&gt;Discover &lt;code&gt;direnv&lt;/code&gt;, a shell extension that automatically loads and unloads environment variables when changing directories, keeping your configuration clean and organized.&lt;/p&gt;</summary><content type="html">&lt;p&gt;In the daily life of a developer, it is common to work with multiple projects, each with its own environment variables, paths (&lt;code&gt;PATH&lt;/code&gt;), tool versions, or credentials. Manually managing these variables can lead to messy configurations in your &lt;code&gt;.profile&lt;/code&gt; or &lt;code&gt;.bashrc&lt;/code&gt;, or errors due to using the wrong environment. This is where &lt;strong&gt;&lt;code&gt;direnv&lt;/code&gt;&lt;/strong&gt; shines, offering an elegant and automatic solution.&lt;/p&gt;
+&lt;h2 id="what-is-direnv"&gt;What is &lt;code&gt;direnv&lt;/code&gt;?&lt;a class="headerlink" href="#what-is-direnv" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;direnv&lt;/code&gt; is an extension for your shell (Bash, Zsh, Fish, etc.) that automatically detects when you change directories. When you enter a directory containing an &lt;code&gt;.envrc&lt;/code&gt; file, &lt;code&gt;direnv&lt;/code&gt; loads it; when you leave it, it unloads it. This means your shell environment dynamically adapts to your current project without you having to do anything manually.&lt;/p&gt;
+&lt;h2 id="how-does-it-work"&gt;How does it work?&lt;a class="headerlink" href="#how-does-it-work" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;direnv&lt;/code&gt; integrates with your shell through a hook in the &lt;code&gt;cd&lt;/code&gt; command. Every time you change directories, &lt;code&gt;direnv&lt;/code&gt; checks if there is an &lt;code&gt;.envrc&lt;/code&gt; file in the current directory or any of its ancestors. If it finds one (and you have granted permission to load it), it executes the commands defined in that file to modify your environment. Upon leaving the directory, it reverts those changes, cleaning up your environment.&lt;/p&gt;
+&lt;h2 id="common-use-cases"&gt;Common Use Cases&lt;a class="headerlink" href="#common-use-cases" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;PATH&lt;/code&gt; Management&lt;/strong&gt;: Adding project-specific binaries to your &lt;code&gt;PATH&lt;/code&gt; temporarily.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Python Virtual Environments&lt;/strong&gt;: Automatically activating a &lt;code&gt;virtualenv&lt;/code&gt; or &lt;code&gt;uv venv&lt;/code&gt; when entering a Python project.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Credentials and API Keys&lt;/strong&gt;: Loading environment variables with database credentials, API keys, or tokens securely (without leaving them in the shell history).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Project-Specific Environment Variables&lt;/strong&gt;: &lt;code&gt;RAILS_ENV&lt;/code&gt;, &lt;code&gt;NODE_ENV&lt;/code&gt;, etc.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Tool Version Switching&lt;/strong&gt;: Integrating with tools like &lt;code&gt;nvm&lt;/code&gt; or &lt;code&gt;pyenv&lt;/code&gt; to automatically switch Node.js or Python versions.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="basic-installation-bash-example"&gt;Basic Installation (Bash example)&lt;a class="headerlink" href="#basic-installation-bash-example" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Install &lt;code&gt;direnv&lt;/code&gt;&lt;/strong&gt;: You can install it from your package manager (&lt;code&gt;sudo apt install direnv&lt;/code&gt;, &lt;code&gt;brew install direnv&lt;/code&gt;, etc.).&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Activate the hook in your shell&lt;/strong&gt;: Add the following line to your &lt;code&gt;~/.bashrc&lt;/code&gt; (or &lt;code&gt;~/.zshrc&lt;/code&gt;):&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;bash
+eval "$(direnv hook bash)"&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Create an &lt;code&gt;.envrc&lt;/code&gt; file&lt;/strong&gt;: In the root of your project, create an &lt;code&gt;.envrc&lt;/code&gt; file with the variables and commands you want.&lt;/p&gt;
+&lt;p&gt;```bash&lt;/p&gt;
+&lt;h1 id="envrc-in-the-root-of-your-python-project"&gt;.envrc in the root of your Python project&lt;a class="headerlink" href="#envrc-in-the-root-of-your-python-project" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;layout python  # Automatically activates a virtual environment
+export MY_API_KEY="super_secret_project_key"
+```&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Allow loading&lt;/strong&gt;: The first time you enter the directory with a new &lt;code&gt;.envrc&lt;/code&gt;, &lt;code&gt;direnv&lt;/code&gt; will ask for confirmation:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;bash
+direnv: error .envrc is blocked. Run `direnv allow` to approve its contents&lt;/code&gt;
+Run &lt;code&gt;direnv allow&lt;/code&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="the-direnv-standard-library"&gt;The &lt;code&gt;direnv&lt;/code&gt; Standard Library&lt;a class="headerlink" href="#the-direnv-standard-library" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;direnv&lt;/code&gt; comes with a powerful standard library that includes predefined functions for common tasks, such as &lt;code&gt;layout python&lt;/code&gt; (to manage virtualenvs), &lt;code&gt;use nix&lt;/code&gt;, &lt;code&gt;use node&lt;/code&gt;, etc., greatly simplifying the configuration of your &lt;code&gt;.envrc&lt;/code&gt; files.&lt;/p&gt;
+&lt;h2 id="key-benefits"&gt;Key Benefits&lt;a class="headerlink" href="#key-benefits" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Clean environments&lt;/strong&gt;: Your &lt;code&gt;.profile&lt;/code&gt; stays tidy.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Consistency&lt;/strong&gt;: Each project has exactly the environment it needs.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Productivity&lt;/strong&gt;: No more manual &lt;code&gt;source venv/bin/activate&lt;/code&gt; or remembering to set variables.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;direnv&lt;/code&gt; is a small but powerful tool that transforms the way you manage your development environments, making your life in the terminal much more efficient and error-free.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Original article&lt;/em&gt;: &lt;a href="https://direnv.net/"&gt;&lt;code&gt;direnv&lt;/code&gt; homepage&lt;/a&gt;&lt;/p&gt;</content><category term="Herramientas"></category><category term="direnv"></category><category term="shell"></category><category term="entorno"></category><category term="productividad"></category><category term="desarrollo"></category><category term="linux"></category></entry><entry><title>Kitty as a Quick Access Terminal: The Convenience of a Dropdown</title><link href="/en/kitty-acceso-rapido" rel="alternate"></link><published>2025-12-25T12:30:00+01:00</published><updated>2025-12-25T12:30:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:None,2025-12-25:/en/kitty-acceso-rapido</id><summary type="html">&lt;p&gt;Configure Kitty for instant and efficient access, combining the power of a modern terminal with the convenience of a dropdown.&lt;/p&gt;</summary><content type="html">&lt;p&gt;One of the most appreciated features of terminals like Yakuake or Guake is their ability to appear and disappear instantly with a single keystroke, offering quick access without interrupting the workflow. &lt;strong&gt;Kitty&lt;/strong&gt;, the GPU-accelerated terminal, can also replicate and improve this experience, combining its power with the convenience of a dropdown terminal.&lt;/p&gt;
+&lt;h2 id="the-dropdown-terminal-concept"&gt;The Dropdown Terminal Concept&lt;a class="headerlink" href="#the-dropdown-terminal-concept" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The idea is simple: a terminal that resides in the background and shows or hides on demand. This is especially useful for quick commands, monitoring, or any task that requires brief interaction with the command line.&lt;/p&gt;
+&lt;h2 id="kitty-for-quick-access"&gt;Kitty for Quick Access&lt;a class="headerlink" href="#kitty-for-quick-access" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Kitty does not have a native "dropdown" function like Yakuake, but its flexibility and scripting capabilities allow it to be configured for this purpose. The key lies in:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Dedicated Kitty instances:&lt;/strong&gt; You can launch a Kitty instance in a "daemon" or background mode, ready to be activated.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Remote control:&lt;/strong&gt; Kitty offers a remote control protocol (&lt;code&gt;kitty @&lt;/code&gt;) that allows interacting with already open instances.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Window Manager:&lt;/strong&gt; Using the rules of your window manager (KDE, Gnome, i3, Sway, etc.) to assign a hotkey that shows or hides the Kitty window.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id="example-configuration"&gt;Example Configuration&lt;a class="headerlink" href="#example-configuration" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Here is a conceptual approach to achieve a quick access terminal with Kitty and a window manager (e.g., with &lt;code&gt;xdotool&lt;/code&gt; for Xorg environments, or similar functions in Wayland):&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Launch Kitty in the background:&lt;/strong&gt;
+    You can have a Kitty instance that starts automatically with your session and is configured to be "floating" and with a specific size.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Toggle Script:&lt;/strong&gt;
+    Create a small script that checks if the "always visible" Kitty window is active and, if it is, hides it; if not, shows it.&lt;/p&gt;
+&lt;p&gt;```bash&lt;/p&gt;
+&lt;h1 id="binbash"&gt;!/bin/bash&lt;a class="headerlink" href="#binbash" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;KITTY_CLASS="kitty-dropdown" # A custom class for the Kitty window
+KITTY_ID=$(xdotool search --class "$KITTY_CLASS" | head -n 1)&lt;/p&gt;
+&lt;p&gt;if [ -z "$KITTY_ID" ]; then
+    # If it doesn't exist, launch it
+    kitty --class "$KITTY_CLASS" &amp;amp;
+else
+    # If it exists, toggle visibility
+    if xdotool getwindowfocus getwindowpid | grep -q "$(xdotool getwindowpid "$KITTY_ID")"; then
+        xdotool windowminimize "$KITTY_ID"
+    else
+        xdotool windowmap "$KITTY_ID" # Show the window
+        xdotool windowraise "$KITTY_ID" # Make sure it's on top
+        xdotool windowfocus "$KITTY_ID" # Give it focus
+    fi
+fi
+```&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Keyboard shortcut in your window manager:&lt;/strong&gt;
+    Assign a global key (e.g., &lt;code&gt;F12&lt;/code&gt;) to run this script.&lt;/p&gt;
+&lt;p&gt;```&lt;/p&gt;
+&lt;h1 id="example-in-configi3config-or-similar"&gt;Example in ~/.config/i3/config or similar&lt;a class="headerlink" href="#example-in-configi3config-or-similar" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;bindsym $mod+F12 exec --no-startup-id /path/to/your/toggle-kitty-dropdown.sh
+```&lt;/p&gt;
+&lt;p&gt;And in your &lt;code&gt;kitty.conf&lt;/code&gt;, you can configure the Kitty instance to have the specific class and a suitable position/size:&lt;/p&gt;
+&lt;p&gt;```&lt;/p&gt;
+&lt;h1 id="kittyconf-configuration-for-the-dropdown-instance"&gt;kitty.conf (configuration for the dropdown instance)&lt;a class="headerlink" href="#kittyconf-configuration-for-the-dropdown-instance" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;window_class_members kitty-dropdown
+initial_window_width 80%
+initial_window_height 40%
+window_border_width 0&lt;/p&gt;
+&lt;h1 id="other-appearance-settings"&gt;... other appearance settings ...&lt;a class="headerlink" href="#other-appearance-settings" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;```&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;This method gives you the speed and convenience of a dropdown terminal, but with all the power and customization that Kitty offers. It's the best of both worlds!&lt;/p&gt;</content><category term="Infraestructura"></category><category term="kitty"></category><category term="terminal"></category><category term="acceso-rapido"></category><category term="productividad"></category><category term="linux"></category><category term="atajos"></category></entry><entry><title>Essential Keyboard Shortcuts in Kitty: Mastering Your Terminal</title><link href="/en/atajos-de-teclado-kitty" rel="alternate"></link><published>2025-12-25T12:15:00+01:00</published><updated>2025-12-25T12:15:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:None,2025-12-25:/en/atajos-de-teclado-kitty</id><summary type="html">&lt;p&gt;A quick guide to the most useful Kitty keyboard shortcuts to optimize your command-line workflow.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;strong&gt;Kitty&lt;/strong&gt; is a terminal that shines for its performance and high customizability, but where it truly excels is in its keyboard-driven interface. Mastering its shortcuts will allow you to navigate, manage, and manipulate your terminal sessions with amazing efficiency.&lt;/p&gt;
+&lt;h2 id="discover-your-shortcuts-show_shortcuts"&gt;Discover Your Shortcuts: &lt;code&gt;show_shortcuts&lt;/code&gt;&lt;a class="headerlink" href="#discover-your-shortcuts-show_shortcuts" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The fastest way to know all the keyboard shortcuts configured in your Kitty instance is by using its own functionality:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;kitty&lt;span class="w"&gt; &lt;/span&gt;+kitten&lt;span class="w"&gt; &lt;/span&gt;show_shortcuts
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This will open an interactive window where you can see all shortcuts, both the default ones and those customized in your &lt;code&gt;kitty.conf&lt;/code&gt;.&lt;/p&gt;
+&lt;h2 id="essential-shortcuts-for-every-day"&gt;Essential Shortcuts for Every Day&lt;a class="headerlink" href="#essential-shortcuts-for-every-day" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Here are some of the most useful shortcuts that will help you optimize your workflow the most:&lt;/p&gt;
+&lt;h3 id="window-and-split-management-panes"&gt;Window and Split Management (Panes)&lt;a class="headerlink" href="#window-and-split-management-panes" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+enter&lt;/code&gt;: Opens a new Kitty window.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+w&lt;/code&gt;: Closes the current Kitty window.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+o&lt;/code&gt;: Splits the current window vertically (new pane to the right).&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+e&lt;/code&gt;: Splits the current window horizontally (new pane below).&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+f&lt;/code&gt;: Toggles between split panes (focus).&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+[&lt;/code&gt; / &lt;code&gt;ctrl+shift+]&lt;/code&gt;: Navigates between panes (left/right).&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+alt+[&lt;/code&gt; / &lt;code&gt;ctrl+shift+alt+]&lt;/code&gt;: Moves the active pane (left/right).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="tab-management"&gt;Tab Management&lt;a class="headerlink" href="#tab-management" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+t&lt;/code&gt;: Opens a new tab.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+q&lt;/code&gt;: Closes the current tab.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+.&lt;/code&gt;: Moves to the next tab.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+,&lt;/code&gt;: Moves to the previous tab.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+alt+.&lt;/code&gt;: Moves the current tab to the right.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+alt+,&lt;/code&gt;: Moves the current tab to the left.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="copy-and-paste"&gt;Copy and Paste&lt;a class="headerlink" href="#copy-and-paste" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Kitty has its own copy/paste implementation, which can be more reliable than the system one when working in remote environments or with multiplexers:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+c&lt;/code&gt;: Copies the selected text to the system clipboard.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+v&lt;/code&gt;: Pastes text from the system clipboard.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="font-and-appearance-control"&gt;Font and Appearance Control&lt;a class="headerlink" href="#font-and-appearance-control" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+=&lt;/code&gt; (or &lt;code&gt;+&lt;/code&gt;): Increases the font size.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+-&lt;/code&gt;: Decreases the font size.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+backspace&lt;/code&gt;: Resets the font size to the default value.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+k&lt;/code&gt;: Enters "scrollback" mode (to search or select historical text).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="customizing-your-shortcuts-in-kittyconf"&gt;Customizing Your Shortcuts in &lt;code&gt;kitty.conf&lt;/code&gt;&lt;a class="headerlink" href="#customizing-your-shortcuts-in-kittyconf" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;You can add or modify keyboard shortcuts in your configuration file &lt;code&gt;~/.config/kitty/kitty.conf&lt;/code&gt; using the &lt;code&gt;map&lt;/code&gt; directive. For example, to map &lt;code&gt;F1&lt;/code&gt; for a custom script:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nx"&gt;map&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;f1&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;launch&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="k"&gt;type&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;&lt;span class="nx"&gt;overlay&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;bash&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nx"&gt;c&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;my_custom_script.sh&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Mastering these shortcuts will transform your interaction with the terminal, making it more fluid and intuitive. Experiment and customize Kitty to perfectly adapt to your work style!&lt;/p&gt;</content><category term="Infraestructura"></category><category term="kitty"></category><category term="terminal"></category><category term="atajos"></category><category term="teclado"></category><category term="productividad"></category></entry><entry><title>From Yakuake to Kitty: My Transition to a Modern Terminal</title><link href="/en/de-yakuake-a-kitty" rel="alternate"></link><published>2025-12-25T12:00:00+01:00</published><updated>2025-12-25T12:00:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:None,2025-12-25:/en/de-yakuake-a-kitty</id><summary type="html">&lt;p&gt;Exploring the reasons and benefits of switching from Yakuake to Kitty for a more powerful and customizable terminal experience.&lt;/p&gt;</summary><content type="html">&lt;p&gt;For years, &lt;strong&gt;Yakuake&lt;/strong&gt; has been my go-to terminal in KDE desktop environments. Its quick access convenience, dropping down and hiding with a simple keystroke, is undeniable. However, in my constant search for optimization and performance, I decided to explore alternatives, and &lt;strong&gt;Kitty&lt;/strong&gt; emerged as a standout option.&lt;/p&gt;
+&lt;h2 id="why-the-switch"&gt;Why the Switch?&lt;a class="headerlink" href="#why-the-switch" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Although Yakuake is excellent in its niche, Kitty offers a series of advantages that align better with the demands of a modern and demanding workflow:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;GPU Accelerated Performance&lt;/strong&gt;: Kitty is designed to leverage the graphics card, resulting in extremely fast and fluid text rendering, especially noticeable in terminals with a lot of scrolling or intense output.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Integrated Multiplexing&lt;/strong&gt;: Unlike Yakuake, which relies on traditional tab/window sessions, Kitty incorporates its own multiplexing system (similar to &lt;code&gt;tmux&lt;/code&gt; or &lt;code&gt;screen&lt;/code&gt;) that allows splitting windows, creating tabs, and organizing panes natively and efficiently.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Extensive Configurability&lt;/strong&gt;: &lt;code&gt;kitty.conf&lt;/code&gt; allows deep customization, from keyboard shortcuts to appearance, themes, and behavior.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Modern Support&lt;/strong&gt;: Excellent support for Wayland (the future of Linux on the desktop), font ligatures (like Fira Code), and an ecosystem of "kittens" (scripts and extended functionalities).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Cross-platform&lt;/strong&gt;: Although my main use is on Linux, the ability to have a consistent terminal experience across different operating systems is a plus.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="adapting-to-kitty"&gt;Adapting to Kitty&lt;a class="headerlink" href="#adapting-to-kitty" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The transition required adjusting some habits, mainly the way sessions and quick access are managed. However, the advantages far outweigh the initial learning curve. The speed, fluidity, and power of Kitty's built-in features make it an indispensable tool for my daily life.&lt;/p&gt;
+&lt;p&gt;Configuring Kitty is a simple process through its &lt;code&gt;kitty.conf&lt;/code&gt; file, where all aspects of the terminal are defined. We will explore more about its configuration and keyboard shortcuts in future posts.&lt;/p&gt;
+&lt;p&gt;If you are looking to take your terminal experience to the next level, migrating to Kitty is a step I highly recommend.&lt;/p&gt;</content><category term="Infraestructura"></category><category term="kitty"></category><category term="yakuake"></category><category term="terminal"></category><category term="linux"></category><category term="productividad"></category><category term="herramientas"></category></entry><entry><title>How I Use Git Worktrees for Concurrent Work</title><link href="/en/como-uso-git-worktrees" rel="alternate"></link><published>2025-07-23T06:12:00+02:00</published><updated>2025-07-23T06:12:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:None,2025-07-23:/en/como-uso-git-worktrees</id><summary type="html">&lt;p class="first last"&gt;A practical approach to using git worktrees and maximizing productivity with multiple simultaneous work contexts&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;Aleksey Kladov shares his unique approach to using git worktrees, which goes beyond simply switching branches and becomes a complete methodology for concurrent work.&lt;/p&gt;
+&lt;img alt="Worktree structure" class="align-center" src="https://matklad.github.io/images/worktree-structure.png" /&gt;
+&lt;div class="section" id="the-core-philosophy"&gt;
+&lt;h2&gt;The Core Philosophy&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;&amp;quot;Git is not a version control system, Git is a toolbox for building a VCS&amp;quot;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;This perspective completely changes how we think about git. Instead of limiting ourselves to basic functionalities, we can create our own optimized workflow.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="the-5-specialized-worktrees"&gt;
+&lt;h2&gt;The 5 Specialized Worktrees&lt;/h2&gt;
+&lt;p&gt;The author maintains 5 worktrees, each with a specific purpose:&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;&lt;strong&gt;main&lt;/strong&gt; - Read-only snapshot
+- Clean reflection of remote main
+- Reference for comparisons
+- Never modified locally&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;work&lt;/strong&gt; - Main workspace
+- Day-to-day active development
+- Frequent commits with minimal messages
+- Detached HEAD for maximum flexibility&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;review&lt;/strong&gt; - Dedicated to code reviews
+- Clean context to analyze PRs
+- Without interfering with ongoing work&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;fuzz&lt;/strong&gt; - Long-running tests
+- Fuzzing and tests that last hours
+- Runs in parallel without blocking development&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;scratch&lt;/strong&gt; - Unrelated quick tasks
+- Experiments
+- Urgent fixes
+- Ad-hoc investigations&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# Typical directory structure&lt;/span&gt;
+~/projects/my-project/
+├──&lt;span class="w"&gt; &lt;/span&gt;main/&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="c1"&gt;# main worktree&lt;/span&gt;
+├──&lt;span class="w"&gt; &lt;/span&gt;work/&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="c1"&gt;# active development&lt;/span&gt;
+├──&lt;span class="w"&gt; &lt;/span&gt;review/&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="c1"&gt;# reviews&lt;/span&gt;
+├──&lt;span class="w"&gt; &lt;/span&gt;fuzz/&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="c1"&gt;# testing&lt;/span&gt;
+└──&lt;span class="w"&gt; &lt;/span&gt;scratch/&lt;span class="w"&gt;     &lt;/span&gt;&lt;span class="c1"&gt;# experiments&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="advantages-of-the-approach"&gt;
+&lt;h2&gt;Advantages of the Approach&lt;/h2&gt;
+&lt;dl class="docutils"&gt;
+&lt;dt&gt;&lt;strong&gt;Truly Concurrent Work&lt;/strong&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;ul class="first last simple"&gt;
+&lt;li&gt;Multiple coding activities simultaneously&lt;/li&gt;
+&lt;li&gt;No need for stash or complex branch switching&lt;/li&gt;
+&lt;li&gt;Clean separation of contexts&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/dd&gt;
+&lt;dt&gt;&lt;strong&gt;Frictionless Workflow&lt;/strong&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;ul class="first last simple"&gt;
+&lt;li&gt;Instant switching between tasks&lt;/li&gt;
+&lt;li&gt;Frequent commits without pressure for perfect messages&lt;/li&gt;
+&lt;li&gt;Free experimentation on detached HEAD&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/dd&gt;
+&lt;dt&gt;&lt;strong&gt;Real Parallelization&lt;/strong&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;ul class="first last simple"&gt;
+&lt;li&gt;Fuzzing running while you develop&lt;/li&gt;
+&lt;li&gt;Reviews without interrupting main work&lt;/li&gt;
+&lt;li&gt;Background tests without blocks&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class="section" id="advanced-techniques"&gt;
+&lt;h2&gt;Advanced Techniques&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Strategic Detached HEAD&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# In the &amp;#39;work&amp;#39; worktree, work without a branch&lt;/span&gt;
+git&lt;span class="w"&gt; &lt;/span&gt;checkout&lt;span class="w"&gt; &lt;/span&gt;--detach&lt;span class="w"&gt; &lt;/span&gt;HEAD
+&lt;span class="c1"&gt;# Frequent commit, reorganize later&lt;/span&gt;
+git&lt;span class="w"&gt; &lt;/span&gt;commit&lt;span class="w"&gt; &lt;/span&gt;-m&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;wip&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;Custom Scripts for Common Operations&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# Script to quickly create/switch worktrees&lt;/span&gt;
+&lt;span class="c1"&gt;#!/bin/bash&lt;/span&gt;
+git&lt;span class="w"&gt; &lt;/span&gt;worktree&lt;span class="w"&gt; &lt;/span&gt;add&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;../&lt;/span&gt;&lt;span class="nv"&gt;$1&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$2&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+&lt;span class="nb"&gt;cd&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;../&lt;/span&gt;&lt;span class="nv"&gt;$1&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;Integration Flow&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# From the &amp;#39;work&amp;#39; worktree&lt;/span&gt;
+git&lt;span class="w"&gt; &lt;/span&gt;log&lt;span class="w"&gt; &lt;/span&gt;--oneline&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="c1"&gt;# review commits&lt;/span&gt;
+git&lt;span class="w"&gt; &lt;/span&gt;reset&lt;span class="w"&gt; &lt;/span&gt;HEAD~5&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="c1"&gt;# undo temporary commits&lt;/span&gt;
+git&lt;span class="w"&gt; &lt;/span&gt;add&lt;span class="w"&gt; &lt;/span&gt;-p&lt;span class="w"&gt;         &lt;/span&gt;&lt;span class="c1"&gt;# select changes&lt;/span&gt;
+git&lt;span class="w"&gt; &lt;/span&gt;commit&lt;span class="w"&gt;         &lt;/span&gt;&lt;span class="c1"&gt;# clean final commit&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="key-lessons"&gt;
+&lt;h2&gt;Key Lessons&lt;/h2&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;&lt;strong&gt;Git is flexible&lt;/strong&gt;: There is no &amp;quot;one right way&amp;quot; to use git&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Automate the repetitive&lt;/strong&gt;: Custom scripts for common operations&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Separate contexts&lt;/strong&gt;: Each type of work deserves its own space&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Cheap commits&lt;/strong&gt;: Commit frequently, organize later&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;This approach transforms git from a versioning tool into a complete workflow management platform, maximizing productivity through truly concurrent work.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Original article&lt;/em&gt;: &lt;a class="reference external" href="https://matklad.github.io/2024/07/25/git-worktrees.html"&gt;How I Use Git Worktrees&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="Programación"></category><category term="git"></category><category term="worktrees"></category><category term="flujo-trabajo"></category><category term="productividad"></category></entry></feed>

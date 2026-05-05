@@ -1,0 +1,1306 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Anotaciones por Pablo Caro - Infraestructura</title><link href="https://pablocaro.es/" rel="alternate"></link><link href="https://pablocaro.es/feeds/categories/infraestructura.atom.xml" rel="self"></link><id>https://pablocaro.es/</id><updated>2026-05-03T10:01:00+02:00</updated><subtitle>Anotaciones</subtitle><entry><title>Bloqueo DNS de enlaces de AliExpress con NextDNS</title><link href="https://pablocaro.es/bloqueo-dns-aliexpress-nextdns" rel="alternate"></link><published>2026-05-03T10:01:00+02:00</published><updated>2026-05-03T10:01:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-05-03:/bloqueo-dns-aliexpress-nextdns</id><summary type="html">&lt;p&gt;Al usar una blocklist DNS demasiado agresiva en NextDNS, los enlaces de afiliado de AliExpress dejaban de funcionar. Diagnóstico con dig y solución con HaGeZi Multi PRO.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="DNS blocking illustration" src="/images/dns-blocking-nextdns.jpg"&gt;&lt;/p&gt;
+&lt;p&gt;Llevaba unos días con un problema raro: los enlaces de AliExpress que aparecen en descripciones de vídeos de productos no cargaban. Firefox mostraba "Servidor no encontrado". Sabía que tenía pinta de ser un bloqueo DNS, porque al activar la VPN de PIA (Private Internet Access) el problema desaparecía.&lt;/p&gt;
+&lt;h2 id="el-diagnostico"&gt;El diagnóstico&lt;a class="headerlink" href="#el-diagnostico" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;El comando &lt;code&gt;dig&lt;/code&gt; lo confirmó enseguida:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Consultando al router (que usa NextDNS)&lt;/span&gt;
+$&lt;span class="w"&gt; &lt;/span&gt;dig&lt;span class="w"&gt; &lt;/span&gt;s.click.aliexpress.com&lt;span class="w"&gt; &lt;/span&gt;@192.168.1.1
+
+&lt;span class="p"&gt;;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;ANSWER&lt;span class="w"&gt; &lt;/span&gt;SECTION:
+s.click.aliexpress.com.&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;300&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;IN&lt;span class="w"&gt;  &lt;/span&gt;A&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="m"&gt;0&lt;/span&gt;.0.0.0
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Consultando a Google DNS&lt;/span&gt;
+$&lt;span class="w"&gt; &lt;/span&gt;dig&lt;span class="w"&gt; &lt;/span&gt;s.click.aliexpress.com&lt;span class="w"&gt; &lt;/span&gt;@8.8.8.8
+
+&lt;span class="p"&gt;;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;ANSWER&lt;span class="w"&gt; &lt;/span&gt;SECTION:
+s.click.aliexpress.com.&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;300&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;IN&lt;span class="w"&gt;  &lt;/span&gt;A&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="m"&gt;23&lt;/span&gt;.40.114.185
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;El router devolvía &lt;code&gt;0.0.0.0&lt;/code&gt; para &lt;code&gt;s.click.aliexpress.com&lt;/code&gt;. Eso no es un NXDOMAIN —dominio inexistente—, es un bloqueo deliberado: el dominio resuelve a una IP nula y el navegador no puede conectar.&lt;/p&gt;
+&lt;p&gt;Con la VPN activa, las consultas DNS pasaban por los servidores de PIA, que no aplican blocklists, y los enlaces funcionaban sin problema.&lt;/p&gt;
+&lt;h2 id="la-causa"&gt;La causa&lt;a class="headerlink" href="#la-causa" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;El router tenía configurado &lt;strong&gt;NextDNS&lt;/strong&gt; con la lista de bloqueo por defecto. Bloqueaba bien el malware y el phishing, pero también estaba tocando dominios legítimos como los de redirección de afiliados. Demasiado agresiva para mi día a día.&lt;/p&gt;
+&lt;h2 id="la-solucion"&gt;La solución&lt;a class="headerlink" href="#la-solucion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;La solución más simple habría sido añadir &lt;code&gt;s.click.aliexpress.com&lt;/code&gt; a la lista blanca de NextDNS y ya está. Pero aproveché para revisar qué lista estaba usando y cambiarla por &lt;strong&gt;HaGeZi - Multi PRO&lt;/strong&gt;, que de paso resolvía el problema.&lt;/p&gt;
+&lt;p&gt;Según la &lt;a href="https://github.com/hagezi/dns-blocklists/wiki/FAQ#whatshouldiuse"&gt;guía oficial de HaGeZi&lt;/a&gt;:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Lista&lt;/th&gt;
+&lt;th&gt;Nivel de bloqueo&lt;/th&gt;
+&lt;th&gt;Falsos positivos&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Light&lt;/td&gt;
+&lt;td&gt;Relajado&lt;/td&gt;
+&lt;td&gt;Ninguno&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Normal&lt;/td&gt;
+&lt;td&gt;Relajado/Equilibrado&lt;/td&gt;
+&lt;td&gt;Casi ninguno&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Pro&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;Equilibrado&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;Muy raros&lt;/strong&gt; ← recomendada&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Pro++&lt;/td&gt;
+&lt;td&gt;Equilibrado/Agresivo&lt;/td&gt;
+&lt;td&gt;Algunos&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Ultimate&lt;/td&gt;
+&lt;td&gt;Agresivo&lt;/td&gt;
+&lt;td&gt;Frecuentes&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Multi PRO (~420k dominios, ~200k comprimidos) es la &lt;strong&gt;recomendación personal del autor&lt;/strong&gt; de HaGeZi para un bloqueo efectivo sin problemas. Bloquea anuncios, trackers, telemetría, phishing, malware, scam, cryptojacking y "crap", con muy pocos falsos positivos.&lt;/p&gt;
+&lt;h2 id="el-detalle-clave-dominios-de-referral"&gt;El detalle clave: dominios de referral&lt;a class="headerlink" href="#el-detalle-clave-dominios-de-referral" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;La FAQ de HaGeZi dedica una sección entera a explicar que los &lt;strong&gt;dominios de referral&lt;/strong&gt; —enlaces de afiliado/tracking como &lt;code&gt;s.click.aliexpress.com&lt;/code&gt;— están &lt;strong&gt;permitidos en todas las listas&lt;/strong&gt;, salvo unos pocos que también funcionan como trackers puros y solo se bloquean en Pro++ y Ultimate.&lt;/p&gt;
+&lt;p&gt;Estos dominios solo se activan tras un click manual del usuario y no se usan para mostrar publicidad. Bloquearlos rompe enlaces de resultados de búsqueda, ofertas, emails de confirmación, etc.&lt;/p&gt;
+&lt;h2 id="resumen"&gt;Resumen&lt;a class="headerlink" href="#resumen" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Una blocklist DNS demasiado agresiva bloquea dominios que no son publicidad ni malware, sino mecanismos de redirección del comercio electrónico. El equilibrio está en &lt;strong&gt;Multi PRO&lt;/strong&gt;: buena protección de privacidad sin romper funcionalidad cotidiana.&lt;/p&gt;
+&lt;p&gt;Si en algún momento necesito más agresividad, el precio será tener que desbloquear falsos positivos manualmente. Por ahora, Multi PRO va perfecto.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Más información&lt;/em&gt;: &lt;a href="https://github.com/hagezi/dns-blocklists"&gt;HaGeZi DNS Blocklists&lt;/a&gt;&lt;/p&gt;</content><category term="Infraestructura"></category><category term="dns"></category><category term="nextdns"></category><category term="aliexpress"></category><category term="bloqueo"></category><category term="linux"></category></entry><entry><title>Escaneo a doble cara con la Brother DCP-L3560CDW</title><link href="https://pablocaro.es/escaneo-doble-cara-brother-dcp-l3560cdw" rel="alternate"></link><published>2026-05-03T00:00:00+02:00</published><updated>2026-05-03T00:00:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-05-03:/escaneo-doble-cara-brother-dcp-l3560cdw</id><summary type="html">&lt;p&gt;Workaround para escanear documentos a doble cara con la Brother DCP-L3560CDW y su alimentador simplex.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="Brother DCP-L3560CDW y papeles desordenados" src="/images/brother-escaneo-doble-pagina.png"&gt;&lt;/p&gt;
+&lt;p&gt;Mi nueva multifunción &lt;a href="https://www.manua.ls/brother/dcp-l3560cdw/manual"&gt;Brother DCP-L3560CDW&lt;/a&gt; no escanea a doble cara desde el alimentador. El ADF es solo simple cara, aunque la impresora sí imprime a dúplex.&lt;/p&gt;
+&lt;p&gt;Para documentos a una cara, el flujo es perfecto: meto las hojas en el alimentador, pulso &lt;em&gt;Scan&lt;/em&gt; en la pantalla táctil de 3.7 pulgadas y el documento aparece directamente en la carpeta Samba de Paperless. Sin tocar el PC.&lt;/p&gt;
+&lt;p&gt;El problema llega con documentos a doble cara. La solución que uso:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Escaneo todas las páginas impares con el alimentador&lt;/li&gt;
+&lt;li&gt;Doy la vuelta al taco, pongo la última página boca arriba y escaneo las pares&lt;/li&gt;
+&lt;li&gt;En &lt;a href="https://gitlab.gnome.org/GNOME/simple-scan"&gt;Document Scanner&lt;/a&gt; (simple-scan): menú hamburguesa → &lt;em&gt;Reorder pages&lt;/em&gt; → &lt;em&gt;Combine sides (reverse)&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Guardo el PDF&lt;/li&gt;
+&lt;li&gt;Lo muevo a la carpeta de red para que Paperless lo ingiera&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;He mirado alternativas en KDE (Skanpage, Skanlite) pero ninguna tiene la función de intercalado manual que ofrece Document Scanner. Skanlite ni siquiera permite juntar varias páginas en un mismo PDF.&lt;/p&gt;
+&lt;p&gt;Seguiré investigando si hay alguna forma más directa. De momento, este flujo funciona.&lt;/p&gt;</content><category term="Infraestructura"></category><category term="brother"></category><category term="impresora"></category><category term="escaner"></category><category term="linux"></category><category term="simple-scan"></category><category term="paperless"></category></entry><entry><title>Joyas ocultas en pi-powerline-footer</title><link href="https://pablocaro.es/powerline-footer-hidden-gems" rel="alternate"></link><published>2026-03-22T00:00:00+01:00</published><updated>2026-03-22T00:00:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-03-22:/powerline-footer-hidden-gems</id><summary type="html">&lt;p&gt;Dos características del plugin pi-powerline-footer que van más allá del típico footer con información del modelo.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="Captura de pantalla del plugin pi-powerline-footer" src="/images/pi-powerline-footer.png"&gt;&lt;/p&gt;
+&lt;p&gt;Llevo usando &lt;a href="https://github.com/nicobailon/pi-powerline-footer"&gt;pi-powerline-footer&lt;/a&gt; un tiempo, principalmente por su funcionalidad principal: ese footer con información útil del modelo, contexto, tokens y coste. Pero hace poco descubrí dos features que han cambiado cómo trabajo con pi en el día a día.&lt;/p&gt;
+&lt;h2 id="editor-stash-tu-portapapeles-temporal-integrado"&gt;Editor Stash: tu portapapeles temporal integrado&lt;a class="headerlink" href="#editor-stash-tu-portapapeles-temporal-integrado" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Con &lt;code&gt;Alt+S&lt;/code&gt; puedes guardar el contenido actual del editor, limpiarlo, escribir algo rápido (por ejemplo, una pregunta corta a otro agente), y cuando termine, tu texto original vuelve automáticamente.&lt;/p&gt;
+&lt;p&gt;Es perfecto cuando estás en medio de una tarea compleja y necesitas hacer una consulta rápida sin perder el contexto. O cuando quieres guardar un bloque de código que vas a reutilizar después.&lt;/p&gt;
+&lt;p&gt;Además, tienes atajos para copiar (&lt;code&gt;ctrl+alt+c&lt;/code&gt;) y cortar (&lt;code&gt;ctrl+alt+x&lt;/code&gt;) el contenido completo del editor, y un historial de stashs accesible con &lt;code&gt;ctrl+alt+h&lt;/code&gt; que persiste entre sesiones.&lt;/p&gt;
+&lt;h2 id="model-profiles-navegacion-rapida-entre-configuraciones-de-modelo"&gt;Model Profiles: navegación rápida entre configuraciones de modelo&lt;a class="headerlink" href="#model-profiles-navegacion-rapida-entre-configuraciones-de-modelo" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Esta es la feature que más uso ahora mismo. Con varios providers activos —principalmente &lt;a href="https://openrouter.ai/"&gt;OpenRouter&lt;/a&gt; (con sus muchísimos modelos), &lt;a href="https://ai.google.dev/"&gt;Google Gemini&lt;/a&gt; y &lt;a href="https://opencode.ai/"&gt;OpenCode&lt;/a&gt;— cambiar entre modelos era un lío.&lt;/p&gt;
+&lt;p&gt;Los Model Profiles guardan combinaciones de modelo + nivel de thinking. Los defino en &lt;code&gt;~/.pi/agent/settings.json&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;modelProfiles&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;model&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;google/gemini-3-pro&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;thinking&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;high&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;label&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Gemini Deep&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;model&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;anthropic/claude-opus-4-5&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;thinking&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;xhigh&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;label&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Opus Ultra&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;model&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;openai/codex-5.3&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;thinking&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;low&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;label&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Codex Fast&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Con &lt;code&gt;alt+shift+tab&lt;/code&gt; ciclo entre perfiles y con &lt;code&gt;ctrl+alt+m&lt;/code&gt; abro un selector visual. El cambio es instantáneo —no más menúes interminables buscando el modelo exacto.&lt;/p&gt;
+&lt;p&gt;Es especialmente útil con OpenRouter, donde la lista de modelos es enorme. En lugar de navegar por todos, tengo mis 3-4 configuraciones preferidas y alterno entre ellas según la tarea.&lt;/p&gt;
+&lt;h2 id="el-footer-es-solo-el-principio"&gt;El footer es solo el principio&lt;a class="headerlink" href="#el-footer-es-solo-el-principio" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;La documentación del plugin está llena de pequeñas utilidades: &lt;a href="https://github.com/nicobailon/pi-powerline-footer?tab=readme-ov-file#working-vibes"&gt;Working Vibes&lt;/a&gt; para mensajes de carga temáticos, atajos de teclado configurables, integración con git... Pero estas dos features que he descrito son las que más impacto tienen en mi flujo de trabajo diario.&lt;/p&gt;
+&lt;p&gt;Si aún no lo has probado: &lt;code&gt;pi install npm:pi-powerline-footer&lt;/code&gt; y luego &lt;code&gt;/reload&lt;/code&gt;.&lt;/p&gt;</content><category term="Infraestructura"></category><category term="pi"></category><category term="terminal"></category><category term="productividad"></category></entry><entry><title>Stern: Logs de Kubernetes con esteroides</title><link href="https://pablocaro.es/stern-kubernetes-logs" rel="alternate"></link><published>2026-02-20T00:00:00+01:00</published><updated>2026-02-20T00:00:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-02-20:/stern-kubernetes-logs</id><summary type="html">&lt;p&gt;Si trabajas con Kubernetes, probablemente hayas sufrido el comando &lt;code&gt;kubectl logs&lt;/code&gt;. Es útil para ver los logs de un pod específico, pero se queda corto cuando tienes múltiples réplicas de un servicio o cuando los pods se reinician y cambian de nombre.&lt;/p&gt;
+&lt;p&gt;Aquí es donde entra &lt;strong&gt;&lt;a href="https://github.com/stern/stern"&gt;Stern&lt;/a&gt;&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Stern te permite …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Si trabajas con Kubernetes, probablemente hayas sufrido el comando &lt;code&gt;kubectl logs&lt;/code&gt;. Es útil para ver los logs de un pod específico, pero se queda corto cuando tienes múltiples réplicas de un servicio o cuando los pods se reinician y cambian de nombre.&lt;/p&gt;
+&lt;p&gt;Aquí es donde entra &lt;strong&gt;&lt;a href="https://github.com/stern/stern"&gt;Stern&lt;/a&gt;&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Stern te permite hacer "tail" (seguir) logs de múltiples pods y contenedores dentro de Kubernetes simultáneamente. Lo mejor de todo es que utiliza expresiones regulares para seleccionar los pods, por lo que no necesitas copiar y pegar esos IDs aleatorios (&lt;code&gt;pod-1234567890-abcde&lt;/code&gt;).&lt;/p&gt;
+&lt;h2 id="instalacion"&gt;Instalación&lt;a class="headerlink" href="#instalacion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Stern es muy popular y está disponible en la mayoría de gestores de paquetes.### Usando Krew (recomendado)
+Si ya usas &lt;code&gt;kubectl&lt;/code&gt;, Krew es la forma más natural de instalar plugins:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;kubectl&lt;span class="w"&gt; &lt;/span&gt;krew&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;stern
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id="usando-homebrew"&gt;Usando Homebrew&lt;a class="headerlink" href="#usando-homebrew" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;brew&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;stern
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id="binario-directo"&gt;Binario directo&lt;a class="headerlink" href="#binario-directo" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;También puedes descargar el binario directamente desde sus &lt;a href="https://github.com/stern/stern/releases"&gt;releases en GitHub&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Si utilizas algún helper como &lt;code&gt;gah&lt;/code&gt; (GitHub Asset Helper) o scripts personalizados, la instalación es tan sencilla como:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;gah&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;stern/stern
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="caracteristicas-principales"&gt;Características principales&lt;a class="headerlink" href="#caracteristicas-principales" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="1-tailing-de-multiples-pods"&gt;1. Tailing de múltiples pods&lt;a class="headerlink" href="#1-tailing-de-multiples-pods" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;En lugar de buscar el nombre exacto del pod, puedes usar una regex:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;stern&lt;span class="w"&gt; &lt;/span&gt;backend
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Esto mostrará los logs de todos los pods que contengan "backend" en su nombre (&lt;code&gt;backend-api&lt;/code&gt;, &lt;code&gt;backend-worker&lt;/code&gt;, etc.), intercalados y coloreados para distinguirlos fácilmente.&lt;/p&gt;
+&lt;h3 id="2-filtrado-y-exclusion"&gt;2. Filtrado y exclusión&lt;a class="headerlink" href="#2-filtrado-y-exclusion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Puedes filtrar el contenido de los logs sobre la marcha sin necesidad de &lt;code&gt;grep&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Solo mostrar líneas que contengan &amp;quot;Error&amp;quot;&lt;/span&gt;
+stern&lt;span class="w"&gt; &lt;/span&gt;backend&lt;span class="w"&gt; &lt;/span&gt;-i&lt;span class="w"&gt; &lt;/span&gt;Error
+
+&lt;span class="c1"&gt;# Excluir líneas que contengan &amp;quot;Health check&amp;quot;&lt;/span&gt;
+stern&lt;span class="w"&gt; &lt;/span&gt;backend&lt;span class="w"&gt; &lt;/span&gt;-e&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Health check&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id="3-selectores-de-kubernetes"&gt;3. Selectores de Kubernetes&lt;a class="headerlink" href="#3-selectores-de-kubernetes" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Además de regex por nombre, puedes usar selectores de etiquetas, lo cual es mucho más preciso para entornos de producción:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;stern&lt;span class="w"&gt; &lt;/span&gt;-l&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;app&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;mi-app&lt;span class="w"&gt; &lt;/span&gt;-l&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;tier&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;frontend
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id="4-formato-de-salida"&gt;4. Formato de salida&lt;a class="headerlink" href="#4-formato-de-salida" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Si tus logs están en JSON (como es buena práctica), Stern puede pasarlos tal cual para que los proceses con herramientas como &lt;code&gt;jq&lt;/code&gt; o &lt;code&gt;fx&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;stern&lt;span class="w"&gt; &lt;/span&gt;backend&lt;span class="w"&gt; &lt;/span&gt;-o&lt;span class="w"&gt; &lt;/span&gt;raw&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;fx
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="conclusion"&gt;Conclusión&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Stern es una de esas herramientas que instalas el primer día y te preguntas cómo podías vivir sin ella. Hace que el debug en entornos distribuidos sea mucho menos doloroso al agregar la información de manera coherente.&lt;/p&gt;
+&lt;p&gt;Dale una oportunidad y tus sesiones de debugging te lo agradecerán.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="stern help" src="https://pablocaro.es/images/stern_help.png"&gt;&lt;/p&gt;</content><category term="Infraestructura"></category><category term="kubernetes"></category><category term="cli"></category><category term="logs"></category><category term="herramientas"></category></entry><entry><title>Cómo ver los archivos de un paquete RPM en Linux</title><link href="https://pablocaro.es/ver-archivos-paquete-rpm" rel="alternate"></link><published>2025-12-25T15:15:00+01:00</published><updated>2025-12-25T15:15:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2025-12-25:/ver-archivos-paquete-rpm</id><summary type="html">&lt;p&gt;Guía rápida para inspeccionar el contenido de paquetes RPM y determinar qué paquetes poseen determinados archivos en tu sistema Linux.&lt;/p&gt;</summary><content type="html">&lt;p&gt;En sistemas Linux basados en RPM (como Red Hat, CentOS, Fedora, openSUSE), es común interactuar con paquetes en formato &lt;code&gt;.rpm&lt;/code&gt;. A menudo, necesitamos saber qué archivos contiene un paquete antes de instalarlo, o qué paquete es el responsable de un archivo específico ya instalado en el sistema. Para ello, la herramienta &lt;code&gt;rpm&lt;/code&gt; nos ofrece varias opciones útiles.&lt;/p&gt;
+&lt;h2 id="1-listar-archivos-de-un-paquete-rpm-sin-instalar"&gt;1. Listar Archivos de un Paquete RPM sin Instalar&lt;a class="headerlink" href="#1-listar-archivos-de-un-paquete-rpm-sin-instalar" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Si tienes un archivo &lt;code&gt;.rpm&lt;/code&gt; descargado y quieres ver qué archivos instalará (y dónde) sin necesidad de instalarlo, puedes usar la opción &lt;code&gt;-qlp&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;rpm&lt;span class="w"&gt; &lt;/span&gt;-qlp&lt;span class="w"&gt; &lt;/span&gt;nombre_del_paquete.rpm
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;-q&lt;/code&gt;: Modo de consulta (query).&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;-l&lt;/code&gt;: Lista los archivos (list files).&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;-p&lt;/code&gt;: Consulta un paquete (package file) en lugar de uno instalado.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Ejemplo:&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;rpm&lt;span class="w"&gt; &lt;/span&gt;-qlp&lt;span class="w"&gt; &lt;/span&gt;nginx-1.20.1-1.el8.x86_64.rpm
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="2-encontrar-el-paquete-dueno-de-un-archivo-instalado"&gt;2. Encontrar el Paquete Dueño de un Archivo Instalado&lt;a class="headerlink" href="#2-encontrar-el-paquete-dueno-de-un-archivo-instalado" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Si encuentras un archivo en tu sistema y quieres saber a qué paquete RPM pertenece (útil para depuración o para saber si puedes borrarlo de forma segura), usa la opción &lt;code&gt;-qf&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;rpm&lt;span class="w"&gt; &lt;/span&gt;-qf&lt;span class="w"&gt; &lt;/span&gt;/ruta/al/archivo
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Ejemplo:&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;rpm&lt;span class="w"&gt; &lt;/span&gt;-qf&lt;span class="w"&gt; &lt;/span&gt;/etc/nginx/nginx.conf
+&lt;span class="c1"&gt;# Salida esperada: nginx-1.20.1-1.el8.x86_64&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="3-obtener-informacion-detallada-de-un-paquete"&gt;3. Obtener Información Detallada de un Paquete&lt;a class="headerlink" href="#3-obtener-informacion-detallada-de-un-paquete" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Para ver información completa sobre un paquete (versión, descripción, dependencias, etc.), ya sea instalado o un archivo &lt;code&gt;.rpm&lt;/code&gt;, puedes usar &lt;code&gt;-qi&lt;/code&gt; (para paquetes instalados) o &lt;code&gt;-qip&lt;/code&gt; (para archivos de paquete):&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;rpm&lt;span class="w"&gt; &lt;/span&gt;-qi&lt;span class="w"&gt; &lt;/span&gt;nombre_del_paquete_instalado
+&lt;span class="c1"&gt;# Ejemplo: rpm -qi nginx&lt;/span&gt;
+
+rpm&lt;span class="w"&gt; &lt;/span&gt;-qip&lt;span class="w"&gt; &lt;/span&gt;nombre_del_paquete.rpm
+&lt;span class="c1"&gt;# Ejemplo: rpm -qip nginx-1.20.1-1.el8.x86_64.rpm&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="conclusion"&gt;Conclusión&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Dominar estas sencillas opciones del comando &lt;code&gt;rpm&lt;/code&gt; te proporciona un control mucho mayor sobre los paquetes y archivos de tu sistema Linux, facilitando la administración y la depuración. Son herramientas esenciales para cualquier administrador de sistemas o desarrollador que trabaje con distribuciones basadas en RPM.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Artículo original&lt;/em&gt;: &lt;a href="https://comulinux.blogspot.com/2010/04/como-ver-los-archivos-de-un-paquete-rpm.html"&gt;Cómo Ver los Archivos de un Paquete RPM o Deb&lt;/a&gt;&lt;/p&gt;</content><category term="Infraestructura"></category><category term="linux"></category><category term="rpm"></category><category term="paquetes"></category><category term="comandos"></category><category term="administración"></category><category term="dnf"></category><category term="yum"></category></entry><entry><title>Kubegres: Gestión simplificada de PostgreSQL en Kubernetes</title><link href="https://pablocaro.es/kubegres-postgresql-kubernetes" rel="alternate"></link><published>2025-12-25T14:00:00+01:00</published><updated>2025-12-25T14:00:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2025-12-25:/kubegres-postgresql-kubernetes</id><summary type="html">&lt;p&gt;Descubre Kubegres, un operador de Kubernetes que simplifica la implementación y gestión de clusters PostgreSQL altamente disponibles y escalables.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Desplegar y gestionar bases de datos relacionales en Kubernetes puede ser un desafío. Aunque los contenedores y la orquestación ofrecen flexibilidad, la persistencia de datos, la alta disponibilidad y las copias de seguridad de una base de datos como PostgreSQL requieren una consideración cuidadosa. Aquí es donde &lt;strong&gt;Kubegres&lt;/strong&gt; entra en juego.&lt;/p&gt;
+&lt;h2 id="que-es-kubegres"&gt;¿Qué es Kubegres?&lt;a class="headerlink" href="#que-es-kubegres" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Kubegres es un &lt;strong&gt;operador de Kubernetes&lt;/strong&gt; que permite implementar y gestionar clusters PostgreSQL en Kubernetes de forma sencilla y eficiente. Un operador es una aplicación que extiende las funcionalidades de Kubernetes, automatizando tareas operacionales complejas que normalmente requieren intervención manual.&lt;/p&gt;
+&lt;h2 id="por-que-usar-kubegres"&gt;¿Por qué usar Kubegres?&lt;a class="headerlink" href="#por-que-usar-kubegres" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Kubegres abstrae gran parte de la complejidad de ejecutar PostgreSQL en un entorno orquestado, ofreciendo funcionalidades clave como:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Alta Disponibilidad (HA)&lt;/strong&gt;: Configuración automática de replicas de PostgreSQL para garantizar la continuidad del servicio ante fallos.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Replicación&lt;/strong&gt;: Soporte para replicación de streaming (Primary/Standby) para redundancia y escalabilidad de lectura.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Backups y Restauración&lt;/strong&gt;: Facilita la configuración de políticas de backup y la recuperación de datos.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Escalabilidad&lt;/strong&gt;: Permite escalar las réplicas de lectura de PostgreSQL para manejar cargas de trabajo crecientes.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Actualizaciones sencillas&lt;/strong&gt;: Gestiona las actualizaciones de versiones de PostgreSQL dentro del clúster.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Supervisión&lt;/strong&gt;: Integra mecanismos para monitorizar el estado del clúster.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="como-funciona"&gt;¿Cómo funciona?&lt;a class="headerlink" href="#como-funciona" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Kubegres utiliza los &lt;strong&gt;Custom Resources (CRs)&lt;/strong&gt; de Kubernetes. Esto significa que interactúas con tu clúster PostgreSQL utilizando objetos estándar de Kubernetes (YAML). Defines el estado deseado de tu clúster (número de réplicas, versión de PostgreSQL, políticas de backup) en un archivo YAML, y Kubegres se encarga de que ese estado se mantenga en todo momento.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;apiVersion&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;kubegres.reactive-tech.io/v1&lt;/span&gt;
+&lt;span class="nt"&gt;kind&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;Kubegres&lt;/span&gt;
+&lt;span class="nt"&gt;metadata&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;my-postgres&lt;/span&gt;
+&lt;span class="nt"&gt;spec&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;replicas&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;3&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;image&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;postgres:13.2&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;database&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;size&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;10Gi&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="c1"&gt;# ... otras configuraciones para backups, etc.&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="beneficios-para-desarrolladores-y-operaciones"&gt;Beneficios para desarrolladores y operaciones&lt;a class="headerlink" href="#beneficios-para-desarrolladores-y-operaciones" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Simplificación&lt;/strong&gt;: Reduce drásticamente la complejidad de operar PostgreSQL en Kubernetes.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Automatización&lt;/strong&gt;: Tareas como el failover, la replicación y los backups se gestionan automáticamente.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Consistencia&lt;/strong&gt;: Asegura que el estado de tu base de datos siempre refleje tu configuración deseada.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;DevOps Friendly&lt;/strong&gt;: Permite integrar la gestión de bases de datos en tus pipelines de CI/CD utilizando las mismas herramientas y flujos de trabajo que para el resto de tus aplicaciones en K8s.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Kubegres es una excelente opción para equipos que buscan una solución robusta y automatizada para sus necesidades de PostgreSQL en Kubernetes.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Artículo original&lt;/em&gt;: &lt;a href="https://www.kubegres.io/"&gt;Kubegres - The Kubernetes PostgreSQL operator&lt;/a&gt;&lt;/p&gt;</content><category term="Infraestructura"></category><category term="kubernetes"></category><category term="postgresql"></category><category term="kubegres"></category><category term="operador"></category><category term="base-de-datos"></category></entry><entry><title>Estados de Conexión TCP en GNU/Linux: netstat y ss</title><link href="https://pablocaro.es/estados-conexion-tcp-netstat-ss" rel="alternate"></link><published>2025-12-25T13:30:00+01:00</published><updated>2025-12-25T13:30:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2025-12-25:/estados-conexion-tcp-netstat-ss</id><summary type="html">&lt;p&gt;Comprende los diferentes estados de conexión TCP reportados por netstat y ss, desde el establecimiento hasta la terminación, para un mejor diagnóstico de red.&lt;/p&gt;</summary><content type="html">&lt;p&gt;En el mundo de GNU/Linux, herramientas como &lt;code&gt;netstat&lt;/code&gt; y &lt;code&gt;ss&lt;/code&gt; son indispensables para monitorizar y diagnosticar el estado de las conexiones de red en nuestros sistemas. Para interpretar correctamente su salida, es fundamental entender los diferentes estados por los que atraviesa una conexión TCP. Esta entrada explora esos estados, desde el establecimiento hasta la terminación de una conexión.&lt;/p&gt;
+&lt;h2 id="fases-de-una-conexion-tcp"&gt;Fases de una Conexión TCP&lt;a class="headerlink" href="#fases-de-una-conexion-tcp" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Una conexión TCP se gestiona a través de tres fases principales:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Establecimiento de la Conexión&lt;/strong&gt;: Un proceso de reconocimiento (handshake) de varios pasos que inicia la conexión.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Transferencia de Datos&lt;/strong&gt;: Una vez establecida, los datos se envían entre los dos puntos finales.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Terminación de la Conexión&lt;/strong&gt;: Cierra la conexión y libera los recursos asociados.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Durante estas fases, el socket de Internet (el punto final local de la comunicación) experimenta una serie de cambios de estado.&lt;/p&gt;
+&lt;h2 id="estados-del-socket-tcp-explicados"&gt;Estados del Socket TCP Explicados&lt;a class="headerlink" href="#estados-del-socket-tcp-explicados" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Aquí se detallan los estados más comunes que puedes encontrar al listar conexiones con &lt;code&gt;netstat&lt;/code&gt; o &lt;code&gt;ss&lt;/code&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;ESTABLISHED&lt;/strong&gt;: La conexión TCP está establecida y lista para transferir datos. Este es el estado deseado para una conexión activa.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;SYN_SENT&lt;/strong&gt;: El socket local ha enviado un paquete SYN al servidor remoto y está esperando una respuesta SYN-ACK. Indica que se está intentando establecer una conexión.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;SYN_RECV&lt;/strong&gt;: El servidor ha recibido un paquete SYN de un cliente y ha respondido con un SYN-ACK, esperando ahora un ACK del cliente. Es parte del handshake de tres vías.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;FIN_WAIT1&lt;/strong&gt;: El socket local ha cerrado su lado de la conexión y ha enviado un paquete FIN, esperando un ACK del par remoto. La conexión se está cerrando activamente.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;FIN_WAIT2&lt;/strong&gt;: El socket local ha recibido el ACK a su FIN, pero aún está esperando un paquete FIN del par remoto para cerrar completamente la conexión.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;TIME_WAIT&lt;/strong&gt;: El socket ha esperado después de cerrar la conexión para asegurarse de que todos los paquetes han sido transmitidos y recibidos por ambos lados, y para permitir que los paquetes duplicados se extingan en la red. Es un estado de espera necesario antes de liberar completamente los recursos.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;CLOSE&lt;/strong&gt;: El socket no está en uso y no hay conexión.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;CLOSE_WAIT&lt;/strong&gt;: El par remoto ha cerrado su lado de la conexión (ha enviado un FIN y ha sido ACKed), y el socket local está esperando que la aplicación local cierre su propio lado.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;LAST_ACK&lt;/strong&gt;: El socket local ha enviado su FIN al par remoto, y está esperando el ACK final del par remoto. Esto sucede después de un &lt;code&gt;CLOSE_WAIT&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;LISTEN&lt;/strong&gt;: El socket está a la espera de conexiones entrantes. Solo se ve con las opciones &lt;code&gt;--listening (-l)&lt;/code&gt; o &lt;code&gt;--all (-a)&lt;/code&gt; de &lt;code&gt;netstat&lt;/code&gt;/&lt;code&gt;ss&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;CLOSING&lt;/strong&gt;: Ambos lados de la conexión han intentado cerrarse simultáneamente, y el socket local está en el proceso de enviar/recibir FIN y ACK.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;UNKNOWN&lt;/strong&gt;: El estado del socket es desconocido o no se puede determinar.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="herramientas-netstat-y-ss"&gt;Herramientas: &lt;code&gt;netstat&lt;/code&gt; y &lt;code&gt;ss&lt;/code&gt;&lt;a class="headerlink" href="#herramientas-netstat-y-ss" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Puedes ver estos estados utilizando comandos como:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;netstat&lt;span class="w"&gt; &lt;/span&gt;-tn&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="c1"&gt;# Muestra conexiones TCP, sin resolución de nombres (-n)&lt;/span&gt;
+ss&lt;span class="w"&gt; &lt;/span&gt;-tn&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="c1"&gt;# Versión moderna y más rápida de netstat&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;La opción &lt;code&gt;-t&lt;/code&gt; filtra para conexiones TCP y &lt;code&gt;-n&lt;/code&gt; evita la resolución de nombres, lo que acelera la salida y muestra las IPs directamente.&lt;/p&gt;
+&lt;h2 id="conclusion"&gt;Conclusión&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Entender los estados de conexión TCP es vital para diagnosticar problemas de red, identificar procesos que no responden o que están atascados, y comprender cómo se comportan las aplicaciones en términos de conectividad. Saber qué significa cada estado te permite depurar problemas de forma más efectiva en tu sistema GNU/Linux.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Artículo original&lt;/em&gt;: &lt;a href="https://www.ochobitshacenunbyte.com/2020/11/07/tipos-de-conexiones-en-netstat-y-ss-explicadas/"&gt;Tipos de Conexiones en netstat y ss Explicadas&lt;/a&gt;&lt;/p&gt;</content><category term="Infraestructura"></category><category term="linux"></category><category term="tcp"></category><category term="netstat"></category><category term="ss"></category></entry><entry><title>Kitty como terminal de acceso rápido: La comodidad de un desplegable</title><link href="https://pablocaro.es/kitty-acceso-rapido" rel="alternate"></link><published>2025-12-25T12:30:00+01:00</published><updated>2025-12-25T12:30:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2025-12-25:/kitty-acceso-rapido</id><summary type="html">&lt;p&gt;Configura Kitty para un acceso instantáneo y eficiente, combinando la potencia de un terminal moderno con la conveniencia de un desplegable.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Una de las características más apreciadas de terminales como Yakuake o Guake es su capacidad para aparecer y desaparecer instantáneamente con una sola pulsación de tecla, ofreciendo un acceso rápido sin interrumpir el flujo de trabajo. &lt;strong&gt;Kitty&lt;/strong&gt;, el terminal acelerado por GPU, también puede replicar y mejorar esta experiencia, combinando su potencia con la comodidad de un terminal desplegable.&lt;/p&gt;
+&lt;h2 id="el-concepto-del-terminal-desplegable"&gt;El Concepto del Terminal Desplegable&lt;a class="headerlink" href="#el-concepto-del-terminal-desplegable" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;La idea es simple: un terminal que reside en segundo plano y se muestra u oculta a demanda. Esto es especialmente útil para comandos rápidos, monitoreo o cualquier tarea que requiera una interacción breve con la línea de comandos.&lt;/p&gt;
+&lt;h2 id="kitty-para-acceso-rapido"&gt;Kitty para Acceso Rápido&lt;a class="headerlink" href="#kitty-para-acceso-rapido" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Kitty no tiene una función de "desplegable" nativa como Yakuake, pero su flexibilidad y capacidades de scripting permiten configurarlo para este propósito. La clave reside en:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Instancias de Kitty dedicadas:&lt;/strong&gt; Puedes lanzar una instancia de Kitty en un "daemon" o en segundo plano, lista para ser activada.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Control remoto:&lt;/strong&gt; Kitty ofrece un protocolo de control remoto (&lt;code&gt;kitty @&lt;/code&gt;) que permite interactuar con instancias ya abiertas.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Gestor de ventanas:&lt;/strong&gt; Usar las reglas de tu gestor de ventanas (KDE, Gnome, i3, Sway, etc.) para asignar una tecla de acceso rápido que muestre u oculte la ventana de Kitty.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id="configuracion-de-ejemplo"&gt;Configuración de Ejemplo&lt;a class="headerlink" href="#configuracion-de-ejemplo" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Aquí tienes un enfoque conceptual para lograr un terminal de acceso rápido con Kitty y un gestor de ventanas (por ejemplo, con &lt;code&gt;xdotool&lt;/code&gt; para entornos Xorg, o funciones similares en Wayland):&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Lanzar Kitty en segundo plano:&lt;/strong&gt;
+    Puedes tener una instancia de Kitty que se inicie automáticamente con tu sesión y que esté configurada para ser "flotante" y con un tamaño específico.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Script de alternancia (toggle):&lt;/strong&gt;
+    Crear un pequeño script que compruebe si la ventana de Kitty "siempre visible" está activa y, si lo está, la oculte; si no lo está, la muestre.&lt;/p&gt;
+&lt;p&gt;```bash&lt;/p&gt;
+&lt;h1 id="binbash"&gt;!/bin/bash&lt;a class="headerlink" href="#binbash" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;KITTY_CLASS="kitty-dropdown" # Una clase personalizada para la ventana de Kitty
+KITTY_ID=$(xdotool search --class "$KITTY_CLASS" | head -n 1)&lt;/p&gt;
+&lt;p&gt;if [ -z "$KITTY_ID" ]; then
+    # Si no existe, lanzarla
+    kitty --class "$KITTY_CLASS" &amp;amp;
+else
+    # Si existe, alternar visibilidad
+    if xdotool getwindowfocus getwindowpid | grep -q "$(xdotool getwindowpid "$KITTY_ID")"; then
+        xdotool windowminimize "$KITTY_ID"
+    else
+        xdotool windowmap "$KITTY_ID" # Mostrar la ventana
+        xdotool windowraise "$KITTY_ID" # Asegurarse de que esté al frente
+        xdotool windowfocus "$KITTY_ID" # Darle el foco
+    fi
+fi
+```&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Atajo de teclado en tu gestor de ventanas:&lt;/strong&gt;
+    Asigna una tecla global (por ejemplo, &lt;code&gt;F12&lt;/code&gt;) para ejecutar este script.&lt;/p&gt;
+&lt;p&gt;```&lt;/p&gt;
+&lt;h1 id="ejemplo-en-configi3config-o-similar"&gt;Ejemplo en ~/.config/i3/config o similar&lt;a class="headerlink" href="#ejemplo-en-configi3config-o-similar" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;bindsym $mod+F12 exec --no-startup-id /path/to/your/toggle-kitty-dropdown.sh
+```&lt;/p&gt;
+&lt;p&gt;Y en tu &lt;code&gt;kitty.conf&lt;/code&gt;, puedes configurar la instancia de Kitty para que tenga la clase específica y una posición/tamaño adecuados:&lt;/p&gt;
+&lt;p&gt;```&lt;/p&gt;
+&lt;h1 id="kittyconf-configuracion-para-la-instancia-dropdown"&gt;kitty.conf (configuración para la instancia dropdown)&lt;a class="headerlink" href="#kittyconf-configuracion-para-la-instancia-dropdown" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;window_class_members kitty-dropdown
+initial_window_width 80%
+initial_window_height 40%
+window_border_width 0&lt;/p&gt;
+&lt;h1 id="otras-configuraciones-de-apariencia"&gt;... otras configuraciones de apariencia ...&lt;a class="headerlink" href="#otras-configuraciones-de-apariencia" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;```&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Este método te proporciona la rapidez y comodidad de un terminal desplegable, pero con toda la potencia y personalización que Kitty ofrece. ¡Es lo mejor de ambos mundos!&lt;/p&gt;</content><category term="Infraestructura"></category><category term="kitty"></category><category term="terminal"></category><category term="acceso-rapido"></category><category term="productividad"></category><category term="linux"></category><category term="atajos"></category></entry><entry><title>Atajos de teclado esenciales en Kitty: Dominando tu terminal</title><link href="https://pablocaro.es/atajos-de-teclado-kitty" rel="alternate"></link><published>2025-12-25T12:15:00+01:00</published><updated>2025-12-25T12:15:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2025-12-25:/atajos-de-teclado-kitty</id><summary type="html">&lt;p&gt;Una guía rápida a los atajos de teclado más útiles de Kitty para optimizar tu flujo de trabajo en la línea de comandos.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;strong&gt;Kitty&lt;/strong&gt; es un terminal que brilla por su rendimiento y su gran capacidad de personalización, pero donde realmente se potencia es en su interfaz controlada por teclado. Dominar sus atajos te permitirá navegar, gestionar y manipular tus sesiones de terminal con una eficiencia asombrosa.&lt;/p&gt;
+&lt;h2 id="descubre-tus-atajos-show_shortcuts"&gt;Descubre tus atajos: &lt;code&gt;show_shortcuts&lt;/code&gt;&lt;a class="headerlink" href="#descubre-tus-atajos-show_shortcuts" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;La forma más rápida de conocer todos los atajos de teclado configurados en tu instancia de Kitty es usando su propia funcionalidad:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;kitty&lt;span class="w"&gt; &lt;/span&gt;+kitten&lt;span class="w"&gt; &lt;/span&gt;show_shortcuts
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Esto abrirá una ventana interactiva donde podrás ver todos los atajos, tanto los predeterminados como los personalizados en tu &lt;code&gt;kitty.conf&lt;/code&gt;.&lt;/p&gt;
+&lt;h2 id="atajos-esenciales-para-el-dia-a-dia"&gt;Atajos Esenciales para el Día a Día&lt;a class="headerlink" href="#atajos-esenciales-para-el-dia-a-dia" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Aquí te presento algunos de los atajos más útiles y que más te ayudarán a optimizar tu flujo de trabajo:&lt;/p&gt;
+&lt;h3 id="gestion-de-ventanas-y-splits-paneles"&gt;Gestión de Ventanas y Splits (Paneles)&lt;a class="headerlink" href="#gestion-de-ventanas-y-splits-paneles" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+enter&lt;/code&gt;: Abre una nueva ventana de Kitty.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+w&lt;/code&gt;: Cierra la ventana actual de Kitty.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+o&lt;/code&gt;: Divide la ventana actual verticalmente (nuevo panel a la derecha).&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+e&lt;/code&gt;: Divide la ventana actual horizontalmente (nuevo panel abajo).&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+f&lt;/code&gt;: Alterna entre paneles divididos (focus).&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+[&lt;/code&gt; / &lt;code&gt;ctrl+shift+]&lt;/code&gt;: Navega entre paneles (izquierda/derecha).&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+alt+[&lt;/code&gt; / &lt;code&gt;ctrl+shift+alt+]&lt;/code&gt;: Mueve el panel activo (izquierda/derecha).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="gestion-de-pestanas"&gt;Gestión de Pestañas&lt;a class="headerlink" href="#gestion-de-pestanas" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+t&lt;/code&gt;: Abre una nueva pestaña.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+q&lt;/code&gt;: Cierra la pestaña actual.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+.&lt;/code&gt;: Mueve a la siguiente pestaña.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+,&lt;/code&gt;: Mueve a la pestaña anterior.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+alt+.&lt;/code&gt;: Mueve la pestaña actual a la derecha.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+alt+,&lt;/code&gt;: Mueve la pestaña actual a la izquierda.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="copiar-y-pegar"&gt;Copiar y Pegar&lt;a class="headerlink" href="#copiar-y-pegar" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Kitty tiene su propia implementación de copiar/pegar, que puede ser más fiable que la del sistema cuando trabajas en entornos remotos o con multiplexores:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+c&lt;/code&gt;: Copia el texto seleccionado al portapapeles del sistema.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+v&lt;/code&gt;: Pega el texto del portapapeles del sistema.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="control-de-fuentes-y-apariencia"&gt;Control de Fuentes y Apariencia&lt;a class="headerlink" href="#control-de-fuentes-y-apariencia" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+=&lt;/code&gt; (o &lt;code&gt;+&lt;/code&gt;): Aumenta el tamaño de la fuente.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+-&lt;/code&gt;: Disminuye el tamaño de la fuente.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+backspace&lt;/code&gt;: Restablece el tamaño de la fuente al valor predeterminado.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+k&lt;/code&gt;: Entra en modo "scrollback" (para buscar o seleccionar texto histórico).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="personalizando-tus-atajos-en-kittyconf"&gt;Personalizando tus Atajos en &lt;code&gt;kitty.conf&lt;/code&gt;&lt;a class="headerlink" href="#personalizando-tus-atajos-en-kittyconf" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Puedes añadir o modificar atajos de teclado en tu archivo de configuración &lt;code&gt;~/.config/kitty/kitty.conf&lt;/code&gt; usando la directiva &lt;code&gt;map&lt;/code&gt;. Por ejemplo, para mapear &lt;code&gt;F1&lt;/code&gt; para un script personalizado:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nx"&gt;map&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;f1&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;launch&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="k"&gt;type&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;&lt;span class="nx"&gt;overlay&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;bash&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nx"&gt;c&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;my_custom_script.sh&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Dominar estos atajos transformará tu interacción con la terminal, haciéndola más fluida e intuitiva. ¡Experimenta y personaliza Kitty para que se adapte perfectamente a tu estilo de trabajo!&lt;/p&gt;</content><category term="Infraestructura"></category><category term="kitty"></category><category term="terminal"></category><category term="atajos"></category><category term="teclado"></category><category term="productividad"></category></entry><entry><title>De Yakuake a Kitty: Mi transición a un terminal moderno</title><link href="https://pablocaro.es/de-yakuake-a-kitty" rel="alternate"></link><published>2025-12-25T12:00:00+01:00</published><updated>2025-12-25T12:00:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2025-12-25:/de-yakuake-a-kitty</id><summary type="html">&lt;p&gt;Explorando las razones y beneficios de cambiar de Yakuake a Kitty para una experiencia de terminal más potente y personalizable.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Durante años, &lt;strong&gt;Yakuake&lt;/strong&gt; ha sido mi terminal de cabecera en entornos de escritorio KDE. Su comodidad de acceso rápido, desplegándose y ocultándose con una simple pulsación de tecla, es innegable. Sin embargo, en mi búsqueda constante de optimización y rendimiento, decidí explorar alternativas, y &lt;strong&gt;Kitty&lt;/strong&gt; emergió como una opción destacada.&lt;/p&gt;
+&lt;h2 id="por-que-el-cambio"&gt;¿Por qué el cambio?&lt;a class="headerlink" href="#por-que-el-cambio" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Aunque Yakuake es excelente en su nicho, Kitty ofrece una serie de ventajas que se alinean mejor con las demandas de un flujo de trabajo moderno y exigente:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Rendimiento Acelerado por GPU&lt;/strong&gt;: Kitty está diseñado para aprovechar la tarjeta gráfica, lo que resulta en un renderizado de texto extremadamente rápido y fluido, especialmente noticeable en terminales con mucho scroll o salida de datos intensa.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Multiplexación Integrada&lt;/strong&gt;: A diferencia de Yakuake, que se basa en sesiones de pestañas/ventanas tradicionales, Kitty incorpora su propio sistema de multiplexación (similar a &lt;code&gt;tmux&lt;/code&gt; o &lt;code&gt;screen&lt;/code&gt;) que permite dividir ventanas, crear pestañas y organizar paneles de forma nativa y eficiente.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Configurabilidad Extensa&lt;/strong&gt;: &lt;code&gt;kitty.conf&lt;/code&gt; permite una personalización profunda, desde atajos de teclado hasta la apariencia, temas y comportamiento.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Soporte Moderno&lt;/strong&gt;: Excelente soporte para Wayland (el futuro de Linux en el escritorio), ligaduras de fuentes (como las de Fira Code), y un ecosistema de "kittens" (scripts y funcionalidades extendidas).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Cross-platform&lt;/strong&gt;: Aunque mi uso principal es en Linux, la capacidad de tener una experiencia de terminal consistente en diferentes sistemas operativos es un plus.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="adaptandose-a-kitty"&gt;Adaptándose a Kitty&lt;a class="headerlink" href="#adaptandose-a-kitty" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;La transición requirió ajustar algunas costumbres, principalmente la forma de gestionar las sesiones y el acceso rápido. Sin embargo, las ventajas superan con creces la curva de aprendizaje inicial. La velocidad, la fluidez y la potencia de las características integradas de Kitty lo convierten en una herramienta indispensable para mi día a día.&lt;/p&gt;
+&lt;p&gt;Configurar Kitty es un proceso sencillo a través de su archivo &lt;code&gt;kitty.conf&lt;/code&gt;, donde se definen todos los aspectos del terminal. Exploraremos más sobre su configuración y atajos de teclado en próximas entradas.&lt;/p&gt;
+&lt;p&gt;Si buscas llevar tu experiencia de terminal al siguiente nivel, la migración a Kitty es un paso que recomiendo encarecidamente.&lt;/p&gt;</content><category term="Infraestructura"></category><category term="kitty"></category><category term="yakuake"></category><category term="terminal"></category><category term="linux"></category><category term="productividad"></category><category term="herramientas"></category></entry><entry><title>Cómo encontrar hosts vivos en tu red local</title><link href="https://pablocaro.es/encontrar-hosts-vivos-red" rel="alternate"></link><published>2016-06-27T07:59:00+02:00</published><updated>2016-06-27T07:59:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2016-06-27:/encontrar-hosts-vivos-red</id><summary type="html">&lt;p&gt;Métodos y herramientas para descubrir dispositivos activos en redes locales usando nmap, arp-scan, netdiscover y otras técnicas de reconocimiento&lt;/p&gt;</summary><content type="html">&lt;p&gt;Descubrir &lt;strong&gt;qué dispositivos están activos&lt;/strong&gt; en tu red local es una tarea fundamental para administradores de red y profesionales de seguridad. Estas son las técnicas más efectivas.&lt;/p&gt;
+&lt;h2 id="nmap-la-herramienta-principal"&gt;Nmap: La herramienta principal&lt;a class="headerlink" href="#nmap-la-herramienta-principal" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="escaneo-basico-de-hosts"&gt;Escaneo básico de hosts&lt;a class="headerlink" href="#escaneo-basico-de-hosts" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Ping scan simple&lt;/span&gt;
+nmap&lt;span class="w"&gt; &lt;/span&gt;-sn&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;192&lt;/span&gt;.168.1.1/24
+
+&lt;span class="c1"&gt;# Escaneo con puertos TCP específicos&lt;/span&gt;
+nmap&lt;span class="w"&gt; &lt;/span&gt;-sP&lt;span class="w"&gt; &lt;/span&gt;-PS22,3389&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;192&lt;/span&gt;.168.1.1/24
+
+&lt;span class="c1"&gt;# Escaneo UDP para dispositivos especiales&lt;/span&gt;
+nmap&lt;span class="w"&gt; &lt;/span&gt;-sP&lt;span class="w"&gt; &lt;/span&gt;-PU161&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;192&lt;/span&gt;.168.1.1/24
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;-sn&lt;/strong&gt;: Solo descubrimiento de hosts, sin escaneo de puertos&lt;br&gt;
+&lt;strong&gt;-PS&lt;/strong&gt;: TCP SYN discovery en puertos específicos&lt;br&gt;
+&lt;strong&gt;-PU&lt;/strong&gt;: UDP discovery (útil para dispositivos embebidos)&lt;/p&gt;
+&lt;h3 id="escaneos-mas-exhaustivos"&gt;Escaneos más exhaustivos&lt;a class="headerlink" href="#escaneos-mas-exhaustivos" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Escaneo completo con detección de OS&lt;/span&gt;
+nmap&lt;span class="w"&gt; &lt;/span&gt;-A&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;192&lt;/span&gt;.168.1.1/24
+
+&lt;span class="c1"&gt;# Escaneo TCP Connect (menos intrusivo)&lt;/span&gt;
+nmap&lt;span class="w"&gt; &lt;/span&gt;-sT&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;192&lt;/span&gt;.168.1.1/24
+
+&lt;span class="c1"&gt;# Bypass de firewall con fragmentación&lt;/span&gt;
+nmap&lt;span class="w"&gt; &lt;/span&gt;-f&lt;span class="w"&gt; &lt;/span&gt;-sS&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;192&lt;/span&gt;.168.1.1/24
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="herramientas-alternativas"&gt;Herramientas alternativas&lt;a class="headerlink" href="#herramientas-alternativas" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="arp-scan-basado-en-arp"&gt;arp-scan: Basado en ARP&lt;a class="headerlink" href="#arp-scan-basado-en-arp" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Escaneo de subred local&lt;/span&gt;
+arp-scan&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;192&lt;/span&gt;.168.12.0/24
+
+&lt;span class="c1"&gt;# Con interfaz específica&lt;/span&gt;
+arp-scan&lt;span class="w"&gt; &lt;/span&gt;-I&lt;span class="w"&gt; &lt;/span&gt;eth0&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;172&lt;/span&gt;.16.17.0/24
+
+&lt;span class="c1"&gt;# Scan local simplificado&lt;/span&gt;
+arp-scan&lt;span class="w"&gt; &lt;/span&gt;-l
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Ventaja&lt;/strong&gt;: Funciona incluso con firewalls estrictos&lt;/p&gt;
+&lt;h3 id="netdiscover-descubrimiento-pasivoactivo"&gt;netdiscover: Descubrimiento pasivo/activo&lt;a class="headerlink" href="#netdiscover-descubrimiento-pasivoactivo" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Descubrimiento activo&lt;/span&gt;
+netdiscover&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;172&lt;/span&gt;.16.17.0/24
+
+&lt;span class="c1"&gt;# Modo pasivo (solo escucha)&lt;/span&gt;
+netdiscover&lt;span class="w"&gt; &lt;/span&gt;-p
+
+&lt;span class="c1"&gt;# Fast mode&lt;/span&gt;
+netdiscover&lt;span class="w"&gt; &lt;/span&gt;-f&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;192&lt;/span&gt;.168.1.0/24
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id="fing-scanner-movil"&gt;fing: Scanner móvil&lt;a class="headerlink" href="#fing-scanner-movil" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Escaneo rápido&lt;/span&gt;
+fing&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Con detalles del fabricante&lt;/span&gt;
+fing&lt;span class="w"&gt; &lt;/span&gt;-o&lt;span class="w"&gt; &lt;/span&gt;table,csv
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="verificacion-post-escaneo"&gt;Verificación post-escaneo&lt;a class="headerlink" href="#verificacion-post-escaneo" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="revisar-tabla-arp"&gt;Revisar tabla ARP&lt;a class="headerlink" href="#revisar-tabla-arp" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Ver tabla ARP actual&lt;/span&gt;
+arp&lt;span class="w"&gt; &lt;/span&gt;-a&lt;span class="w"&gt; &lt;/span&gt;-n
+
+&lt;span class="c1"&gt;# En sistemas modernos&lt;/span&gt;
+ip&lt;span class="w"&gt; &lt;/span&gt;neigh&lt;span class="w"&gt; &lt;/span&gt;show
+
+&lt;span class="c1"&gt;# Limpiar y reescanear&lt;/span&gt;
+sudo&lt;span class="w"&gt; &lt;/span&gt;arp&lt;span class="w"&gt; &lt;/span&gt;-d&lt;span class="w"&gt; &lt;/span&gt;-a
+ping&lt;span class="w"&gt; &lt;/span&gt;-c&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;192&lt;/span&gt;.168.1.&lt;span class="o"&gt;{&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;..254&lt;span class="o"&gt;}&lt;/span&gt;
+arp&lt;span class="w"&gt; &lt;/span&gt;-a
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="tecnicas-avanzadas"&gt;Técnicas avanzadas&lt;a class="headerlink" href="#tecnicas-avanzadas" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="wireshark-para-analisis-pasivo"&gt;Wireshark para análisis pasivo&lt;a class="headerlink" href="#wireshark-para-analisis-pasivo" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;Capturar tráfico en la interfaz de red&lt;/li&gt;
+&lt;li&gt;Filtrar por ARP: &lt;code&gt;arp&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Analizar broadcast traffic&lt;/li&gt;
+&lt;li&gt;Identificar dispositivos por patrones de tráfico&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id="scripts-de-automatizacion"&gt;Scripts de automatización&lt;a class="headerlink" href="#scripts-de-automatizacion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="ch"&gt;#!/bin/bash&lt;/span&gt;
+&lt;span class="c1"&gt;# Scan completo de red local&lt;/span&gt;
+&lt;span class="nb"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Escaneando red...&amp;quot;&lt;/span&gt;
+nmap&lt;span class="w"&gt; &lt;/span&gt;-sn&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;ip&lt;span class="w"&gt; &lt;/span&gt;route&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;grep&lt;span class="w"&gt; &lt;/span&gt;-E&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;^192|^10|^172&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;awk&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;{print $1}&amp;#39;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;head&lt;span class="w"&gt; &lt;/span&gt;-1&lt;span class="k"&gt;)&lt;/span&gt;
+&lt;span class="nb"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Verificando ARP...&amp;quot;&lt;/span&gt;
+arp&lt;span class="w"&gt; &lt;/span&gt;-a&lt;span class="w"&gt; &lt;/span&gt;-n&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;grep&lt;span class="w"&gt; &lt;/span&gt;-v&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;incomplete&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="consideraciones-importantes"&gt;Consideraciones importantes&lt;a class="headerlink" href="#consideraciones-importantes" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="limitaciones-por-firewall"&gt;Limitaciones por firewall&lt;a class="headerlink" href="#limitaciones-por-firewall" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Algunos dispositivos&lt;/strong&gt; bloquean ping/ICMP&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Firewalls corporativos&lt;/strong&gt; pueden filtrar escaneos&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Diferentes puertos&lt;/strong&gt; pueden revelar dispositivos "ocultos"&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="consideraciones-legales"&gt;Consideraciones legales&lt;a class="headerlink" href="#consideraciones-legales" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;⚠️ &lt;strong&gt;Autorización necesaria&lt;/strong&gt;: Solo escanea redes propias&lt;br&gt;
+⚠️ &lt;strong&gt;Políticas corporativas&lt;/strong&gt;: Verifica antes de escanear en entornos empresariales&lt;/p&gt;
+&lt;h3 id="optimizacion-por-tipo-de-red"&gt;Optimización por tipo de red&lt;a class="headerlink" href="#optimizacion-por-tipo-de-red" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Red doméstica (routers, IoT)&lt;/span&gt;
+nmap&lt;span class="w"&gt; &lt;/span&gt;-sn&lt;span class="w"&gt; &lt;/span&gt;--min-rate&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;1000&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;192&lt;/span&gt;.168.1.1/24
+
+&lt;span class="c1"&gt;# Red corporativa (servidores, estaciones)&lt;/span&gt;
+nmap&lt;span class="w"&gt; &lt;/span&gt;-sP&lt;span class="w"&gt; &lt;/span&gt;-PS80,443,22,3389&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;10&lt;/span&gt;.0.0.0/8
+
+&lt;span class="c1"&gt;# Red industrial (dispositivos embebidos)&lt;/span&gt;
+nmap&lt;span class="w"&gt; &lt;/span&gt;-sP&lt;span class="w"&gt; &lt;/span&gt;-PU161,502&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;172&lt;/span&gt;.16.0.0/12
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;La &lt;strong&gt;combinación de múltiples técnicas&lt;/strong&gt; proporciona el panorama más completo de dispositivos activos en tu red.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Fuente original&lt;/em&gt;: &lt;a href="http://security.stackexchange.com/questions/36198/how-to-find-live-hosts-on-my-network"&gt;Information Security Stack Exchange&lt;/a&gt;&lt;/p&gt;</content><category term="Infraestructura"></category><category term="nmap"></category><category term="network-discovery"></category><category term="arp-scan"></category><category term="netdiscover"></category></entry><entry><title>Botón central en firefox</title><link href="https://pablocaro.es/boton_central_firefox" rel="alternate"></link><published>2016-01-01T07:00:00+01:00</published><updated>2016-01-01T07:00:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2016-01-01:/boton_central_firefox</id><summary type="html">&lt;p class="first last"&gt;Que firefox deje de abrir la url pegada con el botón central del ratón&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;Otra nota recordatoria.
+Habitualmente abro los enlaces en nueva ventana en firefox usando el botón central.
+Me ocurre a menudo que tengo una url en el clipboard y firefox entonces me la abre en lugar del enlace.
+Para evitarlo, simplemente  &lt;code&gt;about:config&lt;/code&gt; y establecer la propiedad &lt;code&gt;middlemouse.contentLoadURL&lt;/code&gt; a false.&lt;/p&gt;
+</content><category term="Infraestructura"></category><category term="linux"></category></entry><entry><title>La historia detrás de X-Forwarded-For y X-Real-IP</title><link href="https://pablocaro.es/historia-x-forwarded-for-x-real-ip" rel="alternate"></link><published>2015-10-21T23:05:00+02:00</published><updated>2015-10-21T23:05:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2015-10-21:/historia-x-forwarded-for-x-real-ip</id><summary type="html">&lt;p&gt;Análisis de los headers X-Forwarded-For y X-Real-IP, sus orígenes, diferencias y cómo determinar la IP real del cliente en arquitecturas con múltiples proxies&lt;/p&gt;</summary><content type="html">&lt;p&gt;Determinar la &lt;strong&gt;IP real del cliente&lt;/strong&gt; en arquitecturas con proxies es más complejo de lo que parece. Los headers &lt;code&gt;X-Forwarded-For&lt;/code&gt; y &lt;code&gt;X-Real-IP&lt;/code&gt; tienen diferentes propósitos y limitaciones.&lt;/p&gt;
+&lt;h2 id="x-forwarded-for-la-cadena-completa"&gt;X-Forwarded-For: La cadena completa&lt;a class="headerlink" href="#x-forwarded-for-la-cadena-completa" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="formato-y-proposito"&gt;Formato y propósito&lt;a class="headerlink" href="#formato-y-proposito" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nv"&gt;X&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;Forwarded&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="k"&gt;For&lt;/span&gt;:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;client&lt;/span&gt;,&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;proxy1&lt;/span&gt;,&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;proxy2&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Rastrea la IP original&lt;/strong&gt; del cliente a través de múltiples saltos&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Acumula IPs&lt;/strong&gt; conforme pasa por proxies&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;No es obligatorio&lt;/strong&gt; para todos los proxies&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="limitaciones-criticas"&gt;Limitaciones críticas&lt;a class="headerlink" href="#limitaciones-criticas" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;⚠️ &lt;strong&gt;Fácilmente falsificable&lt;/strong&gt;: Un cliente puede añadir IPs falsas&lt;br&gt;
+⚠️ &lt;strong&gt;Potencialmente no confiable&lt;/strong&gt; para determinar la IP real&lt;/p&gt;
+&lt;h2 id="x-real-ip-el-enfoque-directo"&gt;X-Real-IP: El enfoque directo&lt;a class="headerlink" href="#x-real-ip-el-enfoque-directo" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="caracteristicas"&gt;Características&lt;a class="headerlink" href="#caracteristicas" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Menos documentación&lt;/strong&gt; oficial disponible&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Comúnmente usado&lt;/strong&gt; junto con X-Forwarded-For&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Enfoque más simple&lt;/strong&gt; para pasar la IP del cliente&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="limitacion"&gt;Limitación&lt;a class="headerlink" href="#limitacion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;"Not many good info or specs about this one" - No hay estándares definitivos&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id="configuracion-nginx-recomendada"&gt;Configuración Nginx recomendada&lt;a class="headerlink" href="#configuracion-nginx-recomendada" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Para extraer la IP más precisa:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Configurar proxies conocidos&lt;/span&gt;
+&lt;span class="k"&gt;set_real_ip_from&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="s"&gt;.0.0.0/8&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="k"&gt;set_real_ip_from&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;172&lt;/span&gt;&lt;span class="s"&gt;.16.0.0/12&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="k"&gt;set_real_ip_from&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;192&lt;/span&gt;&lt;span class="s"&gt;.168.0.0/16&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Activar procesamiento recursivo&lt;/span&gt;
+&lt;span class="k"&gt;real_ip_recursive&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="no"&gt;on&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Usar X-Forwarded-For como fuente&lt;/span&gt;
+&lt;span class="k"&gt;real_ip_header&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;X-Forwarded-For&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="el-desafio-real"&gt;El desafío real&lt;a class="headerlink" href="#el-desafio-real" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Determinar la IP "real" del cliente es inherentemente complejo&lt;/strong&gt; debido a:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Múltiples saltos de red&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Proxies no cooperativos&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Potencial spoofing de IP&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Lack de estándares uniformes&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="buenas-practicas"&gt;Buenas prácticas&lt;a class="headerlink" href="#buenas-practicas" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Validar fuentes confiables&lt;/strong&gt; de headers&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Configurar correctamente&lt;/strong&gt; proxies conocidos&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;No confiar ciegamente&lt;/strong&gt; en headers de cliente&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Implementar logging&lt;/strong&gt; para debugging&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;La &lt;strong&gt;confiabilidad real&lt;/strong&gt; depende más de tu arquitectura de red que de los headers específicos utilizados.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Fuente original&lt;/em&gt;: &lt;a href="http://distinctplace.com/infrastructure/2014/04/23/story-behind-x-forwarded-for-and-x-real-ip-headers/"&gt;Distinct Place&lt;/a&gt;&lt;/p&gt;</content><category term="Infraestructura"></category><category term="headers"></category><category term="x-forwarded-for"></category><category term="x-real-ip"></category><category term="proxy"></category><category term="nginx"></category></entry><entry><title>Nginx: Configurar X-Forwarded-For en reverse proxy</title><link href="https://pablocaro.es/nginx-x-forwarded-for-reverse-proxy" rel="alternate"></link><published>2015-10-21T23:05:00+02:00</published><updated>2015-10-21T23:05:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2015-10-21:/nginx-x-forwarded-for-reverse-proxy</id><summary type="html">&lt;p&gt;Cómo configurar Nginx para pasar la IP real del cliente a servidores backend usando el header X-Forwarded-For en configuraciones de reverse proxy&lt;/p&gt;</summary><content type="html">&lt;p&gt;Cuando usas &lt;strong&gt;Nginx como reverse proxy&lt;/strong&gt;, necesitas que el servidor backend vea la &lt;strong&gt;IP real del cliente&lt;/strong&gt;, no la IP del proxy. El header &lt;code&gt;X-Forwarded-For&lt;/code&gt; resuelve este problema.&lt;/p&gt;
+&lt;h2 id="el-problema"&gt;El problema&lt;a class="headerlink" href="#el-problema" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Sin configuración, el servidor backend solo ve la IP del proxy Nginx, perdiendo información crucial sobre el cliente real para:
+- &lt;strong&gt;Logs de acceso&lt;/strong&gt; precisos
+- &lt;strong&gt;Geolocalización&lt;/strong&gt; correcta&lt;br&gt;
+- &lt;strong&gt;Rate limiting&lt;/strong&gt; por IP real
+- &lt;strong&gt;Análisis de tráfico&lt;/strong&gt; fidedignos&lt;/p&gt;
+&lt;h2 id="solucion-1-ip-simple"&gt;Solución 1: IP simple&lt;a class="headerlink" href="#solucion-1-ip-simple" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;proxy_set_header&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;X-Forwarded-For&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;$remote_addr&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Uso&lt;/strong&gt;: Cuando Nginx es el único proxy en la cadena.&lt;br&gt;
+&lt;strong&gt;Resultado&lt;/strong&gt;: Header contiene solo la IP del cliente original.&lt;/p&gt;
+&lt;h2 id="solucion-2-cadena-de-ips"&gt;Solución 2: Cadena de IPs&lt;a class="headerlink" href="#solucion-2-cadena-de-ips" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;proxy_set_header&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;X-Forwarded-For&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;$proxy_add_x_forwarded_for&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Uso&lt;/strong&gt;: Cuando hay múltiples proxies en la cadena.&lt;br&gt;
+&lt;strong&gt;Resultado&lt;/strong&gt;: Conserva IPs existentes y añade la actual.&lt;/p&gt;
+&lt;h2 id="configuracion-practica"&gt;Configuración práctica&lt;a class="headerlink" href="#configuracion-practica" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;server&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="kn"&gt;listen&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;80&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="kn"&gt;server_name&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;example.com&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="kn"&gt;location&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;/&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="kn"&gt;proxy_pass&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;http://backend-server&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="kn"&gt;proxy_set_header&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;Host&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;$host&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="kn"&gt;proxy_set_header&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;X-Real-IP&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;$remote_addr&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="kn"&gt;proxy_set_header&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;X-Forwarded-For&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;$proxy_add_x_forwarded_for&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="kn"&gt;proxy_set_header&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;X-Forwarded-Proto&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;$scheme&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="headers-relacionados"&gt;Headers relacionados&lt;a class="headerlink" href="#headers-relacionados" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;X-Real-IP&lt;/strong&gt;: IP del cliente más reciente&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;X-Forwarded-For&lt;/strong&gt;: Cadena completa de IPs&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;X-Forwarded-Proto&lt;/strong&gt;: Protocolo original (http/https)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Host&lt;/strong&gt;: Hostname original&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="verificacion"&gt;Verificación&lt;a class="headerlink" href="#verificacion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# En el servidor backend, verifica los headers&lt;/span&gt;
+tail&lt;span class="w"&gt; &lt;/span&gt;-f&lt;span class="w"&gt; &lt;/span&gt;/var/log/apache2/access.log
+&lt;span class="c1"&gt;# O en tu aplicación&lt;/span&gt;
+&lt;span class="nb"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;$_SERVER&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;HTTP_X_FORWARDED_FOR&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="consideraciones-de-seguridad"&gt;Consideraciones de seguridad&lt;a class="headerlink" href="#consideraciones-de-seguridad" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;⚠️ &lt;strong&gt;Importante&lt;/strong&gt;: Los headers X-Forwarded-* pueden ser falsificados por clientes. En entornos de producción, asegúrate de que solo tu proxy los establezca.&lt;/p&gt;
+&lt;p&gt;Esta configuración es esencial para mantener &lt;strong&gt;trazabilidad completa&lt;/strong&gt; en arquitecturas con reverse proxy.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Fuente original&lt;/em&gt;: &lt;a href="http://www.networkinghowtos.com/howto/set-the-x-forwarded-for-header-on-a-nginx-reverse-proxy-setup/"&gt;Networking How To's&lt;/a&gt;&lt;/p&gt;</content><category term="Infraestructura"></category><category term="nginx"></category><category term="reverse-proxy"></category><category term="x-forwarded-for"></category><category term="ip-real"></category><category term="configuracion"></category></entry><entry><title>Instalar InSync en Opensuse</title><link href="https://pablocaro.es/instalar-insync-en-opensuse" rel="alternate"></link><published>2015-04-20T18:18:00+02:00</published><updated>2015-04-20T18:18:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2015-04-20:/instalar-insync-en-opensuse</id><summary type="html"></summary><content type="html">&lt;p&gt;Llevo varios dias probando &lt;a class="reference external" href="https://www.insynchq.com/"&gt;insync&lt;/a&gt; y creo que lo voy a pagar con gusto.&lt;/p&gt;
+&lt;p&gt;Me he descargado dos paquetes, uno para el menu contextual de dolphin y otro (el de fedora) para el propio programa en sí:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+20:39 $ rpm -qa | grep insync
+insync-1.2.7.35123-fc20.x86_64
+insync-dolphin-1.2.7.35123-fc17.noarch
+&lt;/pre&gt;
+&lt;p&gt;Todo funcionando perfectamente en mi opensuse&lt;/p&gt;
+</content><category term="Infraestructura"></category><category term="django"></category><category term="python"></category></entry><entry><title>NetHogs ver ancho de banda consumido</title><link href="https://pablocaro.es/nethogs-ver-ancho-de-banda-consumido" rel="alternate"></link><published>2015-04-16T11:37:00+02:00</published><updated>2015-04-16T11:37:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2015-04-16:/nethogs-ver-ancho-de-banda-consumido</id><summary type="html">&lt;p&gt;Para medir el ancho de banda que estoy utilizando en este momento utilizo NetHogs&lt;/p&gt;
+&lt;p&gt;Por defecto busca una interfaz de red llamada &amp;quot;eth0&amp;quot; si no la encuenta se queja así:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+ioctl failed while establishing local IP for selected device eth0. You may specify the device on the command line.
+&lt;/pre&gt;
+&lt;p&gt;Puedes …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Para medir el ancho de banda que estoy utilizando en este momento utilizo NetHogs&lt;/p&gt;
+&lt;p&gt;Por defecto busca una interfaz de red llamada &amp;quot;eth0&amp;quot; si no la encuenta se queja así:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+ioctl failed while establishing local IP for selected device eth0. You may specify the device on the command line.
+&lt;/pre&gt;
+&lt;p&gt;Puedes ver tu configuración de red con el comando &lt;em&gt;ip&lt;/em&gt;:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ ip a
+1: lo: &amp;lt;LOOPBACK,UP,LOWER_UP&amp;gt; mtu 65536 qdisc noqueue state UNKNOWN group default
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host
+       valid_lft forever preferred_lft forever
+2: wlp3s0: &amp;lt;BROADCAST,MULTICAST&amp;gt; mtu 1500 qdisc mq state DOWN group default qlen 1000
+    link/ether 84:3a:4b:50:14:cc brd ff:ff:ff:ff:ff:ff
+3: enp0s25: &amp;lt;BROADCAST,MULTICAST,UP,LOWER_UP&amp;gt; mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+    link/ether 3c:97:0e:77:76:d3 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.1.39/24 brd 192.168.1.255 scope global dynamic enp0s25
+       valid_lft 28955sec preferred_lft 28955sec
+    inet6 fe80::3e97:eff:fe77:76d3/64 scope link
+       valid_lft forever preferred_lft forever
+&lt;/pre&gt;
+&lt;p&gt;Como podéis ver en mi equipo tengo dos interfaces (aparte de la de loopback) que son enp0s25 (mi tarjeta de red con cable)
+y la wifi wlp3s0, en la que estoy conectado ahora que es la que voy a usar (podría listar las dos).&lt;/p&gt;
+&lt;p&gt;De forma que ejecutando:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ sudo nethogs enp0s25
+&lt;/pre&gt;
+&lt;p&gt;Puedo ver los procesos que están consumiendo más ancho de banda.&lt;/p&gt;
+&lt;img alt="Nethogs" class="align-center" src="images/nethogs.png" /&gt;
+&lt;p&gt;La ayuda del comando es:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+20:02 $ nethogs -h
+usage: nethogs [-V] [-b] [-d seconds] [-t] [-p] [device [device [device ...]]]
+                -V : prints version.
+                -d : delay for update refresh rate in seconds. default is 1.
+                -t : tracemode.
+                -b : bughunt mode - implies tracemode.
+                -p : sniff in promiscious mode (not recommended).
+                device : device(s) to monitor. default is eth0
+
+When nethogs is running, press:
+ q: quit
+ m: switch between total and kb/s mode
+&lt;/pre&gt;
+</content><category term="Infraestructura"></category><category term="linux"></category></entry><entry><title>pyinotify: Ejecutar comando cuando se modifica un fichero</title><link href="https://pablocaro.es/pyinotify-ejecutar-comando-cuando-se-modifica-un-fichero" rel="alternate"></link><published>2013-04-03T05:09:00+02:00</published><updated>2013-04-03T05:09:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2013-04-03:/pyinotify-ejecutar-comando-cuando-se-modifica-un-fichero</id><content type="html">
+        Ya he comentado por aquí un comando &lt;em&gt;when-changed&lt;/em&gt;.
+
+Ahora anoto otra alternativa, esta vez python. Se trata de pyinotify.
+
+Yo lo uso para generar la documentación de sphinx mientras estoy escribiendo:
+
+&lt;pre lang="bash"&gt;
+python -m pyinotify -r -c "make html" -e IN_MODIFY source
+&lt;/pre&gt;
+    </content><category term="Infraestructura"></category><category term="python"></category><category term="linux"></category></entry><entry><title>Paso de ubuntu a suse</title><link href="https://pablocaro.es/paso-de-ubuntu-a-suse" rel="alternate"></link><published>2013-02-01T02:17:00+01:00</published><updated>2013-02-01T02:17:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2013-02-01:/paso-de-ubuntu-a-suse</id><summary type="html">
+        En mi nuevo portátil del trabajo he pasado de Ubuntu a OpenSuse. Una distribución muy estable y sobre todo con el mejor soporte de KDE.
+
+Pero hay una cuantas cosas que nunca recuerdo. Como este blog se llama anotaciones...
+
+&lt;table width="100%"&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;th&gt;Debian&lt;/th&gt;
+&lt;th&gt;OpenSuse&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;dpkg -S fichero&lt;/td&gt;
+&lt;td&gt;rpm -q -f fichero&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;dpkg -L …&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;</summary><content type="html">
+        En mi nuevo portátil del trabajo he pasado de Ubuntu a OpenSuse. Una distribución muy estable y sobre todo con el mejor soporte de KDE.
+
+Pero hay una cuantas cosas que nunca recuerdo. Como este blog se llama anotaciones...
+
+&lt;table width="100%"&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;th&gt;Debian&lt;/th&gt;
+&lt;th&gt;OpenSuse&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;dpkg -S fichero&lt;/td&gt;
+&lt;td&gt;rpm -q -f fichero&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;dpkg -L paquete&lt;/td&gt;
+&lt;td&gt;rpm -q -l paquete&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;dpkg –purge –dry-run paquete&lt;/td&gt;
+&lt;td&gt;rpm -q –whatrequires paquee&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&amp;nbsp;
+
+&amp;nbsp;
+    </content><category term="Infraestructura"></category><category term="linux"></category></entry><entry><title>reducir recursos de KDE</title><link href="https://pablocaro.es/reducir-recursos-de-kde" rel="alternate"></link><published>2012-10-24T03:18:00+02:00</published><updated>2012-10-24T03:18:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2012-10-24:/reducir-recursos-de-kde</id><content type="html">
+        Mágnifica entrada que explica como acelerar un poco tu sistema kde:
+
+&lt;a href="http://parduslife.com/2011/02/17/como-acelerar-el-entorno-de-escritorio-plasma-de-la-kde-sc/"&gt;http://parduslife.com/2011/02/17/como-acelerar-el-entorno-de-escritorio-plasma-de-la-kde-sc/&lt;/a&gt;
+
+No uso akonadi y siempre he querido pararlo. Así no tienes que hacer un
+&lt;pre lang="bash"&gt;akonadictl stop&lt;/pre&gt;
+tras arrancar.
+
+&amp;nbsp;
+
+&lt;a href="http://mschlander.wordpress.com/2011/08/18/disable-akonadi-in-kde-sc-4-7/"&gt;http://mschlander.wordpress.com/2011/08/18/disable-akonadi-in-kde-sc-4-7/&lt;/a&gt;
+
+&amp;nbsp;
+
+&amp;nbsp;
+    </content><category term="Infraestructura"></category><category term="linux"></category></entry><entry><title>Importar clave gpg. kgpg que gran programa</title><link href="https://pablocaro.es/importar-clave-gpg-kgpg-que-gran-programa" rel="alternate"></link><published>2012-10-24T02:22:00+02:00</published><updated>2012-10-24T02:22:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2012-10-24:/importar-clave-gpg-kgpg-que-gran-programa</id><summary type="html">
+    &lt;pre lang="bash"&gt;
+        gpg --keyserver pgp.rediris.es --search-keys erevilla@yaco.es
+
+gpg: buscando «erevilla@yaco.es» de hkp servidor pgp.rediris.es
+(1) Ernesto Revilla Derksen (Yaco)
+1024 bit DSA key 3E455F5A, creado: 2009-09-16
+Keys 1-1 of 1 for "erevilla@yaco.es". Introduzca número(s), O)tro, o F)in &amp;gt; 1
+gpg …&lt;/pre&gt;</summary><content type="html">
+    &lt;pre lang="bash"&gt;
+        gpg --keyserver pgp.rediris.es --search-keys erevilla@yaco.es
+
+gpg: buscando «erevilla@yaco.es» de hkp servidor pgp.rediris.es
+(1) Ernesto Revilla Derksen (Yaco)
+1024 bit DSA key 3E455F5A, creado: 2009-09-16
+Keys 1-1 of 1 for "erevilla@yaco.es". Introduzca número(s), O)tro, o F)in &amp;gt; 1
+gpg: solicitando clave 3E455F5A de hkp servidor pgp.rediris.es
+gpg: clave 3E455F5A: clave pública "Ernesto Revilla Derksen (Yaco) " importada
+gpg: no se encuentran claves totalmente fiables
+gpg: Cantidad total procesada: 1
+gpg: importadas: 1
+
+kmail dice:
+Mensaje firmado por erevilla@yaco.es (ID Clave: 0x4D76FA323E455F5A).
+La firma es válida, pero no se conoce la validez de la clave.
+
+Ver: http://www.gnupg.org/gph/en/manual/x56.html
+Tengo que dar validez con una firma mía
+
+pcaro@davinci$ gpg --edit-key 3E455F5A
+gpg (GnuPG) 1.4.9; Copyright (C) 2008 Free Software Foundation, Inc.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+pub 1024D/3E455F5A creado: 2009-09-16 [caduca: 2011-09-16] uso: SC
+confianza: desconocido validez: desconocido
+sub 2048g/1AAA03F0 creado: 2009-09-16 [caduca: 2011-09-16] uso: E
+desconocido (1). Ernesto Revilla Derksen (Yaco)
+
+Orden&amp;gt; trust
+pub 1024D/3E455F5A creado: 2009-09-16 [caduca: 2011-09-16] uso: SC
+confianza: desconocido validez: desconocido
+sub 2048g/1AAA03F0 creado: 2009-09-16 [caduca: 2011-09-16] uso: E
+desconocido (1). Ernesto Revilla Derksen (Yaco)
+
+Por favor, decida su nivel de confianza para que este usuario
+verifique las claves de otros usuarios (mirando pasaportes,
+comprobando huellas dactilares en diferentes fuentes...)
+
+1 = No lo sé o prefiero no decirlo
+2 = NO tengo confianza
+3 = Confío un poco
+4 = Confío totalmente
+5 = confío absolutamente
+m = volver al menú principal
+
+¿Su decisión? 4
+
+pub 1024D/3E455F5A creado: 2009-09-16 [caduca: 2011-09-16] uso: SC
+confianza: total validez: desconocido
+sub 2048g/1AAA03F0 creado: 2009-09-16 [caduca: 2011-09-16] uso: E
+desconocido (1). Ernesto Revilla Derksen (Yaco)
+Por favor, advierta que la validez de clave mostrada no es necesariamente
+correcta a menos de que reinicie el programa.
+
+&lt;/pre&gt;
+
+&lt;a href="http://www.fermu.com/content/view/231/2/lang,es/"&gt;http://www.fermu.com/content/view/231/2/lang,es/&lt;/a&gt;
+
+&lt;a href="http://www.rediris.es/pgp/"&gt;http://www.rediris.es/pgp/&lt;/a&gt;
+
+&lt;pre lang="bash"&gt;
+
+Generando mi propia clave:
+pcaro@davinci$ gpg --gen-key
+gpg (GnuPG) 1.4.9; Copyright (C) 2008 Free Software Foundation, Inc.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Por favor seleccione tipo de clave deseado:
+(1) DSA y ElGamal (por defecto)
+(2) DSA (sólo firmar)
+(5) RSA (sólo firmar)
+¿Su selección?: 1
+El par de claves DSA tendrá 1024 bits.
+las claves ELG-E pueden tener entre 1024 y 4096 bits de longitud.
+¿De qué tamaño quiere la clave? (2048)
+El tamaño requerido es de 2048 bits
+Por favor, especifique el período de validez de la clave.
+0 = la clave nunca caduca
+= la clave caduca en n días
+w = la clave caduca en n semanas
+m = la clave caduca en n meses
+y = la clave caduca en n años
+¿Validez de la clave (0)? 3y
+La clave caduca lun 29 oct 2012 12:01:25 CET
+¿Es correcto? (s/n) s
+
+Necesita un identificador de usuario para identificar su clave. El programa
+construye el identificador a partir del Nombre Real, Comentario y Dirección
+de Correo electrónico de esta forma:
+"Heinrich Heine (Der Dichter)"
+
+Nombre y apellidos: Pablo Caro Revuelta
+Dirección de correo electrónico: pcaro@yaco.es
+Comentario:
+Ha seleccionado este ID de usuario:
+Â«Pablo Caro RevueltaÂ»
+
+¿Cambia (N)ombre, (C)omentario, (D)irección o (V)ale/(S)alir? C
+Comentario: pcaro
+Ha seleccionado este ID de usuario:
+Â«Pablo Caro Revuelta (pcaro)Â»
+
+¿Cambia (N)ombre, (C)omentario, (D)irección o (V)ale/(S)alir? V
+Necesita una frase contraseña para proteger su clave secreta.
+
+Es necesario generar muchos bytes aleatorios. Es una buena idea realizar
+alguna otra tarea (trabajar en otra ventana/consola, mover el ratón, usar
+la red y los discos) durante la generación de números primos. Esto da al
+generador de números aleatorios mayor oportunidad de recoger suficiente
+entropía.
+++++++++++.++++++++++++++++++++.++++++++++...+++++++++++++++..++++++++++++++++++++++++++++++..+++++..++++++++++.+++++++++++++++.++++++++++++++++++++......&amp;gt;.+++++.................................+++++
+
+No hay suficientes bytes aleatorios disponibles. Por favor, haga algún
+otro trabajo para que el sistema pueda recolectar más entropía
+(se necesitan 280 bytes más).
+
+Es necesario generar muchos bytes aleatorios. Es una buena idea realizar
+alguna otra tarea (trabajar en otra ventana/consola, mover el ratón, usar
+la red y los discos) durante la generación de números primos. Esto da al
+generador de números aleatorios mayor oportunidad de recoger suficiente
+entropía.
++++++++++++++++.+++++.+++++++++++++++..+++++.+++++..++++++++++++++++++++..++++++++++++++++++++.+++++.++++++++++++++++++++...+++++.++++++++++++++++++++.+++++++++++++++..&amp;gt;..+++++........&amp;gt;+++++.+++++.+++++....................+++++.....................................................+++++............................+++++^^^
+gpg: clave 4A52D5BA marcada como de confianza absoluta
+claves pública y secreta creadas y firmadas.
+
+gpg: comprobando base de datos de confianza
+gpg: 3 dudosa(s) necesarias, 1 completa(s) necesarias,
+modelo de confianza PGP
+gpg: nivel: 0 validez: 1 firmada: 0 confianza: 0-, 0q, 0n, 0m, 0f, 1u
+gpg: siguiente comprobación de base de datos de confianza el: 2012-10-29
+pub 1024D/4A52D5BA 2009-10-30 [[caduca: 2012-10-29]]
+Huella de clave = 483C F267 8A4B 0D27 3451 88A9 FE05 5E01 4A52 D5BA
+uid Pablo Caro Revuelta (pcaro) sub 2048g/7436FA09 2009-10-30 [[caduca: 2012-10-29]]
+
+&lt;/pre&gt;
+
+&lt;h2&gt;programas graficos&lt;/h2&gt;
+&lt;pre lang="bash"&gt;
+sudo aptitude install kleopatra kgpg
+&lt;/pre&gt;
+&lt;p&gt;
+Para que puedas enviar los correos firmados en kmail:
+&lt;a href="http://randomguy3.wordpress.com/2008/07/24/kmail-trunk-signing/"&gt;http://randomguy3.wordpress.com/2008/07/24/kmail-trunk-signing/&lt;/a&gt;
+&lt;/p&gt;
+    </content><category term="Infraestructura"></category><category term="linux"></category></entry><entry><title>Traducciones y APT</title><link href="https://pablocaro.es/traducciones-y-apt" rel="alternate"></link><published>2012-10-24T02:20:00+02:00</published><updated>2012-10-24T02:20:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2012-10-24:/traducciones-y-apt</id><content type="html">
+    &lt;p&gt;
+        &lt;a href="http://mindref.blogspot.com.es/2012/10/apt-translations.html"&gt;http://mindref.blogspot.com.es/2012/10/apt-translations.html&lt;/a&gt;
+&lt;a href="http://manpages.ubuntu.com/manpages/natty/man5/apt.conf.5.html"&gt;http://manpages.ubuntu.com/manpages/natty/man5/apt.conf.5.html&lt;/a&gt;
+    &lt;/p&gt;
+    </content><category term="Infraestructura"></category><category term="linux"></category></entry><entry><title>Mostrar Usuarios y roles existentes en postgres</title><link href="https://pablocaro.es/mostrar-usuarios-y-roles-existentes-en-postgres" rel="alternate"></link><published>2012-10-24T02:13:00+02:00</published><updated>2012-10-24T02:13:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2012-10-24:/mostrar-usuarios-y-roles-existentes-en-postgres</id><content type="html">
+        Se utiliza &lt;strong&gt;\du&lt;/strong&gt;
+&lt;pre lang="bash"&gt;$ sudo su - postgres
+$ psql 
+postgres=# \du
+                           List of roles
+ Role name |                   Attributes                   | Member of 
+-----------+------------------------------------------------+-----------
+ openerp   | Superuser, Create role, Create DB, Replication | {}
+ postgres  | Superuser, Create role, Create DB, Replication | {}
+
+postgres=#&lt;/pre&gt;
+    </content><category term="Infraestructura"></category></entry><entry><title>Uso práctico de ngrep</title><link href="https://pablocaro.es/uso-practico-de-ngrep" rel="alternate"></link><published>2012-09-12T03:38:00+02:00</published><updated>2012-09-12T03:38:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2012-09-12:/uso-practico-de-ngrep</id><content type="html">
+        Ejemplo de uso común de &lt;strong&gt;ngrep&lt;/strong&gt;:
+&lt;pre class="bash" lang="bash"&gt;sudo ngrep -d any port 80 -W byline&lt;/pre&gt;
+Esto es para examinar lo que circula por el puerto 80.
+    </content><category term="Infraestructura"></category><category term="linux"></category></entry><entry><title>virtualbox: Actualizar las Guest Additions en máquinas ubuntu</title><link href="https://pablocaro.es/virtualbox-actualizar-las-guest-additions-en-maquinas-ubuntu" rel="alternate"></link><published>2011-08-24T04:11:00+02:00</published><updated>2011-08-24T04:11:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2011-08-24:/virtualbox-actualizar-las-guest-additions-en-maquinas-ubuntu</id><summary type="html">
+        Si usas &lt;a href="http://vagrantup.com/"&gt;vagrant&lt;/a&gt; para gestionar máquinas virtuales con &lt;a href="http://www.virtualbox.org/"&gt;virtualbox&lt;/a&gt;, un buen lugar para obtener boxes es &lt;a href="http://www.vagrantbox.es/"&gt;vagrantboxes&lt;/a&gt;.
+
+Pero a veces la versión que traen de las Guest Additions no coincide con el virtualbox que tienes (en mi caso el último). Vagrant se queja y puede ocasionar problemas.
+
+Lo más simple …</summary><content type="html">
+        Si usas &lt;a href="http://vagrantup.com/"&gt;vagrant&lt;/a&gt; para gestionar máquinas virtuales con &lt;a href="http://www.virtualbox.org/"&gt;virtualbox&lt;/a&gt;, un buen lugar para obtener boxes es &lt;a href="http://www.vagrantbox.es/"&gt;vagrantboxes&lt;/a&gt;.
+
+Pero a veces la versión que traen de las Guest Additions no coincide con el virtualbox que tienes (en mi caso el último). Vagrant se queja y puede ocasionar problemas.
+
+Lo más simple es arrancar la máquina en modo gráfico (config.vm.boot_mode = :gui en vagrant) e indicar en el menu de virtualbox en "Dispositivos" -&amp;gt; "CD/DVD" que se ponga VBoxGuestAddions.iso.
+
+Luego vasta con montar el cdrom y ejecutar el comando de instalación:
+&lt;pre lang="bash"&gt;$ sudo mount -t auto /dev/cdrom /mnt
+$ cd mnt
+$ sudo ./VBoxLinuxAdditions.run&lt;/pre&gt;
+Puede que tengas de instalar dkms. Si el sistema no tiene sistema gráfico instalado (como en este caso), se quejará pero quedará instalado todo bien.
+    </content><category term="Infraestructura"></category><category term="linux"></category></entry><entry><title>Cambiar mapa de teclado en linux</title><link href="https://pablocaro.es/cambiar-mapa-de-teclado-en-linux" rel="alternate"></link><published>2011-08-24T03:59:00+02:00</published><updated>2011-08-24T03:59:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2011-08-24:/cambiar-mapa-de-teclado-en-linux</id><content type="html">
+        Siempre olvido esto:
+&lt;pre lang="bash"&gt;sudo keymap es&lt;/pre&gt;
+    </content><category term="Infraestructura"></category><category term="linux"></category></entry><entry><title>Deshabilitar autocompletado en vim</title><link href="https://pablocaro.es/deshabilitar-autocompletado-en-vim" rel="alternate"></link><published>2011-06-20T04:42:00+02:00</published><updated>2011-06-20T04:42:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2011-06-20:/deshabilitar-autocompletado-en-vim</id><content type="html">
+        Uso poco vim, sólo cuando en servidores no tengo jed.
+
+Para pegar texto en el fichero actual sin que te haga un horrible indentado en cascada:
+&lt;pre&gt;:setlocal noautoindent
+:setlocal nocindent
+:setlocal nosmartindent
+:setlocal indentexpr=&lt;/pre&gt;
+O su equivalente:
+&lt;pre&gt;:setl noai nocin nosi inde=&lt;/pre&gt;
+Referencia: &lt;a href="http://vim.wikia.com/wiki/How_to_stop_auto_indenting"&gt;http://vim.wikia.com/wiki/How_to_stop_auto_indenting &lt;/a&gt;
+    </content><category term="Infraestructura"></category><category term="linux"></category></entry><entry><title>Actualizar Mercurial usando ppa en ubuntu</title><link href="https://pablocaro.es/actualizar-mercurial-usando-ppa-en-ubuntu" rel="alternate"></link><published>2011-02-25T05:12:00+01:00</published><updated>2011-02-25T05:12:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2011-02-25:/actualizar-mercurial-usando-ppa-en-ubuntu</id><summary type="html">
+        Existen tres PPA para mercurial:
+&lt;a rel="nofollow" href="https://launchpad.net/~mercurial-ppa/+archive/releases"&gt;https://launchpad.net/~mercurial-ppa/+archive/releases&lt;/a&gt; (última release, actualmente 1.7.5-0ppa1~maverick1)
+&lt;a rel="nofollow" href="https://launchpad.net/~mercurial-ppa/+archive/stable-snapshots"&gt;https://launchpad.net/~mercurial-ppa/+archive/stable-snapshots&lt;/a&gt; (snapshots de la rama estable, actualmente ﻿1.7.5+2-5fc7c84ed9b0-0ppa1~maverick1)
+&lt;a rel="nofollow" href="https://launchpad.net/~mercurial-ppa/+archive/snapshots"&gt;https://launchpad.net/~mercurial-ppa/+archive/snapshots&lt;/a&gt; (snapshots de lo último, actualmente 1.8~1.7 …</summary><content type="html">
+        Existen tres PPA para mercurial:
+&lt;a rel="nofollow" href="https://launchpad.net/~mercurial-ppa/+archive/releases"&gt;https://launchpad.net/~mercurial-ppa/+archive/releases&lt;/a&gt; (última release, actualmente 1.7.5-0ppa1~maverick1)
+&lt;a rel="nofollow" href="https://launchpad.net/~mercurial-ppa/+archive/stable-snapshots"&gt;https://launchpad.net/~mercurial-ppa/+archive/stable-snapshots&lt;/a&gt; (snapshots de la rama estable, actualmente ﻿1.7.5+2-5fc7c84ed9b0-0ppa1~maverick1)
+&lt;a rel="nofollow" href="https://launchpad.net/~mercurial-ppa/+archive/snapshots"&gt;https://launchpad.net/~mercurial-ppa/+archive/snapshots&lt;/a&gt; (snapshots de lo último, actualmente 1.8~1.7.5+4-8f5c865b7b4a-0ppa1~maverick1)
+
+Como decía en la última anotación para añadir el PPA basta con:
+&lt;pre class="bash"&gt;$ sudo add-apt-repository ppa:mercurial-ppa/stable-snapshots
+$ sudo aptitude update
+$ sudo aptitude  install Mercurial&lt;/pre&gt;
+&amp;nbsp;
+    </content><category term="Infraestructura"></category><category term="linux"></category></entry><entry><title>Dos pantallas al inicio de kdm</title><link href="https://pablocaro.es/dos-pantallas-al-inicio-de-kdm" rel="alternate"></link><published>2011-02-01T02:32:00+01:00</published><updated>2011-02-01T02:32:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2011-02-01:/dos-pantallas-al-inicio-de-kdm</id><summary type="html">
+        Para que ya el mismo kdm se ejecute con dos pantallas basta con poner la configuración deseada (usando &lt;a title="xrandr" href="http://www.x.org/wiki/Projects/XRandR" target="_blank"&gt;xrandr&lt;/a&gt;) en el fichero ﻿&lt;strong&gt;/etc/kde4/kdm/Xsetup&lt;/strong&gt;. Por ejemplo, en mi caso uso dos pantallas en la oficina de modo que ese fichero contiene:
+&lt;pre lang="bash"&gt;INT="LVDS1"
+EXT="VGA1"
+xrandr -q | grep …&lt;/pre&gt;</summary><content type="html">
+        Para que ya el mismo kdm se ejecute con dos pantallas basta con poner la configuración deseada (usando &lt;a title="xrandr" href="http://www.x.org/wiki/Projects/XRandR" target="_blank"&gt;xrandr&lt;/a&gt;) en el fichero ﻿&lt;strong&gt;/etc/kde4/kdm/Xsetup&lt;/strong&gt;. Por ejemplo, en mi caso uso dos pantallas en la oficina de modo que ese fichero contiene:
+&lt;pre lang="bash"&gt;INT="LVDS1"
+EXT="VGA1"
+xrandr -q | grep -q "$EXT connected"   &amp;amp;&amp;amp; {
+xrandr --output $EXT --mode 1280x1024
+xrandr --output $INT --mode 1280x800
+xrandr --output $INT --bellow $EXT
+xrandr --output $INT --primary
+}&lt;/pre&gt;
+Estas lineas hacen que se consulte si tengo el segundo monitor conectado y en se caso se configure de la forma deseada.
+    </content><category term="Infraestructura"></category></entry><entry><title>Opciones típicas rsync</title><link href="https://pablocaro.es/opciones-tipicas-rsync" rel="alternate"></link><published>2010-07-08T05:56:00+02:00</published><updated>2010-07-08T05:56:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2010-07-08:/opciones-tipicas-rsync</id><content type="html">
+        Para usar un rsync como un scp (pero con las ventajas de rsync como que puedo parar y continuar después):
+&lt;pre lang="bash"&gt;rsync -azPrv -e 'ssh' usuario@host:/path/to/folder /path/to/destination&lt;/pre&gt;
+    </content><category term="Infraestructura"></category><category term="linux"></category></entry><entry><title>Crear base de datos mysql a partir de un backup</title><link href="https://pablocaro.es/crear-base-de-datos-mysql-a-partir-de-un-backup" rel="alternate"></link><published>2009-12-17T05:06:00+01:00</published><updated>2009-12-17T05:06:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2009-12-17:/crear-base-de-datos-mysql-a-partir-de-un-backup</id><summary type="html">
+        Primero crear la base de datos:
+&lt;pre lang="bash"&gt;
+pcaro@davinci$ mysql --user=root -p
+mysql&gt; show databases;
+mysql&gt; create database piwik;
+mysql&gt; GRANT ALL ON piwik.* TO pcaro@localhost IDENTIFIED BY "piwik"
+mysql&gt; show tables;
+&lt;/pre&gt;
+Luego restaurar el backup:
+&lt;pre lang="bash"&gt;
+mysql --user=root --pass=*** --host=localhost piwik &lt; piwik_Thursday.sql
+&lt;/pre&gt;
+Comprobar todo esta bien …</summary><content type="html">
+        Primero crear la base de datos:
+&lt;pre lang="bash"&gt;
+pcaro@davinci$ mysql --user=root -p
+mysql&gt; show databases;
+mysql&gt; create database piwik;
+mysql&gt; GRANT ALL ON piwik.* TO pcaro@localhost IDENTIFIED BY "piwik"
+mysql&gt; show tables;
+&lt;/pre&gt;
+Luego restaurar el backup:
+&lt;pre lang="bash"&gt;
+mysql --user=root --pass=*** --host=localhost piwik &lt; piwik_Thursday.sql
+&lt;/pre&gt;
+Comprobar todo esta bien
+&lt;pre lang="bash"&gt;
+pcaro@davinci$ mysql --user=root -p
+mysql&gt; show tables;
+&lt;/pre&gt;
+
+
+
+    </content><category term="Infraestructura"></category></entry><entry><title>Parcheando, parcheando ...</title><link href="https://pablocaro.es/parcheando-parcheando" rel="alternate"></link><published>2009-12-16T10:18:00+01:00</published><updated>2009-12-16T10:18:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2009-12-16:/parcheando-parcheando</id><summary type="html">
+        Siempre tengo que buscar cómo usar patch. Como tengo un blog que se llama anotaciones pues apunto:
+&lt;pre lang="bash"&gt;$ patch -p1 &lt; baz.diff&lt;/pre&gt;
+Donde el número 1 viene de mirar en el fichero .diff y contar las barras "/" que hay antes que el directorio donde estoy. Por ejemplo si veo &lt;em&gt;/users/stephen …&lt;/em&gt;</summary><content type="html">
+        Siempre tengo que buscar cómo usar patch. Como tengo un blog que se llama anotaciones pues apunto:
+&lt;pre lang="bash"&gt;$ patch -p1 &lt; baz.diff&lt;/pre&gt;
+Donde el número 1 viene de mirar en el fichero .diff y contar las barras "/" que hay antes que el directorio donde estoy. Por ejemplo si veo &lt;em&gt;/users/stephen/package/src/net/http.c&lt;/em&gt; y estoy en un directorio que contiene &lt;em&gt;net/http.c&lt;/em&gt; pues es 5 (ojo, hay que contar la primera).
+
+Para referencia &lt;a href="http://stephenjungels.com/jungels.net/articles/diff-patch-ten-minutes.html" target="_blank"&gt;The Ten Minute Guide to diff and patch&lt;/a&gt;
+    </content><category term="Infraestructura"></category><category term="linux"></category></entry><entry><title>Que las aplicaciones GTK+ luzcan mejor en kubuntu karmic</title><link href="https://pablocaro.es/que-las-aplicaciones-gtk-luzcan-mejor-en-kubuntu-karmic" rel="alternate"></link><published>2009-12-10T06:32:00+01:00</published><updated>2009-12-10T06:32:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2009-12-10:/que-las-aplicaciones-gtk-luzcan-mejor-en-kubuntu-karmic</id><content type="html">
+        Basta con seguir este &lt;a href="http://marcosaruj.com/archives/401" target="_blank"&gt;tutorial&lt;/a&gt;, que indica como instalar el tema &lt;a href="http://kde-look.org/content/show.php?action=content&amp;amp;content=103741&amp;amp;PHPSESSID=b084f440c2a6cc2a1644514b13fe591a" target="_blank"&gt;Oxygen-Molecule&lt;/a&gt;.
+    </content><category term="Infraestructura"></category><category term="linux"></category></entry><entry><title>Añadir PPA desde la consola a ubuntu karmic</title><link href="https://pablocaro.es/anadir-ppa-desde-la-consola-a-ubuntu-karmic" rel="alternate"></link><published>2009-12-09T03:18:00+01:00</published><updated>2009-12-09T03:18:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2009-12-09:/anadir-ppa-desde-la-consola-a-ubuntu-karmic</id><summary type="html">
+        Para añadir un PPA a ubuntu karmic desde la consola basta con:
+
+&lt;pre lang="bash"&gt;
+ sudo add-apt-repository ppa:kubuntu-ppa/ppa
+
+[sudo] password for pcaro:                                
+Executing: gpg --ignore-time-conflict --no-options --no-default-keyring --secret-keyring /etc/apt/secring.gpg --trustdb-name /etc/apt/trustdb.gpg --keyring /etc/apt/trusted.gpg --keyserver keyserver.ubuntu.com --recv E4DFEC907DEDA4B8A670E8042836CB0A8AC93F7A                                                                                  
+gpg: solicitando clave …&lt;/pre&gt;</summary><content type="html">
+        Para añadir un PPA a ubuntu karmic desde la consola basta con:
+
+&lt;pre lang="bash"&gt;
+ sudo add-apt-repository ppa:kubuntu-ppa/ppa
+
+[sudo] password for pcaro:                                
+Executing: gpg --ignore-time-conflict --no-options --no-default-keyring --secret-keyring /etc/apt/secring.gpg --trustdb-name /etc/apt/trustdb.gpg --keyring /etc/apt/trusted.gpg --keyserver keyserver.ubuntu.com --recv E4DFEC907DEDA4B8A670E8042836CB0A8AC93F7A                                                                                  
+gpg: solicitando clave 8AC93F7A de hkp servidor keyserver.ubuntu.com                                             
+gpg: clave 8AC93F7A: clave pública "Launchpad Kubuntu Updates" importada                                         
+gpg: no se encuentran claves totalmente fiables                                                                  
+gpg: Cantidad total procesada: 1                                                                                 
+gpg:  
+&lt;/pre&gt;
+
+
+    </content><category term="Infraestructura"></category><category term="linux"></category></entry><entry><title>Cambiar dpi en kde</title><link href="https://pablocaro.es/cambiar-dpi-en-kde" rel="alternate"></link><published>2009-12-04T05:35:00+01:00</published><updated>2009-12-04T05:35:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2009-12-04:/cambiar-dpi-en-kde</id><summary type="html">
+        Siempre que reinstalo me encuentro con el mismo problema. No tengo el dpi estándar de 96, sino uno extraño de 113.
+&lt;pre lang="bash"&gt;pcaro@davinci$ xdpyinfo | grep resolutio
+  resolution:    113x113 dots per inch&lt;/pre&gt;
+Como resultado, muchas páginas webs no se visualizan correctamente.
+
+Para solucionarlo tengo que decirle al servidor X que arranque …</summary><content type="html">
+        Siempre que reinstalo me encuentro con el mismo problema. No tengo el dpi estándar de 96, sino uno extraño de 113.
+&lt;pre lang="bash"&gt;pcaro@davinci$ xdpyinfo | grep resolutio
+  resolution:    113x113 dots per inch&lt;/pre&gt;
+Como resultado, muchas páginas webs no se visualizan correctamente.
+
+Para solucionarlo tengo que decirle al servidor X que arranque con un dpi predeterminado. Eso lo hago en los ficheros de configuración de kdm que es el encargado de ejecutar el servidor.
+
+Concretamente en &lt;em&gt;/etc/kde4/kdm/kdmrc&lt;/em&gt;. Basta con indicar al servidor X qué valor de dpi usar. Para ello usamos la opción &lt;em&gt;-dpi&lt;/em&gt;.
+&lt;pre lang="ini"&gt;# This string is subject to word splitting.
+# Default is ""
+ServerArgsLocal=-br -nolisten tcp -dpi 96&lt;/pre&gt;
+Eso es todo. Reiniciar las X y listo.
+
+PD: No se el motivo pero el nuevo dpi y mi tarjeta gráfica intel integrada, yo tengo mucho mejor rendimiento en la aceleración gráfica.
+    </content><category term="Infraestructura"></category><category term="linux"></category></entry><entry><title>Actualizando postgres en debian y derivados</title><link href="https://pablocaro.es/actualizando-postgres-en-debian-y-derivados" rel="alternate"></link><published>2009-11-26T05:19:00+01:00</published><updated>2009-11-26T05:19:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2009-11-26:/actualizando-postgres-en-debian-y-derivados</id><summary type="html">
+        Siempre que se habla de debian, se alaba su paquetería. Y yo estoy de acuerdo de que es uno de los puntos fuertes de la distribución. Hoy me refiero a la facilidad de tener instaladas y conviviendo felices varias versiones de la base de datos &lt;a href="http://www.postgresql.org/" target="_blank"&gt;postgres&lt;/a&gt;. Ya comenté esto en …</summary><content type="html">
+        Siempre que se habla de debian, se alaba su paquetería. Y yo estoy de acuerdo de que es uno de los puntos fuertes de la distribución. Hoy me refiero a la facilidad de tener instaladas y conviviendo felices varias versiones de la base de datos &lt;a href="http://www.postgresql.org/" target="_blank"&gt;postgres&lt;/a&gt;. Ya comenté esto en su momento en &lt;a href="/instalar-postgres-82-en-jaunty/" target="_blank"&gt;Instalar postgres 8.2 en jaunty&lt;/a&gt;.
+
+Pues el tener dos servidores instalados a la vez, permite la fácil&lt;a href="http://www.postgresql.org/docs/8.4/interactive/migration.html" target="_blank"&gt; migración de un versión a otra del motor de base de datos&lt;/a&gt;. En este caso detallo como migré las bases de datos de mi equipo ubuntu &lt;a href="http://releases.ubuntu.com/karmic/" target="_blank"&gt;karmic&lt;/a&gt; de postgres 8.3 a 8.4.
+&lt;ol&gt;
+	&lt;li&gt;Primero tener instalados los dos paquetes: postgresql-8.3 y postgresql-8.4.&lt;/li&gt;
+	&lt;li&gt;Determinar en que puerto se ejecuta cada instancia. Esto lo podemos hacer mirando los ficheros &lt;em&gt;/etc/postgresql/8.X/main/postgresql.conf &lt;/em&gt;(variable &lt;em&gt;port&lt;/em&gt;). En mi caso 5482 y 5433 respectivamente. Lo puedes comprobar con:
+&lt;pre lang="bash"&gt;$ sudo netstat -putan | grep postgres&lt;/pre&gt;
+&lt;/li&gt;
+	&lt;li&gt;Después lanzar los dos servidores:
+&lt;pre lang="bash"&gt;$ sudo /etc/init.d/postgresql-8.3 start
+$ sudo /etc/init.d/postgresql-8.4 start&lt;/pre&gt;
+&lt;/li&gt;
+	&lt;li&gt;Finalmente copiar los datos de una versión a otra
+&lt;pre&gt;$ sudo su - postgres
+$ pg_dumpall -p 5432 | psql -d postgres -p 5433&lt;/pre&gt;
+&lt;/li&gt;
+	&lt;li&gt; Probar que todo ha ido correctamente&lt;/li&gt;
+&lt;/ol&gt;
+    </content><category term="Infraestructura"></category></entry><entry><title>Añadiendo lenguaje procedural a base de datos postgres: createlang</title><link href="https://pablocaro.es/anadiendo-lenguaje-procedural-a-base-de-datos-postgres-createlang" rel="alternate"></link><published>2009-11-12T05:20:00+01:00</published><updated>2009-11-12T05:20:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2009-11-12:/anadiendo-lenguaje-procedural-a-base-de-datos-postgres-createlang</id><content type="html">
+        Postgres 8.3 incluye 4 &lt;a href="http://www.postgresql.org/docs/8.3/static/external-pl.html"&gt;lenguajes procedurales&lt;/a&gt; en la distribución y se pueden instalar más, pero hay que activarlos por base de datos.
+Para ello, hay varios métodos (lo clásico es &lt;a href="http://www.postgresql.org/docs/8.3/static/sql-createlanguage.html" target="_blank"&gt;create language&lt;/a&gt;) pero los más cómodo es usar &lt;a href="http://www.postgresql.org/docs/8.3/static/app-createlang.html"&gt;createlang&lt;/a&gt;.
+
+Usa &lt;a href="http://www.postgresql.org/docs/8.3/static/app-droplang.html"&gt;&lt;span class="APPLICATION"&gt;droplang&lt;/span&gt;&lt;/a&gt; para eliminar el lenguaje.
+    </content><category term="Infraestructura"></category></entry><entry><title>Cambiar la codificación de un fichero de texto</title><link href="https://pablocaro.es/cambiar-la-codificacion-de-un-fichero-de-texto" rel="alternate"></link><published>2009-07-27T11:19:00+02:00</published><updated>2009-07-27T11:19:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2009-07-27:/cambiar-la-codificacion-de-un-fichero-de-texto</id><content type="html">
+        Una nota para recordar el comando &lt;a href="http://en.wikipedia.org/wiki/Iconv" target="_blank"&gt;iconv&lt;/a&gt;:
+&lt;pre lang="bash"&gt;
+iconv -f fromEncoding -t toEncoding inputFile &gt; outputFile
+&lt;/pre&gt;
+    </content><category term="Infraestructura"></category><category term="linux"></category></entry><entry><title>Mostrar el código de funciones en postgres</title><link href="https://pablocaro.es/mostrar-el-codigo-de-funciones-en-postgres" rel="alternate"></link><published>2009-07-07T11:18:00+02:00</published><updated>2009-07-07T11:18:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2009-07-07:/mostrar-el-codigo-de-funciones-en-postgres</id><summary type="html">
+        Puede resultar muy util ver el código de algún procedimiento almacenado en postgres. El código de a continuación tomado de &lt;a href="http://www.varlena.com/GeneralBits/39.php"&gt;Postgresql General Bits&lt;/a&gt; de A. Elein Mustain puede resultar muy útil. 
+&lt;pre lang="sql"&gt;
+create or replace view showfunctions as
+select
+l.lanname,
+t.typname || ' = ' || n.nspname || '.' ||
+    p.proname || '(' || pg_catalog.oidvectortypes(p.proargtypes …&lt;/pre&gt;</summary><content type="html">
+        Puede resultar muy util ver el código de algún procedimiento almacenado en postgres. El código de a continuación tomado de &lt;a href="http://www.varlena.com/GeneralBits/39.php"&gt;Postgresql General Bits&lt;/a&gt; de A. Elein Mustain puede resultar muy útil. 
+&lt;pre lang="sql"&gt;
+create or replace view showfunctions as
+select
+l.lanname,
+t.typname || ' = ' || n.nspname || '.' ||
+    p.proname || '(' || pg_catalog.oidvectortypes(p.proargtypes) || ')'
+as function_definition,
+(select case when lanname &lt;&gt; 'c'
+    then '\n\n'||prosrc ||'\n\n'
+    else '\n'||prosrc ||'.so\n\n'
+end) as source
+from pg_proc p, pg_type t, pg_namespace n, pg_language l
+where p.prorettype = t.oid and p.pronamespace = n.oid
+    and p.prolang = l.oid;
+
+-- Muestra todas las funciones en el schema public ( y cualquier funcion con
+-- public en su nombre)
+select * from showfunctions where function_definition like '%public%';
+
+-- Muestra todas las funciones que toman o reciben booleanos
+select * from showfunctions where function_definition like '%boolean%';
+&lt;/pre&gt;
+    </content><category term="Infraestructura"></category></entry><entry><title>Instalar postgres 8.2 en jaunty</title><link href="https://pablocaro.es/instalar-postgres-8-2-en-jaunty" rel="alternate"></link><published>2009-06-30T10:52:00+02:00</published><updated>2009-06-30T10:52:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2009-06-30:/instalar-postgres-8-2-en-jaunty</id><summary type="html">
+        Postgres 8.3 no me permitía crear una base de datos con un encoding distinto a los instalados en mi maquina, y yo debía recuperar una copia de seguridad de una base de datos para la ampliación de unos trabajos que vienen  de antiguo.
+
+Si intentaba importar los datos fallaba …</summary><content type="html">
+        Postgres 8.3 no me permitía crear una base de datos con un encoding distinto a los instalados en mi maquina, y yo debía recuperar una copia de seguridad de una base de datos para la ampliación de unos trabajos que vienen  de antiguo.
+
+Si intentaba importar los datos fallaba por el encoding:
+&lt;pre&gt;
+# createdb base_datos  -O owner ; 
+# pg_restore -F c -d base_datos   viernes-27-feb-2009.dump
+pg_restore: [archiver (db)] COPY failed: ERROR:  secuencia de bytes no válida para codificación «UTF8»: 0xa2
+&lt;/pre&gt;
+
+Y además no me dejaba crear la base de datos con el encoding correcto:
+&lt;pre&gt;
+postgres@davinci$ createdb  base_datos -E latin1
+createdb: falló la creación de la base de datos:
+ERROR:  la codificación LATIN1 no coincide con la configuración regional del servidor es_ES.UTF-8
+DETAIL:  La configuración regional LC_CTYPE del servidor requiere la codificación UTF8.
+&lt;/pre&gt;
+
+Para poder seguir adelante dos alternativas:&lt;a href="http://softwarelibre.org.bo/wiki/postgresqlutf8tolatin1"&gt; cambiar el encoding de mi base de datos&lt;/a&gt; (no podía porque tengo otras bases de datos) o instalar postgres 8.2 (debian y derivados permiten tener varios postgres a la vez por paquetería)
+
+De esta forma que me dispuse a descargar los paquetes de haunty: &lt;a href="http://packages.ubuntu.com/hardy/i386/postgresql-8.2/download"&gt;postgresql-8.2&lt;/a&gt; y&lt;a href="http://packages.ubuntu.com/hardy/i386/postgresql-client-8.2/download"&gt; postgresql-client-8.2&lt;/a&gt;
+
+Una vez descargados los paquetes bastó:
+&lt;pre&gt;
+pcaro@davinci$ sudo dpkg -i postgresql-client-8.2_8.2.7-1_i386.deb
+pcaro@davinci$ sudo dpkg -i postgresql-8.2_8.2.7-1_i386.deb
+sudo aptitude hold postgresql-client-8.2
+sudo aptitude hold postgresql-8.2
+&lt;/pre&gt;
+
+Luego puedes configurar los postgres para que escuchen en distintos puertos o, si solo lo necesitas de forma temporal como yo, simplemente parar el 8.3 y levantar el 8.2 cuando sea necesario.
+
+PD: Gracias a Antonio por la ayuda.
+    </content><category term="Infraestructura"></category><category term="linux"></category></entry><entry><title>Convertir filtros de kmail a filtros sieve</title><link href="https://pablocaro.es/convertir-filtros-de-kmail-a-filtros-sieve" rel="alternate"></link><published>2009-06-06T14:13:00+02:00</published><updated>2009-06-06T14:13:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2009-06-06:/convertir-filtros-de-kmail-a-filtros-sieve</id><summary type="html">
+        No hace mucho que dejé de usar &lt;a title="pop" href="http://en.wikipedia.org/wiki/Post_Office_Protocol" target="_blank"&gt;POP&lt;/a&gt; en mis correos para pasarme al &lt;a title="imap" href="http://en.wikipedia.org/wiki/IMAP" target="_blank"&gt;IMAP&lt;/a&gt; desconectado de kmail con toda las ventaja que ello supone.
+
+Pero todavía seguía utilizando los mismos filtros en kmail que me ordenan los correos por carpeta. Con este sistema el filtrado se realiza una vez …</summary><content type="html">
+        No hace mucho que dejé de usar &lt;a title="pop" href="http://en.wikipedia.org/wiki/Post_Office_Protocol" target="_blank"&gt;POP&lt;/a&gt; en mis correos para pasarme al &lt;a title="imap" href="http://en.wikipedia.org/wiki/IMAP" target="_blank"&gt;IMAP&lt;/a&gt; desconectado de kmail con toda las ventaja que ello supone.
+
+Pero todavía seguía utilizando los mismos filtros en kmail que me ordenan los correos por carpeta. Con este sistema el filtrado se realiza una vez descargado el correo, de forma que, ahora con imap, el kmail tiene que pasar los filtros y actualizar las carpetas en el servidor tras el moviento de correos. Desde luego no es lo más conveniente.
+
+Lo más util que el filtrado del correo se realice en el servidor. De esta forma nuestro correo ya se encuentra organizado accedas con el cliente que accedas al correo (webmail, móviles de última generación, etc). Para ello existen los filtros &lt;a title="sieve" href="http://en.wikipedia.org/wiki/Sieve_(mail_filtering_language)" target="_blank"&gt;sieve&lt;/a&gt;.
+
+Pero yo ya tenía mis filtros en kmail, de forma que me hice un pequeño programita python que convirtiera mis filtros de kmail en un fichero con los filtros sieve.
+
+No discrimina entre cuentas y solo esta probado (y funciona) con mis filtros simples de moviento de correo, pero lo dejo aquí por si a alguien pudiera resultarle de utilidad.
+
+Para usarlo:
+&lt;ol&gt;
+	&lt;li&gt;Guardar los filtros de kmail (Preferencias -&amp;gt; Configurar filtros -&amp;gt; Exportar) en un fichero (por ejemplo filtros_pcaro.ini)&lt;/li&gt;
+	&lt;li&gt;Ejecutar &lt;em&gt;python kmail_to_sieve.py  filtros_pcaro.ini &amp;gt; filtros.sieve&lt;/em&gt; Por la salida de error indicará que no ha podido convertir.&lt;/li&gt;
+	&lt;li&gt;Examinar filtros&lt;/li&gt;
+	&lt;li&gt;Subir y activar desde el mismo kmail (Preferencias -&amp;gt; Gestionar guiones de Sieve.&lt;/li&gt;
+&lt;/ol&gt;
+Podeís descargarlo desde aquí: &lt;a href="https://github.com/pcaro/little_scripts/blob/master/kmail_to_sieve.py"&gt;kmail_to_sieve&lt;/a&gt;
+
+PD: Arreglado el enlace. Gracias Helder por avisar.
+    </content><category term="Infraestructura"></category><category term="python"></category><category term="linux"></category></entry><entry><title>Importar claves gpg de repositorios ubuntu</title><link href="https://pablocaro.es/importar-claves-gpg-de-repositorios-ubuntu" rel="alternate"></link><published>2009-02-01T13:00:00+01:00</published><updated>2009-02-01T13:00:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2009-02-01:/importar-claves-gpg-de-repositorios-ubuntu</id><summary type="html">
+        Ante un error como este:
+
+W: GPG error: http://ppa.launchpad.net intrepid Release: The following signatures couldn't be verified because the public key is not available: NO_PUBKEY 3B81A3FBA47394CE
+
+Hay que importar las claves:
+&lt;pre&gt;gpg --keyserver keyserver.ubuntu.com --recv 3B81A3FBA47394CE
+gpg --export --armor 3B81A3FBA47394CE | sudo apt-key add -
+
+&lt;em&gt;UPDATE:&lt;/em&gt;
+&lt;em&gt;Corregido …&lt;/em&gt;&lt;/pre&gt;</summary><content type="html">
+        Ante un error como este:
+
+W: GPG error: http://ppa.launchpad.net intrepid Release: The following signatures couldn't be verified because the public key is not available: NO_PUBKEY 3B81A3FBA47394CE
+
+Hay que importar las claves:
+&lt;pre&gt;gpg --keyserver keyserver.ubuntu.com --recv 3B81A3FBA47394CE
+gpg --export --armor 3B81A3FBA47394CE | sudo apt-key add -
+
+&lt;em&gt;UPDATE:&lt;/em&gt;
+&lt;em&gt;Corregido el tema de los guiones, gracias a miguelbf por la indicación y perdón por la tardanza en arreglarlo&lt;/em&gt;&lt;/pre&gt;
+    </content><category term="Infraestructura"></category><category term="linux"></category></entry><entry><title>La potencia de los permisos</title><link href="https://pablocaro.es/la-potencia-de-los-permisos" rel="alternate"></link><published>2008-12-01T14:06:00+01:00</published><updated>2008-12-01T14:06:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2008-12-01:/la-potencia-de-los-permisos</id><summary type="html">
+        Recordar los comandos para controlar las listas de control de acceso en linux.
+
+&lt;code&gt;man setfacl
+man getfacl&lt;/code&gt;
+
+Tras "setfacl -m user:joe:rwx dir",  verás que ls -d dir muestra un signo + al final que indica que se están utilizado permisos ampliados.
+
+Si quieres saber más, el tío google te …</summary><content type="html">
+        Recordar los comandos para controlar las listas de control de acceso en linux.
+
+&lt;code&gt;man setfacl
+man getfacl&lt;/code&gt;
+
+Tras "setfacl -m user:joe:rwx dir",  verás que ls -d dir muestra un signo + al final que indica que se están utilizado permisos ampliados.
+
+Si quieres saber más, el tío google te lo dirá.
+    </content><category term="Infraestructura"></category><category term="linux"></category></entry><entry><title>Usar find para detectar enlaces simbólicos rotos</title><link href="https://pablocaro.es/usar-find-para-detectar-enlaces-simbolicos-rotos" rel="alternate"></link><published>2008-11-20T11:30:00+01:00</published><updated>2008-11-20T11:30:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2008-11-20:/usar-find-para-detectar-enlaces-simbolicos-rotos</id><content type="html">
+        &lt;code&gt;for f in $(find /usr/local/bin -type l); do if [ ! -e "$f" ]; then &lt;a title="Echo command (not yet written)" class="new" href="http://howto.wikia.com/index.php?title=Echo_command&amp;amp;action=edit&amp;amp;redlink=1"&gt;echo&lt;/a&gt; $f; fi; done&lt;/code&gt;
+    </content><category term="Infraestructura"></category><category term="linux"></category></entry><entry><title>Varios monitores en linux</title><link href="https://pablocaro.es/varios-monitores-en-linux" rel="alternate"></link><published>2008-11-10T03:27:00+01:00</published><updated>2008-11-10T03:27:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2008-11-10:/varios-monitores-en-linux</id><content type="html">
+        Esta anotación es sólo para comentar el comando xrandr que uso en kubuntu intrepid para trabajar con dos monitores.
+
+sudo xrandr --output VGA --auto
+sudo xrandr --output VGA --above LVDS
+    </content><category term="Infraestructura"></category><category term="linux"></category></entry><entry><title>Grabar CD de 800MB en linux</title><link href="https://pablocaro.es/grabar-cd-de-800mb-en-linux" rel="alternate"></link><published>2008-07-23T05:07:00+02:00</published><updated>2008-07-23T05:07:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2008-07-23:/grabar-cd-de-800mb-en-linux</id><summary type="html">
+        Tenía que grabar unos datos. Eran 730MB aproximadamente, con un CD habitual (700MB) iba a ser imposible, pero tenía por ahí un CD philips de 90 minutos (800MB). Y teniendo ese CD ¿por qué usar un DVD que son más caros?
+Mi sorpresa llega cuando el k3b (que uso habitualmente …</summary><content type="html">
+        Tenía que grabar unos datos. Eran 730MB aproximadamente, con un CD habitual (700MB) iba a ser imposible, pero tenía por ahí un CD philips de 90 minutos (800MB). Y teniendo ese CD ¿por qué usar un DVD que son más caros?
+Mi sorpresa llega cuando el k3b (que uso habitualmente) se niega a grabar, ¡por falta de espacio! a pesar de que le indico (graicias google) que use el modo DAO en la interfaz. Total que a grabar desde la consola :-D
+
+Aquí dejo el comandito como anotación para tenerlo de cerca la próxima vez:
+&lt;pre&gt;cdrecord -dev=/dev/scd0 -v -overburn -dao -speed=4 -data -eject /tmp/LaBodademiNovia.iso&lt;/pre&gt;
+La opción necesaria además de "DAO" es "overburn". Podéis ver como cdrecord sí reconoce todo el tamaño del disco como indica la línea:
+&lt;pre&gt;Total size:      810 MB (80:18.14) = 361361 sectors&lt;/pre&gt;
+&lt;em&gt;ACTUALIZACIÓN:  &lt;/em&gt;Ahora veo una opción en las preferencias de k3b para pervitir el sobregrabado. Si es que k3b no me podía fallar :-D
+    </content><category term="Infraestructura"></category></entry><entry><title>Convertir disco vmware</title><link href="https://pablocaro.es/convertir-disco-vmware" rel="alternate"></link><published>2008-05-11T12:07:00+02:00</published><updated>2008-05-11T12:07:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2008-05-11:/convertir-disco-vmware</id><content type="html">
+    &lt;pre lang="bash"&gt;
+pcaro@davinci$ vmware-vdiskmanager -r Windows\ XP\ Professional.vmdk -t 0 WindowsXPProfessionalUnico.vmdk
+Creating disk 'WindowsXPProfessionalUnico.vmdk'
+Convert: 100% done.
+Virtual disk conversion successful.
+    &lt;/pre&gt;
+    </content><category term="Infraestructura"></category></entry><entry><title>Más comandos a recordar</title><link href="https://pablocaro.es/mas-comandos-a-recordar" rel="alternate"></link><published>2008-04-09T11:54:00+02:00</published><updated>2008-04-09T11:54:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2008-04-09:/mas-comandos-a-recordar</id><summary type="html">
+        Otra nota para que no se me vuelvan a olvidar algunos de los super-mini-comandos unix.
+&lt;ul&gt;
+	&lt;li&gt;Para desconectar un programa de la consola desde la que se está ejecutando y no pare por ejemplo si muere la conexión ssh, hay que usar &lt;code&gt;disown&lt;/code&gt;.  Es una de esas &lt;a target="_blank" href="http://www.faqs.org/docs/bashman/bashref_79.html"&gt;herramientas para control de …&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;</summary><content type="html">
+        Otra nota para que no se me vuelvan a olvidar algunos de los super-mini-comandos unix.
+&lt;ul&gt;
+	&lt;li&gt;Para desconectar un programa de la consola desde la que se está ejecutando y no pare por ejemplo si muere la conexión ssh, hay que usar &lt;code&gt;disown&lt;/code&gt;.  Es una de esas &lt;a target="_blank" href="http://www.faqs.org/docs/bashman/bashref_79.html"&gt;herramientas para control de trabajos&lt;/a&gt; como fg. Los pasos son:&lt;/li&gt;
+&lt;ul&gt;
+&lt;ol&gt;
+	&lt;li&gt;Ejecutar la tarea en segudo plano "ejecutable.sh &amp;", en la consola te saldrá el número de trabajo [1]&lt;/li&gt;
+	&lt;li&gt;luego disown %1&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/ul&gt;
+	&lt;li&gt;&lt;a target="_blank" href="http://www.linuxmanpages.com/man1/watch.1.php"&gt;&lt;code&gt;watch&lt;/code&gt;&lt;/a&gt;: para ejecutar un programa periódicamente, mostrando su salida a pantalla completa y pudiendo señalar las diferencias. Lo uso con un ls -l por ejemplo para ver como va cambiando el tamaño de un fichero, etc.&lt;/li&gt;
+&lt;/ul&gt;
+PD: Gracias a mis compañeros de Yaco por enseñarme un poco todos los días.
+
+Nota post-post:
+
+Me comentan que es muy útil &lt;a target="_blank" href="http://www.linuxmanpages.com/man1/nohup.1.php"&gt;nohup&lt;/a&gt;.
+&lt;ul&gt;
+&lt;ul&gt;
+&lt;ul /&gt;&lt;/ul&gt;
+&lt;/ul&gt;
+    </content><category term="Infraestructura"></category></entry><entry><title>Rendimiento y Monitorización de procesos en windows</title><link href="https://pablocaro.es/rendimiento-y-monitorizacion-de-procesos-en-windows" rel="alternate"></link><published>2008-02-12T07:21:00+01:00</published><updated>2008-02-12T07:21:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2008-02-12:/rendimiento-y-monitorizacion-de-procesos-en-windows</id><summary type="html">
+        Prácticamente nunca uso windows, y por trabajo, cuando tengo que hacerlo es para ver errores. Resulta útil ver los procesos. Para no olvidarme como simpre dejo mi nota aquí:
+&lt;ul&gt;
+	&lt;li&gt;Para ver el rendimiento del sistema, Monitor de rendimiento: Incio, ejecutar: &lt;strong&gt;perfmon&lt;/strong&gt;&lt;/li&gt;
+	&lt;li&gt;Un buen&lt;a href="http://technet.microsoft.com/es-es/sysinternals/bb896645(en-us).aspx" target="_blank" title="monitor procesos"&gt; monitor de procesos&lt;/a&gt; se encuentra entres las …&lt;/li&gt;&lt;/ul&gt;</summary><content type="html">
+        Prácticamente nunca uso windows, y por trabajo, cuando tengo que hacerlo es para ver errores. Resulta útil ver los procesos. Para no olvidarme como simpre dejo mi nota aquí:
+&lt;ul&gt;
+	&lt;li&gt;Para ver el rendimiento del sistema, Monitor de rendimiento: Incio, ejecutar: &lt;strong&gt;perfmon&lt;/strong&gt;&lt;/li&gt;
+	&lt;li&gt;Un buen&lt;a href="http://technet.microsoft.com/es-es/sysinternals/bb896645(en-us).aspx" target="_blank" title="monitor procesos"&gt; monitor de procesos&lt;/a&gt; se encuentra entres las utilidades que da microsoft&lt;/li&gt;
+&lt;/ul&gt;
+    </content><category term="Infraestructura"></category></entry><entry><title>Knetworkmanager</title><link href="https://pablocaro.es/knetworkmanager" rel="alternate"></link><published>2007-10-06T05:28:00+02:00</published><updated>2007-10-06T05:28:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2007-10-06:/knetworkmanager</id><summary type="html">
+        Ahora una de esas entradas para que me sirva de recordatorio.
+
+Habitualmente estoy acostumbrado, cuando voy a un lugar y me dan conexión wifi, a configurarla a mano en /etc/network/interfaces.
+
+Esto hace que deje de funcionar el knetwormanager. Indica "configuración manual de red". Para que vuelva a tomar …</summary><content type="html">
+        Ahora una de esas entradas para que me sirva de recordatorio.
+
+Habitualmente estoy acostumbrado, cuando voy a un lugar y me dan conexión wifi, a configurarla a mano en /etc/network/interfaces.
+
+Esto hace que deje de funcionar el knetwormanager. Indica "configuración manual de red". Para que vuelva a tomar el control de las interaces de red tengo que comentar todas las líneas en ese fichero como bien se indica &lt;a target="_blank" title="documentación de NetworkManager" href="https://help.ubuntu.com/community/WifiDocs/NetworkManager"&gt;en la documentación de ubuntu&lt;/a&gt;.
+
+Para manejar el demonio NetWorkmanger tengo que usar:
+
+&lt;code&gt; /etc/dbus-1/event.d/25NetworkManager {start|stop|restart|force-reload} &lt;/code&gt;
+
+&lt;code&gt;/etc/dbus-1/event.d/26NetworkManagerDispatcher {start|stop|restart|force-reload}&lt;/code&gt;
+    </content><category term="Infraestructura"></category><category term="linux"></category></entry><entry><title>Error al grabar CDs con k3b</title><link href="https://pablocaro.es/error-al-grabar-cds-con-k3b" rel="alternate"></link><published>2006-12-18T05:18:00+01:00</published><updated>2006-12-18T05:18:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2006-12-18:/error-al-grabar-cds-con-k3b</id><summary type="html">
+        Tengo un  Dell latitude D610 y kubuntu edgy.
+
+Desde dapper siempre me ha ocurrido un error al copiar cds con k3b. El problema es que no tengo acceso al dispositivo /dev/sg0
+
+con &lt;strike&gt;sudo chown /dev/sg0 root:cdrom&lt;/strike&gt; sudo root:cdrom /dev/sg0 lo soluciono (doy grupo cdrom a …</summary><content type="html">
+        Tengo un  Dell latitude D610 y kubuntu edgy.
+
+Desde dapper siempre me ha ocurrido un error al copiar cds con k3b. El problema es que no tengo acceso al dispositivo /dev/sg0
+
+con &lt;strike&gt;sudo chown /dev/sg0 root:cdrom&lt;/strike&gt; sudo root:cdrom /dev/sg0 lo soluciono (doy grupo cdrom a quién quiera que use la grabadora).
+
+El problema es que al reiniciar se vuelve a colocar el grupo a root y no se como cambiar esto en el udev. ¿Alguna idea?
+    </content><category term="Infraestructura"></category><category term="linux"></category></entry></feed>

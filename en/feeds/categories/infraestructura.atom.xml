@@ -1,0 +1,655 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Annotations by Pablo Caro - Infraestructura</title><link href="/en/" rel="alternate"></link><link href="/en/feeds/categories/infraestructura.atom.xml" rel="self"></link><id>/en/</id><updated>2026-05-03T10:01:00+02:00</updated><subtitle>Anotaciones</subtitle><entry><title>DNS blocking of AliExpress links with NextDNS</title><link href="/en/bloqueo-dns-aliexpress-nextdns" rel="alternate"></link><published>2026-05-03T10:01:00+02:00</published><updated>2026-05-03T10:01:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:None,2026-05-03:/en/bloqueo-dns-aliexpress-nextdns</id><summary type="html">&lt;p&gt;Using an overly aggressive DNS blocklist in NextDNS broke AliExpress affiliate links. Diagnosed with dig and fixed by switching to HaGeZi Multi PRO.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="DNS blocking illustration" src="/images/dns-blocking-nextdns.jpg"&gt;&lt;/p&gt;
+&lt;p&gt;I'd been having a weird issue for a few days: AliExpress links from product video descriptions wouldn't load. Firefox kept showing "Server not found". I knew it looked like a DNS block because enabling PIA's VPN (Private Internet Access) made the problem go away.&lt;/p&gt;
+&lt;h2 id="the-diagnosis"&gt;The diagnosis&lt;a class="headerlink" href="#the-diagnosis" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The &lt;code&gt;dig&lt;/code&gt; command confirmed it immediately:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Querying the router (using NextDNS)&lt;/span&gt;
+$&lt;span class="w"&gt; &lt;/span&gt;dig&lt;span class="w"&gt; &lt;/span&gt;s.click.aliexpress.com&lt;span class="w"&gt; &lt;/span&gt;@192.168.1.1
+
+&lt;span class="p"&gt;;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;ANSWER&lt;span class="w"&gt; &lt;/span&gt;SECTION:
+s.click.aliexpress.com.&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;300&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;IN&lt;span class="w"&gt;  &lt;/span&gt;A&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="m"&gt;0&lt;/span&gt;.0.0.0
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Querying Google DNS&lt;/span&gt;
+$&lt;span class="w"&gt; &lt;/span&gt;dig&lt;span class="w"&gt; &lt;/span&gt;s.click.aliexpress.com&lt;span class="w"&gt; &lt;/span&gt;@8.8.8.8
+
+&lt;span class="p"&gt;;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;ANSWER&lt;span class="w"&gt; &lt;/span&gt;SECTION:
+s.click.aliexpress.com.&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;300&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;IN&lt;span class="w"&gt;  &lt;/span&gt;A&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="m"&gt;23&lt;/span&gt;.40.114.185
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The router was returning &lt;code&gt;0.0.0.0&lt;/code&gt; for &lt;code&gt;s.click.aliexpress.com&lt;/code&gt;. That's not an NXDOMAIN —non-existent domain—, it's a deliberate block: the domain resolves to a null IP and the browser can't connect.&lt;/p&gt;
+&lt;p&gt;With the VPN active, DNS queries went through PIA's servers, which don't apply blocklists, so the links worked fine.&lt;/p&gt;
+&lt;h2 id="the-cause"&gt;The cause&lt;a class="headerlink" href="#the-cause" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The router had &lt;strong&gt;NextDNS&lt;/strong&gt; configured with its default blocklist. It blocked malware and phishing just fine, but it was also catching legitimate domains like affiliate redirects. Too aggressive for daily use.&lt;/p&gt;
+&lt;h2 id="the-fix"&gt;The fix&lt;a class="headerlink" href="#the-fix" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The simplest fix would have been to whitelist &lt;code&gt;s.click.aliexpress.com&lt;/code&gt; in NextDNS and call it a day. But I took the chance to review which list I was using and switched to &lt;strong&gt;HaGeZi - Multi PRO&lt;/strong&gt;, which solved the problem anyway.&lt;/p&gt;
+&lt;p&gt;According to the &lt;a href="https://github.com/hagezi/dns-blocklists/wiki/FAQ#whatshouldiuse"&gt;official HaGeZi guide&lt;/a&gt;:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;List&lt;/th&gt;
+&lt;th&gt;Blocking level&lt;/th&gt;
+&lt;th&gt;False positives&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Light&lt;/td&gt;
+&lt;td&gt;Relaxed&lt;/td&gt;
+&lt;td&gt;None&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Normal&lt;/td&gt;
+&lt;td&gt;Relaxed/Balanced&lt;/td&gt;
+&lt;td&gt;Almost none&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Pro&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;Balanced&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;Very rare&lt;/strong&gt; ← recommended&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Pro++&lt;/td&gt;
+&lt;td&gt;Balanced/Aggressive&lt;/td&gt;
+&lt;td&gt;Some&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Ultimate&lt;/td&gt;
+&lt;td&gt;Aggressive&lt;/td&gt;
+&lt;td&gt;Common&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Multi PRO (~420k domains, ~200k compressed) is the HaGeZi author's &lt;strong&gt;personal recommendation&lt;/strong&gt; for effective blocking without issues. It blocks ads, trackers, telemetry, phishing, malware, scams, cryptojacking, and "crap", with very few false positives.&lt;/p&gt;
+&lt;h2 id="the-key-detail-referral-domains"&gt;The key detail: referral domains&lt;a class="headerlink" href="#the-key-detail-referral-domains" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;HaGeZi's FAQ has an entire section explaining that &lt;strong&gt;referral domains&lt;/strong&gt; —affiliate/tracking links like &lt;code&gt;s.click.aliexpress.com&lt;/code&gt;— are &lt;strong&gt;allowed in all lists&lt;/strong&gt;, except for a few that also function as pure trackers and are only blocked in Pro++ and Ultimate.&lt;/p&gt;
+&lt;p&gt;These domains only activate after a manual user click and aren't used to display ads. Blocking them breaks search result links, deal links, confirmation emails, etc.&lt;/p&gt;
+&lt;h2 id="summary"&gt;Summary&lt;a class="headerlink" href="#summary" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;An overly aggressive DNS blocklist blocks domains that aren't ads or malware, just e-commerce redirect mechanisms. The sweet spot is &lt;strong&gt;Multi PRO&lt;/strong&gt;: good privacy protection without breaking everyday functionality.&lt;/p&gt;
+&lt;p&gt;If I ever need more aggressiveness, the trade-off will be having to manually unblock false positives. For now, Multi PRO works perfectly.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;More info&lt;/em&gt;: &lt;a href="https://github.com/hagezi/dns-blocklists"&gt;HaGeZi DNS Blocklists&lt;/a&gt;&lt;/p&gt;</content><category term="Infraestructura"></category><category term="dns"></category><category term="nextdns"></category><category term="aliexpress"></category><category term="bloqueo"></category><category term="linux"></category></entry><entry><title>Double-sided scanning with the Brother DCP-L3560CDW</title><link href="/en/escaneo-doble-cara-brother-dcp-l3560cdw" rel="alternate"></link><published>2026-05-03T00:00:00+02:00</published><updated>2026-05-03T00:00:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:None,2026-05-03:/en/escaneo-doble-cara-brother-dcp-l3560cdw</id><summary type="html">&lt;p&gt;Workaround for scanning double-sided documents with the Brother DCP-L3560CDW and its simplex document feeder.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="Brother DCP-L3560CDW and scattered papers" src="/images/brother-escaneo-doble-pagina.png"&gt;&lt;/p&gt;
+&lt;p&gt;My new &lt;a href="https://www.manua.ls/brother/dcp-l3560cdw/manual"&gt;Brother DCP-L3560CDW&lt;/a&gt; multifunction printer doesn't scan both sides from the document feeder. The ADF is simplex-only, even though the printer does support duplex printing.&lt;/p&gt;
+&lt;p&gt;For single-sided documents, the workflow is seamless: I load the pages into the feeder, press &lt;em&gt;Scan&lt;/em&gt; on the 3.7-inch touchscreen, and the document lands directly in Paperless's Samba share. No PC needed.&lt;/p&gt;
+&lt;p&gt;The issue comes with double-sided documents. Here's the workaround I use:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Scan all odd pages through the feeder&lt;/li&gt;
+&lt;li&gt;Flip the stack, place the last page facing up, and scan the even pages&lt;/li&gt;
+&lt;li&gt;In &lt;a href="https://gitlab.gnome.org/GNOME/simple-scan"&gt;Document Scanner&lt;/a&gt; (simple-scan): hamburger menu → &lt;em&gt;Reorder pages&lt;/em&gt; → &lt;em&gt;Combine sides (reverse)&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Save the PDF&lt;/li&gt;
+&lt;li&gt;Move it to the network folder for Paperless to ingest&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;I checked KDE alternatives (Skanpage, Skanlite) but none have the manual interleave feature that Document Scanner offers. Skanlite can't even combine multiple pages into a single PDF.&lt;/p&gt;
+&lt;p&gt;I'll keep looking for a more direct approach. For now, this workflow does the job.&lt;/p&gt;</content><category term="Infraestructura"></category><category term="brother"></category><category term="impresora"></category><category term="escaner"></category><category term="linux"></category><category term="simple-scan"></category><category term="paperless"></category></entry><entry><title>Hidden gems in pi-powerline-footer</title><link href="/en/powerline-footer-hidden-gems" rel="alternate"></link><published>2026-03-22T00:00:00+01:00</published><updated>2026-03-22T00:00:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:None,2026-03-22:/en/powerline-footer-hidden-gems</id><summary type="html">&lt;p&gt;Two features of the pi-powerline-footer plugin that go beyond the typical footer with model information.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="Screenshot of the pi-powerline-footer plugin" src="/images/pi-powerline-footer.png"&gt;&lt;/p&gt;
+&lt;p&gt;I've been using &lt;a href="https://github.com/nicobailon/pi-powerline-footer"&gt;pi-powerline-footer&lt;/a&gt; for a while, mainly for its main feature: that footer showing useful model info, context, tokens, and cost. But recently I discovered two features that have changed how I work with pi day-to-day.&lt;/p&gt;
+&lt;h2 id="editor-stash-your-integrated-temporary-clipboard"&gt;Editor Stash: your integrated temporary clipboard&lt;a class="headerlink" href="#editor-stash-your-integrated-temporary-clipboard" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;With &lt;code&gt;Alt+S&lt;/code&gt; you can save the current editor content, clear it, write something quick (for example, a short question to another agent), and when it's done, your original text comes back automatically.&lt;/p&gt;
+&lt;p&gt;It's perfect when you're in the middle of a complex task and need to make a quick query without losing context. Or when you want to save a code block you'll reuse later.&lt;/p&gt;
+&lt;p&gt;Plus, you have shortcuts to copy (&lt;code&gt;ctrl+alt+c&lt;/code&gt;) and cut (&lt;code&gt;ctrl+alt+x&lt;/code&gt;) the full editor content, and a stash history accessible with &lt;code&gt;ctrl+alt+h&lt;/code&gt; that persists between sessions.&lt;/p&gt;
+&lt;h2 id="model-profiles-quick-navigation-between-model-configurations"&gt;Model Profiles: quick navigation between model configurations&lt;a class="headerlink" href="#model-profiles-quick-navigation-between-model-configurations" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;This is the feature I use the most right now. With several active providers —mainly &lt;a href="https://openrouter.ai/"&gt;OpenRouter&lt;/a&gt; (with its many models), &lt;a href="https://ai.google.dev/"&gt;Google Gemini&lt;/a&gt;, and &lt;a href="https://opencode.ai/"&gt;OpenCode&lt;/a&gt;— switching between models was a mess.&lt;/p&gt;
+&lt;p&gt;Model Profiles save model + thinking level combinations. I define them in &lt;code&gt;~/.pi/agent/settings.json&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;modelProfiles&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;model&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;google/gemini-3-pro&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;thinking&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;high&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;label&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Gemini Deep&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;model&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;anthropic/claude-opus-4-5&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;thinking&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;xhigh&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;label&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Opus Ultra&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;model&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;openai/codex-5.3&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;thinking&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;low&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;label&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Codex Fast&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;With &lt;code&gt;alt+shift+tab&lt;/code&gt; I cycle through profiles and with &lt;code&gt;ctrl+alt+m&lt;/code&gt; I open a visual selector. The change is instant — no more endless menus searching for the exact model.&lt;/p&gt;
+&lt;p&gt;It's especially useful with OpenRouter, where the model list is huge. Instead of navigating through all of them, I have my 3-4 preferred configurations and switch between them based on the task.&lt;/p&gt;
+&lt;h2 id="the-footer-is-just-the-beginning"&gt;The footer is just the beginning&lt;a class="headerlink" href="#the-footer-is-just-the-beginning" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The plugin documentation is full of small utilities: &lt;a href="https://github.com/nicobailon/pi-powerline-footer?tab=readme-ov-file#working-vibes"&gt;Working Vibes&lt;/a&gt; for themed loading messages, configurable keyboard shortcuts, git integration... But these two features I've described are the ones that have the most impact on my daily workflow.&lt;/p&gt;
+&lt;p&gt;If you haven't tried it yet: &lt;code&gt;pi install npm:pi-powerline-footer&lt;/code&gt; and then &lt;code&gt;/reload&lt;/code&gt;.&lt;/p&gt;</content><category term="Infraestructura"></category><category term="pi"></category><category term="terminal"></category><category term="productividad"></category></entry><entry><title>Stern: Kubernetes Logs on Steroids</title><link href="/en/stern-kubernetes-logs" rel="alternate"></link><published>2026-02-20T00:00:00+01:00</published><updated>2026-02-20T00:00:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:None,2026-02-20:/en/stern-kubernetes-logs</id><summary type="html">&lt;p&gt;If you work with Kubernetes, you've probably suffered through the &lt;code&gt;kubectl logs&lt;/code&gt; command. It's useful for viewing the logs of a specific pod, but it falls short when you have multiple replicas of a service or when pods restart and change names.&lt;/p&gt;
+&lt;p&gt;This is where &lt;strong&gt;&lt;a href="https://github.com/stern/stern"&gt;Stern&lt;/a&gt;&lt;/strong&gt; comes in.&lt;/p&gt;
+&lt;p&gt;Stern allows …&lt;/p&gt;</summary><content type="html">&lt;p&gt;If you work with Kubernetes, you've probably suffered through the &lt;code&gt;kubectl logs&lt;/code&gt; command. It's useful for viewing the logs of a specific pod, but it falls short when you have multiple replicas of a service or when pods restart and change names.&lt;/p&gt;
+&lt;p&gt;This is where &lt;strong&gt;&lt;a href="https://github.com/stern/stern"&gt;Stern&lt;/a&gt;&lt;/strong&gt; comes in.&lt;/p&gt;
+&lt;p&gt;Stern allows you to "tail" logs from multiple pods and containers within Kubernetes simultaneously. Best of all, it uses regular expressions to select pods, so you don't need to copy and paste those random IDs (&lt;code&gt;pod-1234567890-abcde&lt;/code&gt;).&lt;/p&gt;
+&lt;h2 id="installation"&gt;Installation&lt;a class="headerlink" href="#installation" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Stern is very popular and available in most package managers.### Using Krew (recommended)
+If you already use &lt;code&gt;kubectl&lt;/code&gt;, Krew is the most natural way to install plugins:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;kubectl&lt;span class="w"&gt; &lt;/span&gt;krew&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;stern
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id="using-homebrew"&gt;Using Homebrew&lt;a class="headerlink" href="#using-homebrew" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;brew&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;stern
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id="direct-binary"&gt;Direct Binary&lt;a class="headerlink" href="#direct-binary" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;You can also download the binary directly from their &lt;a href="https://github.com/stern/stern/releases"&gt;GitHub releases&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;If you use a helper like &lt;code&gt;gah&lt;/code&gt; (GitHub Asset Helper) or custom scripts, installation is as simple as:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;gah&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;stern/stern
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="key-features"&gt;Key Features&lt;a class="headerlink" href="#key-features" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="1-multi-pod-tailing"&gt;1. Multi-pod Tailing&lt;a class="headerlink" href="#1-multi-pod-tailing" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Instead of searching for the exact pod name, you can use a regex:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;stern&lt;span class="w"&gt; &lt;/span&gt;backend
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This will show logs from all pods containing "backend" in their name (&lt;code&gt;backend-api&lt;/code&gt;, &lt;code&gt;backend-worker&lt;/code&gt;, etc.), interleaved and colored to easily distinguish them.&lt;/p&gt;
+&lt;h3 id="2-filtering-and-exclusion"&gt;2. Filtering and Exclusion&lt;a class="headerlink" href="#2-filtering-and-exclusion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;You can filter log content on the fly without needing &lt;code&gt;grep&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Only show lines containing &amp;quot;Error&amp;quot;&lt;/span&gt;
+stern&lt;span class="w"&gt; &lt;/span&gt;backend&lt;span class="w"&gt; &lt;/span&gt;-i&lt;span class="w"&gt; &lt;/span&gt;Error
+
+&lt;span class="c1"&gt;# Exclude lines containing &amp;quot;Health check&amp;quot;&lt;/span&gt;
+stern&lt;span class="w"&gt; &lt;/span&gt;backend&lt;span class="w"&gt; &lt;/span&gt;-e&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Health check&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id="3-kubernetes-selectors"&gt;3. Kubernetes Selectors&lt;a class="headerlink" href="#3-kubernetes-selectors" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;In addition to regex by name, you can use label selectors, which is much more precise for production environments:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;stern&lt;span class="w"&gt; &lt;/span&gt;-l&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;app&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;my-app&lt;span class="w"&gt; &lt;/span&gt;-l&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;tier&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;frontend
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id="4-output-formatting"&gt;4. Output Formatting&lt;a class="headerlink" href="#4-output-formatting" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;If your logs are in JSON (as is best practice), Stern can pass them through as is so you can process them with tools like &lt;code&gt;jq&lt;/code&gt; or &lt;code&gt;fx&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;stern&lt;span class="w"&gt; &lt;/span&gt;backend&lt;span class="w"&gt; &lt;/span&gt;-o&lt;span class="w"&gt; &lt;/span&gt;raw&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;fx
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="conclusion"&gt;Conclusion&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Stern is one of those tools you install on day one and wonder how you ever lived without it. It makes debugging in distributed environments much less painful by aggregating information coherently.&lt;/p&gt;
+&lt;p&gt;Give it a try and your debugging sessions will thank you.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="stern help" src="/en/images/stern_help.png"&gt;&lt;/p&gt;</content><category term="Infraestructura"></category><category term="kubernetes"></category><category term="cli"></category><category term="logs"></category><category term="herramientas"></category></entry><entry><title>How to View Files in an RPM Package on Linux</title><link href="/en/ver-archivos-paquete-rpm" rel="alternate"></link><published>2025-12-25T15:15:00+01:00</published><updated>2025-12-25T15:15:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:None,2025-12-25:/en/ver-archivos-paquete-rpm</id><summary type="html">&lt;p&gt;Quick guide to inspecting the contents of RPM packages and determining which packages own specific files on your Linux system.&lt;/p&gt;</summary><content type="html">&lt;p&gt;On RPM-based Linux systems (like Red Hat, CentOS, Fedora, openSUSE), it is common to interact with packages in &lt;code&gt;.rpm&lt;/code&gt; format. Often, we need to know what files a package contains before installing it, or which package is responsible for a specific file already installed on the system. For this, the &lt;code&gt;rpm&lt;/code&gt; tool offers several useful options.&lt;/p&gt;
+&lt;h2 id="1-list-files-of-an-rpm-package-without-installing"&gt;1. List Files of an RPM Package Without Installing&lt;a class="headerlink" href="#1-list-files-of-an-rpm-package-without-installing" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;If you have a downloaded &lt;code&gt;.rpm&lt;/code&gt; file and want to see what files it will install (and where) without installing it, you can use the &lt;code&gt;-qlp&lt;/code&gt; option:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;rpm&lt;span class="w"&gt; &lt;/span&gt;-qlp&lt;span class="w"&gt; &lt;/span&gt;package_name.rpm
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;-q&lt;/code&gt;: Query mode.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;-l&lt;/code&gt;: List files.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;-p&lt;/code&gt;: Query a package file instead of an installed one.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Example:&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;rpm&lt;span class="w"&gt; &lt;/span&gt;-qlp&lt;span class="w"&gt; &lt;/span&gt;nginx-1.20.1-1.el8.x86_64.rpm
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="2-find-the-owner-package-of-an-installed-file"&gt;2. Find the Owner Package of an Installed File&lt;a class="headerlink" href="#2-find-the-owner-package-of-an-installed-file" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;If you find a file on your system and want to know which RPM package it belongs to (useful for debugging or knowing if you can safely delete it), use the &lt;code&gt;-qf&lt;/code&gt; option:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;rpm&lt;span class="w"&gt; &lt;/span&gt;-qf&lt;span class="w"&gt; &lt;/span&gt;/path/to/file
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Example:&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;rpm&lt;span class="w"&gt; &lt;/span&gt;-qf&lt;span class="w"&gt; &lt;/span&gt;/etc/nginx/nginx.conf
+&lt;span class="c1"&gt;# Expected output: nginx-1.20.1-1.el8.x86_64&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="3-get-detailed-information-about-a-package"&gt;3. Get Detailed Information about a Package&lt;a class="headerlink" href="#3-get-detailed-information-about-a-package" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;To see complete information about a package (version, description, dependencies, etc.), whether installed or an &lt;code&gt;.rpm&lt;/code&gt; file, you can use &lt;code&gt;-qi&lt;/code&gt; (for installed packages) or &lt;code&gt;-qip&lt;/code&gt; (for package files):&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;rpm&lt;span class="w"&gt; &lt;/span&gt;-qi&lt;span class="w"&gt; &lt;/span&gt;installed_package_name
+&lt;span class="c1"&gt;# Example: rpm -qi nginx&lt;/span&gt;
+
+rpm&lt;span class="w"&gt; &lt;/span&gt;-qip&lt;span class="w"&gt; &lt;/span&gt;package_name.rpm
+&lt;span class="c1"&gt;# Example: rpm -qip nginx-1.20.1-1.el8.x86_64.rpm&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="conclusion"&gt;Conclusion&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Mastering these simple options of the &lt;code&gt;rpm&lt;/code&gt; command gives you much greater control over packages and files on your Linux system, facilitating administration and debugging. They are essential tools for any system administrator or developer working with RPM-based distributions.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Original article&lt;/em&gt;: &lt;a href="https://comulinux.blogspot.com/2010/04/como-ver-los-archivos-de-un-paquete-rpm.html"&gt;Cómo Ver los Archivos de un Paquete RPM o Deb&lt;/a&gt;&lt;/p&gt;</content><category term="Infraestructura"></category><category term="linux"></category><category term="rpm"></category><category term="paquetes"></category><category term="comandos"></category><category term="administracion"></category><category term="dnf"></category><category term="yum"></category></entry><entry><title>Kubegres: Simplified PostgreSQL Management on Kubernetes</title><link href="/en/kubegres-postgresql-kubernetes" rel="alternate"></link><published>2025-12-25T14:00:00+01:00</published><updated>2025-12-25T14:00:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:None,2025-12-25:/en/kubegres-postgresql-kubernetes</id><summary type="html">&lt;p&gt;Discover Kubegres, a Kubernetes operator that simplifies the deployment and management of highly available and scalable PostgreSQL clusters.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Deploying and managing relational databases on Kubernetes can be challenging. Although containers and orchestration offer flexibility, data persistence, high availability, and backups for a database like PostgreSQL require careful consideration. This is where &lt;strong&gt;Kubegres&lt;/strong&gt; comes into play.&lt;/p&gt;
+&lt;h2 id="what-is-kubegres"&gt;What is Kubegres?&lt;a class="headerlink" href="#what-is-kubegres" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Kubegres is a &lt;strong&gt;Kubernetes operator&lt;/strong&gt; that allows you to deploy and manage PostgreSQL clusters on Kubernetes simply and efficiently. An operator is an application that extends Kubernetes functionalities, automating complex operational tasks that typically require manual intervention.&lt;/p&gt;
+&lt;h2 id="why-use-kubegres"&gt;Why use Kubegres?&lt;a class="headerlink" href="#why-use-kubegres" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Kubegres abstracts much of the complexity of running PostgreSQL in an orchestrated environment, offering key features such as:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;High Availability (HA)&lt;/strong&gt;: Automatic configuration of PostgreSQL replicas to ensure service continuity in the event of failures.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Replication&lt;/strong&gt;: Support for streaming replication (Primary/Standby) for redundancy and read scalability.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Backups and Restore&lt;/strong&gt;: Facilitates the configuration of backup policies and data recovery.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Scalability&lt;/strong&gt;: Allows scaling PostgreSQL read replicas to handle growing workloads.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Easy Updates&lt;/strong&gt;: Manages PostgreSQL version updates within the cluster.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Monitoring&lt;/strong&gt;: Integrates mechanisms to monitor the cluster status.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="how-does-it-work"&gt;How does it work?&lt;a class="headerlink" href="#how-does-it-work" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Kubegres uses Kubernetes &lt;strong&gt;Custom Resources (CRs)&lt;/strong&gt;. This means you interact with your PostgreSQL cluster using standard Kubernetes objects (YAML). You define the desired state of your cluster (number of replicas, PostgreSQL version, backup policies) in a YAML file, and Kubegres ensures that state is maintained at all times.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;apiVersion&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;kubegres.reactive-tech.io/v1&lt;/span&gt;
+&lt;span class="nt"&gt;kind&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;Kubegres&lt;/span&gt;
+&lt;span class="nt"&gt;metadata&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;my-postgres&lt;/span&gt;
+&lt;span class="nt"&gt;spec&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;replicas&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;3&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;image&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;postgres:13.2&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;database&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;size&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;10Gi&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="c1"&gt;# ... other settings for backups, etc.&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="benefits-for-developers-and-operations"&gt;Benefits for Developers and Operations&lt;a class="headerlink" href="#benefits-for-developers-and-operations" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Simplification&lt;/strong&gt;: Drastically reduces the complexity of operating PostgreSQL on Kubernetes.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Automation&lt;/strong&gt;: Tasks like failover, replication, and backups are managed automatically.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Consistency&lt;/strong&gt;: Ensures that the state of your database always reflects your desired configuration.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;DevOps Friendly&lt;/strong&gt;: Allows you to integrate database management into your CI/CD pipelines using the same tools and workflows as for the rest of your K8s applications.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Kubegres is an excellent choice for teams looking for a robust and automated solution for their PostgreSQL needs on Kubernetes.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Original article&lt;/em&gt;: &lt;a href="https://www.kubegres.io/"&gt;Kubegres - The Kubernetes PostgreSQL operator&lt;/a&gt;&lt;/p&gt;</content><category term="Infraestructura"></category><category term="kubernetes"></category><category term="postgresql"></category><category term="kubegres"></category><category term="operador"></category><category term="base-de-datos"></category></entry><entry><title>TCP Connection States in GNU/Linux: netstat and ss</title><link href="/en/estados-conexion-tcp-netstat-ss" rel="alternate"></link><published>2025-12-25T13:30:00+01:00</published><updated>2025-12-25T13:30:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:None,2025-12-25:/en/estados-conexion-tcp-netstat-ss</id><summary type="html">&lt;p&gt;Understand the different TCP connection states reported by netstat and ss, from establishment to termination, for better network diagnosis.&lt;/p&gt;</summary><content type="html">&lt;p&gt;In the GNU/Linux world, tools like &lt;code&gt;netstat&lt;/code&gt; and &lt;code&gt;ss&lt;/code&gt; are indispensable for monitoring and diagnosing the state of network connections on our systems. To correctly interpret their output, it is fundamental to understand the different states a TCP connection goes through. This post explores those states, from establishment to termination of a connection.&lt;/p&gt;
+&lt;h2 id="phases-of-a-tcp-connection"&gt;Phases of a TCP Connection&lt;a class="headerlink" href="#phases-of-a-tcp-connection" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;A TCP connection is managed through three main phases:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Connection Establishment&lt;/strong&gt;: A multi-step handshake process that initiates the connection.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Data Transfer&lt;/strong&gt;: Once established, data is sent between the two endpoints.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Connection Termination&lt;/strong&gt;: Closes the connection and releases associated resources.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;During these phases, the Internet socket (the local endpoint of the communication) experiences a series of state changes.&lt;/p&gt;
+&lt;h2 id="tcp-socket-states-explained"&gt;TCP Socket States Explained&lt;a class="headerlink" href="#tcp-socket-states-explained" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Here are the most common states you might encounter when listing connections with &lt;code&gt;netstat&lt;/code&gt; or &lt;code&gt;ss&lt;/code&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;ESTABLISHED&lt;/strong&gt;: The TCP connection is established and ready to transfer data. This is the desired state for an active connection.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;SYN_SENT&lt;/strong&gt;: The local socket has sent a SYN packet to the remote server and is waiting for a SYN-ACK response. Indicates that a connection attempt is being made.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;SYN_RECV&lt;/strong&gt;: The server has received a SYN packet from a client and has responded with a SYN-ACK, now waiting for an ACK from the client. It is part of the three-way handshake.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;FIN_WAIT1&lt;/strong&gt;: The local socket has closed its side of the connection and has sent a FIN packet, waiting for an ACK from the remote peer. The connection is closing actively.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;FIN_WAIT2&lt;/strong&gt;: The local socket has received the ACK to its FIN, but is still waiting for a FIN packet from the remote peer to fully close the connection.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;TIME_WAIT&lt;/strong&gt;: The socket has waited after closing the connection to ensure that all packets have been transmitted and received by both sides, and to allow duplicate packets to die out in the network. It is a necessary wait state before fully releasing resources.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;CLOSE&lt;/strong&gt;: The socket is not in use and there is no connection.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;CLOSE_WAIT&lt;/strong&gt;: The remote peer has closed its side of the connection (sent a FIN and been ACKed), and the local socket is waiting for the local application to close its own side.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;LAST_ACK&lt;/strong&gt;: The local socket has sent its FIN to the remote peer, and is waiting for the final ACK from the remote peer. This happens after a &lt;code&gt;CLOSE_WAIT&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;LISTEN&lt;/strong&gt;: The socket is waiting for incoming connections. Only seen with the &lt;code&gt;--listening (-l)&lt;/code&gt; or &lt;code&gt;--all (-a)&lt;/code&gt; options of &lt;code&gt;netstat&lt;/code&gt;/&lt;code&gt;ss&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;CLOSING&lt;/strong&gt;: Both sides of the connection have tried to close simultaneously, and the local socket is in the process of sending/receiving FIN and ACK.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;UNKNOWN&lt;/strong&gt;: The socket state is unknown or cannot be determined.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="tools-netstat-and-ss"&gt;Tools: &lt;code&gt;netstat&lt;/code&gt; and &lt;code&gt;ss&lt;/code&gt;&lt;a class="headerlink" href="#tools-netstat-and-ss" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;You can see these states using commands like:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;netstat&lt;span class="w"&gt; &lt;/span&gt;-tn&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="c1"&gt;# Shows TCP connections, without name resolution (-n)&lt;/span&gt;
+ss&lt;span class="w"&gt; &lt;/span&gt;-tn&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="c1"&gt;# Modern and faster version of netstat&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The &lt;code&gt;-t&lt;/code&gt; option filters for TCP connections and &lt;code&gt;-n&lt;/code&gt; avoids name resolution, which speeds up the output and shows IPs directly.&lt;/p&gt;
+&lt;h2 id="conclusion"&gt;Conclusion&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Understanding TCP connection states is vital for diagnosing network issues, identifying unresponsive or stuck processes, and understanding how applications behave in terms of connectivity. Knowing what each state means allows you to debug problems more effectively on your GNU/Linux system.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Original article&lt;/em&gt;: &lt;a href="https://www.ochobitshacenunbyte.com/2020/11/07/tipos-de-conexiones-en-netstat-y-ss-explicadas/"&gt;Tipos de Conexiones en netstat y ss Explicadas&lt;/a&gt;&lt;/p&gt;</content><category term="Infraestructura"></category><category term="linux"></category><category term="tcp"></category><category term="netstat"></category><category term="ss"></category></entry><entry><title>Kitty as a Quick Access Terminal: The Convenience of a Dropdown</title><link href="/en/kitty-acceso-rapido" rel="alternate"></link><published>2025-12-25T12:30:00+01:00</published><updated>2025-12-25T12:30:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:None,2025-12-25:/en/kitty-acceso-rapido</id><summary type="html">&lt;p&gt;Configure Kitty for instant and efficient access, combining the power of a modern terminal with the convenience of a dropdown.&lt;/p&gt;</summary><content type="html">&lt;p&gt;One of the most appreciated features of terminals like Yakuake or Guake is their ability to appear and disappear instantly with a single keystroke, offering quick access without interrupting the workflow. &lt;strong&gt;Kitty&lt;/strong&gt;, the GPU-accelerated terminal, can also replicate and improve this experience, combining its power with the convenience of a dropdown terminal.&lt;/p&gt;
+&lt;h2 id="the-dropdown-terminal-concept"&gt;The Dropdown Terminal Concept&lt;a class="headerlink" href="#the-dropdown-terminal-concept" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The idea is simple: a terminal that resides in the background and shows or hides on demand. This is especially useful for quick commands, monitoring, or any task that requires brief interaction with the command line.&lt;/p&gt;
+&lt;h2 id="kitty-for-quick-access"&gt;Kitty for Quick Access&lt;a class="headerlink" href="#kitty-for-quick-access" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Kitty does not have a native "dropdown" function like Yakuake, but its flexibility and scripting capabilities allow it to be configured for this purpose. The key lies in:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Dedicated Kitty instances:&lt;/strong&gt; You can launch a Kitty instance in a "daemon" or background mode, ready to be activated.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Remote control:&lt;/strong&gt; Kitty offers a remote control protocol (&lt;code&gt;kitty @&lt;/code&gt;) that allows interacting with already open instances.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Window Manager:&lt;/strong&gt; Using the rules of your window manager (KDE, Gnome, i3, Sway, etc.) to assign a hotkey that shows or hides the Kitty window.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id="example-configuration"&gt;Example Configuration&lt;a class="headerlink" href="#example-configuration" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Here is a conceptual approach to achieve a quick access terminal with Kitty and a window manager (e.g., with &lt;code&gt;xdotool&lt;/code&gt; for Xorg environments, or similar functions in Wayland):&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Launch Kitty in the background:&lt;/strong&gt;
+    You can have a Kitty instance that starts automatically with your session and is configured to be "floating" and with a specific size.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Toggle Script:&lt;/strong&gt;
+    Create a small script that checks if the "always visible" Kitty window is active and, if it is, hides it; if not, shows it.&lt;/p&gt;
+&lt;p&gt;```bash&lt;/p&gt;
+&lt;h1 id="binbash"&gt;!/bin/bash&lt;a class="headerlink" href="#binbash" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;KITTY_CLASS="kitty-dropdown" # A custom class for the Kitty window
+KITTY_ID=$(xdotool search --class "$KITTY_CLASS" | head -n 1)&lt;/p&gt;
+&lt;p&gt;if [ -z "$KITTY_ID" ]; then
+    # If it doesn't exist, launch it
+    kitty --class "$KITTY_CLASS" &amp;amp;
+else
+    # If it exists, toggle visibility
+    if xdotool getwindowfocus getwindowpid | grep -q "$(xdotool getwindowpid "$KITTY_ID")"; then
+        xdotool windowminimize "$KITTY_ID"
+    else
+        xdotool windowmap "$KITTY_ID" # Show the window
+        xdotool windowraise "$KITTY_ID" # Make sure it's on top
+        xdotool windowfocus "$KITTY_ID" # Give it focus
+    fi
+fi
+```&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Keyboard shortcut in your window manager:&lt;/strong&gt;
+    Assign a global key (e.g., &lt;code&gt;F12&lt;/code&gt;) to run this script.&lt;/p&gt;
+&lt;p&gt;```&lt;/p&gt;
+&lt;h1 id="example-in-configi3config-or-similar"&gt;Example in ~/.config/i3/config or similar&lt;a class="headerlink" href="#example-in-configi3config-or-similar" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;bindsym $mod+F12 exec --no-startup-id /path/to/your/toggle-kitty-dropdown.sh
+```&lt;/p&gt;
+&lt;p&gt;And in your &lt;code&gt;kitty.conf&lt;/code&gt;, you can configure the Kitty instance to have the specific class and a suitable position/size:&lt;/p&gt;
+&lt;p&gt;```&lt;/p&gt;
+&lt;h1 id="kittyconf-configuration-for-the-dropdown-instance"&gt;kitty.conf (configuration for the dropdown instance)&lt;a class="headerlink" href="#kittyconf-configuration-for-the-dropdown-instance" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;window_class_members kitty-dropdown
+initial_window_width 80%
+initial_window_height 40%
+window_border_width 0&lt;/p&gt;
+&lt;h1 id="other-appearance-settings"&gt;... other appearance settings ...&lt;a class="headerlink" href="#other-appearance-settings" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;```&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;This method gives you the speed and convenience of a dropdown terminal, but with all the power and customization that Kitty offers. It's the best of both worlds!&lt;/p&gt;</content><category term="Infraestructura"></category><category term="kitty"></category><category term="terminal"></category><category term="acceso-rapido"></category><category term="productividad"></category><category term="linux"></category><category term="atajos"></category></entry><entry><title>Essential Keyboard Shortcuts in Kitty: Mastering Your Terminal</title><link href="/en/atajos-de-teclado-kitty" rel="alternate"></link><published>2025-12-25T12:15:00+01:00</published><updated>2025-12-25T12:15:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:None,2025-12-25:/en/atajos-de-teclado-kitty</id><summary type="html">&lt;p&gt;A quick guide to the most useful Kitty keyboard shortcuts to optimize your command-line workflow.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;strong&gt;Kitty&lt;/strong&gt; is a terminal that shines for its performance and high customizability, but where it truly excels is in its keyboard-driven interface. Mastering its shortcuts will allow you to navigate, manage, and manipulate your terminal sessions with amazing efficiency.&lt;/p&gt;
+&lt;h2 id="discover-your-shortcuts-show_shortcuts"&gt;Discover Your Shortcuts: &lt;code&gt;show_shortcuts&lt;/code&gt;&lt;a class="headerlink" href="#discover-your-shortcuts-show_shortcuts" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The fastest way to know all the keyboard shortcuts configured in your Kitty instance is by using its own functionality:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;kitty&lt;span class="w"&gt; &lt;/span&gt;+kitten&lt;span class="w"&gt; &lt;/span&gt;show_shortcuts
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This will open an interactive window where you can see all shortcuts, both the default ones and those customized in your &lt;code&gt;kitty.conf&lt;/code&gt;.&lt;/p&gt;
+&lt;h2 id="essential-shortcuts-for-every-day"&gt;Essential Shortcuts for Every Day&lt;a class="headerlink" href="#essential-shortcuts-for-every-day" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Here are some of the most useful shortcuts that will help you optimize your workflow the most:&lt;/p&gt;
+&lt;h3 id="window-and-split-management-panes"&gt;Window and Split Management (Panes)&lt;a class="headerlink" href="#window-and-split-management-panes" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+enter&lt;/code&gt;: Opens a new Kitty window.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+w&lt;/code&gt;: Closes the current Kitty window.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+o&lt;/code&gt;: Splits the current window vertically (new pane to the right).&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+e&lt;/code&gt;: Splits the current window horizontally (new pane below).&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+f&lt;/code&gt;: Toggles between split panes (focus).&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+[&lt;/code&gt; / &lt;code&gt;ctrl+shift+]&lt;/code&gt;: Navigates between panes (left/right).&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+alt+[&lt;/code&gt; / &lt;code&gt;ctrl+shift+alt+]&lt;/code&gt;: Moves the active pane (left/right).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="tab-management"&gt;Tab Management&lt;a class="headerlink" href="#tab-management" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+t&lt;/code&gt;: Opens a new tab.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+q&lt;/code&gt;: Closes the current tab.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+.&lt;/code&gt;: Moves to the next tab.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+,&lt;/code&gt;: Moves to the previous tab.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+alt+.&lt;/code&gt;: Moves the current tab to the right.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+alt+,&lt;/code&gt;: Moves the current tab to the left.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="copy-and-paste"&gt;Copy and Paste&lt;a class="headerlink" href="#copy-and-paste" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Kitty has its own copy/paste implementation, which can be more reliable than the system one when working in remote environments or with multiplexers:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+c&lt;/code&gt;: Copies the selected text to the system clipboard.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+v&lt;/code&gt;: Pastes text from the system clipboard.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="font-and-appearance-control"&gt;Font and Appearance Control&lt;a class="headerlink" href="#font-and-appearance-control" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+=&lt;/code&gt; (or &lt;code&gt;+&lt;/code&gt;): Increases the font size.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+-&lt;/code&gt;: Decreases the font size.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+backspace&lt;/code&gt;: Resets the font size to the default value.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ctrl+shift+k&lt;/code&gt;: Enters "scrollback" mode (to search or select historical text).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="customizing-your-shortcuts-in-kittyconf"&gt;Customizing Your Shortcuts in &lt;code&gt;kitty.conf&lt;/code&gt;&lt;a class="headerlink" href="#customizing-your-shortcuts-in-kittyconf" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;You can add or modify keyboard shortcuts in your configuration file &lt;code&gt;~/.config/kitty/kitty.conf&lt;/code&gt; using the &lt;code&gt;map&lt;/code&gt; directive. For example, to map &lt;code&gt;F1&lt;/code&gt; for a custom script:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nx"&gt;map&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;f1&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;launch&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="k"&gt;type&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;&lt;span class="nx"&gt;overlay&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;bash&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nx"&gt;c&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;my_custom_script.sh&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Mastering these shortcuts will transform your interaction with the terminal, making it more fluid and intuitive. Experiment and customize Kitty to perfectly adapt to your work style!&lt;/p&gt;</content><category term="Infraestructura"></category><category term="kitty"></category><category term="terminal"></category><category term="atajos"></category><category term="teclado"></category><category term="productividad"></category></entry><entry><title>From Yakuake to Kitty: My Transition to a Modern Terminal</title><link href="/en/de-yakuake-a-kitty" rel="alternate"></link><published>2025-12-25T12:00:00+01:00</published><updated>2025-12-25T12:00:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:None,2025-12-25:/en/de-yakuake-a-kitty</id><summary type="html">&lt;p&gt;Exploring the reasons and benefits of switching from Yakuake to Kitty for a more powerful and customizable terminal experience.&lt;/p&gt;</summary><content type="html">&lt;p&gt;For years, &lt;strong&gt;Yakuake&lt;/strong&gt; has been my go-to terminal in KDE desktop environments. Its quick access convenience, dropping down and hiding with a simple keystroke, is undeniable. However, in my constant search for optimization and performance, I decided to explore alternatives, and &lt;strong&gt;Kitty&lt;/strong&gt; emerged as a standout option.&lt;/p&gt;
+&lt;h2 id="why-the-switch"&gt;Why the Switch?&lt;a class="headerlink" href="#why-the-switch" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Although Yakuake is excellent in its niche, Kitty offers a series of advantages that align better with the demands of a modern and demanding workflow:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;GPU Accelerated Performance&lt;/strong&gt;: Kitty is designed to leverage the graphics card, resulting in extremely fast and fluid text rendering, especially noticeable in terminals with a lot of scrolling or intense output.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Integrated Multiplexing&lt;/strong&gt;: Unlike Yakuake, which relies on traditional tab/window sessions, Kitty incorporates its own multiplexing system (similar to &lt;code&gt;tmux&lt;/code&gt; or &lt;code&gt;screen&lt;/code&gt;) that allows splitting windows, creating tabs, and organizing panes natively and efficiently.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Extensive Configurability&lt;/strong&gt;: &lt;code&gt;kitty.conf&lt;/code&gt; allows deep customization, from keyboard shortcuts to appearance, themes, and behavior.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Modern Support&lt;/strong&gt;: Excellent support for Wayland (the future of Linux on the desktop), font ligatures (like Fira Code), and an ecosystem of "kittens" (scripts and extended functionalities).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Cross-platform&lt;/strong&gt;: Although my main use is on Linux, the ability to have a consistent terminal experience across different operating systems is a plus.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="adapting-to-kitty"&gt;Adapting to Kitty&lt;a class="headerlink" href="#adapting-to-kitty" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The transition required adjusting some habits, mainly the way sessions and quick access are managed. However, the advantages far outweigh the initial learning curve. The speed, fluidity, and power of Kitty's built-in features make it an indispensable tool for my daily life.&lt;/p&gt;
+&lt;p&gt;Configuring Kitty is a simple process through its &lt;code&gt;kitty.conf&lt;/code&gt; file, where all aspects of the terminal are defined. We will explore more about its configuration and keyboard shortcuts in future posts.&lt;/p&gt;
+&lt;p&gt;If you are looking to take your terminal experience to the next level, migrating to Kitty is a step I highly recommend.&lt;/p&gt;</content><category term="Infraestructura"></category><category term="kitty"></category><category term="yakuake"></category><category term="terminal"></category><category term="linux"></category><category term="productividad"></category><category term="herramientas"></category></entry><entry><title>How to Find Live Hosts on Your Local Network</title><link href="/en/encontrar-hosts-vivos-red" rel="alternate"></link><published>2016-06-27T07:59:00+02:00</published><updated>2016-06-27T07:59:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:None,2016-06-27:/en/encontrar-hosts-vivos-red</id><summary type="html">&lt;p&gt;Methods and tools to discover active devices on local networks using nmap, arp-scan, netdiscover, and other reconnaissance techniques&lt;/p&gt;</summary><content type="html">&lt;p&gt;Discovering &lt;strong&gt;which devices are active&lt;/strong&gt; on your local network is a fundamental task for network administrators and security professionals. Here are the most effective techniques.&lt;/p&gt;
+&lt;h2 id="nmap-the-main-tool"&gt;Nmap: The Main Tool&lt;a class="headerlink" href="#nmap-the-main-tool" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="basic-host-scan"&gt;Basic Host Scan&lt;a class="headerlink" href="#basic-host-scan" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Simple Ping scan&lt;/span&gt;
+nmap&lt;span class="w"&gt; &lt;/span&gt;-sn&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;192&lt;/span&gt;.168.1.1/24
+
+&lt;span class="c1"&gt;# Scan with specific TCP ports&lt;/span&gt;
+nmap&lt;span class="w"&gt; &lt;/span&gt;-sP&lt;span class="w"&gt; &lt;/span&gt;-PS22,3389&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;192&lt;/span&gt;.168.1.1/24
+
+&lt;span class="c1"&gt;# UDP scan for special devices&lt;/span&gt;
+nmap&lt;span class="w"&gt; &lt;/span&gt;-sP&lt;span class="w"&gt; &lt;/span&gt;-PU161&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;192&lt;/span&gt;.168.1.1/24
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;-sn&lt;/strong&gt;: Host discovery only, no port scan
+&lt;strong&gt;-PS&lt;/strong&gt;: TCP SYN discovery on specific ports
+&lt;strong&gt;-PU&lt;/strong&gt;: UDP discovery (useful for embedded devices)&lt;/p&gt;
+&lt;h3 id="more-exhaustive-scans"&gt;More Exhaustive Scans&lt;a class="headerlink" href="#more-exhaustive-scans" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Full scan with OS detection&lt;/span&gt;
+nmap&lt;span class="w"&gt; &lt;/span&gt;-A&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;192&lt;/span&gt;.168.1.1/24
+
+&lt;span class="c1"&gt;# TCP Connect Scan (less intrusive)&lt;/span&gt;
+nmap&lt;span class="w"&gt; &lt;/span&gt;-sT&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;192&lt;/span&gt;.168.1.1/24
+
+&lt;span class="c1"&gt;# Firewall bypass with fragmentation&lt;/span&gt;
+nmap&lt;span class="w"&gt; &lt;/span&gt;-f&lt;span class="w"&gt; &lt;/span&gt;-sS&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;192&lt;/span&gt;.168.1.1/24
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="alternative-tools"&gt;Alternative Tools&lt;a class="headerlink" href="#alternative-tools" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="arp-scan-arp-based"&gt;arp-scan: ARP Based&lt;a class="headerlink" href="#arp-scan-arp-based" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Local subnet scan&lt;/span&gt;
+arp-scan&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;192&lt;/span&gt;.168.12.0/24
+
+&lt;span class="c1"&gt;# With specific interface&lt;/span&gt;
+arp-scan&lt;span class="w"&gt; &lt;/span&gt;-I&lt;span class="w"&gt; &lt;/span&gt;eth0&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;172&lt;/span&gt;.16.17.0/24
+
+&lt;span class="c1"&gt;# Simplified local scan&lt;/span&gt;
+arp-scan&lt;span class="w"&gt; &lt;/span&gt;-l
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Advantage&lt;/strong&gt;: Works even with strict firewalls&lt;/p&gt;
+&lt;h3 id="netdiscover-passiveactive-discovery"&gt;netdiscover: Passive/Active Discovery&lt;a class="headerlink" href="#netdiscover-passiveactive-discovery" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Active discovery&lt;/span&gt;
+netdiscover&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;172&lt;/span&gt;.16.17.0/24
+
+&lt;span class="c1"&gt;# Passive mode (listen only)&lt;/span&gt;
+netdiscover&lt;span class="w"&gt; &lt;/span&gt;-p
+
+&lt;span class="c1"&gt;# Fast mode&lt;/span&gt;
+netdiscover&lt;span class="w"&gt; &lt;/span&gt;-f&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;192&lt;/span&gt;.168.1.0/24
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id="fing-mobile-scanner"&gt;fing: Mobile Scanner&lt;a class="headerlink" href="#fing-mobile-scanner" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Fast scan&lt;/span&gt;
+fing&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;
+
+&lt;span class="c1"&gt;# With manufacturer details&lt;/span&gt;
+fing&lt;span class="w"&gt; &lt;/span&gt;-o&lt;span class="w"&gt; &lt;/span&gt;table,csv
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="post-scan-verification"&gt;Post-Scan Verification&lt;a class="headerlink" href="#post-scan-verification" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="check-arp-table"&gt;Check ARP Table&lt;a class="headerlink" href="#check-arp-table" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# View current ARP table&lt;/span&gt;
+arp&lt;span class="w"&gt; &lt;/span&gt;-a&lt;span class="w"&gt; &lt;/span&gt;-n
+
+&lt;span class="c1"&gt;# On modern systems&lt;/span&gt;
+ip&lt;span class="w"&gt; &lt;/span&gt;neigh&lt;span class="w"&gt; &lt;/span&gt;show
+
+&lt;span class="c1"&gt;# Clear and rescan&lt;/span&gt;
+sudo&lt;span class="w"&gt; &lt;/span&gt;arp&lt;span class="w"&gt; &lt;/span&gt;-d&lt;span class="w"&gt; &lt;/span&gt;-a
+ping&lt;span class="w"&gt; &lt;/span&gt;-c&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;192&lt;/span&gt;.168.1.&lt;span class="o"&gt;{&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;..254&lt;span class="o"&gt;}&lt;/span&gt;
+arp&lt;span class="w"&gt; &lt;/span&gt;-a
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="advanced-techniques"&gt;Advanced Techniques&lt;a class="headerlink" href="#advanced-techniques" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="wireshark-for-passive-analysis"&gt;Wireshark for Passive Analysis&lt;a class="headerlink" href="#wireshark-for-passive-analysis" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;Capture traffic on the network interface&lt;/li&gt;
+&lt;li&gt;Filter by ARP: &lt;code&gt;arp&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Analyze broadcast traffic&lt;/li&gt;
+&lt;li&gt;Identify devices by traffic patterns&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id="automation-scripts"&gt;Automation Scripts&lt;a class="headerlink" href="#automation-scripts" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="ch"&gt;#!/bin/bash&lt;/span&gt;
+&lt;span class="c1"&gt;# Full local network scan&lt;/span&gt;
+&lt;span class="nb"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Scanning network...&amp;quot;&lt;/span&gt;
+nmap&lt;span class="w"&gt; &lt;/span&gt;-sn&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;ip&lt;span class="w"&gt; &lt;/span&gt;route&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;grep&lt;span class="w"&gt; &lt;/span&gt;-E&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;^192|^10|^172&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;awk&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;{print $1}&amp;#39;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;head&lt;span class="w"&gt; &lt;/span&gt;-1&lt;span class="k"&gt;)&lt;/span&gt;
+&lt;span class="nb"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Verifying ARP...&amp;quot;&lt;/span&gt;
+arp&lt;span class="w"&gt; &lt;/span&gt;-a&lt;span class="w"&gt; &lt;/span&gt;-n&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;grep&lt;span class="w"&gt; &lt;/span&gt;-v&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;incomplete&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="important-considerations"&gt;Important Considerations&lt;a class="headerlink" href="#important-considerations" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="firewall-limitations"&gt;Firewall Limitations&lt;a class="headerlink" href="#firewall-limitations" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Some devices&lt;/strong&gt; block ping/ICMP&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Corporate firewalls&lt;/strong&gt; may filter scans&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Different ports&lt;/strong&gt; may reveal "hidden" devices&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="legal-considerations"&gt;Legal Considerations&lt;a class="headerlink" href="#legal-considerations" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;⚠️ &lt;strong&gt;Authorization needed&lt;/strong&gt;: Only scan your own networks
+⚠️ &lt;strong&gt;Corporate policies&lt;/strong&gt;: Verify before scanning in enterprise environments&lt;/p&gt;
+&lt;h3 id="optimization-by-network-type"&gt;Optimization by Network Type&lt;a class="headerlink" href="#optimization-by-network-type" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Home network (routers, IoT)&lt;/span&gt;
+nmap&lt;span class="w"&gt; &lt;/span&gt;-sn&lt;span class="w"&gt; &lt;/span&gt;--min-rate&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;1000&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;192&lt;/span&gt;.168.1.1/24
+
+&lt;span class="c1"&gt;# Corporate network (servers, stations)&lt;/span&gt;
+nmap&lt;span class="w"&gt; &lt;/span&gt;-sP&lt;span class="w"&gt; &lt;/span&gt;-PS80,443,22,3389&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;10&lt;/span&gt;.0.0.0/8
+
+&lt;span class="c1"&gt;# Industrial network (embedded devices)&lt;/span&gt;
+nmap&lt;span class="w"&gt; &lt;/span&gt;-sP&lt;span class="w"&gt; &lt;/span&gt;-PU161,502&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;172&lt;/span&gt;.16.0.0/12
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The &lt;strong&gt;combination of multiple techniques&lt;/strong&gt; provides the most complete picture of active devices on your network.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Original source&lt;/em&gt;: &lt;a href="http://security.stackexchange.com/questions/36198/how-to-find-live-hosts-on-my-network"&gt;Information Security Stack Exchange&lt;/a&gt;&lt;/p&gt;</content><category term="Infraestructura"></category><category term="nmap"></category><category term="network-discovery"></category><category term="arp-scan"></category><category term="netdiscover"></category></entry><entry><title>Middle click in firefox</title><link href="/en/boton_central_firefox" rel="alternate"></link><published>2016-01-01T07:00:00+01:00</published><updated>2016-01-01T07:00:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:None,2016-01-01:/en/boton_central_firefox</id><summary type="html">&lt;p class="first last"&gt;Stop firefox from opening the pasted url with the middle mouse button&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;Another reminder note.
+I usually open links in a new window in firefox using the middle button.
+It often happens to me that I have a url in the clipboard and firefox then opens it for me instead of the link.
+To avoid this, simply go to &lt;code&gt;about:config&lt;/code&gt; and set the property &lt;code&gt;middlemouse.contentLoadURL&lt;/code&gt; to false.&lt;/p&gt;
+</content><category term="Infraestructura"></category><category term="linux"></category></entry><entry><title>The Story Behind X-Forwarded-For and X-Real-IP</title><link href="/en/historia-x-forwarded-for-x-real-ip" rel="alternate"></link><published>2015-10-21T23:05:00+02:00</published><updated>2015-10-21T23:05:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:None,2015-10-21:/en/historia-x-forwarded-for-x-real-ip</id><summary type="html">&lt;p&gt;Analysis of X-Forwarded-For and X-Real-IP headers, their origins, differences, and how to determine the client's real IP in architectures with multiple proxies&lt;/p&gt;</summary><content type="html">&lt;p&gt;Determining the &lt;strong&gt;client's real IP&lt;/strong&gt; in proxy architectures is more complex than it seems. The &lt;code&gt;X-Forwarded-For&lt;/code&gt; and &lt;code&gt;X-Real-IP&lt;/code&gt; headers have different purposes and limitations.&lt;/p&gt;
+&lt;h2 id="x-forwarded-for-the-full-chain"&gt;X-Forwarded-For: The Full Chain&lt;a class="headerlink" href="#x-forwarded-for-the-full-chain" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="format-and-purpose"&gt;Format and Purpose&lt;a class="headerlink" href="#format-and-purpose" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nv"&gt;X&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;Forwarded&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="k"&gt;For&lt;/span&gt;:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;client&lt;/span&gt;,&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;proxy1&lt;/span&gt;,&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;proxy2&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Tracks the original IP&lt;/strong&gt; of the client through multiple hops&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Accumulates IPs&lt;/strong&gt; as it passes through proxies&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Not mandatory&lt;/strong&gt; for all proxies&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="critical-limitations"&gt;Critical Limitations&lt;a class="headerlink" href="#critical-limitations" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;⚠️ &lt;strong&gt;Easily forgeable&lt;/strong&gt;: A client can add fake IPs
+⚠️ &lt;strong&gt;Potentially unreliable&lt;/strong&gt; for determining the real IP&lt;/p&gt;
+&lt;h2 id="x-real-ip-the-direct-approach"&gt;X-Real-IP: The Direct Approach&lt;a class="headerlink" href="#x-real-ip-the-direct-approach" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="characteristics"&gt;Characteristics&lt;a class="headerlink" href="#characteristics" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Less documentation&lt;/strong&gt; officially available&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Commonly used&lt;/strong&gt; alongside X-Forwarded-For&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Simpler approach&lt;/strong&gt; to passing the client IP&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="limitation"&gt;Limitation&lt;a class="headerlink" href="#limitation" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;"Not many good info or specs about this one" - No definitive standards&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id="recommended-nginx-configuration"&gt;Recommended Nginx Configuration&lt;a class="headerlink" href="#recommended-nginx-configuration" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;To extract the most accurate IP:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Configure known proxies&lt;/span&gt;
+&lt;span class="k"&gt;set_real_ip_from&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="s"&gt;.0.0.0/8&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="k"&gt;set_real_ip_from&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;172&lt;/span&gt;&lt;span class="s"&gt;.16.0.0/12&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="k"&gt;set_real_ip_from&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;192&lt;/span&gt;&lt;span class="s"&gt;.168.0.0/16&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Enable recursive processing&lt;/span&gt;
+&lt;span class="k"&gt;real_ip_recursive&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="no"&gt;on&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Use X-Forwarded-For as source&lt;/span&gt;
+&lt;span class="k"&gt;real_ip_header&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;X-Forwarded-For&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="the-real-challenge"&gt;The Real Challenge&lt;a class="headerlink" href="#the-real-challenge" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Determining the "real" client IP is inherently complex&lt;/strong&gt; due to:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Multiple network hops&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Uncooperative proxies&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Potential IP spoofing&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Lack of uniform standards&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="best-practices"&gt;Best Practices&lt;a class="headerlink" href="#best-practices" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Validate trusted sources&lt;/strong&gt; of headers&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Correctly configure&lt;/strong&gt; known proxies&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Do not blindly trust&lt;/strong&gt; client headers&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Implement logging&lt;/strong&gt; for debugging&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;Real reliability&lt;/strong&gt; depends more on your network architecture than on the specific headers used.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Original source&lt;/em&gt;: &lt;a href="http://distinctplace.com/infrastructure/2014/04/23/story-behind-x-forwarded-for-and-x-real-ip-headers/"&gt;Distinct Place&lt;/a&gt;&lt;/p&gt;</content><category term="Infraestructura"></category><category term="headers"></category><category term="x-forwarded-for"></category><category term="x-real-ip"></category><category term="proxy"></category><category term="nginx"></category></entry><entry><title>Nginx: Configuring X-Forwarded-For in Reverse Proxy</title><link href="/en/nginx-x-forwarded-for-reverse-proxy" rel="alternate"></link><published>2015-10-21T23:05:00+02:00</published><updated>2015-10-21T23:05:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:None,2015-10-21:/en/nginx-x-forwarded-for-reverse-proxy</id><summary type="html">&lt;p&gt;How to configure Nginx to pass the client's real IP to backend servers using the X-Forwarded-For header in reverse proxy configurations&lt;/p&gt;</summary><content type="html">&lt;p&gt;When you use &lt;strong&gt;Nginx as a reverse proxy&lt;/strong&gt;, you need the backend server to see the &lt;strong&gt;client's real IP&lt;/strong&gt;, not the proxy's IP. The &lt;code&gt;X-Forwarded-For&lt;/code&gt; header solves this problem.&lt;/p&gt;
+&lt;h2 id="the-problem"&gt;The Problem&lt;a class="headerlink" href="#the-problem" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Without configuration, the backend server only sees the Nginx proxy IP, losing crucial information about the real client for:
+- Accurate &lt;strong&gt;access logs&lt;/strong&gt;
+- Correct &lt;strong&gt;geolocation&lt;/strong&gt;
+- &lt;strong&gt;Rate limiting&lt;/strong&gt; by real IP
+- Reliable &lt;strong&gt;traffic analysis&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id="solution-1-simple-ip"&gt;Solution 1: Simple IP&lt;a class="headerlink" href="#solution-1-simple-ip" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;proxy_set_header&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;X-Forwarded-For&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;$remote_addr&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Usage&lt;/strong&gt;: When Nginx is the only proxy in the chain.
+&lt;strong&gt;Result&lt;/strong&gt;: Header contains only the original client IP.&lt;/p&gt;
+&lt;h2 id="solution-2-ip-chain"&gt;Solution 2: IP Chain&lt;a class="headerlink" href="#solution-2-ip-chain" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;proxy_set_header&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;X-Forwarded-For&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;$proxy_add_x_forwarded_for&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Usage&lt;/strong&gt;: When there are multiple proxies in the chain.
+&lt;strong&gt;Result&lt;/strong&gt;: Preserves existing IPs and adds the current one.&lt;/p&gt;
+&lt;h2 id="practical-configuration"&gt;Practical Configuration&lt;a class="headerlink" href="#practical-configuration" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;server&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="kn"&gt;listen&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;80&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="kn"&gt;server_name&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;example.com&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="kn"&gt;location&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;/&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="kn"&gt;proxy_pass&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;http://backend-server&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="kn"&gt;proxy_set_header&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;Host&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;$host&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="kn"&gt;proxy_set_header&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;X-Real-IP&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;$remote_addr&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="kn"&gt;proxy_set_header&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;X-Forwarded-For&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;$proxy_add_x_forwarded_for&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="kn"&gt;proxy_set_header&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;X-Forwarded-Proto&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;$scheme&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="related-headers"&gt;Related Headers&lt;a class="headerlink" href="#related-headers" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;X-Real-IP&lt;/strong&gt;: Most recent client IP&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;X-Forwarded-For&lt;/strong&gt;: Complete chain of IPs&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;X-Forwarded-Proto&lt;/strong&gt;: Original protocol (http/https)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Host&lt;/strong&gt;: Original hostname&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="verification"&gt;Verification&lt;a class="headerlink" href="#verification" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# On the backend server, check the headers&lt;/span&gt;
+tail&lt;span class="w"&gt; &lt;/span&gt;-f&lt;span class="w"&gt; &lt;/span&gt;/var/log/apache2/access.log
+&lt;span class="c1"&gt;# Or in your application&lt;/span&gt;
+&lt;span class="nb"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;$_SERVER&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;HTTP_X_FORWARDED_FOR&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="security-considerations"&gt;Security Considerations&lt;a class="headerlink" href="#security-considerations" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;⚠️ &lt;strong&gt;Important&lt;/strong&gt;: X-Forwarded-* headers can be forged by clients. In production environments, ensure that only your proxy sets them.&lt;/p&gt;
+&lt;p&gt;This configuration is essential to maintain &lt;strong&gt;full traceability&lt;/strong&gt; in reverse proxy architectures.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Original source&lt;/em&gt;: &lt;a href="http://www.networkinghowtos.com/howto/set-the-x-forwarded-for-header-on-a-nginx-reverse-proxy-setup/"&gt;Networking How To's&lt;/a&gt;&lt;/p&gt;</content><category term="Infraestructura"></category><category term="nginx"></category><category term="reverse-proxy"></category><category term="x-forwarded-for"></category><category term="ip-real"></category><category term="configuracion"></category></entry><entry><title>Install InSync on Opensuse</title><link href="/en/instalar-insync-en-opensuse" rel="alternate"></link><published>2015-04-20T18:18:00+02:00</published><updated>2015-04-20T18:18:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:None,2015-04-20:/en/instalar-insync-en-opensuse</id><summary type="html"></summary><content type="html">&lt;p&gt;I've been testing &lt;a class="reference external" href="https://www.insynchq.com/"&gt;insync&lt;/a&gt; for several days and I think I'll happily pay for it.&lt;/p&gt;
+&lt;p&gt;I downloaded two packages, one for the dolphin context menu and another (the fedora one) for the program itself:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+20:39 $ rpm -qa | grep insync
+insync-1.2.7.35123-fc20.x86_64
+insync-dolphin-1.2.7.35123-fc17.noarch
+&lt;/pre&gt;
+&lt;p&gt;Everything working perfectly on my opensuse&lt;/p&gt;
+</content><category term="Infraestructura"></category><category term="django"></category><category term="python"></category></entry><entry><title>NetHogs see consumed bandwidth</title><link href="/en/nethogs-ver-ancho-de-banda-consumido" rel="alternate"></link><published>2015-04-16T11:37:00+02:00</published><updated>2015-04-16T11:37:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:None,2015-04-16:/en/nethogs-ver-ancho-de-banda-consumido</id><summary type="html">&lt;p&gt;To measure the bandwidth I am using right now, I use NetHogs&lt;/p&gt;
+&lt;p&gt;By default, it looks for a network interface called &amp;quot;eth0&amp;quot;. If it doesn't find it, it complains like this:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+ioctl failed while establishing local IP for selected device eth0. You may specify the device on the command line …&lt;/pre&gt;</summary><content type="html">&lt;p&gt;To measure the bandwidth I am using right now, I use NetHogs&lt;/p&gt;
+&lt;p&gt;By default, it looks for a network interface called &amp;quot;eth0&amp;quot;. If it doesn't find it, it complains like this:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+ioctl failed while establishing local IP for selected device eth0. You may specify the device on the command line.
+&lt;/pre&gt;
+&lt;p&gt;You can see your network configuration with the &lt;em&gt;ip&lt;/em&gt; command:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ ip a
+1: lo: &amp;lt;LOOPBACK,UP,LOWER_UP&amp;gt; mtu 65536 qdisc noqueue state UNKNOWN group default
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host
+       valid_lft forever preferred_lft forever
+2: wlp3s0: &amp;lt;BROADCAST,MULTICAST&amp;gt; mtu 1500 qdisc mq state DOWN group default qlen 1000
+    link/ether 84:3a:4b:50:14:cc brd ff:ff:ff:ff:ff:ff
+3: enp0s25: &amp;lt;BROADCAST,MULTICAST,UP,LOWER_UP&amp;gt; mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+    link/ether 3c:97:0e:77:76:d3 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.1.39/24 brd 192.168.1.255 scope global dynamic enp0s25
+       valid_lft 28955sec preferred_lft 28955sec
+    inet6 fe80::3e97:eff:fe77:76d3/64 scope link
+       valid_lft forever preferred_lft forever
+&lt;/pre&gt;
+&lt;p&gt;As you can see on my computer, I have two interfaces (apart from the loopback one) which are enp0s25 (my wired network card)
+and the wifi wlp3s0, which I am connected to now and is the one I will use (I could list both).&lt;/p&gt;
+&lt;p&gt;So by running:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ sudo nethogs enp0s25
+&lt;/pre&gt;
+&lt;p&gt;I can see the processes that are consuming the most bandwidth.&lt;/p&gt;
+&lt;img alt="Nethogs" class="align-center" src="images/nethogs.png" /&gt;
+&lt;p&gt;The command help is:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+20:02 $ nethogs -h
+usage: nethogs [-V] [-b] [-d seconds] [-t] [-p] [device [device [device ...]]]
+                -V : prints version.
+                -d : delay for update refresh rate in seconds. default is 1.
+                -t : tracemode.
+                -b : bughunt mode - implies tracemode.
+                -p : sniff in promiscious mode (not recommended).
+                device : device(s) to monitor. default is eth0
+
+When nethogs is running, press:
+ q: quit
+ m: switch between total and kb/s mode
+&lt;/pre&gt;
+</content><category term="Infraestructura"></category><category term="linux"></category></entry></feed>

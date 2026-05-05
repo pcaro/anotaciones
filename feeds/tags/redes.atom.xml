@@ -1,73 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Anotaciones por Pablo Caro - redes</title><link href="https://pablocaro.es/" rel="alternate"></link><link href="https://pablocaro.es/feeds/tags/redes.atom.xml" rel="self"></link><id>https://pablocaro.es/</id><updated>2026-05-03T10:01:00+02:00</updated><subtitle>Anotaciones</subtitle><entry><title>Bloqueo DNS de enlaces de AliExpress con NextDNS</title><link href="https://pablocaro.es/bloqueo-dns-aliexpress-nextdns" rel="alternate"></link><published>2026-05-03T10:01:00+02:00</published><updated>2026-05-03T10:01:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-05-03:/bloqueo-dns-aliexpress-nextdns</id><summary type="html">&lt;p&gt;Al usar una blocklist DNS demasiado agresiva en NextDNS, los enlaces de afiliado de AliExpress dejaban de funcionar. Diagnóstico con dig y solución con HaGeZi Multi PRO.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="DNS blocking illustration" src="/images/dns-blocking-nextdns.jpg"&gt;&lt;/p&gt;
-&lt;p&gt;Llevaba unos días con un problema raro: los enlaces de AliExpress que aparecen en descripciones de vídeos de productos no cargaban. Firefox mostraba "Servidor no encontrado". Sabía que tenía pinta de ser un bloqueo DNS, porque al activar la VPN de PIA (Private Internet Access) el problema desaparecía.&lt;/p&gt;
-&lt;h2 id="el-diagnostico"&gt;El diagnóstico&lt;a class="headerlink" href="#el-diagnostico" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;El comando &lt;code&gt;dig&lt;/code&gt; lo confirmó enseguida:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Consultando al router (que usa NextDNS)&lt;/span&gt;
-$&lt;span class="w"&gt; &lt;/span&gt;dig&lt;span class="w"&gt; &lt;/span&gt;s.click.aliexpress.com&lt;span class="w"&gt; &lt;/span&gt;@192.168.1.1
-
-&lt;span class="p"&gt;;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;ANSWER&lt;span class="w"&gt; &lt;/span&gt;SECTION:
-s.click.aliexpress.com.&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;300&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;IN&lt;span class="w"&gt;  &lt;/span&gt;A&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="m"&gt;0&lt;/span&gt;.0.0.0
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Consultando a Google DNS&lt;/span&gt;
-$&lt;span class="w"&gt; &lt;/span&gt;dig&lt;span class="w"&gt; &lt;/span&gt;s.click.aliexpress.com&lt;span class="w"&gt; &lt;/span&gt;@8.8.8.8
-
-&lt;span class="p"&gt;;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;ANSWER&lt;span class="w"&gt; &lt;/span&gt;SECTION:
-s.click.aliexpress.com.&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;300&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;IN&lt;span class="w"&gt;  &lt;/span&gt;A&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="m"&gt;23&lt;/span&gt;.40.114.185
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;El router devolvía &lt;code&gt;0.0.0.0&lt;/code&gt; para &lt;code&gt;s.click.aliexpress.com&lt;/code&gt;. Eso no es un NXDOMAIN —dominio inexistente—, es un bloqueo deliberado: el dominio resuelve a una IP nula y el navegador no puede conectar.&lt;/p&gt;
-&lt;p&gt;Con la VPN activa, las consultas DNS pasaban por los servidores de PIA, que no aplican blocklists, y los enlaces funcionaban sin problema.&lt;/p&gt;
-&lt;h2 id="la-causa"&gt;La causa&lt;a class="headerlink" href="#la-causa" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;El router tenía configurado &lt;strong&gt;NextDNS&lt;/strong&gt; con la lista de bloqueo por defecto. Bloqueaba bien el malware y el phishing, pero también estaba tocando dominios legítimos como los de redirección de afiliados. Demasiado agresiva para mi día a día.&lt;/p&gt;
-&lt;h2 id="la-solucion"&gt;La solución&lt;a class="headerlink" href="#la-solucion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;La solución más simple habría sido añadir &lt;code&gt;s.click.aliexpress.com&lt;/code&gt; a la lista blanca de NextDNS y ya está. Pero aproveché para revisar qué lista estaba usando y cambiarla por &lt;strong&gt;HaGeZi - Multi PRO&lt;/strong&gt;, que de paso resolvía el problema.&lt;/p&gt;
-&lt;p&gt;Según la &lt;a href="https://github.com/hagezi/dns-blocklists/wiki/FAQ#whatshouldiuse"&gt;guía oficial de HaGeZi&lt;/a&gt;:&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Anotaciones por Pablo Caro - redes</title><link href="https://pablocaro.es/" rel="alternate"></link><link href="https://pablocaro.es/feeds/tags/redes.atom.xml" rel="self"></link><id>https://pablocaro.es/</id><updated>2026-03-06T11:30:00+01:00</updated><subtitle>Anotaciones</subtitle><entry><title>De net-tools a iproute2: equivalents de comandos</title><link href="https://pablocaro.es/net-tools-to-iproute" rel="alternate"></link><published>2026-03-06T11:30:00+01:00</published><updated>2026-03-06T11:30:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-03-06:/net-tools-to-iproute</id><summary type="html">&lt;p&gt;Guía de equivalencias entre los comandos clásicos de net-tools (ifconfig, route, arp) y los modernos de iproute2 (ip).&lt;/p&gt;</summary><content type="html">&lt;p&gt;Más de 30 años con Linux, y es difícil cambiar a lo que ya estás acostumbrado. En mi caso, siempre he usado &lt;strong&gt;ifconfig&lt;/strong&gt;, &lt;strong&gt;arp&lt;/strong&gt;, &lt;strong&gt;route&lt;/strong&gt; y &lt;strong&gt;netstat&lt;/strong&gt; para configurar y diagnosticar la red. Pero estos comandos pertenecen al paquete &lt;strong&gt;net-tools&lt;/strong&gt;, que lleva años siendo reemplazado por &lt;strong&gt;iproute2&lt;/strong&gt;.&lt;/p&gt;
+&lt;h2 id="net-tools-vs-iproute2"&gt;net-tools vs iproute2&lt;a class="headerlink" href="#net-tools-vs-iproute2" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Tradicionalmente ha habido dos formas de configurar la red en Linux:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;La forma antigua&lt;/strong&gt;: con comandos como &lt;code&gt;ifconfig&lt;/code&gt;, &lt;code&gt;arp&lt;/code&gt;, &lt;code&gt;route&lt;/code&gt; y &lt;code&gt;netstat&lt;/code&gt;, que pertenecen al paquete &lt;em&gt;net-tools&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;La forma nueva&lt;/strong&gt;: mayormente (¡pero no enteramente!) encapsulada en un único comando &lt;code&gt;ip&lt;/code&gt;, que pertenece al paquete &lt;em&gt;iproute2&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Parece que iproute2 fue marcado como "important" en Debian en 2008, lo que significa que cada lanzamiento desde Debian 5 "lenny" (!) ha incluido el comando &lt;code&gt;ip&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;He estado entrenando lentamente a mi cerebro para usar los nuevos comandos, pero a veces olvido algunos. Aquí tienes una tabla de equivalencias:&lt;/p&gt;
 &lt;table&gt;
 &lt;thead&gt;
 &lt;tr&gt;
-&lt;th&gt;Lista&lt;/th&gt;
-&lt;th&gt;Nivel de bloqueo&lt;/th&gt;
-&lt;th&gt;Falsos positivos&lt;/th&gt;
+&lt;th&gt;net-tools&lt;/th&gt;
+&lt;th&gt;iproute2&lt;/th&gt;
+&lt;th&gt;Forma corta&lt;/th&gt;
+&lt;th&gt;Función&lt;/th&gt;
 &lt;/tr&gt;
 &lt;/thead&gt;
 &lt;tbody&gt;
 &lt;tr&gt;
-&lt;td&gt;Light&lt;/td&gt;
-&lt;td&gt;Relajado&lt;/td&gt;
-&lt;td&gt;Ninguno&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;ifconfig&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;ip address&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;ip a&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Mostrar/configurar direcciones IP&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td&gt;Normal&lt;/td&gt;
-&lt;td&gt;Relajado/Equilibrado&lt;/td&gt;
-&lt;td&gt;Casi ninguno&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;ifconfig -s&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;ip link&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;ip l&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Mostrar estado de enlaces (up/down, contadores)&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td&gt;&lt;strong&gt;Pro&lt;/strong&gt;&lt;/td&gt;
-&lt;td&gt;&lt;strong&gt;Equilibrado&lt;/strong&gt;&lt;/td&gt;
-&lt;td&gt;&lt;strong&gt;Muy raros&lt;/strong&gt; ← recomendada&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;route&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;ip route&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;ip r&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Mostrar o modificar la tabla de rutas&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td&gt;Pro++&lt;/td&gt;
-&lt;td&gt;Equilibrado/Agresivo&lt;/td&gt;
-&lt;td&gt;Algunos&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;arp&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;ip neigh&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;ip n&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Mostrar tabla ARP/vecinos&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td&gt;Ultimate&lt;/td&gt;
-&lt;td&gt;Agresivo&lt;/td&gt;
-&lt;td&gt;Frecuentes&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;netstat&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;ss&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;ss&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Mostrar estadísticas de sockets&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;p&gt;Multi PRO (~420k dominios, ~200k comprimidos) es la &lt;strong&gt;recomendación personal del autor&lt;/strong&gt; de HaGeZi para un bloqueo efectivo sin problemas. Bloquea anuncios, trackers, telemetría, phishing, malware, scam, cryptojacking y "crap", con muy pocos falsos positivos.&lt;/p&gt;
-&lt;h2 id="el-detalle-clave-dominios-de-referral"&gt;El detalle clave: dominios de referral&lt;a class="headerlink" href="#el-detalle-clave-dominios-de-referral" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;La FAQ de HaGeZi dedica una sección entera a explicar que los &lt;strong&gt;dominios de referral&lt;/strong&gt; —enlaces de afiliado/tracking como &lt;code&gt;s.click.aliexpress.com&lt;/code&gt;— están &lt;strong&gt;permitidos en todas las listas&lt;/strong&gt;, salvo unos pocos que también funcionan como trackers puros y solo se bloquean en Pro++ y Ultimate.&lt;/p&gt;
-&lt;p&gt;Estos dominios solo se activan tras un click manual del usuario y no se usan para mostrar publicidad. Bloquearlos rompe enlaces de resultados de búsqueda, ofertas, emails de confirmación, etc.&lt;/p&gt;
-&lt;h2 id="resumen"&gt;Resumen&lt;a class="headerlink" href="#resumen" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Una blocklist DNS demasiado agresiva bloquea dominios que no son publicidad ni malware, sino mecanismos de redirección del comercio electrónico. El equilibrio está en &lt;strong&gt;Multi PRO&lt;/strong&gt;: buena protección de privacidad sin romper funcionalidad cotidiana.&lt;/p&gt;
-&lt;p&gt;Si en algún momento necesito más agresividad, el precio será tener que desbloquear falsos positivos manualmente. Por ahora, Multi PRO va perfecto.&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;Más información&lt;/em&gt;: &lt;a href="https://github.com/hagezi/dns-blocklists"&gt;HaGeZi DNS Blocklists&lt;/a&gt;&lt;/p&gt;</content><category term="Redes"></category><category term="dns"></category><category term="nextdns"></category><category term="aliexpress"></category><category term="bloqueo"></category><category term="redes"></category><category term="linux"></category></entry><entry><title>`docker-http-https-echo`: Una herramienta esencial para depuración de red</title><link href="https://pablocaro.es/docker-http-https-echo" rel="alternate"></link><published>2025-12-25T14:15:00+01:00</published><updated>2025-12-25T14:15:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2025-12-25:/docker-http-https-echo</id><summary type="html">&lt;p&gt;&lt;code&gt;mendhak/docker-http-https-echo&lt;/code&gt; es un contenedor Docker simple que facilita la depuración de configuraciones de red, proxies y balanceadores de carga.&lt;/p&gt;</summary><content type="html">&lt;p&gt;En el complejo mundo de las aplicaciones distribuidas, la depuración de problemas de red, proxies, balanceadores de carga o reglas de firewall puede ser una tarea ardua. Necesitamos una forma simple de verificar qué está recibiendo un servidor. Aquí es donde una herramienta como &lt;code&gt;mendhak/docker-http-https-echo&lt;/code&gt; se vuelve indispensable.&lt;/p&gt;
+&lt;h2 id="comparacion-visual"&gt;Comparación visual&lt;a class="headerlink" href="#comparacion-visual" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Aquí puedes ver la diferencia entre usar &lt;code&gt;ip a&lt;/code&gt; y &lt;code&gt;ip -br -c a&lt;/code&gt;:&lt;/p&gt;
+&lt;h3 id="ip-a-salida-completa"&gt;&lt;code&gt;ip a&lt;/code&gt; (salida completa)&lt;a class="headerlink" href="#ip-a-salida-completa" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;img alt="ip a output" src="/images/net-tools-ip-a.png"&gt;&lt;/p&gt;
+&lt;h3 id="ip-br-c-a-salida-resumida-y-coloreada"&gt;&lt;code&gt;ip -br -c a&lt;/code&gt; (salida resumida y coloreada)&lt;a class="headerlink" href="#ip-br-c-a-salida-resumida-y-coloreada" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;img alt="ip -br -c a output" src="/images/net-tools-ip-br.png"&gt;&lt;/p&gt;
+&lt;h2 id="mi-alias-favorito"&gt;Mi alias favorito&lt;a class="headerlink" href="#mi-alias-favorito" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;También suelo crear un alias para que la salida sea más legible:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nb"&gt;alias&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;ip&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;ip -br -c&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Esto proporciona una salida mucho más bonita y legible, como puedes ver en la segunda imagen.&lt;/p&gt;
+&lt;p&gt;¿Tú sigues usando los comandos antiguos o ya te has pasado a iproute2?&lt;/p&gt;</content><category term="Linux"></category><category term="redes"></category><category term="iproute2"></category><category term="net-tools"></category><category term="terminal"></category></entry><entry><title>`docker-http-https-echo`: Una herramienta esencial para depuración de red</title><link href="https://pablocaro.es/docker-http-https-echo" rel="alternate"></link><published>2025-12-25T14:15:00+01:00</published><updated>2025-12-25T14:15:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2025-12-25:/docker-http-https-echo</id><summary type="html">&lt;p&gt;&lt;code&gt;mendhak/docker-http-https-echo&lt;/code&gt; es un contenedor Docker simple que facilita la depuración de configuraciones de red, proxies y balanceadores de carga.&lt;/p&gt;</summary><content type="html">&lt;p&gt;En el complejo mundo de las aplicaciones distribuidas, la depuración de problemas de red, proxies, balanceadores de carga o reglas de firewall puede ser una tarea ardua. Necesitamos una forma simple de verificar qué está recibiendo un servidor. Aquí es donde una herramienta como &lt;code&gt;mendhak/docker-http-https-echo&lt;/code&gt; se vuelve indispensable.&lt;/p&gt;
 &lt;h2 id="que-es-mendhakdocker-http-https-echo"&gt;¿Qué es &lt;code&gt;mendhak/docker-http-https-echo&lt;/code&gt;?&lt;a class="headerlink" href="#que-es-mendhakdocker-http-https-echo" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Es un contenedor Docker extremadamente ligero y simple que funciona como un servidor HTTP y HTTPS de "eco". Su función principal es &lt;strong&gt;responder a cualquier solicitud HTTP o HTTPS con una descripción detallada de la propia solicitud&lt;/strong&gt;. Esto incluye:&lt;/p&gt;
 &lt;ul&gt;
@@ -105,38 +100,104 @@ s.click.aliexpress.com.&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt
 &lt;p&gt;Accede a &lt;code&gt;https://localhost:8443&lt;/code&gt; (es posible que tu navegador te advierta sobre el certificado autofirmado).&lt;/p&gt;
 &lt;h2 id="conclusion"&gt;Conclusión&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;&lt;code&gt;mendhak/docker-http-https-echo&lt;/code&gt; es una de esas herramientas simples pero increíblemente útiles que todo desarrollador y operador de sistemas debería tener a mano. Facilita la comprensión de los flujos de red y acelera la depuración de problemas de conectividad en cualquier entorno basado en contenedores.&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;Repositorio original&lt;/em&gt;: &lt;a href="https://github.com/mendhak/docker-http-https-echo"&gt;mendhak/docker-http-https-echo en GitHub&lt;/a&gt;&lt;/p&gt;</content><category term="Herramientas"></category><category term="docker"></category><category term="http"></category><category term="https"></category><category term="depuracion"></category><category term="redes"></category><category term="herramientas"></category><category term="contenedores"></category></entry><entry><title>Estados de Conexión TCP en GNU/Linux: netstat y ss</title><link href="https://pablocaro.es/estados-conexion-tcp-netstat-ss" rel="alternate"></link><published>2025-12-25T13:30:00+01:00</published><updated>2025-12-25T13:30:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2025-12-25:/estados-conexion-tcp-netstat-ss</id><summary type="html">&lt;p&gt;Comprende los diferentes estados de conexión TCP reportados por netstat y ss, desde el establecimiento hasta la terminación, para un mejor diagnóstico de red.&lt;/p&gt;</summary><content type="html">&lt;p&gt;En el mundo de GNU/Linux, herramientas como &lt;code&gt;netstat&lt;/code&gt; y &lt;code&gt;ss&lt;/code&gt; son indispensables para monitorizar y diagnosticar el estado de las conexiones de red en nuestros sistemas. Para interpretar correctamente su salida, es fundamental entender los diferentes estados por los que atraviesa una conexión TCP. Esta entrada explora esos estados, desde el establecimiento hasta la terminación de una conexión.&lt;/p&gt;
-&lt;h2 id="fases-de-una-conexion-tcp"&gt;Fases de una Conexión TCP&lt;a class="headerlink" href="#fases-de-una-conexion-tcp" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Una conexión TCP se gestiona a través de tres fases principales:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;strong&gt;Establecimiento de la Conexión&lt;/strong&gt;: Un proceso de reconocimiento (handshake) de varios pasos que inicia la conexión.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Transferencia de Datos&lt;/strong&gt;: Una vez establecida, los datos se envían entre los dos puntos finales.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Terminación de la Conexión&lt;/strong&gt;: Cierra la conexión y libera los recursos asociados.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Durante estas fases, el socket de Internet (el punto final local de la comunicación) experimenta una serie de cambios de estado.&lt;/p&gt;
-&lt;h2 id="estados-del-socket-tcp-explicados"&gt;Estados del Socket TCP Explicados&lt;a class="headerlink" href="#estados-del-socket-tcp-explicados" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Aquí se detallan los estados más comunes que puedes encontrar al listar conexiones con &lt;code&gt;netstat&lt;/code&gt; o &lt;code&gt;ss&lt;/code&gt;:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;ESTABLISHED&lt;/strong&gt;: La conexión TCP está establecida y lista para transferir datos. Este es el estado deseado para una conexión activa.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;SYN_SENT&lt;/strong&gt;: El socket local ha enviado un paquete SYN al servidor remoto y está esperando una respuesta SYN-ACK. Indica que se está intentando establecer una conexión.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;SYN_RECV&lt;/strong&gt;: El servidor ha recibido un paquete SYN de un cliente y ha respondido con un SYN-ACK, esperando ahora un ACK del cliente. Es parte del handshake de tres vías.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;FIN_WAIT1&lt;/strong&gt;: El socket local ha cerrado su lado de la conexión y ha enviado un paquete FIN, esperando un ACK del par remoto. La conexión se está cerrando activamente.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;FIN_WAIT2&lt;/strong&gt;: El socket local ha recibido el ACK a su FIN, pero aún está esperando un paquete FIN del par remoto para cerrar completamente la conexión.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;TIME_WAIT&lt;/strong&gt;: El socket ha esperado después de cerrar la conexión para asegurarse de que todos los paquetes han sido transmitidos y recibidos por ambos lados, y para permitir que los paquetes duplicados se extingan en la red. Es un estado de espera necesario antes de liberar completamente los recursos.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;CLOSE&lt;/strong&gt;: El socket no está en uso y no hay conexión.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;CLOSE_WAIT&lt;/strong&gt;: El par remoto ha cerrado su lado de la conexión (ha enviado un FIN y ha sido ACKed), y el socket local está esperando que la aplicación local cierre su propio lado.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;LAST_ACK&lt;/strong&gt;: El socket local ha enviado su FIN al par remoto, y está esperando el ACK final del par remoto. Esto sucede después de un &lt;code&gt;CLOSE_WAIT&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;LISTEN&lt;/strong&gt;: El socket está a la espera de conexiones entrantes. Solo se ve con las opciones &lt;code&gt;--listening (-l)&lt;/code&gt; o &lt;code&gt;--all (-a)&lt;/code&gt; de &lt;code&gt;netstat&lt;/code&gt;/&lt;code&gt;ss&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;CLOSING&lt;/strong&gt;: Ambos lados de la conexión han intentado cerrarse simultáneamente, y el socket local está en el proceso de enviar/recibir FIN y ACK.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;UNKNOWN&lt;/strong&gt;: El estado del socket es desconocido o no se puede determinar.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="herramientas-netstat-y-ss"&gt;Herramientas: &lt;code&gt;netstat&lt;/code&gt; y &lt;code&gt;ss&lt;/code&gt;&lt;a class="headerlink" href="#herramientas-netstat-y-ss" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Puedes ver estos estados utilizando comandos como:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;netstat&lt;span class="w"&gt; &lt;/span&gt;-tn&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="c1"&gt;# Muestra conexiones TCP, sin resolución de nombres (-n)&lt;/span&gt;
-ss&lt;span class="w"&gt; &lt;/span&gt;-tn&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="c1"&gt;# Versión moderna y más rápida de netstat&lt;/span&gt;
+&lt;p&gt;&lt;em&gt;Repositorio original&lt;/em&gt;: &lt;a href="https://github.com/mendhak/docker-http-https-echo"&gt;mendhak/docker-http-https-echo en GitHub&lt;/a&gt;&lt;/p&gt;</content><category term="Herramientas"></category><category term="docker"></category><category term="http"></category><category term="https"></category><category term="depuracion"></category><category term="redes"></category><category term="contenedores"></category></entry><entry><title>Potentes herramientas para desarrolladores desde línea de comandos</title><link href="https://pablocaro.es/herramientas-desarrolladores-linea-comandos" rel="alternate"></link><published>2016-06-07T11:36:00+02:00</published><updated>2016-06-07T11:36:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2016-06-07:/herramientas-desarrolladores-linea-comandos</id><summary type="html">&lt;p&gt;Colección de herramientas de línea de comandos esenciales para desarrolladores: curl, ngrep, netcat, sshuttle, siege y mitmproxy&lt;/p&gt;</summary><content type="html">&lt;p&gt;La &lt;strong&gt;línea de comandos sigue siendo el entorno más poderoso&lt;/strong&gt; para desarrolladores. Estas herramientas especializadas amplían dramáticamente tus capacidades de debugging, testing y análisis.&lt;/p&gt;
+&lt;h2 id="curl-el-navajero-suizo-del-http"&gt;Curl: El navajero suizo del HTTP&lt;a class="headerlink" href="#curl-el-navajero-suizo-del-http" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Obtener tu IP pública&lt;/span&gt;
+curl&lt;span class="w"&gt; &lt;/span&gt;ifconfig.me
+
+&lt;span class="c1"&gt;# Inspeccionar headers de respuesta&lt;/span&gt;
+curl&lt;span class="w"&gt; &lt;/span&gt;-I&lt;span class="w"&gt; &lt;/span&gt;https://ejemplo.com
+
+&lt;span class="c1"&gt;# POST con datos JSON&lt;/span&gt;
+curl&lt;span class="w"&gt; &lt;/span&gt;-X&lt;span class="w"&gt; &lt;/span&gt;POST&lt;span class="w"&gt; &lt;/span&gt;-H&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Content-Type: application/json&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="se"&gt;\&lt;/span&gt;
+&lt;span class="w"&gt;     &lt;/span&gt;-d&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;{&amp;quot;key&amp;quot;:&amp;quot;value&amp;quot;}&amp;#39;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;https://api.ejemplo.com
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;La opción &lt;code&gt;-t&lt;/code&gt; filtra para conexiones TCP y &lt;code&gt;-n&lt;/code&gt; evita la resolución de nombres, lo que acelera la salida y muestra las IPs directamente.&lt;/p&gt;
-&lt;h2 id="conclusion"&gt;Conclusión&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Entender los estados de conexión TCP es vital para diagnosticar problemas de red, identificar procesos que no responden o que están atascados, y comprender cómo se comportan las aplicaciones en términos de conectividad. Saber qué significa cada estado te permite depurar problemas de forma más efectiva en tu sistema GNU/Linux.&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;Artículo original&lt;/em&gt;: &lt;a href="https://www.ochobitshacenunbyte.com/2020/11/07/tipos-de-conexiones-en-netstat-y-ss-explicadas/"&gt;Tipos de Conexiones en netstat y ss Explicadas&lt;/a&gt;&lt;/p&gt;</content><category term="Sistemas"></category><category term="linux"></category><category term="redes"></category><category term="tcp"></category><category term="netstat"></category><category term="ss"></category><category term="sistemas"></category></entry></feed>
+&lt;p&gt;&lt;strong&gt;Uso principal&lt;/strong&gt;: Transferencia de datos de red, testing de APIs, inspección HTTP.&lt;/p&gt;
+&lt;h2 id="ngrep-grep-para-trafico-de-red"&gt;Ngrep: Grep para tráfico de red&lt;a class="headerlink" href="#ngrep-grep-para-trafico-de-red" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Filtrar tráfico HTTP por palabra clave&lt;/span&gt;
+ngrep&lt;span class="w"&gt; &lt;/span&gt;-i&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;password&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;port&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;80&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Capturar por IP específica&lt;/span&gt;
+ngrep&lt;span class="w"&gt; &lt;/span&gt;host&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;192&lt;/span&gt;.168.1.100
+
+&lt;span class="c1"&gt;# Monitorear tráfico en puerto específico&lt;/span&gt;
+ngrep&lt;span class="w"&gt; &lt;/span&gt;port&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;443&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Uso principal&lt;/strong&gt;: Análisis de paquetes de red, debugging de protocolos, monitoreo de tráfico.&lt;/p&gt;
+&lt;h2 id="netcat-nc-la-navaja-suiza-del-networking"&gt;Netcat (nc): La navaja suiza del networking&lt;a class="headerlink" href="#netcat-nc-la-navaja-suiza-del-networking" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Escaneo de puertos&lt;/span&gt;
+nc&lt;span class="w"&gt; &lt;/span&gt;-zv&lt;span class="w"&gt; &lt;/span&gt;ejemplo.com&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;-1000
+
+&lt;span class="c1"&gt;# Transferir archivo entre servidores&lt;/span&gt;
+&lt;span class="c1"&gt;# Receptor: nc -l 1234 &amp;gt; archivo_recibido&lt;/span&gt;
+&lt;span class="c1"&gt;# Emisor: nc servidor_destino 1234 &amp;lt; archivo_enviar&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Crear servidor HTTP simple&lt;/span&gt;
+&lt;span class="nb"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;HTTP/1.1 200 OK\n\nHola mundo&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;nc&lt;span class="w"&gt; &lt;/span&gt;-l&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;8080&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Uso principal&lt;/strong&gt;: Escaneo de puertos, transferencia de archivos, testing de conectividad.&lt;/p&gt;
+&lt;h2 id="sshuttle-vpn-facil-con-ssh"&gt;Sshuttle: VPN fácil con SSH&lt;a class="headerlink" href="#sshuttle-vpn-facil-con-ssh" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Tunelar todo el tráfico&lt;/span&gt;
+sshuttle&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;usuario@servidor&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;0&lt;/span&gt;.0.0.0/0
+
+&lt;span class="c1"&gt;# Tunelar solo una subred&lt;/span&gt;
+sshuttle&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;usuario@servidor&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;192&lt;/span&gt;.168.1.0/24
+
+&lt;span class="c1"&gt;# Evitar geobloqueos&lt;/span&gt;
+sshuttle&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;servidor_remoto&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;0&lt;/span&gt;.0.0.0/0&lt;span class="w"&gt; &lt;/span&gt;--dns
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Uso principal&lt;/strong&gt;: Tunneling seguro, bypass de geo-restricciones, protección en WiFi público.&lt;/p&gt;
+&lt;h2 id="siege-bombardeo-de-carga-http"&gt;Siege: Bombardeo de carga HTTP&lt;a class="headerlink" href="#siege-bombardeo-de-carga-http" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Test de carga simple&lt;/span&gt;
+siege&lt;span class="w"&gt; &lt;/span&gt;-c&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;25&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;-t&lt;span class="w"&gt; &lt;/span&gt;60s&lt;span class="w"&gt; &lt;/span&gt;https://ejemplo.com
+
+&lt;span class="c1"&gt;# Test con múltiples URLs&lt;/span&gt;
+siege&lt;span class="w"&gt; &lt;/span&gt;-c&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;50&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;-t&lt;span class="w"&gt; &lt;/span&gt;30s&lt;span class="w"&gt; &lt;/span&gt;-f&lt;span class="w"&gt; &lt;/span&gt;urls.txt
+
+&lt;span class="c1"&gt;# Benchmark específico&lt;/span&gt;
+siege&lt;span class="w"&gt; &lt;/span&gt;-c&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;100&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;10&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;https://api.ejemplo.com/endpoint
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Uso principal&lt;/strong&gt;: Testing de rendimiento, benchmarking HTTP, simulación de carga.&lt;/p&gt;
+&lt;h2 id="mitmproxy-espia-del-trafico-https"&gt;Mitmproxy: Espía del tráfico HTTP/S&lt;a class="headerlink" href="#mitmproxy-espia-del-trafico-https" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Proxy básico&lt;/span&gt;
+mitmproxy&lt;span class="w"&gt; &lt;/span&gt;-p&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;8080&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Modo transparent&lt;/span&gt;
+mitmproxy&lt;span class="w"&gt; &lt;/span&gt;--mode&lt;span class="w"&gt; &lt;/span&gt;transparent
+
+&lt;span class="c1"&gt;# Guardar tráfico en archivo&lt;/span&gt;
+mitmdump&lt;span class="w"&gt; &lt;/span&gt;-w&lt;span class="w"&gt; &lt;/span&gt;captura.flow
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Uso principal&lt;/strong&gt;: Debugging de aplicaciones web, inspección de tráfico HTTPS, análisis de APIs.&lt;/p&gt;
+&lt;h2 id="flujo-de-trabajo-tipico"&gt;Flujo de trabajo típico&lt;a class="headerlink" href="#flujo-de-trabajo-tipico" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# 1. Escanear conectividad&lt;/span&gt;
+nc&lt;span class="w"&gt; &lt;/span&gt;-zv&lt;span class="w"&gt; &lt;/span&gt;api.ejemplo.com&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;443&lt;/span&gt;
+
+&lt;span class="c1"&gt;# 2. Analizar respuesta&lt;/span&gt;
+curl&lt;span class="w"&gt; &lt;/span&gt;-I&lt;span class="w"&gt; &lt;/span&gt;https://api.ejemplo.com
+
+&lt;span class="c1"&gt;# 3. Monitorear tráfico&lt;/span&gt;
+ngrep&lt;span class="w"&gt; &lt;/span&gt;-i&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;api&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;port&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;443&lt;/span&gt;
+
+&lt;span class="c1"&gt;# 4. Test de carga&lt;/span&gt;
+siege&lt;span class="w"&gt; &lt;/span&gt;-c&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;20&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;-t&lt;span class="w"&gt; &lt;/span&gt;30s&lt;span class="w"&gt; &lt;/span&gt;https://api.ejemplo.com
+
+&lt;span class="c1"&gt;# 5. Debugging detallado&lt;/span&gt;
+mitmproxy&lt;span class="w"&gt; &lt;/span&gt;-p&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;8080&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="por-que-linea-de-comandos"&gt;¿Por qué línea de comandos?&lt;a class="headerlink" href="#por-que-linea-de-comandos" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Velocidad&lt;/strong&gt;: Sin overhead de GUI&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Scriptabilidad&lt;/strong&gt;: Automatización completa&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Flexibilidad&lt;/strong&gt;: Combinación con pipes y redirects&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Universalidad&lt;/strong&gt;: Disponible en cualquier servidor&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Estas herramientas convierten tu terminal en un &lt;strong&gt;laboratorio completo de networking y testing&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Fuente original&lt;/em&gt;: &lt;a href="http://www.xn--apaados-6za.es/tenemos-que-apanar/internet-tutoriales-y-trucos/317-potentes-herramientas-desarrolladores-linea-comandos.html"&gt;Somos Apañados&lt;/a&gt;&lt;/p&gt;</content><category term="Herramientas"></category><category term="cli"></category><category term="desarrollo"></category><category term="redes"></category><category term="testing"></category></entry></feed>

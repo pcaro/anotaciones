@@ -77,41 +77,7 @@
 &lt;/ul&gt;
 &lt;p&gt;Los tres se pueden instalar con un &lt;code&gt;pi install npm:...&lt;/code&gt;. TintinWeb y NicoBailon pueden coexistir porque usan herramientas con nombres distintos. Taskplane tiene su propio paradigma y no debería conflictuar con ninguno.&lt;/p&gt;
 &lt;p&gt;Más extensiones y configuraciones de pi en &lt;a href="https://github.com/pcaro/pcaropi"&gt;mi repo pcaropi&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;Fuente original&lt;/em&gt;: &lt;a href="https://pi.dev/"&gt;pi.dev&lt;/a&gt;&lt;/p&gt;</content><category term="Programación"></category><category term="pi"></category><category term="coding-agent"></category><category term="subagentes"></category><category term="extensiones"></category><category term="CLI"></category><category term="herramientas"></category></entry><entry><title>marksman: LSP para Markdown</title><link href="https://pablocaro.es/marksman-lsp-markdown" rel="alternate"></link><published>2026-04-29T22:46:00+02:00</published><updated>2026-04-29T22:46:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-04-29:/marksman-lsp-markdown</id><summary type="html">&lt;p&gt;marksman es un servidor de protocolo de lenguaje (LSP) para Markdown que añade autocompletado, navegación entre archivos y detección de errores a cualquier editor compatible.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Escribo bastante en Markdown — este blog, notas, documentación — y hasta ahora me las apañaba sin más. Pero tras acostumbrarme a los beneficios del LSP en código, empecé a echar en falta algo similar para mis archivos &lt;code&gt;.md&lt;/code&gt;. Enlaces rotos, referencias a notas inexistentes, falta de autocompletado entre documentos... todo eso se acumula cuando mantienes varios ficheros.&lt;/p&gt;
-&lt;p&gt;Así que he instalado &lt;strong&gt;marksman&lt;/strong&gt;, un servidor LSP dedicado exclusivamente a Markdown.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Marksman splash" src="/images/marksman-splash.png"&gt;&lt;/p&gt;
-&lt;h2 id="que-es-marksman"&gt;¿Qué es marksman?&lt;a class="headerlink" href="#que-es-marksman" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;marksman es un &lt;a href="https://microsoft.github.io/language-server-protocol/"&gt;servidor de protocolo de lenguaje&lt;/a&gt; (LSP) que entiende la estructura de tus documentos Markdown. No solo resalta sintaxis: analiza enlaces internos, referencias entre archivos, títulos, tablas de contenido y mucho más.&lt;/p&gt;
-&lt;p&gt;Algunas de las funciones que ofrece:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Autocompletado&lt;/strong&gt; de enlaces internos entre archivos Markdown.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Ir a definición&lt;/strong&gt; (F12) para saltar a la sección o archivo referenciado.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Renombrar símbolos&lt;/strong&gt;: cambia un título y actualiza todos los enlaces que apuntan a él.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Detección de errores&lt;/strong&gt;: alerta sobre enlaces rotos o referencias inexistentes.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Información flotante&lt;/strong&gt; (hover) para previsualizar contenido de enlaces.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Búsqueda de referencias&lt;/strong&gt; para ver dónde se usa un título o archivo.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Básicamente, convierte un conjunto de archivos Markdown en algo parecido a un proyecto de código, con todas las ventajas de navegación y refactorización que eso conlleva.&lt;/p&gt;
-&lt;h2 id="instalacion"&gt;Instalación&lt;a class="headerlink" href="#instalacion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Lo he instalado con &lt;a href="https://github.com/pablocaro/gah"&gt;gah&lt;/a&gt; (GitHub Asset Helper), una herramienta que uso habitualmente para bajar binarios de releases de GitHub:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;gah&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;artempyanykh/marksman
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Seleccioné la versión &lt;code&gt;marksman-linux-x64&lt;/code&gt; y en cuestión de segundos ya tenía el binario disponible en el PATH.&lt;/p&gt;
-&lt;p&gt;También se puede instalar vía Homebrew, Snap, o descargando el binario directamente desde las releases del proyecto.&lt;/p&gt;
-&lt;h2 id="configuracion-en-fresh"&gt;Configuración en &lt;code&gt;fresh&lt;/code&gt;&lt;a class="headerlink" href="#configuracion-en-fresh" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Lo uso junto a &lt;a href="https://pablocaro.es/fresh-editor-terminal"&gt;&lt;code&gt;fresh&lt;/code&gt;&lt;/a&gt;, mi editor de terminal preferido. &lt;code&gt;fresh&lt;/code&gt; tiene soporte LSP nativo, así que solo tuve que asegurarme de que &lt;code&gt;marksman&lt;/code&gt; esté en el PATH. Al abrir un archivo Markdown, &lt;code&gt;fresh&lt;/code&gt; detecta automáticamente el servidor y ofrece iniciarlo:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Menú LSP en fresh" src="/images/marksman-fresh-lsp.png"&gt;&lt;/p&gt;
-&lt;p&gt;Una vez arrancado, el menú LSP de &lt;code&gt;fresh&lt;/code&gt; muestra todas las opciones disponibles:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Opciones del menú LSP" src="/images/marksman-fresh-menu.png"&gt;&lt;/p&gt;
-&lt;h2 id="por-que-me-convence"&gt;¿Por qué me convence?&lt;a class="headerlink" href="#por-que-me-convence" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;No necesito un editor gráfico pesado para escribir Markdown con comodidad. Con &lt;code&gt;marksman&lt;/code&gt; + &lt;code&gt;fresh&lt;/code&gt; tengo autocompletado de enlaces, navegación rápida entre notas, y detección de errores sin salir de la terminal. Es especialmente útil en este blog, donde hay decenas de artículos referenciándose entre sí.&lt;/p&gt;
-&lt;p&gt;Si trabajas habitualmente con Markdown y usas un editor con soporte LSP, &lt;code&gt;marksman&lt;/code&gt; es una de esas herramientas que, una vez instaladas, te preguntas cómo has podido vivir sin ellas.&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;Repositorio oficial&lt;/em&gt;: &lt;a href="https://github.com/artempyanykh/marksman"&gt;marksman en GitHub&lt;/a&gt;&lt;/p&gt;</content><category term="Herramientas"></category><category term="markdown"></category><category term="lsp"></category><category term="fresh"></category><category term="editor"></category><category term="herramientas"></category><category term="linux"></category></entry><entry><title>neofetch</title><link href="https://pablocaro.es/neofetch" rel="alternate"></link><published>2026-04-27T18:00:00+02:00</published><updated>2026-04-27T18:00:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-04-27:/neofetch</id><summary type="html">&lt;p&gt;Neofetch, herramienta de línea de comandos para información del sistema.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Me pasa constantemente: quiero saber rápidamente qué distro estoy usando, la versión del kernel, cuánto RAM tengo... y aunque he usado la herramienta mil
-veces, el nombre se me escapa de la cabeza.&lt;/p&gt;
-&lt;p&gt;Cada vez termino buscando en Google "el programita que te da información de tu distro en la terminal". Ya ni me esfuerzo en recordar.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Salida de neofetch" src="/images/neofetch.png"&gt;&lt;/p&gt;
-&lt;p&gt;Quizás algún día se me quede. Pero lo dudo.&lt;/p&gt;</content><category term="Miscellaneous"></category><category term="linux"></category><category term="terminal"></category><category term="herramientas"></category></entry><entry><title>sem: Control de versiones semántico</title><link href="https://pablocaro.es/sem-control-de-versiones-semantico" rel="alternate"></link><published>2026-03-15T14:11:00+01:00</published><updated>2026-03-15T14:11:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-03-15:/sem-control-de-versiones-semantico</id><summary type="html">&lt;p&gt;Descubriendo sem, una herramienta CLI que entiende la semántica de tu código y te dice qué entidades cambiaron, no solo qué líneas.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Me encontré con &lt;a href="https://github.com/Ataraxy-Labs/sem"&gt;sem&lt;/a&gt; hace unas semanas y me parece una idea brutal. Es un CLI que va más allá del diff tradicional línea a línea y entiende la estructura real del código.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Fuente original&lt;/em&gt;: &lt;a href="https://pi.dev/"&gt;pi.dev&lt;/a&gt;&lt;/p&gt;</content><category term="Programación"></category><category term="pi"></category><category term="coding-agent"></category><category term="subagentes"></category><category term="extensiones"></category><category term="cli"></category><category term="herramientas"></category></entry><entry><title>sem: Control de versiones semántico</title><link href="https://pablocaro.es/sem-control-de-versiones-semantico" rel="alternate"></link><published>2026-03-15T14:11:00+01:00</published><updated>2026-03-15T14:11:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-03-15:/sem-control-de-versiones-semantico</id><summary type="html">&lt;p&gt;Descubriendo sem, una herramienta CLI que entiende la semántica de tu código y te dice qué entidades cambiaron, no solo qué líneas.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Me encontré con &lt;a href="https://github.com/Ataraxy-Labs/sem"&gt;sem&lt;/a&gt; hace unas semanas y me parece una idea brutal. Es un CLI que va más allá del diff tradicional línea a línea y entiende la estructura real del código.&lt;/p&gt;
 &lt;h2 id="la-diferencia-entre-lineas-y-entidades"&gt;La diferencia entre líneas y entidades&lt;a class="headerlink" href="#la-diferencia-entre-lineas-y-entidades" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Cuando haces un &lt;code&gt;git diff&lt;/code&gt; tradicional, ves algo como:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="gd"&gt;- const oldAuth = function(user) { ... }&lt;/span&gt;
@@ -179,7 +145,87 @@ cargo&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span
 &lt;li&gt;&lt;strong&gt;Limpio&lt;/strong&gt;: Sin anuncios raros ni botones de "Download" falsos.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Variedad&lt;/strong&gt;: Tienen Windows (10, 11, Server) y casi cualquier distro Linux que use habitualmente.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Básicamente es un índice bien organizado. Para no olvidarlo.&lt;/p&gt;</content><category term="Programación"></category><category term="linux"></category><category term="windows"></category><category term="iso"></category><category term="sistemas operativos"></category><category term="herramientas"></category></entry><entry><title>Renderizando Markdown en la terminal con Glow</title><link href="https://pablocaro.es/renderizando-markdown-en-la-terminal-con-glow" rel="alternate"></link><published>2026-02-20T00:00:00+01:00</published><updated>2026-02-20T00:00:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-02-20:/renderizando-markdown-en-la-terminal-con-glow</id><summary type="html">&lt;p&gt;Descubre Glow, una herramienta para renderizar Markdown directamente en la terminal, ideal para leer documentación y READMEs.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;a href="https://github.com/charmbracelet/glow"&gt;Glow&lt;/a&gt; es un renderizador de Markdown para la línea de comandos. Permite leer archivos Markdown locales o remotos, y renderizarlos con resaltado de sintaxis y estilos, directamente en tu terminal.&lt;/p&gt;
+&lt;p&gt;Básicamente es un índice bien organizado. Para no olvidarlo.&lt;/p&gt;</content><category term="Programación"></category><category term="linux"></category><category term="windows"></category><category term="iso"></category><category term="sistemas operativos"></category><category term="herramientas"></category></entry><entry><title>DeepDiff: La navaja suiza para comparar datos en Python</title><link href="https://pablocaro.es/deepdiff-comparar-datos-python" rel="alternate"></link><published>2026-02-20T00:00:00+01:00</published><updated>2026-02-20T00:00:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-02-20:/deepdiff-comparar-datos-python</id><summary type="html">&lt;p&gt;Cuando trabajamos con datos estructurados en Python, a menudo necesitamos comparar dos diccionarios, JSONs u objetos complejos para encontrar qué ha cambiado. Si bien la comparación directa (&lt;code&gt;==&lt;/code&gt;) es útil, a veces necesitamos entender &lt;em&gt;exactamente qué&lt;/em&gt; es diferente: qué claves se han añadido, cuáles se han eliminado, o dónde han cambiado …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Cuando trabajamos con datos estructurados en Python, a menudo necesitamos comparar dos diccionarios, JSONs u objetos complejos para encontrar qué ha cambiado. Si bien la comparación directa (&lt;code&gt;==&lt;/code&gt;) es útil, a veces necesitamos entender &lt;em&gt;exactamente qué&lt;/em&gt; es diferente: qué claves se han añadido, cuáles se han eliminado, o dónde han cambiado los valores, incluso en estructuras profundamente anidadas.&lt;/p&gt;
+&lt;p&gt;Aquí es donde entra &lt;strong&gt;&lt;a href="https://github.com/seperman/deepdiff"&gt;DeepDiff&lt;/a&gt;&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;DeepDiff es una biblioteca de Python increíblemente potente que ofrece mucho más que una simple comparación. Es una herramienta esencial para pruebas, validación de datos y depuración de APIs.&lt;/p&gt;
+&lt;h2 id="caracteristicas-principales"&gt;Características principales&lt;a class="headerlink" href="#caracteristicas-principales" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;DeepDiff no es solo una herramienta, es un conjunto de utilidades:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;DeepDiff&lt;/strong&gt;: Compara diccionarios, iterables, cadenas y otros objetos recursivamente. Puede ignorar el orden en listas, ignorar tipos específicos, o excluir rutas de la comparación.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;DeepSearch&lt;/strong&gt;: Busca objetos dentro de otros objetos, como un &lt;code&gt;grep&lt;/code&gt; para estructuras de datos en memoria.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;DeepHash&lt;/strong&gt;: Calcula hashes de objetos basándose en su contenido. Muy útil para deduplicación de datos complejos donde el orden de las claves no importa.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Delta&lt;/strong&gt;: Genera "deltas" (diferencias) que se pueden aplicar a otros objetos, similar a un &lt;code&gt;git patch&lt;/code&gt; pero para objetos Python.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="instalacion"&gt;Instalación&lt;a class="headerlink" href="#instalacion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;La forma moderna y recomendada de instalar herramientas en Python es usando &lt;code&gt;uv&lt;/code&gt;.&lt;/p&gt;
+&lt;h3 id="como-herramienta-de-linea-de-comandos-cli"&gt;Como herramienta de línea de comandos (CLI)&lt;a class="headerlink" href="#como-herramienta-de-linea-de-comandos-cli" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Si solo quieres usar el comando &lt;code&gt;deep&lt;/code&gt; en tu terminal para comparar archivos JSON o YAML:```bash
+uv tool install "deepdiff[cli]"&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;Esto&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;instalará&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;el&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;comando&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n n-Quoted"&gt;`deep`&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;en&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;tu&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;sistema&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;de&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;forma&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;aislada&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Asegúrate&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;de&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;incluir&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n n-Quoted"&gt;`[cli]`&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;para&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;instalar&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;las&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;dependencias&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;necesarias&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+
+&lt;span class="c1"&gt;### Como biblioteca en tu proyecto&lt;/span&gt;
+
+&lt;span class="n"&gt;Si&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;vas&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;usarlo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;dentro&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;de&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;tus&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;scripts&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;de&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Python&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+
+&lt;span class="n n-Quoted"&gt;`&lt;/span&gt;&lt;span class="n n-Quoted n-Quoted-Escape"&gt;``&lt;/span&gt;&lt;span class="n n-Quoted"&gt;bash&lt;/span&gt;
+&lt;span class="n n-Quoted"&gt;uv add &amp;quot;deepdiff&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;O si necesitas la CLI también dentro de tu entorno virtual:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;uv&lt;span class="w"&gt; &lt;/span&gt;add&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;deepdiff[cli]&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="ejemplos-de-uso"&gt;Ejemplos de uso&lt;a class="headerlink" href="#ejemplos-de-uso" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="en-python"&gt;En Python&lt;a class="headerlink" href="#en-python" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Imagina que tienes dos respuestas de API ligeramente diferentes y quieres saber qué cambió:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;deepdiff&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;DeepDiff&lt;/span&gt;
+
+&lt;span class="n"&gt;t1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;id&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;name&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Producto A&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;tags&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;nuevo&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;oferta&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;details&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;price&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;stock&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;50&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="n"&gt;t2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;id&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;name&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Producto A&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;tags&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;oferta&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;nuevo&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;  &lt;span class="c1"&gt;# Orden diferente&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;details&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;price&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;120&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;stock&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;50&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Por defecto, el orden importa en listas&lt;/span&gt;
+&lt;span class="n"&gt;diff&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;DeepDiff&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;t1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;t2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c1"&gt;# Resultado muestra cambios en la lista &amp;#39;tags&amp;#39; y en &amp;#39;details.price&amp;#39;&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Si ignoramos el orden en iterables&lt;/span&gt;
+&lt;span class="n"&gt;diff_ignore_order&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;DeepDiff&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;t1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;t2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ignore_order&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;diff_ignore_order&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Salida:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;values_changed&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="s2"&gt;&amp;quot;root[&amp;#39;details&amp;#39;][&amp;#39;price&amp;#39;]&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="s1"&gt;&amp;#39;new_value&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;120&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+            &lt;span class="s1"&gt;&amp;#39;old_value&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;100&lt;/span&gt;
+        &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Como ves, detectó el cambio de precio pero ignoró el cambio de orden en los tags.&lt;/p&gt;
+&lt;h3 id="en-la-terminal-cli"&gt;En la terminal (CLI)&lt;a class="headerlink" href="#en-la-terminal-cli" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;El comando &lt;code&gt;deep&lt;/code&gt; es muy útil para comparar archivos rápidamente:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Comparar dos archivos JSON&lt;/span&gt;
+deep&lt;span class="w"&gt; &lt;/span&gt;diff&lt;span class="w"&gt; &lt;/span&gt;production.json&lt;span class="w"&gt; &lt;/span&gt;development.json
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;También puedes usarlo para extraer información o buscar dentro de archivos JSON/YAML grandes sin tener que escribir un script.&lt;/p&gt;
+&lt;h2 id="conclusion"&gt;Conclusión&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;DeepDiff es una de esas librerías que, una vez que conoces, no puedes dejar de usar. Su flexibilidad para ignorar ciertos campos (como timestamps o IDs autogenerados) la hace perfecta para tests de integración y validación de datos.&lt;/p&gt;
+&lt;p&gt;Puedes ver la documentación completa en &lt;a href="https://zepworks.com/deepdiff/current/"&gt;zepworks.com/deepdiff&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="deep help" src="https://pablocaro.es/images/deep_help.png"&gt;&lt;/p&gt;</content><category term="Programación"></category><category term="data"></category><category term="cli"></category><category term="herramientas"></category><category term="diff"></category></entry><entry><title>Renderizando Markdown en la terminal con Glow</title><link href="https://pablocaro.es/renderizando-markdown-en-la-terminal-con-glow" rel="alternate"></link><published>2026-02-20T00:00:00+01:00</published><updated>2026-02-20T00:00:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-02-20:/renderizando-markdown-en-la-terminal-con-glow</id><summary type="html">&lt;p&gt;Descubre Glow, una herramienta para renderizar Markdown directamente en la terminal, ideal para leer documentación y READMEs.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;a href="https://github.com/charmbracelet/glow"&gt;Glow&lt;/a&gt; es un renderizador de Markdown para la línea de comandos. Permite leer archivos Markdown locales o remotos, y renderizarlos con resaltado de sintaxis y estilos, directamente en tu terminal.&lt;/p&gt;
 &lt;p&gt;Esta herramienta me resulta especialmente útil ahora que paso más tiempo usando la terminal con &lt;a href="https://pablocaro.es/de-yakuake-a-kitty"&gt;Kitty&lt;/a&gt;, ya que me permite consultar documentación y READMEs sin tener que abrir un navegador o un editor gráfico.&lt;/p&gt;
 &lt;h2 id="instalacion"&gt;Instalación&lt;a class="headerlink" href="#instalacion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Para instalar Glow, utilizaremos &lt;a href="https://pablocaro.es/gestionando-instalaciones-desde-github-con-gah"&gt;gah&lt;/a&gt;, una herramienta que facilita la instalación de binarios desde GitHub Releases.```bash
@@ -202,7 +248,112 @@ gah install charmbracelet/glow&lt;/p&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Una vez instalado, simplemente ejecuta &lt;code&gt;glow&lt;/code&gt; seguido del archivo que quieras visualizar, o incluso la URL de un README en GitHub.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="glow help" src="https://pablocaro.es/images/glow_help.png"&gt;&lt;/p&gt;</content><category term="Linux"></category><category term="cli"></category><category term="markdown"></category><category term="herramientas"></category><category term="linux"></category><category term="kitty"></category></entry><entry><title>Gestionando instalaciones desde GitHub con gah</title><link href="https://pablocaro.es/gestionando-instalaciones-desde-github-con-gah" rel="alternate"></link><published>2026-02-11T20:23:00+01:00</published><updated>2026-02-11T20:23:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-02-11:/gestionando-instalaciones-desde-github-con-gah</id><summary type="html">&lt;p class="first last"&gt;Instala binarios directamente desde releases de GitHub de forma sencilla con gah.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="glow help" src="https://pablocaro.es/images/glow_help.png"&gt;&lt;/p&gt;</content><category term="Linux"></category><category term="cli"></category><category term="markdown"></category><category term="herramientas"></category><category term="kitty"></category></entry><entry><title>Shot-scraper: Capturas de pantalla automatizadas para la web</title><link href="https://pablocaro.es/shot-scraper-capturas-pantalla-automatizadas" rel="alternate"></link><published>2026-02-20T00:00:00+01:00</published><updated>2026-02-20T00:00:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-02-20:/shot-scraper-capturas-pantalla-automatizadas</id><summary type="html">&lt;p&gt;¿Alguna vez has necesitado tomar capturas de pantalla de una página web de forma programática? Tal vez para documentar tu proyecto, monitorizar cambios en una UI, o generar imágenes para redes sociales. Existen muchas formas de hacerlo, pero &lt;strong&gt;&lt;a href="https://shot-scraper.datasette.io/"&gt;shot-scraper&lt;/a&gt;&lt;/strong&gt; destaca por su facilidad de uso y potencia.&lt;/p&gt;
+&lt;p&gt;Creada por Simon …&lt;/p&gt;</summary><content type="html">&lt;p&gt;¿Alguna vez has necesitado tomar capturas de pantalla de una página web de forma programática? Tal vez para documentar tu proyecto, monitorizar cambios en una UI, o generar imágenes para redes sociales. Existen muchas formas de hacerlo, pero &lt;strong&gt;&lt;a href="https://shot-scraper.datasette.io/"&gt;shot-scraper&lt;/a&gt;&lt;/strong&gt; destaca por su facilidad de uso y potencia.&lt;/p&gt;
+&lt;p&gt;Creada por Simon Willison, &lt;code&gt;shot-scraper&lt;/code&gt; es una herramienta de línea de comandos (CLI) que envuelve Playwright para hacer que tomar screenshots sea trivial.&lt;/p&gt;
+&lt;h2 id="instalacion"&gt;Instalación&lt;a class="headerlink" href="#instalacion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Al igual que con otras herramientas modernas de Python, la mejor forma de instalarla es usando &lt;code&gt;uv&lt;/code&gt;:```bash
+uv tool install shot-scraper&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;Una vez instalada, necesitarás descargar el navegador que utiliza por debajo (Chromium):
+
+```bash
+shot-scraper install
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="uso-basico"&gt;Uso básico&lt;a class="headerlink" href="#uso-basico" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;La forma más sencilla de usarlo es darle una URL y un nombre de archivo:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;shot-scraper&lt;span class="w"&gt; &lt;/span&gt;https://pablocaro.es/&lt;span class="w"&gt; &lt;/span&gt;blog.png
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Esto generará una imagen llamada &lt;code&gt;blog.png&lt;/code&gt; con la captura de la página.&lt;/p&gt;
+&lt;h3 id="capturando-selectores-especificos"&gt;Capturando selectores específicos&lt;a class="headerlink" href="#capturando-selectores-especificos" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Una de las características más potentes es la capacidad de capturar solo un elemento específico de la página usando selectores CSS:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;shot-scraper&lt;span class="w"&gt; &lt;/span&gt;https://github.com/pcaro&lt;span class="w"&gt; &lt;/span&gt;-s&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;.js-calendar-graph&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;calendar.png
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Este comando capturará únicamente el gráfico de contribuciones de GitHub.&lt;/p&gt;
+&lt;h3 id="interactuando-con-javascript"&gt;Interactuando con JavaScript&lt;a class="headerlink" href="#interactuando-con-javascript" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;A veces necesitas ejecutar algo de código antes de tomar la foto. Por ejemplo, para ocultar un banner de cookies o esperar a que cargue algo.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;shot-scraper&lt;span class="w"&gt; &lt;/span&gt;https://pablocaro.es/&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="se"&gt;\&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;--javascript&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;document.querySelector(&amp;#39;header&amp;#39;).style.display = &amp;#39;none&amp;#39;;&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="se"&gt;\&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;-o&lt;span class="w"&gt; &lt;/span&gt;sin-header.png
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="automatizacion-avanzada"&gt;Automatización avanzada&lt;a class="headerlink" href="#automatizacion-avanzada" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Si necesitas tomar muchas capturas, puedes definir un archivo YAML de configuración:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# shots.yml&lt;/span&gt;
+&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;url&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;https://pablocaro.es/&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;output&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;home.png&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;height&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;800&lt;/span&gt;
+&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;url&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;https://pablocaro.es/archives.html&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;output&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;archives.png&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;wait&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;1000&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="c1"&gt;# Esperar 1 segundo&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Y ejecutarlas todas de una vez:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;shot-scraper&lt;span class="w"&gt; &lt;/span&gt;multi&lt;span class="w"&gt; &lt;/span&gt;shots.yml
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="mas-alla-de-las-capturas"&gt;Más allá de las capturas&lt;a class="headerlink" href="#mas-alla-de-las-capturas" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;shot-scraper&lt;/code&gt; también incluye utilidades para:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Accesibilidad&lt;/strong&gt;: Volcar el árbol de accesibilidad de una página (&lt;code&gt;shot-scraper accessibility&lt;/code&gt;).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;PDF&lt;/strong&gt;: Generar PDFs de páginas web (&lt;code&gt;shot-scraper pdf&lt;/code&gt;).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;HAR&lt;/strong&gt;: Grabar archivos HAR para analizar el tráfico de red (&lt;code&gt;shot-scraper har&lt;/code&gt;).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Es una de esas herramientas que, una vez instaladas, encuentras usos para ella constantemente. Perfecta para integrar en pipelines de CI/CD para generar visuales de documentación automáticamente.&lt;/p&gt;
+&lt;p&gt;Más info en la &lt;a href="https://shot-scraper.datasette.io/"&gt;documentación oficial&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="shot-scraper help" src="https://pablocaro.es/images/shot_scraper_help.png"&gt;&lt;/p&gt;</content><category term="Programación"></category><category term="cli"></category><category term="herramientas"></category><category term="web"></category><category term="scraping"></category><category term="screenshots"></category></entry><entry><title>Stern: Logs de Kubernetes con esteroides</title><link href="https://pablocaro.es/stern-kubernetes-logs" rel="alternate"></link><published>2026-02-20T00:00:00+01:00</published><updated>2026-02-20T00:00:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-02-20:/stern-kubernetes-logs</id><summary type="html">&lt;p&gt;Si trabajas con Kubernetes, probablemente hayas sufrido el comando &lt;code&gt;kubectl logs&lt;/code&gt;. Es útil para ver los logs de un pod específico, pero se queda corto cuando tienes múltiples réplicas de un servicio o cuando los pods se reinician y cambian de nombre.&lt;/p&gt;
+&lt;p&gt;Aquí es donde entra &lt;strong&gt;&lt;a href="https://github.com/stern/stern"&gt;Stern&lt;/a&gt;&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Stern te permite …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Si trabajas con Kubernetes, probablemente hayas sufrido el comando &lt;code&gt;kubectl logs&lt;/code&gt;. Es útil para ver los logs de un pod específico, pero se queda corto cuando tienes múltiples réplicas de un servicio o cuando los pods se reinician y cambian de nombre.&lt;/p&gt;
+&lt;p&gt;Aquí es donde entra &lt;strong&gt;&lt;a href="https://github.com/stern/stern"&gt;Stern&lt;/a&gt;&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Stern te permite hacer "tail" (seguir) logs de múltiples pods y contenedores dentro de Kubernetes simultáneamente. Lo mejor de todo es que utiliza expresiones regulares para seleccionar los pods, por lo que no necesitas copiar y pegar esos IDs aleatorios (&lt;code&gt;pod-1234567890-abcde&lt;/code&gt;).&lt;/p&gt;
+&lt;h2 id="instalacion"&gt;Instalación&lt;a class="headerlink" href="#instalacion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Stern es muy popular y está disponible en la mayoría de gestores de paquetes.### Usando Krew (recomendado)
+Si ya usas &lt;code&gt;kubectl&lt;/code&gt;, Krew es la forma más natural de instalar plugins:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;kubectl&lt;span class="w"&gt; &lt;/span&gt;krew&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;stern
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id="usando-homebrew"&gt;Usando Homebrew&lt;a class="headerlink" href="#usando-homebrew" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;brew&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;stern
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id="binario-directo"&gt;Binario directo&lt;a class="headerlink" href="#binario-directo" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;También puedes descargar el binario directamente desde sus &lt;a href="https://github.com/stern/stern/releases"&gt;releases en GitHub&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Si utilizas algún helper como &lt;code&gt;gah&lt;/code&gt; (GitHub Asset Helper) o scripts personalizados, la instalación es tan sencilla como:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;gah&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;stern/stern
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="caracteristicas-principales"&gt;Características principales&lt;a class="headerlink" href="#caracteristicas-principales" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="1-tailing-de-multiples-pods"&gt;1. Tailing de múltiples pods&lt;a class="headerlink" href="#1-tailing-de-multiples-pods" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;En lugar de buscar el nombre exacto del pod, puedes usar una regex:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;stern&lt;span class="w"&gt; &lt;/span&gt;backend
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Esto mostrará los logs de todos los pods que contengan "backend" en su nombre (&lt;code&gt;backend-api&lt;/code&gt;, &lt;code&gt;backend-worker&lt;/code&gt;, etc.), intercalados y coloreados para distinguirlos fácilmente.&lt;/p&gt;
+&lt;h3 id="2-filtrado-y-exclusion"&gt;2. Filtrado y exclusión&lt;a class="headerlink" href="#2-filtrado-y-exclusion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Puedes filtrar el contenido de los logs sobre la marcha sin necesidad de &lt;code&gt;grep&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Solo mostrar líneas que contengan &amp;quot;Error&amp;quot;&lt;/span&gt;
+stern&lt;span class="w"&gt; &lt;/span&gt;backend&lt;span class="w"&gt; &lt;/span&gt;-i&lt;span class="w"&gt; &lt;/span&gt;Error
+
+&lt;span class="c1"&gt;# Excluir líneas que contengan &amp;quot;Health check&amp;quot;&lt;/span&gt;
+stern&lt;span class="w"&gt; &lt;/span&gt;backend&lt;span class="w"&gt; &lt;/span&gt;-e&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Health check&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id="3-selectores-de-kubernetes"&gt;3. Selectores de Kubernetes&lt;a class="headerlink" href="#3-selectores-de-kubernetes" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Además de regex por nombre, puedes usar selectores de etiquetas, lo cual es mucho más preciso para entornos de producción:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;stern&lt;span class="w"&gt; &lt;/span&gt;-l&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;app&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;mi-app&lt;span class="w"&gt; &lt;/span&gt;-l&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;tier&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;frontend
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id="4-formato-de-salida"&gt;4. Formato de salida&lt;a class="headerlink" href="#4-formato-de-salida" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Si tus logs están en JSON (como es buena práctica), Stern puede pasarlos tal cual para que los proceses con herramientas como &lt;code&gt;jq&lt;/code&gt; o &lt;code&gt;fx&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;stern&lt;span class="w"&gt; &lt;/span&gt;backend&lt;span class="w"&gt; &lt;/span&gt;-o&lt;span class="w"&gt; &lt;/span&gt;raw&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;fx
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="conclusion"&gt;Conclusión&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Stern es una de esas herramientas que instalas el primer día y te preguntas cómo podías vivir sin ella. Hace que el debug en entornos distribuidos sea mucho menos doloroso al agregar la información de manera coherente.&lt;/p&gt;
+&lt;p&gt;Dale una oportunidad y tus sesiones de debugging te lo agradecerán.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="stern help" src="https://pablocaro.es/images/stern_help.png"&gt;&lt;/p&gt;</content><category term="Infraestructura"></category><category term="kubernetes"></category><category term="cli"></category><category term="logs"></category><category term="herramientas"></category></entry><entry><title>Gestionando instalaciones desde GitHub con gah</title><link href="https://pablocaro.es/gestionando-instalaciones-desde-github-con-gah" rel="alternate"></link><published>2026-02-11T20:23:00+01:00</published><updated>2026-02-11T20:23:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-02-11:/gestionando-instalaciones-desde-github-con-gah</id><summary type="html">&lt;p class="first last"&gt;Instala binarios directamente desde releases de GitHub de forma sencilla con gah.&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;&lt;a class="reference external" href="https://github.com/get-gah/gah"&gt;gah&lt;/a&gt; es una herramienta que facilita la instalación de programas que distribuyen sus binarios a través de releases de GitHub. Es una alternativa ligera cuando no quieres depender del gestor de paquetes de tu distribución o cuando necesitas una versión más reciente.&lt;/p&gt;
 &lt;div class="section" id="instalacion"&gt;
 &lt;h2&gt;Instalación&lt;/h2&gt;
@@ -221,270 +372,7 @@ gah install charmbracelet/glow&lt;/p&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Gah se encarga de descargar el asset correcto para tu arquitectura, descomprimirlo y colocarlo en tu path.&lt;/p&gt;
 &lt;/div&gt;
-</content><category term="Linux"></category><category term="linux"></category><category term="herramientas"></category><category term="cli"></category></entry><entry><title>broot, una forma diferente de navegar por tus directorios</title><link href="https://pablocaro.es/broot-una-forma-diferente-de-navegar-directorios" rel="alternate"></link><published>2026-01-02T10:00:00+01:00</published><updated>2026-01-02T10:00:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-01-02:/broot-una-forma-diferente-de-navegar-directorios</id><summary type="html">&lt;p&gt;broot es una herramienta para la terminal que permite explorar directorios de forma interactiva, con búsqueda fuzzy, paneles múltiples y previsualización de archivos.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Llevaba tiempo buscando un reemplazo para &lt;code&gt;ls&lt;/code&gt; y &lt;code&gt;tree&lt;/code&gt; que me permitiera navegar por directorios grandes sin perder el contexto. broot es la herramienta que necesitaba.&lt;/p&gt;
-&lt;h2 id="instalacion"&gt;Instalación&lt;a class="headerlink" href="#instalacion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Con cargo (Rust)&lt;/span&gt;
-cargo&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;broot
-
-&lt;span class="c1"&gt;# O con tu gestor de paquetes&lt;/span&gt;
-brew&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;broot&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="c1"&gt;# macOS&lt;/span&gt;
-apt&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;broot&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="c1"&gt;# Debian/Ubuntu&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h2 id="primeros-pasos"&gt;Primeros pasos&lt;a class="headerlink" href="#primeros-pasos" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;El comando básico es simplemente &lt;code&gt;br&lt;/code&gt; (puedes crear un alias para que reemplace a &lt;code&gt;cd&lt;/code&gt;):&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;br
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Esto abre una vista de árbol interactiva del directorio actual. Las teclas principales:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;↓&lt;/code&gt; / &lt;code&gt;↑&lt;/code&gt; - Navegar entre archivos y directorios&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;/&lt;/code&gt; - Búsqueda fuzzy (ej: &lt;code&gt;/config&lt;/code&gt; encuentra todos los archivos con "config" en el nombre)&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;Enter&lt;/code&gt; - Entrar en un directorio&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;alt + Enter&lt;/code&gt; - Hacer &lt;code&gt;cd&lt;/code&gt; al directorio seleccionado y salir de broot&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;:e&lt;/code&gt; - Abrir el archivo seleccionado con el editor definido en &lt;code&gt;$EDITOR&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;:q&lt;/code&gt; - Salir&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="caracteristicas-que-uso"&gt;Características que uso&lt;a class="headerlink" href="#caracteristicas-que-uso" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;h3 id="busqueda-sin-perder-el-contexto"&gt;Búsqueda sin perder el contexto&lt;a class="headerlink" href="#busqueda-sin-perder-el-contexto" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;A diferencia de &lt;code&gt;find&lt;/code&gt;, broot muestra dónde está cada resultado dentro del árbol de directorios:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;br
-/pytest&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="c1"&gt;# Encuentra todos los archivos/directorios con &amp;quot;pytest&amp;quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Esto es útil cuando sabes el nombre de un archivo pero no recuerdas en qué carpeta está.&lt;/p&gt;
-&lt;h3 id="paneles-multiples"&gt;Paneles múltiples&lt;a class="headerlink" href="#paneles-multiples" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;Puedes dividir la vista para comparar o mover archivos entre directorios:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;:pp  # Crear panel derecho
-:pc  # Crear panel inferior
-:pt  # Intercambiar paneles
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;En cada panel puedes navegar independientemente y usar verbos como &lt;code&gt;:copy&lt;/code&gt; o &lt;code&gt;:move&lt;/code&gt;.&lt;/p&gt;
-&lt;h3 id="previsualizacion-de-archivos"&gt;Previsualización de archivos&lt;a class="headerlink" href="#previsualizacion-de-archivos" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;Selecciona un archivo y usa &lt;code&gt;:preview&lt;/code&gt; para ver su contenido sin salir de broot. Para imágenes en terminales que lo soporten (kitty, iterm2):&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;:preview
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h3 id="ver-solo-archivos-relevantes"&gt;Ver solo archivos relevantes&lt;a class="headerlink" href="#ver-solo-archivos-relevantes" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;broot oculta automáticamente archivos ignorados por Git y directorios comunes como &lt;code&gt;node_modules&lt;/code&gt;. Para verlos:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;:show_git_ignored
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h3 id="verbos-personalizados"&gt;Verbos personalizados&lt;a class="headerlink" href="#verbos-personalizados" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;En &lt;code&gt;~/.config/broot/conf.toml&lt;/code&gt; puedes añadir comandos personalizados:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;[[verbs]]&lt;/span&gt;
-&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;edit&amp;quot;&lt;/span&gt;
-&lt;span class="n"&gt;invocation&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;e&amp;quot;&lt;/span&gt;
-&lt;span class="n"&gt;execution&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;$EDITOR {file}&amp;quot;&lt;/span&gt;
-
-&lt;span class="k"&gt;[[verbs]]&lt;/span&gt;
-&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;git status&amp;quot;&lt;/span&gt;
-&lt;span class="n"&gt;invocation&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;gs&amp;quot;&lt;/span&gt;
-&lt;span class="n"&gt;execution&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;git status&amp;quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h2 id="integracion-con-el-shell"&gt;Integración con el shell&lt;a class="headerlink" href="#integracion-con-el-shell" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Para usar &lt;code&gt;br&lt;/code&gt; como reemplazo de &lt;code&gt;cd&lt;/code&gt;, añade esto a tu &lt;code&gt;.bashrc&lt;/code&gt; o &lt;code&gt;.zshrc&lt;/code&gt;:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Esto permite que br cambie el directorio del shell padre&lt;/span&gt;
-&lt;span class="nb"&gt;source&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;/usr/share/broot/launcher/bash/br
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Ahora &lt;code&gt;br directorio&lt;/code&gt; te deja en ese directorio al salir.&lt;/p&gt;
-&lt;h2 id="cuando-usar-broot"&gt;Cuándo usar broot&lt;a class="headerlink" href="#cuando-usar-broot" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Navegar por proyectos grandes con muchas carpetas&lt;/li&gt;
-&lt;li&gt;Buscar archivos cuando no recuerdas la ruta exacta&lt;/li&gt;
-&lt;li&gt;Mover/copiar archivos entre directorios distantes&lt;/li&gt;
-&lt;li&gt;Explorar directorios con muchos archivos ignorados por Git&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="enlaces"&gt;Enlaces&lt;a class="headerlink" href="#enlaces" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://dystroy.org/broot/"&gt;Documentación oficial&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://github.com/Canop/broot"&gt;Repositorio GitHub&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;em&gt;Fuente original&lt;/em&gt;: &lt;a href="https://dystroy.org/broot/"&gt;Documentación de broot&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt="broot terminal interface" src="https://pablocaro.es/images/broot_terminal.png"&gt;&lt;/p&gt;</content><category term="Herramientas"></category><category term="terminal"></category><category term="cli"></category><category term="broot"></category><category term="rust"></category><category term="herramientas"></category></entry><entry><title>YAML Multilínea: Entendiendo y probando cadenas de texto complejas</title><link href="https://pablocaro.es/yaml-multilinea-cadenas-complejas" rel="alternate"></link><published>2025-12-25T16:10:00+01:00</published><updated>2025-12-25T16:10:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2025-12-25:/yaml-multilinea-cadenas-complejas</id><summary type="html">&lt;p&gt;Explora las opciones de YAML para manejar cadenas de texto multilínea de forma efectiva, con una demo interactiva que te permite probarlas en tiempo real.&lt;/p&gt;</summary><content type="html">&lt;p&gt;YAML se ha convertido en el formato de facto para la configuración en muchos proyectos, desde Kubernetes hasta scripts de CI/CD. Una de sus funcionalidades más potentes, y a veces confusas, es la gestión de &lt;strong&gt;cadenas de texto multilínea&lt;/strong&gt;. Afortunadamente, existe una herramienta interactiva excepcional para dominar este aspecto: &lt;a href="https://yaml-multiline.info/"&gt;yaml-multiline.info&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id="formatos-para-cadenas-multilinea-en-yaml"&gt;Formatos para Cadenas Multilínea en YAML&lt;a class="headerlink" href="#formatos-para-cadenas-multilinea-en-yaml" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;YAML ofrece principalmente dos enfoques para definir cadenas que abarcan varias líneas:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Escalares de Flujo (Flow Scalars)&lt;/strong&gt;:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Son cadenas simples, a menudo entrecomilladas (&lt;code&gt;'...'&lt;/code&gt; o &lt;code&gt;"..."&lt;/code&gt;) o sin comillas.&lt;/li&gt;
-&lt;li&gt;Ignoran indentaciones y, por defecto, reemplazan los saltos de línea con espacios.&lt;/li&gt;
-&lt;li&gt;Las cadenas con comillas dobles permiten usar secuencias de escape como &lt;code&gt;\n&lt;/code&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Escalares de Bloque (Block Scalars)&lt;/strong&gt;:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Ofrecen un control mucho más preciso sobre los saltos de línea y la indentación.&lt;/li&gt;
-&lt;li&gt;Se indican con un carácter especial al inicio de la línea donde comienza la cadena.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id="claves-para-cadenas-multilinea-en-bloque"&gt;Claves para Cadenas Multilínea en Bloque&lt;a class="headerlink" href="#claves-para-cadenas-multilinea-en-bloque" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Los dos indicadores de estilo más importantes para escalares de bloque son:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;&lt;code&gt;|&lt;/code&gt; (Estilo Literal)&lt;/strong&gt;: Mantiene todos los saltos de línea y la indentación tal cual. Es ideal para bloques de texto donde el formato es crucial (ej. código, mensajes largos).
-    &lt;code&gt;yaml
-    literal_string: |
-      Esta es una línea.
-      Esta es otra.
-        Con su propia indentación.&lt;/code&gt;
-    Resultado: "Esta es una línea.\nEsta es otra.\n  Con su propia indentación.\n"&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;&lt;code&gt;&amp;gt;&lt;/code&gt; (Estilo Plegado/Folded)&lt;/strong&gt;: Reemplaza los saltos de línea con espacios, uniendo las líneas en una sola. Solo los saltos de línea dobles (líneas en blanco) o las líneas con mayor indentación se conservan como saltos de línea. Es útil para párrafos largos.
-    &lt;code&gt;yaml
-    folded_string: &amp;gt;
-      Esta es una cadena
-      plegada en varias líneas.
-      Mantendrá el formato de párrafo.&lt;/code&gt;
-    Resultado: "Esta es una cadena plegada en varias líneas. Mantendrá el formato de párrafo.\n"&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Además de esto, existen indicadores de "chomping" (&lt;code&gt;-&lt;/code&gt; para eliminar saltos de línea finales, &lt;code&gt;+&lt;/code&gt; para mantenerlos, o el comportamiento por defecto) y de indentación que ofrecen aún más control.&lt;/p&gt;
-&lt;h2 id="demo-en-tiempo-real"&gt;¡Demo en Tiempo Real!&lt;a class="headerlink" href="#demo-en-tiempo-real" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Lo que hace a &lt;a href="https://yaml-multiline.info/"&gt;yaml-multiline.info&lt;/a&gt; una herramienta invaluable es su &lt;strong&gt;demo interactiva&lt;/strong&gt;. Puedes probar diferentes sintaxis YAML en tiempo real y ver cómo se interpreta la cadena resultante. Es la mejor manera de entender visualmente cómo funcionan los estilos literal y plegado, y cómo los indicadores de chomping y la indentación afectan el resultado final.&lt;/p&gt;
-&lt;h2 id="conclusion"&gt;Conclusión&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Entender cómo manejar cadenas multilínea en YAML no solo mejora la legibilidad de tus archivos de configuración, sino que también previene errores inesperados. La demo en tiempo real de &lt;code&gt;yaml-multiline.info&lt;/code&gt; es un recurso fantástico para cualquier persona que trabaje regularmente con YAML y quiera dominar este aspecto.&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;Sitio web&lt;/em&gt;: &lt;a href="https://yaml-multiline.info/"&gt;&lt;code&gt;yaml-multiline.info&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;</content><category term="Herramientas"></category><category term="yaml"></category><category term="configuracion"></category><category term="desarrollo"></category><category term="herramientas"></category><category term="multiline"></category><category term="strings"></category></entry><entry><title>`fresh`: Mi editor de terminal preferido para el día a día</title><link href="https://pablocaro.es/fresh-editor-terminal" rel="alternate"></link><published>2025-12-25T15:45:00+01:00</published><updated>2025-12-25T15:45:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2025-12-25:/fresh-editor-terminal</id><summary type="html">&lt;p&gt;Descubre &lt;code&gt;fresh&lt;/code&gt;, un editor de texto en terminal rápido, moderno y sin modos, ideal para la edición casual de archivos, superando a &lt;code&gt;nano&lt;/code&gt; y &lt;code&gt;vim&lt;/code&gt; en simplicidad para el uso habitual.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Aunque &lt;code&gt;vim&lt;/code&gt; es una herramienta increíblemente potente y &lt;code&gt;nano&lt;/code&gt; destaca por su simplicidad extrema, a menudo busco un punto intermedio para la edición de archivos en la terminal. Un editor que sea rápido, moderno y que no me obligue a recordar modos o combinaciones de teclas complejas para tareas sencillas. Así es como he descubierto &lt;strong&gt;&lt;code&gt;fresh&lt;/code&gt;&lt;/strong&gt;, y se ha convertido rápidamente en mi editor de terminal preferido para el uso diario.&lt;/p&gt;
-&lt;h2 id="que-es-fresh"&gt;¿Qué es &lt;code&gt;fresh&lt;/code&gt;?&lt;a class="headerlink" href="#que-es-fresh" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;code&gt;fresh&lt;/code&gt; es un editor de texto para terminal diseñado para ser &lt;strong&gt;simple, rápido y eficiente&lt;/strong&gt;. A diferencia de &lt;code&gt;vim&lt;/code&gt;, &lt;code&gt;fresh&lt;/code&gt; es un editor sin modos, lo que significa que puedes empezar a escribir y editar texto inmediatamente, como lo harías en un editor gráfico. A diferencia de &lt;code&gt;nano&lt;/code&gt;, &lt;code&gt;fresh&lt;/code&gt; ofrece una experiencia más moderna con características que esperas de un editor de texto actual.&lt;/p&gt;
-&lt;h2 id="por-que-lo-prefiero-a-nano-o-vim-para-mi-uso-habitual"&gt;¿Por qué lo prefiero a &lt;code&gt;nano&lt;/code&gt; o &lt;code&gt;vim&lt;/code&gt; para mi uso habitual?&lt;a class="headerlink" href="#por-que-lo-prefiero-a-nano-o-vim-para-mi-uso-habitual" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Sin Modos&lt;/strong&gt;: La principal ventaja sobre &lt;code&gt;vim&lt;/code&gt;. No necesitas aprender a cambiar entre modos de inserción, normal, visual, etc. Simplemente abres el archivo y editas.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Moderno y Rápido&lt;/strong&gt;: A pesar de ejecutarse en la terminal, &lt;code&gt;fresh&lt;/code&gt; se siente responsivo y ofrece una interfaz limpia.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Resaltado de Sintaxis&lt;/strong&gt;: Soporte para coloreado de sintaxis para una gran variedad de lenguajes.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Soporte de Ratón&lt;/strong&gt;: Puedes hacer clic para mover el cursor, seleccionar texto, o incluso usar la rueda para scroll.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Multi-Cursor&lt;/strong&gt;: Una característica muy potente que &lt;code&gt;nano&lt;/code&gt; no ofrece y que &lt;code&gt;vim&lt;/code&gt; requiere más complejidad para usar.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Deshacer/Rehacer&lt;/strong&gt;: Funcionalidad completa de &lt;code&gt;undo&lt;/code&gt;/&lt;code&gt;redo&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Búsqueda y Reemplazo&lt;/strong&gt;: Funciones de búsqueda y reemplazo sencillas e intuitivas.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Mientras que &lt;code&gt;vim&lt;/code&gt; sigue siendo mi elección para ediciones complejas o scripting avanzado, para "abrir un &lt;code&gt;.conf&lt;/code&gt;", modificar un &lt;code&gt;.bashrc&lt;/code&gt;, o escribir una pequeña nota, &lt;code&gt;fresh&lt;/code&gt; es imbatible en velocidad y comodidad. &lt;code&gt;nano&lt;/code&gt; es quizás demasiado básico para mis necesidades, careciendo de la mayoría de las características modernas que &lt;code&gt;fresh&lt;/code&gt; ofrece.&lt;/p&gt;
-&lt;h2 id="instalacion"&gt;Instalación&lt;a class="headerlink" href="#instalacion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;code&gt;fresh&lt;/code&gt; es fácil de instalar en la mayoría de las distribuciones Linux. Por ejemplo, en sistemas basados en Debian/Ubuntu:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;apt&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;fresh
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;O puedes seguir las instrucciones del repositorio oficial para compilarlo desde el código fuente o usar otros gestores de paquetes.&lt;/p&gt;
-&lt;h2 id="conclusion"&gt;Conclusión&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Si buscas un editor de terminal que sea un híbrido perfecto entre la potencia de &lt;code&gt;vim&lt;/code&gt; y la simplicidad de &lt;code&gt;nano&lt;/code&gt;, pero con un toque moderno y centrado en la usabilidad inmediata, &lt;code&gt;fresh&lt;/code&gt; es una excelente opción. Dale una oportunidad, ¡podría convertirse en tu nuevo favorito!&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;Repositorio oficial&lt;/em&gt;: &lt;a href="https://sinelaw.github.io/fresh/"&gt;&lt;code&gt;fresh&lt;/code&gt; en GitHub&lt;/a&gt;&lt;/p&gt;</content><category term="Herramientas"></category><category term="fresh"></category><category term="terminal"></category><category term="editor"></category><category term="productividad"></category><category term="linux"></category><category term="herramientas"></category><category term="cli"></category></entry><entry><title>Kooha: Captura de pantalla sencilla y elegante en Linux</title><link href="https://pablocaro.es/kooha-captura-pantalla-linux" rel="alternate"></link><published>2025-12-25T15:00:00+01:00</published><updated>2025-12-25T15:00:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2025-12-25:/kooha-captura-pantalla-linux</id><summary type="html">&lt;p&gt;Descubre Kooha, una aplicación de grabación de pantalla minimalista para Linux que combina facilidad de uso con funcionalidades esenciales.&lt;/p&gt;</summary><content type="html">&lt;p&gt;En Linux, la necesidad de grabar la pantalla de forma sencilla y eficiente es común, ya sea para crear tutoriales, presentaciones, reportes de bugs o simplemente compartir una experiencia. Aunque existen muchas herramientas, &lt;strong&gt;Kooha&lt;/strong&gt; destaca por su enfoque minimalista y su interfaz de usuario intuitiva, basada en GTK.&lt;/p&gt;
-&lt;h2 id="que-es-kooha"&gt;¿Qué es Kooha?&lt;a class="headerlink" href="#que-es-kooha" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Kooha es una aplicación de grabación de pantalla gratuita y de código abierto, diseñada específicamente para entornos de escritorio Linux. Su objetivo principal es ofrecer una experiencia de usuario sin complicaciones, enfocándose en las funcionalidades esenciales de una grabadora de pantalla.&lt;/p&gt;
-&lt;h2 id="por-que-elegir-kooha"&gt;¿Por qué elegir Kooha?&lt;a class="headerlink" href="#por-que-elegir-kooha" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;strong&gt;Facilidad de Uso&lt;/strong&gt;: Su interfaz es clara y directa. No hay menús complejos ni opciones abrumadoras, lo que la hace ideal para usuarios de todos los niveles.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Diseño Minimalista&lt;/strong&gt;: Se integra perfectamente con el aspecto de GNOME y otros entornos GTK, ofreciendo una experiencia visual limpia y agradable.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Funcionalidades Clave&lt;/strong&gt;: A pesar de su simplicidad, incluye todas las opciones necesarias para la mayoría de las tareas de grabación.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Código Abierto&lt;/strong&gt;: Al ser open-source, se beneficia de la comunidad y permite a los usuarios inspeccionar y contribuir al código.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id="caracteristicas-principales"&gt;Características Principales&lt;a class="headerlink" href="#caracteristicas-principales" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Grabación de Pantalla Completa&lt;/strong&gt;: Captura todo lo que ocurre en tu monitor.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Grabación de Ventana Específica&lt;/strong&gt;: Elige una aplicación o ventana en particular para grabar.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Grabación de Área Seleccionada&lt;/strong&gt;: Define un área rectangular en tu pantalla para la captura.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Grabación de Audio&lt;/strong&gt;: Incluye audio desde tu micrófono.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Grabación de Webcam&lt;/strong&gt;: Integra la imagen de tu cámara web en la grabación.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Formatos Comunes&lt;/strong&gt;: Soporte para formatos populares como WebM y MP4.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Opciones de Calidad&lt;/strong&gt;: Ajustes para la tasa de fotogramas (FPS) y la calidad del video.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="instalacion"&gt;Instalación&lt;a class="headerlink" href="#instalacion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;La forma más recomendada de instalar Kooha es a través de Flatpak, lo que asegura que obtendrás la última versión y todas las dependencias necesarias:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;flatpak&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;flathub&lt;span class="w"&gt; &lt;/span&gt;com.github.SeaDve.Kooha
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;También puede estar disponible en los repositorios de algunas distribuciones Linux o como paquete Snap.&lt;/p&gt;
-&lt;h2 id="conclusion"&gt;Conclusión&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Kooha es la herramienta perfecta para quienes buscan una solución de grabación de pantalla en Linux que sea potente sin ser complicada. Su elegancia y sencillez la convierten en una excelente adición al arsenal de productividad de cualquier usuario de Linux.&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;Repositorio oficial&lt;/em&gt;: &lt;a href="https://github.com/SeaDve/Kooha"&gt;SeaDve/Kooha en GitHub&lt;/a&gt;&lt;/p&gt;</content><category term="Herramientas"></category><category term="linux"></category><category term="kooha"></category><category term="screen-recorder"></category><category term="productividad"></category><category term="herramientas"></category><category term="open-source"></category></entry><entry><title>`direnv`: Gestiona tus entornos de desarrollo de forma inteligente</title><link href="https://pablocaro.es/direnv-gestion-entornos" rel="alternate"></link><published>2025-12-25T14:30:00+01:00</published><updated>2025-12-25T14:30:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2025-12-25:/direnv-gestion-entornos</id><summary type="html">&lt;p&gt;Descubre &lt;code&gt;direnv&lt;/code&gt;, una extensión de shell que carga y descarga variables de entorno automáticamente al cambiar de directorio, manteniendo tu configuración limpia y organizada.&lt;/p&gt;</summary><content type="html">&lt;p&gt;En el día a día de un desarrollador, es común trabajar con múltiples proyectos, cada uno con sus propias variables de entorno, rutas (&lt;code&gt;PATH&lt;/code&gt;), versiones de herramientas o credenciales. La gestión manual de estas variables puede llevar a configuraciones desordenadas en tu &lt;code&gt;.profile&lt;/code&gt; o &lt;code&gt;.bashrc&lt;/code&gt;, o a errores por usar el entorno incorrecto. Aquí es donde &lt;strong&gt;&lt;code&gt;direnv&lt;/code&gt;&lt;/strong&gt; brilla, ofreciendo una solución elegante y automática.&lt;/p&gt;
-&lt;h2 id="que-es-direnv"&gt;¿Qué es &lt;code&gt;direnv&lt;/code&gt;?&lt;a class="headerlink" href="#que-es-direnv" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;code&gt;direnv&lt;/code&gt; es una extensión para tu shell (Bash, Zsh, Fish, etc.) que detecta automáticamente cuando cambias de directorio. Cuando entras en un directorio que contiene un archivo &lt;code&gt;.envrc&lt;/code&gt;, &lt;code&gt;direnv&lt;/code&gt; lo carga; cuando sales de él, lo descarga. Esto significa que tu entorno de shell se adapta dinámicamente a tu proyecto actual, sin que tengas que hacer nada manualmente.&lt;/p&gt;
-&lt;h2 id="como-funciona"&gt;¿Cómo funciona?&lt;a class="headerlink" href="#como-funciona" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;code&gt;direnv&lt;/code&gt; se integra con tu shell a través de un &lt;em&gt;hook&lt;/em&gt; en el comando &lt;code&gt;cd&lt;/code&gt;. Cada vez que cambias de directorio, &lt;code&gt;direnv&lt;/code&gt; comprueba si existe un archivo &lt;code&gt;.envrc&lt;/code&gt; en el directorio actual o en alguno de sus ancestros. Si encuentra uno (y le has dado permiso para cargarlo), ejecuta los comandos definidos en ese archivo para modificar tu entorno. Al salir del directorio, revierte esos cambios, limpiando tu entorno.&lt;/p&gt;
-&lt;h2 id="casos-de-uso-comunes"&gt;Casos de Uso Comunes&lt;a class="headerlink" href="#casos-de-uso-comunes" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Gestión de &lt;code&gt;PATH&lt;/code&gt;&lt;/strong&gt;: Añadir binarios específicos de un proyecto a tu &lt;code&gt;PATH&lt;/code&gt; temporalmente.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Entornos Virtuales de Python&lt;/strong&gt;: Activar automáticamente un &lt;code&gt;virtualenv&lt;/code&gt; o &lt;code&gt;uv venv&lt;/code&gt; al entrar en un proyecto Python.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Credenciales y Claves API&lt;/strong&gt;: Cargar variables de entorno con credenciales de bases de datos, claves API o tokens de forma segura (sin que queden en el historial del shell).&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Variables de Entorno Específicas del Proyecto&lt;/strong&gt;: &lt;code&gt;RAILS_ENV&lt;/code&gt;, &lt;code&gt;NODE_ENV&lt;/code&gt;, etc.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Cambio de Versiones de Herramientas&lt;/strong&gt;: Integrar con herramientas como &lt;code&gt;nvm&lt;/code&gt; o &lt;code&gt;pyenv&lt;/code&gt; para cambiar automáticamente de versión de Node.js o Python.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="instalacion-basica-ejemplo-para-bash"&gt;Instalación Básica (ejemplo para Bash)&lt;a class="headerlink" href="#instalacion-basica-ejemplo-para-bash" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;strong&gt;Instalar &lt;code&gt;direnv&lt;/code&gt;&lt;/strong&gt;: Puedes instalarlo desde tu gestor de paquetes (&lt;code&gt;sudo apt install direnv&lt;/code&gt;, &lt;code&gt;brew install direnv&lt;/code&gt;, etc.).&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Activar el hook en tu shell&lt;/strong&gt;: Añade la siguiente línea a tu &lt;code&gt;~/.bashrc&lt;/code&gt; (o &lt;code&gt;~/.zshrc&lt;/code&gt;):&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;bash
-eval "$(direnv hook bash)"&lt;/code&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Crear un archivo &lt;code&gt;.envrc&lt;/code&gt;&lt;/strong&gt;: En la raíz de tu proyecto, crea un archivo &lt;code&gt;.envrc&lt;/code&gt; con las variables y comandos que quieras.&lt;/p&gt;
-&lt;p&gt;```bash&lt;/p&gt;
-&lt;h1 id="envrc-en-la-raiz-de-tu-proyecto-python"&gt;.envrc en la raíz de tu proyecto Python&lt;a class="headerlink" href="#envrc-en-la-raiz-de-tu-proyecto-python" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h1&gt;
-&lt;p&gt;layout python  # Activa automáticamente un entorno virtual
-export MY_API_KEY="super_secreto_del_proyecto"
-```&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Permitir la carga&lt;/strong&gt;: La primera vez que entres al directorio con un nuevo &lt;code&gt;.envrc&lt;/code&gt;, &lt;code&gt;direnv&lt;/code&gt; te pedirá confirmación:&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;bash
-direnv: error .envrc is blocked. Run `direnv allow` to approve its contents&lt;/code&gt;
-Ejecuta &lt;code&gt;direnv allow&lt;/code&gt;.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id="la-libreria-estandar-de-direnv"&gt;La Librería Estándar de &lt;code&gt;direnv&lt;/code&gt;&lt;a class="headerlink" href="#la-libreria-estandar-de-direnv" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;code&gt;direnv&lt;/code&gt; viene con una potente librería estándar que incluye funciones predefinidas para tareas comunes, como &lt;code&gt;layout python&lt;/code&gt; (para gestionar virtualenvs), &lt;code&gt;use nix&lt;/code&gt;, &lt;code&gt;use node&lt;/code&gt;, etc., simplificando enormemente la configuración de tus &lt;code&gt;.envrc&lt;/code&gt;.&lt;/p&gt;
-&lt;h2 id="beneficios-clave"&gt;Beneficios Clave&lt;a class="headerlink" href="#beneficios-clave" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Entornos limpios&lt;/strong&gt;: Tu &lt;code&gt;.profile&lt;/code&gt; permanece ordenado.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Consistencia&lt;/strong&gt;: Cada proyecto tiene exactamente el entorno que necesita.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Productividad&lt;/strong&gt;: No más &lt;code&gt;source venv/bin/activate&lt;/code&gt; manual o recordar configurar variables.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;code&gt;direnv&lt;/code&gt; es una herramienta pequeña pero poderosa que transforma la forma en que gestionas tus entornos de desarrollo, haciendo tu vida en la terminal mucho más eficiente y libre de errores.&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;Artículo original&lt;/em&gt;: &lt;a href="https://direnv.net/"&gt;&lt;code&gt;direnv&lt;/code&gt; homepage&lt;/a&gt;&lt;/p&gt;</content><category term="Herramientas"></category><category term="direnv"></category><category term="shell"></category><category term="entorno"></category><category term="productividad"></category><category term="desarrollo"></category><category term="linux"></category><category term="herramientas"></category></entry><entry><title>`docker-http-https-echo`: Una herramienta esencial para depuración de red</title><link href="https://pablocaro.es/docker-http-https-echo" rel="alternate"></link><published>2025-12-25T14:15:00+01:00</published><updated>2025-12-25T14:15:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2025-12-25:/docker-http-https-echo</id><summary type="html">&lt;p&gt;&lt;code&gt;mendhak/docker-http-https-echo&lt;/code&gt; es un contenedor Docker simple que facilita la depuración de configuraciones de red, proxies y balanceadores de carga.&lt;/p&gt;</summary><content type="html">&lt;p&gt;En el complejo mundo de las aplicaciones distribuidas, la depuración de problemas de red, proxies, balanceadores de carga o reglas de firewall puede ser una tarea ardua. Necesitamos una forma simple de verificar qué está recibiendo un servidor. Aquí es donde una herramienta como &lt;code&gt;mendhak/docker-http-https-echo&lt;/code&gt; se vuelve indispensable.&lt;/p&gt;
-&lt;h2 id="que-es-mendhakdocker-http-https-echo"&gt;¿Qué es &lt;code&gt;mendhak/docker-http-https-echo&lt;/code&gt;?&lt;a class="headerlink" href="#que-es-mendhakdocker-http-https-echo" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Es un contenedor Docker extremadamente ligero y simple que funciona como un servidor HTTP y HTTPS de "eco". Su función principal es &lt;strong&gt;responder a cualquier solicitud HTTP o HTTPS con una descripción detallada de la propia solicitud&lt;/strong&gt;. Esto incluye:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Cabeceras de la solicitud (headers).&lt;/li&gt;
-&lt;li&gt;Método HTTP (GET, POST, PUT, etc.).&lt;/li&gt;
-&lt;li&gt;URL y parámetros de la solicitud.&lt;/li&gt;
-&lt;li&gt;Cuerpo de la solicitud (body).&lt;/li&gt;
-&lt;li&gt;Dirección IP remota del cliente.&lt;/li&gt;
-&lt;li&gt;Información del TLS/SSL (si es HTTPS).&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="por-que-es-util"&gt;¿Por qué es útil?&lt;a class="headerlink" href="#por-que-es-util" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Este tipo de servidor de eco es invaluable para una variedad de escenarios de depuración:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Depuración de Proxies y Balanceadores de Carga&lt;/strong&gt;: Verifica si un proxy inverso o un balanceador de carga está reescribiendo cabeceras, modificando URLs o pasando el cuerpo de la solicitud como esperas.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Reglas de Firewall y Seguridad&lt;/strong&gt;: Confirma que el tráfico está llegando al destino correcto y que no está siendo bloqueado o alterado.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Inspección de Cabeceras HTTP/HTTPS&lt;/strong&gt;: Útil para ver exactamente qué cabeceras envía tu cliente o una aplicación específica.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Pruebas de Integración&lt;/strong&gt;: Un objetivo predecible para pruebas automáticas de cómo diferentes servicios se comunican a través de HTTP/HTTPS.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Diagnóstico de Contenido Mixto&lt;/strong&gt;: Puedes usarlo para verificar si los recursos HTTP se están cargando correctamente en un contexto HTTPS.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="como-usarlo"&gt;Cómo Usarlo&lt;a class="headerlink" href="#como-usarlo" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Su uso es directo a través de Docker:&lt;/p&gt;
-&lt;h3 id="para-http-puerto-8080"&gt;Para HTTP (puerto 8080)&lt;a class="headerlink" href="#para-http-puerto-8080" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;docker&lt;span class="w"&gt; &lt;/span&gt;run&lt;span class="w"&gt; &lt;/span&gt;-p&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;8080&lt;/span&gt;:8080&lt;span class="w"&gt; &lt;/span&gt;mendhak/http-https-echo
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Luego, puedes acceder a &lt;code&gt;http://localhost:8080&lt;/code&gt; con tu navegador o &lt;code&gt;curl&lt;/code&gt;:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;curl&lt;span class="w"&gt; &lt;/span&gt;http://localhost:8080/path?query&lt;span class="o"&gt;=&lt;/span&gt;value&lt;span class="w"&gt; &lt;/span&gt;-H&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;X-Custom-Header: test&amp;quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h3 id="para-https-puerto-8443"&gt;Para HTTPS (puerto 8443)&lt;a class="headerlink" href="#para-https-puerto-8443" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;Para usar HTTPS, debes mapear el puerto HTTPS del contenedor. La imagen ya viene con un certificado autofirmado para pruebas.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;docker&lt;span class="w"&gt; &lt;/span&gt;run&lt;span class="w"&gt; &lt;/span&gt;-p&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;8443&lt;/span&gt;:8443&lt;span class="w"&gt; &lt;/span&gt;mendhak/http-https-echo
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Accede a &lt;code&gt;https://localhost:8443&lt;/code&gt; (es posible que tu navegador te advierta sobre el certificado autofirmado).&lt;/p&gt;
-&lt;h2 id="conclusion"&gt;Conclusión&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;code&gt;mendhak/docker-http-https-echo&lt;/code&gt; es una de esas herramientas simples pero increíblemente útiles que todo desarrollador y operador de sistemas debería tener a mano. Facilita la comprensión de los flujos de red y acelera la depuración de problemas de conectividad en cualquier entorno basado en contenedores.&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;Repositorio original&lt;/em&gt;: &lt;a href="https://github.com/mendhak/docker-http-https-echo"&gt;mendhak/docker-http-https-echo en GitHub&lt;/a&gt;&lt;/p&gt;</content><category term="Herramientas"></category><category term="docker"></category><category term="http"></category><category term="https"></category><category term="depuracion"></category><category term="redes"></category><category term="herramientas"></category><category term="contenedores"></category></entry><entry><title>De Yakuake a Kitty: Mi transición a un terminal moderno</title><link href="https://pablocaro.es/de-yakuake-a-kitty" rel="alternate"></link><published>2025-12-25T12:00:00+01:00</published><updated>2025-12-25T12:00:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2025-12-25:/de-yakuake-a-kitty</id><summary type="html">&lt;p&gt;Explorando las razones y beneficios de cambiar de Yakuake a Kitty para una experiencia de terminal más potente y personalizable.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Durante años, &lt;strong&gt;Yakuake&lt;/strong&gt; ha sido mi terminal de cabecera en entornos de escritorio KDE. Su comodidad de acceso rápido, desplegándose y ocultándose con una simple pulsación de tecla, es innegable. Sin embargo, en mi búsqueda constante de optimización y rendimiento, decidí explorar alternativas, y &lt;strong&gt;Kitty&lt;/strong&gt; emergió como una opción destacada.&lt;/p&gt;
+</content><category term="Linux"></category><category term="herramientas"></category><category term="cli"></category></entry><entry><title>De Yakuake a Kitty: Mi transición a un terminal moderno</title><link href="https://pablocaro.es/de-yakuake-a-kitty" rel="alternate"></link><published>2025-12-25T12:00:00+01:00</published><updated>2025-12-25T12:00:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2025-12-25:/de-yakuake-a-kitty</id><summary type="html">&lt;p&gt;Explorando las razones y beneficios de cambiar de Yakuake a Kitty para una experiencia de terminal más potente y personalizable.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Durante años, &lt;strong&gt;Yakuake&lt;/strong&gt; ha sido mi terminal de cabecera en entornos de escritorio KDE. Su comodidad de acceso rápido, desplegándose y ocultándose con una simple pulsación de tecla, es innegable. Sin embargo, en mi búsqueda constante de optimización y rendimiento, decidí explorar alternativas, y &lt;strong&gt;Kitty&lt;/strong&gt; emergió como una opción destacada.&lt;/p&gt;
 &lt;h2 id="por-que-el-cambio"&gt;¿Por qué el cambio?&lt;a class="headerlink" href="#por-que-el-cambio" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Aunque Yakuake es excelente en su nicho, Kitty ofrece una serie de ventajas que se alinean mejor con las demandas de un flujo de trabajo moderno y exigente:&lt;/p&gt;
 &lt;ol&gt;
@@ -497,131 +385,4 @@ Ejecuta &lt;code&gt;direnv allow&lt;/code&gt;.&lt;/p&gt;
 &lt;h2 id="adaptandose-a-kitty"&gt;Adaptándose a Kitty&lt;a class="headerlink" href="#adaptandose-a-kitty" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;La transición requirió ajustar algunas costumbres, principalmente la forma de gestionar las sesiones y el acceso rápido. Sin embargo, las ventajas superan con creces la curva de aprendizaje inicial. La velocidad, la fluidez y la potencia de las características integradas de Kitty lo convierten en una herramienta indispensable para mi día a día.&lt;/p&gt;
 &lt;p&gt;Configurar Kitty es un proceso sencillo a través de su archivo &lt;code&gt;kitty.conf&lt;/code&gt;, donde se definen todos los aspectos del terminal. Exploraremos más sobre su configuración y atajos de teclado en próximas entradas.&lt;/p&gt;
-&lt;p&gt;Si buscas llevar tu experiencia de terminal al siguiente nivel, la migración a Kitty es un paso que recomiendo encarecidamente.&lt;/p&gt;</content><category term="Sistemas"></category><category term="kitty"></category><category term="yakuake"></category><category term="terminal"></category><category term="linux"></category><category term="productividad"></category><category term="herramientas"></category></entry><entry><title>PosteRazor: Crea pósters gigantes desde cualquier imagen</title><link href="https://pablocaro.es/posterazor-crear-posters-grandes" rel="alternate"></link><published>2017-02-24T20:06:00+01:00</published><updated>2017-02-24T20:06:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2017-02-24:/posterazor-crear-posters-grandes</id><summary type="html">&lt;p&gt;PosteRazor convierte cualquier imagen en un póster gigante dividiendo la imagen en páginas imprimibles que puedes ensamblar&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;strong&gt;PosteRazor&lt;/strong&gt; es una herramienta gratuita y open source que resuelve un problema cotidiano: &lt;strong&gt;¿cómo imprimir una imagen grande cuando solo tienes una impresora doméstica?&lt;/strong&gt;&lt;/p&gt;
-&lt;h2 id="que-hace-posterazor"&gt;¿Qué hace PosteRazor?&lt;a class="headerlink" href="#que-hace-posterazor" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;PosteRazor toma una imagen raster y la &lt;strong&gt;"corta" en piezas&lt;/strong&gt; que después pueden imprimirse y ensamblarse para formar un póster completo. Convierte una sola imagen en un documento PDF multipágina listo para imprimir.&lt;/p&gt;
-&lt;h2 id="caracteristicas-principales"&gt;Características principales&lt;a class="headerlink" href="#caracteristicas-principales" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Interfaz tipo asistente&lt;/strong&gt; con 5 pasos sencillos&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Multiplataforma&lt;/strong&gt;: Windows, macOS, Linux&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Versión web&lt;/strong&gt; disponible via WebAssembly&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Completamente gratuito&lt;/strong&gt; y open source&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="casos-de-uso-ideales"&gt;Casos de uso ideales&lt;a class="headerlink" href="#casos-de-uso-ideales" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Pósters decorativos&lt;/strong&gt; para casa, escuela u oficina&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Proyectos DIY&lt;/strong&gt; de decoración&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Imprimir imágenes gigantes&lt;/strong&gt; que exceden el tamaño de página estándar&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Presentaciones visuales&lt;/strong&gt; de gran formato&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="como-funciona"&gt;¿Cómo funciona?&lt;a class="headerlink" href="#como-funciona" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;ol&gt;
-&lt;li&gt;Cargas tu imagen&lt;/li&gt;
-&lt;li&gt;Seleccionas el tamaño del póster deseado&lt;/li&gt;
-&lt;li&gt;Configuras el formato de página de tu impresora&lt;/li&gt;
-&lt;li&gt;PosteRazor calcula la división automáticamente&lt;/li&gt;
-&lt;li&gt;Generas el PDF e imprimes cada página&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id="la-solucion-perfecta"&gt;La solución perfecta&lt;a class="headerlink" href="#la-solucion-perfecta" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;PosteRazor democratiza la creación de pósters grandes. Ya no necesitas servicios de impresión costosos - &lt;strong&gt;con cualquier impresora doméstica puedes crear pósters del tamaño que quieras&lt;/strong&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;Sitio oficial&lt;/em&gt;: &lt;a href="https://posterazor.sourceforge.io/"&gt;PosteRazor&lt;/a&gt;&lt;/p&gt;</content><category term="Herramientas"></category><category term="posterazor"></category><category term="impresión"></category><category term="pósters"></category><category term="diy"></category><category term="herramientas"></category></entry><entry><title>Potentes herramientas para desarrolladores desde línea de comandos</title><link href="https://pablocaro.es/herramientas-desarrolladores-linea-comandos" rel="alternate"></link><published>2016-06-07T11:36:00+02:00</published><updated>2016-06-07T11:36:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2016-06-07:/herramientas-desarrolladores-linea-comandos</id><summary type="html">&lt;p&gt;Colección de herramientas de línea de comandos esenciales para desarrolladores: curl, ngrep, netcat, sshuttle, siege y mitmproxy&lt;/p&gt;</summary><content type="html">&lt;p&gt;La &lt;strong&gt;línea de comandos sigue siendo el entorno más poderoso&lt;/strong&gt; para desarrolladores. Estas herramientas especializadas amplían dramáticamente tus capacidades de debugging, testing y análisis.&lt;/p&gt;
-&lt;h2 id="curl-el-navajero-suizo-del-http"&gt;Curl: El navajero suizo del HTTP&lt;a class="headerlink" href="#curl-el-navajero-suizo-del-http" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Obtener tu IP pública&lt;/span&gt;
-curl&lt;span class="w"&gt; &lt;/span&gt;ifconfig.me
-
-&lt;span class="c1"&gt;# Inspeccionar headers de respuesta&lt;/span&gt;
-curl&lt;span class="w"&gt; &lt;/span&gt;-I&lt;span class="w"&gt; &lt;/span&gt;https://ejemplo.com
-
-&lt;span class="c1"&gt;# POST con datos JSON&lt;/span&gt;
-curl&lt;span class="w"&gt; &lt;/span&gt;-X&lt;span class="w"&gt; &lt;/span&gt;POST&lt;span class="w"&gt; &lt;/span&gt;-H&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Content-Type: application/json&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="se"&gt;\&lt;/span&gt;
-&lt;span class="w"&gt;     &lt;/span&gt;-d&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;{&amp;quot;key&amp;quot;:&amp;quot;value&amp;quot;}&amp;#39;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;https://api.ejemplo.com
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;strong&gt;Uso principal&lt;/strong&gt;: Transferencia de datos de red, testing de APIs, inspección HTTP.&lt;/p&gt;
-&lt;h2 id="ngrep-grep-para-trafico-de-red"&gt;Ngrep: Grep para tráfico de red&lt;a class="headerlink" href="#ngrep-grep-para-trafico-de-red" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Filtrar tráfico HTTP por palabra clave&lt;/span&gt;
-ngrep&lt;span class="w"&gt; &lt;/span&gt;-i&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;password&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;port&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;80&lt;/span&gt;
-
-&lt;span class="c1"&gt;# Capturar por IP específica&lt;/span&gt;
-ngrep&lt;span class="w"&gt; &lt;/span&gt;host&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;192&lt;/span&gt;.168.1.100
-
-&lt;span class="c1"&gt;# Monitorear tráfico en puerto específico&lt;/span&gt;
-ngrep&lt;span class="w"&gt; &lt;/span&gt;port&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;443&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;strong&gt;Uso principal&lt;/strong&gt;: Análisis de paquetes de red, debugging de protocolos, monitoreo de tráfico.&lt;/p&gt;
-&lt;h2 id="netcat-nc-la-navaja-suiza-del-networking"&gt;Netcat (nc): La navaja suiza del networking&lt;a class="headerlink" href="#netcat-nc-la-navaja-suiza-del-networking" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Escaneo de puertos&lt;/span&gt;
-nc&lt;span class="w"&gt; &lt;/span&gt;-zv&lt;span class="w"&gt; &lt;/span&gt;ejemplo.com&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;-1000
-
-&lt;span class="c1"&gt;# Transferir archivo entre servidores&lt;/span&gt;
-&lt;span class="c1"&gt;# Receptor: nc -l 1234 &amp;gt; archivo_recibido&lt;/span&gt;
-&lt;span class="c1"&gt;# Emisor: nc servidor_destino 1234 &amp;lt; archivo_enviar&lt;/span&gt;
-
-&lt;span class="c1"&gt;# Crear servidor HTTP simple&lt;/span&gt;
-&lt;span class="nb"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;HTTP/1.1 200 OK\n\nHola mundo&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;nc&lt;span class="w"&gt; &lt;/span&gt;-l&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;8080&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;strong&gt;Uso principal&lt;/strong&gt;: Escaneo de puertos, transferencia de archivos, testing de conectividad.&lt;/p&gt;
-&lt;h2 id="sshuttle-vpn-facil-con-ssh"&gt;Sshuttle: VPN fácil con SSH&lt;a class="headerlink" href="#sshuttle-vpn-facil-con-ssh" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Tunelar todo el tráfico&lt;/span&gt;
-sshuttle&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;usuario@servidor&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;0&lt;/span&gt;.0.0.0/0
-
-&lt;span class="c1"&gt;# Tunelar solo una subred&lt;/span&gt;
-sshuttle&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;usuario@servidor&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;192&lt;/span&gt;.168.1.0/24
-
-&lt;span class="c1"&gt;# Evitar geobloqueos&lt;/span&gt;
-sshuttle&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;servidor_remoto&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;0&lt;/span&gt;.0.0.0/0&lt;span class="w"&gt; &lt;/span&gt;--dns
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;strong&gt;Uso principal&lt;/strong&gt;: Tunneling seguro, bypass de geo-restricciones, protección en WiFi público.&lt;/p&gt;
-&lt;h2 id="siege-bombardeo-de-carga-http"&gt;Siege: Bombardeo de carga HTTP&lt;a class="headerlink" href="#siege-bombardeo-de-carga-http" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Test de carga simple&lt;/span&gt;
-siege&lt;span class="w"&gt; &lt;/span&gt;-c&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;25&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;-t&lt;span class="w"&gt; &lt;/span&gt;60s&lt;span class="w"&gt; &lt;/span&gt;https://ejemplo.com
-
-&lt;span class="c1"&gt;# Test con múltiples URLs&lt;/span&gt;
-siege&lt;span class="w"&gt; &lt;/span&gt;-c&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;50&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;-t&lt;span class="w"&gt; &lt;/span&gt;30s&lt;span class="w"&gt; &lt;/span&gt;-f&lt;span class="w"&gt; &lt;/span&gt;urls.txt
-
-&lt;span class="c1"&gt;# Benchmark específico&lt;/span&gt;
-siege&lt;span class="w"&gt; &lt;/span&gt;-c&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;100&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;10&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;https://api.ejemplo.com/endpoint
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;strong&gt;Uso principal&lt;/strong&gt;: Testing de rendimiento, benchmarking HTTP, simulación de carga.&lt;/p&gt;
-&lt;h2 id="mitmproxy-espia-del-trafico-https"&gt;Mitmproxy: Espía del tráfico HTTP/S&lt;a class="headerlink" href="#mitmproxy-espia-del-trafico-https" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Proxy básico&lt;/span&gt;
-mitmproxy&lt;span class="w"&gt; &lt;/span&gt;-p&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;8080&lt;/span&gt;
-
-&lt;span class="c1"&gt;# Modo transparent&lt;/span&gt;
-mitmproxy&lt;span class="w"&gt; &lt;/span&gt;--mode&lt;span class="w"&gt; &lt;/span&gt;transparent
-
-&lt;span class="c1"&gt;# Guardar tráfico en archivo&lt;/span&gt;
-mitmdump&lt;span class="w"&gt; &lt;/span&gt;-w&lt;span class="w"&gt; &lt;/span&gt;captura.flow
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;strong&gt;Uso principal&lt;/strong&gt;: Debugging de aplicaciones web, inspección de tráfico HTTPS, análisis de APIs.&lt;/p&gt;
-&lt;h2 id="flujo-de-trabajo-tipico"&gt;Flujo de trabajo típico&lt;a class="headerlink" href="#flujo-de-trabajo-tipico" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# 1. Escanear conectividad&lt;/span&gt;
-nc&lt;span class="w"&gt; &lt;/span&gt;-zv&lt;span class="w"&gt; &lt;/span&gt;api.ejemplo.com&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;443&lt;/span&gt;
-
-&lt;span class="c1"&gt;# 2. Analizar respuesta&lt;/span&gt;
-curl&lt;span class="w"&gt; &lt;/span&gt;-I&lt;span class="w"&gt; &lt;/span&gt;https://api.ejemplo.com
-
-&lt;span class="c1"&gt;# 3. Monitorear tráfico&lt;/span&gt;
-ngrep&lt;span class="w"&gt; &lt;/span&gt;-i&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;api&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;port&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;443&lt;/span&gt;
-
-&lt;span class="c1"&gt;# 4. Test de carga&lt;/span&gt;
-siege&lt;span class="w"&gt; &lt;/span&gt;-c&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;20&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;-t&lt;span class="w"&gt; &lt;/span&gt;30s&lt;span class="w"&gt; &lt;/span&gt;https://api.ejemplo.com
-
-&lt;span class="c1"&gt;# 5. Debugging detallado&lt;/span&gt;
-mitmproxy&lt;span class="w"&gt; &lt;/span&gt;-p&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;8080&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h2 id="por-que-linea-de-comandos"&gt;¿Por qué línea de comandos?&lt;a class="headerlink" href="#por-que-linea-de-comandos" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Velocidad&lt;/strong&gt;: Sin overhead de GUI&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Scriptabilidad&lt;/strong&gt;: Automatización completa&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Flexibilidad&lt;/strong&gt;: Combinación con pipes y redirects&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Universalidad&lt;/strong&gt;: Disponible en cualquier servidor&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Estas herramientas convierten tu terminal en un &lt;strong&gt;laboratorio completo de networking y testing&lt;/strong&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;Fuente original&lt;/em&gt;: &lt;a href="http://www.xn--apaados-6za.es/tenemos-que-apanar/internet-tutoriales-y-trucos/317-potentes-herramientas-desarrolladores-linea-comandos.html"&gt;Somos Apañados&lt;/a&gt;&lt;/p&gt;</content><category term="Herramientas"></category><category term="cli"></category><category term="herramientas"></category><category term="desarrollo"></category><category term="networking"></category><category term="testing"></category></entry></feed>
+&lt;p&gt;Si buscas llevar tu experiencia de terminal al siguiente nivel, la migración a Kitty es un paso que recomiendo encarecidamente.&lt;/p&gt;</content><category term="Infraestructura"></category><category term="kitty"></category><category term="yakuake"></category><category term="terminal"></category><category term="linux"></category><category term="productividad"></category><category term="herramientas"></category></entry></feed>

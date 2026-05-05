@@ -1,16 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Annotations by Pablo Caro - ia</title><link href="/en/" rel="alternate"></link><link href="/en/feeds/tags/ia.atom.xml" rel="self"></link><id>/en/</id><updated>2026-04-15T00:00:00+02:00</updated><subtitle>Annotations</subtitle><entry><title>Video Creation with Gemini: Seville Characters</title><link href="/en/video-gemini-sevilla" rel="alternate"></link><published>2026-04-15T00:00:00+02:00</published><updated>2026-04-15T00:00:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:None,2026-04-15:/en/video-gemini-sevilla</id><summary type="html">&lt;p&gt;Testing Gemini's video generation with Seville-based characters.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Generative AI video creation is improving by leaps and bounds. The latest experiment I've tried is generating videos from images with Gemini.&lt;/p&gt;
-&lt;p&gt;The process is simple: I created three images with fictional characters inspired by Seville, and Gemini turned them into videos with natural movement.&lt;/p&gt;
-&lt;p&gt;Here are the three original images:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Sevi" src="/images/Sevi.webp"&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Cuento" src="/images/Cuento.jpeg"&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Krag" src="/images/Krag.jpeg"&gt;&lt;/p&gt;
-&lt;p&gt;And the resulting video:&lt;/p&gt;
-&lt;video controls&gt;
-  &lt;source src="/images/El_Secreto_del_Alcázar_de_Sevilla.mp4" type="video/mp4"&gt;
-  Your browser does not support HTML5 video.
-&lt;/video&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Annotations by Pablo Caro - ia</title><link href="/en/" rel="alternate"></link><link href="/en/feeds/tags/ia.atom.xml" rel="self"></link><id>/en/</id><updated>2026-04-13T12:38:00+02:00</updated><subtitle>Anotaciones</subtitle><entry><title>Google Stitch: UI generation and prototyping with AI</title><link href="/en/google-stitch" rel="alternate"></link><published>2026-04-13T12:38:00+02:00</published><updated>2026-04-13T12:38:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:None,2026-04-13:/en/google-stitch</id><summary type="html">&lt;p&gt;Overview of Google Stitch as a tool for generating user interfaces and interactive prototypes using artificial intelligence.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;a href="https://stitch.withgoogle.com/"&gt;Google Stitch&lt;/a&gt; is a Gemini-powered, AI-native design tool for generating user interfaces from text prompts or images. &lt;/p&gt;
+&lt;p&gt;&lt;img alt="Google Stitch" src="/en/images/stitch.png"&gt;&lt;/p&gt;
+&lt;h2 id="the-use-case"&gt;The use case&lt;a class="headerlink" href="#the-use-case" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Designing UI flows and rapid prototypes (dashboards, forms, CRUDs) is a repetitive process. Traditional tools like Figma are the standard for detailed design, but for rapid ideation or for developers without a design background, AI generation drastically reduces time.&lt;/p&gt;
+&lt;h2 id="key-features"&gt;Key features&lt;a class="headerlink" href="#key-features" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Following the major March 2026 update, Stitch includes:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;AI-native infinite canvas&lt;/strong&gt;: Support for text, images, and code simultaneously.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Multiple generation&lt;/strong&gt;: Creation of up to 5 connected screens at once.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Instant interactive prototyping&lt;/strong&gt;: Transitions between generated screens and auto-completion of user flows.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Voice support&lt;/strong&gt;: Dictate modifications or design critiques in real time.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;DESIGN.md&lt;/strong&gt;: Exportable markdown file that standardizes design rules to be consumed by other agents or projects.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="exporting-and-code"&gt;Exporting and code&lt;a class="headerlink" href="#exporting-and-code" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;A major advantage is that Stitch doesn't just generate images; it provides exportable functional code:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Supported frameworks&lt;/strong&gt;: HTML/CSS, Tailwind, Vue.js, Angular, Flutter, and SwiftUI.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Figma integration&lt;/strong&gt;: Allows exporting designs directly to Figma for refinement.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;MCP and Google AI Studio&lt;/strong&gt;: Facilitates connecting Stitch with coding environments and agents like Antigravity.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="pricing-and-limits"&gt;Pricing and limits&lt;a class="headerlink" href="#pricing-and-limits" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Stitch currently operates within Google Labs and is &lt;strong&gt;free&lt;/strong&gt; to use, but with quotas:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;350 standard monthly generations&lt;/strong&gt; (Gemini 3 Flash)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;200 experimental/Pro monthly generations&lt;/strong&gt; (Gemini 3 Pro)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="considerations-vs-figma"&gt;Considerations vs. Figma&lt;a class="headerlink" href="#considerations-vs-figma" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;When to use Stitch&lt;/strong&gt;: For ultra-rapid prototyping, MVPs, standard flows (CRUDs), and for developers or product managers who need to materialize ideas without mastering a design tool.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;When to use Figma&lt;/strong&gt;: For corporate design systems, complex visual identities, massive real-time multiplayer collaboration, and heavily integrated workflows.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;While the emergence of Stitch threatens the monopoly of "drag-and-drop" design for standard interfaces, the ability to export to Figma allows using both tools together.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Sources&lt;/em&gt;: 
+- &lt;a href="https://blog.google/innovation-and-ai/models-and-research/google-labs/stitch-ai-ui-design/"&gt;Google Blog: Design UI using AI&lt;/a&gt;
+- &lt;a href="https://www.nxcode.io/resources/news/google-stitch-vs-figma-ai-design-comparison-2026"&gt;NxCode: Google Stitch vs Figma&lt;/a&gt;&lt;/p&gt;</content><category term="Herramientas"></category><category term="ia"></category><category term="ui"></category><category term="design"></category><category term="gemini"></category><category term="prototipado"></category></entry><entry><title>Crit: The Review Loop for Agents</title><link href="/en/crit-review-loop-agents" rel="alternate"></link><published>2026-03-22T14:49:00+01:00</published><updated>2026-03-22T14:49:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:None,2026-03-22:/en/crit-review-loop-agents</id><summary type="html">&lt;p&gt;Crit is a tool designed to close the code review loop for AI-generated code, providing an intuitive and efficient web interface.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Reviewing what an AI agent writes directly in the terminal is often a nightmare. You can't point to a specific line, provide structured feedback, and when the agent updates the file, you have to re-read everything to see what actually changed.&lt;/p&gt;
+&lt;p&gt;That's where &lt;strong&gt;Crit&lt;/strong&gt; comes in.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Crit review UI" src="/images/crit-demo.png"&gt;&lt;/p&gt;
+&lt;p&gt;Crit opens files generated or modified by your agent in the browser with a GitHub-style interface. You can leave comments on specific lines, suggestions for changes, and, best of all, see diffs between different iteration rounds.&lt;/p&gt;
+&lt;p&gt;What I liked most is its &lt;strong&gt;multi-agent&lt;/strong&gt; nature and its &lt;strong&gt;usability&lt;/strong&gt;. It doesn't matter if you use Claude Code, Cursor, Aider, or, as in my case, &lt;strong&gt;OpenCode&lt;/strong&gt;. Crit integrates beautifully.&lt;/p&gt;
+&lt;h3 id="installation-and-setup"&gt;Installation and Setup&lt;a class="headerlink" href="#installation-and-setup" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Installation is as simple as:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;gah&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;tomasz-tomczyk/crit
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;The results were satisfactory. The characters move coherently, maintain visual consistency, and the quality of movement has improved noticeably compared to previous versions.&lt;/p&gt;
-&lt;p&gt;It's impressive to see how AI can understand the context of an image and apply animations that look natural. There's still work to be done on details like hands and certain deformations, but the progress is evident.&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;Original source&lt;/em&gt;: &lt;a href="https://x.com/pcaro/status/2044359553412706669"&gt;Tweet on X&lt;/a&gt;&lt;/p&gt;</content><category term="Miscellaneous"></category><category term="ia"></category><category term="gemini"></category><category term="google"></category><category term="video"></category><category term="sevilla"></category></entry></feed>
+&lt;p&gt;Once installed, integrating it with OpenCode is just a matter of one command:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;crit&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;opencode
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This installs the necessary commands and &lt;em&gt;skills&lt;/em&gt; for agents to use Crit. By running &lt;code&gt;/crit&lt;/code&gt; in OpenCode, the review loop begins: the agent proposes a plan or changes, Crit opens the web interface for you to approve or correct, and the agent receives your structured feedback in a &lt;code&gt;.crit.json&lt;/code&gt; file to act accordingly.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Note to my future self:&lt;/strong&gt; If you use &lt;a href="https://shittycodingagent.ai/"&gt;pi-agent&lt;/a&gt; instead of OpenCode, you can copy the OpenCode command as a prompt and copy the crit skill as-is — it works perfectly. In fact, this very annotation was reviewed using pi-agent with Crit.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id="why-use-it"&gt;Why Use It&lt;a class="headerlink" href="#why-use-it" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Web Interface, not TUI&lt;/strong&gt;: Markdown rendering and persistent visual diffs.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Round-to-round diffs&lt;/strong&gt;: You see exactly what has changed since your last comment.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Agent agnostic&lt;/strong&gt;: Works with any tool, allowing for a consistent workflow.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Direct suggestions&lt;/strong&gt;: You can insert suggestions that the agent can apply as-is.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;For example, the very change that fixed the comma issue in this annotation:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Crit review example" src="/images/crit-review-example.png"&gt;&lt;/p&gt;
+&lt;p&gt;It is undoubtedly the missing piece to make working with agents truly collaborative rather than a succession of copy-pasting and tedious manual reviews.&lt;/p&gt;</content><category term="Programación"></category><category term="ia"></category><category term="agents"></category><category term="review"></category><category term="opencode"></category><category term="productividad"></category></entry><entry><title>Agent Browser: Browser Navigation for AI Agents</title><link href="/en/agent-browser-navigation-agents" rel="alternate"></link><published>2026-03-18T09:00:00+01:00</published><updated>2026-03-18T09:00:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:None,2026-03-18:/en/agent-browser-navigation-agents</id><summary type="html">&lt;p&gt;&lt;code&gt;agent-browser&lt;/code&gt; is a tool from Vercel that allows AI agents to navigate the web and perform actions just like a human would, easily integrating with agent frameworks.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;code&gt;agent-browser&lt;/code&gt; (https://github.com/vercel-labs/agent-browser) allows AI agents to browse the web and perform complex actions just like a human would.&lt;/p&gt;
+&lt;p&gt;I've integrated it into a skill and use it frequently with &lt;code&gt;pi agent&lt;/code&gt; to automate tasks that require browser interaction. It's incredible what can be achieved when an agent can "see" and "act" on the web directly.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Agent Browser Screenshot" src="/images/agent-browser.png"&gt;&lt;/p&gt;</content><category term="Herramientas"></category><category term="agent-browser"></category><category term="ia"></category><category term="agents"></category><category term="automation"></category><category term="llm"></category><category term="pi-agent"></category></entry><entry><title>Tailscale Aperture: AI Gateway Without Distributing API Keys</title><link href="/en/tailscale-aperture-gateway-ia-seguro" rel="alternate"></link><published>2026-03-16T10:00:00+01:00</published><updated>2026-03-16T10:00:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:None,2026-03-16:/en/tailscale-aperture-gateway-ia-seguro</id><summary type="html">&lt;p&gt;Tailscale's Aperture centralizes LLM access by eliminating the need to distribute API keys to developers, using Tailscale identity for authentication.&lt;/p&gt;</summary><content type="html">&lt;p&gt;One thing that kept me up at night when I started using LLMs at work was: &lt;strong&gt;where do I store the API keys?&lt;/strong&gt; In private repos, in &lt;code&gt;.env&lt;/code&gt; files I forgot to gitignore, in phone notes... A mess.&lt;/p&gt;
+&lt;p&gt;Tailscale recently announced &lt;a href="https://tailscale.com/docs/features/aperture"&gt;Aperture&lt;/a&gt;, an AI gateway that runs inside your tailnet and completely eliminates that problem.&lt;/p&gt;
+&lt;h2 id="the-problem-with-distributed-api-keys"&gt;The Problem with Distributed API Keys&lt;a class="headerlink" href="#the-problem-with-distributed-api-keys" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;When developers need access to OpenAI, Anthropic, or any other LLM provider, the common practice has been:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Create an API key&lt;/li&gt;
+&lt;li&gt;Share it via Slack, email, or pasted in a private repo&lt;/li&gt;
+&lt;li&gt;Pray it doesn't leak&lt;/li&gt;
+&lt;li&gt;When someone leaves, manually rotate all keys&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;This doesn't scale. An organization with 50 developers can have hundreds of keys floating around in documents, CI/CD scripts, and developer machines that are no longer at the company.&lt;/p&gt;
+&lt;h2 id="aperture-centralization-with-real-identity"&gt;Aperture: Centralization with Real Identity&lt;a class="headerlink" href="#aperture-centralization-with-real-identity" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Tailscale's solution is elegant: &lt;strong&gt;use tailnet identity for authentication, not distributed keys&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;How it works:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Configure Aperture in your tailnet&lt;/strong&gt; with your provider API keys (OpenAI, Anthropic, Google, OpenRouter, etc.)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Developers connect to Aperture&lt;/strong&gt; using their Tailscale identity&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Aperture injects the credentials&lt;/strong&gt; for the corresponding provider and forwards the request&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Complete telemetry&lt;/strong&gt;: tokens used, costs, sessions, all in a dashboard&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Developers never see the real API keys. Aperture keeps them centralized and injects them server-side.&lt;/p&gt;
+&lt;h2 id="integration-with-existing-tools"&gt;Integration with Existing Tools&lt;a class="headerlink" href="#integration-with-existing-tools" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The good news is it works with the tools you already use:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Claude Code&lt;/strong&gt;: Set &lt;code&gt;ANTHROPIC_BASE_URL=http://ai&lt;/code&gt; and you're done&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Codex&lt;/strong&gt;: Base URL to Aperture&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Gemini CLI, Roo Code, Cline&lt;/strong&gt;: Similar, change the base URL&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Custom apps&lt;/strong&gt;: Works with any client using OpenAI-compatible APIs&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;From the client's perspective, Aperture looks like the provider itself. It detects the model in the request body and routes to the correct provider.&lt;/p&gt;
+&lt;h2 id="pi-ts-aperture-plugin-for-pi"&gt;pi-ts-aperture: Plugin for Pi&lt;a class="headerlink" href="#pi-ts-aperture-plugin-for-pi" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;There's an official Pi plugin to automatically route through Aperture:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pi&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;npm:@aliou/pi-ts-aperture
+/aperture:setup
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The wizard asks for:
+1. Your Aperture URL (e.g., &lt;code&gt;ai.your-tailnet.ts.net&lt;/code&gt;)
+2. Which providers to route&lt;/p&gt;
+&lt;p&gt;It saves configuration to &lt;code&gt;~/.pi/agent/extensions/aperture.json&lt;/code&gt; and modifies providers to use Aperture as proxy.&lt;/p&gt;
+&lt;h2 id="visibility-and-control"&gt;Visibility and Control&lt;a class="headerlink" href="#visibility-and-control" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Aperture'sdashboard gives you:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Tokens by model and user&lt;/strong&gt;: How much does each person spend?&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Grouped sessions&lt;/strong&gt;: A Claude Code session can have50 requests; you see them as a coherent unit&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Tool use&lt;/strong&gt;: Which tools are being invoked and how frequently&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Adoption&lt;/strong&gt;: Who's using what, and who tried once and didn't come back&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Export to S3&lt;/strong&gt;: To integrate with your usual SIEM&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;For platform or security teams that need auditing, this is gold.&lt;/p&gt;
+&lt;h2 id="requirements"&gt;Requirements&lt;a class="headerlink" href="#requirements" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;A Tailscale tailnet (fundamental, all authentication depends on Tailscale identity)&lt;/li&gt;
+&lt;li&gt;API keys for the providers you want to use&lt;/li&gt;
+&lt;li&gt;The device running Pi must be on the tailnet&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="in-summary"&gt;In Summary&lt;a class="headerlink" href="#in-summary" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;If your organization is adopting AI tools and you don't want to deal with API keys circulating everywhere, Aperture is a clean solution. It centralizes credentials, gives real visibility into usage, and uses the identity infrastructure you already have with Tailscale.&lt;/p&gt;
+&lt;p&gt;It's still in alpha, but available for free during the testing period. Worth trying if you already use Tailscale.&lt;/p&gt;</content><category term="Herramientas"></category><category term="tailscale"></category><category term="seguridad"></category><category term="ia"></category><category term="api"></category><category term="gateway"></category></entry></feed>

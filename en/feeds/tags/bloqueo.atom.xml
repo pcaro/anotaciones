@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Annotations by Pablo Caro - bloqueo</title><link href="/en/" rel="alternate"></link><link href="/en/feeds/tags/bloqueo.atom.xml" rel="self"></link><id>/en/</id><updated>2026-05-03T10:01:00+02:00</updated><subtitle>Anotaciones</subtitle><entry><title>DNS blocking of AliExpress links with NextDNS</title><link href="/en/bloqueo-dns-aliexpress-nextdns" rel="alternate"></link><published>2026-05-03T10:01:00+02:00</published><updated>2026-05-03T10:01:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:None,2026-05-03:/en/bloqueo-dns-aliexpress-nextdns</id><summary type="html">&lt;p&gt;Using an overly aggressive DNS blocklist in NextDNS broke AliExpress affiliate links. Diagnosed with dig and fixed by switching to HaGeZi Multi PRO.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="DNS blocking illustration" src="/images/dns-blocking-nextdns.jpg"&gt;&lt;/p&gt;
+&lt;p&gt;I'd been having a weird issue for a few days: AliExpress links from product video descriptions wouldn't load. Firefox kept showing "Server not found". I knew it looked like a DNS block because enabling PIA's VPN (Private Internet Access) made the problem go away.&lt;/p&gt;
+&lt;h2 id="the-diagnosis"&gt;The diagnosis&lt;a class="headerlink" href="#the-diagnosis" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The &lt;code&gt;dig&lt;/code&gt; command confirmed it immediately:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Querying the router (using NextDNS)&lt;/span&gt;
+$&lt;span class="w"&gt; &lt;/span&gt;dig&lt;span class="w"&gt; &lt;/span&gt;s.click.aliexpress.com&lt;span class="w"&gt; &lt;/span&gt;@192.168.1.1
+
+&lt;span class="p"&gt;;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;ANSWER&lt;span class="w"&gt; &lt;/span&gt;SECTION:
+s.click.aliexpress.com.&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;300&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;IN&lt;span class="w"&gt;  &lt;/span&gt;A&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="m"&gt;0&lt;/span&gt;.0.0.0
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Querying Google DNS&lt;/span&gt;
+$&lt;span class="w"&gt; &lt;/span&gt;dig&lt;span class="w"&gt; &lt;/span&gt;s.click.aliexpress.com&lt;span class="w"&gt; &lt;/span&gt;@8.8.8.8
+
+&lt;span class="p"&gt;;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;ANSWER&lt;span class="w"&gt; &lt;/span&gt;SECTION:
+s.click.aliexpress.com.&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;300&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;IN&lt;span class="w"&gt;  &lt;/span&gt;A&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="m"&gt;23&lt;/span&gt;.40.114.185
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The router was returning &lt;code&gt;0.0.0.0&lt;/code&gt; for &lt;code&gt;s.click.aliexpress.com&lt;/code&gt;. That's not an NXDOMAIN —non-existent domain—, it's a deliberate block: the domain resolves to a null IP and the browser can't connect.&lt;/p&gt;
+&lt;p&gt;With the VPN active, DNS queries went through PIA's servers, which don't apply blocklists, so the links worked fine.&lt;/p&gt;
+&lt;h2 id="the-cause"&gt;The cause&lt;a class="headerlink" href="#the-cause" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The router had &lt;strong&gt;NextDNS&lt;/strong&gt; configured with its default blocklist. It blocked malware and phishing just fine, but it was also catching legitimate domains like affiliate redirects. Too aggressive for daily use.&lt;/p&gt;
+&lt;h2 id="the-fix"&gt;The fix&lt;a class="headerlink" href="#the-fix" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The simplest fix would have been to whitelist &lt;code&gt;s.click.aliexpress.com&lt;/code&gt; in NextDNS and call it a day. But I took the chance to review which list I was using and switched to &lt;strong&gt;HaGeZi - Multi PRO&lt;/strong&gt;, which solved the problem anyway.&lt;/p&gt;
+&lt;p&gt;According to the &lt;a href="https://github.com/hagezi/dns-blocklists/wiki/FAQ#whatshouldiuse"&gt;official HaGeZi guide&lt;/a&gt;:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;List&lt;/th&gt;
+&lt;th&gt;Blocking level&lt;/th&gt;
+&lt;th&gt;False positives&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Light&lt;/td&gt;
+&lt;td&gt;Relaxed&lt;/td&gt;
+&lt;td&gt;None&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Normal&lt;/td&gt;
+&lt;td&gt;Relaxed/Balanced&lt;/td&gt;
+&lt;td&gt;Almost none&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Pro&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;Balanced&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;Very rare&lt;/strong&gt; ← recommended&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Pro++&lt;/td&gt;
+&lt;td&gt;Balanced/Aggressive&lt;/td&gt;
+&lt;td&gt;Some&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Ultimate&lt;/td&gt;
+&lt;td&gt;Aggressive&lt;/td&gt;
+&lt;td&gt;Common&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Multi PRO (~420k domains, ~200k compressed) is the HaGeZi author's &lt;strong&gt;personal recommendation&lt;/strong&gt; for effective blocking without issues. It blocks ads, trackers, telemetry, phishing, malware, scams, cryptojacking, and "crap", with very few false positives.&lt;/p&gt;
+&lt;h2 id="the-key-detail-referral-domains"&gt;The key detail: referral domains&lt;a class="headerlink" href="#the-key-detail-referral-domains" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;HaGeZi's FAQ has an entire section explaining that &lt;strong&gt;referral domains&lt;/strong&gt; —affiliate/tracking links like &lt;code&gt;s.click.aliexpress.com&lt;/code&gt;— are &lt;strong&gt;allowed in all lists&lt;/strong&gt;, except for a few that also function as pure trackers and are only blocked in Pro++ and Ultimate.&lt;/p&gt;
+&lt;p&gt;These domains only activate after a manual user click and aren't used to display ads. Blocking them breaks search result links, deal links, confirmation emails, etc.&lt;/p&gt;
+&lt;h2 id="summary"&gt;Summary&lt;a class="headerlink" href="#summary" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;An overly aggressive DNS blocklist blocks domains that aren't ads or malware, just e-commerce redirect mechanisms. The sweet spot is &lt;strong&gt;Multi PRO&lt;/strong&gt;: good privacy protection without breaking everyday functionality.&lt;/p&gt;
+&lt;p&gt;If I ever need more aggressiveness, the trade-off will be having to manually unblock false positives. For now, Multi PRO works perfectly.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;More info&lt;/em&gt;: &lt;a href="https://github.com/hagezi/dns-blocklists"&gt;HaGeZi DNS Blocklists&lt;/a&gt;&lt;/p&gt;</content><category term="Infraestructura"></category><category term="dns"></category><category term="nextdns"></category><category term="aliexpress"></category><category term="bloqueo"></category><category term="linux"></category></entry></feed>

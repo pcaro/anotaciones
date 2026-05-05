@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Annotations by Pablo Caro - herramientas</title><link href="/en/" rel="alternate"></link><link href="/en/feeds/tags/herramientas.atom.xml" rel="self"></link><id>/en/</id><updated>2026-05-03T15:23:00+02:00</updated><subtitle>Anotaciones</subtitle><entry><title>Pi subagent extensions: TintinWeb, NicoBailon and Taskplane</title><link href="/en/extensiones-subagentes-pi" rel="alternate"></link><published>2026-05-03T15:23:00+02:00</published><updated>2026-05-03T15:23:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:None,2026-05-03:/en/extensiones-subagentes-pi</id><summary type="html">&lt;p&gt;A comparison of three extensions for running subagents in pi — TintinWeb, NicoBailon, and Taskplane — each with a different approach.&lt;/p&gt;</summary><content type="html">&lt;p&gt;The biggest advantage of &lt;a href="https://pi.dev/"&gt;pi&lt;/a&gt; over other coding agents is its &lt;strong&gt;extensions&lt;/strong&gt;. Pi doesn't come with subagents, plan mode, or MCP. It gives you the primitives to build what you need. If you don't want to build it yourself, install a &lt;a href="https://pi.dev/packages"&gt;third-party package&lt;/a&gt; and you're done.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Three stylized figures running in parallel, passing a glowing baton" src="/images/pi-subagentes.png"&gt;&lt;/p&gt;
+&lt;p&gt;I have several custom extensions in &lt;a href="https://github.com/pcaro/pcaropi"&gt;my pcaropi repo&lt;/a&gt;, but here I'm comparing three different approaches for delegating work to subagents — which is one of the most useful things when working with pi on real projects.&lt;/p&gt;
+&lt;h2 id="the-three-options"&gt;The three options&lt;a class="headerlink" href="#the-three-options" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;&lt;strong&gt;TintinWeb&lt;/strong&gt;&lt;/th&gt;
+&lt;th&gt;&lt;strong&gt;NicoBailon&lt;/strong&gt;&lt;/th&gt;
+&lt;th&gt;&lt;strong&gt;Taskplane (HenryLach)&lt;/strong&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Paradigm&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Single subagents, Claude Code style&lt;/td&gt;
+&lt;td&gt;Generic orchestration (single/chain/parallel)&lt;/td&gt;
+&lt;td&gt;Batch orchestration with waves, lanes, and DAG&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Install&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;pi install npm:@tintinweb/pi-subagents&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;pi install npm:pi-subagents&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;pi install npm:taskplane&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Built-in agents&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;3 (Explore, Plan, general-purpose)&lt;/td&gt;
+&lt;td&gt;8 (scout, researcher, planner, worker, reviewer…)&lt;/td&gt;
+&lt;td&gt;4 (supervisor, task-worker, task-reviewer, task-merger)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Chains / Parallel&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;❌&lt;/td&gt;
+&lt;td&gt;✅ Sequences + fan-out/fan-in&lt;/td&gt;
+&lt;td&gt;✅ Waves with parallel lanes via DAG&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Git worktrees&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;✅ Basic&lt;/td&gt;
+&lt;td&gt;✅ Advanced&lt;/td&gt;
+&lt;td&gt;✅ Core of the system&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Web Dashboard&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;❌&lt;/td&gt;
+&lt;td&gt;❌&lt;/td&gt;
+&lt;td&gt;✅ Live dashboard with SSE&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Maturity&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Early (0.6.3)&lt;/td&gt;
+&lt;td&gt;Mature (0.24.0)&lt;/td&gt;
+&lt;td&gt;Initial release&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id="tintinweb-subagents-claude-code-style"&gt;TintinWeb — Subagents, Claude Code style&lt;a class="headerlink" href="#tintinweb-subagents-claude-code-style" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;a href="https://github.com/tintinweb/pi-subagents"&gt;@tintinweb/pi-subagents&lt;/a&gt; replicates the Claude Code model: &lt;code&gt;Agent&lt;/code&gt;, &lt;code&gt;get_subagent_result&lt;/code&gt;, and &lt;code&gt;steer_subagent&lt;/code&gt; tools. Few agents (Explore, Plan, general-purpose), but highly polished UX: animated widget, interactive conversation viewer, mid-run steering to redirect running agents.&lt;/p&gt;
+&lt;p&gt;Its most unique features: &lt;strong&gt;persistent memory&lt;/strong&gt; across sessions (project/local/user) and an &lt;strong&gt;RPC event bus&lt;/strong&gt; so other extensions can spawn subagents.&lt;/p&gt;
+&lt;p&gt;Great if you're coming from Claude Code and want something familiar.&lt;/p&gt;
+&lt;h3 id="nicobailon-the-full-orchestrator"&gt;NicoBailon — The full orchestrator&lt;a class="headerlink" href="#nicobailon-the-full-orchestrator" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;a href="https://github.com/nicobailon/pi-subagents"&gt;NicoBailon's pi-subagents&lt;/a&gt; is the most mature of the three (0.24.0, 20K lines of TypeScript). A single &lt;code&gt;subagent&lt;/code&gt; tool with single, chain, and parallel modes. Comes with 8 built-in agents, 6 predefined prompt templates, and a preview TUI to edit steps before launching.&lt;/p&gt;
+&lt;p&gt;Things I like: &lt;strong&gt;cascading model fallback&lt;/strong&gt; (if a model fails on quota, it tries the next one), &lt;strong&gt;agent packages&lt;/strong&gt; with namespacing, and &lt;code&gt;pi-intercom&lt;/code&gt; integration for child→parent communication.&lt;/p&gt;
+&lt;p&gt;This is the one I use day to day. Flexible, battle-tested, well documented.&lt;/p&gt;
+&lt;h3 id="taskplane-batch-orchestration"&gt;Taskplane — Batch orchestration&lt;a class="headerlink" href="#taskplane-batch-orchestration" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;a href="https://github.com/HenryLach/taskplane"&gt;Taskplane by HenryLach&lt;/a&gt; is a different beast. It's not a generic subagent framework — it's a &lt;strong&gt;batch task orchestration system&lt;/strong&gt;. Tasks are defined in &lt;code&gt;PROMPT.md&lt;/code&gt; + &lt;code&gt;STATUS.md&lt;/code&gt; files with steps, dependencies, and checkboxes. A DAG organizes tasks into waves, each wave runs lanes in parallel with isolated worktrees, and a merge agent integrates everything at the end.&lt;/p&gt;
+&lt;p&gt;It has impressive features: a &lt;strong&gt;live web dashboard&lt;/strong&gt; with SSE, &lt;strong&gt;multi-step workers&lt;/strong&gt; that keep context between steps, automatic &lt;strong&gt;inline reviews&lt;/strong&gt;, and &lt;strong&gt;auto-recovery&lt;/strong&gt; that retries crashed workers. It even supports &lt;strong&gt;polyrepo&lt;/strong&gt; with cross-repo dependencies.&lt;/p&gt;
+&lt;p&gt;For projects where you have a batch of well-defined features with dependencies, it's unbeatable.&lt;/p&gt;
+&lt;h2 id="which-one-to-use"&gt;Which one to use?&lt;a class="headerlink" href="#which-one-to-use" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Delegate individual tasks with a clean UX&lt;/strong&gt; → TintinWeb&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Flexible orchestration with chains, parallel, and templates&lt;/strong&gt; → NicoBailon&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Run a batch of features with dependencies and automatic reviews&lt;/strong&gt; → Taskplane&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;All three install with a single &lt;code&gt;pi install npm:...&lt;/code&gt;. TintinWeb and NicoBailon can coexist since they use differently named tools. Taskplane has its own paradigm and shouldn't conflict with either.&lt;/p&gt;
+&lt;p&gt;More pi extensions and configs in &lt;a href="https://github.com/pcaro/pcaropi"&gt;my pcaropi repo&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Fuente original&lt;/em&gt;: &lt;a href="https://pi.dev/"&gt;pi.dev&lt;/a&gt;&lt;/p&gt;</content><category term="Programación"></category><category term="pi"></category><category term="coding-agent"></category><category term="subagentes"></category><category term="extensiones"></category><category term="cli"></category><category term="herramientas"></category></entry><entry><title>sem: Semantic Version Control</title><link href="/en/sem-semantic-version-control" rel="alternate"></link><published>2026-03-15T14:11:00+01:00</published><updated>2026-03-15T14:11:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:None,2026-03-15:/en/sem-semantic-version-control</id><summary type="html">&lt;p&gt;Discovering sem, a CLI tool that understands your code's semantics and tells you what entities changed, not just what lines.&lt;/p&gt;</summary><content type="html">&lt;p&gt;I stumbled upon &lt;a href="https://github.com/Ataraxy-Labs/sem"&gt;sem&lt;/a&gt; a few weeks ago and I think it's a brilliant idea. It's a CLI that goes beyond traditional line-by-line diffs and understands the actual structure of your code.&lt;/p&gt;
+&lt;h2 id="the-difference-between-lines-and-entities"&gt;The difference between lines and entities&lt;a class="headerlink" href="#the-difference-between-lines-and-entities" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;When you do a traditional &lt;code&gt;git diff&lt;/code&gt;, you see something like:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="gd"&gt;- const oldAuth = function(user) { ... }&lt;/span&gt;
+&lt;span class="gi"&gt;+ const newAuth = async function(user) { ... }&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;But with &lt;code&gt;sem diff&lt;/code&gt; you see:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;⊕&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;function&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;validateToken&lt;/span&gt;&lt;span class="w"&gt;          &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;added&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;
+&lt;span class="err"&gt;∆&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;function&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;authenticateUser&lt;/span&gt;&lt;span class="w"&gt;       &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;modified&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;
+&lt;span class="err"&gt;⊖&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;function&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;legacyAuth&lt;/span&gt;&lt;span class="w"&gt;             &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;deleted&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;No lines added or deleted — &lt;strong&gt;entities&lt;/strong&gt; that changed: functions, classes, methods. Much more useful for understanding what actually happened in the PR.&lt;/p&gt;
+&lt;h2 id="available-commands"&gt;Available commands&lt;a class="headerlink" href="#available-commands" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;sem diff&lt;/code&gt;&lt;/strong&gt;: Shows what entities changed&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;sem impact &amp;lt;entity&amp;gt;&lt;/code&gt;&lt;/strong&gt;: Analyzes what would break if you change that entity (incoming dependencies)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;sem blame&lt;/code&gt;&lt;/strong&gt;: Entity-level blame — who changed each function/class&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;sem graph&lt;/code&gt;&lt;/strong&gt;: Shows the dependency graph between entities&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="practical-example"&gt;Practical example&lt;a class="headerlink" href="#practical-example" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# See what entities changed in working directory&lt;/span&gt;
+sem&lt;span class="w"&gt; &lt;/span&gt;diff
+
+&lt;span class="c1"&gt;# See only staged changes&lt;/span&gt;
+sem&lt;span class="w"&gt; &lt;/span&gt;diff&lt;span class="w"&gt; &lt;/span&gt;--staged
+
+&lt;span class="c1"&gt;# See changes from a specific commit&lt;/span&gt;
+sem&lt;span class="w"&gt; &lt;/span&gt;diff&lt;span class="w"&gt; &lt;/span&gt;--commit&lt;span class="w"&gt; &lt;/span&gt;abc1234
+
+&lt;span class="c1"&gt;# See impact of changing a function&lt;/span&gt;
+sem&lt;span class="w"&gt; &lt;/span&gt;impact&lt;span class="w"&gt; &lt;/span&gt;validateToken
+
+&lt;span class="c1"&gt;# JSON output for CI pipelines&lt;/span&gt;
+sem&lt;span class="w"&gt; &lt;/span&gt;diff&lt;span class="w"&gt; &lt;/span&gt;--format&lt;span class="w"&gt; &lt;/span&gt;json
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="installation"&gt;Installation&lt;a class="headerlink" href="#installation" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# macOS&lt;/span&gt;
+brew&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;sem-cli
+
+&lt;span class="c1"&gt;# Linux (my case)&lt;/span&gt;
+brew&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;sem-cli
+&lt;span class="c1"&gt;# or download binary from GitHub Releases&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Or build from source if you have Rust installed:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;git&lt;span class="w"&gt; &lt;/span&gt;clone&lt;span class="w"&gt; &lt;/span&gt;https://github.com/Ataraxy-Labs/sem
+&lt;span class="nb"&gt;cd&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;sem/crates
+cargo&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;--path&lt;span class="w"&gt; &lt;/span&gt;sem-cli
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="why-this-is-useful"&gt;Why this is useful&lt;a class="headerlink" href="#why-this-is-useful" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;For me, mainly two cases:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Faster code reviews&lt;/strong&gt; — You understand the real impact of a change in seconds&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Safe refactors&lt;/strong&gt; — Before renaming a critical function, &lt;code&gt;sem impact&lt;/code&gt; tells you what might break&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Supports 20 languages (including Python, Rust, Go, TypeScript, Java, C++, etc.) using tree-sitter to parse the code.&lt;/p&gt;
+&lt;p&gt;A tool that goes straight into my daily toolkit.&lt;/p&gt;</content><category term="Programación"></category><category term="cli"></category><category term="versionado"></category><category term="rust"></category><category term="herramientas"></category></entry><entry><title>os.click: Operating System ISO Download Center</title><link href="/en/os-click-central-descarga-isos" rel="alternate"></link><published>2026-03-12T10:00:00+01:00</published><updated>2026-03-12T10:00:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:None,2026-03-12:/en/os-click-central-descarga-isos</id><summary type="html">&lt;p&gt;Quick reminder about os.click for downloading official ISOs.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Next time I need a Windows ISO or some Linux distro and don't feel like spending half an hour jumping between Microsoft's menus or searching for the right mirror, I should go straight to &lt;strong&gt;&lt;a href="https://os.click/"&gt;os.click&lt;/a&gt;&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;I needed a Windows 11 ISO for a VM today, and as usual, I couldn't remember the exact URL. This site saved the day. What's good about it:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="os.click screenshot" src="/en/images/os-click.png"&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Direct links&lt;/strong&gt;: They don't host anything; they just point to the official servers (Microsoft, Canonical, etc.).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Clean&lt;/strong&gt;: No weird ads or fake "Download" buttons.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Variety&lt;/strong&gt;: They have Windows (10, 11, Server) and almost any Linux distro I normally use.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Basically, it's a well-organized index. Just for my future self.&lt;/p&gt;</content><category term="Programación"></category><category term="linux"></category><category term="windows"></category><category term="iso"></category><category term="operating systems"></category><category term="herramientas"></category></entry><entry><title>DeepDiff: The Swiss Army Knife for Data Comparison in Python</title><link href="/en/deepdiff-comparar-datos-python" rel="alternate"></link><published>2026-02-20T00:00:00+01:00</published><updated>2026-02-20T00:00:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:None,2026-02-20:/en/deepdiff-comparar-datos-python</id><summary type="html">&lt;p&gt;When working with structured data in Python, we often need to compare two dictionaries, JSONs, or complex objects to find out what has changed. While direct comparison (&lt;code&gt;==&lt;/code&gt;) is useful, sometimes we need to understand &lt;em&gt;exactly what&lt;/em&gt; is different: which keys were added, which were removed, or where values have changed …&lt;/p&gt;</summary><content type="html">&lt;p&gt;When working with structured data in Python, we often need to compare two dictionaries, JSONs, or complex objects to find out what has changed. While direct comparison (&lt;code&gt;==&lt;/code&gt;) is useful, sometimes we need to understand &lt;em&gt;exactly what&lt;/em&gt; is different: which keys were added, which were removed, or where values have changed, even in deeply nested structures.&lt;/p&gt;
+&lt;p&gt;This is where &lt;strong&gt;&lt;a href="https://github.com/seperman/deepdiff"&gt;DeepDiff&lt;/a&gt;&lt;/strong&gt; comes in.&lt;/p&gt;
+&lt;p&gt;DeepDiff is an incredibly powerful Python library that offers much more than simple comparison. It is an essential tool for testing, data validation, and API debugging.&lt;/p&gt;
+&lt;h2 id="key-features"&gt;Key Features&lt;a class="headerlink" href="#key-features" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;DeepDiff is not just a tool, it's a suite of utilities:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;DeepDiff&lt;/strong&gt;: Recursively compares dictionaries, iterables, strings, and other objects. It can ignore order in lists, ignore specific types, or exclude paths from comparison.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;DeepSearch&lt;/strong&gt;: Searches for objects within other objects, like a &lt;code&gt;grep&lt;/code&gt; for in-memory data structures.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;DeepHash&lt;/strong&gt;: Calculates hashes of objects based on their content. Very useful for deduplication of complex data where key order doesn't matter.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Delta&lt;/strong&gt;: Generates "deltas" (differences) that can be applied to other objects, similar to a &lt;code&gt;git patch&lt;/code&gt; but for Python objects.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="installation"&gt;Installation&lt;a class="headerlink" href="#installation" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The modern and recommended way to install Python tools is using &lt;code&gt;uv&lt;/code&gt;.&lt;/p&gt;
+&lt;h3 id="as-a-command-line-interface-cli-tool"&gt;As a Command Line Interface (CLI) Tool&lt;a class="headerlink" href="#as-a-command-line-interface-cli-tool" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;If you just want to use the &lt;code&gt;deep&lt;/code&gt; command in your terminal to compare JSON or YAML files:```bash
+uv tool install "deepdiff[cli]"&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;This&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;will&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;install&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n n-Quoted"&gt;`deep`&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;command&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;on&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;your&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;system&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;an&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;isolated&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;environment&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Make&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;sure&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;to&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;include&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n n-Quoted"&gt;`[cli]`&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;to&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;install&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;necessary&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;dependencies&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+
+&lt;span class="c1"&gt;### As a Library in Your Project&lt;/span&gt;
+
+&lt;span class="k"&gt;If&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;you&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;are&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;going&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;to&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;use&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;it&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;within&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;your&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Python&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;scripts&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+
+&lt;span class="n n-Quoted"&gt;`&lt;/span&gt;&lt;span class="n n-Quoted n-Quoted-Escape"&gt;``&lt;/span&gt;&lt;span class="n n-Quoted"&gt;bash&lt;/span&gt;
+&lt;span class="n n-Quoted"&gt;uv add &amp;quot;deepdiff&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Or if you need the CLI inside your virtual environment as well:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;uv&lt;span class="w"&gt; &lt;/span&gt;add&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;deepdiff[cli]&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="usage-examples"&gt;Usage Examples&lt;a class="headerlink" href="#usage-examples" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="in-python"&gt;In Python&lt;a class="headerlink" href="#in-python" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Imagine you have two slightly different API responses and want to know what changed:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;deepdiff&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;DeepDiff&lt;/span&gt;
+
+&lt;span class="n"&gt;t1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;id&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;name&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Product A&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;tags&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;new&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;sale&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;details&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;price&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;stock&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;50&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="n"&gt;t2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;id&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;name&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Product A&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;tags&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;sale&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;new&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;  &lt;span class="c1"&gt;# Different order&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;details&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;price&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;120&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;stock&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;50&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="c1"&gt;# By default, order matters in lists&lt;/span&gt;
+&lt;span class="n"&gt;diff&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;DeepDiff&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;t1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;t2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c1"&gt;# Result shows changes in &amp;#39;tags&amp;#39; list and &amp;#39;details.price&amp;#39;&lt;/span&gt;
+
+&lt;span class="c1"&gt;# If we ignore order in iterables&lt;/span&gt;
+&lt;span class="n"&gt;diff_ignore_order&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;DeepDiff&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;t1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;t2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ignore_order&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;diff_ignore_order&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Output:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;values_changed&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="s2"&gt;&amp;quot;root[&amp;#39;details&amp;#39;][&amp;#39;price&amp;#39;]&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="s1"&gt;&amp;#39;new_value&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;120&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+            &lt;span class="s1"&gt;&amp;#39;old_value&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;100&lt;/span&gt;
+        &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;As you can see, it detected the price change but ignored the order change in tags.&lt;/p&gt;
+&lt;h3 id="in-the-terminal-cli"&gt;In the Terminal (CLI)&lt;a class="headerlink" href="#in-the-terminal-cli" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;The &lt;code&gt;deep&lt;/code&gt; command is very useful for quickly comparing files:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Compare two JSON files&lt;/span&gt;
+deep&lt;span class="w"&gt; &lt;/span&gt;diff&lt;span class="w"&gt; &lt;/span&gt;production.json&lt;span class="w"&gt; &lt;/span&gt;development.json
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;You can also use it to extract information or search within large JSON/YAML files without having to write a script.&lt;/p&gt;
+&lt;h2 id="conclusion"&gt;Conclusion&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;DeepDiff is one of those libraries that, once you know about it, you can't stop using. Its flexibility to ignore certain fields (like timestamps or auto-generated IDs) makes it perfect for integration tests and data validation.&lt;/p&gt;
+&lt;p&gt;You can view the full documentation at &lt;a href="https://zepworks.com/deepdiff/current/"&gt;zepworks.com/deepdiff&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="deep help" src="/en/images/deep_help.png"&gt;&lt;/p&gt;</content><category term="Programación"></category><category term="data"></category><category term="cli"></category><category term="herramientas"></category><category term="diff"></category></entry><entry><title>Rendering Markdown in the terminal with Glow</title><link href="/en/renderizando-markdown-en-la-terminal-con-glow" rel="alternate"></link><published>2026-02-20T00:00:00+01:00</published><updated>2026-02-20T00:00:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:None,2026-02-20:/en/renderizando-markdown-en-la-terminal-con-glow</id><summary type="html">&lt;p&gt;Discover Glow, a tool to render Markdown directly in the terminal, ideal for reading documentation and READMEs.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;a href="https://github.com/charmbracelet/glow"&gt;Glow&lt;/a&gt; is a command-line Markdown renderer. It allows you to read local or remote Markdown files, rendering them with syntax highlighting and styles, directly in your terminal.&lt;/p&gt;
+&lt;p&gt;I find this tool especially useful now that I spend more time using the terminal with &lt;a href="/en/de-yakuake-a-kitty"&gt;Kitty&lt;/a&gt;, as it allows me to consult documentation and READMEs without having to open a browser or a graphical editor.&lt;/p&gt;
+&lt;h2 id="installation"&gt;Installation&lt;a class="headerlink" href="#installation" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;To install Glow, we will use &lt;a href="/en/gestionando-instalaciones-desde-github-con-gah"&gt;gah&lt;/a&gt;, a tool that simplifies installing binaries from GitHub Releases.```bash
+gah install charmbracelet/glow&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;The&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;installation&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;process&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;is&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;very&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nl"&gt;simple&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+
+&lt;span class="err"&gt;```&lt;/span&gt;&lt;span class="nc"&gt;text&lt;/span&gt;
+&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;gah&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;install&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;charmbracelet&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;glow&lt;/span&gt;
+&lt;span class="n"&gt;Fetching&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;release&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;info&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;charmbracelet&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;glow&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;latest&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;
+&lt;span class="k"&gt;Found&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;release&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;v2&lt;/span&gt;&lt;span class="mf"&gt;.1.1&lt;/span&gt;
+&lt;span class="nl"&gt;Downloading&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;glow_2&lt;/span&gt;&lt;span class="mf"&gt;.1.1&lt;/span&gt;&lt;span class="n"&gt;_Linux_x86_64&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tar&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;gz&lt;/span&gt;
+&lt;span class="err"&gt;###############################################################################################################################################################################&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;100.0&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;
+&lt;span class="n"&gt;GitHub&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;Release&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;did&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;not&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;provide&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;digest&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;glow_2&lt;/span&gt;&lt;span class="mf"&gt;.1.1&lt;/span&gt;&lt;span class="n"&gt;_Linux_x86_64&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tar&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;gz&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Skipping&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;verification&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;span class="nl"&gt;Extracting&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;glow_2&lt;/span&gt;&lt;span class="mf"&gt;.1.1&lt;/span&gt;&lt;span class="n"&gt;_Linux_x86_64&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tar&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;gz&lt;/span&gt;
+&lt;span class="nl"&gt;Installing&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;glow&lt;/span&gt;
+&lt;span class="n"&gt;Give&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;new&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;or&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;keep&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;glow&amp;#39;&lt;/span&gt;&lt;span class="vm"&gt;?&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Leave&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;empty&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;to&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;keep&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;same&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;New&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nl"&gt;name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;
+&lt;span class="nl"&gt;Installed&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;glow&lt;/span&gt;
+&lt;span class="n"&gt;Done&lt;/span&gt;&lt;span class="err"&gt;!&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Once installed, simply run &lt;code&gt;glow&lt;/code&gt; followed by the file you want to view, or even the URL of a README on GitHub.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="glow help" src="/en/images/glow_help.png"&gt;&lt;/p&gt;</content><category term="Linux"></category><category term="cli"></category><category term="markdown"></category><category term="herramientas"></category><category term="kitty"></category></entry><entry><title>Shot-scraper: Automated Web Screenshots</title><link href="/en/shot-scraper-capturas-pantalla-automatizadas" rel="alternate"></link><published>2026-02-20T00:00:00+01:00</published><updated>2026-02-20T00:00:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:None,2026-02-20:/en/shot-scraper-capturas-pantalla-automatizadas</id><summary type="html">&lt;p&gt;Have you ever needed to take screenshots of a web page programmatically? Perhaps to document your project, monitor UI changes, or generate images for social media. There are many ways to do it, but &lt;strong&gt;&lt;a href="https://shot-scraper.datasette.io/"&gt;shot-scraper&lt;/a&gt;&lt;/strong&gt; stands out for its ease of use and power.&lt;/p&gt;
+&lt;p&gt;Created by Simon Willison, &lt;code&gt;shot-scraper&lt;/code&gt; is …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Have you ever needed to take screenshots of a web page programmatically? Perhaps to document your project, monitor UI changes, or generate images for social media. There are many ways to do it, but &lt;strong&gt;&lt;a href="https://shot-scraper.datasette.io/"&gt;shot-scraper&lt;/a&gt;&lt;/strong&gt; stands out for its ease of use and power.&lt;/p&gt;
+&lt;p&gt;Created by Simon Willison, &lt;code&gt;shot-scraper&lt;/code&gt; is a command line interface (CLI) tool that wraps Playwright to make taking screenshots trivial.&lt;/p&gt;
+&lt;h2 id="installation"&gt;Installation&lt;a class="headerlink" href="#installation" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;As with other modern Python tools, the best way to install it is using &lt;code&gt;uv&lt;/code&gt;:```bash
+uv tool install shot-scraper&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;Once&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;installed&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;you&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;ll need to download the browser it uses under the hood (Chromium):&lt;/span&gt;
+
+&lt;span class="err"&gt;```&lt;/span&gt;&lt;span class="n"&gt;bash&lt;/span&gt;
+&lt;span class="n"&gt;shot&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;scraper&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;install&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="basic-usage"&gt;Basic Usage&lt;a class="headerlink" href="#basic-usage" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The simplest way to use it is to give it a URL and a filename:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;shot-scraper&lt;span class="w"&gt; &lt;/span&gt;https://pablocaro.es/en/&lt;span class="w"&gt; &lt;/span&gt;blog.png
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This will generate an image named &lt;code&gt;blog.png&lt;/code&gt; with the screenshot of the page.&lt;/p&gt;
+&lt;h3 id="capturing-specific-selectors"&gt;Capturing Specific Selectors&lt;a class="headerlink" href="#capturing-specific-selectors" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;One of the most powerful features is the ability to capture only a specific element of the page using CSS selectors:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;shot-scraper&lt;span class="w"&gt; &lt;/span&gt;https://github.com/pcaro&lt;span class="w"&gt; &lt;/span&gt;-s&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;.js-calendar-graph&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;calendar.png
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This command will capture only the GitHub contribution graph.&lt;/p&gt;
+&lt;h3 id="interacting-with-javascript"&gt;Interacting with JavaScript&lt;a class="headerlink" href="#interacting-with-javascript" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Sometimes you need to execute some code before taking the shot. For example, to hide a cookie banner or wait for something to load.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;shot-scraper&lt;span class="w"&gt; &lt;/span&gt;https://pablocaro.es/en/&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="se"&gt;\&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;--javascript&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;document.querySelector(&amp;#39;header&amp;#39;).style.display = &amp;#39;none&amp;#39;;&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="se"&gt;\&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;-o&lt;span class="w"&gt; &lt;/span&gt;no-header.png
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="advanced-automation"&gt;Advanced Automation&lt;a class="headerlink" href="#advanced-automation" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;If you need to take many screenshots, you can define a YAML configuration file:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# shots.yml&lt;/span&gt;
+&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;url&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;https://pablocaro.es/en/&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;output&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;home.png&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;height&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;800&lt;/span&gt;
+&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;url&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;https://pablocaro.es/en/archives.html&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;output&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;archives.png&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;wait&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;1000&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="c1"&gt;# Wait 1 second&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;And run them all at once:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;shot-scraper&lt;span class="w"&gt; &lt;/span&gt;multi&lt;span class="w"&gt; &lt;/span&gt;shots.yml
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="beyond-screenshots"&gt;Beyond Screenshots&lt;a class="headerlink" href="#beyond-screenshots" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;shot-scraper&lt;/code&gt; also includes utilities for:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Accessibility&lt;/strong&gt;: Dump the accessibility tree of a page (&lt;code&gt;shot-scraper accessibility&lt;/code&gt;).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;PDF&lt;/strong&gt;: Generate PDFs of web pages (&lt;code&gt;shot-scraper pdf&lt;/code&gt;).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;HAR&lt;/strong&gt;: Record HAR files to analyze network traffic (&lt;code&gt;shot-scraper har&lt;/code&gt;).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;It's one of those tools that, once installed, you find uses for constantly. Perfect for integrating into CI/CD pipelines to generate documentation visuals automatically.&lt;/p&gt;
+&lt;p&gt;More info in the &lt;a href="https://shot-scraper.datasette.io/"&gt;official documentation&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="shot-scraper help" src="/en/images/shot_scraper_help.png"&gt;&lt;/p&gt;</content><category term="Programación"></category><category term="cli"></category><category term="herramientas"></category><category term="web"></category><category term="scraping"></category><category term="screenshots"></category></entry><entry><title>Stern: Kubernetes Logs on Steroids</title><link href="/en/stern-kubernetes-logs" rel="alternate"></link><published>2026-02-20T00:00:00+01:00</published><updated>2026-02-20T00:00:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:None,2026-02-20:/en/stern-kubernetes-logs</id><summary type="html">&lt;p&gt;If you work with Kubernetes, you've probably suffered through the &lt;code&gt;kubectl logs&lt;/code&gt; command. It's useful for viewing the logs of a specific pod, but it falls short when you have multiple replicas of a service or when pods restart and change names.&lt;/p&gt;
+&lt;p&gt;This is where &lt;strong&gt;&lt;a href="https://github.com/stern/stern"&gt;Stern&lt;/a&gt;&lt;/strong&gt; comes in.&lt;/p&gt;
+&lt;p&gt;Stern allows …&lt;/p&gt;</summary><content type="html">&lt;p&gt;If you work with Kubernetes, you've probably suffered through the &lt;code&gt;kubectl logs&lt;/code&gt; command. It's useful for viewing the logs of a specific pod, but it falls short when you have multiple replicas of a service or when pods restart and change names.&lt;/p&gt;
+&lt;p&gt;This is where &lt;strong&gt;&lt;a href="https://github.com/stern/stern"&gt;Stern&lt;/a&gt;&lt;/strong&gt; comes in.&lt;/p&gt;
+&lt;p&gt;Stern allows you to "tail" logs from multiple pods and containers within Kubernetes simultaneously. Best of all, it uses regular expressions to select pods, so you don't need to copy and paste those random IDs (&lt;code&gt;pod-1234567890-abcde&lt;/code&gt;).&lt;/p&gt;
+&lt;h2 id="installation"&gt;Installation&lt;a class="headerlink" href="#installation" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Stern is very popular and available in most package managers.### Using Krew (recommended)
+If you already use &lt;code&gt;kubectl&lt;/code&gt;, Krew is the most natural way to install plugins:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;kubectl&lt;span class="w"&gt; &lt;/span&gt;krew&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;stern
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id="using-homebrew"&gt;Using Homebrew&lt;a class="headerlink" href="#using-homebrew" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;brew&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;stern
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id="direct-binary"&gt;Direct Binary&lt;a class="headerlink" href="#direct-binary" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;You can also download the binary directly from their &lt;a href="https://github.com/stern/stern/releases"&gt;GitHub releases&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;If you use a helper like &lt;code&gt;gah&lt;/code&gt; (GitHub Asset Helper) or custom scripts, installation is as simple as:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;gah&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;stern/stern
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="key-features"&gt;Key Features&lt;a class="headerlink" href="#key-features" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="1-multi-pod-tailing"&gt;1. Multi-pod Tailing&lt;a class="headerlink" href="#1-multi-pod-tailing" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Instead of searching for the exact pod name, you can use a regex:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;stern&lt;span class="w"&gt; &lt;/span&gt;backend
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This will show logs from all pods containing "backend" in their name (&lt;code&gt;backend-api&lt;/code&gt;, &lt;code&gt;backend-worker&lt;/code&gt;, etc.), interleaved and colored to easily distinguish them.&lt;/p&gt;
+&lt;h3 id="2-filtering-and-exclusion"&gt;2. Filtering and Exclusion&lt;a class="headerlink" href="#2-filtering-and-exclusion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;You can filter log content on the fly without needing &lt;code&gt;grep&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Only show lines containing &amp;quot;Error&amp;quot;&lt;/span&gt;
+stern&lt;span class="w"&gt; &lt;/span&gt;backend&lt;span class="w"&gt; &lt;/span&gt;-i&lt;span class="w"&gt; &lt;/span&gt;Error
+
+&lt;span class="c1"&gt;# Exclude lines containing &amp;quot;Health check&amp;quot;&lt;/span&gt;
+stern&lt;span class="w"&gt; &lt;/span&gt;backend&lt;span class="w"&gt; &lt;/span&gt;-e&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Health check&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id="3-kubernetes-selectors"&gt;3. Kubernetes Selectors&lt;a class="headerlink" href="#3-kubernetes-selectors" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;In addition to regex by name, you can use label selectors, which is much more precise for production environments:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;stern&lt;span class="w"&gt; &lt;/span&gt;-l&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;app&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;my-app&lt;span class="w"&gt; &lt;/span&gt;-l&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;tier&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;frontend
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id="4-output-formatting"&gt;4. Output Formatting&lt;a class="headerlink" href="#4-output-formatting" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;If your logs are in JSON (as is best practice), Stern can pass them through as is so you can process them with tools like &lt;code&gt;jq&lt;/code&gt; or &lt;code&gt;fx&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;stern&lt;span class="w"&gt; &lt;/span&gt;backend&lt;span class="w"&gt; &lt;/span&gt;-o&lt;span class="w"&gt; &lt;/span&gt;raw&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;fx
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="conclusion"&gt;Conclusion&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Stern is one of those tools you install on day one and wonder how you ever lived without it. It makes debugging in distributed environments much less painful by aggregating information coherently.&lt;/p&gt;
+&lt;p&gt;Give it a try and your debugging sessions will thank you.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="stern help" src="/en/images/stern_help.png"&gt;&lt;/p&gt;</content><category term="Infraestructura"></category><category term="kubernetes"></category><category term="cli"></category><category term="logs"></category><category term="herramientas"></category></entry><entry><title>Managing GitHub installations with gah</title><link href="/en/gestionando-instalaciones-desde-github-con-gah" rel="alternate"></link><published>2026-02-11T20:23:00+01:00</published><updated>2026-02-11T20:23:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:None,2026-02-11:/en/gestionando-instalaciones-desde-github-con-gah</id><summary type="html">&lt;p class="first last"&gt;Install binaries directly from GitHub releases easily with gah.&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;&lt;a class="reference external" href="https://github.com/get-gah/gah"&gt;gah&lt;/a&gt; is a tool that simplifies installing programs distributed via GitHub releases. It's a lightweight alternative when you don't want to rely on your distro's package manager or when you need a newer version.&lt;/p&gt;
+&lt;div class="section" id="installation"&gt;
+&lt;h2&gt;Installation&lt;/h2&gt;
+&lt;p&gt;To install &lt;strong&gt;gah&lt;/strong&gt;, you can use the official script:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;bash&lt;span class="w"&gt; &lt;/span&gt;-c&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;curl&lt;span class="w"&gt; &lt;/span&gt;-fsSL&lt;span class="w"&gt; &lt;/span&gt;https://raw.githubusercontent.com/get-gah/gah/refs/heads/master/tools/install.sh&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="usage"&gt;
+&lt;h2&gt;Usage&lt;/h2&gt;
+&lt;p&gt;Once installed, usage is very straightforward. Here are a couple of examples I've used recently to install popular Rust tools:&lt;/p&gt;
+&lt;p&gt;To install &lt;cite&gt;fd&lt;/cite&gt; (a fast alternative to &lt;tt class="docutils literal"&gt;find&lt;/tt&gt;):&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;gah&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;sharkdp/fd
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;To install &lt;cite&gt;ripgrep&lt;/cite&gt; (a fast alternative to &lt;tt class="docutils literal"&gt;grep&lt;/tt&gt;):&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;gah&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;BurntSushi/ripgrep
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Gah handles downloading the correct asset for your architecture, unpacking it, and placing it in your path.&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="Linux"></category><category term="herramientas"></category><category term="cli"></category></entry><entry><title>From Yakuake to Kitty: My Transition to a Modern Terminal</title><link href="/en/de-yakuake-a-kitty" rel="alternate"></link><published>2025-12-25T12:00:00+01:00</published><updated>2025-12-25T12:00:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:None,2025-12-25:/en/de-yakuake-a-kitty</id><summary type="html">&lt;p&gt;Exploring the reasons and benefits of switching from Yakuake to Kitty for a more powerful and customizable terminal experience.&lt;/p&gt;</summary><content type="html">&lt;p&gt;For years, &lt;strong&gt;Yakuake&lt;/strong&gt; has been my go-to terminal in KDE desktop environments. Its quick access convenience, dropping down and hiding with a simple keystroke, is undeniable. However, in my constant search for optimization and performance, I decided to explore alternatives, and &lt;strong&gt;Kitty&lt;/strong&gt; emerged as a standout option.&lt;/p&gt;
+&lt;h2 id="why-the-switch"&gt;Why the Switch?&lt;a class="headerlink" href="#why-the-switch" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Although Yakuake is excellent in its niche, Kitty offers a series of advantages that align better with the demands of a modern and demanding workflow:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;GPU Accelerated Performance&lt;/strong&gt;: Kitty is designed to leverage the graphics card, resulting in extremely fast and fluid text rendering, especially noticeable in terminals with a lot of scrolling or intense output.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Integrated Multiplexing&lt;/strong&gt;: Unlike Yakuake, which relies on traditional tab/window sessions, Kitty incorporates its own multiplexing system (similar to &lt;code&gt;tmux&lt;/code&gt; or &lt;code&gt;screen&lt;/code&gt;) that allows splitting windows, creating tabs, and organizing panes natively and efficiently.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Extensive Configurability&lt;/strong&gt;: &lt;code&gt;kitty.conf&lt;/code&gt; allows deep customization, from keyboard shortcuts to appearance, themes, and behavior.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Modern Support&lt;/strong&gt;: Excellent support for Wayland (the future of Linux on the desktop), font ligatures (like Fira Code), and an ecosystem of "kittens" (scripts and extended functionalities).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Cross-platform&lt;/strong&gt;: Although my main use is on Linux, the ability to have a consistent terminal experience across different operating systems is a plus.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="adapting-to-kitty"&gt;Adapting to Kitty&lt;a class="headerlink" href="#adapting-to-kitty" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The transition required adjusting some habits, mainly the way sessions and quick access are managed. However, the advantages far outweigh the initial learning curve. The speed, fluidity, and power of Kitty's built-in features make it an indispensable tool for my daily life.&lt;/p&gt;
+&lt;p&gt;Configuring Kitty is a simple process through its &lt;code&gt;kitty.conf&lt;/code&gt; file, where all aspects of the terminal are defined. We will explore more about its configuration and keyboard shortcuts in future posts.&lt;/p&gt;
+&lt;p&gt;If you are looking to take your terminal experience to the next level, migrating to Kitty is a step I highly recommend.&lt;/p&gt;</content><category term="Infraestructura"></category><category term="kitty"></category><category term="yakuake"></category><category term="terminal"></category><category term="linux"></category><category term="productividad"></category><category term="herramientas"></category></entry></feed>
