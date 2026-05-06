@@ -98,6 +98,7 @@ PLUGINS = [
     "i18n_subsites",
     "i18n_feed_filter",
     "category_tags",
+    "series",
 ]
 
 # I18N
@@ -273,7 +274,35 @@ LANDING_PAGE_ABOUT = {
        </div>""",
 }
 
+
+# Custom sort function: series articles with same date ordered by series_index descending
+# (highest index first, so the newest part appears first on the homepage)
+def article_sort_key(article):
+    date_key = (
+        -article.date.timestamp() if hasattr(article, "date") and article.date else 0
+    )
+    has_series = "series" in article.metadata and article.metadata.get("series_index")
+    series_idx = int(article.metadata["series_index"]) if has_series else 0
+    return (date_key, -series_idx if series_idx else 0, article.slug)
+
+
+ARTICLE_ORDER_BY = article_sort_key
+
 # Analytics
 GOATCOUNTER_DOMAIN = "pcaro.goatcounter.com"
+
+# Series navigation translations
+SERIES_TEXT = {
+    "es": "Parte %(index)s de la serie %(name)s",
+    "en": "Part %(index)s of the %(name)s series",
+}
+SERIES_PREVIOUS_LABEL = {
+    "es": "Artículos anteriores",
+    "en": "Previous articles",
+}
+SERIES_NEXT_LABEL = {
+    "es": "Próximos artículos",
+    "en": "Next articles",
+}
 
 # Trigger rebuild
