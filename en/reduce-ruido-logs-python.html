@@ -56,12 +56,19 @@
 
 <meta name="author" content="Pablo Caro" />
 <meta name="description" content="Learn how to configure Python&#39;s logging module to avoid message overload from third-party libraries, keeping your logs clean and useful." />
-<meta name="keywords" content="logging, logs, debugging, desarrollo">
+<meta name="keywords" content="logging, logs, debugging, desarrollo" />
 
-<link rel="alternate" href="/en/reduce-ruido-logs-python" hreflang="en" />
-<link rel="alternate" href="/en/../reduce-ruido-logs-python" hreflang="es" />
-
-  <meta property="og:site_name" content="Annotations by Pablo Caro"/>
+<link
+  rel="alternate"
+  href="/en/reduce-ruido-logs-python"
+  hreflang="en"
+/>
+<link
+  rel="alternate"
+  href="/en/../reduce-ruido-logs-python"
+  hreflang="es"
+/>
+    <meta property="og:site_name" content="Annotations by Pablo Caro"/>
   <meta property="og:title" content="Reduce Noise in Your Python Logs: A Smart Approach"/>
   <meta property="og:description" content="Learn how to configure Python&#39;s logging module to avoid message overload from third-party libraries, keeping your logs clean and useful."/>
   <meta property="og:locale" content="en_US"/>
@@ -76,7 +83,7 @@
   <meta property="article:tag" content="debugging"/>
   <meta property="article:tag" content="desarrollo"/>
   <meta property="og:image" content="/theme/img/profile.png">
-
+ 
   <title>Annotations by Pablo Caro &ndash; Reduce Noise in Your Python Logs: A Smart Approach</title>
 
 
@@ -179,20 +186,17 @@
 
 <article class="single">
   <header>
-          <div class="translations">
+      <div class="translations">
             <a href="/en/../reduce-ruido-logs-python">Leer en español</a>
     </div>
 
     <h1 id="reduce-ruido-logs-python">Reduce Noise in Your Python Logs: A Smart Approach</h1>
     <p>
-      Posted on Thu, 25 Dec 2025 in <a href="/en/category/programacion.html">Programación</a>
-
-    </p>
+      Posted on Thu, 25 Dec 2025 in <a href="/en/category/programacion.html">Programación</a>     </p>
   </header>
 
-
-  <div>
-    <p>Python's <code>logging</code> module is a powerful tool, but it can quickly become a source of "noise" when third-party libraries flood your logs with messages that are not relevant to debugging your application. Keeping logs clean is crucial for efficiently identifying issues and understanding the actual behavior of your code.</p>
+ 
+  <div><p>Python's <code>logging</code> module is a powerful tool, but it can quickly become a source of "noise" when third-party libraries flood your logs with messages that are not relevant to debugging your application. Keeping logs clean is crucial for efficiently identifying issues and understanding the actual behavior of your code.</p>
 <h2 id="the-problem-with-basicconfig">The Problem with <code>basicConfig()</code><a class="headerlink" href="#the-problem-with-basicconfig" title="Permanent link">&para;</a></h2>
 <p>Many Python developers start using <code>logging</code> with <code>logging.basicConfig()</code>. While convenient, this function configures the "root logger" of your application. The problem is that <strong>all loggers in your application, including third-party libraries, are children of the root logger</strong>.</p>
 <p>This means that if you configure the root logger to the <code>DEBUG</code> level, you will start seeing debug messages from all the libraries you use, which can be overwhelming and hide the truly important information from your own code.</p>
@@ -238,20 +242,17 @@ handler.setFormatter(formatter)</p>
 <p>For projects with multiple internal modules or "first-party" dependencies (that you develop yourself), you can wrap <code>getLogger()</code> to always prefix the logger name with your organization or project name (e.g., <code>ORG_NAME.my_module</code>). This allows you to control the logging level of an entire set of internal loggers more easily.</p>
 <h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">&para;</a></h2>
 <p>Reducing noise in your logs not only makes them more readable but also more reliable as a debugging tool. By adopting a granular approach to Python's <code>logging</code> configuration, you ensure that critical information from your application is not lost in a sea of messages from third-party libraries.</p>
-<p><em>Original article</em>: <a href="https://sinclairtarget.com/blog/2024/03/how-to-make-your-logs-less-noisy-in-python/">How to Make Your Logs Less Noisy in Python | Sinclair Target</a></p>
-  </div>
+<p><em>Original article</em>: <a href="https://sinclairtarget.com/blog/2024/03/how-to-make-your-logs-less-noisy-in-python/">How to Make Your Logs Less Noisy in Python | Sinclair Target</a></p></div>
   <div class="tag-cloud">
     <p>
-      <a href="/en/tag/logging.html">logging</a>
+       <a href="/en/tag/logging.html">logging</a>
       <a href="/en/tag/logs.html">logs</a>
       <a href="/en/tag/debugging.html">debugging</a>
       <a href="/en/tag/desarrollo.html">desarrollo</a>
-    </p>
+     </p>
   </div>
 
-
-
-  <div class="neighbors">
+    <div class="neighbors">
     <a class="btn float-left" href="/en/kitty-acceso-rapido" title="Kitty as a Quick Access Terminal: The Convenience of a Dropdown">
       <i class="fa fa-angle-left"></i> Previous Post
     </a>
@@ -259,21 +260,37 @@ handler.setFormatter(formatter)</p>
       Next Post <i class="fa fa-angle-right"></i>
     </a>
   </div>
-
-  <div class="related-posts">
+   <div class="related-posts">
     <h4>You might enjoy</h4>
     <ul class="related-posts">
-      <li><a href="/en/stern-kubernetes-logs">Stern: Kubernetes Logs on Steroids</a></li>
-      <li><a href="/en/rodney-chrome-wayland-error">Fixing Rodney Chrome Error on Wayland</a></li>
-      <li><a href="/en/docker-http-https-echo">`docker-http-https-echo`: An Essential Tool for Network Debugging</a></li>
-      <li><a href="/en/yaml-multilinea-cadenas-complejas">Multiline YAML: Understanding and testing complex strings</a></li>
-      <li><a href="/en/direnv-gestion-entornos">`direnv`: Manage your development environments intelligently</a></li>
+      <li>
+        <a href="/en/stern-kubernetes-logs"
+          >Stern: Kubernetes Logs on Steroids</a
+        >
+      </li>
+      <li>
+        <a href="/en/rodney-chrome-wayland-error"
+          >Fixing Rodney Chrome Error on Wayland</a
+        >
+      </li>
+      <li>
+        <a href="/en/docker-http-https-echo"
+          >`docker-http-https-echo`: An Essential Tool for Network Debugging</a
+        >
+      </li>
+      <li>
+        <a href="/en/yaml-multilinea-cadenas-complejas"
+          >Multiline YAML: Understanding and testing complex strings</a
+        >
+      </li>
+      <li>
+        <a href="/en/direnv-gestion-entornos"
+          >`direnv`: Manage your development environments intelligently</a
+        >
+      </li>
     </ul>
   </div>
-
-
-
-<!-- Disqus -->
+  <!-- Disqus -->
 <div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'anotaciones';
@@ -287,7 +304,7 @@ handler.setFormatter(formatter)</p>
     Please enable JavaScript to view comments.
 </noscript>
 <!-- End Disqus -->
-</article>
+ </article>
 
 <footer>
 <p>

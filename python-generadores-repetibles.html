@@ -56,12 +56,19 @@
 
 <meta name="author" content="Pablo Caro" />
 <meta name="description" content="Técnicas en Python para crear generadores que se pueden iterar múltiples veces, superando la limitación de &#34;una sola vez&#34; de los generadores estándar" />
-<meta name="keywords" content="generadores, itertools, decoradores, yield">
+<meta name="keywords" content="generadores, itertools, decoradores, yield" />
 
-<link rel="alternate" href="https://pablocaro.es/python-generadores-repetibles" hreflang="es" />
-<link rel="alternate" href="https://pablocaro.es/en/python-generadores-repetibles" hreflang="en" />
-
-  <meta property="og:site_name" content="Anotaciones por Pablo Caro"/>
+<link
+  rel="alternate"
+  href="https://pablocaro.es/python-generadores-repetibles"
+  hreflang="es"
+/>
+<link
+  rel="alternate"
+  href="https://pablocaro.es/en/python-generadores-repetibles"
+  hreflang="en"
+/>
+    <meta property="og:site_name" content="Anotaciones por Pablo Caro"/>
   <meta property="og:title" content="Python: Crear generadores repetibles (repeating generators)"/>
   <meta property="og:description" content="Técnicas en Python para crear generadores que se pueden iterar múltiples veces, superando la limitación de &#34;una sola vez&#34; de los generadores estándar"/>
   <meta property="og:locale" content="en_US"/>
@@ -76,7 +83,7 @@
   <meta property="article:tag" content="decoradores"/>
   <meta property="article:tag" content="yield"/>
   <meta property="og:image" content="/theme/img/profile.png">
-
+ 
   <title>Anotaciones por Pablo Caro &ndash; Python: Crear generadores repetibles (repeating generators)</title>
 
 
@@ -179,20 +186,17 @@
 
 <article class="single">
   <header>
-          <div class="translations">
+      <div class="translations">
             <a href="https://pablocaro.es/en/python-generadores-repetibles">Read in English</a>
     </div>
 
     <h1 id="python-generadores-repetibles">Python: Crear generadores repetibles (repeating generators)</h1>
     <p>
-      Publicado el 09 de February de 2016 en <a href="https://pablocaro.es/category/programacion.html">Programación</a>
-
-    </p>
+      Publicado el 09 de February de 2016 en <a href="https://pablocaro.es/category/programacion.html">Programación</a>     </p>
   </header>
 
-
-  <div>
-    <p>Los <strong>generadores en Python son "one-shot"</strong> - solo se pueden iterar una vez. ¿Cómo crear generadores que se puedan reutilizar múltiples veces?</p>
+ 
+  <div><p>Los <strong>generadores en Python son "one-shot"</strong> - solo se pueden iterar una vez. ¿Cómo crear generadores que se puedan reutilizar múltiples veces?</p>
 <h2 id="el-problema">El problema<a class="headerlink" href="#el-problema" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">mi_generador</span><span class="p">():</span>
     <span class="k">yield</span> <span class="mi">1</span>
@@ -294,20 +298,17 @@
 <p>⚠️ <strong>Memoria</strong>: Los generadores repetibles pueden requerir almacenar parámetros iniciales<br>
 ⚠️ <strong>CPU</strong>: Cada iteración recalcula desde el inicio</p>
 <p>La elección depende de si necesitas <strong>repetición exacta</strong> o <strong>reutilización eficiente</strong>.</p>
-<p><em>Fuente original</em>: <a href="http://stackoverflow.com/questions/1376438/how-to-make-a-repeating-generator-in-python/1376531#1376531">Stack Overflow</a></p>
-  </div>
+<p><em>Fuente original</em>: <a href="http://stackoverflow.com/questions/1376438/how-to-make-a-repeating-generator-in-python/1376531#1376531">Stack Overflow</a></p></div>
   <div class="tag-cloud">
     <p>
-      <a href="https://pablocaro.es/tag/generadores.html">generadores</a>
+       <a href="https://pablocaro.es/tag/generadores.html">generadores</a>
       <a href="https://pablocaro.es/tag/itertools.html">itertools</a>
       <a href="https://pablocaro.es/tag/decoradores.html">decoradores</a>
       <a href="https://pablocaro.es/tag/yield.html">yield</a>
-    </p>
+     </p>
   </div>
 
-
-
-  <div class="neighbors">
+    <div class="neighbors">
     <a class="btn float-left" href="https://pablocaro.es/boton_central_firefox" title="Botón central en firefox">
       <i class="fa fa-angle-left"></i> Artículo anterior
     </a>
@@ -315,11 +316,7 @@
       Próximo artículo <i class="fa fa-angle-right"></i>
     </a>
   </div>
-
-
-
-
-<!-- Disqus -->
+   <!-- Disqus -->
 <div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'anotaciones';
@@ -333,7 +330,7 @@
     Por favor, habilita JavaScript para ver los comentarios.
 </noscript>
 <!-- End Disqus -->
-</article>
+ </article>
 
 <footer>
 <p>

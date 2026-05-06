@@ -56,12 +56,19 @@
 
 <meta name="author" content="Pablo Caro" />
 <meta name="description" content="Using an overly aggressive DNS blocklist in NextDNS broke AliExpress affiliate links. Diagnosed with dig and fixed by switching to HaGeZi Multi PRO." />
-<meta name="keywords" content="dns, nextdns, aliexpress, bloqueo, linux">
+<meta name="keywords" content="dns, nextdns, aliexpress, bloqueo, linux" />
 
-<link rel="alternate" href="/en/bloqueo-dns-aliexpress-nextdns" hreflang="en" />
-<link rel="alternate" href="/en/../bloqueo-dns-aliexpress-nextdns" hreflang="es" />
-
-  <meta property="og:site_name" content="Annotations by Pablo Caro"/>
+<link
+  rel="alternate"
+  href="/en/bloqueo-dns-aliexpress-nextdns"
+  hreflang="en"
+/>
+<link
+  rel="alternate"
+  href="/en/../bloqueo-dns-aliexpress-nextdns"
+  hreflang="es"
+/>
+    <meta property="og:site_name" content="Annotations by Pablo Caro"/>
   <meta property="og:title" content="DNS blocking of AliExpress links with NextDNS"/>
   <meta property="og:description" content="Using an overly aggressive DNS blocklist in NextDNS broke AliExpress affiliate links. Diagnosed with dig and fixed by switching to HaGeZi Multi PRO."/>
   <meta property="og:locale" content="en_US"/>
@@ -77,7 +84,7 @@
   <meta property="article:tag" content="bloqueo"/>
   <meta property="article:tag" content="linux"/>
   <meta property="og:image" content="/theme/img/profile.png">
-
+ 
   <title>Annotations by Pablo Caro &ndash; DNS blocking of AliExpress links with NextDNS</title>
 
 
@@ -180,20 +187,17 @@
 
 <article class="single">
   <header>
-          <div class="translations">
+      <div class="translations">
             <a href="/en/../bloqueo-dns-aliexpress-nextdns">Leer en español</a>
     </div>
 
     <h1 id="bloqueo-dns-aliexpress-nextdns">DNS blocking of AliExpress links with NextDNS</h1>
     <p>
-      Posted on Sun, 03 May 2026 in <a href="/en/category/infraestructura.html">Infraestructura</a>
-
-    </p>
+      Posted on Sun, 03 May 2026 in <a href="/en/category/infraestructura.html">Infraestructura</a>     </p>
   </header>
 
-
-  <div>
-    <p><img alt="DNS blocking illustration" src="/images/dns-blocking-nextdns.jpg"></p>
+ 
+  <div><p><img alt="DNS blocking illustration" src="/images/dns-blocking-nextdns.jpg"></p>
 <p>I'd been having a weird issue for a few days: AliExpress links from product video descriptions wouldn't load. Firefox kept showing "Server not found". I knew it looked like a DNS block because enabling PIA's VPN (Private Internet Access) made the problem go away.</p>
 <h2 id="the-diagnosis">The diagnosis<a class="headerlink" href="#the-diagnosis" title="Permanent link">&para;</a></h2>
 <p>The <code>dig</code> command confirmed it immediately:</p>
@@ -261,21 +265,18 @@ s.click.aliexpress.com.<span class="w"> </span><span class="m">300</span><span c
 <h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
 <p>An overly aggressive DNS blocklist blocks domains that aren't ads or malware, just e-commerce redirect mechanisms. The sweet spot is <strong>Multi PRO</strong>: good privacy protection without breaking everyday functionality.</p>
 <p>If I ever need more aggressiveness, the trade-off will be having to manually unblock false positives. For now, Multi PRO works perfectly.</p>
-<p><em>More info</em>: <a href="https://github.com/hagezi/dns-blocklists">HaGeZi DNS Blocklists</a></p>
-  </div>
+<p><em>More info</em>: <a href="https://github.com/hagezi/dns-blocklists">HaGeZi DNS Blocklists</a></p></div>
   <div class="tag-cloud">
     <p>
-      <a href="/en/tag/dns.html">dns</a>
+       <a href="/en/tag/dns.html">dns</a>
       <a href="/en/tag/nextdns.html">nextdns</a>
       <a href="/en/tag/aliexpress.html">aliexpress</a>
       <a href="/en/tag/bloqueo.html">bloqueo</a>
       <a href="/en/tag/linux.html">linux</a>
-    </p>
+     </p>
   </div>
 
-
-
-  <div class="neighbors">
+    <div class="neighbors">
     <a class="btn float-left" href="/en/escaneo-doble-cara-brother-dcp-l3560cdw" title="Double-sided scanning with the Brother DCP-L3560CDW">
       <i class="fa fa-angle-left"></i> Previous Post
     </a>
@@ -283,21 +284,37 @@ s.click.aliexpress.com.<span class="w"> </span><span class="m">300</span><span c
       Next Post <i class="fa fa-angle-right"></i>
     </a>
   </div>
-
-  <div class="related-posts">
+   <div class="related-posts">
     <h4>You might enjoy</h4>
     <ul class="related-posts">
-      <li><a href="/en/escaneo-doble-cara-brother-dcp-l3560cdw">Double-sided scanning with the Brother DCP-L3560CDW</a></li>
-      <li><a href="/en/marksman-lsp-markdown">marksman: Markdown LSP</a></li>
-      <li><a href="/en/neofetch">neofetch</a></li>
-      <li><a href="/en/os-click-central-descarga-isos">os.click: Operating System ISO Download Center</a></li>
-      <li><a href="/en/rodney-chrome-wayland-error">Fixing Rodney Chrome Error on Wayland</a></li>
+      <li>
+        <a href="/en/escaneo-doble-cara-brother-dcp-l3560cdw"
+          >Double-sided scanning with the Brother DCP-L3560CDW</a
+        >
+      </li>
+      <li>
+        <a href="/en/marksman-lsp-markdown"
+          >marksman: Markdown LSP</a
+        >
+      </li>
+      <li>
+        <a href="/en/neofetch"
+          >neofetch</a
+        >
+      </li>
+      <li>
+        <a href="/en/os-click-central-descarga-isos"
+          >os.click: Operating System ISO Download Center</a
+        >
+      </li>
+      <li>
+        <a href="/en/rodney-chrome-wayland-error"
+          >Fixing Rodney Chrome Error on Wayland</a
+        >
+      </li>
     </ul>
   </div>
-
-
-
-<!-- Disqus -->
+  <!-- Disqus -->
 <div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'anotaciones';
@@ -311,7 +328,7 @@ s.click.aliexpress.com.<span class="w"> </span><span class="m">300</span><span c
     Please enable JavaScript to view comments.
 </noscript>
 <!-- End Disqus -->
-</article>
+ </article>
 
 <footer>
 <p>

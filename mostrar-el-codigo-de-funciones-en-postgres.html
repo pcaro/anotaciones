@@ -56,10 +56,9 @@
 
 <meta name="author" content="Pablo Caro" />
 <meta name="description" content="Puede resultar muy util ver el código de algún procedimiento almacenado en postgres. El código de a continuación tomado de Postgresql General Bits de A. Elein Mustain puede resultar muy útil. create or replace view showfunctions as select l.lanname, t.typname || &#39; = &#39; || n.nspname || &#39;.&#39; || p.proname || &#39;(&#39; || pg_catalog.oidvectortypes(p.proargtypes …" />
-<meta name="keywords" content="">
+<meta name="keywords" content="" />
 
-
-  <meta property="og:site_name" content="Anotaciones por Pablo Caro"/>
+   <meta property="og:site_name" content="Anotaciones por Pablo Caro"/>
   <meta property="og:title" content="Mostrar el código de funciones en postgres"/>
   <meta property="og:description" content="Puede resultar muy util ver el código de algún procedimiento almacenado en postgres. El código de a continuación tomado de Postgresql General Bits de A. Elein Mustain puede resultar muy útil. create or replace view showfunctions as select l.lanname, t.typname || &#39; = &#39; || n.nspname || &#39;.&#39; || p.proname || &#39;(&#39; || pg_catalog.oidvectortypes(p.proargtypes …"/>
   <meta property="og:locale" content="en_US"/>
@@ -70,7 +69,7 @@
   <meta property="article:author" content="https://pablocaro.es/author/pablo-caro.html">
   <meta property="article:section" content="Infraestructura"/>
   <meta property="og:image" content="/theme/img/profile.png">
-
+ 
   <title>Anotaciones por Pablo Caro &ndash; Mostrar el código de funciones en postgres</title>
 
 
@@ -173,17 +172,14 @@
 
 <article class="single">
   <header>
-      
+  
     <h1 id="mostrar-el-codigo-de-funciones-en-postgres">Mostrar el código de funciones en postgres</h1>
     <p>
-      Publicado el 07 de July de 2009 en <a href="https://pablocaro.es/category/infraestructura.html">Infraestructura</a>
-
-    </p>
+      Publicado el 07 de July de 2009 en <a href="https://pablocaro.es/category/infraestructura.html">Infraestructura</a>     </p>
   </header>
 
-
+ 
   <div>
-    
         Puede resultar muy util ver el código de algún procedimiento almacenado en postgres. El código de a continuación tomado de <a href="http://www.varlena.com/GeneralBits/39.php">Postgresql General Bits</a> de A. Elein Mustain puede resultar muy útil. 
 <pre lang="sql">
 create or replace view showfunctions as
@@ -207,16 +203,13 @@ select * from showfunctions where function_definition like '%public%';
 -- Muestra todas las funciones que toman o reciben booleanos
 select * from showfunctions where function_definition like '%boolean%';
 </pre>
-    
-  </div>
+    </div>
   <div class="tag-cloud">
     <p>
     </p>
   </div>
 
-
-
-  <div class="neighbors">
+    <div class="neighbors">
     <a class="btn float-left" href="https://pablocaro.es/instalar-postgres-8-2-en-jaunty" title="Instalar postgres 8.2 en jaunty">
       <i class="fa fa-angle-left"></i> Artículo anterior
     </a>
@@ -224,11 +217,7 @@ select * from showfunctions where function_definition like '%boolean%';
       Próximo artículo <i class="fa fa-angle-right"></i>
     </a>
   </div>
-
-
-
-
-<!-- Disqus -->
+   <!-- Disqus -->
 <div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'anotaciones';
@@ -242,7 +231,7 @@ select * from showfunctions where function_definition like '%boolean%';
     Por favor, habilita JavaScript para ver los comentarios.
 </noscript>
 <!-- End Disqus -->
-</article>
+ </article>
 
 <footer>
 <p>

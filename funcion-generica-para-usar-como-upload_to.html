@@ -56,12 +56,19 @@
 
 <meta name="author" content="Pablo Caro" />
 <meta name="description" content="Los FileField en django necesitan ana función upload_to que determine donde se subirá el fichero. Yo suelo tener en utils.py una función genérica que los deja en una subcarpeta con el nombre del modelo. import os def generic_upload_to(instance, filename): &#34;&#34;&#34; Generic `upload_to` function for models.FileField and models.ImageField …" />
-<meta name="keywords" content="django">
+<meta name="keywords" content="django" />
 
-<link rel="alternate" href="https://pablocaro.es/funcion-generica-para-usar-como-upload_to" hreflang="es" />
-<link rel="alternate" href="https://pablocaro.es/en/funcion-generica-para-usar-como-upload_to" hreflang="en" />
-
-  <meta property="og:site_name" content="Anotaciones por Pablo Caro"/>
+<link
+  rel="alternate"
+  href="https://pablocaro.es/funcion-generica-para-usar-como-upload_to"
+  hreflang="es"
+/>
+<link
+  rel="alternate"
+  href="https://pablocaro.es/en/funcion-generica-para-usar-como-upload_to"
+  hreflang="en"
+/>
+    <meta property="og:site_name" content="Anotaciones por Pablo Caro"/>
   <meta property="og:title" content="Función genérica para usar como upload_to"/>
   <meta property="og:description" content="Los FileField en django necesitan ana función upload_to que determine donde se subirá el fichero. Yo suelo tener en utils.py una función genérica que los deja en una subcarpeta con el nombre del modelo. import os def generic_upload_to(instance, filename): &#34;&#34;&#34; Generic `upload_to` function for models.FileField and models.ImageField …"/>
   <meta property="og:locale" content="en_US"/>
@@ -73,7 +80,7 @@
   <meta property="article:section" content="Programación"/>
   <meta property="article:tag" content="django"/>
   <meta property="og:image" content="/theme/img/profile.png">
-
+ 
   <title>Anotaciones por Pablo Caro &ndash; Función genérica para usar como upload_to</title>
 
 
@@ -176,20 +183,17 @@
 
 <article class="single">
   <header>
-          <div class="translations">
+      <div class="translations">
             <a href="https://pablocaro.es/en/funcion-generica-para-usar-como-upload_to">Read in English</a>
     </div>
 
     <h1 id="funcion-generica-para-usar-como-upload_to">Función genérica para usar como upload_to</h1>
     <p>
-      Publicado el 11 de October de 2014 en <a href="https://pablocaro.es/category/programacion.html">Programación</a>
-
-    </p>
+      Publicado el 11 de October de 2014 en <a href="https://pablocaro.es/category/programacion.html">Programación</a>     </p>
   </header>
 
-
-  <div>
-    <p>Los FileField en django necesitan ana función <a class="reference external" href="https://docs.djangoproject.com/en/1.7/ref/models/fields/#django.db.models.FileField.upload_to">upload_to</a> que determine donde se subirá el fichero.
+ 
+  <div><p>Los FileField en django necesitan ana función <a class="reference external" href="https://docs.djangoproject.com/en/1.7/ref/models/fields/#django.db.models.FileField.upload_to">upload_to</a> que determine donde se subirá el fichero.
 Yo suelo tener en <code>utils.py</code> una función genérica que los deja en una subcarpeta con el nombre del modelo.</p>
 <div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
 
@@ -205,17 +209,14 @@ Yo suelo tener en <code>utils.py</code> una función genérica que los deja en u
                             <span class="n">verbose_name</span><span class="o">=</span><span class="s1">&#39;Imagen Destacada (770x490)&#39;</span><span class="p">,</span>
                             <span class="n">max_length</span><span class="o">=</span><span class="mi">250</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
-
-  </div>
+</div>
   <div class="tag-cloud">
     <p>
-      <a href="https://pablocaro.es/tag/django.html">django</a>
-    </p>
+       <a href="https://pablocaro.es/tag/django.html">django</a>
+     </p>
   </div>
 
-
-
-  <div class="neighbors">
+    <div class="neighbors">
     <a class="btn float-left" href="https://pablocaro.es/enlaces-en-listado-de-objectos" title="Django: enlaces en listado de objectos">
       <i class="fa fa-angle-left"></i> Artículo anterior
     </a>
@@ -223,20 +224,32 @@ Yo suelo tener en <code>utils.py</code> una función genérica que los deja en u
       Próximo artículo <i class="fa fa-angle-right"></i>
     </a>
   </div>
-
-  <div class="related-posts">
+   <div class="related-posts">
     <h4>Te puede gustar</h4>
     <ul class="related-posts">
-      <li><a href="https://pablocaro.es/instalar-insync-en-opensuse">Instalar InSync en Opensuse</a></li>
-      <li><a href="https://pablocaro.es/decorador-vista-ajax">Decorador vista ajax</a></li>
-      <li><a href="https://pablocaro.es/enlaces-en-listado-de-objectos">Django: enlaces en listado de objectos</a></li>
-      <li><a href="https://pablocaro.es/settings-vars-processor">Settings vars processor</a></li>
+      <li>
+        <a href="https://pablocaro.es/instalar-insync-en-opensuse"
+          >Instalar InSync en Opensuse</a
+        >
+      </li>
+      <li>
+        <a href="https://pablocaro.es/decorador-vista-ajax"
+          >Decorador vista ajax</a
+        >
+      </li>
+      <li>
+        <a href="https://pablocaro.es/enlaces-en-listado-de-objectos"
+          >Django: enlaces en listado de objectos</a
+        >
+      </li>
+      <li>
+        <a href="https://pablocaro.es/settings-vars-processor"
+          >Settings vars processor</a
+        >
+      </li>
     </ul>
   </div>
-
-
-
-<!-- Disqus -->
+  <!-- Disqus -->
 <div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'anotaciones';
@@ -250,7 +263,7 @@ Yo suelo tener en <code>utils.py</code> una función genérica que los deja en u
     Por favor, habilita JavaScript para ver los comentarios.
 </noscript>
 <!-- End Disqus -->
-</article>
+ </article>
 
 <footer>
 <p>

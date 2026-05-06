@@ -56,12 +56,19 @@
 
 <meta name="author" content="Pablo Caro" />
 <meta name="description" content="Using rbw to export environment variables from Bitwarden, useful for setting API keys securely without storing them on disk." />
-<meta name="keywords" content="bitwarden, cli, entorno, productividad, seguridad">
+<meta name="keywords" content="bitwarden, cli, entorno, productividad, seguridad" />
 
-<link rel="alternate" href="/en/rbw-env" hreflang="en" />
-<link rel="alternate" href="/en/../rbw-env" hreflang="es" />
-
-  <meta property="og:site_name" content="Annotations by Pablo Caro"/>
+<link
+  rel="alternate"
+  href="/en/rbw-env"
+  hreflang="en"
+/>
+<link
+  rel="alternate"
+  href="/en/../rbw-env"
+  hreflang="es"
+/>
+    <meta property="og:site_name" content="Annotations by Pablo Caro"/>
   <meta property="og:title" content="rbw-env: Export environment variables from Bitwarden"/>
   <meta property="og:description" content="Using rbw to export environment variables from Bitwarden, useful for setting API keys securely without storing them on disk."/>
   <meta property="og:locale" content="en_US"/>
@@ -77,7 +84,7 @@
   <meta property="article:tag" content="productividad"/>
   <meta property="article:tag" content="seguridad"/>
   <meta property="og:image" content="/theme/img/profile.png">
-
+ 
   <title>Annotations by Pablo Caro &ndash; rbw-env: Export environment variables from Bitwarden</title>
 
 
@@ -180,20 +187,17 @@
 
 <article class="single">
   <header>
-          <div class="translations">
+      <div class="translations">
             <a href="/en/../rbw-env">Leer en español</a>
     </div>
 
     <h1 id="rbw-env">rbw-env: Export environment variables from Bitwarden</h1>
     <p>
-      Posted on Thu, 26 Mar 2026 in <a href="/en/category/herramientas.html">Herramientas</a>
-
-    </p>
+      Posted on Thu, 26 Mar 2026 in <a href="/en/category/herramientas.html">Herramientas</a>     </p>
   </header>
 
-
-  <div>
-    <p>Continuing the <a href="/en/rbw-env">kitty-rbw</a> saga, today I present another script from the same project: <strong>rbw-env</strong>.</p>
+ 
+  <div><p>Continuing the <a href="/en/rbw-env">kitty-rbw</a> saga, today I present another script from the same project: <strong>rbw-env</strong>.</p>
 <p><img alt="Folder selection in rbw-env" src="/en/images/rbw-env-example.png"></p>
 <h2 id="the-problem">The problem<a class="headerlink" href="#the-problem" title="Permanent link">&para;</a></h2>
 <p>I use <strong>pi-agent</strong> with different AI models (Claude, OpenAI, Gemini...) and each requires its own <code>API_KEY</code>. Keeping these keys on disk is a security risk, and having to enter them every time is tedious.</p>
@@ -229,21 +233,18 @@ kitty<span class="w"> </span>@<span class="w"> </span>kitten<span class="w"> </s
 </ul>
 <p>If any entry has username or name equal to <code>NOEXPORT</code>, it's skipped (useful for notes).</p>
 <h2 id="integration-with-kitty-rbw">Integration with kitty-rbw<a class="headerlink" href="#integration-with-kitty-rbw" title="Permanent link">&para;</a></h2>
-<p>In the <a href="/en/kitty-rbw-kitten">previous post</a> I explained how to install kitty-rbw. With <code>Ctrl+Alt+Shift+b</code> I get the folder selector to export environment variables.</p>
-  </div>
+<p>In the <a href="/en/kitty-rbw-kitten">previous post</a> I explained how to install kitty-rbw. With <code>Ctrl+Alt+Shift+b</code> I get the folder selector to export environment variables.</p></div>
   <div class="tag-cloud">
     <p>
-      <a href="/en/tag/bitwarden.html">bitwarden</a>
+       <a href="/en/tag/bitwarden.html">bitwarden</a>
       <a href="/en/tag/cli.html">cli</a>
       <a href="/en/tag/entorno.html">entorno</a>
       <a href="/en/tag/productividad.html">productividad</a>
       <a href="/en/tag/seguridad.html">seguridad</a>
-    </p>
+     </p>
   </div>
 
-
-
-  <div class="neighbors">
+    <div class="neighbors">
     <a class="btn float-left" href="/en/crit-review-loop-agents" title="Crit: The Review Loop for Agents">
       <i class="fa fa-angle-left"></i> Previous Post
     </a>
@@ -251,21 +252,37 @@ kitty<span class="w"> </span>@<span class="w"> </span>kitten<span class="w"> </s
       Next Post <i class="fa fa-angle-right"></i>
     </a>
   </div>
-
-  <div class="related-posts">
+   <div class="related-posts">
     <h4>You might enjoy</h4>
     <ul class="related-posts">
-      <li><a href="/en/kitty-rbw-kitten">kitty-rbw: Fast Bitwarden access from your kitty terminal</a></li>
-      <li><a href="/en/rbw-bitwarden-cli">rbw: The Bitwarden terminal client you should be using</a></li>
-      <li><a href="/en/rbw-sync-access-token">rbw sync: missing field `access_token`</a></li>
-      <li><a href="/en/fresh-editor-terminal">`fresh`: My preferred terminal editor for daily use</a></li>
-      <li><a href="/en/direnv-gestion-entornos">`direnv`: Manage your development environments intelligently</a></li>
+      <li>
+        <a href="/en/kitty-rbw-kitten"
+          >kitty-rbw: Fast Bitwarden access from your kitty terminal</a
+        >
+      </li>
+      <li>
+        <a href="/en/rbw-bitwarden-cli"
+          >rbw: The Bitwarden terminal client you should be using</a
+        >
+      </li>
+      <li>
+        <a href="/en/rbw-sync-access-token"
+          >rbw sync: missing field `access_token`</a
+        >
+      </li>
+      <li>
+        <a href="/en/fresh-editor-terminal"
+          >`fresh`: My preferred terminal editor for daily use</a
+        >
+      </li>
+      <li>
+        <a href="/en/direnv-gestion-entornos"
+          >`direnv`: Manage your development environments intelligently</a
+        >
+      </li>
     </ul>
   </div>
-
-
-
-<!-- Disqus -->
+  <!-- Disqus -->
 <div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'anotaciones';
@@ -279,7 +296,7 @@ kitty<span class="w"> </span>@<span class="w"> </span>kitten<span class="w"> </s
     Please enable JavaScript to view comments.
 </noscript>
 <!-- End Disqus -->
-</article>
+ </article>
 
 <footer>
 <p>

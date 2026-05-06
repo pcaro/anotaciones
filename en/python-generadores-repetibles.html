@@ -56,12 +56,19 @@
 
 <meta name="author" content="Pablo Caro" />
 <meta name="description" content="Techniques in Python to create generators that can be iterated multiple times, overcoming the &#34;one-shot&#34; limitation of standard generators" />
-<meta name="keywords" content="generadores, itertools, decoradores, yield">
+<meta name="keywords" content="generadores, itertools, decoradores, yield" />
 
-<link rel="alternate" href="/en/python-generadores-repetibles" hreflang="en" />
-<link rel="alternate" href="/en/../python-generadores-repetibles" hreflang="es" />
-
-  <meta property="og:site_name" content="Annotations by Pablo Caro"/>
+<link
+  rel="alternate"
+  href="/en/python-generadores-repetibles"
+  hreflang="en"
+/>
+<link
+  rel="alternate"
+  href="/en/../python-generadores-repetibles"
+  hreflang="es"
+/>
+    <meta property="og:site_name" content="Annotations by Pablo Caro"/>
   <meta property="og:title" content="Python: Create Repeating Generators"/>
   <meta property="og:description" content="Techniques in Python to create generators that can be iterated multiple times, overcoming the &#34;one-shot&#34; limitation of standard generators"/>
   <meta property="og:locale" content="en_US"/>
@@ -76,7 +83,7 @@
   <meta property="article:tag" content="decoradores"/>
   <meta property="article:tag" content="yield"/>
   <meta property="og:image" content="/theme/img/profile.png">
-
+ 
   <title>Annotations by Pablo Caro &ndash; Python: Create Repeating Generators</title>
 
 
@@ -179,20 +186,17 @@
 
 <article class="single">
   <header>
-          <div class="translations">
+      <div class="translations">
             <a href="/en/../python-generadores-repetibles">Leer en español</a>
     </div>
 
     <h1 id="python-generadores-repetibles">Python: Create Repeating Generators</h1>
     <p>
-      Posted on Tue, 09 Feb 2016 in <a href="/en/category/programacion.html">Programación</a>
-
-    </p>
+      Posted on Tue, 09 Feb 2016 in <a href="/en/category/programacion.html">Programación</a>     </p>
   </header>
 
-
-  <div>
-    <p><strong>Generators in Python are "one-shot"</strong> - they can only be iterated once. How to create generators that can be reused multiple times?</p>
+ 
+  <div><p><strong>Generators in Python are "one-shot"</strong> - they can only be iterated once. How to create generators that can be reused multiple times?</p>
 <h2 id="the-problem">The Problem<a class="headerlink" href="#the-problem" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">my_generator</span><span class="p">():</span>
     <span class="k">yield</span> <span class="mi">1</span>
@@ -294,20 +298,17 @@
 <p>⚠️ <strong>Memory</strong>: Repeatable generators may require storing initial parameters
 ⚠️ <strong>CPU</strong>: Each iteration recalculates from the start</p>
 <p>The choice depends on whether you need <strong>exact repetition</strong> or <strong>efficient reuse</strong>.</p>
-<p><em>Original source</em>: <a href="http://stackoverflow.com/questions/1376438/how-to-make-a-repeating-generator-in-python/1376531#1376531">Stack Overflow</a></p>
-  </div>
+<p><em>Original source</em>: <a href="http://stackoverflow.com/questions/1376438/how-to-make-a-repeating-generator-in-python/1376531#1376531">Stack Overflow</a></p></div>
   <div class="tag-cloud">
     <p>
-      <a href="/en/tag/generadores.html">generadores</a>
+       <a href="/en/tag/generadores.html">generadores</a>
       <a href="/en/tag/itertools.html">itertools</a>
       <a href="/en/tag/decoradores.html">decoradores</a>
       <a href="/en/tag/yield.html">yield</a>
-    </p>
+     </p>
   </div>
 
-
-
-  <div class="neighbors">
+    <div class="neighbors">
     <a class="btn float-left" href="/en/boton_central_firefox" title="Middle click in firefox">
       <i class="fa fa-angle-left"></i> Previous Post
     </a>
@@ -315,11 +316,7 @@
       Next Post <i class="fa fa-angle-right"></i>
     </a>
   </div>
-
-
-
-
-<!-- Disqus -->
+   <!-- Disqus -->
 <div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'anotaciones';
@@ -333,7 +330,7 @@
     Please enable JavaScript to view comments.
 </noscript>
 <!-- End Disqus -->
-</article>
+ </article>
 
 <footer>
 <p>

@@ -56,12 +56,19 @@
 
 <meta name="author" content="Pablo Caro" />
 <meta name="description" content="Guía rápida para inspeccionar el contenido de paquetes RPM y determinar qué paquetes poseen determinados archivos en tu sistema Linux." />
-<meta name="keywords" content="linux, rpm, paquetes, comandos, administración, dnf, yum">
+<meta name="keywords" content="linux, rpm, paquetes, comandos, administración, dnf, yum" />
 
-<link rel="alternate" href="https://pablocaro.es/ver-archivos-paquete-rpm" hreflang="es" />
-<link rel="alternate" href="https://pablocaro.es/en/ver-archivos-paquete-rpm" hreflang="en" />
-
-  <meta property="og:site_name" content="Anotaciones por Pablo Caro"/>
+<link
+  rel="alternate"
+  href="https://pablocaro.es/ver-archivos-paquete-rpm"
+  hreflang="es"
+/>
+<link
+  rel="alternate"
+  href="https://pablocaro.es/en/ver-archivos-paquete-rpm"
+  hreflang="en"
+/>
+    <meta property="og:site_name" content="Anotaciones por Pablo Caro"/>
   <meta property="og:title" content="Cómo ver los archivos de un paquete RPM en Linux"/>
   <meta property="og:description" content="Guía rápida para inspeccionar el contenido de paquetes RPM y determinar qué paquetes poseen determinados archivos en tu sistema Linux."/>
   <meta property="og:locale" content="en_US"/>
@@ -79,7 +86,7 @@
   <meta property="article:tag" content="dnf"/>
   <meta property="article:tag" content="yum"/>
   <meta property="og:image" content="/theme/img/profile.png">
-
+ 
   <title>Anotaciones por Pablo Caro &ndash; Cómo ver los archivos de un paquete RPM en Linux</title>
 
 
@@ -182,20 +189,17 @@
 
 <article class="single">
   <header>
-          <div class="translations">
+      <div class="translations">
             <a href="https://pablocaro.es/en/ver-archivos-paquete-rpm">Read in English</a>
     </div>
 
     <h1 id="ver-archivos-paquete-rpm">Cómo ver los archivos de un paquete RPM en Linux</h1>
     <p>
-      Publicado el 25 de December de 2025 en <a href="https://pablocaro.es/category/infraestructura.html">Infraestructura</a>
-
-    </p>
+      Publicado el 25 de December de 2025 en <a href="https://pablocaro.es/category/infraestructura.html">Infraestructura</a>     </p>
   </header>
 
-
-  <div>
-    <p>En sistemas Linux basados en RPM (como Red Hat, CentOS, Fedora, openSUSE), es común interactuar con paquetes en formato <code>.rpm</code>. A menudo, necesitamos saber qué archivos contiene un paquete antes de instalarlo, o qué paquete es el responsable de un archivo específico ya instalado en el sistema. Para ello, la herramienta <code>rpm</code> nos ofrece varias opciones útiles.</p>
+ 
+  <div><p>En sistemas Linux basados en RPM (como Red Hat, CentOS, Fedora, openSUSE), es común interactuar con paquetes en formato <code>.rpm</code>. A menudo, necesitamos saber qué archivos contiene un paquete antes de instalarlo, o qué paquete es el responsable de un archivo específico ya instalado en el sistema. Para ello, la herramienta <code>rpm</code> nos ofrece varias opciones útiles.</p>
 <h2 id="1-listar-archivos-de-un-paquete-rpm-sin-instalar">1. Listar Archivos de un Paquete RPM sin Instalar<a class="headerlink" href="#1-listar-archivos-de-un-paquete-rpm-sin-instalar" title="Permanent link">&para;</a></h2>
 <p>Si tienes un archivo <code>.rpm</code> descargado y quieres ver qué archivos instalará (y dónde) sin necesidad de instalarlo, puedes usar la opción <code>-qlp</code>:</p>
 <div class="highlight"><pre><span></span><code>rpm<span class="w"> </span>-qlp<span class="w"> </span>nombre_del_paquete.rpm
@@ -231,23 +235,20 @@ rpm<span class="w"> </span>-qip<span class="w"> </span>nombre_del_paquete.rpm
 
 <h2 id="conclusion">Conclusión<a class="headerlink" href="#conclusion" title="Permanent link">&para;</a></h2>
 <p>Dominar estas sencillas opciones del comando <code>rpm</code> te proporciona un control mucho mayor sobre los paquetes y archivos de tu sistema Linux, facilitando la administración y la depuración. Son herramientas esenciales para cualquier administrador de sistemas o desarrollador que trabaje con distribuciones basadas en RPM.</p>
-<p><em>Artículo original</em>: <a href="https://comulinux.blogspot.com/2010/04/como-ver-los-archivos-de-un-paquete-rpm.html">Cómo Ver los Archivos de un Paquete RPM o Deb</a></p>
-  </div>
+<p><em>Artículo original</em>: <a href="https://comulinux.blogspot.com/2010/04/como-ver-los-archivos-de-un-paquete-rpm.html">Cómo Ver los Archivos de un Paquete RPM o Deb</a></p></div>
   <div class="tag-cloud">
     <p>
-      <a href="https://pablocaro.es/tag/linux.html">linux</a>
+       <a href="https://pablocaro.es/tag/linux.html">linux</a>
       <a href="https://pablocaro.es/tag/rpm.html">rpm</a>
       <a href="https://pablocaro.es/tag/paquetes.html">paquetes</a>
       <a href="https://pablocaro.es/tag/comandos.html">comandos</a>
       <a href="https://pablocaro.es/tag/administracion.html">administración</a>
       <a href="https://pablocaro.es/tag/dnf.html">dnf</a>
       <a href="https://pablocaro.es/tag/yum.html">yum</a>
-    </p>
+     </p>
   </div>
 
-
-
-  <div class="neighbors">
+    <div class="neighbors">
     <a class="btn float-left" href="https://pablocaro.es/kooha-captura-pantalla-linux" title="Kooha: Captura de pantalla sencilla y elegante en Linux">
       <i class="fa fa-angle-left"></i> Artículo anterior
     </a>
@@ -255,21 +256,37 @@ rpm<span class="w"> </span>-qip<span class="w"> </span>nombre_del_paquete.rpm
       Próximo artículo <i class="fa fa-angle-right"></i>
     </a>
   </div>
-
-  <div class="related-posts">
+   <div class="related-posts">
     <h4>Te puede gustar</h4>
     <ul class="related-posts">
-      <li><a href="https://pablocaro.es/bloqueo-dns-aliexpress-nextdns">Bloqueo DNS de enlaces de AliExpress con NextDNS</a></li>
-      <li><a href="https://pablocaro.es/escaneo-doble-cara-brother-dcp-l3560cdw">Escaneo a doble cara con la Brother DCP-L3560CDW</a></li>
-      <li><a href="https://pablocaro.es/marksman-lsp-markdown">marksman: LSP para Markdown</a></li>
-      <li><a href="https://pablocaro.es/neofetch">neofetch</a></li>
-      <li><a href="https://pablocaro.es/os-click-central-descarga-isos">os.click: Central de descarga de ISOs de sistemas operativos</a></li>
+      <li>
+        <a href="https://pablocaro.es/bloqueo-dns-aliexpress-nextdns"
+          >Bloqueo DNS de enlaces de AliExpress con NextDNS</a
+        >
+      </li>
+      <li>
+        <a href="https://pablocaro.es/escaneo-doble-cara-brother-dcp-l3560cdw"
+          >Escaneo a doble cara con la Brother DCP-L3560CDW</a
+        >
+      </li>
+      <li>
+        <a href="https://pablocaro.es/marksman-lsp-markdown"
+          >marksman: LSP para Markdown</a
+        >
+      </li>
+      <li>
+        <a href="https://pablocaro.es/neofetch"
+          >neofetch</a
+        >
+      </li>
+      <li>
+        <a href="https://pablocaro.es/os-click-central-descarga-isos"
+          >os.click: Central de descarga de ISOs de sistemas operativos</a
+        >
+      </li>
     </ul>
   </div>
-
-
-
-<!-- Disqus -->
+  <!-- Disqus -->
 <div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'anotaciones';
@@ -283,7 +300,7 @@ rpm<span class="w"> </span>-qip<span class="w"> </span>nombre_del_paquete.rpm
     Por favor, habilita JavaScript para ver los comentarios.
 </noscript>
 <!-- End Disqus -->
-</article>
+ </article>
 
 <footer>
 <p>

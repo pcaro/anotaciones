@@ -56,12 +56,19 @@
 
 <meta name="author" content="Pablo Caro" />
 <meta name="description" content="Cómo usar rbw para exportar variables de entorno desde Bitwarden, útil para establecer API keys de forma segura sin almacenarlas en el disco." />
-<meta name="keywords" content="bitwarden, cli, entorno, productividad, seguridad">
+<meta name="keywords" content="bitwarden, cli, entorno, productividad, seguridad" />
 
-<link rel="alternate" href="https://pablocaro.es/rbw-env" hreflang="es" />
-<link rel="alternate" href="https://pablocaro.es/en/rbw-env" hreflang="en" />
-
-  <meta property="og:site_name" content="Anotaciones por Pablo Caro"/>
+<link
+  rel="alternate"
+  href="https://pablocaro.es/rbw-env"
+  hreflang="es"
+/>
+<link
+  rel="alternate"
+  href="https://pablocaro.es/en/rbw-env"
+  hreflang="en"
+/>
+    <meta property="og:site_name" content="Anotaciones por Pablo Caro"/>
   <meta property="og:title" content="rbw-env: Exportar variables de entorno desde Bitwarden"/>
   <meta property="og:description" content="Cómo usar rbw para exportar variables de entorno desde Bitwarden, útil para establecer API keys de forma segura sin almacenarlas en el disco."/>
   <meta property="og:locale" content="en_US"/>
@@ -77,7 +84,7 @@
   <meta property="article:tag" content="productividad"/>
   <meta property="article:tag" content="seguridad"/>
   <meta property="og:image" content="/theme/img/profile.png">
-
+ 
   <title>Anotaciones por Pablo Caro &ndash; rbw-env: Exportar variables de entorno desde Bitwarden</title>
 
 
@@ -180,20 +187,17 @@
 
 <article class="single">
   <header>
-          <div class="translations">
+      <div class="translations">
             <a href="https://pablocaro.es/en/rbw-env">Read in English</a>
     </div>
 
     <h1 id="rbw-env">rbw-env: Exportar variables de entorno desde Bitwarden</h1>
     <p>
-      Publicado el 26 de March de 2026 en <a href="https://pablocaro.es/category/herramientas.html">Herramientas</a>
-
-    </p>
+      Publicado el 26 de March de 2026 en <a href="https://pablocaro.es/category/herramientas.html">Herramientas</a>     </p>
   </header>
 
-
-  <div>
-    <p>Siguiendo con la saga de <a href="https://pablocaro.es/kitty-rbw-kitten">kitty-rbw</a>, hoy presento otro script del mismo proyecto: <strong>rbw-env</strong>.</p>
+ 
+  <div><p>Siguiendo con la saga de <a href="https://pablocaro.es/kitty-rbw-kitten">kitty-rbw</a>, hoy presento otro script del mismo proyecto: <strong>rbw-env</strong>.</p>
 <p><img alt="Selección de carpeta en rbw-env" src="https://pablocaro.es/images/rbw-env-example.png"></p>
 <h2 id="el-problema">El problema<a class="headerlink" href="#el-problema" title="Permanent link">&para;</a></h2>
 <p>Uso <strong>pi-agent</strong> con diferentes modelos de IA (Claude, OpenAI, Gemini...) y cada uno requiere su propia <code>API_KEY</code>. Mantener estas claves en el disco es un riesgo de seguridad, y tener que introducirlas cada vez es tedioso.</p>
@@ -230,21 +234,18 @@ kitty<span class="w"> </span>@<span class="w"> </span>kitten<span class="w"> </s
 </ul>
 <p>Si alguna entrada tiene usuario o nombre igual a <code>NOEXPORT</code>, se ignora (útil para notas).</p>
 <h2 id="integracion-con-kitty-rbw">Integración con kitty-rbw<a class="headerlink" href="#integracion-con-kitty-rbw" title="Permanent link">&para;</a></h2>
-<p>En la <a href="https://pablocaro.es/kitty-rbw-kitten">entrada anterior</a> explico cómo instalar kitty-rbw. Con <code>Ctrl+Alt+Shift+b</code> tengo el selector de carpetas para exportar las variables de entorno.</p>
-  </div>
+<p>En la <a href="https://pablocaro.es/kitty-rbw-kitten">entrada anterior</a> explico cómo instalar kitty-rbw. Con <code>Ctrl+Alt+Shift+b</code> tengo el selector de carpetas para exportar las variables de entorno.</p></div>
   <div class="tag-cloud">
     <p>
-      <a href="https://pablocaro.es/tag/bitwarden.html">bitwarden</a>
+       <a href="https://pablocaro.es/tag/bitwarden.html">bitwarden</a>
       <a href="https://pablocaro.es/tag/cli.html">cli</a>
       <a href="https://pablocaro.es/tag/entorno.html">entorno</a>
       <a href="https://pablocaro.es/tag/productividad.html">productividad</a>
       <a href="https://pablocaro.es/tag/seguridad.html">seguridad</a>
-    </p>
+     </p>
   </div>
 
-
-
-  <div class="neighbors">
+    <div class="neighbors">
     <a class="btn float-left" href="https://pablocaro.es/crit-review-loop-agents" title="Crit: El bucle de revisión para Agentes">
       <i class="fa fa-angle-left"></i> Artículo anterior
     </a>
@@ -252,21 +253,37 @@ kitty<span class="w"> </span>@<span class="w"> </span>kitten<span class="w"> </s
       Próximo artículo <i class="fa fa-angle-right"></i>
     </a>
   </div>
-
-  <div class="related-posts">
+   <div class="related-posts">
     <h4>Te puede gustar</h4>
     <ul class="related-posts">
-      <li><a href="https://pablocaro.es/kitty-rbw-kitten">kitty-rbw: Acceso rápido a Bitwarden desde tu terminal kitty</a></li>
-      <li><a href="https://pablocaro.es/rbw-bitwarden-cli">rbw: El cliente de Bitwarden para terminal que deberías usar</a></li>
-      <li><a href="https://pablocaro.es/rbw-sync-access-token">rbw sync: missing field `access_token`</a></li>
-      <li><a href="https://pablocaro.es/fresh-editor-terminal">`fresh`: Mi editor de terminal preferido para el día a día</a></li>
-      <li><a href="https://pablocaro.es/direnv-gestion-entornos">`direnv`: Gestiona tus entornos de desarrollo de forma inteligente</a></li>
+      <li>
+        <a href="https://pablocaro.es/kitty-rbw-kitten"
+          >kitty-rbw: Acceso rápido a Bitwarden desde tu terminal kitty</a
+        >
+      </li>
+      <li>
+        <a href="https://pablocaro.es/rbw-bitwarden-cli"
+          >rbw: El cliente de Bitwarden para terminal que deberías usar</a
+        >
+      </li>
+      <li>
+        <a href="https://pablocaro.es/rbw-sync-access-token"
+          >rbw sync: missing field `access_token`</a
+        >
+      </li>
+      <li>
+        <a href="https://pablocaro.es/fresh-editor-terminal"
+          >`fresh`: Mi editor de terminal preferido para el día a día</a
+        >
+      </li>
+      <li>
+        <a href="https://pablocaro.es/direnv-gestion-entornos"
+          >`direnv`: Gestiona tus entornos de desarrollo de forma inteligente</a
+        >
+      </li>
     </ul>
   </div>
-
-
-
-<!-- Disqus -->
+  <!-- Disqus -->
 <div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'anotaciones';
@@ -280,7 +297,7 @@ kitty<span class="w"> </span>@<span class="w"> </span>kitten<span class="w"> </s
     Por favor, habilita JavaScript para ver los comentarios.
 </noscript>
 <!-- End Disqus -->
-</article>
+ </article>
 
 <footer>
 <p>

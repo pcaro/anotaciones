@@ -56,12 +56,19 @@
 
 <meta name="author" content="Pablo Caro" />
 <meta name="description" content="How to install and configure rbw, a Rust implementation of the Bitwarden client, and how to integrate it into your workflows with pi-agent." />
-<meta name="keywords" content="bitwarden, cli, rust, seguridad, pi-agent">
+<meta name="keywords" content="bitwarden, cli, rust, seguridad, pi-agent" />
 
-<link rel="alternate" href="/en/rbw-bitwarden-cli" hreflang="en" />
-<link rel="alternate" href="/en/../rbw-bitwarden-cli" hreflang="es" />
-
-  <meta property="og:site_name" content="Annotations by Pablo Caro"/>
+<link
+  rel="alternate"
+  href="/en/rbw-bitwarden-cli"
+  hreflang="en"
+/>
+<link
+  rel="alternate"
+  href="/en/../rbw-bitwarden-cli"
+  hreflang="es"
+/>
+    <meta property="og:site_name" content="Annotations by Pablo Caro"/>
   <meta property="og:title" content="rbw: The Bitwarden terminal client you should be using"/>
   <meta property="og:description" content="How to install and configure rbw, a Rust implementation of the Bitwarden client, and how to integrate it into your workflows with pi-agent."/>
   <meta property="og:locale" content="en_US"/>
@@ -77,7 +84,7 @@
   <meta property="article:tag" content="seguridad"/>
   <meta property="article:tag" content="pi-agent"/>
   <meta property="og:image" content="/theme/img/profile.png">
-
+ 
   <title>Annotations by Pablo Caro &ndash; rbw: The Bitwarden terminal client you should be using</title>
 
 
@@ -180,20 +187,17 @@
 
 <article class="single">
   <header>
-          <div class="translations">
+      <div class="translations">
             <a href="/en/../rbw-bitwarden-cli">Leer en español</a>
     </div>
 
     <h1 id="rbw-bitwarden-cli">rbw: The Bitwarden terminal client you should be using</h1>
     <p>
-      Posted on Thu, 26 Feb 2026 in <a href="/en/category/herramientas.html">Herramientas</a>
-
-    </p>
+      Posted on Thu, 26 Feb 2026 in <a href="/en/category/herramientas.html">Herramientas</a>     </p>
   </header>
 
-
-  <div>
-    <p>While Bitwarden has an official command-line client, it can be slow as it is Node.js-based. For those of us looking for something more agile, <a href="https://github.com/doy/rbw">rbw</a> is the ideal solution. It is an unofficial Rust implementation that stands out for being extremely fast and for managing vault unlocking through an agent, preventing you from having to enter your master password for every command.</p>
+ 
+  <div><p>While Bitwarden has an official command-line client, it can be slow as it is Node.js-based. For those of us looking for something more agile, <a href="https://github.com/doy/rbw">rbw</a> is the ideal solution. It is an unofficial Rust implementation that stands out for being extremely fast and for managing vault unlocking through an agent, preventing you from having to enter your master password for every command.</p>
 <h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h2>
 <p>The easiest way to install it is by downloading the binary directly from its GitHub releases. I use <code>gah</code> for this purpose:</p>
 <div class="highlight"><pre><span></span><code>gah<span class="w"> </span>install<span class="w"> </span>doy/rbw
@@ -231,21 +235,18 @@ rbw<span class="w"> </span>get<span class="w"> </span>--username<span class="w">
 </code></pre></div>
 
 <p>The <code>!</code> prefix tells <code>pi-agent</code> to execute the command and use its standard output as the key. Thanks to the <code>rbw</code> agent, this command will run instantly without asking for your master password every time, as long as the vault is unlocked.</p>
-<p><img alt="rbw help" src="/en/images/rbw_help.png"></p>
-  </div>
+<p><img alt="rbw help" src="/en/images/rbw_help.png"></p></div>
   <div class="tag-cloud">
     <p>
-      <a href="/en/tag/bitwarden.html">bitwarden</a>
+       <a href="/en/tag/bitwarden.html">bitwarden</a>
       <a href="/en/tag/cli.html">cli</a>
       <a href="/en/tag/rust.html">rust</a>
       <a href="/en/tag/seguridad.html">seguridad</a>
       <a href="/en/tag/pi-agent.html">pi-agent</a>
-    </p>
+     </p>
   </div>
 
-
-
-  <div class="neighbors">
+    <div class="neighbors">
     <a class="btn float-left" href="/en/deepdiff-comparar-datos-python" title="DeepDiff: The Swiss Army Knife for Data Comparison in Python">
       <i class="fa fa-angle-left"></i> Previous Post
     </a>
@@ -253,21 +254,37 @@ rbw<span class="w"> </span>get<span class="w"> </span>--username<span class="w">
       Next Post <i class="fa fa-angle-right"></i>
     </a>
   </div>
-
-  <div class="related-posts">
+   <div class="related-posts">
     <h4>You might enjoy</h4>
     <ul class="related-posts">
-      <li><a href="/en/rbw-env">rbw-env: Export environment variables from Bitwarden</a></li>
-      <li><a href="/en/kitty-rbw-kitten">kitty-rbw: Fast Bitwarden access from your kitty terminal</a></li>
-      <li><a href="/en/rbw-sync-access-token">rbw sync: missing field `access_token`</a></li>
-      <li><a href="/en/sem-semantic-version-control">sem: Semantic Version Control</a></li>
-      <li><a href="/en/broot-una-forma-diferente-de-navegar-directorios">broot, a different way to navigate your directories</a></li>
+      <li>
+        <a href="/en/rbw-env"
+          >rbw-env: Export environment variables from Bitwarden</a
+        >
+      </li>
+      <li>
+        <a href="/en/kitty-rbw-kitten"
+          >kitty-rbw: Fast Bitwarden access from your kitty terminal</a
+        >
+      </li>
+      <li>
+        <a href="/en/rbw-sync-access-token"
+          >rbw sync: missing field `access_token`</a
+        >
+      </li>
+      <li>
+        <a href="/en/sem-semantic-version-control"
+          >sem: Semantic Version Control</a
+        >
+      </li>
+      <li>
+        <a href="/en/broot-una-forma-diferente-de-navegar-directorios"
+          >broot, a different way to navigate your directories</a
+        >
+      </li>
     </ul>
   </div>
-
-
-
-<!-- Disqus -->
+  <!-- Disqus -->
 <div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'anotaciones';
@@ -281,7 +298,7 @@ rbw<span class="w"> </span>get<span class="w"> </span>--username<span class="w">
     Please enable JavaScript to view comments.
 </noscript>
 <!-- End Disqus -->
-</article>
+ </article>
 
 <footer>
 <p>

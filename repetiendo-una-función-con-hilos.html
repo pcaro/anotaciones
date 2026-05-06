@@ -56,12 +56,19 @@
 
 <meta name="author" content="Pablo Caro" />
 <meta name="description" content="Vamos a utilizar hilos en python para ejecutar periodicamente una función" />
-<meta name="keywords" content="">
+<meta name="keywords" content="" />
 
-<link rel="alternate" href="https://pablocaro.es/repetiendo-una-función-con-hilos" hreflang="es" />
-<link rel="alternate" href="https://pablocaro.es/en/repetiendo-una-función-con-hilos" hreflang="en" />
-
-  <meta property="og:site_name" content="Anotaciones por Pablo Caro"/>
+<link
+  rel="alternate"
+  href="https://pablocaro.es/repetiendo-una-función-con-hilos"
+  hreflang="es"
+/>
+<link
+  rel="alternate"
+  href="https://pablocaro.es/en/repetiendo-una-función-con-hilos"
+  hreflang="en"
+/>
+    <meta property="og:site_name" content="Anotaciones por Pablo Caro"/>
   <meta property="og:title" content="Repitiendo una función con hilos"/>
   <meta property="og:description" content="Vamos a utilizar hilos en python para ejecutar periodicamente una función"/>
   <meta property="og:locale" content="en_US"/>
@@ -72,7 +79,7 @@
   <meta property="article:author" content="https://pablocaro.es/author/pablo-caro.html">
   <meta property="article:section" content="Programación"/>
   <meta property="og:image" content="/theme/img/profile.png">
-
+ 
   <title>Anotaciones por Pablo Caro &ndash; Repitiendo una función con hilos</title>
 
 
@@ -175,20 +182,17 @@
 
 <article class="single">
   <header>
-          <div class="translations">
+      <div class="translations">
             <a href="https://pablocaro.es/en/repetiendo-una-función-con-hilos">Read in English</a>
     </div>
 
     <h1 id="repetiendo-una-función-con-hilos">Repitiendo una función con hilos</h1>
     <p>
-      Publicado el 03 de May de 2015 en <a href="https://pablocaro.es/category/programacion.html">Programación</a>
-
-    </p>
+      Publicado el 03 de May de 2015 en <a href="https://pablocaro.es/category/programacion.html">Programación</a>     </p>
   </header>
 
-
-  <div>
-    <p>Tengo un servicio (con <a class="reference external" href="https://github.com/jnrbsn/daemonocle">daemonocle</a>  del que ya hablaré otro día) corriendo todo el tiempo en una <a class="reference external" href="http://www.hardkernel.com/main/products/prdt_info.php">odroid c1</a>.
+ 
+  <div><p>Tengo un servicio (con <a class="reference external" href="https://github.com/jnrbsn/daemonocle">daemonocle</a>  del que ya hablaré otro día) corriendo todo el tiempo en una <a class="reference external" href="http://www.hardkernel.com/main/products/prdt_info.php">odroid c1</a>.
 Consideré que era mejor controlar con hilos unas tareas periódicas que tengo que repetir (que ya estaba usando)
 en lugar de la típica entrada en cron.</p>
 <p>Así puedo contrar mejor el funcionamiento de las mismas. Las ventajas para mí en este caso y para estas tareas concretas:</p>
@@ -239,16 +243,13 @@ en lugar de la típica entrada en cron.</p>
 <p>Deciros que paro estos hilos y limpio recursos en el evento de callback para shutdown que es de lo mejor de <code>daemonocle</code>.
 Ya sabéis que python no es capaz de paralelizar del todo los hilos debido a al GIL, pero para tareas simples como estas con muy poca carga
 es simple y funciona a la perfección.</p>
-
-  </div>
+</div>
   <div class="tag-cloud">
     <p>
     </p>
   </div>
 
-
-
-  <div class="neighbors">
+    <div class="neighbors">
     <a class="btn float-left" href="https://pablocaro.es/instalar-insync-en-opensuse" title="Instalar InSync en Opensuse">
       <i class="fa fa-angle-left"></i> Artículo anterior
     </a>
@@ -256,11 +257,7 @@ es simple y funciona a la perfección.</p>
       Próximo artículo <i class="fa fa-angle-right"></i>
     </a>
   </div>
-
-
-
-
-<!-- Disqus -->
+   <!-- Disqus -->
 <div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'anotaciones';
@@ -274,7 +271,7 @@ es simple y funciona a la perfección.</p>
     Por favor, habilita JavaScript para ver los comentarios.
 </noscript>
 <!-- End Disqus -->
-</article>
+ </article>
 
 <footer>
 <p>

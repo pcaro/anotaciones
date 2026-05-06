@@ -56,10 +56,9 @@
 
 <meta name="author" content="Pablo Caro" />
 <meta name="description" content="If you use Windows (or WSL), Git has been silently converting your line endings. One command fixes it." />
-<meta name="keywords" content="git, windows, wsl, line endings">
+<meta name="keywords" content="git, windows, wsl, line endings" />
 
-
-  <meta property="og:site_name" content="Annotations by Pablo Caro"/>
+   <meta property="og:site_name" content="Annotations by Pablo Caro"/>
   <meta property="og:title" content="Disable git autocrlf"/>
   <meta property="og:description" content="If you use Windows (or WSL), Git has been silently converting your line endings. One command fixes it."/>
   <meta property="og:locale" content="en_US"/>
@@ -74,7 +73,7 @@
   <meta property="article:tag" content="wsl"/>
   <meta property="article:tag" content="line endings"/>
   <meta property="og:image" content="/theme/img/profile.png">
-
+ 
   <title>Annotations by Pablo Caro &ndash; Disable git autocrlf</title>
 
 
@@ -177,17 +176,14 @@
 
 <article class="single">
   <header>
-      
+  
     <h1 id="disable-git-autocrlf">Disable git autocrlf</h1>
     <p>
-      Posted on Tue, 21 Apr 2026 in <a href="/en/category/programacion.html">Programación</a>
-
-    </p>
+      Posted on Tue, 21 Apr 2026 in <a href="/en/category/programacion.html">Programación</a>     </p>
   </header>
 
-
-  <div>
-    <p>I'm not a regular Windows user, but if I were forced to use it for a while, WSL would be almost mandatory. Good to have this note handy (by Ryan Harrison).</p>
+ 
+  <div><p>I'm not a regular Windows user, but if I were forced to use it for a while, WSL would be almost mandatory. Good to have this note handy (by Ryan Harrison).</p>
 <p>If you're on Windows, Git has been silently messing with your line endings since the day you installed it. The culprit is <code>core.autocrlf</code>, enabled by default.</p>
 <div class="highlight"><pre><span></span><code>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>core.autocrlf<span class="w"> </span><span class="nb">false</span>
 </code></pre></div>
@@ -213,20 +209,17 @@
 
 <p>From then on, Git leaves your line endings exactly as they are — no silent conversions. For teams, a <code>.gitattributes</code> file in the repository is a much better approach, since it applies the same rules for everyone regardless of their local config.</p>
 <p>Use <code>LF</code> everywhere, configure your editor to save with <code>LF</code> by default. Don't think about it again (until you change machines).</p>
-<p><em>Original source</em>: <a href="https://ryanharrison.co.uk/2026/04/21/git-disable-autocrlf.html">Git - Disable autocrlf (Ryan Harrison)</a></p>
-  </div>
+<p><em>Original source</em>: <a href="https://ryanharrison.co.uk/2026/04/21/git-disable-autocrlf.html">Git - Disable autocrlf (Ryan Harrison)</a></p></div>
   <div class="tag-cloud">
     <p>
-      <a href="/en/tag/git.html">git</a>
+       <a href="/en/tag/git.html">git</a>
       <a href="/en/tag/windows.html">windows</a>
       <a href="/en/tag/wsl.html">wsl</a>
       <a href="/en/tag/line-endings.html">line endings</a>
-    </p>
+     </p>
   </div>
 
-
-
-  <div class="neighbors">
+    <div class="neighbors">
     <a class="btn float-left" href="/en/installing-github-skills" title="Installing GitHub Skills">
       <i class="fa fa-angle-left"></i> Previous Post
     </a>
@@ -234,20 +227,32 @@
       Next Post <i class="fa fa-angle-right"></i>
     </a>
   </div>
-
-  <div class="related-posts">
+   <div class="related-posts">
     <h4>You might enjoy</h4>
     <ul class="related-posts">
-      <li><a href="/en/como-uso-git-worktrees">How I Use Git Worktrees for Concurrent Work</a></li>
-      <li><a href="/en/winhance-windows-debloater">Winhance: clean and optimize Windows without reinstalling</a></li>
-      <li><a href="/en/rufus-instalar-windows-limpio">Rufus, the best way to install a clean Windows</a></li>
-      <li><a href="/en/os-click-central-descarga-isos">os.click: Operating System ISO Download Center</a></li>
+      <li>
+        <a href="/en/como-uso-git-worktrees"
+          >How I Use Git Worktrees for Concurrent Work</a
+        >
+      </li>
+      <li>
+        <a href="/en/winhance-windows-debloater"
+          >Winhance: clean and optimize Windows without reinstalling</a
+        >
+      </li>
+      <li>
+        <a href="/en/rufus-instalar-windows-limpio"
+          >Rufus, the best way to install a clean Windows</a
+        >
+      </li>
+      <li>
+        <a href="/en/os-click-central-descarga-isos"
+          >os.click: Operating System ISO Download Center</a
+        >
+      </li>
     </ul>
   </div>
-
-
-
-<!-- Disqus -->
+  <!-- Disqus -->
 <div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'anotaciones';
@@ -261,7 +266,7 @@
     Please enable JavaScript to view comments.
 </noscript>
 <!-- End Disqus -->
-</article>
+ </article>
 
 <footer>
 <p>

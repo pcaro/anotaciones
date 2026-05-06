@@ -56,12 +56,19 @@
 
 <meta name="author" content="Pablo Caro" />
 <meta name="description" content="If you work with Kubernetes, you&#39;ve probably suffered through the kubectl logs command. It&#39;s useful for viewing the logs of a specific pod, but it falls short when you have multiple replicas of a service or when pods restart and change names. This is where Stern comes in. Stern allows …" />
-<meta name="keywords" content="kubernetes, cli, logs, herramientas">
+<meta name="keywords" content="kubernetes, cli, logs, herramientas" />
 
-<link rel="alternate" href="/en/stern-kubernetes-logs" hreflang="en" />
-<link rel="alternate" href="/en/../stern-kubernetes-logs" hreflang="es" />
-
-  <meta property="og:site_name" content="Annotations by Pablo Caro"/>
+<link
+  rel="alternate"
+  href="/en/stern-kubernetes-logs"
+  hreflang="en"
+/>
+<link
+  rel="alternate"
+  href="/en/../stern-kubernetes-logs"
+  hreflang="es"
+/>
+    <meta property="og:site_name" content="Annotations by Pablo Caro"/>
   <meta property="og:title" content="Stern: Kubernetes Logs on Steroids"/>
   <meta property="og:description" content="If you work with Kubernetes, you&#39;ve probably suffered through the kubectl logs command. It&#39;s useful for viewing the logs of a specific pod, but it falls short when you have multiple replicas of a service or when pods restart and change names. This is where Stern comes in. Stern allows …"/>
   <meta property="og:locale" content="en_US"/>
@@ -76,7 +83,7 @@
   <meta property="article:tag" content="logs"/>
   <meta property="article:tag" content="herramientas"/>
   <meta property="og:image" content="/theme/img/profile.png">
-
+ 
   <title>Annotations by Pablo Caro &ndash; Stern: Kubernetes Logs on Steroids</title>
 
 
@@ -179,20 +186,17 @@
 
 <article class="single">
   <header>
-          <div class="translations">
+      <div class="translations">
             <a href="/en/../stern-kubernetes-logs">Leer en español</a>
     </div>
 
     <h1 id="stern-kubernetes-logs">Stern: Kubernetes Logs on Steroids</h1>
     <p>
-      Posted on Fri, 20 Feb 2026 in <a href="/en/category/infraestructura.html">Infraestructura</a>
-
-    </p>
+      Posted on Fri, 20 Feb 2026 in <a href="/en/category/infraestructura.html">Infraestructura</a>     </p>
   </header>
 
-
-  <div>
-    <p>If you work with Kubernetes, you've probably suffered through the <code>kubectl logs</code> command. It's useful for viewing the logs of a specific pod, but it falls short when you have multiple replicas of a service or when pods restart and change names.</p>
+ 
+  <div><p>If you work with Kubernetes, you've probably suffered through the <code>kubectl logs</code> command. It's useful for viewing the logs of a specific pod, but it falls short when you have multiple replicas of a service or when pods restart and change names.</p>
 <p>This is where <strong><a href="https://github.com/stern/stern">Stern</a></strong> comes in.</p>
 <p>Stern allows you to "tail" logs from multiple pods and containers within Kubernetes simultaneously. Best of all, it uses regular expressions to select pods, so you don't need to copy and paste those random IDs (<code>pod-1234567890-abcde</code>).</p>
 <h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h2>
@@ -240,20 +244,17 @@ stern<span class="w"> </span>backend<span class="w"> </span>-e<span class="w"> <
 <h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">&para;</a></h2>
 <p>Stern is one of those tools you install on day one and wonder how you ever lived without it. It makes debugging in distributed environments much less painful by aggregating information coherently.</p>
 <p>Give it a try and your debugging sessions will thank you.</p>
-<p><img alt="stern help" src="/en/images/stern_help.png"></p>
-  </div>
+<p><img alt="stern help" src="/en/images/stern_help.png"></p></div>
   <div class="tag-cloud">
     <p>
-      <a href="/en/tag/kubernetes.html">kubernetes</a>
+       <a href="/en/tag/kubernetes.html">kubernetes</a>
       <a href="/en/tag/cli.html">cli</a>
       <a href="/en/tag/logs.html">logs</a>
       <a href="/en/tag/herramientas.html">herramientas</a>
-    </p>
+     </p>
   </div>
 
-
-
-  <div class="neighbors">
+    <div class="neighbors">
     <a class="btn float-left" href="/en/gestionando-instalaciones-desde-github-con-gah" title="Managing GitHub installations with gah">
       <i class="fa fa-angle-left"></i> Previous Post
     </a>
@@ -261,21 +262,37 @@ stern<span class="w"> </span>backend<span class="w"> </span>-e<span class="w"> <
       Next Post <i class="fa fa-angle-right"></i>
     </a>
   </div>
-
-  <div class="related-posts">
+   <div class="related-posts">
     <h4>You might enjoy</h4>
     <ul class="related-posts">
-      <li><a href="/en/extensiones-subagentes-pi">Pi subagent extensions: TintinWeb, NicoBailon and Taskplane</a></li>
-      <li><a href="/en/sem-semantic-version-control">sem: Semantic Version Control</a></li>
-      <li><a href="/en/deepdiff-comparar-datos-python">DeepDiff: The Swiss Army Knife for Data Comparison in Python</a></li>
-      <li><a href="/en/renderizando-markdown-en-la-terminal-con-glow">Rendering Markdown in the terminal with Glow</a></li>
-      <li><a href="/en/shot-scraper-capturas-pantalla-automatizadas">Shot-scraper: Automated Web Screenshots</a></li>
+      <li>
+        <a href="/en/extensiones-subagentes-pi"
+          >Pi subagent extensions: TintinWeb, NicoBailon and Taskplane</a
+        >
+      </li>
+      <li>
+        <a href="/en/sem-semantic-version-control"
+          >sem: Semantic Version Control</a
+        >
+      </li>
+      <li>
+        <a href="/en/deepdiff-comparar-datos-python"
+          >DeepDiff: The Swiss Army Knife for Data Comparison in Python</a
+        >
+      </li>
+      <li>
+        <a href="/en/renderizando-markdown-en-la-terminal-con-glow"
+          >Rendering Markdown in the terminal with Glow</a
+        >
+      </li>
+      <li>
+        <a href="/en/shot-scraper-capturas-pantalla-automatizadas"
+          >Shot-scraper: Automated Web Screenshots</a
+        >
+      </li>
     </ul>
   </div>
-
-
-
-<!-- Disqus -->
+  <!-- Disqus -->
 <div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'anotaciones';
@@ -289,7 +306,7 @@ stern<span class="w"> </span>backend<span class="w"> </span>-e<span class="w"> <
     Please enable JavaScript to view comments.
 </noscript>
 <!-- End Disqus -->
-</article>
+ </article>
 
 <footer>
 <p>

@@ -56,12 +56,19 @@
 
 <meta name="author" content="Pablo Caro" />
 <meta name="description" content="Para obligar que una vista django sea llamada sólo mediante llamamas AJAX. def ajax_required(f): &#34;&#34;&#34; AJAX request required decorator use it in your views: @ajax_required def my_view(request): .... &#34;&#34;&#34; def wrap(request, *args, **kwargs): if not request.is_ajax(): return HttpResponseBadRequest() return f(request, *args, **kwargs) wrap.__doc__ = f.__doc__ wrap.__name__ …" />
-<meta name="keywords" content="django">
+<meta name="keywords" content="django" />
 
-<link rel="alternate" href="https://pablocaro.es/decorador-vista-ajax" hreflang="es" />
-<link rel="alternate" href="https://pablocaro.es/en/decorador-vista-ajax" hreflang="en" />
-
-  <meta property="og:site_name" content="Anotaciones por Pablo Caro"/>
+<link
+  rel="alternate"
+  href="https://pablocaro.es/decorador-vista-ajax"
+  hreflang="es"
+/>
+<link
+  rel="alternate"
+  href="https://pablocaro.es/en/decorador-vista-ajax"
+  hreflang="en"
+/>
+    <meta property="og:site_name" content="Anotaciones por Pablo Caro"/>
   <meta property="og:title" content="Decorador vista ajax"/>
   <meta property="og:description" content="Para obligar que una vista django sea llamada sólo mediante llamamas AJAX. def ajax_required(f): &#34;&#34;&#34; AJAX request required decorator use it in your views: @ajax_required def my_view(request): .... &#34;&#34;&#34; def wrap(request, *args, **kwargs): if not request.is_ajax(): return HttpResponseBadRequest() return f(request, *args, **kwargs) wrap.__doc__ = f.__doc__ wrap.__name__ …"/>
   <meta property="og:locale" content="en_US"/>
@@ -73,7 +80,7 @@
   <meta property="article:section" content="Programación"/>
   <meta property="article:tag" content="django"/>
   <meta property="og:image" content="/theme/img/profile.png">
-
+ 
   <title>Anotaciones por Pablo Caro &ndash; Decorador vista ajax</title>
 
 
@@ -176,20 +183,17 @@
 
 <article class="single">
   <header>
-          <div class="translations">
+      <div class="translations">
             <a href="https://pablocaro.es/en/decorador-vista-ajax">Read in English</a>
     </div>
 
     <h1 id="decorador-vista-ajax">Decorador vista ajax</h1>
     <p>
-      Publicado el 21 de November de 2014 en <a href="https://pablocaro.es/category/programacion.html">Programación</a>
-
-    </p>
+      Publicado el 21 de November de 2014 en <a href="https://pablocaro.es/category/programacion.html">Programación</a>     </p>
   </header>
 
-
-  <div>
-    <p>Para obligar que una vista <a class="reference external" href="https://www.djangoproject.com/">django</a> sea llamada sólo mediante llamamas AJAX.</p>
+ 
+  <div><p>Para obligar que una vista <a class="reference external" href="https://www.djangoproject.com/">django</a> sea llamada sólo mediante llamamas AJAX.</p>
 <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">ajax_required</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    AJAX request required decorator</span>
@@ -215,17 +219,14 @@
     <span class="o">...</span>
     <span class="k">return</span> <span class="n">JsonResponse</span><span class="p">({</span><span class="s1">&#39;result&#39;</span><span class="p">:</span> <span class="s1">&#39;ok&#39;</span><span class="p">})</span>
 </pre></div>
-
-  </div>
+</div>
   <div class="tag-cloud">
     <p>
-      <a href="https://pablocaro.es/tag/django.html">django</a>
-    </p>
+       <a href="https://pablocaro.es/tag/django.html">django</a>
+     </p>
   </div>
 
-
-
-  <div class="neighbors">
+    <div class="neighbors">
     <a class="btn float-left" href="https://pablocaro.es/funcion-generica-para-usar-como-upload_to" title="Función genérica para usar como upload_to">
       <i class="fa fa-angle-left"></i> Artículo anterior
     </a>
@@ -233,20 +234,32 @@
       Próximo artículo <i class="fa fa-angle-right"></i>
     </a>
   </div>
-
-  <div class="related-posts">
+   <div class="related-posts">
     <h4>Te puede gustar</h4>
     <ul class="related-posts">
-      <li><a href="https://pablocaro.es/instalar-insync-en-opensuse">Instalar InSync en Opensuse</a></li>
-      <li><a href="https://pablocaro.es/funcion-generica-para-usar-como-upload_to">Función genérica para usar como upload_to</a></li>
-      <li><a href="https://pablocaro.es/enlaces-en-listado-de-objectos">Django: enlaces en listado de objectos</a></li>
-      <li><a href="https://pablocaro.es/settings-vars-processor">Settings vars processor</a></li>
+      <li>
+        <a href="https://pablocaro.es/instalar-insync-en-opensuse"
+          >Instalar InSync en Opensuse</a
+        >
+      </li>
+      <li>
+        <a href="https://pablocaro.es/funcion-generica-para-usar-como-upload_to"
+          >Función genérica para usar como upload_to</a
+        >
+      </li>
+      <li>
+        <a href="https://pablocaro.es/enlaces-en-listado-de-objectos"
+          >Django: enlaces en listado de objectos</a
+        >
+      </li>
+      <li>
+        <a href="https://pablocaro.es/settings-vars-processor"
+          >Settings vars processor</a
+        >
+      </li>
     </ul>
   </div>
-
-
-
-<!-- Disqus -->
+  <!-- Disqus -->
 <div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'anotaciones';
@@ -260,7 +273,7 @@
     Por favor, habilita JavaScript para ver los comentarios.
 </noscript>
 <!-- End Disqus -->
-</article>
+ </article>
 
 <footer>
 <p>

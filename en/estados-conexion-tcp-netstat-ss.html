@@ -56,12 +56,19 @@
 
 <meta name="author" content="Pablo Caro" />
 <meta name="description" content="Understand the different TCP connection states reported by netstat and ss, from establishment to termination, for better network diagnosis." />
-<meta name="keywords" content="linux, tcp, netstat, ss">
+<meta name="keywords" content="linux, tcp, netstat, ss" />
 
-<link rel="alternate" href="/en/estados-conexion-tcp-netstat-ss" hreflang="en" />
-<link rel="alternate" href="/en/../estados-conexion-tcp-netstat-ss" hreflang="es" />
-
-  <meta property="og:site_name" content="Annotations by Pablo Caro"/>
+<link
+  rel="alternate"
+  href="/en/estados-conexion-tcp-netstat-ss"
+  hreflang="en"
+/>
+<link
+  rel="alternate"
+  href="/en/../estados-conexion-tcp-netstat-ss"
+  hreflang="es"
+/>
+    <meta property="og:site_name" content="Annotations by Pablo Caro"/>
   <meta property="og:title" content="TCP Connection States in GNU/Linux: netstat and ss"/>
   <meta property="og:description" content="Understand the different TCP connection states reported by netstat and ss, from establishment to termination, for better network diagnosis."/>
   <meta property="og:locale" content="en_US"/>
@@ -76,7 +83,7 @@
   <meta property="article:tag" content="netstat"/>
   <meta property="article:tag" content="ss"/>
   <meta property="og:image" content="/theme/img/profile.png">
-
+ 
   <title>Annotations by Pablo Caro &ndash; TCP Connection States in GNU/Linux: netstat and ss</title>
 
 
@@ -179,20 +186,17 @@
 
 <article class="single">
   <header>
-          <div class="translations">
+      <div class="translations">
             <a href="/en/../estados-conexion-tcp-netstat-ss">Leer en español</a>
     </div>
 
     <h1 id="estados-conexion-tcp-netstat-ss">TCP Connection States in GNU/Linux: netstat and ss</h1>
     <p>
-      Posted on Thu, 25 Dec 2025 in <a href="/en/category/infraestructura.html">Infraestructura</a>
-
-    </p>
+      Posted on Thu, 25 Dec 2025 in <a href="/en/category/infraestructura.html">Infraestructura</a>     </p>
   </header>
 
-
-  <div>
-    <p>In the GNU/Linux world, tools like <code>netstat</code> and <code>ss</code> are indispensable for monitoring and diagnosing the state of network connections on our systems. To correctly interpret their output, it is fundamental to understand the different states a TCP connection goes through. This post explores those states, from establishment to termination of a connection.</p>
+ 
+  <div><p>In the GNU/Linux world, tools like <code>netstat</code> and <code>ss</code> are indispensable for monitoring and diagnosing the state of network connections on our systems. To correctly interpret their output, it is fundamental to understand the different states a TCP connection goes through. This post explores those states, from establishment to termination of a connection.</p>
 <h2 id="phases-of-a-tcp-connection">Phases of a TCP Connection<a class="headerlink" href="#phases-of-a-tcp-connection" title="Permanent link">&para;</a></h2>
 <p>A TCP connection is managed through three main phases:</p>
 <ol>
@@ -226,20 +230,17 @@ ss<span class="w"> </span>-tn<span class="w">        </span><span class="c1"># M
 <p>The <code>-t</code> option filters for TCP connections and <code>-n</code> avoids name resolution, which speeds up the output and shows IPs directly.</p>
 <h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">&para;</a></h2>
 <p>Understanding TCP connection states is vital for diagnosing network issues, identifying unresponsive or stuck processes, and understanding how applications behave in terms of connectivity. Knowing what each state means allows you to debug problems more effectively on your GNU/Linux system.</p>
-<p><em>Original article</em>: <a href="https://www.ochobitshacenunbyte.com/2020/11/07/tipos-de-conexiones-en-netstat-y-ss-explicadas/">Tipos de Conexiones en netstat y ss Explicadas</a></p>
-  </div>
+<p><em>Original article</em>: <a href="https://www.ochobitshacenunbyte.com/2020/11/07/tipos-de-conexiones-en-netstat-y-ss-explicadas/">Tipos de Conexiones en netstat y ss Explicadas</a></p></div>
   <div class="tag-cloud">
     <p>
-      <a href="/en/tag/linux.html">linux</a>
+       <a href="/en/tag/linux.html">linux</a>
       <a href="/en/tag/tcp.html">tcp</a>
       <a href="/en/tag/netstat.html">netstat</a>
       <a href="/en/tag/ss.html">ss</a>
-    </p>
+     </p>
   </div>
 
-
-
-  <div class="neighbors">
+    <div class="neighbors">
     <a class="btn float-left" href="/en/reduce-ruido-logs-python" title="Reduce Noise in Your Python Logs: A Smart Approach">
       <i class="fa fa-angle-left"></i> Previous Post
     </a>
@@ -247,21 +248,37 @@ ss<span class="w"> </span>-tn<span class="w">        </span><span class="c1"># M
       Next Post <i class="fa fa-angle-right"></i>
     </a>
   </div>
-
-  <div class="related-posts">
+   <div class="related-posts">
     <h4>You might enjoy</h4>
     <ul class="related-posts">
-      <li><a href="/en/bloqueo-dns-aliexpress-nextdns">DNS blocking of AliExpress links with NextDNS</a></li>
-      <li><a href="/en/escaneo-doble-cara-brother-dcp-l3560cdw">Double-sided scanning with the Brother DCP-L3560CDW</a></li>
-      <li><a href="/en/marksman-lsp-markdown">marksman: Markdown LSP</a></li>
-      <li><a href="/en/neofetch">neofetch</a></li>
-      <li><a href="/en/os-click-central-descarga-isos">os.click: Operating System ISO Download Center</a></li>
+      <li>
+        <a href="/en/bloqueo-dns-aliexpress-nextdns"
+          >DNS blocking of AliExpress links with NextDNS</a
+        >
+      </li>
+      <li>
+        <a href="/en/escaneo-doble-cara-brother-dcp-l3560cdw"
+          >Double-sided scanning with the Brother DCP-L3560CDW</a
+        >
+      </li>
+      <li>
+        <a href="/en/marksman-lsp-markdown"
+          >marksman: Markdown LSP</a
+        >
+      </li>
+      <li>
+        <a href="/en/neofetch"
+          >neofetch</a
+        >
+      </li>
+      <li>
+        <a href="/en/os-click-central-descarga-isos"
+          >os.click: Operating System ISO Download Center</a
+        >
+      </li>
     </ul>
   </div>
-
-
-
-<!-- Disqus -->
+  <!-- Disqus -->
 <div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'anotaciones';
@@ -275,7 +292,7 @@ ss<span class="w"> </span>-tn<span class="w">        </span><span class="c1"># M
     Please enable JavaScript to view comments.
 </noscript>
 <!-- End Disqus -->
-</article>
+ </article>
 
 <footer>
 <p>

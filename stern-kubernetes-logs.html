@@ -56,12 +56,19 @@
 
 <meta name="author" content="Pablo Caro" />
 <meta name="description" content="Si trabajas con Kubernetes, probablemente hayas sufrido el comando kubectl logs. Es útil para ver los logs de un pod específico, pero se queda corto cuando tienes múltiples réplicas de un servicio o cuando los pods se reinician y cambian de nombre. Aquí es donde entra Stern. Stern te permite …" />
-<meta name="keywords" content="kubernetes, cli, logs, herramientas">
+<meta name="keywords" content="kubernetes, cli, logs, herramientas" />
 
-<link rel="alternate" href="https://pablocaro.es/stern-kubernetes-logs" hreflang="es" />
-<link rel="alternate" href="https://pablocaro.es/en/stern-kubernetes-logs" hreflang="en" />
-
-  <meta property="og:site_name" content="Anotaciones por Pablo Caro"/>
+<link
+  rel="alternate"
+  href="https://pablocaro.es/stern-kubernetes-logs"
+  hreflang="es"
+/>
+<link
+  rel="alternate"
+  href="https://pablocaro.es/en/stern-kubernetes-logs"
+  hreflang="en"
+/>
+    <meta property="og:site_name" content="Anotaciones por Pablo Caro"/>
   <meta property="og:title" content="Stern: Logs de Kubernetes con esteroides"/>
   <meta property="og:description" content="Si trabajas con Kubernetes, probablemente hayas sufrido el comando kubectl logs. Es útil para ver los logs de un pod específico, pero se queda corto cuando tienes múltiples réplicas de un servicio o cuando los pods se reinician y cambian de nombre. Aquí es donde entra Stern. Stern te permite …"/>
   <meta property="og:locale" content="en_US"/>
@@ -76,7 +83,7 @@
   <meta property="article:tag" content="logs"/>
   <meta property="article:tag" content="herramientas"/>
   <meta property="og:image" content="/theme/img/profile.png">
-
+ 
   <title>Anotaciones por Pablo Caro &ndash; Stern: Logs de Kubernetes con esteroides</title>
 
 
@@ -179,20 +186,17 @@
 
 <article class="single">
   <header>
-          <div class="translations">
+      <div class="translations">
             <a href="https://pablocaro.es/en/stern-kubernetes-logs">Read in English</a>
     </div>
 
     <h1 id="stern-kubernetes-logs">Stern: Logs de Kubernetes con esteroides</h1>
     <p>
-      Publicado el 20 de February de 2026 en <a href="https://pablocaro.es/category/infraestructura.html">Infraestructura</a>
-
-    </p>
+      Publicado el 20 de February de 2026 en <a href="https://pablocaro.es/category/infraestructura.html">Infraestructura</a>     </p>
   </header>
 
-
-  <div>
-    <p>Si trabajas con Kubernetes, probablemente hayas sufrido el comando <code>kubectl logs</code>. Es útil para ver los logs de un pod específico, pero se queda corto cuando tienes múltiples réplicas de un servicio o cuando los pods se reinician y cambian de nombre.</p>
+ 
+  <div><p>Si trabajas con Kubernetes, probablemente hayas sufrido el comando <code>kubectl logs</code>. Es útil para ver los logs de un pod específico, pero se queda corto cuando tienes múltiples réplicas de un servicio o cuando los pods se reinician y cambian de nombre.</p>
 <p>Aquí es donde entra <strong><a href="https://github.com/stern/stern">Stern</a></strong>.</p>
 <p>Stern te permite hacer "tail" (seguir) logs de múltiples pods y contenedores dentro de Kubernetes simultáneamente. Lo mejor de todo es que utiliza expresiones regulares para seleccionar los pods, por lo que no necesitas copiar y pegar esos IDs aleatorios (<code>pod-1234567890-abcde</code>).</p>
 <h2 id="instalacion">Instalación<a class="headerlink" href="#instalacion" title="Permanent link">&para;</a></h2>
@@ -240,20 +244,17 @@ stern<span class="w"> </span>backend<span class="w"> </span>-e<span class="w"> <
 <h2 id="conclusion">Conclusión<a class="headerlink" href="#conclusion" title="Permanent link">&para;</a></h2>
 <p>Stern es una de esas herramientas que instalas el primer día y te preguntas cómo podías vivir sin ella. Hace que el debug en entornos distribuidos sea mucho menos doloroso al agregar la información de manera coherente.</p>
 <p>Dale una oportunidad y tus sesiones de debugging te lo agradecerán.</p>
-<p><img alt="stern help" src="https://pablocaro.es/images/stern_help.png"></p>
-  </div>
+<p><img alt="stern help" src="https://pablocaro.es/images/stern_help.png"></p></div>
   <div class="tag-cloud">
     <p>
-      <a href="https://pablocaro.es/tag/kubernetes.html">kubernetes</a>
+       <a href="https://pablocaro.es/tag/kubernetes.html">kubernetes</a>
       <a href="https://pablocaro.es/tag/cli.html">cli</a>
       <a href="https://pablocaro.es/tag/logs.html">logs</a>
       <a href="https://pablocaro.es/tag/herramientas.html">herramientas</a>
-    </p>
+     </p>
   </div>
 
-
-
-  <div class="neighbors">
+    <div class="neighbors">
     <a class="btn float-left" href="https://pablocaro.es/gestionando-instalaciones-desde-github-con-gah" title="Gestionando instalaciones desde GitHub con gah">
       <i class="fa fa-angle-left"></i> Artículo anterior
     </a>
@@ -261,21 +262,37 @@ stern<span class="w"> </span>backend<span class="w"> </span>-e<span class="w"> <
       Próximo artículo <i class="fa fa-angle-right"></i>
     </a>
   </div>
-
-  <div class="related-posts">
+   <div class="related-posts">
     <h4>Te puede gustar</h4>
     <ul class="related-posts">
-      <li><a href="https://pablocaro.es/extensiones-subagentes-pi">Extensiones de subagentes para pi: TintinWeb, NicoBailon y Taskplane</a></li>
-      <li><a href="https://pablocaro.es/sem-control-de-versiones-semantico">sem: Control de versiones semántico</a></li>
-      <li><a href="https://pablocaro.es/deepdiff-comparar-datos-python">DeepDiff: La navaja suiza para comparar datos en Python</a></li>
-      <li><a href="https://pablocaro.es/renderizando-markdown-en-la-terminal-con-glow">Renderizando Markdown en la terminal con Glow</a></li>
-      <li><a href="https://pablocaro.es/shot-scraper-capturas-pantalla-automatizadas">Shot-scraper: Capturas de pantalla automatizadas para la web</a></li>
+      <li>
+        <a href="https://pablocaro.es/extensiones-subagentes-pi"
+          >Extensiones de subagentes para pi: TintinWeb, NicoBailon y Taskplane</a
+        >
+      </li>
+      <li>
+        <a href="https://pablocaro.es/sem-control-de-versiones-semantico"
+          >sem: Control de versiones semántico</a
+        >
+      </li>
+      <li>
+        <a href="https://pablocaro.es/deepdiff-comparar-datos-python"
+          >DeepDiff: La navaja suiza para comparar datos en Python</a
+        >
+      </li>
+      <li>
+        <a href="https://pablocaro.es/renderizando-markdown-en-la-terminal-con-glow"
+          >Renderizando Markdown en la terminal con Glow</a
+        >
+      </li>
+      <li>
+        <a href="https://pablocaro.es/shot-scraper-capturas-pantalla-automatizadas"
+          >Shot-scraper: Capturas de pantalla automatizadas para la web</a
+        >
+      </li>
     </ul>
   </div>
-
-
-
-<!-- Disqus -->
+  <!-- Disqus -->
 <div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'anotaciones';
@@ -289,7 +306,7 @@ stern<span class="w"> </span>backend<span class="w"> </span>-e<span class="w"> <
     Por favor, habilita JavaScript para ver los comentarios.
 </noscript>
 <!-- End Disqus -->
-</article>
+ </article>
 
 <footer>
 <p>

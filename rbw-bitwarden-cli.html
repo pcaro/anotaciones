@@ -56,12 +56,19 @@
 
 <meta name="author" content="Pablo Caro" />
 <meta name="description" content="Cómo instalar y configurar rbw, una implementación en Rust del cliente de Bitwarden, y cómo integrarlo en tus flujos de trabajo con pi-agent." />
-<meta name="keywords" content="bitwarden, cli, rust, seguridad, pi-agent">
+<meta name="keywords" content="bitwarden, cli, rust, seguridad, pi-agent" />
 
-<link rel="alternate" href="https://pablocaro.es/rbw-bitwarden-cli" hreflang="es" />
-<link rel="alternate" href="https://pablocaro.es/en/rbw-bitwarden-cli" hreflang="en" />
-
-  <meta property="og:site_name" content="Anotaciones por Pablo Caro"/>
+<link
+  rel="alternate"
+  href="https://pablocaro.es/rbw-bitwarden-cli"
+  hreflang="es"
+/>
+<link
+  rel="alternate"
+  href="https://pablocaro.es/en/rbw-bitwarden-cli"
+  hreflang="en"
+/>
+    <meta property="og:site_name" content="Anotaciones por Pablo Caro"/>
   <meta property="og:title" content="rbw: El cliente de Bitwarden para terminal que deberías usar"/>
   <meta property="og:description" content="Cómo instalar y configurar rbw, una implementación en Rust del cliente de Bitwarden, y cómo integrarlo en tus flujos de trabajo con pi-agent."/>
   <meta property="og:locale" content="en_US"/>
@@ -77,7 +84,7 @@
   <meta property="article:tag" content="seguridad"/>
   <meta property="article:tag" content="pi-agent"/>
   <meta property="og:image" content="/theme/img/profile.png">
-
+ 
   <title>Anotaciones por Pablo Caro &ndash; rbw: El cliente de Bitwarden para terminal que deberías usar</title>
 
 
@@ -180,20 +187,17 @@
 
 <article class="single">
   <header>
-          <div class="translations">
+      <div class="translations">
             <a href="https://pablocaro.es/en/rbw-bitwarden-cli">Read in English</a>
     </div>
 
     <h1 id="rbw-bitwarden-cli">rbw: El cliente de Bitwarden para terminal que deberías usar</h1>
     <p>
-      Publicado el 26 de February de 2026 en <a href="https://pablocaro.es/category/herramientas.html">Herramientas</a>
-
-    </p>
+      Publicado el 26 de February de 2026 en <a href="https://pablocaro.es/category/herramientas.html">Herramientas</a>     </p>
   </header>
 
-
-  <div>
-    <p>Aunque Bitwarden tiene un cliente oficial de línea de comandos, este puede resultar lento al estar basado en Node.js. Para los que buscamos algo más ágil, <a href="https://github.com/doy/rbw">rbw</a> es la solución ideal. Es una implementación no oficial en Rust que destaca por ser extremadamente rápida y por gestionar el desbloqueo del almacén mediante un agente, evitando que tengas que introducir tu contraseña maestra en cada comando.</p>
+ 
+  <div><p>Aunque Bitwarden tiene un cliente oficial de línea de comandos, este puede resultar lento al estar basado en Node.js. Para los que buscamos algo más ágil, <a href="https://github.com/doy/rbw">rbw</a> es la solución ideal. Es una implementación no oficial en Rust que destaca por ser extremadamente rápida y por gestionar el desbloqueo del almacén mediante un agente, evitando que tengas que introducir tu contraseña maestra en cada comando.</p>
 <h2 id="instalacion">Instalación<a class="headerlink" href="#instalacion" title="Permanent link">&para;</a></h2>
 <p>La forma más sencilla de instalarlo es bajando el binario directamente desde sus releases de GitHub. Yo utilizo <code>gah</code> para este propósito:</p>
 <div class="highlight"><pre><span></span><code>gah<span class="w"> </span>install<span class="w"> </span>doy/rbw
@@ -231,21 +235,18 @@ rbw<span class="w"> </span>get<span class="w"> </span>--username<span class="w">
 </code></pre></div>
 
 <p>El prefijo <code>!</code> indica a <code>pi-agent</code> que debe ejecutar el comando y usar su salida estándar como la clave. Gracias al agente de <code>rbw</code>, este comando se ejecutará instantáneamente sin pedirte la clave maestra cada vez, siempre que el almacén esté desbloqueado.</p>
-<p><img alt="rbw help" src="https://pablocaro.es/images/rbw_help.png"></p>
-  </div>
+<p><img alt="rbw help" src="https://pablocaro.es/images/rbw_help.png"></p></div>
   <div class="tag-cloud">
     <p>
-      <a href="https://pablocaro.es/tag/bitwarden.html">bitwarden</a>
+       <a href="https://pablocaro.es/tag/bitwarden.html">bitwarden</a>
       <a href="https://pablocaro.es/tag/cli.html">cli</a>
       <a href="https://pablocaro.es/tag/rust.html">rust</a>
       <a href="https://pablocaro.es/tag/seguridad.html">seguridad</a>
       <a href="https://pablocaro.es/tag/pi-agent.html">pi-agent</a>
-    </p>
+     </p>
   </div>
 
-
-
-  <div class="neighbors">
+    <div class="neighbors">
     <a class="btn float-left" href="https://pablocaro.es/deepdiff-comparar-datos-python" title="DeepDiff: La navaja suiza para comparar datos en Python">
       <i class="fa fa-angle-left"></i> Artículo anterior
     </a>
@@ -253,21 +254,37 @@ rbw<span class="w"> </span>get<span class="w"> </span>--username<span class="w">
       Próximo artículo <i class="fa fa-angle-right"></i>
     </a>
   </div>
-
-  <div class="related-posts">
+   <div class="related-posts">
     <h4>Te puede gustar</h4>
     <ul class="related-posts">
-      <li><a href="https://pablocaro.es/rbw-env">rbw-env: Exportar variables de entorno desde Bitwarden</a></li>
-      <li><a href="https://pablocaro.es/kitty-rbw-kitten">kitty-rbw: Acceso rápido a Bitwarden desde tu terminal kitty</a></li>
-      <li><a href="https://pablocaro.es/rbw-sync-access-token">rbw sync: missing field `access_token`</a></li>
-      <li><a href="https://pablocaro.es/sem-control-de-versiones-semantico">sem: Control de versiones semántico</a></li>
-      <li><a href="https://pablocaro.es/broot-una-forma-diferente-de-navegar-directorios">broot, una forma diferente de navegar por tus directorios</a></li>
+      <li>
+        <a href="https://pablocaro.es/rbw-env"
+          >rbw-env: Exportar variables de entorno desde Bitwarden</a
+        >
+      </li>
+      <li>
+        <a href="https://pablocaro.es/kitty-rbw-kitten"
+          >kitty-rbw: Acceso rápido a Bitwarden desde tu terminal kitty</a
+        >
+      </li>
+      <li>
+        <a href="https://pablocaro.es/rbw-sync-access-token"
+          >rbw sync: missing field `access_token`</a
+        >
+      </li>
+      <li>
+        <a href="https://pablocaro.es/sem-control-de-versiones-semantico"
+          >sem: Control de versiones semántico</a
+        >
+      </li>
+      <li>
+        <a href="https://pablocaro.es/broot-una-forma-diferente-de-navegar-directorios"
+          >broot, una forma diferente de navegar por tus directorios</a
+        >
+      </li>
     </ul>
   </div>
-
-
-
-<!-- Disqus -->
+  <!-- Disqus -->
 <div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'anotaciones';
@@ -281,7 +298,7 @@ rbw<span class="w"> </span>get<span class="w"> </span>--username<span class="w">
     Por favor, habilita JavaScript para ver los comentarios.
 </noscript>
 <!-- End Disqus -->
-</article>
+ </article>
 
 <footer>
 <p>

@@ -56,12 +56,19 @@
 
 <meta name="author" content="Pablo Caro" />
 <meta name="description" content="Cómo expandir el disco virtual de una VM Aurora ejecutándose en Unraid y redimensionar las particiones Btrfs dentro del sistema operativo." />
-<meta name="keywords" content="aurora, unraid, vm, btrfs, disco">
+<meta name="keywords" content="aurora, unraid, vm, btrfs, disco" />
 
-<link rel="alternate" href="https://pablocaro.es/ampliar-disco-vm-aurora-unraid" hreflang="es" />
-<link rel="alternate" href="https://pablocaro.es/en/ampliar-disco-vm-aurora-unraid" hreflang="en" />
-
-  <meta property="og:site_name" content="Anotaciones por Pablo Caro"/>
+<link
+  rel="alternate"
+  href="https://pablocaro.es/ampliar-disco-vm-aurora-unraid"
+  hreflang="es"
+/>
+<link
+  rel="alternate"
+  href="https://pablocaro.es/en/ampliar-disco-vm-aurora-unraid"
+  hreflang="en"
+/>
+    <meta property="og:site_name" content="Anotaciones por Pablo Caro"/>
   <meta property="og:title" content="Ampliar disco de VM Aurora en Unraid y redimensionar particiones"/>
   <meta property="og:description" content="Cómo expandir el disco virtual de una VM Aurora ejecutándose en Unraid y redimensionar las particiones Btrfs dentro del sistema operativo."/>
   <meta property="og:locale" content="en_US"/>
@@ -77,7 +84,7 @@
   <meta property="article:tag" content="btrfs"/>
   <meta property="article:tag" content="disco"/>
   <meta property="og:image" content="/theme/img/profile.png">
-
+ 
   <title>Anotaciones por Pablo Caro &ndash; Ampliar disco de VM Aurora en Unraid y redimensionar particiones</title>
 
 
@@ -180,20 +187,17 @@
 
 <article class="single">
   <header>
-          <div class="translations">
+      <div class="translations">
             <a href="https://pablocaro.es/en/ampliar-disco-vm-aurora-unraid">Read in English</a>
     </div>
 
     <h1 id="ampliar-disco-vm-aurora-unraid">Ampliar disco de VM Aurora en Unraid y redimensionar particiones</h1>
     <p>
-      Publicado el 24 de April de 2026 en <a href="https://pablocaro.es/category/linux.html">Linux</a>
-
-    </p>
+      Publicado el 24 de April de 2026 en <a href="https://pablocaro.es/category/linux.html">Linux</a>     </p>
   </header>
 
-
-  <div>
-    <h1 id="ampliar-disco-de-vm-aurora-en-unraid-y-redimensionar-particiones">Ampliar disco de VM Aurora en Unraid y redimensionar particiones<a class="headerlink" href="#ampliar-disco-de-vm-aurora-en-unraid-y-redimensionar-particiones" title="Permanent link">&para;</a></h1>
+ 
+  <div><h1 id="ampliar-disco-de-vm-aurora-en-unraid-y-redimensionar-particiones">Ampliar disco de VM Aurora en Unraid y redimensionar particiones<a class="headerlink" href="#ampliar-disco-de-vm-aurora-en-unraid-y-redimensionar-particiones" title="Permanent link">&para;</a></h1>
 <p>Me quedé sin espacio en mi prueba de la distribución <strong>Aurora Linux</strong>. Como la ejecuto en una VM en mi NAS Unraid, simplemente aumenté el disco virtual y luego redimensioné las particiones dentro del sistema.</p>
 <p>Esta es una distribución basada en <strong>Fedora Kinoite</strong> (imágenes OSTree/bootc) del proyecto Universal Blue, que usa un sistema de archivos <strong>Btrfs</strong> con subvolúmenes.</p>
 <h2 id="situacion-inicial-del-disco">Situación inicial del disco<a class="headerlink" href="#situacion-inicial-del-disco" title="Permanent link">&para;</a></h2>
@@ -313,21 +317,18 @@ sudo<span class="w"> </span>btrfs<span class="w"> </span>filesystem<span class="
 <li>
 <p><strong>Backup</strong>: Aunque el proceso es seguro, siempre es recomendable tener backup antes de operar sobre particiones. En mi caso no hizo falta por no tener nada importante. Es una VM de prueba.</p>
 </li>
-</ol>
-  </div>
+</ol></div>
   <div class="tag-cloud">
     <p>
-      <a href="https://pablocaro.es/tag/aurora.html">aurora</a>
+       <a href="https://pablocaro.es/tag/aurora.html">aurora</a>
       <a href="https://pablocaro.es/tag/unraid.html">unraid</a>
       <a href="https://pablocaro.es/tag/vm.html">vm</a>
       <a href="https://pablocaro.es/tag/btrfs.html">btrfs</a>
       <a href="https://pablocaro.es/tag/disco.html">disco</a>
-    </p>
+     </p>
   </div>
 
-
-
-  <div class="neighbors">
+    <div class="neighbors">
     <a class="btn float-left" href="https://pablocaro.es/rust-ebooks-nightly" title="Rust eBooks Nightly — libros de Rust en EPUB, AZW3, MOBI y PDF">
       <i class="fa fa-angle-left"></i> Artículo anterior
     </a>
@@ -335,17 +336,17 @@ sudo<span class="w"> </span>btrfs<span class="w"> </span>filesystem<span class="
       Próximo artículo <i class="fa fa-angle-right"></i>
     </a>
   </div>
-
-  <div class="related-posts">
+   <div class="related-posts">
     <h4>Te puede gustar</h4>
     <ul class="related-posts">
-      <li><a href="https://pablocaro.es/probando-aurora-mi-primer-vistazo-al-futuro-del-escritorio-linux">Probando Aurora: mi primer vistazo al futuro del escritorio Linux</a></li>
+      <li>
+        <a href="https://pablocaro.es/probando-aurora-mi-primer-vistazo-al-futuro-del-escritorio-linux"
+          >Probando Aurora: mi primer vistazo al futuro del escritorio Linux</a
+        >
+      </li>
     </ul>
   </div>
-
-
-
-<!-- Disqus -->
+  <!-- Disqus -->
 <div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'anotaciones';
@@ -359,7 +360,7 @@ sudo<span class="w"> </span>btrfs<span class="w"> </span>filesystem<span class="
     Por favor, habilita JavaScript para ver los comentarios.
 </noscript>
 <!-- End Disqus -->
-</article>
+ </article>
 
 <footer>
 <p>

@@ -56,12 +56,19 @@
 
 <meta name="author" content="Pablo Caro" />
 <meta name="description" content="Let&#39;s use threads in python to periodically execute a function" />
-<meta name="keywords" content="">
+<meta name="keywords" content="" />
 
-<link rel="alternate" href="/en/repetiendo-una-función-con-hilos" hreflang="en" />
-<link rel="alternate" href="/en/../repetiendo-una-función-con-hilos" hreflang="es" />
-
-  <meta property="og:site_name" content="Annotations by Pablo Caro"/>
+<link
+  rel="alternate"
+  href="/en/repetiendo-una-función-con-hilos"
+  hreflang="en"
+/>
+<link
+  rel="alternate"
+  href="/en/../repetiendo-una-función-con-hilos"
+  hreflang="es"
+/>
+    <meta property="og:site_name" content="Annotations by Pablo Caro"/>
   <meta property="og:title" content="Repeating a function with threads"/>
   <meta property="og:description" content="Let&#39;s use threads in python to periodically execute a function"/>
   <meta property="og:locale" content="en_US"/>
@@ -72,7 +79,7 @@
   <meta property="article:author" content="/en/author/pablo-caro.html">
   <meta property="article:section" content="Programación"/>
   <meta property="og:image" content="/theme/img/profile.png">
-
+ 
   <title>Annotations by Pablo Caro &ndash; Repeating a function with threads</title>
 
 
@@ -175,20 +182,17 @@
 
 <article class="single">
   <header>
-          <div class="translations">
+      <div class="translations">
             <a href="/en/../repetiendo-una-función-con-hilos">Leer en español</a>
     </div>
 
     <h1 id="repetiendo-una-función-con-hilos">Repeating a function with threads</h1>
     <p>
-      Posted on Sun, 03 May 2015 in <a href="/en/category/programacion.html">Programación</a>
-
-    </p>
+      Posted on Sun, 03 May 2015 in <a href="/en/category/programacion.html">Programación</a>     </p>
   </header>
 
-
-  <div>
-    <p>I have a service (with <a class="reference external" href="https://github.com/jnrbsn/daemonocle">daemonocle</a> which I will talk about another day) running all the time on an <a class="reference external" href="http://www.hardkernel.com/main/products/prdt_info.php">odroid c1</a>.
+ 
+  <div><p>I have a service (with <a class="reference external" href="https://github.com/jnrbsn/daemonocle">daemonocle</a> which I will talk about another day) running all the time on an <a class="reference external" href="http://www.hardkernel.com/main/products/prdt_info.php">odroid c1</a>.
 I considered it was better to control with threads some periodic tasks that I have to repeat (which I was already using)
 instead of the typical cron entry.</p>
 <p>This way I can better control their operation. The advantages for me in this case and for these specific tasks:</p>
@@ -239,16 +243,13 @@ instead of the typical cron entry.</p>
 <p>I should tell you that I stop these threads and clean resources in the shutdown callback event which is one of the best things about <code>daemonocle</code>.
 You already know that python is not capable of fully parallelizing threads due to the GIL, but for simple tasks like these with very little load
 it is simple and works perfectly.</p>
-
-  </div>
+</div>
   <div class="tag-cloud">
     <p>
     </p>
   </div>
 
-
-
-  <div class="neighbors">
+    <div class="neighbors">
     <a class="btn float-left" href="/en/instalar-insync-en-opensuse" title="Install InSync on Opensuse">
       <i class="fa fa-angle-left"></i> Previous Post
     </a>
@@ -256,11 +257,7 @@ it is simple and works perfectly.</p>
       Next Post <i class="fa fa-angle-right"></i>
     </a>
   </div>
-
-
-
-
-<!-- Disqus -->
+   <!-- Disqus -->
 <div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'anotaciones';
@@ -274,7 +271,7 @@ it is simple and works perfectly.</p>
     Please enable JavaScript to view comments.
 </noscript>
 <!-- End Disqus -->
-</article>
+ </article>
 
 <footer>
 <p>

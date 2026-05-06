@@ -56,12 +56,19 @@
 
 <meta name="author" content="Pablo Caro" />
 <meta name="description" content="SQL techniques to select complete rows with the maximum value of a column within groups, comparing performance of subqueries, joins, and window functions" />
-<meta name="keywords" content="sql, mysql, consultas, window-functions, joins">
+<meta name="keywords" content="sql, mysql, consultas, window-functions, joins" />
 
-<link rel="alternate" href="/en/sql-select-rows-max-value" hreflang="en" />
-<link rel="alternate" href="/en/../sql-select-rows-max-value" hreflang="es" />
-
-  <meta property="og:site_name" content="Annotations by Pablo Caro"/>
+<link
+  rel="alternate"
+  href="/en/sql-select-rows-max-value"
+  hreflang="en"
+/>
+<link
+  rel="alternate"
+  href="/en/../sql-select-rows-max-value"
+  hreflang="es"
+/>
+    <meta property="og:site_name" content="Annotations by Pablo Caro"/>
   <meta property="og:title" content="SQL: Select Rows with Max Value per Group"/>
   <meta property="og:description" content="SQL techniques to select complete rows with the maximum value of a column within groups, comparing performance of subqueries, joins, and window functions"/>
   <meta property="og:locale" content="en_US"/>
@@ -77,7 +84,7 @@
   <meta property="article:tag" content="window-functions"/>
   <meta property="article:tag" content="joins"/>
   <meta property="og:image" content="/theme/img/profile.png">
-
+ 
   <title>Annotations by Pablo Caro &ndash; SQL: Select Rows with Max Value per Group</title>
 
 
@@ -180,20 +187,17 @@
 
 <article class="single">
   <header>
-          <div class="translations">
+      <div class="translations">
             <a href="/en/../sql-select-rows-max-value">Leer en español</a>
     </div>
 
     <h1 id="sql-select-rows-max-value">SQL: Select Rows with Max Value per Group</h1>
     <p>
-      Posted on Wed, 21 Oct 2015 in <a href="/en/category/programacion.html">Programación</a>
-
-    </p>
+      Posted on Wed, 21 Oct 2015 in <a href="/en/category/programacion.html">Programación</a>     </p>
   </header>
 
-
-  <div>
-    <p>A common problem in SQL: <strong>how to select the complete rows that contain the maximum value of a column for each group?</strong> Not just the maximum value, but the <strong>entire row</strong>.</p>
+ 
+  <div><p>A common problem in SQL: <strong>how to select the complete rows that contain the maximum value of a column for each group?</strong> Not just the maximum value, but the <strong>entire row</strong>.</p>
 <h2 id="the-problem">The Problem<a class="headerlink" href="#the-problem" title="Permanent link">&para;</a></h2>
 <p>Given a table with <code>id</code> and <code>rev</code> (revision), we want to get the complete row with the highest <code>rev</code> for each <code>id</code>.</p>
 <h2 id="solution-1-subquery-with-in">Solution 1: Subquery with IN<a class="headerlink" href="#solution-1-subquery-with-in" title="Permanent link">&para;</a></h2>
@@ -245,21 +249,18 @@
 <li><strong>Window functions</strong>: Large datasets, modern SQL available</li>
 </ul>
 <p>The most robust and modern pattern is <strong>window functions</strong>, which also allow handling ties and edge cases more elegantly.</p>
-<p><em>Original source</em>: <a href="http://stackoverflow.com/questions/7745609/sql-select-only-rows-with-max-value-on-a-column#7745635">Stack Overflow</a></p>
-  </div>
+<p><em>Original source</em>: <a href="http://stackoverflow.com/questions/7745609/sql-select-only-rows-with-max-value-on-a-column#7745635">Stack Overflow</a></p></div>
   <div class="tag-cloud">
     <p>
-      <a href="/en/tag/sql.html">sql</a>
+       <a href="/en/tag/sql.html">sql</a>
       <a href="/en/tag/mysql.html">mysql</a>
       <a href="/en/tag/consultas.html">consultas</a>
       <a href="/en/tag/window-functions.html">window-functions</a>
       <a href="/en/tag/joins.html">joins</a>
-    </p>
+     </p>
   </div>
 
-
-
-  <div class="neighbors">
+    <div class="neighbors">
     <a class="btn float-left" href="/en/repetiendo-una-función-con-hilos" title="Repeating a function with threads">
       <i class="fa fa-angle-left"></i> Previous Post
     </a>
@@ -267,17 +268,17 @@
       Next Post <i class="fa fa-angle-right"></i>
     </a>
   </div>
-
-  <div class="related-posts">
+   <div class="related-posts">
     <h4>You might enjoy</h4>
     <ul class="related-posts">
-      <li><a href="/en/busqueda-hibrida-sqlite-vector-texto">Hybrid Search with SQLite: Vector + Full-Text</a></li>
+      <li>
+        <a href="/en/busqueda-hibrida-sqlite-vector-texto"
+          >Hybrid Search with SQLite: Vector + Full-Text</a
+        >
+      </li>
     </ul>
   </div>
-
-
-
-<!-- Disqus -->
+  <!-- Disqus -->
 <div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'anotaciones';
@@ -291,7 +292,7 @@
     Please enable JavaScript to view comments.
 </noscript>
 <!-- End Disqus -->
-</article>
+ </article>
 
 <footer>
 <p>

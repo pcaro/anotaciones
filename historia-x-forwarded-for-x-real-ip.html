@@ -56,12 +56,19 @@
 
 <meta name="author" content="Pablo Caro" />
 <meta name="description" content="Análisis de los headers X-Forwarded-For y X-Real-IP, sus orígenes, diferencias y cómo determinar la IP real del cliente en arquitecturas con múltiples proxies" />
-<meta name="keywords" content="headers, x-forwarded-for, x-real-ip, proxy, nginx">
+<meta name="keywords" content="headers, x-forwarded-for, x-real-ip, proxy, nginx" />
 
-<link rel="alternate" href="https://pablocaro.es/historia-x-forwarded-for-x-real-ip" hreflang="es" />
-<link rel="alternate" href="https://pablocaro.es/en/historia-x-forwarded-for-x-real-ip" hreflang="en" />
-
-  <meta property="og:site_name" content="Anotaciones por Pablo Caro"/>
+<link
+  rel="alternate"
+  href="https://pablocaro.es/historia-x-forwarded-for-x-real-ip"
+  hreflang="es"
+/>
+<link
+  rel="alternate"
+  href="https://pablocaro.es/en/historia-x-forwarded-for-x-real-ip"
+  hreflang="en"
+/>
+    <meta property="og:site_name" content="Anotaciones por Pablo Caro"/>
   <meta property="og:title" content="La historia detrás de X-Forwarded-For y X-Real-IP"/>
   <meta property="og:description" content="Análisis de los headers X-Forwarded-For y X-Real-IP, sus orígenes, diferencias y cómo determinar la IP real del cliente en arquitecturas con múltiples proxies"/>
   <meta property="og:locale" content="en_US"/>
@@ -77,7 +84,7 @@
   <meta property="article:tag" content="proxy"/>
   <meta property="article:tag" content="nginx"/>
   <meta property="og:image" content="/theme/img/profile.png">
-
+ 
   <title>Anotaciones por Pablo Caro &ndash; La historia detrás de X-Forwarded-For y X-Real-IP</title>
 
 
@@ -180,20 +187,17 @@
 
 <article class="single">
   <header>
-          <div class="translations">
+      <div class="translations">
             <a href="https://pablocaro.es/en/historia-x-forwarded-for-x-real-ip">Read in English</a>
     </div>
 
     <h1 id="historia-x-forwarded-for-x-real-ip">La historia detrás de X-Forwarded-For y X-Real-IP</h1>
     <p>
-      Publicado el 21 de October de 2015 en <a href="https://pablocaro.es/category/infraestructura.html">Infraestructura</a>
-
-    </p>
+      Publicado el 21 de October de 2015 en <a href="https://pablocaro.es/category/infraestructura.html">Infraestructura</a>     </p>
   </header>
 
-
-  <div>
-    <p>Determinar la <strong>IP real del cliente</strong> en arquitecturas con proxies es más complejo de lo que parece. Los headers <code>X-Forwarded-For</code> y <code>X-Real-IP</code> tienen diferentes propósitos y limitaciones.</p>
+ 
+  <div><p>Determinar la <strong>IP real del cliente</strong> en arquitecturas con proxies es más complejo de lo que parece. Los headers <code>X-Forwarded-For</code> y <code>X-Real-IP</code> tienen diferentes propósitos y limitaciones.</p>
 <h2 id="x-forwarded-for-la-cadena-completa">X-Forwarded-For: La cadena completa<a class="headerlink" href="#x-forwarded-for-la-cadena-completa" title="Permanent link">&para;</a></h2>
 <h3 id="formato-y-proposito">Formato y propósito<a class="headerlink" href="#formato-y-proposito" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><span class="nv">X</span><span class="o">-</span><span class="nv">Forwarded</span><span class="o">-</span><span class="k">For</span>:<span class="w"> </span><span class="nv">client</span>,<span class="w"> </span><span class="nv">proxy1</span>,<span class="w"> </span><span class="nv">proxy2</span>
@@ -248,21 +252,18 @@
 <li><strong>Implementar logging</strong> para debugging</li>
 </ol>
 <p>La <strong>confiabilidad real</strong> depende más de tu arquitectura de red que de los headers específicos utilizados.</p>
-<p><em>Fuente original</em>: <a href="http://distinctplace.com/infrastructure/2014/04/23/story-behind-x-forwarded-for-and-x-real-ip-headers/">Distinct Place</a></p>
-  </div>
+<p><em>Fuente original</em>: <a href="http://distinctplace.com/infrastructure/2014/04/23/story-behind-x-forwarded-for-and-x-real-ip-headers/">Distinct Place</a></p></div>
   <div class="tag-cloud">
     <p>
-      <a href="https://pablocaro.es/tag/headers.html">headers</a>
+       <a href="https://pablocaro.es/tag/headers.html">headers</a>
       <a href="https://pablocaro.es/tag/x-forwarded-for.html">x-forwarded-for</a>
       <a href="https://pablocaro.es/tag/x-real-ip.html">x-real-ip</a>
       <a href="https://pablocaro.es/tag/proxy.html">proxy</a>
       <a href="https://pablocaro.es/tag/nginx.html">nginx</a>
-    </p>
+     </p>
   </div>
 
-
-
-  <div class="neighbors">
+    <div class="neighbors">
     <a class="btn float-left" href="https://pablocaro.es/nginx-x-forwarded-for-reverse-proxy" title="Nginx: Configurar X-Forwarded-For en reverse proxy">
       <i class="fa fa-angle-left"></i> Artículo anterior
     </a>
@@ -270,17 +271,17 @@
       Próximo artículo <i class="fa fa-angle-right"></i>
     </a>
   </div>
-
-  <div class="related-posts">
+   <div class="related-posts">
     <h4>Te puede gustar</h4>
     <ul class="related-posts">
-      <li><a href="https://pablocaro.es/nginx-x-forwarded-for-reverse-proxy">Nginx: Configurar X-Forwarded-For en reverse proxy</a></li>
+      <li>
+        <a href="https://pablocaro.es/nginx-x-forwarded-for-reverse-proxy"
+          >Nginx: Configurar X-Forwarded-For en reverse proxy</a
+        >
+      </li>
     </ul>
   </div>
-
-
-
-<!-- Disqus -->
+  <!-- Disqus -->
 <div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'anotaciones';
@@ -294,7 +295,7 @@
     Por favor, habilita JavaScript para ver los comentarios.
 </noscript>
 <!-- End Disqus -->
-</article>
+ </article>
 
 <footer>
 <p>

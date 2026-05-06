@@ -56,12 +56,19 @@
 
 <meta name="author" content="Pablo Caro" />
 <meta name="description" content="Al usar una blocklist DNS demasiado agresiva en NextDNS, los enlaces de afiliado de AliExpress dejaban de funcionar. Diagnóstico con dig y solución con HaGeZi Multi PRO." />
-<meta name="keywords" content="dns, nextdns, aliexpress, bloqueo, linux">
+<meta name="keywords" content="dns, nextdns, aliexpress, bloqueo, linux" />
 
-<link rel="alternate" href="https://pablocaro.es/bloqueo-dns-aliexpress-nextdns" hreflang="es" />
-<link rel="alternate" href="https://pablocaro.es/en/bloqueo-dns-aliexpress-nextdns" hreflang="en" />
-
-  <meta property="og:site_name" content="Anotaciones por Pablo Caro"/>
+<link
+  rel="alternate"
+  href="https://pablocaro.es/bloqueo-dns-aliexpress-nextdns"
+  hreflang="es"
+/>
+<link
+  rel="alternate"
+  href="https://pablocaro.es/en/bloqueo-dns-aliexpress-nextdns"
+  hreflang="en"
+/>
+    <meta property="og:site_name" content="Anotaciones por Pablo Caro"/>
   <meta property="og:title" content="Bloqueo DNS de enlaces de AliExpress con NextDNS"/>
   <meta property="og:description" content="Al usar una blocklist DNS demasiado agresiva en NextDNS, los enlaces de afiliado de AliExpress dejaban de funcionar. Diagnóstico con dig y solución con HaGeZi Multi PRO."/>
   <meta property="og:locale" content="en_US"/>
@@ -77,7 +84,7 @@
   <meta property="article:tag" content="bloqueo"/>
   <meta property="article:tag" content="linux"/>
   <meta property="og:image" content="/theme/img/profile.png">
-
+ 
   <title>Anotaciones por Pablo Caro &ndash; Bloqueo DNS de enlaces de AliExpress con NextDNS</title>
 
 
@@ -180,20 +187,17 @@
 
 <article class="single">
   <header>
-          <div class="translations">
+      <div class="translations">
             <a href="https://pablocaro.es/en/bloqueo-dns-aliexpress-nextdns">Read in English</a>
     </div>
 
     <h1 id="bloqueo-dns-aliexpress-nextdns">Bloqueo DNS de enlaces de AliExpress con NextDNS</h1>
     <p>
-      Publicado el 03 de May de 2026 en <a href="https://pablocaro.es/category/infraestructura.html">Infraestructura</a>
-
-    </p>
+      Publicado el 03 de May de 2026 en <a href="https://pablocaro.es/category/infraestructura.html">Infraestructura</a>     </p>
   </header>
 
-
-  <div>
-    <p><img alt="DNS blocking illustration" src="/images/dns-blocking-nextdns.jpg"></p>
+ 
+  <div><p><img alt="DNS blocking illustration" src="/images/dns-blocking-nextdns.jpg"></p>
 <p>Llevaba unos días con un problema raro: los enlaces de AliExpress que aparecen en descripciones de vídeos de productos no cargaban. Firefox mostraba "Servidor no encontrado". Sabía que tenía pinta de ser un bloqueo DNS, porque al activar la VPN de PIA (Private Internet Access) el problema desaparecía.</p>
 <h2 id="el-diagnostico">El diagnóstico<a class="headerlink" href="#el-diagnostico" title="Permanent link">&para;</a></h2>
 <p>El comando <code>dig</code> lo confirmó enseguida:</p>
@@ -261,21 +265,18 @@ s.click.aliexpress.com.<span class="w"> </span><span class="m">300</span><span c
 <h2 id="resumen">Resumen<a class="headerlink" href="#resumen" title="Permanent link">&para;</a></h2>
 <p>Una blocklist DNS demasiado agresiva bloquea dominios que no son publicidad ni malware, sino mecanismos de redirección del comercio electrónico. El equilibrio está en <strong>Multi PRO</strong>: buena protección de privacidad sin romper funcionalidad cotidiana.</p>
 <p>Si en algún momento necesito más agresividad, el precio será tener que desbloquear falsos positivos manualmente. Por ahora, Multi PRO va perfecto.</p>
-<p><em>Más información</em>: <a href="https://github.com/hagezi/dns-blocklists">HaGeZi DNS Blocklists</a></p>
-  </div>
+<p><em>Más información</em>: <a href="https://github.com/hagezi/dns-blocklists">HaGeZi DNS Blocklists</a></p></div>
   <div class="tag-cloud">
     <p>
-      <a href="https://pablocaro.es/tag/dns.html">dns</a>
+       <a href="https://pablocaro.es/tag/dns.html">dns</a>
       <a href="https://pablocaro.es/tag/nextdns.html">nextdns</a>
       <a href="https://pablocaro.es/tag/aliexpress.html">aliexpress</a>
       <a href="https://pablocaro.es/tag/bloqueo.html">bloqueo</a>
       <a href="https://pablocaro.es/tag/linux.html">linux</a>
-    </p>
+     </p>
   </div>
 
-
-
-  <div class="neighbors">
+    <div class="neighbors">
     <a class="btn float-left" href="https://pablocaro.es/escaneo-doble-cara-brother-dcp-l3560cdw" title="Escaneo a doble cara con la Brother DCP-L3560CDW">
       <i class="fa fa-angle-left"></i> Artículo anterior
     </a>
@@ -283,21 +284,37 @@ s.click.aliexpress.com.<span class="w"> </span><span class="m">300</span><span c
       Próximo artículo <i class="fa fa-angle-right"></i>
     </a>
   </div>
-
-  <div class="related-posts">
+   <div class="related-posts">
     <h4>Te puede gustar</h4>
     <ul class="related-posts">
-      <li><a href="https://pablocaro.es/escaneo-doble-cara-brother-dcp-l3560cdw">Escaneo a doble cara con la Brother DCP-L3560CDW</a></li>
-      <li><a href="https://pablocaro.es/marksman-lsp-markdown">marksman: LSP para Markdown</a></li>
-      <li><a href="https://pablocaro.es/neofetch">neofetch</a></li>
-      <li><a href="https://pablocaro.es/os-click-central-descarga-isos">os.click: Central de descarga de ISOs de sistemas operativos</a></li>
-      <li><a href="https://pablocaro.es/rodney-chrome-wayland-error">Solución al Error de Rodney con Chrome en Wayland</a></li>
+      <li>
+        <a href="https://pablocaro.es/escaneo-doble-cara-brother-dcp-l3560cdw"
+          >Escaneo a doble cara con la Brother DCP-L3560CDW</a
+        >
+      </li>
+      <li>
+        <a href="https://pablocaro.es/marksman-lsp-markdown"
+          >marksman: LSP para Markdown</a
+        >
+      </li>
+      <li>
+        <a href="https://pablocaro.es/neofetch"
+          >neofetch</a
+        >
+      </li>
+      <li>
+        <a href="https://pablocaro.es/os-click-central-descarga-isos"
+          >os.click: Central de descarga de ISOs de sistemas operativos</a
+        >
+      </li>
+      <li>
+        <a href="https://pablocaro.es/rodney-chrome-wayland-error"
+          >Solución al Error de Rodney con Chrome en Wayland</a
+        >
+      </li>
     </ul>
   </div>
-
-
-
-<!-- Disqus -->
+  <!-- Disqus -->
 <div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'anotaciones';
@@ -311,7 +328,7 @@ s.click.aliexpress.com.<span class="w"> </span><span class="m">300</span><span c
     Por favor, habilita JavaScript para ver los comentarios.
 </noscript>
 <!-- End Disqus -->
-</article>
+ </article>
 
 <footer>
 <p>
