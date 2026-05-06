@@ -3,6 +3,11 @@ html_selector = "main"
 base_directory = "/home/runner/work/anotaciones/anotaciones/output"
 
 [[input.files]]
+path = "winhance-windows-debloater.html"
+url = "/winhance-windows-debloater"
+title = "Winhance: limpiar y optimizar Windows sin reinstallar"
+
+[[input.files]]
 path = "extensiones-subagentes-pi.html"
 url = "/extensiones-subagentes-pi"
 title = "Extensiones de subagentes para pi: TintinWeb, NicoBailon y Taskplane"
@@ -831,6 +836,11 @@ title = "Corrector ortográfico de firefox 2.0 en castellano"
 path = "primera-anotacion-de-prueba.html"
 url = "/primera-anotacion-de-prueba"
 title = "Primera anotación de prueba"
+
+[[input.files]]
+path = "winhance-windows-debloater-en.html"
+url = "/en/winhance-windows-debloater"
+title = "Winhance: clean and optimize Windows without reinstalling"
 
 [[input.files]]
 path = "extensiones-subagentes-pi-en.html"

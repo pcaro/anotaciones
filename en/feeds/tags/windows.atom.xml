@@ -1,5 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Annotations by Pablo Caro - windows</title><link href="/en/" rel="alternate"></link><link href="/en/feeds/tags/windows.atom.xml" rel="self"></link><id>/en/</id><updated>2026-04-27T12:00:00+02:00</updated><subtitle>Anotaciones</subtitle><entry><title>Rufus, the best way to install a clean Windows</title><link href="/en/rufus-instalar-windows-limpio" rel="alternate"></link><published>2026-04-27T12:00:00+02:00</published><updated>2026-04-27T12:00:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:None,2026-04-27:/en/rufus-instalar-windows-limpio</id><summary type="html">&lt;p&gt;Rufus, a great tool for creating Windows installation media, allowing you to disable Microsoft's forced AI integrations.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="Screenshot of Rufus 4.14 in action" src="/images/rufus-4-14-interfaz.png"&gt;&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Annotations by Pablo Caro - windows</title><link href="/en/" rel="alternate"></link><link href="/en/feeds/tags/windows.atom.xml" rel="self"></link><id>/en/</id><updated>2026-05-05T00:00:00+02:00</updated><subtitle>Anotaciones</subtitle><entry><title>Winhance: clean and optimize Windows without reinstalling</title><link href="/en/winhance-windows-debloater" rel="alternate"></link><published>2026-05-05T00:00:00+02:00</published><updated>2026-05-05T00:00:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:None,2026-05-05:/en/winhance-windows-debloater</id><summary type="html">&lt;p&gt;Winhance is a C# utility to debloat, optimize, and customize Windows 10/11 without needing to reinstall the system.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="Winhance" src="/images/winhance-windows-debloater.png"&gt;&lt;/p&gt;
+&lt;p&gt;I've been using Linux as my primary OS for years. I have two Windows machines at home: my daughter's laptop and a small Mele PC I use to connect to the telescope. I'm not used to dealing with the Windows ecosystem, so whenever I need to reinstall or clean one of these machines I end up looking for utilities that do the work for me.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/memstechtips/Winhance"&gt;Winhance&lt;/a&gt; is exactly that: a C# tool with nearly 10,000 GitHub stars that lets you debloat, optimize, and customize Windows 10 and 11 without a clean install. It essentially does the same thing as &lt;a href="https://github.com/memstechtips/UnattendedWinstall"&gt;UnattendedWinstall&lt;/a&gt; but without needing to start from scratch.&lt;/p&gt;
+&lt;p&gt;Installation is ridiculously simple from PowerShell:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nb"&gt;irm &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;https://get.winhance.net&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; &lt;span class="nb"&gt;iex&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;There's also a downloadable installer from &lt;a href="https://winhance.net"&gt;winhance.net&lt;/a&gt; or &lt;a href="https://github.com/memstechtips/Winhance/releases"&gt;GitHub Releases&lt;/a&gt;, with both normal and portable install options.&lt;/p&gt;
+&lt;p&gt;What I liked:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Software &amp;amp; Apps&lt;/strong&gt;: an interface to remove Windows bloatware (pre-installed apps, legacy capabilities, optional features) and install useful applications via WinGet. It has organized categories for browsers, multimedia, document viewers, etc.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Optimize&lt;/strong&gt;: everything in a searchable panel. UAC control, privacy settings, gaming optimizations, Windows Updates configuration, power plans, sound, and notifications. Each option has a clear toggle switch.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Customize&lt;/strong&gt;: dark/light theme selector, taskbar, start menu, and file explorer customization.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Advanced Tools&lt;/strong&gt;: a tool to create custom Windows ISOs with WIMUtil (including drivers from the current system) and generate &lt;code&gt;autounattend.xml&lt;/code&gt; files based on your Winhance selections.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Exportable configuration&lt;/strong&gt;: you can save your entire configuration to a file for importing after a reinstall. This is pure gold if you manage multiple machines.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The license is &lt;a href="https://polyformproject.org/licenses/shield/1.0.0/"&gt;PolyForm Shield 1.0.0&lt;/a&gt;, meaning it's free for personal use, businesses, and IT professionals, but you can't fork it and redistribute it as a competing product.&lt;/p&gt;
+&lt;p&gt;Leaving this here for the next time I need to clean one of those two Windows machines. It'll definitely save me a good amount of clicks through the settings panel.&lt;/p&gt;</content><category term="Herramientas"></category><category term="windows"></category><category term="debloater"></category><category term="herramientas"></category><category term="winhance"></category></entry><entry><title>Rufus, the best way to install a clean Windows</title><link href="/en/rufus-instalar-windows-limpio" rel="alternate"></link><published>2026-04-27T12:00:00+02:00</published><updated>2026-04-27T12:00:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:None,2026-04-27:/en/rufus-instalar-windows-limpio</id><summary type="html">&lt;p&gt;Rufus, a great tool for creating Windows installation media, allowing you to disable Microsoft's forced AI integrations.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="Screenshot of Rufus 4.14 in action" src="/images/rufus-4-14-interfaz.png"&gt;&lt;/p&gt;
 &lt;p&gt;I read on &lt;a href="https://informatica-sinlimites-ii.blogspot.com/2026/04/rufus-414-aumenta-capacidad-contra.html"&gt;informática sin límites&lt;/a&gt; that Rufus 4.14 (in beta) significantly improves its ability to install a clean Windows.&lt;/p&gt;
 &lt;p&gt;Rufus has been the go-to tool for creating Windows installation media for years. The new version goes even further:&lt;/p&gt;
 &lt;ul&gt;

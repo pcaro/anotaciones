@@ -3,6 +3,11 @@ html_selector = "main"
 base_directory = "/home/runner/work/anotaciones/anotaciones/output/en"
 
 [[input.files]]
+path = "winhance-windows-debloater.html"
+url = "/winhance-windows-debloater"
+title = "Winhance: clean and optimize Windows without reinstalling"
+
+[[input.files]]
 path = "extensiones-subagentes-pi.html"
 url = "/extensiones-subagentes-pi"
 title = "Pi subagent extensions: TintinWeb, NicoBailon and Taskplane"
@@ -406,6 +411,11 @@ title = "Django: links in object list"
 path = "settings-vars-processor.html"
 url = "/settings-vars-processor"
 title = "Settings vars processor"
+
+[[input.files]]
+path = "winhance-windows-debloater-es.html"
+url = "/../winhance-windows-debloater"
+title = "Winhance: limpiar y optimizar Windows sin reinstallar"
 
 [[input.files]]
 path = "extensiones-subagentes-pi-es.html"

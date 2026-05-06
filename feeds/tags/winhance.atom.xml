@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Anotaciones por Pablo Caro - winhance</title><link href="https://pablocaro.es/" rel="alternate"></link><link href="https://pablocaro.es/feeds/tags/winhance.atom.xml" rel="self"></link><id>https://pablocaro.es/</id><updated>2026-05-05T00:00:00+02:00</updated><subtitle>Anotaciones</subtitle><entry><title>Winhance: limpiar y optimizar Windows sin reinstallar</title><link href="https://pablocaro.es/winhance-windows-debloater" rel="alternate"></link><published>2026-05-05T00:00:00+02:00</published><updated>2026-05-05T00:00:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-05-05:/winhance-windows-debloater</id><summary type="html">&lt;p&gt;Winhance es una utilidad en C# para debloater, optimizar y personalizar Windows 10/11 sin necesidad de reinstalar el sistema.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="Winhance" src="/images/winhance-windows-debloater.png"&gt;&lt;/p&gt;
+&lt;p&gt;Llevo usando Linux como sistema principal desde hace años. Tengo dos máquinas con Windows en casa: el portátil de mi hija y un pequeño Mele que uso para conectar al telescopio. No estoy acostumbrado a manejar el ecosistema de Windows, así que cuando toca reinstalar o limpiar una de esas máquinas siempre termino buscando utilidades que hagan el trabajo por mí.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/memstechtips/Winhance"&gt;Winhance&lt;/a&gt; es exactamente eso: una herramienta de C# con casi 10.000 estrellas en GitHub que permite debloater, optimizar y personalizar Windows 10 y 11 sin tener que reinstalar. Esencialmente hace lo mismo que &lt;a href="https://github.com/memstechtips/UnattendedWinstall"&gt;UnattendedWinstall&lt;/a&gt; pero sin necesidad de una instalación limpia.&lt;/p&gt;
+&lt;p&gt;La instalación es ridiculamente simple desde PowerShell:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nb"&gt;irm &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;https://get.winhance.net&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; &lt;span class="nb"&gt;iex&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;También hay un instalador descargable desde &lt;a href="https://winhance.net"&gt;winhance.net&lt;/a&gt; o &lt;a href="https://github.com/memstechtips/Winhance/releases"&gt;GitHub Releases&lt;/a&gt;, con opción de instalación normal o portable.&lt;/p&gt;
+&lt;p&gt;Lo que me ha gustado:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Software &amp;amp; Apps&lt;/strong&gt;: interfaz para quitar bloatware de Windows (apps preinstaladas, capacidades legacy, optional features) e instalar aplicaciones útiles via WinGet. Tiene categorías organizadas para navegadores, multimedia, visores de documentos, etc.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Optimize&lt;/strong&gt;: todo en un panel searchable. Control del UAC, ajustes de privacidad, optimizaciones para gaming, configuración de Windows Updates, planes de energía, sonido y notificaciones. Cada opción con un toggle switch claro.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Customize&lt;/strong&gt;: selector de tema oscuro/claro, personalización de la taskbar, menú inicio y el explorador de archivos.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Advanced Tools&lt;/strong&gt;: herramienta para crear ISOs de Windows personalizadas con WIMUtil (incluyendo drivers del sistema actual) y generar archivos &lt;code&gt;autounattend.xml&lt;/code&gt; basados en tus selecciones de Winhance.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Configuración exportable&lt;/strong&gt;: puedes guardar toda tu configuración en un archivo para importarla después de una reinstalación. Esto es oro puro si manejas varias máquinas.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;La licencia es &lt;a href="https://polyformproject.org/licenses/shield/1.0.0/"&gt;PolyForm Shield 1.0.0&lt;/a&gt;, lo que significa que es gratis para uso personal, empresas y profesionales de IT, pero no puedes hacerle fork y redistribuirlo como producto competidor.&lt;/p&gt;
+&lt;p&gt;Me lo dejo aquí apuntado para la próxima vez que tenga que limpiar una de esas dos máquinas Windows. Seguro me ahorra un buen rato de clicks por el panel de configuración.&lt;/p&gt;</content><category term="Herramientas"></category><category term="windows"></category><category term="debloater"></category><category term="herramientas"></category><category term="winhance"></category></entry></feed>
