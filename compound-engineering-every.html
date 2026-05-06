@@ -1,0 +1,396 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/stylesheet/style.min.css">
+
+
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+          href="https://pablocaro.es/theme/pygments/github.min.css">
+
+
+  <link rel="stylesheet"
+        type="text/css"
+        href="https://pablocaro.es/theme/stork/stork.css" />
+
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/font-awesome/css/solid.css">
+
+  <link rel="stylesheet" type="text/css" href="/extras/custom.css">
+
+  <link rel="shortcut icon" href="/theme/img/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/theme/img/favicon.ico" type="image/x-icon">
+
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#333333">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#333333">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Microsoft EDGE -->
+  <meta name="msapplication-TileColor" content="#333333">
+
+  <link href="https://pablocaro.es/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Anotaciones por Pablo Caro Atom">
+
+  <link href="https://pablocaro.es/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Anotaciones por Pablo Caro RSS">
+
+<script data-goatcounter="https://pcaro.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Pablo Caro" />
+<meta name="description" content="En la primera parte de esta serie hablé de cómo los agentes de IA han cambiado mi forma de construir software. Pero eso era solo el calentamiento. Lo que viene ahora es la visión de una empresa que ha llevado esta idea al extremo: Every, la startup de Dan Shipper …" />
+<meta name="keywords" content="agentes, ia, compound-engineering, every, claude-code" />
+
+<link
+  rel="alternate"
+  href="https://pablocaro.es/compound-engineering-every"
+  hreflang="es"
+/>
+<link
+  rel="alternate"
+  href="https://pablocaro.es/en/compound-engineering-every"
+  hreflang="en"
+/>
+    <meta property="og:site_name" content="Anotaciones por Pablo Caro"/>
+  <meta property="og:title" content="Compound Engineering — La visión de Every sobre ingeniería con agentes"/>
+  <meta property="og:description" content="En la primera parte de esta serie hablé de cómo los agentes de IA han cambiado mi forma de construir software. Pero eso era solo el calentamiento. Lo que viene ahora es la visión de una empresa que ha llevado esta idea al extremo: Every, la startup de Dan Shipper …"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://pablocaro.es/compound-engineering-every"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2026-05-06 00:00:00+02:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://pablocaro.es/author/pablo-caro.html">
+  <meta property="article:section" content="ia"/>
+  <meta property="article:tag" content="agentes"/>
+  <meta property="article:tag" content="ia"/>
+  <meta property="article:tag" content="compound-engineering"/>
+  <meta property="article:tag" content="every"/>
+  <meta property="article:tag" content="claude-code"/>
+  <meta property="og:image" content="/theme/img/profile.png">
+ 
+  <title>Anotaciones por Pablo Caro &ndash; Compound Engineering — La visión de Every sobre ingeniería con agentes</title>
+
+
+</head>
+<body class="light-theme">
+
+<aside>
+  <div>
+    <a href="https://pablocaro.es/">
+      <img src="/theme/img/profile.png" alt="Anotaciones" title="Anotaciones">
+    </a>
+
+    <h1>
+      <a href="https://pablocaro.es/">Anotaciones</a>
+    </h1>
+
+    <p>Anotaciones</p>
+
+    <p style="font-size: 0.9em; font-style: italic; margin-bottom: 20px;">
+      Volcando mi cerebro a internet. Colección de apuntes técnicos y soluciones que escribo para mi 'yo' del futuro, pero que comparto por si a alguien más le ahorran un dolor de cabeza.
+    </p>
+
+    <div class="stork">
+      <input class="stork-input" type="text" autocomplete="off" name="q" data-stork="sitesearch" placeholder="Buscar..." onclick="loadStorkIndex()"/>
+      <div class="stork-output" data-stork="sitesearch-output"></div>
+    </div>
+
+    <nav>
+      <ul class="list">
+
+
+
+          <li>
+            <a target="_self" href="http://x.com/pcaro" >pcaro@X</a>
+          </li>
+          <li>
+            <a target="_self" href="https://github.com/pcaro/" >pcaro@Github</a>
+          </li>
+          <li>
+            <a target="_self" href="https://www.linkedin.com/in/pcarorevuelta/" >LinkedIn</a>
+          </li>
+      </ul>
+    </nav>
+
+    <ul class="social">
+      <li>
+        <a class="sc-Twitter"
+           href="http://twitter.com/pcaro"
+           target="_blank">
+          <i class="fa-brands fa-Twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Github"
+           href="http://github.com/pcaro"
+           target="_blank">
+          <i class="fa-brands fa-Github"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Linkedin"
+           href="https://www.linkedin.com/in/pcarorevuelta"
+           target="_blank">
+          <i class="fa-brands fa-Linkedin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Facebook"
+           href="https://www.facebook.com/pablo.carorevuelta"
+           target="_blank">
+          <i class="fa-brands fa-Facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Email"
+           href="mailto:correo@pablocaro.es"
+           target="_blank">
+          <i class="fa-brands fa-Email"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+</aside>
+  <main>
+
+<nav>
+  <a href="https://pablocaro.es/">Inicio</a>
+
+  <a href="/archives.html">Archivo</a>
+  <a href="/categories.html">Categorías</a>
+  <a href="/tags.html">Etiquetas</a>
+  <a href="/search.html">Búsqueda</a>
+  <a href="/en/">English</a>
+
+  <a href="https://pablocaro.es/feeds/all.atom.xml">Atom</a>
+
+  <a href="https://pablocaro.es/feeds/all.rss.xml">RSS</a>
+</nav>
+
+<article class="single">
+  <header>
+      <div class="translations">
+            <a href="https://pablocaro.es/en/compound-engineering-every">Read in English</a>
+    </div>
+
+    <h1 id="compound-engineering-every">Compound Engineering — La visión de Every sobre ingeniería con agentes</h1>
+    <p>
+      Publicado el 06 de May de 2026 en <a href="https://pablocaro.es/category/ia.html">ia</a>     </p>
+  </header>
+
+  <div class="related-posts">
+    <h4>
+      Parte 2 de la serie Ingeniería de Programación con Agentes
+    </h4>
+    <h5>
+      Artículos anteriores
+    </h5>
+    <ul>
+      <li><a href="https://pablocaro.es/programming-with-agents">Ingeniería de Programación con Agentes</a></li>
+    </ul>
+     <h5>Próximos artículos</h5>
+    <ul>
+      <li><a href="https://pablocaro.es/agent-skills-addy-osmani">Agent Skills de Addy Osmani — Imponiendo disciplina de ingeniería senior a los agentes</a></li>
+      <li><a href="https://pablocaro.es/superpowers-obra-jesse-vincent">Superpowers — Jesse Vincent impone metodología a los agentes de codificación</a></li>
+      <li><a href="https://pablocaro.es/matt-pocock-skills">Matt Pocock — Skills sencillas que funcionan</a></li>
+    </ul>
+  </div>
+ 
+  <div><p>En la primera parte de esta serie hablé de cómo los agentes de IA han cambiado mi forma de construir software. Pero eso era solo el calentamiento. Lo que viene ahora es la visión de una empresa que ha llevado esta idea al extremo: <strong>Every</strong>, la startup de Dan Shipper y Kieran Klaassen, que ha construido no solo productos con agentes, sino una <strong>metodología completa</strong> para hacerlo.</p>
+<p>La llaman <strong>compound engineering</strong>.</p>
+<p><img alt="Compound Engineering — How Every Codes With Agents" src="/images/compound-engineering-every-cover.png"></p>
+<h2 id="el-problema-con-la-ingenieria-tradicional">El problema con la ingeniería tradicional<a class="headerlink" href="#el-problema-con-la-ingenieria-tradicional" title="Permanent link">&para;</a></h2>
+<p>En la ingeniería de software clásica, cada nueva feature complica la siguiente. Más código significa más casos límite, más interdependencias, más sorpresas que nadie anticipó. Es una curva de complejidad que solo sube.</p>
+<p>Every se dio cuenta de que con agentes escribiendo el código, esa premisa ya no tenía sento. Si un agente puede generar código en segundos, el cuello de botella deja de ser "escribir código" y pasa a ser "saber qué código escribir". Y si el agente puede aprender de cada iteración, la complejidad deja de ser un peso muerto y se convierte en combustible.</p>
+<blockquote>
+<p>En compound engineering, cada feature hace más fácil la siguiente. No porque el código desaparezca, sino porque el sistema aprende de él.</p>
+</blockquote>
+<h2 id="el-bucle-de-compound-engineering">El bucle de compound engineering<a class="headerlink" href="#el-bucle-de-compound-engineering" title="Permanent link">&para;</a></h2>
+<p>Every define cuatro pasos que se repiten en ciclo. El truco está en que el output de cada ciclo alimenta el siguiente:</p>
+<h3 id="1-plan">1. Plan<a class="headerlink" href="#1-plan" title="Permanent link">&para;</a></h3>
+<p>Aquí es donde pasa el 40% del tiempo de un compound engineer. No escribir código, no revisar PRs. <strong>Planificar</strong>.</p>
+<p>El agente investiga el codebase actual, lee la historia de commits, busca mejores prácticas en internet, y sintetiza todo en un plan de implementación detallado. Cuando empieza a escribir, ya está calentado. Ya conoce las convenciones del proyecto, los patrones que funcionaron antes, y los que fracasaron.</p>
+<p>Este paso es crítico porque un agente sin contexto genera código genérico. Un agente con contexto genera código que encaja en tu arquitectura como si lo hubiera escrito un miembro del equipo.</p>
+<h3 id="2-work">2. Work<a class="headerlink" href="#2-work" title="Permanent link">&para;</a></h3>
+<p>El agente escribe código y tests según el plan. Esto es lo que la mayoría de la gente imagina cuando piensa en "programar con IA": el agente genera funciones, clases, tests. Pero en compound engineering, este paso representa apenas el 10% del esfuerzo humano. El código se escribe solo. El valor está en todo lo que rodea a ese código.</p>
+<h3 id="3-review">3. Review<a class="headerlink" href="#3-review" title="Permanent link">&para;</a></h3>
+<p>El ingeniero revisa el output. No solo busca bugs, sino que extrae <strong>lecciones</strong>. ¿Por qué el agente eligió esta abstracción? ¿Hubo un patrón que no reconoció? ¿Un edge case que olvidó?</p>
+<p>En Every usan múltiples agentes revisoras especializadas: una para seguridad, otra para rendimiento, otra para simplicidad, otra para mantenibilidad. Cada una mira el código desde un ángulo diferente. El ingeniero humano orquesta estas revisiones y decide qué feedback incorporar.</p>
+<h3 id="4-compound">4. Compound<a class="headerlink" href="#4-compound" title="Permanent link">&para;</a></h3>
+<p>Este es el paso que cambia todo. Las lecciones extraídas en la review no se quedan en la cabeza del ingeniero. Se documentan. Se codifican. Se convierten en parte del sistema.</p>
+<p>Every usa archivos como <code>CLAUDE.md</code> y <code>AGENTS.md</code> donde se registra todo: patrones de código aprobados, decisiones arquitectónicas, bugs recurrentes y sus soluciones, estilos de nomenclatura, preferencias de diseño. La próxima vez que un agente trabaje en el proyecto, lee estos archivos antes de empezar. Cada ciclo hace que el agente sea más listo.</p>
+<h2 id="un-ejemplo-real-el-detector-de-frustracion">Un ejemplo real: el detector de frustración<a class="headerlink" href="#un-ejemplo-real-el-detector-de-frustracion" title="Permanent link">&para;</a></h2>
+<p>Kieran Klaassen describe en Every cómo construyeron un "detector de frustración" para su producto Cora, un asistente de email con IA. El objetivo: detectar cuando un usuario se está frustrando con la app y generar automáticamente un reporte de mejora.</p>
+<p>El flujo fue así:</p>
+<ol>
+<li><strong>Crearon una conversación de ejemplo</strong> donde un usuario expresa frustración (preguntas repetidas, lenguaje cada vez más conciso).</li>
+<li><strong>Le pidieron a Claude que escribiera un test</strong> que verifique si el sistema detecta esa frustración.</li>
+<li><strong>El test falló</strong> — como debe ser en TDD.</li>
+<li><strong>Le pidieron a Claude que escribiera la lógica de detección</strong>.</li>
+<li><strong>Funcionó parcialmente</strong>. Entonces le pidieron que <strong>iterara el prompt</strong> hasta que el test pasara.</li>
+<li><strong>Para evitar la no-determinación de la IA</strong>, hicieron que Claude ejecutara el test 10 veces.</li>
+<li><strong>Analizó los 6 fallos</strong>, leyó el chain-of-thought de cada uno, y descubrió un patrón: el sistema no detectaba lenguaje atenuado como "Hmm, not quite", que en contexto de repetición sí señala frustración.</li>
+<li><strong>Actualizó el prompt</strong> para buscar específicamente ese lenguaje. En la siguiente iteración, identificaba frustración 9 de 10 veces.</li>
+<li><strong>Codificaron todo el flujo</strong> en <code>CLAUDE.md</code>. La próxima vez que necesiten detectar una emoción o comportamiento de usuario, no empiezan de cero. Dicen: "usa el workflow del detector de frustración".</li>
+</ol>
+<p>Ese es compound engineering en acción. No es solo resolver el problema de hoy. Es enseñar al sistema a resolver toda una categoría de problemas.</p>
+<h2 id="el-plugin-de-compound-engineering">El plugin de compound engineering<a class="headerlink" href="#el-plugin-de-compound-engineering" title="Permanent link">&para;</a></h2>
+<p>Every ha open-sourcéado su sistema como un plugin que funciona con Claude Code, Codex CLI, Cursor y otros. Tiene más de 50 agentes especializados y 38 skills accesibles como slash commands.</p>
+<p>Algunos de los skills más interesantes:</p>
+<ul>
+<li><code>/ce-strategy</code> — Crea o mantiene el <code>STRATEGY.md</code> del producto: problema, approach, persona, métricas clave.</li>
+<li><code>/ce-plan</code> — Genera planes estructurados para cualquier tarea multi-paso, con verificación de confianza automática.</li>
+<li><code>/ce-brainstorm</code> — Q&amp;A interactivo para pensar un feature antes de planificarlo.</li>
+<li><code>/ce-work</code> — Ejecuta items de trabajo de forma sistemática.</li>
+<li><code>/ce-debug</code> — Encuentra root causes y fixea bugs con hipótesis testeables.</li>
+<li><code>/ce-code-review</code> — Review estructurada con múltiples agentes revisores en paralelo.</li>
+<li><code>/ce-compound</code> — Documenta problemas resueltos para que el equipo (y los agentes) aprendan.</li>
+<li><code>/ce-compound-refresh</code> — Revisa learnings obsoletos y decide si actualizar, reemplazar o archivar.</li>
+<li><code>/ce-product-pulse</code> — Genera reportes de uso, performance, errores y followups.</li>
+<li><code>/ce-sessions</code> — Busca en el historial de sesiones de Claude Code, Codex y Cursor.</li>
+</ul>
+<p>Y las agentes revisoras son especialistas: hay una para contratos de API, otra para migraciones de datos, otra para carreras en frontend, otra para seguridad, otra para rendimiento. Cada una aplica su lente específico.</p>
+<h2 id="por-que-esto-importa">Por qué esto importa<a class="headerlink" href="#por-que-esto-importa" title="Permanent link">&para;</a></h2>
+<p>Every corre cinco productos software, cada uno construido y mantenido principalmente por una sola persona. Productos que usan miles de personas todos los días. No son demos. Son negocios reales.</p>
+<p>Su métrica: un solo desarrollador con compound engineering hace el trabajo de cinco desarrolladores tradicionales. No porque escriba más código, sino porque cada línea que escribe construye sobre todo lo aprendido antes.</p>
+<p>La implicación es profunda. Si la ingeniería tradicional asume que escribir código es difícil y los ingenieros son escasos, compound engineering asume que el código es barato y el conocimiento es el activo valioso. La pregunta ya no es "¿cómo escribo esto?", sino "¿cómo enseño al sistema a escribir esto, y todo lo que se le parezca, para siempre?".</p>
+<h2 id="mi-lectura">Mi lectura<a class="headerlink" href="#mi-lectura" title="Permanent link">&para;</a></h2>
+<p>Lo que propone Every no es una herramienta, es un cambio de paradigma. La ingeniería de software siempre ha tenido un componente de acumulación: bibliotecas, frameworks, patrones. Pero eso era acumulación de código. Compound engineering es acumulación de <strong>conocimiento sobre cómo construir</strong>.</p>
+<p>El <code>CLAUDE.md</code> no es documentación para humanos. Es memoria para agentes. Y eso cambia la naturaleza del trabajo del ingeniero: deja de ser quien escribe código para ser quien diseña sistemas que escriben código, y que además aprenden de cada línea que generan.</p>
+<p>No es futurismo. Every ya lo está haciendo. El plugin está en GitHub, con 16k+ estrellas. La pregunta no es si esto va a llegar a tu equipo, sino cuándo.</p>
+<h2 id="recursos">Recursos<a class="headerlink" href="#recursos" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://github.com/EveryInc/compound-engineering-plugin">Compound Engineering Plugin</a> — El plugin open source de Every</li>
+<li><a href="https://every.to/chain-of-thought/compound-engineering-how-every-codes-with-agents">Compound Engineering: How Every Codes With Agents</a> — El artículo original de Dan Shipper y Kieran Klaassen</li>
+<li><a href="https://every.to/source-code/my-ai-had-already-fixed-the-code-before-i-saw-it">My AI Had Already Fixed the Code Before I Saw It</a> — Kieran describe el sistema de compounding en acción</li>
+</ul></div>
+  <div class="tag-cloud">
+    <p>
+       <a href="https://pablocaro.es/tag/agentes.html">agentes</a>
+      <a href="https://pablocaro.es/tag/ia.html">ia</a>
+      <a href="https://pablocaro.es/tag/compound-engineering.html">compound-engineering</a>
+      <a href="https://pablocaro.es/tag/every.html">every</a>
+      <a href="https://pablocaro.es/tag/claude-code.html">claude-code</a>
+     </p>
+  </div>
+
+    <div class="neighbors">
+    <a class="btn float-left" href="https://pablocaro.es/programming-with-agents" title="Ingeniería de Programación con Agentes">
+      <i class="fa fa-angle-left"></i> Artículo anterior
+    </a>
+    <a class="btn float-right" href="https://pablocaro.es/agent-skills-addy-osmani" title="Agent Skills de Addy Osmani — Imponiendo disciplina de ingeniería senior a los agentes">
+      Próximo artículo <i class="fa fa-angle-right"></i>
+    </a>
+  </div>
+   <div class="related-posts">
+    <h4>Te puede gustar</h4>
+    <ul class="related-posts">
+      <li>
+        <a href="https://pablocaro.es/matt-pocock-skills"
+          >Matt Pocock — Skills sencillas que funcionan</a
+        >
+      </li>
+      <li>
+        <a href="https://pablocaro.es/superpowers-obra-jesse-vincent"
+          >Superpowers — Jesse Vincent impone metodología a los agentes de codificación</a
+        >
+      </li>
+      <li>
+        <a href="https://pablocaro.es/agent-skills-addy-osmani"
+          >Agent Skills de Addy Osmani — Imponiendo disciplina de ingeniería senior a los agentes</a
+        >
+      </li>
+      <li>
+        <a href="https://pablocaro.es/programming-with-agents"
+          >Ingeniería de Programación con Agentes</a
+        >
+      </li>
+      <li>
+        <a href="https://pablocaro.es/video-gemini-sevilla"
+          >Creación de vídeo con Gemini: personajes de Sevilla</a
+        >
+      </li>
+    </ul>
+  </div>
+  <!-- Disqus -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'anotaciones';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>
+    Por favor, habilita JavaScript para ver los comentarios.
+</noscript>
+<!-- End Disqus -->
+ </article>
+
+<footer>
+<p>
+  &copy; 2026  - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+Construido con <a href="http://getpelican.com" target="_blank">Pelican</a> usando el tema <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> 
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/3.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/3.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Anotaciones por Pablo Caro ",
+  "url" : "https://pablocaro.es",
+  "image": "/theme/img/profile.png",
+  "description": ""
+}
+</script>  <script src="https://files.stork-search.net/releases/v1.6.0/stork.js"></script>
+  <script>
+    window.storkIndexLoaded = false;
+    window.loadStorkIndex = function () {
+      if (window.storkIndexLoaded) {
+        return;
+      }
+      if (typeof stork === 'undefined') {
+        console.error('Stork is not loaded yet, retrying...');
+        setTimeout(window.loadStorkIndex, 100);
+        return;
+      }
+      stork.register("sitesearch", "https://pablocaro.es/search-index.st", { showProgress: false });
+      stork.register("sitesearch-page", "https://pablocaro.es/search-index.st", { showProgress: false });
+      window.storkIndexLoaded = true;
+    }
+  </script>
+
+</body>
+</html>

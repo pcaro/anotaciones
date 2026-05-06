@@ -1,0 +1,386 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/stylesheet/style.min.css">
+
+
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+          href="https://pablocaro.es/theme/pygments/github.min.css">
+
+
+  <link rel="stylesheet"
+        type="text/css"
+        href="https://pablocaro.es/theme/stork/stork.css" />
+
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/font-awesome/css/solid.css">
+
+  <link rel="stylesheet" type="text/css" href="/extras/custom.css">
+
+  <link rel="shortcut icon" href="/theme/img/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/theme/img/favicon.ico" type="image/x-icon">
+
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#333333">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#333333">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Microsoft EDGE -->
+  <meta name="msapplication-TileColor" content="#333333">
+
+  <link href="https://pablocaro.es/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Anotaciones por Pablo Caro Atom">
+
+  <link href="https://pablocaro.es/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Anotaciones por Pablo Caro RSS">
+
+<script data-goatcounter="https://pcaro.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Pablo Caro" />
+<meta name="description" content="Quinta entrega de la serie sobre ingeniería de programación con agentes. Hoy toca el proyecto que está arrasando estos días: las skills de Matt Pocock. He cubierto Superpowers (Jesse Vincent), Agent Skills (Addy Osmani) y Compound Engineering (Every). Cada uno aporta una pieza importante del puzzle. Pero las skills de …" />
+<meta name="keywords" content="agentes, ia, skills, matt-pocock, claude-code" />
+
+<link
+  rel="alternate"
+  href="https://pablocaro.es/matt-pocock-skills"
+  hreflang="es"
+/>
+<link
+  rel="alternate"
+  href="https://pablocaro.es/en/matt-pocock-skills"
+  hreflang="en"
+/>
+    <meta property="og:site_name" content="Anotaciones por Pablo Caro"/>
+  <meta property="og:title" content="Matt Pocock — Skills sencillas que funcionan"/>
+  <meta property="og:description" content="Quinta entrega de la serie sobre ingeniería de programación con agentes. Hoy toca el proyecto que está arrasando estos días: las skills de Matt Pocock. He cubierto Superpowers (Jesse Vincent), Agent Skills (Addy Osmani) y Compound Engineering (Every). Cada uno aporta una pieza importante del puzzle. Pero las skills de …"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://pablocaro.es/matt-pocock-skills"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2026-05-06 00:00:00+02:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://pablocaro.es/author/pablo-caro.html">
+  <meta property="article:section" content="ia"/>
+  <meta property="article:tag" content="agentes"/>
+  <meta property="article:tag" content="ia"/>
+  <meta property="article:tag" content="skills"/>
+  <meta property="article:tag" content="matt-pocock"/>
+  <meta property="article:tag" content="claude-code"/>
+  <meta property="og:image" content="/theme/img/profile.png">
+ 
+  <title>Anotaciones por Pablo Caro &ndash; Matt Pocock — Skills sencillas que funcionan</title>
+
+
+</head>
+<body class="light-theme">
+
+<aside>
+  <div>
+    <a href="https://pablocaro.es/">
+      <img src="/theme/img/profile.png" alt="Anotaciones" title="Anotaciones">
+    </a>
+
+    <h1>
+      <a href="https://pablocaro.es/">Anotaciones</a>
+    </h1>
+
+    <p>Anotaciones</p>
+
+    <p style="font-size: 0.9em; font-style: italic; margin-bottom: 20px;">
+      Volcando mi cerebro a internet. Colección de apuntes técnicos y soluciones que escribo para mi 'yo' del futuro, pero que comparto por si a alguien más le ahorran un dolor de cabeza.
+    </p>
+
+    <div class="stork">
+      <input class="stork-input" type="text" autocomplete="off" name="q" data-stork="sitesearch" placeholder="Buscar..." onclick="loadStorkIndex()"/>
+      <div class="stork-output" data-stork="sitesearch-output"></div>
+    </div>
+
+    <nav>
+      <ul class="list">
+
+
+
+          <li>
+            <a target="_self" href="http://x.com/pcaro" >pcaro@X</a>
+          </li>
+          <li>
+            <a target="_self" href="https://github.com/pcaro/" >pcaro@Github</a>
+          </li>
+          <li>
+            <a target="_self" href="https://www.linkedin.com/in/pcarorevuelta/" >LinkedIn</a>
+          </li>
+      </ul>
+    </nav>
+
+    <ul class="social">
+      <li>
+        <a class="sc-Twitter"
+           href="http://twitter.com/pcaro"
+           target="_blank">
+          <i class="fa-brands fa-Twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Github"
+           href="http://github.com/pcaro"
+           target="_blank">
+          <i class="fa-brands fa-Github"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Linkedin"
+           href="https://www.linkedin.com/in/pcarorevuelta"
+           target="_blank">
+          <i class="fa-brands fa-Linkedin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Facebook"
+           href="https://www.facebook.com/pablo.carorevuelta"
+           target="_blank">
+          <i class="fa-brands fa-Facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Email"
+           href="mailto:correo@pablocaro.es"
+           target="_blank">
+          <i class="fa-brands fa-Email"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+</aside>
+  <main>
+
+<nav>
+  <a href="https://pablocaro.es/">Inicio</a>
+
+  <a href="/archives.html">Archivo</a>
+  <a href="/categories.html">Categorías</a>
+  <a href="/tags.html">Etiquetas</a>
+  <a href="/search.html">Búsqueda</a>
+  <a href="/en/">English</a>
+
+  <a href="https://pablocaro.es/feeds/all.atom.xml">Atom</a>
+
+  <a href="https://pablocaro.es/feeds/all.rss.xml">RSS</a>
+</nav>
+
+<article class="single">
+  <header>
+      <div class="translations">
+            <a href="https://pablocaro.es/en/matt-pocock-skills">Read in English</a>
+    </div>
+
+    <h1 id="matt-pocock-skills">Matt Pocock — Skills sencillas que funcionan</h1>
+    <p>
+      Publicado el 06 de May de 2026 en <a href="https://pablocaro.es/category/ia.html">ia</a>     </p>
+  </header>
+
+  <div class="related-posts">
+    <h4>
+      Parte 5 de la serie Ingeniería de Programación con Agentes
+    </h4>
+    <h5>
+      Artículos anteriores
+    </h5>
+    <ul>
+      <li><a href="https://pablocaro.es/programming-with-agents">Ingeniería de Programación con Agentes</a></li>
+      <li><a href="https://pablocaro.es/compound-engineering-every">Compound Engineering — La visión de Every sobre ingeniería con agentes</a></li>
+      <li><a href="https://pablocaro.es/agent-skills-addy-osmani">Agent Skills de Addy Osmani — Imponiendo disciplina de ingeniería senior a los agentes</a></li>
+      <li><a href="https://pablocaro.es/superpowers-obra-jesse-vincent">Superpowers — Jesse Vincent impone metodología a los agentes de codificación</a></li>
+    </ul>
+   </div>
+ 
+  <div><p>Quinta entrega de la serie sobre ingeniería de programación con agentes. Hoy toca el proyecto que está arrasando estos días: las <strong>skills de Matt Pocock</strong>.</p>
+<p>He cubierto Superpowers (Jesse Vincent), Agent Skills (Addy Osmani) y Compound Engineering (Every). Cada uno aporta una pieza importante del puzzle. Pero las skills de Matt Pocock han explotado en popularidad en cuestión de días, y creo que sé por qué: aplican una filosofía KISS llevada al extremo. Skills cortas, directas, sin pretensiones. Y una de ellas, <code>/grill-me</code>, se ha convertido en un fenómeno por sí sola.</p>
+<p><img alt="Matt Pocock Skills" src="/images/matt-pocock-skills-cover.png"></p>
+<h2 id="la-filosofia-skills-que-un-ingeniero-real-usaria">La filosofía: skills que un ingeniero real usaría<a class="headerlink" href="#la-filosofia-skills-que-un-ingeniero-real-usaria" title="Permanent link">&para;</a></h2>
+<p>Matt es conocido por Total TypeScript y su trabajo en TypeScript. Cuando empezó a publicar skills para Claude Code, no escribió un framework. Escribió archivos markdown de tres líneas que hacían una cosa y la hacían bien.</p>
+<p>El lema del repositorio lo resume: <em>"Skills for Real Engineers"</em> (skills para ingenieros de verdad). No hay capas de abstracción, ni plugins complejos, ni ciclos de vida sofisticados. Son ficheros markdown con frontmatter que se inyectan en el contexto del agente. Punto.</p>
+<p>El repositorio se organiza en cubos: <code>engineering/</code> (skills del día a día), <code>productivity/</code> (herramientas generales), <code>misc/</code> (cosas que raramente usa), <code>personal/</code> (atadas a su setup) e <code>in-progress/</code>. De las ~20 skills totales, solo unas 6 son las que realmente recomienda para el día a día. Esa contención es la clave: no más de media docena de skills, y muy muy cortas.</p>
+<p>El contraste con Superpowers (v5 con 20+ skills, loops adversariales, sistema de fases completo) no podría ser mayor. Matt demuestra que menos puede ser más si eliges bien qué automatizar.</p>
+<h2 id="grill-me-el-skill-que-lo-cambia-todo"><code>/grill-me</code>: el skill que lo cambia todo<a class="headerlink" href="#grill-me-el-skill-que-lo-cambia-todo" title="Permanent link">&para;</a></h2>
+<p>Tres frases. Eso es todo el skill:</p>
+<blockquote>
+<p><em>"Interview me relentlessly about every aspect of this plan until we reach a shared understanding. Walk down each branch of the design tree, resolving dependencies between decisions one-by-one. Ask the questions one at a time. If a question can be answered by exploring the codebase, explore the codebase instead."</em></p>
+</blockquote>
+<p>Tres frases que han generado 62.000 estrellas en GitHub y se han compartido en todas partes. ¿Por qué?</p>
+<p>Porque resuelven el problema número uno de trabajar con agentes: <strong>la alineación</strong>. El agente no sabe lo que quieres, y tú no sabes lo que el agente ha entendido. El <code>grill-me</code> fuerza una conversación estructurada donde el agente te pregunta hasta que no quedan ramas del árbol de decisión sin explorar.</p>
+<p>Matt cuenta que en una sesión típica, Claude le hizo 16 preguntas para una feature relativamente simple. En features complejas, ha tenido sesiones de 30-40-50 preguntas que duran casi media hora. Pero al final de esa media hora, el diseño está completamente resuelto. No hay sorpresas cuando el agente empieza a escribir código.</p>
+<p>El concepto de "árbol de decisión" viene de <em>The Design of Design</em> de Frederick P. Brooks. La idea es que cuando diseñas algo, caminas por ramas: "¿búsqueda avanzada o búsqueda simple? Si avanzada, ¿qué filtros? ¿qué ordenación?" Hasta que has recorrido todas las ramas y el diseño está completamente especificado.</p>
+<h2 id="el-flujo-completo-grill-prd-issues-tdd">El flujo completo: grill → PRD → issues → TDD<a class="headerlink" href="#el-flujo-completo-grill-prd-issues-tdd" title="Permanent link">&para;</a></h2>
+<p>Matt encadena varias skills en un pipeline que cubre todo el ciclo de vida de una feature, desde la idea hasta el código pasando por tests:</p>
+<ol>
+<li>
+<p><strong><code>/grill-me</code></strong>: el agente te entrevista hasta que el diseño está claro. Cada pregunta resuelve una decisión. Si puede responderla explorando el código, lo hace.</p>
+</li>
+<li>
+<p><strong><code>/to-prd</code></strong>: una vez alineados, convierte la conversación en un PRD (Product Requirements Document) con user stories, decisiones de implementación y criterios de aceptación. Se publica como issue en GitHub, Linear o el tracker que uses.</p>
+</li>
+<li>
+<p><strong><code>/to-issues</code></strong>: rompe el PRD en issues independientes usando <em>vertical slices</em> (tracer bullets). Cada issue atraviesa todas las capas (schema, API, tests) y es demoable por sí mismo. Distingue entre HITL (human-in-the-loop, requiere decisión humana) y AFK (automatizable de principio a fin).</p>
+</li>
+<li>
+<p><strong><code>/tdd</code></strong>: Test-Driven Development con ciclo red-green-refactor. Una skill sustancial que incluye filosofía sobre mocking, módulos profundos y diseño de interfaces. Escribir un test que falla → implementación mínima → refactor. Una iteración a la vez, nunca todas las vistas horizontales juntas.</p>
+</li>
+<li>
+<p><strong><code>/improve-codebase-architecture</code></strong>: para cuando el código se ha convertido en una bola de barro. Explora el codebase buscando módulos poco profundos, acoplamientos ocultos y falta de testabilidad.</p>
+</li>
+<li>
+<p><strong><code>/grill-with-docs</code></strong>: variante de grill-me que además actualiza un <code>CONTEXT.md</code> con el lenguaje compartido del dominio y escribe ADRs para decisiones difíciles de revertir. Es la skill favorita de Matt — combinación de entrevista con domain-driven design.</p>
+</li>
+</ol>
+<hr>
+<p>Es notable cómo el flujo entero encaja con lo que hemos visto antes:</p>
+<ul>
+<li><strong>El scaffolding de Every</strong> (CLAUDE.md que acumula conocimiento) aparece aquí como <code>CONTEXT.md</code> + ADRs.</li>
+<li><strong>La disciplina de Addy Osmani</strong> (tablas anti-racionalización, workflows con checkpoints) aparece en el TDD skill con sus checklist por ciclo.</li>
+<li><strong>La metodología estructurada de Superpowers</strong> (file structure primero, descomposición en unidades, loops adversariales) aparece aquí como vertical slices, tracer bullets y la separación HITL/AFK.</li>
+</ul>
+<p>Pero Matt lo envuelve todo en skills tan cortas que caben en un tuit. No hay sobreingeniería. Hay pragmatismo.</p>
+<h2 id="mi-lectura">Mi lectura<a class="headerlink" href="#mi-lectura" title="Permanent link">&para;</a></h2>
+<p>Matt Pocock ha hecho algo que me parece más difícil que construir un framework: ha destilado su experiencia en piezas tan pequeñas que cualquiera puede adoptarlas sin cambiar su flujo de trabajo.</p>
+<p>El <code>/grill-me</code> me resulta especialmente familiar porque mi flujo personal con agentes siempre ha incluido una fase de preguntas iterativas — casi una versión manual de lo que Matt ha codificado. Verlo convertido en skill pública, con 62.000 personas dándole estrellas, confirma que el instinto era correcto: la alineación temprana es el paso más infravalorado en el trabajo con agentes.</p>
+<p>El resto de skills son igual de sólidas. El <code>to-prd</code> y <code>to-issues</code> formalizan algo que cualquier ingeniero senior hace instintivamente (pensar antes de escribir, dividir el trabajo en trozos revisables) pero que raramente se documenta. El TDD skill es el mejor que he visto para agentes: no solo dice "haz TDD", sino que explica <em>por qué</em> las vistas horizontales producen tests malos y <em>cómo</em> hacer ciclos verticales correctamente.</p>
+<p>Lo que diferencia a Matt del resto es la <strong>accesibilidad</strong>. Superpowers requiere integrar un runtime. Agent Skills requiere instalar un plugin. Las skills de Matt son ficheros markdown que puedes copiar a tu <code>.claude/</code> en 30 segundos. Y si no quieres instalarlas, leerlas ya te da el framework mental.</p>
+<p>No creo que las skills de Matt reemplacen a Superpowers o Agent Skills. Son herramientas para contextos diferentes. Superpowers es para cuando quieres una metodología completa que el agente no pueda saltarse. Matt es para cuando quieres piezas pequeñas, intercambiables, que entiendes y modificas.</p>
+<p>Las dos tienen sentido. Pero Matt ha demostrado algo importante: a veces la mejor skill es la que cabe en tres líneas.</p>
+<h2 id="recursos">Recursos<a class="headerlink" href="#recursos" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://github.com/mattpocock/skills">mattpocock/skills en GitHub</a> — El repositorio (62K+ estrellas)</li>
+<li><a href="https://www.aihero.dev/skills">AI Hero — Skills</a> — La web oficial con guías de cada skill</li>
+<li><a href="https://www.aihero.dev/5-agent-skills-i-use-every-day">5 Agent Skills I Use Every Day</a> — El artículo de Matt presentando su kit</li>
+<li><a href="https://www.aihero.dev/my-grill-me-skill-has-gone-viral">My Grill Me Skill Has Gone Viral</a> — Sobre el fenómeno <code>/grill-me</code></li>
+<li><a href="https://pablocaro.es/superpowers-obra-jesse-vincent">Superpowers — Jesse Vincent</a> — Artículo anterior de la serie</li>
+<li><a href="https://pablocaro.es/agent-skills-addy-osmani">Agent Skills — Addy Osmani</a> — Artículo anterior de la serie</li>
+<li><a href="https://pablocaro.es/compound-engineering-every">Compound Engineering — Every</a> — Artículo anterior de la serie</li>
+</ul></div>
+  <div class="tag-cloud">
+    <p>
+       <a href="https://pablocaro.es/tag/agentes.html">agentes</a>
+      <a href="https://pablocaro.es/tag/ia.html">ia</a>
+      <a href="https://pablocaro.es/tag/skills.html">skills</a>
+      <a href="https://pablocaro.es/tag/matt-pocock.html">matt-pocock</a>
+      <a href="https://pablocaro.es/tag/claude-code.html">claude-code</a>
+     </p>
+  </div>
+
+    <div class="neighbors">
+    <a class="btn float-left" href="https://pablocaro.es/superpowers-obra-jesse-vincent" title="Superpowers — Jesse Vincent impone metodología a los agentes de codificación">
+      <i class="fa fa-angle-left"></i> Artículo anterior
+    </a>
+  </div>
+   <div class="related-posts">
+    <h4>Te puede gustar</h4>
+    <ul class="related-posts">
+      <li>
+        <a href="https://pablocaro.es/superpowers-obra-jesse-vincent"
+          >Superpowers — Jesse Vincent impone metodología a los agentes de codificación</a
+        >
+      </li>
+      <li>
+        <a href="https://pablocaro.es/agent-skills-addy-osmani"
+          >Agent Skills de Addy Osmani — Imponiendo disciplina de ingeniería senior a los agentes</a
+        >
+      </li>
+      <li>
+        <a href="https://pablocaro.es/compound-engineering-every"
+          >Compound Engineering — La visión de Every sobre ingeniería con agentes</a
+        >
+      </li>
+      <li>
+        <a href="https://pablocaro.es/programming-with-agents"
+          >Ingeniería de Programación con Agentes</a
+        >
+      </li>
+      <li>
+        <a href="https://pablocaro.es/video-gemini-sevilla"
+          >Creación de vídeo con Gemini: personajes de Sevilla</a
+        >
+      </li>
+    </ul>
+  </div>
+  <!-- Disqus -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'anotaciones';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>
+    Por favor, habilita JavaScript para ver los comentarios.
+</noscript>
+<!-- End Disqus -->
+ </article>
+
+<footer>
+<p>
+  &copy; 2026  - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+Construido con <a href="http://getpelican.com" target="_blank">Pelican</a> usando el tema <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> 
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/3.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/3.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Anotaciones por Pablo Caro ",
+  "url" : "https://pablocaro.es",
+  "image": "/theme/img/profile.png",
+  "description": ""
+}
+</script>  <script src="https://files.stork-search.net/releases/v1.6.0/stork.js"></script>
+  <script>
+    window.storkIndexLoaded = false;
+    window.loadStorkIndex = function () {
+      if (window.storkIndexLoaded) {
+        return;
+      }
+      if (typeof stork === 'undefined') {
+        console.error('Stork is not loaded yet, retrying...');
+        setTimeout(window.loadStorkIndex, 100);
+        return;
+      }
+      stork.register("sitesearch", "https://pablocaro.es/search-index.st", { showProgress: false });
+      stork.register("sitesearch-page", "https://pablocaro.es/search-index.st", { showProgress: false });
+      window.storkIndexLoaded = true;
+    }
+  </script>
+
+</body>
+</html>

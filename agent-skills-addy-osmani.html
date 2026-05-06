@@ -1,0 +1,448 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/stylesheet/style.min.css">
+
+
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+          href="https://pablocaro.es/theme/pygments/github.min.css">
+
+
+  <link rel="stylesheet"
+        type="text/css"
+        href="https://pablocaro.es/theme/stork/stork.css" />
+
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/font-awesome/css/solid.css">
+
+  <link rel="stylesheet" type="text/css" href="/extras/custom.css">
+
+  <link rel="shortcut icon" href="/theme/img/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/theme/img/favicon.ico" type="image/x-icon">
+
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#333333">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#333333">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Microsoft EDGE -->
+  <meta name="msapplication-TileColor" content="#333333">
+
+  <link href="https://pablocaro.es/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Anotaciones por Pablo Caro Atom">
+
+  <link href="https://pablocaro.es/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Anotaciones por Pablo Caro RSS">
+
+<script data-goatcounter="https://pcaro.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Pablo Caro" />
+<meta name="description" content="En las dos partes anteriores de esta serie hemos visto una visión general de la ingeniería con agentes y luego la metodología de compound engineering de Every. Ahora toca otra aproximación similar: Agent Skills, el proyecto de Addy Osmani en Google que lleva casi 30.000 estrellas en GitHub y …" />
+<meta name="keywords" content="agentes, ia, agent-skills, addy-osmani, google, claude-code" />
+
+<link
+  rel="alternate"
+  href="https://pablocaro.es/agent-skills-addy-osmani"
+  hreflang="es"
+/>
+<link
+  rel="alternate"
+  href="https://pablocaro.es/en/agent-skills-addy-osmani"
+  hreflang="en"
+/>
+    <meta property="og:site_name" content="Anotaciones por Pablo Caro"/>
+  <meta property="og:title" content="Agent Skills de Addy Osmani — Imponiendo disciplina de ingeniería senior a los agentes"/>
+  <meta property="og:description" content="En las dos partes anteriores de esta serie hemos visto una visión general de la ingeniería con agentes y luego la metodología de compound engineering de Every. Ahora toca otra aproximación similar: Agent Skills, el proyecto de Addy Osmani en Google que lleva casi 30.000 estrellas en GitHub y …"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://pablocaro.es/agent-skills-addy-osmani"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2026-05-06 00:00:00+02:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://pablocaro.es/author/pablo-caro.html">
+  <meta property="article:section" content="ia"/>
+  <meta property="article:tag" content="agentes"/>
+  <meta property="article:tag" content="ia"/>
+  <meta property="article:tag" content="agent-skills"/>
+  <meta property="article:tag" content="addy-osmani"/>
+  <meta property="article:tag" content="google"/>
+  <meta property="article:tag" content="claude-code"/>
+  <meta property="og:image" content="/theme/img/profile.png">
+ 
+  <title>Anotaciones por Pablo Caro &ndash; Agent Skills de Addy Osmani — Imponiendo disciplina de ingeniería senior a los agentes</title>
+
+
+</head>
+<body class="light-theme">
+
+<aside>
+  <div>
+    <a href="https://pablocaro.es/">
+      <img src="/theme/img/profile.png" alt="Anotaciones" title="Anotaciones">
+    </a>
+
+    <h1>
+      <a href="https://pablocaro.es/">Anotaciones</a>
+    </h1>
+
+    <p>Anotaciones</p>
+
+    <p style="font-size: 0.9em; font-style: italic; margin-bottom: 20px;">
+      Volcando mi cerebro a internet. Colección de apuntes técnicos y soluciones que escribo para mi 'yo' del futuro, pero que comparto por si a alguien más le ahorran un dolor de cabeza.
+    </p>
+
+    <div class="stork">
+      <input class="stork-input" type="text" autocomplete="off" name="q" data-stork="sitesearch" placeholder="Buscar..." onclick="loadStorkIndex()"/>
+      <div class="stork-output" data-stork="sitesearch-output"></div>
+    </div>
+
+    <nav>
+      <ul class="list">
+
+
+
+          <li>
+            <a target="_self" href="http://x.com/pcaro" >pcaro@X</a>
+          </li>
+          <li>
+            <a target="_self" href="https://github.com/pcaro/" >pcaro@Github</a>
+          </li>
+          <li>
+            <a target="_self" href="https://www.linkedin.com/in/pcarorevuelta/" >LinkedIn</a>
+          </li>
+      </ul>
+    </nav>
+
+    <ul class="social">
+      <li>
+        <a class="sc-Twitter"
+           href="http://twitter.com/pcaro"
+           target="_blank">
+          <i class="fa-brands fa-Twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Github"
+           href="http://github.com/pcaro"
+           target="_blank">
+          <i class="fa-brands fa-Github"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Linkedin"
+           href="https://www.linkedin.com/in/pcarorevuelta"
+           target="_blank">
+          <i class="fa-brands fa-Linkedin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Facebook"
+           href="https://www.facebook.com/pablo.carorevuelta"
+           target="_blank">
+          <i class="fa-brands fa-Facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Email"
+           href="mailto:correo@pablocaro.es"
+           target="_blank">
+          <i class="fa-brands fa-Email"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+</aside>
+  <main>
+
+<nav>
+  <a href="https://pablocaro.es/">Inicio</a>
+
+  <a href="/archives.html">Archivo</a>
+  <a href="/categories.html">Categorías</a>
+  <a href="/tags.html">Etiquetas</a>
+  <a href="/search.html">Búsqueda</a>
+  <a href="/en/">English</a>
+
+  <a href="https://pablocaro.es/feeds/all.atom.xml">Atom</a>
+
+  <a href="https://pablocaro.es/feeds/all.rss.xml">RSS</a>
+</nav>
+
+<article class="single">
+  <header>
+      <div class="translations">
+            <a href="https://pablocaro.es/en/agent-skills-addy-osmani">Read in English</a>
+    </div>
+
+    <h1 id="agent-skills-addy-osmani">Agent Skills de Addy Osmani — Imponiendo disciplina de ingeniería senior a los agentes</h1>
+    <p>
+      Publicado el 06 de May de 2026 en <a href="https://pablocaro.es/category/ia.html">ia</a>     </p>
+  </header>
+
+  <div class="related-posts">
+    <h4>
+      Parte 3 de la serie Ingeniería de Programación con Agentes
+    </h4>
+    <h5>
+      Artículos anteriores
+    </h5>
+    <ul>
+      <li><a href="https://pablocaro.es/programming-with-agents">Ingeniería de Programación con Agentes</a></li>
+      <li><a href="https://pablocaro.es/compound-engineering-every">Compound Engineering — La visión de Every sobre ingeniería con agentes</a></li>
+    </ul>
+     <h5>Próximos artículos</h5>
+    <ul>
+      <li><a href="https://pablocaro.es/superpowers-obra-jesse-vincent">Superpowers — Jesse Vincent impone metodología a los agentes de codificación</a></li>
+      <li><a href="https://pablocaro.es/matt-pocock-skills">Matt Pocock — Skills sencillas que funcionan</a></li>
+    </ul>
+  </div>
+ 
+  <div><p>En las dos partes anteriores de esta serie hemos visto una visión general de la ingeniería con agentes y luego la metodología de compound engineering de Every. Ahora toca otra aproximación similar: <strong>Agent Skills</strong>, el proyecto de Addy Osmani en Google que lleva casi 30.000 estrellas en GitHub y que aborda el problema desde un ángulo completamente diferente.</p>
+<p><img alt="Agent Skills de Addy Osmani" src="/images/agent-skills-addy-cover.png"></p>
+<h2 id="el-problema-que-nadie-quiere-ver">El problema que nadie quiere ver<a class="headerlink" href="#el-problema-que-nadie-quiere-ver" title="Permanent link">&para;</a></h2>
+<p>Addy plantea algo incómodo: el comportamiento por defecto de cualquier agente de código es tomar el camino más corto hacia "hecho". Le pides una feature y te escribe la feature. No pregunta si tienes una especificación. No escribe un test antes de la implementación. No considera si el cambio cruza un límite de confianza. No verifica cómo se verá el PR para un revisor. Produce código, declara victoria y sigue adelante.</p>
+<p>Esto es exactamente el mismo fallo que todo ingeniero senior ha pasado su carrera aprendiendo a evitar. El trabajo senior no es el que aparece en el diff: es sacar a la luz suposiciones, escribir la especificación, fragmentar el trabajo en chunks revisables, elegir el diseño aburrido, dejar evidencia de que el resultado es correcto, dimensionar el cambio para que un humano pueda revisarlo.</p>
+<p>Los agentes saltan esos pasos por la misma razón que cualquier junior lo haría: son invisibles. La señal de recompensa apunta a "tarea completada", no a "tarea completada y el documento de diseño existe". Así que hay que atornillar el andamiaje de ingeniero senior de nuevo.</p>
+<h2 id="que-es-una-skill">Qué es una skill<a class="headerlink" href="#que-es-una-skill" title="Permanent link">&para;</a></h2>
+<p>Addy define una skill con precisión: es un archivo markdown con frontmatter que se inyecta en el contexto del agente cuando la situación lo requiere. Algo entre un fragmento de system prompt y un runbook.</p>
+<p>Una skill <strong>no es</strong> documentación de referencia. No es "todo lo que deberías saber sobre testing". Es un <strong>workflow</strong>: una secuencia de pasos que el agente sigue, con checkpoints que producen evidencia, terminando en un criterio de salida definido.</p>
+<p>Esa distinción lo cambia todo. Si metes un ensayo de 2000 palabras sobre mejores prácticas de testing en el contexto del agente, el agente lo lee, genera texto plausible, y salta el testing de verdad. Si metes un <strong>workflow</strong> (escribe el test que falla primero, ejecútalo, míralo fallar, escribe el mínimo código para pasar, míralo pasar, refactoriza), el agente tiene algo que hacer, y tú tienes algo que verificar.</p>
+<blockquote>
+<p>Proceso descrito con claridad. Workflows sobre referencia. Pasos con criterios de salida sobre ensayos sin ellos.</p>
+</blockquote>
+<h2 id="las-20-skills-y-los-7-comandos">Las 20 skills y los 7 comandos<a class="headerlink" href="#las-20-skills-y-los-7-comandos" title="Permanent link">&para;</a></h2>
+<p>El repositorio organiza 20 skills alrededor de 6 fases del ciclo de vida del software, con 7 comandos slash encima:</p>
+<table>
+<thead>
+<tr>
+<th>Fase</th>
+<th>Comando</th>
+<th>Qué hace</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Define</td>
+<td><code>/spec</code></td>
+<td>Decide qué estás construyendo</td>
+</tr>
+<tr>
+<td>Plan</td>
+<td><code>/plan</code></td>
+<td>Fragmenta el trabajo</td>
+</tr>
+<tr>
+<td>Build</td>
+<td><code>/build</code></td>
+<td>Implementa en slices verticales</td>
+</tr>
+<tr>
+<td>Verify</td>
+<td><code>/test</code></td>
+<td>Demuestra que funciona</td>
+</tr>
+<tr>
+<td>Review</td>
+<td><code>/review</code></td>
+<td>Atrapa lo que se escapó</td>
+</tr>
+<tr>
+<td>Ship</td>
+<td><code>/ship</code></td>
+<td>Lleva a producción de forma segura</td>
+</tr>
+</tbody>
+</table>
+<p>También hay <code>/code-simplify</code> que atraviesa todo el ciclo.</p>
+<p>Una feature compleja podría activar 11 skills en secuencia. Un bug pequeño podría usar 3. Un meta-skill (<code>using-agent-skills</code>) actúa como router que decide cuáles aplican. El workflow escala al scope real, no al scope asumido.</p>
+<h2 id="cinco-principios-que-sostienen-todo">Cinco principios que sostienen todo<a class="headerlink" href="#cinco-principios-que-sostienen-todo" title="Permanent link">&para;</a></h2>
+<h3 id="1-proceso-simple-y-directo">1. Proceso simple y directo<a class="headerlink" href="#1-proceso-simple-y-directo" title="Permanent link">&para;</a></h3>
+<p>Workflows son accionables para agentes; ensayos no. Lo mismo ocurre en equipos humanos. Si tu manual del equipo tiene 200 páginas, nadie lo lee bajo presión. Si es un conjunto pequeño de workflows con checkpoints, la gente realmente los ejecuta.</p>
+<h3 id="2-tablas-anti-racionalizacion">2. Tablas anti-racionalización<a class="headerlink" href="#2-tablas-anti-racionalizacion" title="Permanent link">&para;</a></h3>
+<p>Esta es la decisión de diseño más distintiva del proyecto. Cada skill incluye una tabla de excusas comunes que un agente (o un ingeniero cansado) podría usar para saltarse el workflow, emparejadas con una réplica.</p>
+<ul>
+<li><em>"Esta tarea es demasiado simple para necesitar una especificación."</em> → Los criterios de aceptación siguen aplicando. Cinco líneas están bien. Cero líneas no.</li>
+<li><em>"Escribiré los tests después."</em> → "Después" es la palabra que sostiene todo. No hay después. Escribe el test que falla primero.</li>
+<li><em>"Los tests pasan, mándalo."</em> → Tests que pasan son evidencia, no prueba. ¿Comprobaste el runtime? ¿Verificaste el comportamiento visible al usuario? ¿Un humano leyó el diff?</li>
+</ul>
+<p>La razón por la que esto funciona es que los LLMs son excelentes en la racionalización. Producirán un párrafo plausible explicando por qué <em>esta tarea en particular</em> no necesita una spec, o por qué <em>este cambio en particular</em> está bien para mergear sin revisión. <strong>Las tablas anti-racionalización son réplicas pre-escritas a mentiras que el agente aún no ha contado.</strong></p>
+<p>El patrón es igual de bueno para equipos humanos. La mayoría de la decadencia en ingeniería no es que alguien elija hacer mal trabajo. Es que la gente acepta justificaciones plausibles para saltarse las partes que no le apetecen hacer.</p>
+<h3 id="3-la-verificacion-no-es-negociable">3. La verificación NO es negociable<a class="headerlink" href="#3-la-verificacion-no-es-negociable" title="Permanent link">&para;</a></h3>
+<p>Cada skill termina en evidencia concreta. Tests pasan. La salida del build está limpia. El trace del runtime muestra el comportamiento esperado. Un revisor da el visto bueno. "Parece correcto" nunca es suficiente.</p>
+<p>El agente es un generador. Necesitas una señal separada de que el trabajo está hecho. Las skills hornean esa señal en cada workflow.</p>
+<h3 id="4-divulgacion-progresiva">4. Divulgación progresiva<a class="headerlink" href="#4-divulgacion-progresiva" title="Permanent link">&para;</a></h3>
+<p>No cargues las 20 skills en el contexto al inicio de la sesión. Actívalas según la fase.</p>
+<p>Cada token cargado en el contexto degrada el rendimiento en algún lugar, así que cargas lo relevante y dejas el resto en disco. La divulgación progresiva es cómo metes una librería de 20 skills en un slot de 5K tokens sin envenenar el pozo.</p>
+<h3 id="5-disciplina-de-scope">5. Disciplina de scope<a class="headerlink" href="#5-disciplina-de-scope" title="Permanent link">&para;</a></h3>
+<p>El meta-skill codifica algo que graparía a cada agente si pudiera: <em>"toca solo lo que te piden tocar"</em>. No refactorices sistemas adyacentes. No elimines código que no entiendes completamente. No topes con un TODO y decidas reescribir el archivo.</p>
+<p>Esto suena obvio hasta que ves a un agente decidir que arreglar un bug requiere modernizar tres archivos no relacionados. La disciplina de scope es el determinante más importante de si el PR de un agente es mergeable o hay que deshacerlo.</p>
+<h2 id="el-adn-de-google">El ADN de Google<a class="headerlink" href="#el-adn-de-google" title="Permanent link">&para;</a></h2>
+<p>Addy trabaja en Google, y las skills están saturadas de prácticas de <em>Software Engineering at Google</em> y la cultura de ingeniería pública de Google. Esto es intencional. La mayoría de lo que hace que el software a escala de Google funcione está documentado y es público, y es <em>exactamente</em> la parte que los agentes son más propensos a saltar.</p>
+<ul>
+<li><strong>Ley de Hyrum</strong> en <code>api-and-interface-design</code>. Cualquier comportamiento observable de tu API eventualmente será dependido por alguien.</li>
+<li><strong>La pirámide de tests (~80/15/5) y la Regla de Beyoncé</strong> en <code>test-driven-development</code>. <em>"Si te gustó, deberías haberle puesto un test".</em></li>
+<li><strong>DAMP sobre DRY en tests.</strong> La filosofía de testing de Google es explícita: el código de test debe leerse como una especificación, incluso a costa de algo de duplicación.</li>
+<li><strong>PRs de ~100 líneas, con etiquetas de severidad Critical / Nit / Optional / FYI</strong> en <code>code-review-and-quality</code>. Directamente de las normas de code review de Google. PRs grandes no se revisan; se sellan sin mirar.</li>
+<li><strong>La Valla de Chesterton</strong> en <code>code-simplification</code>. No elimines algo hasta que entiendas por qué fue puesto ahí.</li>
+<li><strong>Desarrollo basado en trunk y commits atómicos</strong> en <code>git-workflow-and-versioning</code>.</li>
+<li><strong>Shift Left y feature flags</strong> en <code>ci-cd-and-automation</code>. Atrapa problemas lo antes posible, desacopla deploy de release.</li>
+<li><strong>Código como pasivo</strong> en <code>deprecation-and-migration</code>. Cada línea que mantienes es una que tienes que mantener para siempre.</li>
+</ul>
+<p>Ninguna de estas ideas es nueva. <strong>El punto es que ninguna de ellas está en el agente por defecto.</strong> Un modelo frontier ha leído la frase "Ley de Hyrum" en su training data, pero no aplica la Ley de Hyrum cuando diseña tu API a las 3 de la mañana mientras duermes. Las skills son cómo te aseguras de que sí lo hace.</p>
+<h2 id="que-puedes-usar-aunque-decidas-no-seguir-la-estrategia-completa">Qué puedes usar aunque decidas no seguir la estrategia completa<a class="headerlink" href="#que-puedes-usar-aunque-decidas-no-seguir-la-estrategia-completa" title="Permanent link">&para;</a></h2>
+<p><strong>Anti-racionalización como práctica de equipo.</strong> Escribe las mentiras que tu equipo se cuenta a sí mismo. <em>"Arreglaremos los tests después del lanzamiento."</em> <em>"Este cambio es demasiado pequeño para un doc de diseño."</em> <em>"Está bien, tenemos monitorización."</em> Empareja cada una con la réplica. Ponlo en tu AGENTS.md o en tu wiki de ingeniería. Te ahorrará argumentos y atrapará el próximo atajo del viernes por la tarde.</p>
+<p><strong>Proceso claro y sobre papel para cualquier cosa que escribas internamente.</strong> Si te encuentras escribiendo un documento de 2000 palabras titulado "cómo abordamos X", has escrito material de referencia. Conviértelo a un workflow con checkpoints. El documento se reduce a 400 palabras y la gente realmente lo ejecuta.</p>
+<p><strong>Verificación como criterio de salida duro.</strong> Haz que "producir evidencia" sea el paso de salida de cada tarea. Para agentes, para ingenieros, para ti mismo. La evidencia es lo que demuestra que el trabajo está hecho: una ejecución de tests en verde, una captura de pantalla, un log, una aprobación de review. Sin ella, la tarea no está hecha. "Parece correcto" nunca cierra el bucle.</p>
+<p><strong>Divulgación progresiva para cualquier manual.</strong> No escribas un manual de 50 páginas. Escribe un router pequeño que apunte al capítulo pequeño correcto para la situación. Esto es cierto para AGENTS.md, para runbooks, para playbooks de incidentes, para cualquier cosa que alguien lea bajo presión de tiempo.</p>
+<p><strong>Cinco no negociables, extraídos del meta-skill, que pondría en cualquier AGENTS.md mañana:</strong></p>
+<ol>
+<li>Saca a la luz las suposiciones antes de construir. Suposiciones equivocadas mantenidas en silencio son el modo de fallo más común.</li>
+<li>Para y pregunta cuando los requisitos entren en conflicto. No adivines.</li>
+<li>Empuja hacia atrás cuando sea warranted. El agente (o ingeniero) no es una máquina de decir sí.</li>
+<li>Prefiere la solución aburrida y obvia. La astucia es cara.</li>
+<li>Toca solo lo que te piden tocar.</li>
+</ol>
+<p>Esa es una cultura de ingeniería válida en cinco líneas, y no necesitas instalar nada para adoptarla.</p>
+<h2 id="mi-lectura">Mi lectura<a class="headerlink" href="#mi-lectura" title="Permanent link">&para;</a></h2>
+<p>Lo que propone Addy es distinto a lo de Every, pero complementario. Every se centra en el bucle de aprendizaje: cada iteración hace que el siguiente ciclo sea más fácil. Addy se centra en la disciplina: cada tarea debe pasar por las fases que un ingeniero senior nunca saltaría.</p>
+<p>Every es compound engineering. Addy es <strong>harness engineering</strong> — construir el arnés que fuerza al agente a comportarse como un senior. El repositorio de Addy no es un framework, es una biblioteca de workflows portables. El mismo archivo SKILL.md funciona en Claude Code, Cursor, Gemini CLI, Codex, y cualquier otro entorno que acepte contenido de system prompt.</p>
+<p>La implicación es clara: no basta con tener un agente potente. Necesitas un sistema que le impida tomar atajos. Las tablas anti-racionalización son la idea más brillante del proyecto porque atacan directamente la debilidad más peligrosa de los LLMs: su capacidad para producir justificaciones plausibles para hacer mal trabajo.</p>
+<p>En mi propio flujo, voy a adoptar dos cosas inmediatamente: las tablas anti-racionalización para las tareas donde más fallo (saltarme tests en cambios "pequeños", asumir que "ya lo revisaré después"), y la regla de los cinco no negociables como checklist mental antes de cualquier sesión con un agente.</p>
+<h2 id="recursos">Recursos<a class="headerlink" href="#recursos" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://github.com/addyosmani/agent-skills">Agent Skills en GitHub</a> — El repositorio con las 20 skills (29K+ estrellas)</li>
+<li><a href="https://addyosmani.com/blog/agent-skills/">Agent Skills — el artículo</a> — El post de Addy explicando el diseño</li>
+<li><a href="https://addyosmani.com/blog/agent-harness-engineering/">Agent Harness Engineering</a> — El artículo sobre el arnés de agentes en general</li>
+<li><a href="https://addyosmani.com/blog/long-running-agents/">Long-running Agents</a> — Por qué los skills importan más en sesiones largas</li>
+</ul></div>
+  <div class="tag-cloud">
+    <p>
+       <a href="https://pablocaro.es/tag/agentes.html">agentes</a>
+      <a href="https://pablocaro.es/tag/ia.html">ia</a>
+      <a href="https://pablocaro.es/tag/agent-skills.html">agent-skills</a>
+      <a href="https://pablocaro.es/tag/addy-osmani.html">addy-osmani</a>
+      <a href="https://pablocaro.es/tag/google.html">google</a>
+      <a href="https://pablocaro.es/tag/claude-code.html">claude-code</a>
+     </p>
+  </div>
+
+    <div class="neighbors">
+    <a class="btn float-left" href="https://pablocaro.es/compound-engineering-every" title="Compound Engineering — La visión de Every sobre ingeniería con agentes">
+      <i class="fa fa-angle-left"></i> Artículo anterior
+    </a>
+    <a class="btn float-right" href="https://pablocaro.es/superpowers-obra-jesse-vincent" title="Superpowers — Jesse Vincent impone metodología a los agentes de codificación">
+      Próximo artículo <i class="fa fa-angle-right"></i>
+    </a>
+  </div>
+   <div class="related-posts">
+    <h4>Te puede gustar</h4>
+    <ul class="related-posts">
+      <li>
+        <a href="https://pablocaro.es/matt-pocock-skills"
+          >Matt Pocock — Skills sencillas que funcionan</a
+        >
+      </li>
+      <li>
+        <a href="https://pablocaro.es/superpowers-obra-jesse-vincent"
+          >Superpowers — Jesse Vincent impone metodología a los agentes de codificación</a
+        >
+      </li>
+      <li>
+        <a href="https://pablocaro.es/compound-engineering-every"
+          >Compound Engineering — La visión de Every sobre ingeniería con agentes</a
+        >
+      </li>
+      <li>
+        <a href="https://pablocaro.es/programming-with-agents"
+          >Ingeniería de Programación con Agentes</a
+        >
+      </li>
+      <li>
+        <a href="https://pablocaro.es/video-gemini-sevilla"
+          >Creación de vídeo con Gemini: personajes de Sevilla</a
+        >
+      </li>
+    </ul>
+  </div>
+  <!-- Disqus -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'anotaciones';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>
+    Por favor, habilita JavaScript para ver los comentarios.
+</noscript>
+<!-- End Disqus -->
+ </article>
+
+<footer>
+<p>
+  &copy; 2026  - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+Construido con <a href="http://getpelican.com" target="_blank">Pelican</a> usando el tema <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> 
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/3.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/3.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Anotaciones por Pablo Caro ",
+  "url" : "https://pablocaro.es",
+  "image": "/theme/img/profile.png",
+  "description": ""
+}
+</script>  <script src="https://files.stork-search.net/releases/v1.6.0/stork.js"></script>
+  <script>
+    window.storkIndexLoaded = false;
+    window.loadStorkIndex = function () {
+      if (window.storkIndexLoaded) {
+        return;
+      }
+      if (typeof stork === 'undefined') {
+        console.error('Stork is not loaded yet, retrying...');
+        setTimeout(window.loadStorkIndex, 100);
+        return;
+      }
+      stork.register("sitesearch", "https://pablocaro.es/search-index.st", { showProgress: false });
+      stork.register("sitesearch-page", "https://pablocaro.es/search-index.st", { showProgress: false });
+      window.storkIndexLoaded = true;
+    }
+  </script>
+
+</body>
+</html>

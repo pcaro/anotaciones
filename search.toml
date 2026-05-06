@@ -3,6 +3,31 @@ html_selector = "main"
 base_directory = "/home/runner/work/anotaciones/anotaciones/output"
 
 [[input.files]]
+path = "matt-pocock-skills.html"
+url = "/matt-pocock-skills"
+title = "Matt Pocock — Skills sencillas que funcionan"
+
+[[input.files]]
+path = "superpowers-obra-jesse-vincent.html"
+url = "/superpowers-obra-jesse-vincent"
+title = "Superpowers — Jesse Vincent impone metodología a los agentes de codificación"
+
+[[input.files]]
+path = "agent-skills-addy-osmani.html"
+url = "/agent-skills-addy-osmani"
+title = "Agent Skills de Addy Osmani — Imponiendo disciplina de ingeniería senior a los agentes"
+
+[[input.files]]
+path = "compound-engineering-every.html"
+url = "/compound-engineering-every"
+title = "Compound Engineering — La visión de Every sobre ingeniería con agentes"
+
+[[input.files]]
+path = "programming-with-agents.html"
+url = "/programming-with-agents"
+title = "Ingeniería de Programación con Agentes"
+
+[[input.files]]
 path = "winhance-windows-debloater.html"
 url = "/winhance-windows-debloater"
 title = "Winhance: limpiar y optimizar Windows sin reinstallar"
@@ -836,6 +861,31 @@ title = "Corrector ortográfico de firefox 2.0 en castellano"
 path = "primera-anotacion-de-prueba.html"
 url = "/primera-anotacion-de-prueba"
 title = "Primera anotación de prueba"
+
+[[input.files]]
+path = "matt-pocock-skills-en.html"
+url = "/en/matt-pocock-skills"
+title = "Matt Pocock — Simple Skills That Work"
+
+[[input.files]]
+path = "superpowers-obra-jesse-vincent-en.html"
+url = "/en/superpowers-obra-jesse-vincent"
+title = "Superpowers — Jesse Vincent Imposes Methodology on Coding Agents"
+
+[[input.files]]
+path = "agent-skills-addy-osmani-en.html"
+url = "/en/agent-skills-addy-osmani"
+title = "Agent Skills by Addy Osmani — Enforcing Senior Engineering Discipline on Agents"
+
+[[input.files]]
+path = "compound-engineering-every-en.html"
+url = "/en/compound-engineering-every"
+title = "Compound Engineering — Every's Vision for Agent-Driven Engineering"
+
+[[input.files]]
+path = "programming-with-agents-en.html"
+url = "/en/programming-with-agents"
+title = "Programming with Agents"
 
 [[input.files]]
 path = "winhance-windows-debloater-en.html"

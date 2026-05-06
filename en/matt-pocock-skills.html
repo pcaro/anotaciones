@@ -1,0 +1,386 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="/en/theme/stylesheet/style.min.css">
+
+
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+          href="/en/theme/pygments/github.min.css">
+
+
+  <link rel="stylesheet"
+        type="text/css"
+        href="/en/theme/stork/stork.css" />
+
+  <link rel="stylesheet" type="text/css" href="/en/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="/en/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="/en/theme/font-awesome/css/solid.css">
+
+  <link rel="stylesheet" type="text/css" href="/extras/custom.css">
+
+  <link rel="shortcut icon" href="/theme/img/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/theme/img/favicon.ico" type="image/x-icon">
+
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#333333">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#333333">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Microsoft EDGE -->
+  <meta name="msapplication-TileColor" content="#333333">
+
+  <link href="/en/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Annotations by Pablo Caro Atom">
+
+  <link href="/en/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Annotations by Pablo Caro RSS">
+
+<script data-goatcounter="https://pcaro.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Pablo Caro" />
+<meta name="description" content="Fifth installment of the series on software engineering with agents. Today it is the project that is taking off right now: Matt Pocock&#39;s skills. I have covered Superpowers (Jesse Vincent), Agent Skills (Addy Osmani), and Compound Engineering (Every). Each brings an important piece of the puzzle. But Matt Pocock&#39;s skills …" />
+<meta name="keywords" content="agents, ia, skills, matt-pocock, claude-code" />
+
+<link
+  rel="alternate"
+  href="/en/matt-pocock-skills"
+  hreflang="en"
+/>
+<link
+  rel="alternate"
+  href="/en/../matt-pocock-skills"
+  hreflang="es"
+/>
+    <meta property="og:site_name" content="Annotations by Pablo Caro"/>
+  <meta property="og:title" content="Matt Pocock — Simple Skills That Work"/>
+  <meta property="og:description" content="Fifth installment of the series on software engineering with agents. Today it is the project that is taking off right now: Matt Pocock&#39;s skills. I have covered Superpowers (Jesse Vincent), Agent Skills (Addy Osmani), and Compound Engineering (Every). Each brings an important piece of the puzzle. But Matt Pocock&#39;s skills …"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="/en/matt-pocock-skills"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2026-05-06 00:00:00+02:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="/en/author/pablo-caro.html">
+  <meta property="article:section" content="ia"/>
+  <meta property="article:tag" content="agents"/>
+  <meta property="article:tag" content="ia"/>
+  <meta property="article:tag" content="skills"/>
+  <meta property="article:tag" content="matt-pocock"/>
+  <meta property="article:tag" content="claude-code"/>
+  <meta property="og:image" content="/theme/img/profile.png">
+ 
+  <title>Annotations by Pablo Caro &ndash; Matt Pocock — Simple Skills That Work</title>
+
+
+</head>
+<body class="light-theme">
+
+<aside>
+  <div>
+    <a href="/en/">
+      <img src="/theme/img/profile.png" alt="Anotaciones" title="Anotaciones">
+    </a>
+
+    <h1>
+      <a href="/en/">Anotaciones</a>
+    </h1>
+
+    <p>Anotaciones</p>
+
+    <p style="font-size: 0.9em; font-style: italic; margin-bottom: 20px;">
+      Dumping my brain onto the internet. A collection of technical notes and solutions written for my future self, shared here in case they save someone else a headache.
+    </p>
+
+    <div class="stork">
+      <input class="stork-input" type="text" autocomplete="off" name="q" data-stork="sitesearch" placeholder="Search..." onclick="loadStorkIndex()"/>
+      <div class="stork-output" data-stork="sitesearch-output"></div>
+    </div>
+
+    <nav>
+      <ul class="list">
+
+
+
+          <li>
+            <a target="_self" href="http://x.com/pcaro" >pcaro@X</a>
+          </li>
+          <li>
+            <a target="_self" href="https://github.com/pcaro/" >pcaro@Github</a>
+          </li>
+          <li>
+            <a target="_self" href="https://www.linkedin.com/in/pcarorevuelta/" >LinkedIn</a>
+          </li>
+      </ul>
+    </nav>
+
+    <ul class="social">
+      <li>
+        <a class="sc-Twitter"
+           href="http://twitter.com/pcaro"
+           target="_blank">
+          <i class="fa-brands fa-Twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Github"
+           href="http://github.com/pcaro"
+           target="_blank">
+          <i class="fa-brands fa-Github"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Linkedin"
+           href="https://www.linkedin.com/in/pcarorevuelta"
+           target="_blank">
+          <i class="fa-brands fa-Linkedin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Facebook"
+           href="https://www.facebook.com/pablo.carorevuelta"
+           target="_blank">
+          <i class="fa-brands fa-Facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Email"
+           href="mailto:correo@pablocaro.es"
+           target="_blank">
+          <i class="fa-brands fa-Email"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+</aside>
+  <main>
+
+<nav>
+  <a href="/en/">Home</a>
+
+  <a href="/en/archives.html">Archives</a>
+  <a href="/en/categories.html">Categories</a>
+  <a href="/en/tags.html">Tags</a>
+  <a href="/en/search.html">Search</a>
+  <a href="/">Español</a>
+
+  <a href="/en/feeds/all.atom.xml">Atom</a>
+
+  <a href="/en/feeds/all.rss.xml">RSS</a>
+</nav>
+
+<article class="single">
+  <header>
+      <div class="translations">
+            <a href="/en/../matt-pocock-skills">Leer en español</a>
+    </div>
+
+    <h1 id="matt-pocock-skills">Matt Pocock — Simple Skills That Work</h1>
+    <p>
+      Posted on Wed, 06 May 2026 in <a href="/en/category/ia.html">ia</a>     </p>
+  </header>
+
+  <div class="related-posts">
+    <h4>
+      Part 5 of the Ingeniería de Programación con Agentes series
+    </h4>
+    <h5>
+      Previous articles
+    </h5>
+    <ul>
+      <li><a href="/en/programming-with-agents">Programming with Agents</a></li>
+      <li><a href="/en/compound-engineering-every">Compound Engineering — Every's Vision for Agent-Driven Engineering</a></li>
+      <li><a href="/en/agent-skills-addy-osmani">Agent Skills by Addy Osmani — Enforcing Senior Engineering Discipline on Agents</a></li>
+      <li><a href="/en/superpowers-obra-jesse-vincent">Superpowers — Jesse Vincent Imposes Methodology on Coding Agents</a></li>
+    </ul>
+   </div>
+ 
+  <div><p>Fifth installment of the series on software engineering with agents. Today it is the project that is taking off right now: <strong>Matt Pocock's skills</strong>.</p>
+<p>I have covered Superpowers (Jesse Vincent), Agent Skills (Addy Osmani), and Compound Engineering (Every). Each brings an important piece of the puzzle. But Matt Pocock's skills have exploded in popularity in a matter of days, and I think I know why: they apply a KISS philosophy taken to the extreme. Short, direct skills with no pretensions. And one of them, <code>/grill-me</code>, has become a phenomenon in its own right.</p>
+<p><img alt="Matt Pocock Skills" src="/images/matt-pocock-skills-cover.png"></p>
+<h2 id="the-philosophy-skills-a-real-engineer-would-use">The philosophy: skills a real engineer would use<a class="headerlink" href="#the-philosophy-skills-a-real-engineer-would-use" title="Permanent link">&para;</a></h2>
+<p>Matt is known for Total TypeScript and his work on TypeScript. When he started publishing skills for Claude Code, he didn't write a framework. He wrote three-line markdown files that did one thing and did it well.</p>
+<p>The repository's tagline says it all: <em>"Skills for Real Engineers."</em> No abstraction layers, no complex plugins, no sophisticated lifecycles. Just markdown files with frontmatter that get injected into the agent's context. Period.</p>
+<p>The repository is organized into buckets: <code>engineering/</code> (daily skills), <code>productivity/</code> (general workflow tools), <code>misc/</code> (rarely used), <code>personal/</code> (tied to his setup), and <code>in-progress/</code>. Out of ~20 total skills, only about 6 are the ones he actually recommends for daily use. That restraint is the key: no more than half a dozen skills, and very very short.</p>
+<p>The contrast with Superpowers (v5 with 20+ skills, adversarial loops, a complete phase system) could not be bigger. Matt proves that less can be more if you choose well what to automate.</p>
+<h2 id="grill-me-the-skill-that-changes-everything"><code>/grill-me</code>: the skill that changes everything<a class="headerlink" href="#grill-me-the-skill-that-changes-everything" title="Permanent link">&para;</a></h2>
+<p>Three sentences. That is the entire skill:</p>
+<blockquote>
+<p><em>"Interview me relentlessly about every aspect of this plan until we reach a shared understanding. Walk down each branch of the design tree, resolving dependencies between decisions one-by-one. Ask the questions one at a time. If a question can be answered by exploring the codebase, explore the codebase instead."</em></p>
+</blockquote>
+<p>Three sentences that have generated 62,000 GitHub stars and been shared everywhere. Why?</p>
+<p>Because they solve problem number one of working with agents: <strong>alignment</strong>. The agent doesn't know what you want, and you don't know what the agent understood. <code>grill-me</code> forces a structured conversation where the agent questions you until no branches of the decision tree remain unexplored.</p>
+<p>Matt says that in a typical session, Claude asked him 16 questions for a relatively simple feature. For complex features, he has had sessions with 30-40-50 questions lasting almost half an hour. But at the end of that half hour, the design is completely resolved. No surprises when the agent starts writing code.</p>
+<p>The concept of the "design tree" comes from <em>The Design of Design</em> by Frederick P. Brooks. The idea is that when you design something, you walk down branches: "advanced search or simple search? If advanced, which filters? Which sorting?" Until you have walked every branch and the design is fully specified.</p>
+<h2 id="the-complete-flow-grill-prd-issues-tdd">The complete flow: grill → PRD → issues → TDD<a class="headerlink" href="#the-complete-flow-grill-prd-issues-tdd" title="Permanent link">&para;</a></h2>
+<p>Matt chains several skills into a pipeline that covers the entire lifecycle of a feature, from idea to code through tests:</p>
+<ol>
+<li>
+<p><strong><code>/grill-me</code></strong>: the agent interviews you until the design is clear. Each question resolves a decision. If it can answer by exploring the codebase, it does.</p>
+</li>
+<li>
+<p><strong><code>/to-prd</code></strong>: once aligned, it turns the conversation into a PRD (Product Requirements Document) with user stories, implementation decisions, and acceptance criteria. Published as an issue on GitHub, Linear, or whatever tracker you use.</p>
+</li>
+<li>
+<p><strong><code>/to-issues</code></strong>: breaks the PRD into independent issues using <em>vertical slices</em> (tracer bullets). Each issue cuts through all layers (schema, API, tests) and is demoable on its own. Distinguishes between HITL (human-in-the-loop, requires human decision) and AFK (fully automatable).</p>
+</li>
+<li>
+<p><strong><code>/tdd</code></strong>: Test-Driven Development with a red-green-refactor loop. A substantial skill that includes philosophy on mocking, deep modules, and interface design. Write a failing test → minimal implementation → refactor. One iteration at a time, never all horizontal slices together.</p>
+</li>
+<li>
+<p><strong><code>/improve-codebase-architecture</code></strong>: for when the code has become a ball of mud. Explores the codebase looking for shallow modules, hidden coupling, and lack of testability.</p>
+</li>
+<li>
+<p><strong><code>/grill-with-docs</code></strong>: a variant of grill-me that also updates a <code>CONTEXT.md</code> with the shared domain language and writes ADRs for hard-to-reverse decisions. Matt's personal favorite — a combination of interviewing with domain-driven design.</p>
+</li>
+</ol>
+<hr>
+<p>It is remarkable how the entire flow maps to what we have seen before:</p>
+<ul>
+<li><strong>Every's scaffolding</strong> (CLAUDE.md that accumulates knowledge) appears here as <code>CONTEXT.md</code> + ADRs.</li>
+<li><strong>Addy Osmani's discipline</strong> (anti-rationalization tables, workflows with checkpoints) appears in the TDD skill with its per-cycle checklists.</li>
+<li><strong>Superpowers' structured methodology</strong> (file structure first, unit decomposition, adversarial loops) appears here as vertical slices, tracer bullets, and the HITL/AFK split.</li>
+</ul>
+<p>But Matt wraps it all in skills so short they could fit in a tweet. No over-engineering. Just pragmatism.</p>
+<h2 id="my-take">My take<a class="headerlink" href="#my-take" title="Permanent link">&para;</a></h2>
+<p>Matt Pocock has done something I find harder than building a framework: he has distilled his experience into pieces so small that anyone can adopt them without changing their workflow.</p>
+<p><code>/grill-me</code> feels especially familiar because my personal workflow with agents has always included an iterative questioning phase — almost a manual version of what Matt has codified. Seeing it turned into a public skill, with 62,000 people giving it stars, confirms the instinct was right: early alignment is the most undervalued step in working with agents.</p>
+<p>The rest of the skills are equally solid. <code>to-prd</code> and <code>to-issues</code> formalize what any senior engineer does instinctively (think before writing, split work into reviewable chunks) but rarely documents. The TDD skill is the best I have seen for agents: it doesn't just say "do TDD", it explains <em>why</em> horizontal slices produce bad tests and <em>how</em> to do vertical cycles correctly.</p>
+<p>What sets Matt apart from the rest is <strong>accessibility</strong>. Superpowers requires integrating a runtime. Agent Skills requires installing a plugin. Matt's skills are markdown files you can copy to your <code>.claude/</code> in 30 seconds. And if you don't want to install them, just reading them already gives you the mental framework.</p>
+<p>I don't think Matt's skills replace Superpowers or Agent Skills. They are tools for different contexts. Superpowers is for when you want a complete methodology the agent cannot skip. Matt is for when you want small, swappable pieces that you understand and modify.</p>
+<p>Both make sense. But Matt has proven something important: sometimes the best skill is the one that fits in three lines.</p>
+<h2 id="resources">Resources<a class="headerlink" href="#resources" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://github.com/mattpocock/skills">mattpocock/skills on GitHub</a> — The repository (62K+ stars)</li>
+<li><a href="https://www.aihero.dev/skills">AI Hero — Skills</a> — The official website with guides for each skill</li>
+<li><a href="https://www.aihero.dev/5-agent-skills-i-use-every-day">5 Agent Skills I Use Every Day</a> — Matt's article introducing his kit</li>
+<li><a href="https://www.aihero.dev/my-grill-me-skill-has-gone-viral">My Grill Me Skill Has Gone Viral</a> — About the <code>/grill-me</code> phenomenon</li>
+<li><a href="https://pablocaro.es/en/superpowers-obra-jesse-vincent">Superpowers — Jesse Vincent</a> — Previous article in the series</li>
+<li><a href="https://pablocaro.es/en/agent-skills-addy-osmani">Agent Skills — Addy Osmani</a> — Previous article in the series</li>
+<li><a href="https://pablocaro.es/en/compound-engineering-every">Compound Engineering — Every</a> — Previous article in the series</li>
+</ul></div>
+  <div class="tag-cloud">
+    <p>
+       <a href="/en/tag/agents.html">agents</a>
+      <a href="/en/tag/ia.html">ia</a>
+      <a href="/en/tag/skills.html">skills</a>
+      <a href="/en/tag/matt-pocock.html">matt-pocock</a>
+      <a href="/en/tag/claude-code.html">claude-code</a>
+     </p>
+  </div>
+
+    <div class="neighbors">
+    <a class="btn float-left" href="/en/superpowers-obra-jesse-vincent" title="Superpowers — Jesse Vincent Imposes Methodology on Coding Agents">
+      <i class="fa fa-angle-left"></i> Previous Post
+    </a>
+  </div>
+   <div class="related-posts">
+    <h4>You might enjoy</h4>
+    <ul class="related-posts">
+      <li>
+        <a href="/en/superpowers-obra-jesse-vincent"
+          >Superpowers — Jesse Vincent Imposes Methodology on Coding Agents</a
+        >
+      </li>
+      <li>
+        <a href="/en/agent-skills-addy-osmani"
+          >Agent Skills by Addy Osmani — Enforcing Senior Engineering Discipline on Agents</a
+        >
+      </li>
+      <li>
+        <a href="/en/compound-engineering-every"
+          >Compound Engineering — Every's Vision for Agent-Driven Engineering</a
+        >
+      </li>
+      <li>
+        <a href="/en/crit-review-loop-agents"
+          >Crit: The Review Loop for Agents</a
+        >
+      </li>
+      <li>
+        <a href="/en/agent-browser-navigation-agents"
+          >Agent Browser: Browser Navigation for AI Agents</a
+        >
+      </li>
+    </ul>
+  </div>
+  <!-- Disqus -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'anotaciones';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>
+    Please enable JavaScript to view comments.
+</noscript>
+<!-- End Disqus -->
+ </article>
+
+<footer>
+<p>
+  &copy; 2026  - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/3.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/3.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Annotations by Pablo Caro ",
+  "url" : "/en",
+  "image": "/theme/img/profile.png",
+  "description": ""
+}
+</script>  <script src="https://files.stork-search.net/releases/v1.6.0/stork.js"></script>
+  <script>
+    window.storkIndexLoaded = false;
+    window.loadStorkIndex = function () {
+      if (window.storkIndexLoaded) {
+        return;
+      }
+      if (typeof stork === 'undefined') {
+        console.error('Stork is not loaded yet, retrying...');
+        setTimeout(window.loadStorkIndex, 100);
+        return;
+      }
+      stork.register("sitesearch", "/en/search-index.st", { showProgress: false });
+      stork.register("sitesearch-page", "/en/search-index.st", { showProgress: false });
+      window.storkIndexLoaded = true;
+    }
+  </script>
+
+</body>
+</html>

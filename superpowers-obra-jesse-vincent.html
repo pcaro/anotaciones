@@ -1,0 +1,410 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/stylesheet/style.min.css">
+
+
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+          href="https://pablocaro.es/theme/pygments/github.min.css">
+
+
+  <link rel="stylesheet"
+        type="text/css"
+        href="https://pablocaro.es/theme/stork/stork.css" />
+
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/font-awesome/css/solid.css">
+
+  <link rel="stylesheet" type="text/css" href="/extras/custom.css">
+
+  <link rel="shortcut icon" href="/theme/img/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/theme/img/favicon.ico" type="image/x-icon">
+
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#333333">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#333333">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Microsoft EDGE -->
+  <meta name="msapplication-TileColor" content="#333333">
+
+  <link href="https://pablocaro.es/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Anotaciones por Pablo Caro Atom">
+
+  <link href="https://pablocaro.es/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Anotaciones por Pablo Caro RSS">
+
+<script data-goatcounter="https://pcaro.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Pablo Caro" />
+<meta name="description" content="Cuarta entrega de la serie sobre ingeniería de programación con agentes. Hoy toca un proyecto que ha cambiado las reglas del juego: Superpowers, de Jesse Vincent. Con 180.000 estrellas en GitHub y 16.000 forks, Superpowers es el marco de habilidades para agentes más popular del momento. Pero lo …" />
+<meta name="keywords" content="agentes, ia, superpowers, jesse-vincent, claude-code, prime-radiant" />
+
+<link
+  rel="alternate"
+  href="https://pablocaro.es/superpowers-obra-jesse-vincent"
+  hreflang="es"
+/>
+<link
+  rel="alternate"
+  href="https://pablocaro.es/en/superpowers-obra-jesse-vincent"
+  hreflang="en"
+/>
+    <meta property="og:site_name" content="Anotaciones por Pablo Caro"/>
+  <meta property="og:title" content="Superpowers — Jesse Vincent impone metodología a los agentes de codificación"/>
+  <meta property="og:description" content="Cuarta entrega de la serie sobre ingeniería de programación con agentes. Hoy toca un proyecto que ha cambiado las reglas del juego: Superpowers, de Jesse Vincent. Con 180.000 estrellas en GitHub y 16.000 forks, Superpowers es el marco de habilidades para agentes más popular del momento. Pero lo …"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://pablocaro.es/superpowers-obra-jesse-vincent"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2026-05-06 00:00:00+02:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://pablocaro.es/author/pablo-caro.html">
+  <meta property="article:section" content="ia"/>
+  <meta property="article:tag" content="agentes"/>
+  <meta property="article:tag" content="ia"/>
+  <meta property="article:tag" content="superpowers"/>
+  <meta property="article:tag" content="jesse-vincent"/>
+  <meta property="article:tag" content="claude-code"/>
+  <meta property="article:tag" content="prime-radiant"/>
+  <meta property="og:image" content="/theme/img/profile.png">
+ 
+  <title>Anotaciones por Pablo Caro &ndash; Superpowers — Jesse Vincent impone metodología a los agentes de codificación</title>
+
+
+</head>
+<body class="light-theme">
+
+<aside>
+  <div>
+    <a href="https://pablocaro.es/">
+      <img src="/theme/img/profile.png" alt="Anotaciones" title="Anotaciones">
+    </a>
+
+    <h1>
+      <a href="https://pablocaro.es/">Anotaciones</a>
+    </h1>
+
+    <p>Anotaciones</p>
+
+    <p style="font-size: 0.9em; font-style: italic; margin-bottom: 20px;">
+      Volcando mi cerebro a internet. Colección de apuntes técnicos y soluciones que escribo para mi 'yo' del futuro, pero que comparto por si a alguien más le ahorran un dolor de cabeza.
+    </p>
+
+    <div class="stork">
+      <input class="stork-input" type="text" autocomplete="off" name="q" data-stork="sitesearch" placeholder="Buscar..." onclick="loadStorkIndex()"/>
+      <div class="stork-output" data-stork="sitesearch-output"></div>
+    </div>
+
+    <nav>
+      <ul class="list">
+
+
+
+          <li>
+            <a target="_self" href="http://x.com/pcaro" >pcaro@X</a>
+          </li>
+          <li>
+            <a target="_self" href="https://github.com/pcaro/" >pcaro@Github</a>
+          </li>
+          <li>
+            <a target="_self" href="https://www.linkedin.com/in/pcarorevuelta/" >LinkedIn</a>
+          </li>
+      </ul>
+    </nav>
+
+    <ul class="social">
+      <li>
+        <a class="sc-Twitter"
+           href="http://twitter.com/pcaro"
+           target="_blank">
+          <i class="fa-brands fa-Twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Github"
+           href="http://github.com/pcaro"
+           target="_blank">
+          <i class="fa-brands fa-Github"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Linkedin"
+           href="https://www.linkedin.com/in/pcarorevuelta"
+           target="_blank">
+          <i class="fa-brands fa-Linkedin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Facebook"
+           href="https://www.facebook.com/pablo.carorevuelta"
+           target="_blank">
+          <i class="fa-brands fa-Facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Email"
+           href="mailto:correo@pablocaro.es"
+           target="_blank">
+          <i class="fa-brands fa-Email"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+</aside>
+  <main>
+
+<nav>
+  <a href="https://pablocaro.es/">Inicio</a>
+
+  <a href="/archives.html">Archivo</a>
+  <a href="/categories.html">Categorías</a>
+  <a href="/tags.html">Etiquetas</a>
+  <a href="/search.html">Búsqueda</a>
+  <a href="/en/">English</a>
+
+  <a href="https://pablocaro.es/feeds/all.atom.xml">Atom</a>
+
+  <a href="https://pablocaro.es/feeds/all.rss.xml">RSS</a>
+</nav>
+
+<article class="single">
+  <header>
+      <div class="translations">
+            <a href="https://pablocaro.es/en/superpowers-obra-jesse-vincent">Read in English</a>
+    </div>
+
+    <h1 id="superpowers-obra-jesse-vincent">Superpowers — Jesse Vincent impone metodología a los agentes de codificación</h1>
+    <p>
+      Publicado el 06 de May de 2026 en <a href="https://pablocaro.es/category/ia.html">ia</a>     </p>
+  </header>
+
+  <div class="related-posts">
+    <h4>
+      Parte 4 de la serie Ingeniería de Programación con Agentes
+    </h4>
+    <h5>
+      Artículos anteriores
+    </h5>
+    <ul>
+      <li><a href="https://pablocaro.es/programming-with-agents">Ingeniería de Programación con Agentes</a></li>
+      <li><a href="https://pablocaro.es/compound-engineering-every">Compound Engineering — La visión de Every sobre ingeniería con agentes</a></li>
+      <li><a href="https://pablocaro.es/agent-skills-addy-osmani">Agent Skills de Addy Osmani — Imponiendo disciplina de ingeniería senior a los agentes</a></li>
+    </ul>
+     <h5>Próximos artículos</h5>
+    <ul>
+      <li><a href="https://pablocaro.es/matt-pocock-skills">Matt Pocock — Skills sencillas que funcionan</a></li>
+    </ul>
+  </div>
+ 
+  <div><p>Cuarta entrega de la serie sobre ingeniería de programación con agentes. Hoy toca un proyecto que ha cambiado las reglas del juego: <strong>Superpowers</strong>, de Jesse Vincent.</p>
+<p>Con 180.000 estrellas en GitHub y 16.000 forks, Superpowers es el marco de habilidades para agentes más popular del momento. Pero lo que lo hace especial no es el número de estrellas, sino su obsesión: imponer una metodología de ingeniería completa a los agentes de código, desde el primer prompt hasta el último commit.</p>
+<p><img alt="Superpowers — Jesse Vincent" src="/images/superpowers-obra-cover.png"></p>
+<h2 id="quien-es-jesse-vincent">Quién es Jesse Vincent<a class="headerlink" href="#quien-es-jesse-vincent" title="Permanent link">&para;</a></h2>
+<p>Jesse Vincent es una figura conocida en el mundo del software de código abierto. Es el creador de <strong>Perl 6</strong> (hoy Raku), cofundó <strong>Best Practical</strong> y construyó <strong>RT</strong> (Request Tracker), el sistema de ticketing usado por organizaciones como la Free Software Foundation y el kernel de Linux. Hoy está en <strong>Prime Radiant</strong>, una empresa que construye herramientas para ingeniería con agentes.</p>
+<p>Su blog es un referente en la comunidad de coding agents desde octubre de 2025, cuando publicó el primer artículo sobre Superpowers. Desde entonces, cada release ha sido un evento.</p>
+<h2 id="la-idea-central">La idea central<a class="headerlink" href="#la-idea-central" title="Permanent link">&para;</a></h2>
+<p>Superpowers no es un plugin más. Es una <strong>metodología de desarrollo completa</strong> para agentes de codificación, construida sobre habilidades composables que se activan automáticamente según el contexto.</p>
+<p>El flujo básico es:</p>
+<ol>
+<li><strong>Brainstorming</strong> — El agente NO empieza a programar. Pregunta, explora alternativas y refina la idea antes de tocar una línea.</li>
+<li><strong>Using-git-worktrees</strong> — Crea un workspace aislado en una rama nueva.</li>
+<li><strong>Writing-plans</strong> — Descompone el trabajo en tareas de 2-5 minutos, cada una con paths exactos, código completo y pasos de verificación.</li>
+<li><strong>Subagent-driven-development o executing-plans</strong> — Despacha agentes para implementar o ejecuta en lotes con checkpoints humanos.</li>
+<li><strong>Test-driven-development</strong> — RED-GREEN-REFACTOR obligatorio. Tests primero, siempre.</li>
+<li><strong>Requesting-code-review</strong> — Review contra el plan, con severidades Critical/Nit/Optional.</li>
+<li><strong>Finishing-a-development-branch</strong> — Tests, merge o PR, cleanup.</li>
+</ol>
+<p>El mantra que resume todo: <strong>si el agente empieza a codificar sin hacer preguntas, Superpowers ha fallado</strong>.</p>
+<h2 id="visual-brainstorming">Visual Brainstorming<a class="headerlink" href="#visual-brainstorming" title="Permanent link">&para;</a></h2>
+<p>La novedad más llamativa de la versión 5 es el <strong>Visual Brainstorming Companion</strong>: un servidor web local que el agente levanta para mostrarte mockups, diagramas y comparaciones visuales en el navegador mientras conversáis.</p>
+<p>El origen es curioso. Jesse se encontró pidiendo a Claude una y otra vez: <em>"Oye, ¿por qué no escribes eso como HTML para que pueda ver lo que quieres decir?"</em> Hasta que recordó el mantra más importante de la programación con agentes: <strong>"¿Por qué lo estoy haciendo yo?"</strong></p>
+<p>El agente ahora pregunta si quieres probar el compañero visual, y si aceptas, te abre un navegador con contenido interactivo. Detrás, un servidor WebSocket sirve chunks de HTML que el agente escribe a disco, con JavaScript para capturar clics y feedback.</p>
+<p>Jesse lo probó para idear un logo para Prime Radiant con Claude. Dice que imaginar cómo habría sido en ASCII art da escalofríos.</p>
+<h2 id="spec-review-el-bucle-adversarial">Spec Review: el bucle adversarial<a class="headerlink" href="#spec-review-el-bucle-adversarial" title="Permanent link">&para;</a></h2>
+<p>Otro avance de la v5 es el <strong>spec review loop</strong>. Jesse detectó que los agentes dejaban secciones "TBD" o "Fill this in later" en los documentos de planificación — y que eso acababa tan mal como cabría esperar.</p>
+<p>La solución: después de planificar, Superpowers lanza un subagente que lee la documentación de diseño buscando lagunas y rarezas. No es un sustituto de leerla uno mismo, pero mejora drásticamente la calidad de los planes.</p>
+<p>Es el mismo patrón que hemos visto en otras herramientas de la serie: <strong>un loop adversarial de revisión</strong>. El planificador produce, el revisor critica, el planificador corrige. Se repite hasta que no quedan objeciones.</p>
+<h2 id="subagent-driven-development">Subagent Driven Development<a class="headerlink" href="#subagent-driven-development" title="Permanent link">&para;</a></h2>
+<p>Hasta la v4, Superpowers ofrecía al usuario la opción entre subagentes o ejecución secuencial con checkpoints humanos. Esa ambigüedad venía de una época en que los subagentes eran nuevos y Jesse no se fiaba de ellos.</p>
+<p>A partir de la v5, si tu agente soporta subagentes, <strong>Subagent Driven Development es obligatorio</strong>. Si no los soporta, Superpowers te advierte que otro harness lo haría mejor, y luego hace lo que puede.</p>
+<p>En harnesses como Claude Code que pueden elegir qué modelo usar para cada subagente, Superpowers instruye: modelo barato para tareas mecánicas, estándar para integración, capaz para arquitectura y revisión. Y los subagentes ahora tienen un protocolo de estado: DONE, DONE_WITH_CONCERNS, BLOCKED, NEEDS_CONTEXT.</p>
+<h2 id="ingenieria-de-software-como-principio">Ingeniería de software como principio<a class="headerlink" href="#ingenieria-de-software-como-principio" title="Permanent link">&para;</a></h2>
+<p>El valor de las interfaces comienza aquí:</p>
+<ul>
+<li><strong>Descomposición en unidades</strong>: cada unidad debe tener un propósito claro, interfaces bien definidas y ser testeable de forma independiente.</li>
+<li><strong>"¿Puede alguien entender lo que hace una unidad sin leer su implementación? ¿Puedes cambiar la implementación sin romper a los consumidores?"</strong>.</li>
+<li><strong>Archivos grandes como smell de diseño</strong>: no es solo un problema de estilo, es una advertencia de que la descomposición falló.</li>
+<li><strong>File Structure como paso obligatorio</strong>: antes de descomponer en tareas, primero decides qué archivos existen y qué responsabilidad tiene cada uno.
+  Esto es diseño guiado por interfaces llevado desde la especificación hasta la implementación y la revisión.</li>
+</ul>
+<h2 id="otras-decisiones-de-diseno-interesantes">Otras decisiones de diseño interesantes<a class="headerlink" href="#otras-decisiones-de-diseno-interesantes" title="Permanent link">&para;</a></h2>
+<p><strong>Las skills no son documentación.</strong> Son <strong>workflows</strong>: secuencias de pasos que el agente sigue, con checkpoints que producen evidencia, terminando en un criterio de salida definido. Si metes un ensayo de 2000 palabras en el contexto, el agente lo lee y salta la ejecución real. Si metes un workflow, el agente tiene algo que hacer.</p>
+<p><strong>Prioridad de instrucciones.</strong> Superpowers establece una jerarquía explícita:</p>
+<ol>
+<li>Tus instrucciones directas (CLAUDE.md, AGENTS.md) — prioridad máxima</li>
+<li>Skills de Superpowers — overriding del comportamiento por defecto</li>
+<li>System prompt por defecto — prioridad mínima</li>
+</ol>
+<p>Si tu CLAUDE.md dice "no uses TDD" y un skill de Superpowers dice "usa TDD siempre", gana tu instrucción.</p>
+<p><strong>Divulgación progresiva.</strong> No se cargan las 20 skills en el contexto al inicio. Un meta-skill actúa como router que decide qué skills aplicar según la tarea. Cada skill describe cuándo debe activarse. El agente comprueba si aplica. Si no, sigue.</p>
+<p><strong>Tablas anti-racionalización.</strong> Cada skill incluye una tabla de excusas comunes que un agente podría usar para saltarse el workflow, emparejadas con una réplica. Esto es especialmente efectivo porque los LLMs son excelentes produciendo justificaciones plausibles para hacer lo que les apetece.</p>
+<p><strong>El SUBAGENT-STOP gate.</strong> Los subagentes despachados para tareas específicas se saltan el meta-skill y no activan flujos completos de skills. Esto evita que un subagente que solo debe implementar un cambio empiece a hacer brainstorming.</p>
+<h2 id="en-que-se-diferencia-de-los-otros">En qué se diferencia de los otros<a class="headerlink" href="#en-que-se-diferencia-de-los-otros" title="Permanent link">&para;</a></h2>
+<p><strong>Every</strong> se centra en el bucle de aprendizaje: compound engineering acumula conocimiento en CLAUDE.md para que cada ciclo sea más eficiente.</p>
+<p><strong>Addy Osmani</strong> se centra en la disciplina: agent-skills fuerza al agente a pasar por las fases que un ingeniero senior nunca saltaría, con tablas anti-racionalización como arma principal.</p>
+<p><strong>Superpowers</strong> es más ambicioso: es un <strong>sistema operativo completo</strong> para agentes de código. No solo define workflows, sino que gestiona worktrees de git, decide qué modelo usar para cada subagente, revisa especificaciones con loops adversariales, y tiene un protocolo de comunicación entre subagentes.</p>
+<p>Si Every es compound engineering y Addy es harness engineering, Superpowers es <strong>methodology engineering</strong>: construir el sistema que obliga al agente a seguir una metodología completa de desarrollo de software.</p>
+<p>Addy pone el foco en la disciplina del ingeniero senior. Superpowers pone el foco en la <strong>disciplina del proceso</strong>: el workflow es el que manda, no el agente. La diferencia es sutil pero importante.</p>
+<h2 id="lo-que-mas-me-ha-gustado">Lo que más me ha gustado<a class="headerlink" href="#lo-que-mas-me-ha-gustado" title="Permanent link">&para;</a></h2>
+<p><strong>El mantra "¿Por qué lo estoy haciendo yo?"</strong> aplicado al Visual Brainstorming. Es la pregunta que todo el que programa con agentes debería hacerse constantemente. Si el agente puede hacerlo, que lo haga.</p>
+<p><strong>El spec review loop.</strong> El patrón adversarial para mejorar la calidad de los planes es simple, efectivo, y aplicable a cualquier flujo de trabajo con agentes.</p>
+<p><strong>La prioridad de instrucciones.</strong> Poner CLAUDE.md por encima de las skills de Superpowers es el gesto de diseño más honesto del proyecto. Le dice al usuario: "esto es para ayudarte, no para decirte lo que tienes que hacer".</p>
+<p><strong>La tasa de rechazo del 94% como señal de calidad.</strong> Que el creador sea tan agresivo contra el slop de agentes es una declaración de intenciones. Superpowers no quiere más contribuciones, quiere contribuciones excelentes.</p>
+<h2 id="mi-lectura">Mi lectura<a class="headerlink" href="#mi-lectura" title="Permanent link">&para;</a></h2>
+<p>Superpowers es el proyecto más completo de los que hemos visto en esta serie. Jesse Vincent lleva desde octubre de 2025 iterando sobre la misma idea: cómo hacer que un agente de código se comporte como un ingeniero con experiencia, no como un junior que escribe la primera solución que se le ocurre.</p>
+<p>La diferencia con otras aproximaciones es que Superpowers no confía en el agente. No confía en que "sabrá lo que tiene que hacer". Le da un workflow, le obliga a seguirlo, revisa que lo ha seguido, y si se desvía, le redirige.</p>
+<p>Eso suena restrictivo, y lo es. Pero la experiencia de cientos de miles de usuarios sugiere que es exactamente lo que los agentes necesitan: estructura, no libertad.</p>
+<p>Para mí, lo más valioso de Superpowers no son las skills, sino la <strong>filosofía</strong>: si quieres que un agente produzca trabajo de calidad, no puedes delegar la metodología al agente. Tienes que codificarla en skills que se activen automáticamente, con checkpoints que produzcan evidencia, y con loops adversariales que verifiquen que no se han saltado nada.</p>
+<p>Este framework es el que más he usado de los tres que he revisado en la serie. Desde sus primeras versiones con Claude Code se mostró muy sólido, y cada release ha sido un salto adelante.</p>
+<p>El próximo artículo de la serie explorará otro enfoque. Pero creo que Superpowers marca un antes y un después en cómo pensamos sobre la ingeniería con agentes.</p>
+<h2 id="recursos">Recursos<a class="headerlink" href="#recursos" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://github.com/obra/superpowers">Superpowers en GitHub</a> — El repositorio (180K+ estrellas)</li>
+<li><a href="https://blog.fsck.com/2026/03/09/superpowers-5/">Superpowers 5 — el anuncio</a> — El artículo de Jesse Vincent</li>
+<li><a href="https://blog.fsck.com/2025/10/09/superpowers/">Superpowers: How I'm using coding agents in October 2025</a> — El artículo original de lanzamiento</li>
+<li><a href="https://primeradiant.com">Prime Radiant</a> — La empresa de Jesse Vincent</li>
+<li><a href="https://every.to/chain-of-thought/compound-engineering-how-every-codes-with-agents">Compound Engineering — Every</a> — Artículo anterior de la serie</li>
+<li><a href="https://addyosmani.com/blog/agent-skills/">Agent Skills de Addy Osmani</a> — Artículo anterior de la serie</li>
+</ul></div>
+  <div class="tag-cloud">
+    <p>
+       <a href="https://pablocaro.es/tag/agentes.html">agentes</a>
+      <a href="https://pablocaro.es/tag/ia.html">ia</a>
+      <a href="https://pablocaro.es/tag/superpowers.html">superpowers</a>
+      <a href="https://pablocaro.es/tag/jesse-vincent.html">jesse-vincent</a>
+      <a href="https://pablocaro.es/tag/claude-code.html">claude-code</a>
+      <a href="https://pablocaro.es/tag/prime-radiant.html">prime-radiant</a>
+     </p>
+  </div>
+
+    <div class="neighbors">
+    <a class="btn float-left" href="https://pablocaro.es/agent-skills-addy-osmani" title="Agent Skills de Addy Osmani — Imponiendo disciplina de ingeniería senior a los agentes">
+      <i class="fa fa-angle-left"></i> Artículo anterior
+    </a>
+    <a class="btn float-right" href="https://pablocaro.es/matt-pocock-skills" title="Matt Pocock — Skills sencillas que funcionan">
+      Próximo artículo <i class="fa fa-angle-right"></i>
+    </a>
+  </div>
+   <div class="related-posts">
+    <h4>Te puede gustar</h4>
+    <ul class="related-posts">
+      <li>
+        <a href="https://pablocaro.es/matt-pocock-skills"
+          >Matt Pocock — Skills sencillas que funcionan</a
+        >
+      </li>
+      <li>
+        <a href="https://pablocaro.es/agent-skills-addy-osmani"
+          >Agent Skills de Addy Osmani — Imponiendo disciplina de ingeniería senior a los agentes</a
+        >
+      </li>
+      <li>
+        <a href="https://pablocaro.es/compound-engineering-every"
+          >Compound Engineering — La visión de Every sobre ingeniería con agentes</a
+        >
+      </li>
+      <li>
+        <a href="https://pablocaro.es/programming-with-agents"
+          >Ingeniería de Programación con Agentes</a
+        >
+      </li>
+      <li>
+        <a href="https://pablocaro.es/video-gemini-sevilla"
+          >Creación de vídeo con Gemini: personajes de Sevilla</a
+        >
+      </li>
+    </ul>
+  </div>
+  <!-- Disqus -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'anotaciones';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>
+    Por favor, habilita JavaScript para ver los comentarios.
+</noscript>
+<!-- End Disqus -->
+ </article>
+
+<footer>
+<p>
+  &copy; 2026  - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+Construido con <a href="http://getpelican.com" target="_blank">Pelican</a> usando el tema <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> 
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/3.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/3.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Anotaciones por Pablo Caro ",
+  "url" : "https://pablocaro.es",
+  "image": "/theme/img/profile.png",
+  "description": ""
+}
+</script>  <script src="https://files.stork-search.net/releases/v1.6.0/stork.js"></script>
+  <script>
+    window.storkIndexLoaded = false;
+    window.loadStorkIndex = function () {
+      if (window.storkIndexLoaded) {
+        return;
+      }
+      if (typeof stork === 'undefined') {
+        console.error('Stork is not loaded yet, retrying...');
+        setTimeout(window.loadStorkIndex, 100);
+        return;
+      }
+      stork.register("sitesearch", "https://pablocaro.es/search-index.st", { showProgress: false });
+      stork.register("sitesearch-page", "https://pablocaro.es/search-index.st", { showProgress: false });
+      window.storkIndexLoaded = true;
+    }
+  </script>
+
+</body>
+</html>
