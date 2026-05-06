@@ -17,6 +17,7 @@ dependencies = [
     { name = "markdown" },
     { name = "pelican" },
     { name = "pelican-search" },
+    { name = "pelican-series" },
     { name = "pygments" },
     { name = "python-dateutil" },
     { name = "pytz" },
@@ -44,6 +45,7 @@ requires-dist = [
     { name = "markdown", specifier = "==3.5.1" },
     { name = "pelican", specifier = "==4.9.1" },
     { name = "pelican-search" },
+    { name = "pelican-series", specifier = ">=3.1.1" },
     { name = "pygments", specifier = "==2.17.2" },
     { name = "python-dateutil", specifier = "==2.8.2" },
     { name = "pytz", specifier = "==2023.3" },
@@ -382,6 +384,18 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/ac/44/5db6efe345d70a31cc79d7bd59cc10108c54550fefa1aa28f4a3c7113899/pelican_search-1.1.0.tar.gz", hash = "sha256:9bdfb37a69404335c6b510fc4f73341c9f140e3e7320dd3868d4f045812a8d18", size = 6445, upload-time = "2023-04-12T08:51:58.317Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/4c/60/a9b369249d023a9d2c98b3ab0dffa1b6cecde619db036507e1e709d9fed1/pelican_search-1.1.0-py3-none-any.whl", hash = "sha256:943032372c363bf670d677b2162f32f1b5307a4881efa3a7415897b0d7e6f039", size = 6595, upload-time = "2023-04-12T08:51:45.6Z" },
+]
+
+[[package]]
+name = "pelican-series"
+version = "3.1.1"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "pelican" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/51/8d/7f04ad7bb0115879e47bfbcf307144102d41dd05047330e7ee63d75c7b49/pelican_series-3.1.1.tar.gz", hash = "sha256:0609d90729f6f5508e7357316106c4893217ba3f17539c1dfd9d6005307f9892", size = 6454, upload-time = "2026-04-04T10:50:49.88Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/5e/25/b5f116569f010d83ab15ee7b95d56ad425184ec3bf872d366b3acad93dc3/pelican_series-3.1.1-py3-none-any.whl", hash = "sha256:4f9134a6466ca50c3f4742a3b902fddd2a3c5421fabc32ac8cafcaf3f5246cc7", size = 8177, upload-time = "2026-04-04T10:50:48.637Z" },
 ]
 
 [[package]]
