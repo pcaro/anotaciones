@@ -1,0 +1,471 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="/en/theme/stylesheet/style.min.css">
+
+
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+          href="/en/theme/pygments/github.min.css">
+
+
+  <link rel="stylesheet"
+        type="text/css"
+        href="/en/theme/stork/stork.css" />
+
+  <link rel="stylesheet" type="text/css" href="/en/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="/en/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="/en/theme/font-awesome/css/solid.css">
+
+  <link rel="stylesheet" type="text/css" href="/extras/custom.css">
+
+  <link rel="shortcut icon" href="/theme/img/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/theme/img/favicon.ico" type="image/x-icon">
+
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#333333">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#333333">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Microsoft EDGE -->
+  <meta name="msapplication-TileColor" content="#333333">
+
+  <link href="/en/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Annotations by Pablo Caro Atom">
+
+  <link href="/en/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Annotations by Pablo Caro RSS">
+
+<script data-goatcounter="https://pcaro.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Pablo Caro" />
+<meta name="description" content="Sixth installment in the series on software engineering with AI agents. Today we look at the project that GitHub has turned into the de facto standard for specification-driven development: Spec Kit. So far we have covered methodologies for directing agents: compound engineering (Every), discipline skills (Addy Osmani), a complete operating …" />
+<meta name="keywords" content="agents, ai, spec-kit, github, spec-driven-development" />
+
+<link
+  rel="alternate"
+  href="/en/spec-kit-github"
+  hreflang="en"
+/>
+<link
+  rel="alternate"
+  href="/en/../spec-kit-github"
+  hreflang="es"
+/>
+    <meta property="og:site_name" content="Annotations by Pablo Caro"/>
+  <meta property="og:title" content="GitHub Spec Kit — Specifications as Source of Truth"/>
+  <meta property="og:description" content="Sixth installment in the series on software engineering with AI agents. Today we look at the project that GitHub has turned into the de facto standard for specification-driven development: Spec Kit. So far we have covered methodologies for directing agents: compound engineering (Every), discipline skills (Addy Osmani), a complete operating …"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="/en/spec-kit-github"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2026-05-10 00:00:00+02:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="/en/author/pablo-caro.html">
+  <meta property="article:section" content="ia"/>
+  <meta property="article:tag" content="agents"/>
+  <meta property="article:tag" content="ai"/>
+  <meta property="article:tag" content="spec-kit"/>
+  <meta property="article:tag" content="github"/>
+  <meta property="article:tag" content="spec-driven-development"/>
+  <meta property="og:image" content="/theme/img/profile.png">
+ 
+  <title>Annotations by Pablo Caro &ndash; GitHub Spec Kit — Specifications as Source of Truth</title>
+
+
+</head>
+<body class="light-theme">
+
+<aside>
+  <div>
+    <a href="/en/">
+      <img src="/theme/img/profile.png" alt="Anotaciones" title="Anotaciones">
+    </a>
+
+    <h1>
+      <a href="/en/">Anotaciones</a>
+    </h1>
+
+    <p>Anotaciones</p>
+
+    <p style="font-size: 0.9em; font-style: italic; margin-bottom: 20px;">
+      Dumping my brain onto the internet. A collection of technical notes and solutions written for my future self, shared here in case they save someone else a headache.
+    </p>
+
+    <div class="stork">
+      <input class="stork-input" type="text" autocomplete="off" name="q" data-stork="sitesearch" placeholder="Search..." onclick="loadStorkIndex()"/>
+      <div class="stork-output" data-stork="sitesearch-output"></div>
+    </div>
+
+    <nav>
+      <ul class="list">
+
+
+
+          <li>
+            <a target="_self" href="http://x.com/pcaro" >pcaro@X</a>
+          </li>
+          <li>
+            <a target="_self" href="https://github.com/pcaro/" >pcaro@Github</a>
+          </li>
+          <li>
+            <a target="_self" href="https://www.linkedin.com/in/pcarorevuelta/" >LinkedIn</a>
+          </li>
+      </ul>
+    </nav>
+
+    <ul class="social">
+      <li>
+        <a class="sc-Twitter"
+           href="http://twitter.com/pcaro"
+           target="_blank">
+          <i class="fa-brands fa-Twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Github"
+           href="http://github.com/pcaro"
+           target="_blank">
+          <i class="fa-brands fa-Github"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Linkedin"
+           href="https://www.linkedin.com/in/pcarorevuelta"
+           target="_blank">
+          <i class="fa-brands fa-Linkedin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Facebook"
+           href="https://www.facebook.com/pablo.carorevuelta"
+           target="_blank">
+          <i class="fa-brands fa-Facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Email"
+           href="mailto:correo@pablocaro.es"
+           target="_blank">
+          <i class="fa-brands fa-Email"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+</aside>
+  <main>
+
+<nav>
+  <a href="/en/">Home</a>
+
+  <a href="/en/archives.html">Archives</a>
+  <a href="/en/categories.html">Categories</a>
+  <a href="/en/tags.html">Tags</a>
+  <a href="/en/search.html">Search</a>
+  <a href="/">Español</a>
+
+  <a href="/en/feeds/all.atom.xml">Atom</a>
+
+  <a href="/en/feeds/all.rss.xml">RSS</a>
+</nav>
+
+<article class="single">
+  <header>
+      <div class="translations">
+            <a href="/en/../spec-kit-github">Leer en español</a>
+    </div>
+
+    <h1 id="spec-kit-github">GitHub Spec Kit — Specifications as Source of Truth</h1>
+    <p>
+      Posted on Sun, 10 May 2026 in <a href="/en/category/ia.html">ia</a>     </p>
+  </header>
+
+  <div class="related-posts">
+    <h4>
+      Part 6 of the Ingeniería de Programación con Agentes series
+    </h4>
+    <h5>
+      Previous articles
+    </h5>
+    <ul>
+      <li><a href="/en/programming-with-agents">Programming with Agents</a></li>
+      <li><a href="/en/compound-engineering-every">Compound Engineering — Every's Vision for Agent-Driven Engineering</a></li>
+      <li><a href="/en/agent-skills-addy-osmani">Agent Skills by Addy Osmani — Enforcing Senior Engineering Discipline on Agents</a></li>
+      <li><a href="/en/superpowers-obra-jesse-vincent">Superpowers — Jesse Vincent Imposes Methodology on Coding Agents</a></li>
+      <li><a href="/en/matt-pocock-skills">Matt Pocock — Simple Skills That Work</a></li>
+    </ul>
+   </div>
+ 
+  <div><p>Sixth installment in the series on software engineering with AI agents. Today we look at the project that GitHub has turned into the de facto standard for specification-driven development: <strong>Spec Kit</strong>.</p>
+<p>So far we have covered methodologies for directing agents: compound engineering (Every), discipline skills (Addy Osmani), a complete operating system for agents (Superpowers by Jesse Vincent), and minimal pragmatic skills (Matt Pocock). All of them share one premise: you define how you want the agent to work and it executes.</p>
+<p>Spec Kit flips that premise. It does not tell the agent <strong>how</strong> to work. It tells it <strong>what</strong> to build, and lets the agent figure out how. The difference is subtle, but it changes everything.</p>
+<p><img alt="GitHub Spec Kit — Specifications as Source of Truth" src="/images/spec-kit-github-cover.png"></p>
+<h2 id="the-problem-it-solves">The Problem It Solves<a class="headerlink" href="#the-problem-it-solves" title="Permanent link">&para;</a></h2>
+<p>Every framework we have seen in this series assumes you know what you want to build and the problem is that the agent does not build it well. This is correct: without discipline, agents cut corners, generate generic code, and produce inconsistent results.</p>
+<p>But there is another, deeper problem: <strong>what if you do not know exactly what you want?</strong> What if your requirements are vague, contradictory, or incomplete?</p>
+<p>If twenty developers ask an agent to "build a user CRUD," they will get twenty different results, and probably none of them will be what they actually needed. Because "user CRUD" is not a specification. It is an idea. And ideas do not get implemented — they get refined.</p>
+<p>Spec Kit tackles this problem at the root. It is not a framework for programming with agents. It is a <strong>framework for specifying with agents</strong>. The code comes out on its own.</p>
+<h2 id="the-power-inversion">The Power Inversion<a class="headerlink" href="#the-power-inversion" title="Permanent link">&para;</a></h2>
+<p>Spec Kit calls its core idea <strong>The Power Inversion</strong>. The idea itself is not new — it is classic software engineering. When I studied computer science, this was called a DDR (Documento de Definición de Requisitos — Requirements Definition Document). You had user requirements ("As a user I want..."), functional requirements, and system requirements. From there you derived a technical specification, and then the code. At Carto it was our core philosophy: PRD, technical spec document, code.</p>
+<p>What changes with Spec Kit is that the specification is no longer a document that guides implementation for a human to execute. It is an <strong>executable</strong> document for an AI agent. The PRD is not context for a developer to write code. It is the input that directly generates implementation.</p>
+<p>The difference is that agents are very good at helping you specify. They can ask questions, identify ambiguities, explore existing code for context, and refine requirements with you before writing a single line. That ability to iterate on the specification in seconds instead of days is what makes the workflow practical.</p>
+<p>The numbers speak for themselves: 95,000 GitHub stars, 8,200 forks, 30+ supported AI agents, and a community extension ecosystem that grew from 26 to 83 entries in a single month.</p>
+<h2 id="the-workflow">The Workflow<a class="headerlink" href="#the-workflow" title="Permanent link">&para;</a></h2>
+<p>Spec Kit defines six core commands that cover the full feature lifecycle:</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>What It Does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/speckit.constitution</code></td>
+<td>Defines the project's governing principles</td>
+</tr>
+<tr>
+<td><code>/speckit.specify</code></td>
+<td>Describes <strong>what</strong> to build (requirements, user stories)</td>
+</tr>
+<tr>
+<td><code>/speckit.clarify</code></td>
+<td>Structured questioning to resolve ambiguities</td>
+</tr>
+<tr>
+<td><code>/speckit.plan</code></td>
+<td>Translates the specification into a technical plan</td>
+</tr>
+<tr>
+<td><code>/speckit.tasks</code></td>
+<td>Breaks the plan down into actionable tasks</td>
+</tr>
+<tr>
+<td><code>/speckit.implement</code></td>
+<td>Executes tasks and generates code</td>
+</tr>
+</tbody>
+</table>
+<p>There are also optional commands: <code>/speckit.analyze</code> for cross-artifact consistency validation, and <code>/speckit.checklist</code> for generating custom quality checklists.</p>
+<h3 id="1-constitution">1. Constitution<a class="headerlink" href="#1-constitution" title="Permanent link">&para;</a></h3>
+<p>Before writing a single line of specification, you define the project's principles. This is not a team document. It is a contract that the agent must honor in every decision.</p>
+<p>Spec Kit includes an example constitution with nine articles covering everything from "library-first" (every feature starts as a standalone library) to "test-first imperative" (no code without failing tests first).</p>
+<p>The constitution is not optional. It is the project's immune system. Without it, the agent makes coherent but not necessarily consistent decisions. With it, every decision reinforces the architecture.</p>
+<h3 id="2-specification">2. Specification<a class="headerlink" href="#2-specification" title="Permanent link">&para;</a></h3>
+<p>Here is the key to everything: in <code>/speckit.specify</code> you only talk about the <strong>what</strong> and the <strong>why</strong>. No tech stack. No APIs. No how.</p>
+<p>The specification template enforces this separation explicitly:</p>
+<div class="highlight"><pre><span></span><code>- ✅ Focus on WHAT users need and WHY
+- ❌ Avoid HOW to implement (no tech stack, APIs, code structure)
+</code></pre></div>
+
+<p>This is harder than it sounds. As engineers, our instinct is to jump to the "how" as soon as we understand the problem. Spec Kit forces you to stay in the "what" long enough for the specification to be complete.</p>
+<p>Additionally, the template includes <code>[NEEDS CLARIFICATION]</code> markers that the agent must use when something is unclear. This prevents the most common problem with LLMs: guessing instead of asking.</p>
+<h3 id="3-clarification">3. Clarification<a class="headerlink" href="#3-clarification" title="Permanent link">&para;</a></h3>
+<p>This is the step I value the most personally. Before moving to the technical plan, <code>/speckit.clarify</code> starts a structured dialogue where the agent identifies ambiguities and asks you about them one by one.</p>
+<p>It is not a generic questionnaire. The agent has read the specification and knows exactly what it does not understand. It asks you until no branches of the decision tree remain unexplored.</p>
+<p>It is the same pattern as Matt Pocock's <code>/grill-me</code>, but embedded in a broader workflow and with a structured format that gets recorded in the specification itself.</p>
+<h3 id="4-plan">4. Plan<a class="headerlink" href="#4-plan" title="Permanent link">&para;</a></h3>
+<p>Now it is time for the "how". You tell the agent your tech stack and architectural decisions. The agent generates a detailed implementation plan that includes:</p>
+<ul>
+<li><strong>Data model</strong>: schemas, relationships, constraints</li>
+<li><strong>API contracts</strong>: endpoints, events, formats</li>
+<li><strong>Research</strong>: library comparisons, benchmarks, technical decisions with rationale</li>
+<li><strong>Quickstart</strong>: key validation scenarios</li>
+</ul>
+<p>Every technical choice links back to concrete requirements in the specification. Nothing is left untraced.</p>
+<h3 id="5-tasks">5. Tasks<a class="headerlink" href="#5-tasks" title="Permanent link">&para;</a></h3>
+<p>The plan gets broken down into individual tasks, each with exact file paths, complete code, and verification steps. Independent tasks are marked as parallelizable.</p>
+<p>Spec Kit's task system is notable because it distinguishes between HITL (human-in-the-loop, requires a human decision) and AFK (fully automatable from start to finish) tasks. This lets the human intervene only where they actually add value.</p>
+<h3 id="6-implementation">6. Implementation<a class="headerlink" href="#6-implementation" title="Permanent link">&para;</a></h3>
+<p>The agent executes tasks in order, respecting dependencies and following TDD. Each task produces evidence: passing tests, clean builds, validated contracts.</p>
+<p>If something fails, the agent does not proceed. It stops, reports, and waits for instructions. This is the principle that runs through the entire series materialized: <strong>verification is not negotiable</strong>.</p>
+<h2 id="the-constitutional-foundation">The Constitutional Foundation<a class="headerlink" href="#the-constitutional-foundation" title="Permanent link">&para;</a></h2>
+<p>Spec Kit imposes a high level of detail in its constitution. These are not vague principles. They are nine articles with concrete clauses that the agent cannot ignore.</p>
+<p><strong>Article I — Library-First</strong>: Every feature starts as a standalone library. This forces modularity from the first commit. No "we will refactor later."</p>
+<p><strong>Article II — CLI Interface</strong>: Every library must expose a command-line interface. This guarantees observability: you can invoke any functionality from a script without touching the UI.</p>
+<p><strong>Article III — Test-First Imperative</strong>: Non-negotiable. Tests first. Failing tests. Then the minimal implementation to make them pass.</p>
+<p><strong>Articles VII &amp; VIII — Simplicity and Anti-Abstraction</strong>: Maximum 3 projects in the initial implementation. Use the framework directly, do not wrap it. Nothing "just in case."</p>
+<p><strong>Article IX — Integration-First Testing</strong>: Tests in real environments. Real databases. Real services. No mocks if you can avoid them.</p>
+<p>The key detail is how these articles are enforced through <strong>gates</strong> in the implementation plan template. Before the agent writes a single line, it goes through a "pre-implementation gates" phase that checks every article. If something fails, the agent must justify it in writing in a "Complexity Tracking" section.</p>
+<p>This turns the constitution from a passive document into an <strong>active enforcement system</strong>. It is not that the agent "should" follow the rules. It is that it cannot skip them without leaving evidence.</p>
+<h2 id="comparison-with-the-rest-of-the-series">Comparison with the Rest of the Series<a class="headerlink" href="#comparison-with-the-rest-of-the-series" title="Permanent link">&para;</a></h2>
+<p>Each project we have seen in this series occupies a different niche:</p>
+<table>
+<thead>
+<tr>
+<th>Project</th>
+<th>Approach</th>
+<th>Strength</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Every</strong></td>
+<td>Compound engineering</td>
+<td>Knowledge accumulation in CLAUDE.md</td>
+</tr>
+<tr>
+<td><strong>Addy Osmani</strong></td>
+<td>Harness engineering</td>
+<td>Senior engineer discipline with anti-rationalization</td>
+</tr>
+<tr>
+<td><strong>Superpowers</strong></td>
+<td>Methodology engineering</td>
+<td>Complete operating system for agents</td>
+</tr>
+<tr>
+<td><strong>Matt Pocock</strong></td>
+<td>Skills engineering</td>
+<td>Minimal skills anyone can adopt</td>
+</tr>
+<tr>
+<td><strong>Spec Kit</strong></td>
+<td><strong>Spec engineering</strong></td>
+<td>Specifications are the source of truth</td>
+</tr>
+</tbody>
+</table>
+<p>Spec Kit is the only one that does not start with the agent. It starts with the specification. The agent is the last step, not the first.</p>
+<h2 id="my-take">My Take<a class="headerlink" href="#my-take" title="Permanent link">&para;</a></h2>
+<p>Spec Kit is the project that comes closest to classical software engineering among those I have covered in this series. Not for its technical complexity (which is minor: it is basically a Python CLI that generates markdown files), but because it formalizes something we always should have done: specify before building.</p>
+<p>Inverting the relationship between specification and code is an idea that sounds good in the abstract but has deep implications. If code is a generated artifact, what does it mean to "maintain" software? It means evolving specifications. Debugging means fixing specifications that generate incorrect code. Refactoring means restructuring specifications for clarity.</p>
+<p>The software engineer profile has always been different from that of a programmer. It was never someone who just writes code. It is someone who <strong>writes specifications that generate code</strong>. Close to what is now called a Product Owner in Scrum, but with the technical ability to know what is feasible and what is not.</p>
+<p>I do not know if this vision will fully materialize. But Spec Kit has something none of the other projects have: GitHub's institutional backing. With 95,000 stars and growing, with an adoption rate that has doubled Superpowers in months, Spec Kit is not an experiment. It is a movement.</p>
+<p>And the most interesting part is that GitHub is not building Spec Kit to sell you anything. It is open source, it is free, and it works with any agent: Claude Code, Gemini CLI, Cursor, Codex, Copilot, whichever you use. It is a bet on an open standard for AI-assisted development, and it is working.</p>
+<p>The question you should ask yourself is not "which agent do I use" or "what methodology do I use with my agents," but rather "what specification do I write so that my agents build the right thing." Spec Kit provides an answer: write the specification first. The rest is implementation.</p>
+<h2 id="resources">Resources<a class="headerlink" href="#resources" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://github.com/github/spec-kit">GitHub Spec Kit</a> — The official repository (95K+ stars)</li>
+<li><a href="https://github.com/github/spec-kit/blob/main/spec-driven.md">Spec-Driven Development — the methodology</a> — The document defining SDD</li>
+<li><a href="https://speckit-community.github.io/extensions/">Spec Kit Community Extensions</a> — Community extensions catalog</li>
+<li><a href="https://pablocaro.es/en/matt-pocock-skills">Matt Pocock — Skills That Work</a> — Previous article in the series</li>
+<li><a href="https://pablocaro.es/en/superpowers-obra-jesse-vincent">Superpowers — Jesse Vincent</a> — Previous article in the series</li>
+<li><a href="https://pablocaro.es/en/agent-skills-addy-osmani">Agent Skills — Addy Osmani</a> — Previous article in the series</li>
+<li><a href="https://pablocaro.es/en/compound-engineering-every">Compound Engineering — Every</a> — Previous article in the series</li>
+</ul></div>
+  <div class="tag-cloud">
+    <p>
+       <a href="/en/tag/agents.html">agents</a>
+      <a href="/en/tag/ai.html">ai</a>
+      <a href="/en/tag/spec-kit.html">spec-kit</a>
+      <a href="/en/tag/github.html">github</a>
+      <a href="/en/tag/spec-driven-development.html">spec-driven-development</a>
+     </p>
+  </div>
+
+    <div class="neighbors">
+    <a class="btn float-left" href="/en/matt-pocock-skills" title="Matt Pocock — Simple Skills That Work">
+      <i class="fa fa-angle-left"></i> Previous Post
+    </a>
+  </div>
+   <div class="related-posts">
+    <h4>You might enjoy</h4>
+    <ul class="related-posts">
+      <li>
+        <a href="/en/superpowers-obra-jesse-vincent"
+          >Superpowers — Jesse Vincent Imposes Methodology on Coding Agents</a
+        >
+      </li>
+      <li>
+        <a href="/en/agent-skills-addy-osmani"
+          >Agent Skills by Addy Osmani — Enforcing Senior Engineering Discipline on Agents</a
+        >
+      </li>
+      <li>
+        <a href="/en/compound-engineering-every"
+          >Compound Engineering — Every's Vision for Agent-Driven Engineering</a
+        >
+      </li>
+      <li>
+        <a href="/en/programming-with-agents"
+          >Programming with Agents</a
+        >
+      </li>
+      <li>
+        <a href="/en/matt-pocock-skills"
+          >Matt Pocock — Simple Skills That Work</a
+        >
+      </li>
+    </ul>
+  </div>
+  <!-- Disqus -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'anotaciones';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>
+    Please enable JavaScript to view comments.
+</noscript>
+<!-- End Disqus -->
+ </article>
+
+<footer>
+<p>
+  &copy; 2026  - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/3.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/3.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Annotations by Pablo Caro ",
+  "url" : "/en",
+  "image": "/theme/img/profile.png",
+  "description": ""
+}
+</script>  <script src="https://files.stork-search.net/releases/v1.6.0/stork.js"></script>
+  <script>
+    window.storkIndexLoaded = false;
+    window.loadStorkIndex = function () {
+      if (window.storkIndexLoaded) {
+        return;
+      }
+      if (typeof stork === 'undefined') {
+        console.error('Stork is not loaded yet, retrying...');
+        setTimeout(window.loadStorkIndex, 100);
+        return;
+      }
+      stork.register("sitesearch", "/en/search-index.st", { showProgress: false });
+      stork.register("sitesearch-page", "/en/search-index.st", { showProgress: false });
+      window.storkIndexLoaded = true;
+    }
+  </script>
+
+</body>
+</html>

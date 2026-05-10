@@ -3,6 +3,11 @@ html_selector = "main"
 base_directory = "/home/runner/work/anotaciones/anotaciones/output/en"
 
 [[input.files]]
+path = "spec-kit-github.html"
+url = "/spec-kit-github"
+title = "GitHub Spec Kit — Specifications as Source of Truth"
+
+[[input.files]]
 path = "matt-pocock-skills.html"
 url = "/matt-pocock-skills"
 title = "Matt Pocock — Simple Skills That Work"
@@ -436,6 +441,11 @@ title = "Django: links in object list"
 path = "settings-vars-processor.html"
 url = "/settings-vars-processor"
 title = "Settings vars processor"
+
+[[input.files]]
+path = "spec-kit-github-es.html"
+url = "/../spec-kit-github"
+title = "Spec Kit de GitHub — Especificaciones como fuente de verdad"
 
 [[input.files]]
 path = "matt-pocock-skills-es.html"
