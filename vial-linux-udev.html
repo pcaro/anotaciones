@@ -1,0 +1,331 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/stylesheet/style.min.css">
+
+
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+          href="https://pablocaro.es/theme/pygments/github.min.css">
+
+
+  <link rel="stylesheet"
+        type="text/css"
+        href="https://pablocaro.es/theme/stork/stork.css" />
+
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/font-awesome/css/solid.css">
+
+  <link rel="stylesheet" type="text/css" href="/extras/custom.css">
+
+  <link rel="shortcut icon" href="/theme/img/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/theme/img/favicon.ico" type="image/x-icon">
+
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#333333">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#333333">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Microsoft EDGE -->
+  <meta name="msapplication-TileColor" content="#333333">
+
+  <link href="https://pablocaro.es/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Anotaciones por Pablo Caro Atom">
+
+  <link href="https://pablocaro.es/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Anotaciones por Pablo Caro RSS">
+
+<script data-goatcounter="https://pcaro.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Pablo Caro" />
+<meta name="description" content="Cómo configurar reglas udev para que Vial detecte tu teclado con firmware Vial en Linux, usando la regla universal basada en el serial mágico." />
+<meta name="keywords" content="vial, linux, udev, keyboard, keychron, qmk" />
+
+<link
+  rel="alternate"
+  href="https://pablocaro.es/vial-linux-udev"
+  hreflang="es"
+/>
+<link
+  rel="alternate"
+  href="https://pablocaro.es/en/vial-linux-udev"
+  hreflang="en"
+/>
+    <meta property="og:site_name" content="Anotaciones por Pablo Caro"/>
+  <meta property="og:title" content="Configurar permisos udev para Vial en Linux"/>
+  <meta property="og:description" content="Cómo configurar reglas udev para que Vial detecte tu teclado con firmware Vial en Linux, usando la regla universal basada en el serial mágico."/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://pablocaro.es/vial-linux-udev"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2026-05-11 00:00:00+02:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://pablocaro.es/author/pablo-caro.html">
+  <meta property="article:section" content="Linux"/>
+  <meta property="article:tag" content="vial"/>
+  <meta property="article:tag" content="linux"/>
+  <meta property="article:tag" content="udev"/>
+  <meta property="article:tag" content="keyboard"/>
+  <meta property="article:tag" content="keychron"/>
+  <meta property="article:tag" content="qmk"/>
+  <meta property="og:image" content="/theme/img/profile.png">
+ 
+  <title>Anotaciones por Pablo Caro &ndash; Configurar permisos udev para Vial en Linux</title>
+
+
+</head>
+<body class="light-theme">
+
+<aside>
+  <div>
+    <a href="https://pablocaro.es/">
+      <img src="/theme/img/profile.png" alt="Anotaciones" title="Anotaciones">
+    </a>
+
+    <h1>
+      <a href="https://pablocaro.es/">Anotaciones</a>
+    </h1>
+
+    <p>Anotaciones</p>
+
+    <p style="font-size: 0.9em; font-style: italic; margin-bottom: 20px;">
+      Volcando mi cerebro a internet. Colección de apuntes técnicos y soluciones que escribo para mi 'yo' del futuro, pero que comparto por si a alguien más le ahorran un dolor de cabeza.
+    </p>
+
+    <div class="stork">
+      <input class="stork-input" type="text" autocomplete="off" name="q" data-stork="sitesearch" placeholder="Buscar..." onclick="loadStorkIndex()"/>
+      <div class="stork-output" data-stork="sitesearch-output"></div>
+    </div>
+
+    <nav>
+      <ul class="list">
+
+
+
+          <li>
+            <a target="_self" href="http://x.com/pcaro" >pcaro@X</a>
+          </li>
+          <li>
+            <a target="_self" href="https://github.com/pcaro/" >pcaro@Github</a>
+          </li>
+          <li>
+            <a target="_self" href="https://www.linkedin.com/in/pcarorevuelta/" >LinkedIn</a>
+          </li>
+      </ul>
+    </nav>
+
+    <ul class="social">
+      <li>
+        <a class="sc-Twitter"
+           href="http://twitter.com/pcaro"
+           target="_blank">
+          <i class="fa-brands fa-Twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Github"
+           href="http://github.com/pcaro"
+           target="_blank">
+          <i class="fa-brands fa-Github"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Linkedin"
+           href="https://www.linkedin.com/in/pcarorevuelta"
+           target="_blank">
+          <i class="fa-brands fa-Linkedin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Facebook"
+           href="https://www.facebook.com/pablo.carorevuelta"
+           target="_blank">
+          <i class="fa-brands fa-Facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Email"
+           href="mailto:correo@pablocaro.es"
+           target="_blank">
+          <i class="fa-brands fa-Email"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+</aside>
+  <main>
+
+<nav>
+  <a href="https://pablocaro.es/">Inicio</a>
+
+  <a href="/archives.html">Archivo</a>
+  <a href="/categories.html">Categorías</a>
+  <a href="/tags.html">Etiquetas</a>
+  <a href="/search.html">Búsqueda</a>
+  <a href="/en/">English</a>
+
+  <a href="https://pablocaro.es/feeds/all.atom.xml">Atom</a>
+
+  <a href="https://pablocaro.es/feeds/all.rss.xml">RSS</a>
+</nav>
+
+<article class="single">
+  <header>
+      <div class="translations">
+            <a href="https://pablocaro.es/en/vial-linux-udev">Read in English</a>
+    </div>
+
+    <h1 id="vial-linux-udev">Configurar permisos udev para Vial en Linux</h1>
+    <p>
+      Publicado el 11 de May de 2026 en <a href="https://pablocaro.es/category/linux.html">Linux</a>     </p>
+  </header>
+
+ 
+  <div><p>Al conectar un teclado con firmware Vial (como el Keychron Q10) en Linux, la GUI de Vial no lo detecta porque el usuario no tiene permisos sobre los dispositivos <code>/dev/hidraw*</code>.</p>
+<p>La documentación oficial de Vial recomienda usar una <strong>regla udev universal</strong> que identifica el teclado por su serial mágico <code>vial:f64c2b3c</code>. Esto es mejor que usar vendor/product ID porque funciona con cualquier teclado Vial que conectes.</p>
+<p>Primero, identifica tu teclado con <code>lsusb</code>. El mío aparece como:</p>
+<div class="highlight"><pre><span></span><code>Bus 003 Device 015: ID 3434:01a1 Keychron Keychron Q10
+</code></pre></div>
+
+<p><img alt="Vial udev rules on Linux" src="/images/vial-linux-udev.png"></p>
+<p>El comando para crear la regla, recargar y aplicar:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">USER_GID</span><span class="o">=</span><span class="sb">`</span>id<span class="w"> </span>-g<span class="sb">`</span><span class="p">;</span><span class="w"> </span>sudo<span class="w"> </span>--preserve-env<span class="o">=</span>USER_GID<span class="w"> </span>sh<span class="w"> </span>-c<span class="w"> </span><span class="s1">&#39;echo &quot;KERNEL==\&quot;hidraw*\&quot;, SUBSYSTEM==\&quot;hidraw\&quot;, ATTRS{serial}==\&quot;*vial:f64c2b3c*\&quot;, MODE=\&quot;0660\&quot;, GROUP=\&quot;$USER_GID\&quot;, TAG+=\&quot;uaccess\&quot;, TAG+=\&quot;udev-acl\&quot;&quot; &gt; /etc/udev/rules.d/59-vial.rules &amp;&amp; udevadm control --reload &amp;&amp; udevadm trigger&#39;</span>
+</code></pre></div>
+
+<p>Esto crea <code>/etc/udev/rules.d/59-vial.rules</code>, recarga las reglas y las dispara. Después, desconecta y vuelve a conectar el teclado. Vial debería reconocerlo al instante.</p>
+<p>Si prefieres una regla específica para tu modelo, añade los IDs:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">USER_GID</span><span class="o">=</span><span class="sb">`</span>id<span class="w"> </span>-g<span class="sb">`</span><span class="p">;</span><span class="w"> </span>sudo<span class="w"> </span>--preserve-env<span class="o">=</span>USER_GID<span class="w"> </span>sh<span class="w"> </span>-c<span class="w"> </span><span class="s1">&#39;echo &quot;KERNEL==\&quot;hidraw*\&quot;, SUBSYSTEM==\&quot;hidraw\&quot;, ATTRS{serial}==\&quot;*vial:f64c2b3c*\&quot;, ATTRS{idVendor}==\&quot;3434\&quot;, ATTRS{idProduct}==\&quot;01a1\&quot;, MODE=\&quot;0660\&quot;, GROUP=\&quot;$USER_GID\&quot;, TAG+=\&quot;uaccess\&quot;, TAG+=\&quot;udev-acl\&quot;&quot; &gt; /etc/udev/rules.d/59-vial.rules &amp;&amp; udevadm control --reload &amp;&amp; udevadm trigger&#39;</span>
+</code></pre></div>
+
+<p>La regla universal es más simple y cubre cualquier teclado Vial futuro.</p>
+<p><em>Fuente original</em>: <a href="https://get.vial.today/manual/linux-udev.html">Vial - Configuring udev on Linux</a></p></div>
+  <div class="tag-cloud">
+    <p>
+       <a href="https://pablocaro.es/tag/vial.html">vial</a>
+      <a href="https://pablocaro.es/tag/linux.html">linux</a>
+      <a href="https://pablocaro.es/tag/udev.html">udev</a>
+      <a href="https://pablocaro.es/tag/keyboard.html">keyboard</a>
+      <a href="https://pablocaro.es/tag/keychron.html">keychron</a>
+      <a href="https://pablocaro.es/tag/qmk.html">qmk</a>
+     </p>
+  </div>
+
+    <div class="neighbors">
+    <a class="btn float-left" href="https://pablocaro.es/spec-kit-github" title="Spec Kit de GitHub — Especificaciones como fuente de verdad">
+      <i class="fa fa-angle-left"></i> Artículo anterior
+    </a>
+    <a class="btn float-right" href="https://pablocaro.es/markdownpart-kate-preview" title="Markdown preview en Kate Editor con markdownpart">
+      Próximo artículo <i class="fa fa-angle-right"></i>
+    </a>
+  </div>
+   <div class="related-posts">
+    <h4>Te puede gustar</h4>
+    <ul class="related-posts">
+      <li>
+        <a href="https://pablocaro.es/markdownpart-kate-preview"
+          >Markdown preview en Kate Editor con markdownpart</a
+        >
+      </li>
+      <li>
+        <a href="https://pablocaro.es/bloqueo-dns-aliexpress-nextdns"
+          >Bloqueo DNS de enlaces de AliExpress con NextDNS</a
+        >
+      </li>
+      <li>
+        <a href="https://pablocaro.es/escaneo-doble-cara-brother-dcp-l3560cdw"
+          >Escaneo a doble cara con la Brother DCP-L3560CDW</a
+        >
+      </li>
+      <li>
+        <a href="https://pablocaro.es/marksman-lsp-markdown"
+          >marksman: LSP para Markdown</a
+        >
+      </li>
+      <li>
+        <a href="https://pablocaro.es/neofetch"
+          >neofetch</a
+        >
+      </li>
+    </ul>
+  </div>
+  <!-- Disqus -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'anotaciones';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>
+    Por favor, habilita JavaScript para ver los comentarios.
+</noscript>
+<!-- End Disqus -->
+ </article>
+
+<footer>
+<p>
+  &copy; 2026  - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+Construido con <a href="http://getpelican.com" target="_blank">Pelican</a> usando el tema <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> 
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/3.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/3.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Anotaciones por Pablo Caro ",
+  "url" : "https://pablocaro.es",
+  "image": "/theme/img/profile.png",
+  "description": ""
+}
+</script>  <script src="https://files.stork-search.net/releases/v1.6.0/stork.js"></script>
+  <script>
+    window.storkIndexLoaded = false;
+    window.loadStorkIndex = function () {
+      if (window.storkIndexLoaded) {
+        return;
+      }
+      if (typeof stork === 'undefined') {
+        console.error('Stork is not loaded yet, retrying...');
+        setTimeout(window.loadStorkIndex, 100);
+        return;
+      }
+      stork.register("sitesearch", "https://pablocaro.es/search-index.st", { showProgress: false });
+      stork.register("sitesearch-page", "https://pablocaro.es/search-index.st", { showProgress: false });
+      window.storkIndexLoaded = true;
+    }
+  </script>
+
+</body>
+</html>

@@ -8,6 +8,11 @@ url = "/markdownpart-kate-preview"
 title = "Markdown preview en Kate Editor con markdownpart"
 
 [[input.files]]
+path = "vial-linux-udev.html"
+url = "/vial-linux-udev"
+title = "Configurar permisos udev para Vial en Linux"
+
+[[input.files]]
 path = "spec-kit-github.html"
 url = "/spec-kit-github"
 title = "Spec Kit de GitHub — Especificaciones como fuente de verdad"
@@ -876,6 +881,11 @@ title = "Primera anotación de prueba"
 path = "markdownpart-kate-preview-en.html"
 url = "/en/markdownpart-kate-preview"
 title = "Markdown Preview in Kate Editor with markdownpart"
+
+[[input.files]]
+path = "vial-linux-udev-en.html"
+url = "/en/vial-linux-udev"
+title = "Configuring udev permissions for Vial on Linux"
 
 [[input.files]]
 path = "spec-kit-github-en.html"
