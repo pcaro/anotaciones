@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Anotaciones por Pablo Caro - kate</title><link href="https://pablocaro.es/" rel="alternate"></link><link href="https://pablocaro.es/feeds/tags/kate.atom.xml" rel="self"></link><id>https://pablocaro.es/</id><updated>2026-05-11T00:00:00+02:00</updated><subtitle>Anotaciones</subtitle><entry><title>Markdown preview en Kate Editor con markdownpart</title><link href="https://pablocaro.es/markdownpart-kate-preview" rel="alternate"></link><published>2026-05-11T00:00:00+02:00</published><updated>2026-05-11T00:00:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-05-11:/markdownpart-kate-preview</id><summary type="html">&lt;p&gt;Cómo activar la vista previa de Markdown en Kate usando markdownpart.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Resulta que KDE tiene un componente llamado &lt;code&gt;markdownpart&lt;/code&gt; que permite hacer preview de Markdown en tiempo real dentro de Kate.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;apt&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;markdownpart
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Una vez instalado, en Kate:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Preferencias → Configurar Kate → Complementos&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Activar &lt;strong&gt;Vista previa del documento&lt;/strong&gt; (o similar según la versión)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Aparecerá un botón en la barra lateral con un icono de un documento con una lupa. Al hacer clic, se abre un panel con el Markdown renderizado. Y lo mejor: tiene opciones de actualizar en vivo mientras escribes.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Markdown preview en Kate" src="/images/markdownpart-kate-preview.png"&gt;&lt;/p&gt;</content><category term="Linux"></category><category term="kate"></category><category term="markdown"></category><category term="linux"></category><category term="kde"></category><category term="editor"></category></entry></feed>

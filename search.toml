@@ -3,6 +3,11 @@ html_selector = "main"
 base_directory = "/home/runner/work/anotaciones/anotaciones/output"
 
 [[input.files]]
+path = "markdownpart-kate-preview.html"
+url = "/markdownpart-kate-preview"
+title = "Markdown preview en Kate Editor con markdownpart"
+
+[[input.files]]
 path = "spec-kit-github.html"
 url = "/spec-kit-github"
 title = "Spec Kit de GitHub — Especificaciones como fuente de verdad"
@@ -866,6 +871,11 @@ title = "Corrector ortográfico de firefox 2.0 en castellano"
 path = "primera-anotacion-de-prueba.html"
 url = "/primera-anotacion-de-prueba"
 title = "Primera anotación de prueba"
+
+[[input.files]]
+path = "markdownpart-kate-preview-en.html"
+url = "/en/markdownpart-kate-preview"
+title = "Markdown Preview in Kate Editor with markdownpart"
 
 [[input.files]]
 path = "spec-kit-github-en.html"
