@@ -3,6 +3,11 @@ html_selector = "main"
 base_directory = "/home/runner/work/anotaciones/anotaciones/output"
 
 [[input.files]]
+path = "programming-as-theory-building-naur.html"
+url = "/programming-as-theory-building-naur"
+title = "Programming as Theory Building: el artículo de Peter Naur"
+
+[[input.files]]
 path = "markdownpart-kate-preview.html"
 url = "/markdownpart-kate-preview"
 title = "Markdown preview en Kate Editor con markdownpart"
@@ -876,6 +881,11 @@ title = "Corrector ortográfico de firefox 2.0 en castellano"
 path = "primera-anotacion-de-prueba.html"
 url = "/primera-anotacion-de-prueba"
 title = "Primera anotación de prueba"
+
+[[input.files]]
+path = "programming-as-theory-building-naur-en.html"
+url = "/en/programming-as-theory-building-naur"
+title = "Programming as Theory Building: Peter Naur's Essay"
 
 [[input.files]]
 path = "markdownpart-kate-preview-en.html"

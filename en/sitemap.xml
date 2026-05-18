@@ -5,36 +5,43 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/en/</loc>
-<lastmod>2026-05-11T16:15:36-00:00</lastmod>
+<lastmod>2026-05-18T14:46:59-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/en/tags.html</loc>
-<lastmod>2026-05-11T16:15:36-00:00</lastmod>
+<lastmod>2026-05-18T14:46:59-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/en/categories.html</loc>
-<lastmod>2026-05-11T16:15:36-00:00</lastmod>
+<lastmod>2026-05-18T14:46:59-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/en/archives.html</loc>
-<lastmod>2026-05-11T16:15:36-00:00</lastmod>
+<lastmod>2026-05-18T14:46:59-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/en/search.html</loc>
-<lastmod>2026-05-11T16:15:36-00:00</lastmod>
+<lastmod>2026-05-18T14:46:59-00:00</lastmod>
 <changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/en/programming-as-theory-building-naur</loc>
+<lastmod>2026-05-18T00:00:00+02:00</lastmod>
+<changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
@@ -725,6 +732,55 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+<loc>/en/category/programming.html</loc>
+<lastmod>2026-05-18T00:00:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/en/tag/programming.html</loc>
+<lastmod>2026-05-18T00:00:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/en/tag/theory.html</loc>
+<lastmod>2026-05-18T00:00:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/en/tag/architecture.html</loc>
+<lastmod>2026-05-18T00:00:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/en/tag/ai.html</loc>
+<lastmod>2026-05-18T00:00:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/en/tag/llm.html</loc>
+<lastmod>2026-05-18T00:00:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/en/tag/naur.html</loc>
+<lastmod>2026-05-18T00:00:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
 <loc>/en/tag/kate.html</loc>
 <lastmod>2026-05-11T00:00:00+00:09</lastmod>
 <changefreq>daily</changefreq>
@@ -796,13 +852,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/en/tag/agents.html</loc>
-<lastmod>2026-05-10T00:00:00+00:09</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>/en/tag/ai.html</loc>
 <lastmod>2026-05-10T00:00:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
@@ -1363,13 +1412,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/en/tag/automation.html</loc>
-<lastmod>2026-03-18T09:00:00+00:09</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>/en/tag/llm.html</loc>
 <lastmod>2026-03-18T09:00:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
