@@ -1,0 +1,452 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/stylesheet/style.min.css">
+
+
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+          href="https://pablocaro.es/theme/pygments/github.min.css">
+
+
+  <link rel="stylesheet"
+        type="text/css"
+        href="https://pablocaro.es/theme/stork/stork.css" />
+
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/font-awesome/css/solid.css">
+
+  <link rel="stylesheet" type="text/css" href="/extras/custom.css">
+
+  <link rel="shortcut icon" href="/theme/img/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/theme/img/favicon.ico" type="image/x-icon">
+
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#333333">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#333333">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Microsoft EDGE -->
+  <meta name="msapplication-TileColor" content="#333333">
+
+  <link href="https://pablocaro.es/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Anotaciones por Pablo Caro Atom">
+
+  <link href="https://pablocaro.es/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Anotaciones por Pablo Caro RSS">
+
+<script data-goatcounter="https://pcaro.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Pablo Caro" />
+<meta name="description" content="Pi es un agente de código minimalista para la terminal. En este artículo explico qué es, cómo se diferencia de Claude Code, Codex, OpenCode y Gemini CLI, y por qué se ha vuelto viral." />
+<meta name="keywords" content="pi, coding-agent, agentes-ia, claude-code, codex, opencode, gemini-cli" />
+
+<link
+  rel="alternate"
+  href="https://pablocaro.es/que-es-pi-coding-agent"
+  hreflang="es"
+/>
+<link
+  rel="alternate"
+  href="https://pablocaro.es/en/que-es-pi-coding-agent"
+  hreflang="en"
+/>
+    <meta property="og:site_name" content="Anotaciones por Pablo Caro"/>
+  <meta property="og:title" content="¿Qué es pi? — El agente de código minimalista que se ha vuelto viral"/>
+  <meta property="og:description" content="Pi es un agente de código minimalista para la terminal. En este artículo explico qué es, cómo se diferencia de Claude Code, Codex, OpenCode y Gemini CLI, y por qué se ha vuelto viral."/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://pablocaro.es/que-es-pi-coding-agent"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2026-05-21 00:00:00+02:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://pablocaro.es/author/pablo-caro.html">
+  <meta property="article:section" content="ia"/>
+  <meta property="article:tag" content="pi"/>
+  <meta property="article:tag" content="coding-agent"/>
+  <meta property="article:tag" content="agentes-ia"/>
+  <meta property="article:tag" content="claude-code"/>
+  <meta property="article:tag" content="codex"/>
+  <meta property="article:tag" content="opencode"/>
+  <meta property="article:tag" content="gemini-cli"/>
+  <meta property="og:image" content="/theme/img/profile.png">
+ 
+  <title>Anotaciones por Pablo Caro &ndash; ¿Qué es pi? — El agente de código minimalista que se ha vuelto viral</title>
+
+
+</head>
+<body class="light-theme">
+
+<aside>
+  <div>
+    <a href="https://pablocaro.es/">
+      <img src="/theme/img/profile.png" alt="Anotaciones" title="Anotaciones">
+    </a>
+
+    <h1>
+      <a href="https://pablocaro.es/">Anotaciones</a>
+    </h1>
+
+    <p>Anotaciones</p>
+
+    <p style="font-size: 0.9em; font-style: italic; margin-bottom: 20px;">
+      Volcando mi cerebro a internet. Colección de apuntes técnicos y soluciones que escribo para mi 'yo' del futuro, pero que comparto por si a alguien más le ahorran un dolor de cabeza.
+    </p>
+
+    <div class="stork">
+      <input class="stork-input" type="text" autocomplete="off" name="q" data-stork="sitesearch" placeholder="Buscar..." onclick="loadStorkIndex()"/>
+      <div class="stork-output" data-stork="sitesearch-output"></div>
+    </div>
+
+    <nav>
+      <ul class="list">
+
+
+
+          <li>
+            <a target="_self" href="http://x.com/pcaro" >pcaro@X</a>
+          </li>
+          <li>
+            <a target="_self" href="https://github.com/pcaro/" >pcaro@Github</a>
+          </li>
+          <li>
+            <a target="_self" href="https://www.linkedin.com/in/pcarorevuelta/" >LinkedIn</a>
+          </li>
+      </ul>
+    </nav>
+
+    <ul class="social">
+      <li>
+        <a class="sc-Twitter"
+           href="http://twitter.com/pcaro"
+           target="_blank">
+          <i class="fa-brands fa-Twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Github"
+           href="http://github.com/pcaro"
+           target="_blank">
+          <i class="fa-brands fa-Github"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Linkedin"
+           href="https://www.linkedin.com/in/pcarorevuelta"
+           target="_blank">
+          <i class="fa-brands fa-Linkedin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Facebook"
+           href="https://www.facebook.com/pablo.carorevuelta"
+           target="_blank">
+          <i class="fa-brands fa-Facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Email"
+           href="mailto:correo@pablocaro.es"
+           target="_blank">
+          <i class="fa-brands fa-Email"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+</aside>
+  <main>
+
+<nav>
+  <a href="https://pablocaro.es/">Inicio</a>
+
+  <a href="/archives.html">Archivo</a>
+  <a href="/categories.html">Categorías</a>
+  <a href="/tags.html">Etiquetas</a>
+  <a href="/search.html">Búsqueda</a>
+  <a href="/en/">English</a>
+
+  <a href="https://pablocaro.es/feeds/all.atom.xml">Atom</a>
+
+  <a href="https://pablocaro.es/feeds/all.rss.xml">RSS</a>
+</nav>
+
+<article class="single">
+  <header>
+      <div class="translations">
+            <a href="https://pablocaro.es/en/que-es-pi-coding-agent">Read in English</a>
+    </div>
+
+    <h1 id="que-es-pi-coding-agent">¿Qué es pi? — El agente de código minimalista que se ha vuelto viral</h1>
+    <p>
+      Publicado el 21 de May de 2026 en <a href="https://pablocaro.es/category/ia.html">ia</a>     </p>
+  </header>
+
+  <div class="related-posts">
+    <h4>
+      Parte 1 de la serie Pi: el agente de código
+    </h4>
+     <h5>Próximos artículos</h5>
+    <ul>
+      <li><a href="https://pablocaro.es/pi-de-principiante-a-avanzado">Pi de novato a avanzado — La guía completa</a></li>
+      <li><a href="https://pablocaro.es/extensiones-pi-que-uso">Las extensiones de pi que uso en mi día a día</a></li>
+    </ul>
+  </div>
+ 
+  <div><p>Llevo ya varios meses usando <a href="https://pi.dev/">pi</a> como mi agente de código principal. Es una de esas herramientas que, una vez que la usas, no entiendes cómo funcionabas antes. En este artículo —primero de una serie de tres— voy a contar qué es pi, en qué se diferencia de otros coding agents y por qué creo que se ha vuelto extremadamente popular en GitHub. No os perdáis <a href="https://pi.dev/">pi.dev</a>, la web del proyecto — tiene unas animaciones muy didácticas que explican visualmente los conceptos.</p>
+<p><img alt="Comparativa de agentes de código" src="/images/comparativa-agentes-pi.png"></p>
+<h2 id="la-filosofia-menos-es-mas">La filosofía: menos es más<a class="headerlink" href="#la-filosofia-menos-es-mas" title="Permanent link">&para;</a></h2>
+<p>Pi se define como <em>"a minimal terminal coding harness"</em> — un arnés de codificación minimalista para la terminal. Y cuando dicen minimalista, lo dicen en serio.</p>
+<p>El núcleo básico de pi tiene exactamente <strong>cinco capacidades nativas</strong>: leer archivos, ejecutar Bash, editar archivos, escribir archivos y gestionar sesiones. Eso es todo. No trae subagentes, ni modo de planificación, ni pop-ups de permisos, ni MCP incorporado, ni un editor de código.</p>
+<p>Suena a poco, pero es la clave de todo. Vivimos en la era del <em>harness engineering</em> — la disciplina de construir entornos robustos alrededor de los agentes de IA — y pi es un punto de partida excelente para montar tu propio harness sin pagar el peaje de un ecosistema cerrado.</p>
+<p>La filosofía de pi es que el usuario debe adaptar la herramienta a sus flujos de trabajo, y no al revés. En lugar de venir con 50 funciones que la mayoría no usa, pi te da las primitivas mínimas y un sistema de extensiones TypeScript para que construyas exactamente lo que necesites.</p>
+<p>Si quieres subagentes, instalas una extensión. Si quieres MCP, te montas un adaptador. Si quieres un plan mode, te escribes un prompt template. Y si no quieres nada de eso, pues no lo tienes ocupando espacio ni ralentizando el arranque.</p>
+<h2 id="comparativa-con-otros-coding-agents">Comparativa con otros coding agents<a class="headerlink" href="#comparativa-con-otros-coding-agents" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Característica</th>
+<th><strong>Pi</strong></th>
+<th><strong>Claude Code</strong></th>
+<th><strong>Codex</strong></th>
+<th><strong>OpenCode</strong></th>
+<th><strong>Gemini CLI</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Filosofía</strong></td>
+<td>Núcleo mínimo + extensiones</td>
+<td>Todo incluido</td>
+<td>Todo incluido</td>
+<td>Núcleo mínimo</td>
+<td>Todo incluido</td>
+</tr>
+<tr>
+<td><strong>Modelos</strong></td>
+<td>Cualquier proveedor (API key o suscripción)</td>
+<td>Solo Claude</td>
+<td>Solo OpenAI</td>
+<td>Múltiples (OpenAI API)</td>
+<td>Solo Gemini</td>
+</tr>
+<tr>
+<td><strong>Subagentes</strong></td>
+<td>Via extensiones</td>
+<td>Nativos</td>
+<td>Nativos</td>
+<td>Nativos</td>
+<td>Nativos</td>
+</tr>
+<tr>
+<td><strong>MCP</strong></td>
+<td>Via extensiones</td>
+<td>Nativo</td>
+<td>-</td>
+<td>Nativo</td>
+<td>Nativo</td>
+</tr>
+<tr>
+<td><strong>Plan mode</strong></td>
+<td>Via skills/templates</td>
+<td>Nativo</td>
+<td>Nativo</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td><strong>Extensiones</strong></td>
+<td>TypeScript SDK</td>
+<td>Plugins JSON</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td><strong>Precio</strong></td>
+<td>Gratuito (tus claves)</td>
+<td>Suscripción de pago</td>
+<td>Suscripción de pago</td>
+<td>Gratuito (tus claves)</td>
+<td>Gratuito (cuota gratuita)</td>
+</tr>
+<tr>
+<td><strong>Plataforma</strong></td>
+<td>Terminal (cualquier emulador)</td>
+<td>Terminal</td>
+<td>Terminal</td>
+<td>Terminal</td>
+<td>Terminal</td>
+</tr>
+<tr>
+<td><strong>Sesiones en árbol</strong></td>
+<td>Nativo (JSONL tree)</td>
+<td>Lineal</td>
+<td>Lineal</td>
+<td>Lineal</td>
+<td>Lineal</td>
+</tr>
+<tr>
+<td><strong>Skills</strong></td>
+<td>Markdown + frontmatter</td>
+<td>Markdown + frontmatter</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h3 id="claude-code-el-todoterreno-de-anthropic">Claude Code — El todoterreno de Anthropic<a class="headerlink" href="#claude-code-el-todoterreno-de-anthropic" title="Permanent link">&para;</a></h3>
+<p>Claude Code es la apuesta oficial de Anthropic. Viene con todo: subagentes, memoria persistente, sistema de permisos, MCP nativo, y una experiencia muy pulida. Es el más maduro de los que no requieren IDE.</p>
+<p>El problema es que solo funciona con Claude. Si quieres usar DeepSeek, Gemini u OpenAI, no puedes. Y el ecosistema de plugins es limitado comparado con lo que ofrece pi.</p>
+<h3 id="codex-la-integracion-con-chatgpt">Codex — La integración con ChatGPT<a class="headerlink" href="#codex-la-integracion-con-chatgpt" title="Permanent link">&para;</a></h3>
+<p>Codex es el agente de OpenAI. Se puede usar desde la terminal (<code>codex</code>) o integrado con ChatGPT. Viene con subagentes y una experiencia similar a Claude Code.</p>
+<p>Pero al igual que Claude Code, estás atado a un solo proveedor. Y las extensiones son prácticamente inexistentes: lo que viene, es lo que tienes.</p>
+<h3 id="gemini-cli-el-cli-de-la-comunidad">Gemini CLI — El cli de la comunidad<a class="headerlink" href="#gemini-cli-el-cli-de-la-comunidad" title="Permanent link">&para;</a></h3>
+<p>Gemini CLI nace del desarrollo comunitario de google-gemini y se integra con su ecosistema (Gemini API, Google Cloud). Google ha ido dejando de lado el CLI en favor de Antigravity, su cliente privativo para empresas. Viene con skills y subagentes, pero la personalización es limitada y las extensiones de terceros son prácticamente inexistentes.</p>
+<h3 id="opencode-el-alma-gemela">OpenCode — El alma gemela<a class="headerlink" href="#opencode-el-alma-gemela" title="Permanent link">&para;</a></h3>
+<p><a href="https://github.com/opencode-go/opencode-go">OpenCode</a> es el que más uso después de pi, y en muchos sentidos es su complemento natural. Su filosofía es parecida: núcleo mínimo, terminal, multi-modelo. No tiene el ecosistema de extensiones de pi, pero trae subagentes y MCP nativos. Está escrito en Go, arranca igual de rápido, y su integración con el ecosistema OpenAI es excelente.</p>
+<h2 id="que-hace-unico-a-pi">¿Qué hace único a pi?<a class="headerlink" href="#que-hace-unico-a-pi" title="Permanent link">&para;</a></h2>
+<p>Después de probarlos todos, lo que hace único a pi es una combinación de factores que ningún otro agente reúne:</p>
+<p><strong>Extensibilidad</strong>: Con el SDK de TypeScript puedes añadir herramientas, comandos, interceptar eventos, crear UI personalizada, y compartirlo todo como pi packages. Nadie más ofrece este nivel de personalización.</p>
+<p><strong>Sesiones en árbol</strong>: Las conversaciones se guardan como un árbol de decisión. Usas <code>/tree</code> para saltar a cualquier punto anterior y crear una rama alternativa sin perder el progreso previo. Esto solo lo tiene pi.</p>
+<p><strong>Skills y prompt templates</strong>: Pequeños archivos markdown que se inyectan en el contexto del agente. Son la forma más simple de enseñar a tu agente nuevas capacidades. <a href="https://pablocaro.es/instalando-skills-de-github">Ya hablé de cómo instalarlos</a> y de las <a href="https://pablocaro.es/matt-pocock-skills">skills de Matt Pocock</a> que se han vuelto virales.</p>
+<p><strong>Ecosistema de paquetes</strong>: En <a href="https://pi.dev/packages">pi.dev/packages</a> hay extensiones para casi todo: adaptadores MCP, buscadores web, modos de optimización de contexto, temas, y mucho más. Y si no encuentras lo que buscas, te escribes una extensión en TypeScript en cinco minutos.</p>
+<p><strong>No es un IDE</strong>: Pi es un agente que vive en tu terminal, no un editor. Esto significa que funciona igual en tu máquina local, en un servidor por SSH, dentro de tmux, o en WSL. Usas tu editor favorito y pi se encarga del resto. Profundizaré en este concepto en la <a href="https://pablocaro.es/pi-de-principiante-a-avanzado">siguiente entrega</a> de la serie.</p>
+<h2 id="por-que-me-gusta-pi">Por qué me gusta pi<a class="headerlink" href="#por-que-me-gusta-pi" title="Permanent link">&para;</a></h2>
+<p>A estas alturas seguramente se nota, pero por cerrar: me gusta pi porque vivo en la terminal. Porque quiero probar muchos modelos sin atarme a un proveedor. Porque personalizo todo con mis propias extensiones.</p>
+<p>No es para todos, obviamente. Si prefieres pagar una suscripción y olvidarte, Claude Code o Codex son más directos. Pero si eres un ingeniero que vive en la terminal, pi es probablemente el mejor agente de código que existe hoy.</p>
+<p>En los próximos artículos de esta serie:
+- <strong><a href="https://pablocaro.es/pi-de-principiante-a-avanzado">Pi de novato a usuario avanzado</a></strong> — Instalación, TUI, sesiones, skills, extensiones y todo lo que necesitas saber para dominarlo.
+- <strong><a href="https://pablocaro.es/extensiones-pi-que-uso">Las extensiones de pi que uso</a></strong> — Mi setup real con paquetes, skills y extensiones personalizadas.</p>
+<p><em>Fuente original</em>: <a href="https://pi.dev/">pi.dev</a></p></div>
+  <div class="tag-cloud">
+    <p>
+       <a href="https://pablocaro.es/tag/pi.html">pi</a>
+      <a href="https://pablocaro.es/tag/coding-agent.html">coding-agent</a>
+      <a href="https://pablocaro.es/tag/agentes-ia.html">agentes-ia</a>
+      <a href="https://pablocaro.es/tag/claude-code.html">claude-code</a>
+      <a href="https://pablocaro.es/tag/codex.html">codex</a>
+      <a href="https://pablocaro.es/tag/opencode.html">opencode</a>
+      <a href="https://pablocaro.es/tag/gemini-cli.html">gemini-cli</a>
+     </p>
+  </div>
+
+    <div class="neighbors">
+    <a class="btn float-left" href="https://pablocaro.es/programming-as-theory-building-naur" title="Programming as Theory Building: el artículo de Peter Naur">
+      <i class="fa fa-angle-left"></i> Artículo anterior
+    </a>
+    <a class="btn float-right" href="https://pablocaro.es/pi-de-principiante-a-avanzado" title="Pi de novato a avanzado — La guía completa">
+      Próximo artículo <i class="fa fa-angle-right"></i>
+    </a>
+  </div>
+   <div class="related-posts">
+    <h4>Te puede gustar</h4>
+    <ul class="related-posts">
+      <li>
+        <a href="https://pablocaro.es/extensiones-pi-que-uso"
+          >Las extensiones de pi que uso en mi día a día</a
+        >
+      </li>
+      <li>
+        <a href="https://pablocaro.es/pi-de-principiante-a-avanzado"
+          >Pi de novato a avanzado — La guía completa</a
+        >
+      </li>
+      <li>
+        <a href="https://pablocaro.es/extensiones-subagentes-pi"
+          >Extensiones de subagentes para pi: TintinWeb, NicoBailon y Taskplane</a
+        >
+      </li>
+      <li>
+        <a href="https://pablocaro.es/powerline-footer-hidden-gems"
+          >Joyas ocultas en pi-powerline-footer</a
+        >
+      </li>
+      <li>
+        <a href="https://pablocaro.es/agent-browser-navegacion-agentes"
+          >Agent Browser: Navegación para Agentes</a
+        >
+      </li>
+    </ul>
+  </div>
+  <!-- Disqus -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'anotaciones';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>
+    Por favor, habilita JavaScript para ver los comentarios.
+</noscript>
+<!-- End Disqus -->
+ </article>
+
+<footer>
+<p>
+  &copy; 2026  - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+Construido con <a href="http://getpelican.com" target="_blank">Pelican</a> usando el tema <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> 
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/3.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/3.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Anotaciones por Pablo Caro ",
+  "url" : "https://pablocaro.es",
+  "image": "/theme/img/profile.png",
+  "description": ""
+}
+</script>  <script src="https://files.stork-search.net/releases/v1.6.0/stork.js"></script>
+  <script>
+    window.storkIndexLoaded = false;
+    window.loadStorkIndex = function () {
+      if (window.storkIndexLoaded) {
+        return;
+      }
+      if (typeof stork === 'undefined') {
+        console.error('Stork is not loaded yet, retrying...');
+        setTimeout(window.loadStorkIndex, 100);
+        return;
+      }
+      stork.register("sitesearch", "https://pablocaro.es/search-index.st", { showProgress: false });
+      stork.register("sitesearch-page", "https://pablocaro.es/search-index.st", { showProgress: false });
+      window.storkIndexLoaded = true;
+    }
+  </script>
+
+</body>
+</html>

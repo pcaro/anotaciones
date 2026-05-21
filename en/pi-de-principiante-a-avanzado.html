@@ -1,0 +1,607 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="/en/theme/stylesheet/style.min.css">
+
+
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+          href="/en/theme/pygments/github.min.css">
+
+
+  <link rel="stylesheet"
+        type="text/css"
+        href="/en/theme/stork/stork.css" />
+
+  <link rel="stylesheet" type="text/css" href="/en/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="/en/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="/en/theme/font-awesome/css/solid.css">
+
+  <link rel="stylesheet" type="text/css" href="/extras/custom.css">
+
+  <link rel="shortcut icon" href="/theme/img/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/theme/img/favicon.ico" type="image/x-icon">
+
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#333333">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#333333">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Microsoft EDGE -->
+  <meta name="msapplication-TileColor" content="#333333">
+
+  <link href="/en/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Annotations by Pablo Caro Atom">
+
+  <link href="/en/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Annotations by Pablo Caro RSS">
+
+<script data-goatcounter="https://pcaro.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Pablo Caro" />
+<meta name="description" content="Complete pi guide: from installation and first steps to tree sessions, branching, skills, extensions, and power-user tricks." />
+<meta name="keywords" content="pi, coding-agent, guide, tutorial, cli, terminal" />
+
+<link
+  rel="alternate"
+  href="/en/pi-de-principiante-a-avanzado"
+  hreflang="en"
+/>
+<link
+  rel="alternate"
+  href="/en/../pi-de-principiante-a-avanzado"
+  hreflang="es"
+/>
+    <meta property="og:site_name" content="Annotations by Pablo Caro"/>
+  <meta property="og:title" content="Pi from Beginner to Advanced — The Complete Guide"/>
+  <meta property="og:description" content="Complete pi guide: from installation and first steps to tree sessions, branching, skills, extensions, and power-user tricks."/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="/en/pi-de-principiante-a-avanzado"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2026-05-21 00:00:00+02:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="/en/author/pablo-caro.html">
+  <meta property="article:section" content="ia"/>
+  <meta property="article:tag" content="pi"/>
+  <meta property="article:tag" content="coding-agent"/>
+  <meta property="article:tag" content="guide"/>
+  <meta property="article:tag" content="tutorial"/>
+  <meta property="article:tag" content="cli"/>
+  <meta property="article:tag" content="terminal"/>
+  <meta property="og:image" content="/theme/img/profile.png">
+ 
+  <title>Annotations by Pablo Caro &ndash; Pi from Beginner to Advanced — The Complete Guide</title>
+
+
+</head>
+<body class="light-theme">
+
+<aside>
+  <div>
+    <a href="/en/">
+      <img src="/theme/img/profile.png" alt="Anotaciones" title="Anotaciones">
+    </a>
+
+    <h1>
+      <a href="/en/">Anotaciones</a>
+    </h1>
+
+    <p>Anotaciones</p>
+
+    <p style="font-size: 0.9em; font-style: italic; margin-bottom: 20px;">
+      Dumping my brain onto the internet. A collection of technical notes and solutions written for my future self, shared here in case they save someone else a headache.
+    </p>
+
+    <div class="stork">
+      <input class="stork-input" type="text" autocomplete="off" name="q" data-stork="sitesearch" placeholder="Search..." onclick="loadStorkIndex()"/>
+      <div class="stork-output" data-stork="sitesearch-output"></div>
+    </div>
+
+    <nav>
+      <ul class="list">
+
+
+
+          <li>
+            <a target="_self" href="http://x.com/pcaro" >pcaro@X</a>
+          </li>
+          <li>
+            <a target="_self" href="https://github.com/pcaro/" >pcaro@Github</a>
+          </li>
+          <li>
+            <a target="_self" href="https://www.linkedin.com/in/pcarorevuelta/" >LinkedIn</a>
+          </li>
+      </ul>
+    </nav>
+
+    <ul class="social">
+      <li>
+        <a class="sc-Twitter"
+           href="http://twitter.com/pcaro"
+           target="_blank">
+          <i class="fa-brands fa-Twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Github"
+           href="http://github.com/pcaro"
+           target="_blank">
+          <i class="fa-brands fa-Github"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Linkedin"
+           href="https://www.linkedin.com/in/pcarorevuelta"
+           target="_blank">
+          <i class="fa-brands fa-Linkedin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Facebook"
+           href="https://www.facebook.com/pablo.carorevuelta"
+           target="_blank">
+          <i class="fa-brands fa-Facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Email"
+           href="mailto:correo@pablocaro.es"
+           target="_blank">
+          <i class="fa-brands fa-Email"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+</aside>
+  <main>
+
+<nav>
+  <a href="/en/">Home</a>
+
+  <a href="/en/archives.html">Archives</a>
+  <a href="/en/categories.html">Categories</a>
+  <a href="/en/tags.html">Tags</a>
+  <a href="/en/search.html">Search</a>
+  <a href="/">Español</a>
+
+  <a href="/en/feeds/all.atom.xml">Atom</a>
+
+  <a href="/en/feeds/all.rss.xml">RSS</a>
+</nav>
+
+<article class="single">
+  <header>
+      <div class="translations">
+            <a href="/en/../pi-de-principiante-a-avanzado">Leer en español</a>
+    </div>
+
+    <h1 id="pi-de-principiante-a-avanzado">Pi from Beginner to Advanced — The Complete Guide</h1>
+    <p>
+      Posted on Thu, 21 May 2026 in <a href="/en/category/ia.html">ia</a>     </p>
+  </header>
+
+  <div class="related-posts">
+    <h4>
+      Part 2 of the Pi: el agente de código series
+    </h4>
+    <h5>
+      Previous articles
+    </h5>
+    <ul>
+      <li><a href="/en/que-es-pi-coding-agent">What is Pi? — The Minimal Coding Agent That Went Viral</a></li>
+    </ul>
+     <h5>Next articles</h5>
+    <ul>
+      <li><a href="/en/extensiones-pi-que-uso">The Pi Extensions I Use Daily</a></li>
+    </ul>
+  </div>
+ 
+  <div><p>This is the second part of the series on <a href="https://pi.dev/">pi, the coding agent</a>. In the <a href="https://pablocaro.es/en/que-es-pi-coding-agent">first part</a> I compared pi with other coding agents. Now it's time to get hands-on: from installation to power-user tricks, covering sessions, branching, skills, and extensions.</p>
+<p><img alt="Pi from beginner to advanced" src="/images/pi-aprendizaje.jpg"></p>
+<h2 id="level-1-beginner-first-steps">Level 1: Beginner — First steps<a class="headerlink" href="#level-1-beginner-first-steps" title="Permanent link">&para;</a></h2>
+<h3 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h3>
+<p>Pi is an npm package. The quickest way:</p>
+<div class="highlight"><pre><span></span><code>npm<span class="w"> </span>install<span class="w"> </span>-g<span class="w"> </span>--ignore-scripts<span class="w"> </span>@earendil-works/pi-coding-agent
+</code></pre></div>
+
+<p>Or with the official installer (Linux/macOS):</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://pi.dev/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>sh
+</code></pre></div>
+
+<p>Windows requires WSL or Git Bash. More details in the <a href="https://pi.dev/docs/latest/windows">documentation</a>.</p>
+<h3 id="authentication">Authentication<a class="headerlink" href="#authentication" title="Permanent link">&para;</a></h3>
+<p>Start pi in your project directory:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/path/to/your/project
+pi
+</code></pre></div>
+
+<p>The first time you'll see the welcome screen. Use <code>/login</code> to choose a provider:</p>
+<ul>
+<li><strong>Subscriptions</strong>: Claude Pro/Max, ChatGPT Plus/Pro, or GitHub Copilot.</li>
+<li><strong>API keys</strong>: Anthropic, OpenAI, DeepSeek, Groq, Mistral, Google, OpenRouter, Azure, Bedrock...</li>
+</ul>
+<p>You can also pass the API key as an environment variable:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">ANTHROPIC_API_KEY</span><span class="o">=</span>sk-ant-...
+pi
+</code></pre></div>
+
+<p>Personally, I store all my API keys in Bitwarden and use <a href="https://pablocaro.es/en/rbw-env-exportar-variables">kitty rbw</a> to load them automatically when opening the terminal. That way keys are available without having to type them by hand every time.</p>
+<h3 id="your-first-prompt">Your first prompt<a class="headerlink" href="#your-first-prompt" title="Permanent link">&para;</a></h3>
+<p>Inside pi, type something and press Enter:</p>
+<div class="highlight"><pre><span></span><code>Summarize this repository and tell me how to run its checks.
+</code></pre></div>
+
+<p>By default, pi has four tools: <code>read</code>, <code>write</code>, <code>edit</code>, and <code>bash</code>. With those you can do practically anything.</p>
+<h3 id="context-files-agentsmd">Context files (AGENTS.md)<a class="headerlink" href="#context-files-agentsmd" title="Permanent link">&para;</a></h3>
+<p>Pi loads <code>AGENTS.md</code> or <code>CLAUDE.md</code> at startup. It's how you give global instructions to your agent. Create a file in your project root:</p>
+<div class="highlight"><pre><span></span><code><span class="gh"># Project Instructions</span>
+
+<span class="k">-</span><span class="w"> </span>Run <span class="sb">`npm run check`</span> after code changes.
+<span class="k">-</span><span class="w"> </span>Do not run production migrations locally.
+<span class="k">-</span><span class="w"> </span>Keep responses concise.
+</code></pre></div>
+
+<p>Pi looks for these files in:
+- <code>~/.pi/agent/AGENTS.md</code> — global instructions
+- Walking up from the current directory to the root
+- The current directory</p>
+<p>After modifying a context file —or installing or changing an extension— run <code>/reload</code> for pi to pick it up without restarting.</p>
+<h3 id="referencing-files-with">Referencing files with @<a class="headerlink" href="#referencing-files-with" title="Permanent link">&para;</a></h3>
+<p>Use <code>@</code> in the editor for fuzzy file search:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">@README</span><span class="p">.</span><span class="n">md</span><span class="w"> </span><span class="ss">&quot;Summarize this&quot;</span>
+<span class="nv">@src</span><span class="o">/</span><span class="n">app</span><span class="p">.</span><span class="n">ts</span><span class="w"> </span><span class="nv">@src</span><span class="o">/</span><span class="n">app</span><span class="p">.</span><span class="n">test</span><span class="p">.</span><span class="n">ts</span><span class="w"> </span><span class="ss">&quot;Review these together&quot;</span>
+</code></pre></div>
+
+<p>You can also paste images with Ctrl+V.</p>
+<h2 id="level-2-intermediate-navigation-and-productivity">Level 2: Intermediate — Navigation and productivity<a class="headerlink" href="#level-2-intermediate-navigation-and-productivity" title="Permanent link">&para;</a></h2>
+<h3 id="essential-keyboard-shortcuts">Essential keyboard shortcuts<a class="headerlink" href="#essential-keyboard-shortcuts" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Shortcut</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ctrl+L</td>
+<td>Select model</td>
+</tr>
+<tr>
+<td>Ctrl+P</td>
+<td>Quick cycle between models</td>
+</tr>
+<tr>
+<td>Shift+Tab</td>
+<td>Change thinking level</td>
+</tr>
+<tr>
+<td>Ctrl+G</td>
+<td>Open external editor (VS Code, vim...)</td>
+</tr>
+<tr>
+<td>Ctrl+V</td>
+<td>Paste image into prompt</td>
+</tr>
+</tbody>
+</table>
+<h3 id="bash-from-the-tui">Bash from the TUI<a class="headerlink" href="#bash-from-the-tui" title="Permanent link">&para;</a></h3>
+<p>Pi runs Bash commands without leaving the interface:</p>
+<ul>
+<li><strong><code>!command</code></strong> — Runs and sends output to the LLM.</li>
+<li><strong><code>!!command</code></strong> — Runs locally <em>without</em> sending output to the LLM (useful for silent commands like <code>git status</code>).</li>
+</ul>
+<p>This distinction is very useful: use <code>!</code> when you want the agent to see a command's output and react, <code>!!</code> for things you only need yourself like <code>git status</code> without adding noise to the context.</p>
+<div class="highlight"><pre><span></span><code>!npm run lint
+!!git status
+</code></pre></div>
+
+<h3 id="the-status-bar">The status bar<a class="headerlink" href="#the-status-bar" title="Permanent link">&para;</a></h3>
+<p>At the bottom of pi you'll see:</p>
+<ul>
+<li>Current working directory</li>
+<li>Session name</li>
+<li>Token and cache usage</li>
+<li>Accumulated cost</li>
+<li>Context usage percentage</li>
+<li>Active model</li>
+</ul>
+<h3 id="message-queue">Message queue<a class="headerlink" href="#message-queue" title="Permanent link">&para;</a></h3>
+<p>You can send messages while the agent is working:</p>
+<ul>
+<li><strong>Enter</strong> — Queues a steering message (delivered after the current round of tool calls).</li>
+<li><strong>Alt+Enter</strong> — Queues a follow-up (delivered after the agent finishes all work).</li>
+<li><strong>Escape</strong> — Cancels and restores queued messages to the editor.</li>
+</ul>
+<h3 id="sessions-and-branching">Sessions and branching<a class="headerlink" href="#sessions-and-branching" title="Permanent link">&para;</a></h3>
+<p>This is one of pi's most powerful and unique features.</p>
+<p>Sessions are automatically saved to <code>~/.pi/agent/sessions/</code>. You can resume them:</p>
+<div class="highlight"><pre><span></span><code>pi<span class="w"> </span>-c<span class="w">                  </span><span class="c1"># Continue most recent session</span>
+pi<span class="w"> </span>-r<span class="w">                  </span><span class="c1"># Browse and select past sessions</span>
+pi<span class="w"> </span>--session<span class="w"> </span>&lt;path<span class="p">|</span>id&gt;<span class="w"> </span><span class="c1"># Open a specific session</span>
+</code></pre></div>
+
+<p>Inside pi:</p>
+<ul>
+<li><strong><code>/session</code></strong> — Shows current session info (file, ID, tokens, cost).</li>
+<li><strong><code>/tree</code></strong> — Navigates the session tree. Jump to any previous point and continue from there, creating an alternative branch without losing previous progress.</li>
+<li><strong><code>/fork</code></strong> — Creates a new session from a previous user message.</li>
+<li><strong><code>/clone</code></strong> — Duplicates the active branch into a new session file.</li>
+<li><strong><code>/compact</code></strong> — Summarize old messages to free context.</li>
+<li><strong><code>/resume</code></strong> — Browse past sessions.</li>
+<li><strong><code>/name &lt;name&gt;</code></strong> — Name the session so you can find it later.</li>
+</ul>
+<p>Branching with <code>/tree</code> is a feature that sets pi apart from any other closed-source coding agent. You can have multiple exploration lines in the same session file, and if you abandon a branch, pi can automatically summarize it so no context is lost.</p>
+<h3 id="quick-model-switching">Quick model switching<a class="headerlink" href="#quick-model-switching" title="Permanent link">&para;</a></h3>
+<p>Use <code>Ctrl+P</code> to quickly cycle between models. Configure your selection with <code>--models</code>:</p>
+<div class="highlight"><pre><span></span><code>pi<span class="w"> </span>--models<span class="w"> </span><span class="s2">&quot;claude-*,gpt-4o,deepseek-*&quot;</span>
+</code></pre></div>
+
+<p>Or in <code>settings.json</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;defaultProvider&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;opencode-go&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;defaultModel&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;deepseek-v4-flash&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;defaultThinkingLevel&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;high&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="system-prompts">System prompts<a class="headerlink" href="#system-prompts" title="Permanent link">&para;</a></h3>
+<p>You can replace or extend the default system prompt:</p>
+<ul>
+<li><strong><code>~/.pi/agent/SYSTEM.md</code></strong> — Replaces globally.</li>
+<li><strong><code>.pi/SYSTEM.md</code></strong> — Replaces per project.</li>
+<li><strong><code>~/.pi/agent/APPEND_SYSTEM.md</code></strong> — Appends without replacing.</li>
+<li><strong><code>.pi/APPEND_SYSTEM.md</code></strong> — Appends per project.</li>
+</ul>
+<h2 id="level-3-advanced-skills-templates-and-extensions">Level 3: Advanced — Skills, templates, and extensions<a class="headerlink" href="#level-3-advanced-skills-templates-and-extensions" title="Permanent link">&para;</a></h2>
+<h3 id="skills">Skills<a class="headerlink" href="#skills" title="Permanent link">&para;</a></h3>
+<p>Skills are Markdown files with frontmatter that inject into the agent's context. They're the simplest way to teach pi reusable behaviors.</p>
+<p><a href="https://pablocaro.es/en/installing-github-skills">I already compared both methods</a> in detail, but to summarize: you can install them with <code>npx skills</code> (my preferred method) or <code>gh skill</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Install Matt Pocock&#39;s skills</span>
+npx<span class="w"> </span>skills<span class="w"> </span>add<span class="w"> </span>mattpocock/skills<span class="w"> </span>--skill<span class="w"> </span>grill-me<span class="w"> </span>--skill<span class="w"> </span>tdd
+
+<span class="c1"># Browse available skills</span>
+npx<span class="w"> </span>skills<span class="w"> </span>find
+</code></pre></div>
+
+<p>You can also create your own skills. A skill is a <code>SKILL.md</code> file with frontmatter:</p>
+<div class="highlight"><pre><span></span><code>---
+name: my-skill
+<span class="gu">description: An example skill</span>
+<span class="gu">---</span>
+
+This is my custom skill. When the user invokes it with /skill:my-skill,
+this content is injected into the agent&#39;s context.
+</code></pre></div>
+
+<p>Skills live in <code>~/.pi/agent/skills/</code> (global) or <code>.pi/skills/</code> (project). <a href="https://pablocaro.es/en/installing-github-skills">I already wrote about how to install them</a>.</p>
+<h3 id="prompt-templates">Prompt templates<a class="headerlink" href="#prompt-templates" title="Permanent link">&para;</a></h3>
+<p>These are custom slash commands. Create a Markdown file in <code>.pi/prompts/</code> or <code>~/.pi/agent/prompts/</code>:</p>
+<div class="highlight"><pre><span></span><code>---
+name: review-pr
+<span class="gu">description: Review a PR and leave comments on GitHub</span>
+<span class="gu">---</span>
+
+Review this PR and leave inline comments on GitHub using <span class="sb">`gh`</span>. Check for:
+<span class="k">-</span><span class="w"> </span>Breaking changes
+<span class="k">-</span><span class="w"> </span>Missing error handling
+<span class="k">-</span><span class="w"> </span>Test coverage
+<span class="k">-</span><span class="w"> </span>Consistency with project conventions
+</code></pre></div>
+
+<p>After <code>/reload</code>, you can use <code>/review-pr</code> and the content will expand in the editor.</p>
+<h3 id="extensions-pi-packages">Extensions (pi packages)<a class="headerlink" href="#extensions-pi-packages" title="Permanent link">&para;</a></h3>
+<p>Extensions are TypeScript modules that can register tools, intercept events, show custom UI, and much more. This is what sets pi apart from any other agent.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Install packages</span>
+pi<span class="w"> </span>install<span class="w"> </span>npm:@aliou/pi-linkup<span class="w">       </span><span class="c1"># Web search</span>
+pi<span class="w"> </span>install<span class="w"> </span>npm:@aliou/pi-processes<span class="w">    </span><span class="c1"># Background processes</span>
+pi<span class="w"> </span>install<span class="w"> </span>npm:pi-subagents<span class="w">           </span><span class="c1"># Subagents</span>
+pi<span class="w"> </span>install<span class="w"> </span>npm:pi-lens<span class="w">                </span><span class="c1"># AST search + LSP</span>
+pi<span class="w"> </span>install<span class="w"> </span>npm:pi-slopchop<span class="w">            </span><span class="c1"># Context optimization</span>
+
+<span class="c1"># List installed packages</span>
+pi<span class="w"> </span>list
+</code></pre></div>
+
+<p>Extensions are auto-discovered from <code>~/.pi/agent/extensions/</code> and <code>.pi/extensions/</code>. You can write your own in TypeScript:</p>
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="kr">type</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ExtensionAPI</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@earendil-works/pi-coding-agent&quot;</span><span class="p">;</span>
+
+<span class="k">export</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">(</span><span class="nx">pi</span><span class="o">:</span><span class="w"> </span><span class="kt">ExtensionAPI</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">pi</span><span class="p">.</span><span class="nx">registerTool</span><span class="p">({</span>
+<span class="w">    </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;greet&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">description</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Greet someone&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">parameters</span><span class="o">:</span><span class="w"> </span><span class="kt">Type.Object</span><span class="p">({</span>
+<span class="w">      </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="kt">Type.String</span><span class="p">({</span><span class="w"> </span><span class="nx">description</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Name to greet&quot;</span><span class="w"> </span><span class="p">}),</span>
+<span class="w">    </span><span class="p">}),</span>
+<span class="w">    </span><span class="k">async</span><span class="w"> </span><span class="nx">execute</span><span class="p">(</span><span class="nx">toolCallId</span><span class="p">,</span><span class="w"> </span><span class="nx">params</span><span class="p">,</span><span class="w"> </span><span class="nx">signal</span><span class="p">,</span><span class="w"> </span><span class="nx">onUpdate</span><span class="p">,</span><span class="w"> </span><span class="nx">ctx</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">content</span><span class="o">:</span><span class="w"> </span><span class="p">[{</span><span class="w"> </span><span class="kr">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">text</span><span class="o">:</span><span class="w"> </span><span class="sb">`Hello, </span><span class="si">${</span><span class="nx">params</span><span class="p">.</span><span class="nx">name</span><span class="si">}</span><span class="sb">!`</span><span class="w"> </span><span class="p">}],</span>
+<span class="w">      </span><span class="p">};</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">  </span><span class="p">});</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="compaction">Compaction<a class="headerlink" href="#compaction" title="Permanent link">&para;</a></h3>
+<p>When the context window gets full, you can compact:</p>
+<ul>
+<li><strong>Automatic</strong>: Pi compacts when nearing the context limit.</li>
+<li><strong>Manual</strong>: <code>/compact [instructions]</code> to compact with a custom focus.</li>
+<li><strong>Extensions</strong>: <code>pi-slopchop</code> can reduce token usage by up to 98%.</li>
+</ul>
+<h3 id="themes">Themes<a class="headerlink" href="#themes" title="Permanent link">&para;</a></h3>
+<p>Pi supports custom themes. I use <a href="https://pablocaro.es/en/powerline-footer-hidden-gems">pi-powerline-footer</a> which customizes the status bar:</p>
+<div class="highlight"><pre><span></span><code>pi<span class="w"> </span>install<span class="w"> </span>npm:pi-powerline-footer
+</code></pre></div>
+
+<p>Configure the theme in <code>settings.json</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;powerline&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;preset&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;default&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;customItems&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ci&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;statusKey&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ci&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;position&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;right&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;color&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;success&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="level-4-power-user-total-configuration">Level 4: Power user — Total configuration<a class="headerlink" href="#level-4-power-user-total-configuration" title="Permanent link">&para;</a></h2>
+<h3 id="custom-keybindings">Custom keybindings<a class="headerlink" href="#custom-keybindings" title="Permanent link">&para;</a></h3>
+<p>Pi lets you map keyboard shortcuts in <code>keybindings.json</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;ctrl+shift+f&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;files&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;alt+o&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;command&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;command&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ask-user&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="non-interactive-mode">Non-interactive mode<a class="headerlink" href="#non-interactive-mode" title="Permanent link">&para;</a></h3>
+<p>For one-shot prompts from scripts:</p>
+<div class="highlight"><pre><span></span><code>pi<span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;Summarize this code&quot;</span>
+cat<span class="w"> </span>README.md<span class="w"> </span><span class="p">|</span><span class="w"> </span>pi<span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;Summarize this text&quot;</span>
+pi<span class="w"> </span>-p<span class="w"> </span>@screenshot.png<span class="w"> </span><span class="s2">&quot;What&#39;s in this image?&quot;</span>
+</code></pre></div>
+
+<h3 id="programmatic-modes">Programmatic modes<a class="headerlink" href="#programmatic-modes" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong><code>--mode json</code></strong>: Structured JSON lines output (ideal for pipelines).</li>
+<li><strong><code>--mode rpc</code></strong>: Bidirectional communication over stdin/stdout.</li>
+<li><strong>SDK</strong>: Embed pi in Node.js applications.</li>
+</ul>
+<h3 id="read-only-mode">Read-only mode<a class="headerlink" href="#read-only-mode" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>pi<span class="w"> </span>--tools<span class="w"> </span>read,grep,find,ls<span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;Review the code without modifying it&quot;</span>
+</code></pre></div>
+
+<h3 id="my-personal-setup">My personal setup<a class="headerlink" href="#my-personal-setup" title="Permanent link">&para;</a></h3>
+<p>This article was written from inside pi, using the exact configuration I describe. My <code>settings.json</code> includes over 20 packages, custom skills, and extensions from <a href="https://github.com/pcaro/pcaropi">my pcaropi repository</a>. I also launch pi from scripts with specific personalities: <code>pi -p @prompt.md "Do X"</code> for repetitive tasks without entering interactive mode.</p>
+<p>In the <strong><a href="https://pablocaro.es/en/extensiones-pi-que-uso">third and final part</a></strong> of this series, I break down all the extensions I use daily, from subagents to productivity skills, web search, agent browsing, and much more.</p>
+<p><em>Source</em>: <a href="https://pi.dev/">pi.dev</a></p></div>
+  <div class="tag-cloud">
+    <p>
+       <a href="/en/tag/pi.html">pi</a>
+      <a href="/en/tag/coding-agent.html">coding-agent</a>
+      <a href="/en/tag/guide.html">guide</a>
+      <a href="/en/tag/tutorial.html">tutorial</a>
+      <a href="/en/tag/cli.html">cli</a>
+      <a href="/en/tag/terminal.html">terminal</a>
+     </p>
+  </div>
+
+    <div class="neighbors">
+    <a class="btn float-left" href="/en/que-es-pi-coding-agent" title="What is Pi? — The Minimal Coding Agent That Went Viral">
+      <i class="fa fa-angle-left"></i> Previous Post
+    </a>
+    <a class="btn float-right" href="/en/extensiones-pi-que-uso" title="The Pi Extensions I Use Daily">
+      Next Post <i class="fa fa-angle-right"></i>
+    </a>
+  </div>
+   <div class="related-posts">
+    <h4>You might enjoy</h4>
+    <ul class="related-posts">
+      <li>
+        <a href="/en/extensiones-pi-que-uso"
+          >The Pi Extensions I Use Daily</a
+        >
+      </li>
+      <li>
+        <a href="/en/extensiones-subagentes-pi"
+          >Pi subagent extensions: TintinWeb, NicoBailon and Taskplane</a
+        >
+      </li>
+      <li>
+        <a href="/en/que-es-pi-coding-agent"
+          >What is Pi? — The Minimal Coding Agent That Went Viral</a
+        >
+      </li>
+      <li>
+        <a href="/en/powerline-footer-hidden-gems"
+          >Hidden gems in pi-powerline-footer</a
+        >
+      </li>
+      <li>
+        <a href="/en/broot-una-forma-diferente-de-navegar-directorios"
+          >broot, a different way to navigate your directories</a
+        >
+      </li>
+    </ul>
+  </div>
+  <!-- Disqus -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'anotaciones';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>
+    Please enable JavaScript to view comments.
+</noscript>
+<!-- End Disqus -->
+ </article>
+
+<footer>
+<p>
+  &copy; 2026  - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/3.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/3.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Annotations by Pablo Caro ",
+  "url" : "/en",
+  "image": "/theme/img/profile.png",
+  "description": ""
+}
+</script>  <script src="https://files.stork-search.net/releases/v1.6.0/stork.js"></script>
+  <script>
+    window.storkIndexLoaded = false;
+    window.loadStorkIndex = function () {
+      if (window.storkIndexLoaded) {
+        return;
+      }
+      if (typeof stork === 'undefined') {
+        console.error('Stork is not loaded yet, retrying...');
+        setTimeout(window.loadStorkIndex, 100);
+        return;
+      }
+      stork.register("sitesearch", "/en/search-index.st", { showProgress: false });
+      stork.register("sitesearch-page", "/en/search-index.st", { showProgress: false });
+      window.storkIndexLoaded = true;
+    }
+  </script>
+
+</body>
+</html>

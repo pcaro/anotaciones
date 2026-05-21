@@ -3,6 +3,21 @@ html_selector = "main"
 base_directory = "/home/runner/work/anotaciones/anotaciones/output/en"
 
 [[input.files]]
+path = "extensiones-pi-que-uso.html"
+url = "/extensiones-pi-que-uso"
+title = "The Pi Extensions I Use Daily"
+
+[[input.files]]
+path = "pi-de-principiante-a-avanzado.html"
+url = "/pi-de-principiante-a-avanzado"
+title = "Pi from Beginner to Advanced — The Complete Guide"
+
+[[input.files]]
+path = "que-es-pi-coding-agent.html"
+url = "/que-es-pi-coding-agent"
+title = "What is Pi? — The Minimal Coding Agent That Went Viral"
+
+[[input.files]]
 path = "programming-as-theory-building-naur.html"
 url = "/programming-as-theory-building-naur"
 title = "Programming as Theory Building: Peter Naur's Essay"
@@ -456,6 +471,21 @@ title = "Django: links in object list"
 path = "settings-vars-processor.html"
 url = "/settings-vars-processor"
 title = "Settings vars processor"
+
+[[input.files]]
+path = "extensiones-pi-que-uso-es.html"
+url = "/../extensiones-pi-que-uso"
+title = "Las extensiones de pi que uso en mi día a día"
+
+[[input.files]]
+path = "pi-de-principiante-a-avanzado-es.html"
+url = "/../pi-de-principiante-a-avanzado"
+title = "Pi de novato a avanzado — La guía completa"
+
+[[input.files]]
+path = "que-es-pi-coding-agent-es.html"
+url = "/../que-es-pi-coding-agent"
+title = "¿Qué es pi? — El agente de código minimalista que se ha vuelto viral"
 
 [[input.files]]
 path = "programming-as-theory-building-naur-es.html"

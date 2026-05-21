@@ -1,5 +1,545 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Annotations by Pablo Caro - pi</title><link href="/en/" rel="alternate"></link><link href="/en/feeds/tags/pi.atom.xml" rel="self"></link><id>/en/</id><updated>2026-05-03T15:23:00+02:00</updated><subtitle>Anotaciones</subtitle><entry><title>Pi subagent extensions: TintinWeb, NicoBailon and Taskplane</title><link href="/en/extensiones-subagentes-pi" rel="alternate"></link><published>2026-05-03T15:23:00+02:00</published><updated>2026-05-03T15:23:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:None,2026-05-03:/en/extensiones-subagentes-pi</id><summary type="html">&lt;p&gt;A comparison of three extensions for running subagents in pi — TintinWeb, NicoBailon, and Taskplane — each with a different approach.&lt;/p&gt;</summary><content type="html">&lt;p&gt;The biggest advantage of &lt;a href="https://pi.dev/"&gt;pi&lt;/a&gt; over other coding agents is its &lt;strong&gt;extensions&lt;/strong&gt;. Pi doesn't come with subagents, plan mode, or MCP. It gives you the primitives to build what you need. If you don't want to build it yourself, install a &lt;a href="https://pi.dev/packages"&gt;third-party package&lt;/a&gt; and you're done.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Annotations by Pablo Caro - pi</title><link href="/en/" rel="alternate"></link><link href="/en/feeds/tags/pi.atom.xml" rel="self"></link><id>/en/</id><updated>2026-05-21T00:00:00+02:00</updated><subtitle>Anotaciones</subtitle><entry><title>The Pi Extensions I Use Daily</title><link href="/en/extensiones-pi-que-uso" rel="alternate"></link><published>2026-05-21T00:00:00+02:00</published><updated>2026-05-21T00:00:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:None,2026-05-21:/en/extensiones-pi-que-uso</id><summary type="html">&lt;p&gt;Third and final part of the series on &lt;a href="https://pi.dev/"&gt;pi&lt;/a&gt;. In the &lt;a href="https://pablocaro.es/en/que-es-pi-coding-agent"&gt;first part&lt;/a&gt; I explained what pi is and compared it to other agents. In the &lt;a href="https://pablocaro.es/en/pi-de-principiante-a-avanzado"&gt;second&lt;/a&gt; I wrote a complete usage guide. Now it's time for what really sets pi apart from everything else: &lt;strong&gt;the extensions&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;I have over …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Third and final part of the series on &lt;a href="https://pi.dev/"&gt;pi&lt;/a&gt;. In the &lt;a href="https://pablocaro.es/en/que-es-pi-coding-agent"&gt;first part&lt;/a&gt; I explained what pi is and compared it to other agents. In the &lt;a href="https://pablocaro.es/en/pi-de-principiante-a-avanzado"&gt;second&lt;/a&gt; I wrote a complete usage guide. Now it's time for what really sets pi apart from everything else: &lt;strong&gt;the extensions&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;I have over 20 packages installed, skills from various repositories, and my own extensions in &lt;a href="https://github.com/pcaro/pcaropi"&gt;pcaropi&lt;/a&gt;. Here's a breakdown of what I actually use day to day.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Pi extensions" src="/images/pi-extensiones.png"&gt;&lt;/p&gt;
+&lt;h2 id="subagents-pi-subagents"&gt;Subagents — pi-subagents&lt;a class="headerlink" href="#subagents-pi-subagents" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://github.com/nicobailon/pi-subagents"&gt;NicoBailon's pi-subagents&lt;/a&gt; is the extension I use the most. It's a complete subagent orchestrator with three modes: single, chain, and parallel.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pi&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;npm:pi-subagents
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;It comes with 8 built-in agents (scout, researcher, planner, worker, reviewer…) and a preview TUI where you can edit steps before launching them. The cascading model fallback is very useful: if a model fails on quota, it automatically tries the next one.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://pablocaro.es/en/extensiones-subagentes-pi"&gt;I already compared this extension with other alternatives&lt;/a&gt; (TintinWeb and Taskplane), but NicoBailon is my daily driver without a doubt.&lt;/p&gt;
+&lt;h2 id="system-utilities"&gt;System utilities&lt;a class="headerlink" href="#system-utilities" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="pi-processes"&gt;pi-processes&lt;a class="headerlink" href="#pi-processes" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pi&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;npm:@aliou/pi-processes
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Manages background processes: dev servers, test watchers, logs. The agent can start &lt;code&gt;npm run dev&lt;/code&gt; in the background, keep working, and receive an alert if the process fails. Essential for any development workflow.&lt;/p&gt;
+&lt;h3 id="pi-inspect"&gt;pi-inspect&lt;a class="headerlink" href="#pi-inspect" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pi&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;npm:pi-inspect
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Debug console for pi. Shows internal state, registered tools, and events being fired. Useful when developing your own extensions or when something isn't working as expected.&lt;/p&gt;
+&lt;h3 id="pi-slim"&gt;pi-slim&lt;a class="headerlink" href="#pi-slim" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pi&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;npm:pi-slim
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Reduces the system prompt size by removing descriptions the model doesn't need. Every token counts, and this extension silently trims the superfluous.&lt;/p&gt;
+&lt;h2 id="session-management"&gt;Session management&lt;a class="headerlink" href="#session-management" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="pi-smart-sessions-hazat"&gt;pi-smart-sessions (HazAT)&lt;a class="headerlink" href="#pi-smart-sessions-hazat" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pi&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;git:github.com/HazAT/pi-smart-sessions
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Adds intelligent session management: automatic compaction, smart naming, and abandoned branch summaries. Makes working with long sessions much more bearable.&lt;/p&gt;
+&lt;h3 id="pi-slopchop"&gt;pi-slopchop&lt;a class="headerlink" href="#pi-slopchop" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pi&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;npm:pi-slopchop
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Aggressive context compression. Reduces token usage by up to 98% by compressing old messages without losing critical information. When you work with multi-day sessions, this is a lifesaver.&lt;/p&gt;
+&lt;h3 id="pi-add-dir-itisbryan"&gt;pi-add-dir (itisbryan)&lt;a class="headerlink" href="#pi-add-dir-itisbryan" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pi&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;https://github.com/itisbryan/pi-add-dir
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Adds an external directory to the session so the agent can work with files outside the current directory. Essential when you need to touch code across multiple repositories.&lt;/p&gt;
+&lt;h2 id="web-search-and-browsing"&gt;Web search and browsing&lt;a class="headerlink" href="#web-search-and-browsing" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="alioupi-linkup"&gt;@aliou/pi-linkup&lt;a class="headerlink" href="#alioupi-linkup" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pi&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;npm:@aliou/pi-linkup
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Three web search tools: &lt;code&gt;linkup_web_search&lt;/code&gt; for source discovery, &lt;code&gt;linkup_web_answer&lt;/code&gt; for synthesized answers with citations, and &lt;code&gt;linkup_web_fetch&lt;/code&gt; for extracting content from specific URLs. I use it constantly to consult documentation, research APIs, or verify information during a coding session.&lt;/p&gt;
+&lt;h3 id="agent-browser-skill"&gt;agent-browser skill&lt;a class="headerlink" href="#agent-browser-skill" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Installed as a skill from the &lt;a href="https://github.com/vercel-labs/agent-browser"&gt;Vercel Labs repository&lt;/a&gt;. Allows the agent to browse web pages like a human: click, fill forms, take screenshots. &lt;a href="https://pablocaro.es/en/agent-browser-navegacion-agentes"&gt;I already wrote about it&lt;/a&gt;.&lt;/p&gt;
+&lt;h3 id="chrome-cdp-skill"&gt;chrome-cdp skill&lt;a class="headerlink" href="#chrome-cdp-skill" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pi&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;git:github.com/pasky/chrome-cdp-skill@v1.0.1
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Alternative to agent-browser using Chrome DevTools Protocol directly. Lighter and with more granular browser control.&lt;/p&gt;
+&lt;h2 id="productivity-and-ui"&gt;Productivity and UI&lt;a class="headerlink" href="#productivity-and-ui" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="pi-powerline-footer"&gt;pi-powerline-footer&lt;a class="headerlink" href="#pi-powerline-footer" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pi&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;npm:pi-powerline-footer
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Customizes the pi status bar with additional information: CI status, git branch, session time. I have it configured with custom items:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;powerline&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;preset&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;default&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;customItems&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;id&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;ci&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;statusKey&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;ci&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;position&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;right&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;color&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;success&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id="tmustierpi-code-actions"&gt;@tmustier/pi-code-actions&lt;a class="headerlink" href="#tmustierpi-code-actions" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pi&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;npm:@tmustier/pi-code-actions
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Adds quick code actions: format file, organize imports, run linter. The agent can trigger these without having to write Bash commands manually.&lt;/p&gt;
+&lt;h3 id="alioupi-guardrails"&gt;@aliou/pi-guardrails&lt;a class="headerlink" href="#alioupi-guardrails" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pi&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;npm:@aliou/pi-guardrails
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Safety guardrails: blocks dangerous commands (&lt;code&gt;rm -rf&lt;/code&gt;, &lt;code&gt;sudo&lt;/code&gt;), protects sensitive files (&lt;code&gt;.env&lt;/code&gt;, &lt;code&gt;node_modules/&lt;/code&gt;), and confirms before destructive operations. Peace of mind when the agent works autonomously.&lt;/p&gt;
+&lt;h3 id="pi-ask-user-and-pi-schedule-prompt"&gt;pi-ask-user and pi-schedule-prompt&lt;a class="headerlink" href="#pi-ask-user-and-pi-schedule-prompt" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pi&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;npm:pi-ask-user
+pi&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;npm:pi-schedule-prompt
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code&gt;pi-ask-user&lt;/code&gt; allows the agent to ask the user questions with structured options. &lt;code&gt;pi-schedule-prompt&lt;/code&gt; schedules periodic executions (hourly, daily) for maintenance tasks.&lt;/p&gt;
+&lt;h3 id="pi-interactive-shell"&gt;pi-interactive-shell&lt;a class="headerlink" href="#pi-interactive-shell" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pi&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;npm:pi-interactive-shell
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Launches interactive CLI agents (Claude Code, Cursor, Gemini CLI) from inside pi. Dispatch, hands-free, and monitor modes. Useful for delegating specific tasks to other agents without leaving pi.&lt;/p&gt;
+&lt;h2 id="skills-i-use-every-day"&gt;Skills I use every day&lt;a class="headerlink" href="#skills-i-use-every-day" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="from-the-official-pi-repository"&gt;From the official pi repository&lt;a class="headerlink" href="#from-the-official-pi-repository" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;commit&lt;/strong&gt;: Mission critical. Every commit I make goes through this skill, which generates descriptive, well-structured messages. Always active.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;brainstorm&lt;/strong&gt;: For structured design sessions. Follows a complete chain: investigate → clarify → explore → validate design → write plan → create TODOs.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;learn-codebase&lt;/strong&gt;: When entering a new project, this skill scans conventions, agent config files, and potential security issues.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;uv, ruff, ty&lt;/strong&gt;: The Python trio. &lt;code&gt;uv&lt;/code&gt; for package management, &lt;code&gt;ruff&lt;/code&gt; for linting+formatting, &lt;code&gt;ty&lt;/code&gt; for type checking. Fast, modern, frictionless.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;github&lt;/strong&gt;: Interact with issues, PRs, CI runs, and advanced GitHub API queries, all from &lt;code&gt;gh&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;frontend-design&lt;/strong&gt;: For when I build interfaces. Generates components with high design quality.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="from-my-pcaropi-repository"&gt;From my pcaropi repository&lt;a class="headerlink" href="#from-my-pcaropi-repository" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;All my custom extensions and skills are in &lt;a href="https://github.com/pcaro/pcaropi"&gt;github.com/pcaro/pcaropi&lt;/a&gt;:&lt;/p&gt;
+&lt;h4 id="extensions"&gt;Extensions&lt;a class="headerlink" href="#extensions" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;answer.ts&lt;/code&gt; — Interactive Q&amp;amp;A. Extracts questions from assistant messages and answers them one by one (&lt;code&gt;/answer&lt;/code&gt; or &lt;code&gt;Ctrl+.&lt;/code&gt;).&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;context.ts&lt;/code&gt; — Context usage visualization (tokens, cost, loaded files/skills) via &lt;code&gt;/context&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;files.ts&lt;/code&gt; — Interactive file browser (&lt;code&gt;/files&lt;/code&gt; or &lt;code&gt;Ctrl+Shift+o&lt;/code&gt;) with git status and quick look.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;notify.ts&lt;/code&gt; — Desktop notifications (Linux/notify-send) when the agent completes a turn.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;session-breakdown.ts&lt;/code&gt; — Session history visualized over 7/30/90 days (&lt;code&gt;/session-breakdown&lt;/code&gt;).&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;todos.ts&lt;/code&gt; — Markdown-based TODO manager with TUI, file locking, and task assignment (&lt;code&gt;/todos&lt;/code&gt;).&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;uv.ts&lt;/code&gt; — Intercepts Python commands (&lt;code&gt;pip&lt;/code&gt;, &lt;code&gt;poetry&lt;/code&gt;) and suggests using &lt;code&gt;uv&lt;/code&gt; instead.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id="skills"&gt;Skills&lt;a class="headerlink" href="#skills" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;cli-tools&lt;/code&gt; — Documents CLI tools available on my system (jq, fx, gh, httpie, etc.)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;google-workspace&lt;/code&gt; — Access Google APIs (Drive, Docs, Calendar, Gmail) without MCP.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;summarize&lt;/code&gt; — Converts URLs or local files to Markdown using &lt;code&gt;uvx markitdown&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;update-changelog&lt;/code&gt; — Skill for keeping the repository changelog up to date.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;web-browser&lt;/code&gt; — Web page interaction via Chrome DevTools Protocol.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;linkedin-post-formatter&lt;/code&gt; — Formats LinkedIn posts with Unicode bold/italic.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id="prompt-templates"&gt;Prompt templates&lt;a class="headerlink" href="#prompt-templates" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;pr-create.md&lt;/code&gt; — Template for creating PRs with consistent structure.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;pr-fix-checks.md&lt;/code&gt; — For fixing failed checks on PRs.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;review.md&lt;/code&gt; — Template for structured code reviews.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="mcp"&gt;MCP&lt;a class="headerlink" href="#mcp" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="pi-mcp-adapter-nicobailon"&gt;pi-mcp-adapter (NicoBailon)&lt;a class="headerlink" href="#pi-mcp-adapter-nicobailon" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pi&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;git:github.com/nicobailon/pi-mcp-adapter
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Adapter for connecting standard MCP servers. Pi doesn't come with native MCP (by design), but with this adapter you can use any MCP server in the ecosystem.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Source&lt;/em&gt;: &lt;a href="https://pi.dev/"&gt;pi.dev&lt;/a&gt; | &lt;a href="https://github.com/pcaro/pcaropi"&gt;pcaropi&lt;/a&gt;&lt;/p&gt;</content><category term="ia"></category><category term="pi"></category><category term="coding-agent"></category><category term="extensions"></category><category term="skills"></category><category term="subagents"></category><category term="cli"></category></entry><entry><title>Pi from Beginner to Advanced — The Complete Guide</title><link href="/en/pi-de-principiante-a-avanzado" rel="alternate"></link><published>2026-05-21T00:00:00+02:00</published><updated>2026-05-21T00:00:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:None,2026-05-21:/en/pi-de-principiante-a-avanzado</id><summary type="html">&lt;p&gt;Complete pi guide: from installation and first steps to tree sessions, branching, skills, extensions, and power-user tricks.&lt;/p&gt;</summary><content type="html">&lt;p&gt;This is the second part of the series on &lt;a href="https://pi.dev/"&gt;pi, the coding agent&lt;/a&gt;. In the &lt;a href="https://pablocaro.es/en/que-es-pi-coding-agent"&gt;first part&lt;/a&gt; I compared pi with other coding agents. Now it's time to get hands-on: from installation to power-user tricks, covering sessions, branching, skills, and extensions.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Pi from beginner to advanced" src="/images/pi-aprendizaje.jpg"&gt;&lt;/p&gt;
+&lt;h2 id="level-1-beginner-first-steps"&gt;Level 1: Beginner — First steps&lt;a class="headerlink" href="#level-1-beginner-first-steps" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="installation"&gt;Installation&lt;a class="headerlink" href="#installation" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Pi is an npm package. The quickest way:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;npm&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;-g&lt;span class="w"&gt; &lt;/span&gt;--ignore-scripts&lt;span class="w"&gt; &lt;/span&gt;@earendil-works/pi-coding-agent
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Or with the official installer (Linux/macOS):&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;curl&lt;span class="w"&gt; &lt;/span&gt;-fsSL&lt;span class="w"&gt; &lt;/span&gt;https://pi.dev/install.sh&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;sh
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Windows requires WSL or Git Bash. More details in the &lt;a href="https://pi.dev/docs/latest/windows"&gt;documentation&lt;/a&gt;.&lt;/p&gt;
+&lt;h3 id="authentication"&gt;Authentication&lt;a class="headerlink" href="#authentication" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Start pi in your project directory:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nb"&gt;cd&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;/path/to/your/project
+pi
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The first time you'll see the welcome screen. Use &lt;code&gt;/login&lt;/code&gt; to choose a provider:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Subscriptions&lt;/strong&gt;: Claude Pro/Max, ChatGPT Plus/Pro, or GitHub Copilot.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;API keys&lt;/strong&gt;: Anthropic, OpenAI, DeepSeek, Groq, Mistral, Google, OpenRouter, Azure, Bedrock...&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;You can also pass the API key as an environment variable:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nb"&gt;export&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;ANTHROPIC_API_KEY&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;sk-ant-...
+pi
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Personally, I store all my API keys in Bitwarden and use &lt;a href="https://pablocaro.es/en/rbw-env-exportar-variables"&gt;kitty rbw&lt;/a&gt; to load them automatically when opening the terminal. That way keys are available without having to type them by hand every time.&lt;/p&gt;
+&lt;h3 id="your-first-prompt"&gt;Your first prompt&lt;a class="headerlink" href="#your-first-prompt" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Inside pi, type something and press Enter:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;Summarize this repository and tell me how to run its checks.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;By default, pi has four tools: &lt;code&gt;read&lt;/code&gt;, &lt;code&gt;write&lt;/code&gt;, &lt;code&gt;edit&lt;/code&gt;, and &lt;code&gt;bash&lt;/code&gt;. With those you can do practically anything.&lt;/p&gt;
+&lt;h3 id="context-files-agentsmd"&gt;Context files (AGENTS.md)&lt;a class="headerlink" href="#context-files-agentsmd" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Pi loads &lt;code&gt;AGENTS.md&lt;/code&gt; or &lt;code&gt;CLAUDE.md&lt;/code&gt; at startup. It's how you give global instructions to your agent. Create a file in your project root:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="gh"&gt;# Project Instructions&lt;/span&gt;
+
+&lt;span class="k"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;Run &lt;span class="sb"&gt;`npm run check`&lt;/span&gt; after code changes.
+&lt;span class="k"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;Do not run production migrations locally.
+&lt;span class="k"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;Keep responses concise.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Pi looks for these files in:
+- &lt;code&gt;~/.pi/agent/AGENTS.md&lt;/code&gt; — global instructions
+- Walking up from the current directory to the root
+- The current directory&lt;/p&gt;
+&lt;p&gt;After modifying a context file —or installing or changing an extension— run &lt;code&gt;/reload&lt;/code&gt; for pi to pick it up without restarting.&lt;/p&gt;
+&lt;h3 id="referencing-files-with"&gt;Referencing files with @&lt;a class="headerlink" href="#referencing-files-with" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Use &lt;code&gt;@&lt;/code&gt; in the editor for fuzzy file search:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nv"&gt;@README&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;md&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;&amp;quot;Summarize this&amp;quot;&lt;/span&gt;
+&lt;span class="nv"&gt;@src&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;app&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ts&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;@src&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;app&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;test&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ts&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;&amp;quot;Review these together&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;You can also paste images with Ctrl+V.&lt;/p&gt;
+&lt;h2 id="level-2-intermediate-navigation-and-productivity"&gt;Level 2: Intermediate — Navigation and productivity&lt;a class="headerlink" href="#level-2-intermediate-navigation-and-productivity" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="essential-keyboard-shortcuts"&gt;Essential keyboard shortcuts&lt;a class="headerlink" href="#essential-keyboard-shortcuts" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Shortcut&lt;/th&gt;
+&lt;th&gt;Action&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Ctrl+L&lt;/td&gt;
+&lt;td&gt;Select model&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Ctrl+P&lt;/td&gt;
+&lt;td&gt;Quick cycle between models&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Shift+Tab&lt;/td&gt;
+&lt;td&gt;Change thinking level&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Ctrl+G&lt;/td&gt;
+&lt;td&gt;Open external editor (VS Code, vim...)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Ctrl+V&lt;/td&gt;
+&lt;td&gt;Paste image into prompt&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id="bash-from-the-tui"&gt;Bash from the TUI&lt;a class="headerlink" href="#bash-from-the-tui" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Pi runs Bash commands without leaving the interface:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;!command&lt;/code&gt;&lt;/strong&gt; — Runs and sends output to the LLM.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;!!command&lt;/code&gt;&lt;/strong&gt; — Runs locally &lt;em&gt;without&lt;/em&gt; sending output to the LLM (useful for silent commands like &lt;code&gt;git status&lt;/code&gt;).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This distinction is very useful: use &lt;code&gt;!&lt;/code&gt; when you want the agent to see a command's output and react, &lt;code&gt;!!&lt;/code&gt; for things you only need yourself like &lt;code&gt;git status&lt;/code&gt; without adding noise to the context.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;!npm run lint
+!!git status
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id="the-status-bar"&gt;The status bar&lt;a class="headerlink" href="#the-status-bar" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;At the bottom of pi you'll see:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Current working directory&lt;/li&gt;
+&lt;li&gt;Session name&lt;/li&gt;
+&lt;li&gt;Token and cache usage&lt;/li&gt;
+&lt;li&gt;Accumulated cost&lt;/li&gt;
+&lt;li&gt;Context usage percentage&lt;/li&gt;
+&lt;li&gt;Active model&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="message-queue"&gt;Message queue&lt;a class="headerlink" href="#message-queue" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;You can send messages while the agent is working:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Enter&lt;/strong&gt; — Queues a steering message (delivered after the current round of tool calls).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Alt+Enter&lt;/strong&gt; — Queues a follow-up (delivered after the agent finishes all work).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Escape&lt;/strong&gt; — Cancels and restores queued messages to the editor.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="sessions-and-branching"&gt;Sessions and branching&lt;a class="headerlink" href="#sessions-and-branching" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;This is one of pi's most powerful and unique features.&lt;/p&gt;
+&lt;p&gt;Sessions are automatically saved to &lt;code&gt;~/.pi/agent/sessions/&lt;/code&gt;. You can resume them:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pi&lt;span class="w"&gt; &lt;/span&gt;-c&lt;span class="w"&gt;                  &lt;/span&gt;&lt;span class="c1"&gt;# Continue most recent session&lt;/span&gt;
+pi&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt;                  &lt;/span&gt;&lt;span class="c1"&gt;# Browse and select past sessions&lt;/span&gt;
+pi&lt;span class="w"&gt; &lt;/span&gt;--session&lt;span class="w"&gt; &lt;/span&gt;&amp;lt;path&lt;span class="p"&gt;|&lt;/span&gt;id&amp;gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;# Open a specific session&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Inside pi:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;/session&lt;/code&gt;&lt;/strong&gt; — Shows current session info (file, ID, tokens, cost).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;/tree&lt;/code&gt;&lt;/strong&gt; — Navigates the session tree. Jump to any previous point and continue from there, creating an alternative branch without losing previous progress.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;/fork&lt;/code&gt;&lt;/strong&gt; — Creates a new session from a previous user message.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;/clone&lt;/code&gt;&lt;/strong&gt; — Duplicates the active branch into a new session file.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;/compact&lt;/code&gt;&lt;/strong&gt; — Summarize old messages to free context.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;/resume&lt;/code&gt;&lt;/strong&gt; — Browse past sessions.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;/name &amp;lt;name&amp;gt;&lt;/code&gt;&lt;/strong&gt; — Name the session so you can find it later.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Branching with &lt;code&gt;/tree&lt;/code&gt; is a feature that sets pi apart from any other closed-source coding agent. You can have multiple exploration lines in the same session file, and if you abandon a branch, pi can automatically summarize it so no context is lost.&lt;/p&gt;
+&lt;h3 id="quick-model-switching"&gt;Quick model switching&lt;a class="headerlink" href="#quick-model-switching" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Use &lt;code&gt;Ctrl+P&lt;/code&gt; to quickly cycle between models. Configure your selection with &lt;code&gt;--models&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pi&lt;span class="w"&gt; &lt;/span&gt;--models&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;claude-*,gpt-4o,deepseek-*&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Or in &lt;code&gt;settings.json&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;defaultProvider&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;opencode-go&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;defaultModel&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;deepseek-v4-flash&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;defaultThinkingLevel&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;high&amp;quot;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id="system-prompts"&gt;System prompts&lt;a class="headerlink" href="#system-prompts" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;You can replace or extend the default system prompt:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;~/.pi/agent/SYSTEM.md&lt;/code&gt;&lt;/strong&gt; — Replaces globally.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;.pi/SYSTEM.md&lt;/code&gt;&lt;/strong&gt; — Replaces per project.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;~/.pi/agent/APPEND_SYSTEM.md&lt;/code&gt;&lt;/strong&gt; — Appends without replacing.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;.pi/APPEND_SYSTEM.md&lt;/code&gt;&lt;/strong&gt; — Appends per project.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="level-3-advanced-skills-templates-and-extensions"&gt;Level 3: Advanced — Skills, templates, and extensions&lt;a class="headerlink" href="#level-3-advanced-skills-templates-and-extensions" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="skills"&gt;Skills&lt;a class="headerlink" href="#skills" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Skills are Markdown files with frontmatter that inject into the agent's context. They're the simplest way to teach pi reusable behaviors.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://pablocaro.es/en/installing-github-skills"&gt;I already compared both methods&lt;/a&gt; in detail, but to summarize: you can install them with &lt;code&gt;npx skills&lt;/code&gt; (my preferred method) or &lt;code&gt;gh skill&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Install Matt Pocock&amp;#39;s skills&lt;/span&gt;
+npx&lt;span class="w"&gt; &lt;/span&gt;skills&lt;span class="w"&gt; &lt;/span&gt;add&lt;span class="w"&gt; &lt;/span&gt;mattpocock/skills&lt;span class="w"&gt; &lt;/span&gt;--skill&lt;span class="w"&gt; &lt;/span&gt;grill-me&lt;span class="w"&gt; &lt;/span&gt;--skill&lt;span class="w"&gt; &lt;/span&gt;tdd
+
+&lt;span class="c1"&gt;# Browse available skills&lt;/span&gt;
+npx&lt;span class="w"&gt; &lt;/span&gt;skills&lt;span class="w"&gt; &lt;/span&gt;find
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;You can also create your own skills. A skill is a &lt;code&gt;SKILL.md&lt;/code&gt; file with frontmatter:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;---
+name: my-skill
+&lt;span class="gu"&gt;description: An example skill&lt;/span&gt;
+&lt;span class="gu"&gt;---&lt;/span&gt;
+
+This is my custom skill. When the user invokes it with /skill:my-skill,
+this content is injected into the agent&amp;#39;s context.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Skills live in &lt;code&gt;~/.pi/agent/skills/&lt;/code&gt; (global) or &lt;code&gt;.pi/skills/&lt;/code&gt; (project). &lt;a href="https://pablocaro.es/en/installing-github-skills"&gt;I already wrote about how to install them&lt;/a&gt;.&lt;/p&gt;
+&lt;h3 id="prompt-templates"&gt;Prompt templates&lt;a class="headerlink" href="#prompt-templates" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;These are custom slash commands. Create a Markdown file in &lt;code&gt;.pi/prompts/&lt;/code&gt; or &lt;code&gt;~/.pi/agent/prompts/&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;---
+name: review-pr
+&lt;span class="gu"&gt;description: Review a PR and leave comments on GitHub&lt;/span&gt;
+&lt;span class="gu"&gt;---&lt;/span&gt;
+
+Review this PR and leave inline comments on GitHub using &lt;span class="sb"&gt;`gh`&lt;/span&gt;. Check for:
+&lt;span class="k"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;Breaking changes
+&lt;span class="k"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;Missing error handling
+&lt;span class="k"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;Test coverage
+&lt;span class="k"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;Consistency with project conventions
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;After &lt;code&gt;/reload&lt;/code&gt;, you can use &lt;code&gt;/review-pr&lt;/code&gt; and the content will expand in the editor.&lt;/p&gt;
+&lt;h3 id="extensions-pi-packages"&gt;Extensions (pi packages)&lt;a class="headerlink" href="#extensions-pi-packages" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Extensions are TypeScript modules that can register tools, intercept events, show custom UI, and much more. This is what sets pi apart from any other agent.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Install packages&lt;/span&gt;
+pi&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;npm:@aliou/pi-linkup&lt;span class="w"&gt;       &lt;/span&gt;&lt;span class="c1"&gt;# Web search&lt;/span&gt;
+pi&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;npm:@aliou/pi-processes&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="c1"&gt;# Background processes&lt;/span&gt;
+pi&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;npm:pi-subagents&lt;span class="w"&gt;           &lt;/span&gt;&lt;span class="c1"&gt;# Subagents&lt;/span&gt;
+pi&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;npm:pi-lens&lt;span class="w"&gt;                &lt;/span&gt;&lt;span class="c1"&gt;# AST search + LSP&lt;/span&gt;
+pi&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;npm:pi-slopchop&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="c1"&gt;# Context optimization&lt;/span&gt;
+
+&lt;span class="c1"&gt;# List installed packages&lt;/span&gt;
+pi&lt;span class="w"&gt; &lt;/span&gt;list
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Extensions are auto-discovered from &lt;code&gt;~/.pi/agent/extensions/&lt;/code&gt; and &lt;code&gt;.pi/extensions/&lt;/code&gt;. You can write your own in TypeScript:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;import&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kr"&gt;type&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;ExtensionAPI&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kr"&gt;from&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;@earendil-works/pi-coding-agent&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="k"&gt;export&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;default&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;pi&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kt"&gt;ExtensionAPI&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nx"&gt;pi&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;registerTool&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nx"&gt;name&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;greet&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nx"&gt;description&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Greet someone&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nx"&gt;parameters&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kt"&gt;Type.Object&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="nx"&gt;name&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kt"&gt;Type.String&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;description&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Name to greet&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;}),&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;}),&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;async&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;execute&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;toolCallId&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;params&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;signal&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;onUpdate&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;ctx&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="k"&gt;return&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="nx"&gt;content&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[{&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kr"&gt;type&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;text&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;text&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="sb"&gt;`Hello, &lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nx"&gt;params&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;name&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="sb"&gt;!`&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;}],&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="p"&gt;};&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;});&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id="compaction"&gt;Compaction&lt;a class="headerlink" href="#compaction" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;When the context window gets full, you can compact:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Automatic&lt;/strong&gt;: Pi compacts when nearing the context limit.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Manual&lt;/strong&gt;: &lt;code&gt;/compact [instructions]&lt;/code&gt; to compact with a custom focus.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Extensions&lt;/strong&gt;: &lt;code&gt;pi-slopchop&lt;/code&gt; can reduce token usage by up to 98%.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="themes"&gt;Themes&lt;a class="headerlink" href="#themes" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Pi supports custom themes. I use &lt;a href="https://pablocaro.es/en/powerline-footer-hidden-gems"&gt;pi-powerline-footer&lt;/a&gt; which customizes the status bar:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pi&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;npm:pi-powerline-footer
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Configure the theme in &lt;code&gt;settings.json&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;powerline&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;preset&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;default&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;customItems&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;id&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;ci&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;statusKey&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;ci&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;position&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;right&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;color&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;success&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="level-4-power-user-total-configuration"&gt;Level 4: Power user — Total configuration&lt;a class="headerlink" href="#level-4-power-user-total-configuration" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="custom-keybindings"&gt;Custom keybindings&lt;a class="headerlink" href="#custom-keybindings" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Pi lets you map keyboard shortcuts in &lt;code&gt;keybindings.json&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;ctrl+shift+f&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;type&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;files&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;alt+o&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;type&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;command&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;command&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;ask-user&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id="non-interactive-mode"&gt;Non-interactive mode&lt;a class="headerlink" href="#non-interactive-mode" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;For one-shot prompts from scripts:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pi&lt;span class="w"&gt; &lt;/span&gt;-p&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Summarize this code&amp;quot;&lt;/span&gt;
+cat&lt;span class="w"&gt; &lt;/span&gt;README.md&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;pi&lt;span class="w"&gt; &lt;/span&gt;-p&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Summarize this text&amp;quot;&lt;/span&gt;
+pi&lt;span class="w"&gt; &lt;/span&gt;-p&lt;span class="w"&gt; &lt;/span&gt;@screenshot.png&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;What&amp;#39;s in this image?&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id="programmatic-modes"&gt;Programmatic modes&lt;a class="headerlink" href="#programmatic-modes" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;--mode json&lt;/code&gt;&lt;/strong&gt;: Structured JSON lines output (ideal for pipelines).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;--mode rpc&lt;/code&gt;&lt;/strong&gt;: Bidirectional communication over stdin/stdout.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;SDK&lt;/strong&gt;: Embed pi in Node.js applications.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="read-only-mode"&gt;Read-only mode&lt;a class="headerlink" href="#read-only-mode" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pi&lt;span class="w"&gt; &lt;/span&gt;--tools&lt;span class="w"&gt; &lt;/span&gt;read,grep,find,ls&lt;span class="w"&gt; &lt;/span&gt;-p&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Review the code without modifying it&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id="my-personal-setup"&gt;My personal setup&lt;a class="headerlink" href="#my-personal-setup" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;This article was written from inside pi, using the exact configuration I describe. My &lt;code&gt;settings.json&lt;/code&gt; includes over 20 packages, custom skills, and extensions from &lt;a href="https://github.com/pcaro/pcaropi"&gt;my pcaropi repository&lt;/a&gt;. I also launch pi from scripts with specific personalities: &lt;code&gt;pi -p @prompt.md "Do X"&lt;/code&gt; for repetitive tasks without entering interactive mode.&lt;/p&gt;
+&lt;p&gt;In the &lt;strong&gt;&lt;a href="https://pablocaro.es/en/extensiones-pi-que-uso"&gt;third and final part&lt;/a&gt;&lt;/strong&gt; of this series, I break down all the extensions I use daily, from subagents to productivity skills, web search, agent browsing, and much more.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Source&lt;/em&gt;: &lt;a href="https://pi.dev/"&gt;pi.dev&lt;/a&gt;&lt;/p&gt;</content><category term="ia"></category><category term="pi"></category><category term="coding-agent"></category><category term="guide"></category><category term="tutorial"></category><category term="cli"></category><category term="terminal"></category></entry><entry><title>What is Pi? — The Minimal Coding Agent That Went Viral</title><link href="/en/que-es-pi-coding-agent" rel="alternate"></link><published>2026-05-21T00:00:00+02:00</published><updated>2026-05-21T00:00:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:None,2026-05-21:/en/que-es-pi-coding-agent</id><summary type="html">&lt;p&gt;Pi is a minimal terminal coding agent. This article explains what it is, how it differs from Claude Code, Codex, OpenCode, and Gemini CLI, and why it went viral.&lt;/p&gt;</summary><content type="html">&lt;p&gt;I've been using &lt;a href="https://pi.dev/"&gt;pi&lt;/a&gt; as my primary coding agent for several months now. It's one of those tools that, once you use it, you can't imagine how you worked before. In this article —the first of a three-part series— I'll explain what pi is, how it differs from other coding agents, and why it has become extremely popular on GitHub. Don't miss &lt;a href="https://pi.dev/"&gt;pi.dev&lt;/a&gt; — the site has great animations that explain the concepts visually.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Coding agent comparison" src="/images/comparativa-agentes-pi.png"&gt;&lt;/p&gt;
+&lt;h2 id="the-philosophy-less-is-more"&gt;The philosophy: less is more&lt;a class="headerlink" href="#the-philosophy-less-is-more" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Pi defines itself as &lt;em&gt;"a minimal terminal coding harness"&lt;/em&gt;. And when they say minimal, they mean it.&lt;/p&gt;
+&lt;p&gt;The core of pi has exactly &lt;strong&gt;five native capabilities&lt;/strong&gt;: read files, run Bash, edit files, write files, and manage sessions. That's it. No subagents, no plan mode, no permission popups, no built-in MCP, no code editor.&lt;/p&gt;
+&lt;p&gt;It sounds like little, but that's the whole point. We live in the age of &lt;em&gt;harness engineering&lt;/em&gt; — the discipline of building robust environments around AI agents — and pi is an excellent starting point for building your own harness without paying the toll of a closed ecosystem.&lt;/p&gt;
+&lt;p&gt;Pi's philosophy is that you should adapt the tool to your workflows, not the other way around. Instead of shipping with 50 features most people don't use, pi gives you the minimal primitives and a TypeScript extension system to build exactly what you need.&lt;/p&gt;
+&lt;p&gt;Want subagents? Install an extension. Want MCP? Set up an adapter. Want plan mode? Write a prompt template. And if you don't want any of that, it doesn't take up space or slow down startup.&lt;/p&gt;
+&lt;h2 id="comparison-with-other-coding-agents"&gt;Comparison with other coding agents&lt;a class="headerlink" href="#comparison-with-other-coding-agents" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Feature&lt;/th&gt;
+&lt;th&gt;&lt;strong&gt;Pi&lt;/strong&gt;&lt;/th&gt;
+&lt;th&gt;&lt;strong&gt;Claude Code&lt;/strong&gt;&lt;/th&gt;
+&lt;th&gt;&lt;strong&gt;Codex&lt;/strong&gt;&lt;/th&gt;
+&lt;th&gt;&lt;strong&gt;OpenCode&lt;/strong&gt;&lt;/th&gt;
+&lt;th&gt;&lt;strong&gt;Gemini CLI&lt;/strong&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Philosophy&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Minimal core + extensions&lt;/td&gt;
+&lt;td&gt;Everything included&lt;/td&gt;
+&lt;td&gt;Everything included&lt;/td&gt;
+&lt;td&gt;Minimal core&lt;/td&gt;
+&lt;td&gt;Everything included&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Models&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Any provider (API key or subscription)&lt;/td&gt;
+&lt;td&gt;Claude only&lt;/td&gt;
+&lt;td&gt;OpenAI only&lt;/td&gt;
+&lt;td&gt;Multiple (OpenAI API)&lt;/td&gt;
+&lt;td&gt;Gemini only&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Subagents&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Via extensions&lt;/td&gt;
+&lt;td&gt;Built-in&lt;/td&gt;
+&lt;td&gt;Built-in&lt;/td&gt;
+&lt;td&gt;Built-in&lt;/td&gt;
+&lt;td&gt;Built-in&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;MCP&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Via extensions&lt;/td&gt;
+&lt;td&gt;Built-in&lt;/td&gt;
+&lt;td&gt;-&lt;/td&gt;
+&lt;td&gt;Built-in&lt;/td&gt;
+&lt;td&gt;Built-in&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Plan mode&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Via skills/templates&lt;/td&gt;
+&lt;td&gt;Built-in&lt;/td&gt;
+&lt;td&gt;Built-in&lt;/td&gt;
+&lt;td&gt;-&lt;/td&gt;
+&lt;td&gt;-&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Extensions&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;TypeScript SDK&lt;/td&gt;
+&lt;td&gt;JSON plugins&lt;/td&gt;
+&lt;td&gt;-&lt;/td&gt;
+&lt;td&gt;-&lt;/td&gt;
+&lt;td&gt;-&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Price&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Free (your keys)&lt;/td&gt;
+&lt;td&gt;Paid subscription&lt;/td&gt;
+&lt;td&gt;Paid subscription&lt;/td&gt;
+&lt;td&gt;Free (your keys)&lt;/td&gt;
+&lt;td&gt;Free (generous free tier)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Platform&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Terminal (any emulator)&lt;/td&gt;
+&lt;td&gt;Terminal&lt;/td&gt;
+&lt;td&gt;Terminal&lt;/td&gt;
+&lt;td&gt;Terminal&lt;/td&gt;
+&lt;td&gt;Terminal&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Tree sessions&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Native (JSONL tree)&lt;/td&gt;
+&lt;td&gt;Linear&lt;/td&gt;
+&lt;td&gt;Linear&lt;/td&gt;
+&lt;td&gt;Linear&lt;/td&gt;
+&lt;td&gt;Linear&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Skills&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Markdown + frontmatter&lt;/td&gt;
+&lt;td&gt;Markdown + frontmatter&lt;/td&gt;
+&lt;td&gt;-&lt;/td&gt;
+&lt;td&gt;-&lt;/td&gt;
+&lt;td&gt;-&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id="claude-code-anthropics-all-in-one"&gt;Claude Code — Anthropic's all-in-one&lt;a class="headerlink" href="#claude-code-anthropics-all-in-one" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Claude Code is Anthropic's official coding agent. It comes with everything: subagents, persistent memory, permission system, native MCP, and a very polished experience. It's the most mature non-IDE agent.&lt;/p&gt;
+&lt;p&gt;The catch: it only works with Claude. If you want to use DeepSeek, Gemini, or OpenAI, you can't. And the plugin ecosystem is limited compared to pi.&lt;/p&gt;
+&lt;h3 id="codex-chatgpt-integration"&gt;Codex — ChatGPT integration&lt;a class="headerlink" href="#codex-chatgpt-integration" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Codex is OpenAI's agent. You can use it from the terminal (&lt;code&gt;codex&lt;/code&gt;) or integrated with ChatGPT. It comes with subagents and a similar experience to Claude Code.&lt;/p&gt;
+&lt;p&gt;But same as Claude Code, you're locked to one provider. And extensions are practically nonexistent: what you see is what you get.&lt;/p&gt;
+&lt;h3 id="gemini-cli-the-community-cli"&gt;Gemini CLI — The community CLI&lt;a class="headerlink" href="#gemini-cli-the-community-cli" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Gemini CLI comes from the google-gemini community project and integrates with Google's ecosystem (Gemini API, Google Cloud). Google has been gradually moving away from the CLI in favor of Antigravity, its proprietary enterprise client. It comes with skills and subagents, but customization is limited and third-party extensions are practically nonexistent.&lt;/p&gt;
+&lt;h3 id="opencode-the-kindred-spirit"&gt;OpenCode — The kindred spirit&lt;a class="headerlink" href="#opencode-the-kindred-spirit" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;a href="https://github.com/opencode-go/opencode-go"&gt;OpenCode&lt;/a&gt; is the one I use most after pi, and in many ways it's its natural complement. Its philosophy is similar: minimal core, terminal-native, multi-model. It doesn't have pi's extension ecosystem, but it comes with built-in subagents and MCP. Written in Go, starts just as fast, and its OpenAI ecosystem integration is excellent.&lt;/p&gt;
+&lt;h2 id="what-makes-pi-unique"&gt;What makes pi unique&lt;a class="headerlink" href="#what-makes-pi-unique" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;After trying them all, what makes pi unique is a combination of factors that no other agent brings together:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Extensibility&lt;/strong&gt;: With the TypeScript SDK you can add tools, commands, intercept events, create custom UI, and share it all as pi packages. No one else offers this level of customization.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Tree sessions&lt;/strong&gt;: Conversations are saved as a decision tree. Use &lt;code&gt;/tree&lt;/code&gt; to jump to any previous point and create an alternative branch without losing progress. Only pi has this.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Skills and prompt templates&lt;/strong&gt;: Small markdown files that inject into the agent's context. The simplest way to teach your agent new capabilities. &lt;a href="https://pablocaro.es/en/installing-github-skills"&gt;I already covered how to install them&lt;/a&gt; and &lt;a href="https://pablocaro.es/en/matt-pocock-skills"&gt;Matt Pocock's viral skills&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Package ecosystem&lt;/strong&gt;: &lt;a href="https://pi.dev/packages"&gt;pi.dev/packages&lt;/a&gt; has extensions for almost everything: MCP adapters, web search, context optimization modes, themes, and more. And if you can't find what you need, you write a TypeScript extension in five minutes.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;It's not an IDE&lt;/strong&gt;: Pi is an agent that lives in your terminal, not an editor. This means it works the same on your local machine, on a server over SSH, inside tmux, or on WSL. You use your favorite editor and pi handles the rest. I'll dive deeper into this concept in the &lt;a href="https://pablocaro.es/en/pi-de-principiante-a-avanzado"&gt;next part&lt;/a&gt; of the series.&lt;/p&gt;
+&lt;h2 id="why-i-like-pi"&gt;Why I like pi&lt;a class="headerlink" href="#why-i-like-pi" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;By now it's probably obvious, but to wrap up: I like pi because I live in the terminal. Because I want to try many models without being locked to one provider. Because I customize everything with my own extensions.&lt;/p&gt;
+&lt;p&gt;It's not for everyone, obviously. If you prefer to pay a subscription and forget about it, Claude Code or Codex are more straightforward. But if you're an engineer who lives in the terminal, pi is probably the best coding agent out there today.&lt;/p&gt;
+&lt;p&gt;In the next articles of this series:
+- &lt;strong&gt;&lt;a href="https://pablocaro.es/en/pi-de-principiante-a-avanzado"&gt;Pi from Beginner to Advanced&lt;/a&gt;&lt;/strong&gt; — Installation, TUI, sessions, skills, extensions, and everything you need to master it.
+- &lt;strong&gt;&lt;a href="https://pablocaro.es/en/extensiones-pi-que-uso"&gt;The Pi Extensions I Use&lt;/a&gt;&lt;/strong&gt; — My real setup with packages, skills, and custom extensions.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Source&lt;/em&gt;: &lt;a href="https://pi.dev/"&gt;pi.dev&lt;/a&gt;&lt;/p&gt;</content><category term="ia"></category><category term="pi"></category><category term="coding-agent"></category><category term="agents"></category><category term="claude-code"></category><category term="codex"></category><category term="opencode"></category><category term="gemini-cli"></category></entry><entry><title>Pi subagent extensions: TintinWeb, NicoBailon and Taskplane</title><link href="/en/extensiones-subagentes-pi" rel="alternate"></link><published>2026-05-03T15:23:00+02:00</published><updated>2026-05-03T15:23:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:None,2026-05-03:/en/extensiones-subagentes-pi</id><summary type="html">&lt;p&gt;A comparison of three extensions for running subagents in pi — TintinWeb, NicoBailon, and Taskplane — each with a different approach.&lt;/p&gt;</summary><content type="html">&lt;p&gt;The biggest advantage of &lt;a href="https://pi.dev/"&gt;pi&lt;/a&gt; over other coding agents is its &lt;strong&gt;extensions&lt;/strong&gt;. Pi doesn't come with subagents, plan mode, or MCP. It gives you the primitives to build what you need. If you don't want to build it yourself, install a &lt;a href="https://pi.dev/packages"&gt;third-party package&lt;/a&gt; and you're done.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Three stylized figures running in parallel, passing a glowing baton" src="/images/pi-subagentes.png"&gt;&lt;/p&gt;
 &lt;p&gt;I have several custom extensions in &lt;a href="https://github.com/pcaro/pcaropi"&gt;my pcaropi repo&lt;/a&gt;, but here I'm comparing three different approaches for delegating work to subagents — which is one of the most useful things when working with pi on real projects.&lt;/p&gt;
 &lt;h2 id="the-three-options"&gt;The three options&lt;a class="headerlink" href="#the-three-options" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;

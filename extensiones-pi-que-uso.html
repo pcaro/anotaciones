@@ -1,0 +1,458 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/stylesheet/style.min.css">
+
+
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+          href="https://pablocaro.es/theme/pygments/github.min.css">
+
+
+  <link rel="stylesheet"
+        type="text/css"
+        href="https://pablocaro.es/theme/stork/stork.css" />
+
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/font-awesome/css/solid.css">
+
+  <link rel="stylesheet" type="text/css" href="/extras/custom.css">
+
+  <link rel="shortcut icon" href="/theme/img/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/theme/img/favicon.ico" type="image/x-icon">
+
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#333333">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#333333">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Microsoft EDGE -->
+  <meta name="msapplication-TileColor" content="#333333">
+
+  <link href="https://pablocaro.es/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Anotaciones por Pablo Caro Atom">
+
+  <link href="https://pablocaro.es/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Anotaciones por Pablo Caro RSS">
+
+<script data-goatcounter="https://pcaro.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Pablo Caro" />
+<meta name="description" content="Tercera y última entrega de la serie sobre pi. En la primera parte expliqué qué es pi y lo comparé con otros agents. En la segunda hice una guía completa de uso. Ahora toca lo que realmente diferencia a pi de todo lo demás: las extensiones. Tengo más de 20 …" />
+<meta name="keywords" content="pi, coding-agent, extensiones, skills, subagentes, cli" />
+
+<link
+  rel="alternate"
+  href="https://pablocaro.es/extensiones-pi-que-uso"
+  hreflang="es"
+/>
+<link
+  rel="alternate"
+  href="https://pablocaro.es/en/extensiones-pi-que-uso"
+  hreflang="en"
+/>
+    <meta property="og:site_name" content="Anotaciones por Pablo Caro"/>
+  <meta property="og:title" content="Las extensiones de pi que uso en mi día a día"/>
+  <meta property="og:description" content="Tercera y última entrega de la serie sobre pi. En la primera parte expliqué qué es pi y lo comparé con otros agents. En la segunda hice una guía completa de uso. Ahora toca lo que realmente diferencia a pi de todo lo demás: las extensiones. Tengo más de 20 …"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://pablocaro.es/extensiones-pi-que-uso"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2026-05-21 00:00:00+02:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://pablocaro.es/author/pablo-caro.html">
+  <meta property="article:section" content="ia"/>
+  <meta property="article:tag" content="pi"/>
+  <meta property="article:tag" content="coding-agent"/>
+  <meta property="article:tag" content="extensiones"/>
+  <meta property="article:tag" content="skills"/>
+  <meta property="article:tag" content="subagentes"/>
+  <meta property="article:tag" content="cli"/>
+  <meta property="og:image" content="/theme/img/profile.png">
+ 
+  <title>Anotaciones por Pablo Caro &ndash; Las extensiones de pi que uso en mi día a día</title>
+
+
+</head>
+<body class="light-theme">
+
+<aside>
+  <div>
+    <a href="https://pablocaro.es/">
+      <img src="/theme/img/profile.png" alt="Anotaciones" title="Anotaciones">
+    </a>
+
+    <h1>
+      <a href="https://pablocaro.es/">Anotaciones</a>
+    </h1>
+
+    <p>Anotaciones</p>
+
+    <p style="font-size: 0.9em; font-style: italic; margin-bottom: 20px;">
+      Volcando mi cerebro a internet. Colección de apuntes técnicos y soluciones que escribo para mi 'yo' del futuro, pero que comparto por si a alguien más le ahorran un dolor de cabeza.
+    </p>
+
+    <div class="stork">
+      <input class="stork-input" type="text" autocomplete="off" name="q" data-stork="sitesearch" placeholder="Buscar..." onclick="loadStorkIndex()"/>
+      <div class="stork-output" data-stork="sitesearch-output"></div>
+    </div>
+
+    <nav>
+      <ul class="list">
+
+
+
+          <li>
+            <a target="_self" href="http://x.com/pcaro" >pcaro@X</a>
+          </li>
+          <li>
+            <a target="_self" href="https://github.com/pcaro/" >pcaro@Github</a>
+          </li>
+          <li>
+            <a target="_self" href="https://www.linkedin.com/in/pcarorevuelta/" >LinkedIn</a>
+          </li>
+      </ul>
+    </nav>
+
+    <ul class="social">
+      <li>
+        <a class="sc-Twitter"
+           href="http://twitter.com/pcaro"
+           target="_blank">
+          <i class="fa-brands fa-Twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Github"
+           href="http://github.com/pcaro"
+           target="_blank">
+          <i class="fa-brands fa-Github"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Linkedin"
+           href="https://www.linkedin.com/in/pcarorevuelta"
+           target="_blank">
+          <i class="fa-brands fa-Linkedin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Facebook"
+           href="https://www.facebook.com/pablo.carorevuelta"
+           target="_blank">
+          <i class="fa-brands fa-Facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-Email"
+           href="mailto:correo@pablocaro.es"
+           target="_blank">
+          <i class="fa-brands fa-Email"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+</aside>
+  <main>
+
+<nav>
+  <a href="https://pablocaro.es/">Inicio</a>
+
+  <a href="/archives.html">Archivo</a>
+  <a href="/categories.html">Categorías</a>
+  <a href="/tags.html">Etiquetas</a>
+  <a href="/search.html">Búsqueda</a>
+  <a href="/en/">English</a>
+
+  <a href="https://pablocaro.es/feeds/all.atom.xml">Atom</a>
+
+  <a href="https://pablocaro.es/feeds/all.rss.xml">RSS</a>
+</nav>
+
+<article class="single">
+  <header>
+      <div class="translations">
+            <a href="https://pablocaro.es/en/extensiones-pi-que-uso">Read in English</a>
+    </div>
+
+    <h1 id="extensiones-pi-que-uso">Las extensiones de pi que uso en mi día a día</h1>
+    <p>
+      Publicado el 21 de May de 2026 en <a href="https://pablocaro.es/category/ia.html">ia</a>     </p>
+  </header>
+
+  <div class="related-posts">
+    <h4>
+      Parte 3 de la serie Pi: el agente de código
+    </h4>
+    <h5>
+      Artículos anteriores
+    </h5>
+    <ul>
+      <li><a href="https://pablocaro.es/que-es-pi-coding-agent">¿Qué es pi? — El agente de código minimalista que se ha vuelto viral</a></li>
+      <li><a href="https://pablocaro.es/pi-de-principiante-a-avanzado">Pi de novato a avanzado — La guía completa</a></li>
+    </ul>
+   </div>
+ 
+  <div><p>Tercera y última entrega de la serie sobre <a href="https://pi.dev/">pi</a>. En la <a href="https://pablocaro.es/que-es-pi-coding-agent">primera parte</a> expliqué qué es pi y lo comparé con otros agents. En la <a href="https://pablocaro.es/pi-de-principiante-a-avanzado">segunda</a> hice una guía completa de uso. Ahora toca lo que realmente diferencia a pi de todo lo demás: <strong>las extensiones</strong>.</p>
+<p>Tengo más de 20 paquetes instalados, skills de varios repositorios, y mis propias extensiones en <a href="https://github.com/pcaro/pcaropi">pcaropi</a>. Aquí desgloso lo que uso realmente en el día a día.</p>
+<p><img alt="Extensiones de pi" src="/images/pi-extensiones.png"></p>
+<h2 id="subagentes-pi-subagents">Subagentes — pi-subagents<a class="headerlink" href="#subagentes-pi-subagents" title="Permanent link">&para;</a></h2>
+<p>El <a href="https://github.com/nicobailon/pi-subagents">pi-subagents de NicoBailon</a> es la extensión que más uso. Es un orquestador completo de subagentes con tres modos: single, chain y parallel.</p>
+<div class="highlight"><pre><span></span><code>pi<span class="w"> </span>install<span class="w"> </span>npm:pi-subagents
+</code></pre></div>
+
+<p>Viene con 8 agentes incorporados (scout, researcher, planner, worker, reviewer…) y una TUI de preview donde puedes editar los pasos antes de lanzarlos. El modelo fallback en cascada es muy útil: si un modelo falla por quota, prueba el siguiente automáticamente.</p>
+<p><a href="https://pablocaro.es/extensiones-subagentes-pi">Ya comparé esta extensión con otras alternativas</a> (TintinWeb y Taskplane), pero mi elección diaria es NicoBailon sin duda.</p>
+<h2 id="utilidades-del-sistema">Utilidades del sistema<a class="headerlink" href="#utilidades-del-sistema" title="Permanent link">&para;</a></h2>
+<h3 id="pi-processes">pi-processes<a class="headerlink" href="#pi-processes" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>pi<span class="w"> </span>install<span class="w"> </span>npm:@aliou/pi-processes
+</code></pre></div>
+
+<p>Gestiona procesos en segundo plano: servidores de desarrollo, watchers de tests, logs. El agente puede arrancar <code>npm run dev</code> en background, seguir trabajando, y recibir una alerta si el proceso falla. Esencial para cualquier flujo de desarrollo.</p>
+<h3 id="pi-inspect">pi-inspect<a class="headerlink" href="#pi-inspect" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>pi<span class="w"> </span>install<span class="w"> </span>npm:pi-inspect
+</code></pre></div>
+
+<p>Consola de depuración para pi. Muestra el estado interno, las herramientas registradas, los eventos que se están disparando. Útil cuando desarrollas tus propias extensiones o cuando algo no funciona como esperas.</p>
+<h3 id="pi-slim">pi-slim<a class="headerlink" href="#pi-slim" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>pi<span class="w"> </span>install<span class="w"> </span>npm:pi-slim
+</code></pre></div>
+
+<p>Reduce el tamaño del prompt de sistema eliminando descripciones que el modelo no necesita. Cada token cuenta, y esta extensión recorta silenciosamente lo superfluo.</p>
+<h2 id="gestion-de-sesiones">Gestión de sesiones<a class="headerlink" href="#gestion-de-sesiones" title="Permanent link">&para;</a></h2>
+<h3 id="pi-smart-sessions-hazat">pi-smart-sessions (HazAT)<a class="headerlink" href="#pi-smart-sessions-hazat" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>pi<span class="w"> </span>install<span class="w"> </span>git:github.com/HazAT/pi-smart-sessions
+</code></pre></div>
+
+<p>Añade gestión inteligente de sesiones: compactación automática, nombrado inteligente, y resumen de ramas abandonadas. Hace que trabajar con sesiones largas sea mucho más llevadero.</p>
+<h3 id="pi-slopchop">pi-slopchop<a class="headerlink" href="#pi-slopchop" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>pi<span class="w"> </span>install<span class="w"> </span>npm:pi-slopchop
+</code></pre></div>
+
+<p>Compresión agresiva de contexto. Reduce el uso de tokens hasta un 98% comprimiendo mensajes antiguos sin perder información crítica. Cuando trabajas con sesiones de días, esto es un salvavidas.</p>
+<h3 id="pi-add-dir-itisbryan">pi-add-dir (itisbryan)<a class="headerlink" href="#pi-add-dir-itisbryan" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>pi<span class="w"> </span>install<span class="w"> </span>https://github.com/itisbryan/pi-add-dir
+</code></pre></div>
+
+<p>Añade un directorio externo a la sesión para que el agente pueda trabajar con archivos fuera del directorio actual. Imprescindible cuando tienes que tocar código en varios repositorios.</p>
+<h2 id="busqueda-y-navegacion-web">Búsqueda y navegación web<a class="headerlink" href="#busqueda-y-navegacion-web" title="Permanent link">&para;</a></h2>
+<h3 id="alioupi-linkup">@aliou/pi-linkup<a class="headerlink" href="#alioupi-linkup" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>pi<span class="w"> </span>install<span class="w"> </span>npm:@aliou/pi-linkup
+</code></pre></div>
+
+<p>Tres herramientas de búsqueda web: <code>linkup_web_search</code> para descubrir fuentes, <code>linkup_web_answer</code> para respuestas sintetizadas con citas, y <code>linkup_web_fetch</code> para extraer contenido de URLs concretas. Lo uso constantemente para consultar documentación, investigar APIs, o verificar información durante una sesión de código.</p>
+<h3 id="agent-browser-skill">agent-browser skill<a class="headerlink" href="#agent-browser-skill" title="Permanent link">&para;</a></h3>
+<p>Instalado como skill desde el <a href="https://github.com/vercel-labs/agent-browser">repositorio de Vercel Labs</a>. Permite al agente navegar por páginas web como un humano: hacer clic, rellenar formularios, tomar capturas. <a href="https://pablocaro.es/agent-browser-navegacion-agentes">Ya escribí sobre ello</a>.</p>
+<h3 id="chrome-cdp-skill">chrome-cdp skill<a class="headerlink" href="#chrome-cdp-skill" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>pi<span class="w"> </span>install<span class="w"> </span>git:github.com/pasky/chrome-cdp-skill@v1.0.1
+</code></pre></div>
+
+<p>Alternativa a agent-browser usando Chrome DevTools Protocol directamente. Más ligero y con control más granular sobre el navegador.</p>
+<h2 id="productividad-y-ui">Productividad y UI<a class="headerlink" href="#productividad-y-ui" title="Permanent link">&para;</a></h2>
+<h3 id="pi-powerline-footer">pi-powerline-footer<a class="headerlink" href="#pi-powerline-footer" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>pi<span class="w"> </span>install<span class="w"> </span>npm:pi-powerline-footer
+</code></pre></div>
+
+<p>Personaliza la barra de estado de pi con información adicional: estado de CI, rama de git, tiempo de sesión. Lo tengo configurado con ítems personalizados:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;powerline&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;preset&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;default&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;customItems&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ci&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;statusKey&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ci&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;position&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;right&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;color&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;success&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="tmustierpi-code-actions">@tmustier/pi-code-actions<a class="headerlink" href="#tmustierpi-code-actions" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>pi<span class="w"> </span>install<span class="w"> </span>npm:@tmustier/pi-code-actions
+</code></pre></div>
+
+<p>Añade acciones de código rápidas: formatear archivo, organizar imports, ejecutar linter. El agente puede dispararlas sin tener que escribir comandos Bash manualmente.</p>
+<h3 id="alioupi-guardrails">@aliou/pi-guardrails<a class="headerlink" href="#alioupi-guardrails" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>pi<span class="w"> </span>install<span class="w"> </span>npm:@aliou/pi-guardrails
+</code></pre></div>
+
+<p>Guarda raíles de seguridad: bloquea comandos peligrosos (<code>rm -rf</code>, <code>sudo</code>), protege archivos sensibles (<code>.env</code>, <code>node_modules/</code>), y confirma antes de operaciones destructivas. Tranquilidad mental cuando el agente trabaja autónomamente.</p>
+<h3 id="pi-ask-user-y-pi-schedule-prompt">pi-ask-user y pi-schedule-prompt<a class="headerlink" href="#pi-ask-user-y-pi-schedule-prompt" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>pi<span class="w"> </span>install<span class="w"> </span>npm:pi-ask-user
+pi<span class="w"> </span>install<span class="w"> </span>npm:pi-schedule-prompt
+</code></pre></div>
+
+<p><code>pi-ask-user</code> permite al agente hacer preguntas al usuario con opciones estructuradas. <code>pi-schedule-prompt</code> programa ejecuciones periódicas (cada hora, cada día) para tareas de mantenimiento.</p>
+<h3 id="pi-interactive-shell">pi-interactive-shell<a class="headerlink" href="#pi-interactive-shell" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>pi<span class="w"> </span>install<span class="w"> </span>npm:pi-interactive-shell
+</code></pre></div>
+
+<p>Lanza agentes CLI interactivos (Claude Code, Cursor, Gemini CLI) desde dentro de pi. Modos dispatch, hands-free, monitor. Útil para delegar tareas específicas a otros agentes sin salir de pi.</p>
+<h2 id="skills-que-uso-todos-los-dias">Skills que uso todos los días<a class="headerlink" href="#skills-que-uso-todos-los-dias" title="Permanent link">&para;</a></h2>
+<h3 id="del-repositorio-oficial-de-pi">Del repositorio oficial de pi<a class="headerlink" href="#del-repositorio-oficial-de-pi" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>commit</strong>: Misión crítica. Cada commit que hago pasa por este skill, que genera mensajes descriptivos y bien estructurados. Lo tengo activado siempre.</li>
+<li><strong>brainstorm</strong>: Para sesiones de diseño estructurado. Sigue una cadena completa: investigar → clarificar → explorar → validar diseño → escribir plan → crear TODOs.</li>
+<li><strong>learn-codebase</strong>: Cuando entro en un proyecto nuevo, este skill escanea convenciones, agent config files y posibles problemas de seguridad.</li>
+<li><strong>uv, ruff, ty</strong>: El trío Python. <code>uv</code> para gestión de paquetes, <code>ruff</code> para linting+formato, <code>ty</code> para type checking. Rápidos, modernos, sin fricción.</li>
+<li><strong>github</strong>: Interactuar con issues, PRs, CI runs y queries avanzadas de GitHub API, todo desde <code>gh</code>.</li>
+<li><strong>frontend-design</strong>: Para cuando construyo interfaces. Genera componentes con alta calidad de diseño.</li>
+</ul>
+<h3 id="de-mi-repositorio-pcaropi">De mi repositorio pcaropi<a class="headerlink" href="#de-mi-repositorio-pcaropi" title="Permanent link">&para;</a></h3>
+<p>Todas mis extensiones y skills personalizadas están en <a href="https://github.com/pcaro/pcaropi">github.com/pcaro/pcaropi</a>:</p>
+<h4 id="extensiones">Extensiones<a class="headerlink" href="#extensiones" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>answer.ts</code> — Q&amp;A interactivo. Extrae preguntas de mensajes del asistente y las responde una a una (<code>/answer</code> o <code>Ctrl+.</code>).</li>
+<li><code>context.ts</code> — Visualización del uso de contexto (tokens, coste, archivos/skills cargados) vía <code>/context</code>.</li>
+<li><code>files.ts</code> — Navegador de archivos interactivo (<code>/files</code> o <code>Ctrl+Shift+o</code>) con estado git y vista rápida.</li>
+<li><code>notify.ts</code> — Notificaciones de escritorio (Linux/notify-send) cuando el agente completa un turno.</li>
+<li><code>session-breakdown.ts</code> — Historial de sesiones visualizado en 7/30/90 días (<code>/session-breakdown</code>).</li>
+<li><code>todos.ts</code> — Gestor de TODOs en Markdown con TUI, bloqueo de archivos y asignación de tareas (<code>/todos</code>).</li>
+<li><code>uv.ts</code> — Intercepta comandos Python (<code>pip</code>, <code>poetry</code>) y sugiere usar <code>uv</code> en su lugar.</li>
+</ul>
+<h4 id="skills">Skills<a class="headerlink" href="#skills" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>cli-tools</code> — Documenta las herramientas CLI disponibles en mi sistema (jq, fx, gh, httpie, etc.)</li>
+<li><code>google-workspace</code> — Acceso a APIs de Google (Drive, Docs, Calendar, Gmail) sin MCP.</li>
+<li><code>summarize</code> — Convierte URLs o archivos locales a Markdown usando <code>uvx markitdown</code>.</li>
+<li><code>update-changelog</code> — Skill para mantener el changelog del repositorio actualizado.</li>
+<li><code>web-browser</code> — Interacción con páginas web mediante Chrome DevTools Protocol.</li>
+<li><code>linkedin-post-formatter</code> — Formatea posts para LinkedIn con Unicode bold/italic.</li>
+</ul>
+<h4 id="prompt-templates">Prompt templates<a class="headerlink" href="#prompt-templates" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>pr-create.md</code> — Template para crear PRs con estructura consistente.</li>
+<li><code>pr-fix-checks.md</code> — Para arreglar checks fallidos en PRs.</li>
+<li><code>review.md</code> — Template para revisiones de código estructuradas.</li>
+</ul>
+<h2 id="mcp">MCP<a class="headerlink" href="#mcp" title="Permanent link">&para;</a></h2>
+<h3 id="pi-mcp-adapter-nicobailon">pi-mcp-adapter (NicoBailon)<a class="headerlink" href="#pi-mcp-adapter-nicobailon" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>pi<span class="w"> </span>install<span class="w"> </span>git:github.com/nicobailon/pi-mcp-adapter
+</code></pre></div>
+
+<p>Adaptador para conectar servidores MCP estándar. Pi no trae MCP nativo (por diseño), pero con este adaptador puedes usar cualquier servidor MCP del ecosistema.</p>
+<p><em>Fuente original</em>: <a href="https://pi.dev/">pi.dev</a> | <a href="https://github.com/pcaro/pcaropi">pcaropi</a></p></div>
+  <div class="tag-cloud">
+    <p>
+       <a href="https://pablocaro.es/tag/pi.html">pi</a>
+      <a href="https://pablocaro.es/tag/coding-agent.html">coding-agent</a>
+      <a href="https://pablocaro.es/tag/extensiones.html">extensiones</a>
+      <a href="https://pablocaro.es/tag/skills.html">skills</a>
+      <a href="https://pablocaro.es/tag/subagentes.html">subagentes</a>
+      <a href="https://pablocaro.es/tag/cli.html">cli</a>
+     </p>
+  </div>
+
+    <div class="neighbors">
+    <a class="btn float-left" href="https://pablocaro.es/pi-de-principiante-a-avanzado" title="Pi de novato a avanzado — La guía completa">
+      <i class="fa fa-angle-left"></i> Artículo anterior
+    </a>
+  </div>
+   <div class="related-posts">
+    <h4>Te puede gustar</h4>
+    <ul class="related-posts">
+      <li>
+        <a href="https://pablocaro.es/extensiones-subagentes-pi"
+          >Extensiones de subagentes para pi: TintinWeb, NicoBailon y Taskplane</a
+        >
+      </li>
+      <li>
+        <a href="https://pablocaro.es/pi-de-principiante-a-avanzado"
+          >Pi de novato a avanzado — La guía completa</a
+        >
+      </li>
+      <li>
+        <a href="https://pablocaro.es/que-es-pi-coding-agent"
+          >¿Qué es pi? — El agente de código minimalista que se ha vuelto viral</a
+        >
+      </li>
+      <li>
+        <a href="https://pablocaro.es/instalando-skills-de-github"
+          >Instalando skills de GitHub</a
+        >
+      </li>
+      <li>
+        <a href="https://pablocaro.es/powerline-footer-hidden-gems"
+          >Joyas ocultas en pi-powerline-footer</a
+        >
+      </li>
+    </ul>
+  </div>
+  <!-- Disqus -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'anotaciones';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>
+    Por favor, habilita JavaScript para ver los comentarios.
+</noscript>
+<!-- End Disqus -->
+ </article>
+
+<footer>
+<p>
+  &copy; 2026  - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+Construido con <a href="http://getpelican.com" target="_blank">Pelican</a> usando el tema <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> 
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/3.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/3.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Anotaciones por Pablo Caro ",
+  "url" : "https://pablocaro.es",
+  "image": "/theme/img/profile.png",
+  "description": ""
+}
+</script>  <script src="https://files.stork-search.net/releases/v1.6.0/stork.js"></script>
+  <script>
+    window.storkIndexLoaded = false;
+    window.loadStorkIndex = function () {
+      if (window.storkIndexLoaded) {
+        return;
+      }
+      if (typeof stork === 'undefined') {
+        console.error('Stork is not loaded yet, retrying...');
+        setTimeout(window.loadStorkIndex, 100);
+        return;
+      }
+      stork.register("sitesearch", "https://pablocaro.es/search-index.st", { showProgress: false });
+      stork.register("sitesearch-page", "https://pablocaro.es/search-index.st", { showProgress: false });
+      window.storkIndexLoaded = true;
+    }
+  </script>
+
+</body>
+</html>

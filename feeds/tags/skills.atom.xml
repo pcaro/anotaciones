@@ -1,5 +1,141 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Anotaciones por Pablo Caro - skills</title><link href="https://pablocaro.es/" rel="alternate"></link><link href="https://pablocaro.es/feeds/tags/skills.atom.xml" rel="self"></link><id>https://pablocaro.es/</id><updated>2026-05-06T00:00:00+02:00</updated><subtitle>Anotaciones</subtitle><entry><title>Matt Pocock — Skills sencillas que funcionan</title><link href="https://pablocaro.es/matt-pocock-skills" rel="alternate"></link><published>2026-05-06T00:00:00+02:00</published><updated>2026-05-06T00:00:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-05-06:/matt-pocock-skills</id><summary type="html">&lt;p&gt;Quinta entrega de la serie sobre ingeniería de programación con agentes. Hoy toca el proyecto que está arrasando estos días: las &lt;strong&gt;skills de Matt Pocock&lt;/strong&gt;.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Anotaciones por Pablo Caro - skills</title><link href="https://pablocaro.es/" rel="alternate"></link><link href="https://pablocaro.es/feeds/tags/skills.atom.xml" rel="self"></link><id>https://pablocaro.es/</id><updated>2026-05-21T00:00:00+02:00</updated><subtitle>Anotaciones</subtitle><entry><title>Las extensiones de pi que uso en mi día a día</title><link href="https://pablocaro.es/extensiones-pi-que-uso" rel="alternate"></link><published>2026-05-21T00:00:00+02:00</published><updated>2026-05-21T00:00:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-05-21:/extensiones-pi-que-uso</id><summary type="html">&lt;p&gt;Tercera y última entrega de la serie sobre &lt;a href="https://pi.dev/"&gt;pi&lt;/a&gt;. En la &lt;a href="https://pablocaro.es/que-es-pi-coding-agent"&gt;primera parte&lt;/a&gt; expliqué qué es pi y lo comparé con otros agents. En la &lt;a href="https://pablocaro.es/pi-de-principiante-a-avanzado"&gt;segunda&lt;/a&gt; hice una guía completa de uso. Ahora toca lo que realmente diferencia a pi de todo lo demás: &lt;strong&gt;las extensiones&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Tengo más de 20 …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Tercera y última entrega de la serie sobre &lt;a href="https://pi.dev/"&gt;pi&lt;/a&gt;. En la &lt;a href="https://pablocaro.es/que-es-pi-coding-agent"&gt;primera parte&lt;/a&gt; expliqué qué es pi y lo comparé con otros agents. En la &lt;a href="https://pablocaro.es/pi-de-principiante-a-avanzado"&gt;segunda&lt;/a&gt; hice una guía completa de uso. Ahora toca lo que realmente diferencia a pi de todo lo demás: &lt;strong&gt;las extensiones&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Tengo más de 20 paquetes instalados, skills de varios repositorios, y mis propias extensiones en &lt;a href="https://github.com/pcaro/pcaropi"&gt;pcaropi&lt;/a&gt;. Aquí desgloso lo que uso realmente en el día a día.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Extensiones de pi" src="/images/pi-extensiones.png"&gt;&lt;/p&gt;
+&lt;h2 id="subagentes-pi-subagents"&gt;Subagentes — pi-subagents&lt;a class="headerlink" href="#subagentes-pi-subagents" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;El &lt;a href="https://github.com/nicobailon/pi-subagents"&gt;pi-subagents de NicoBailon&lt;/a&gt; es la extensión que más uso. Es un orquestador completo de subagentes con tres modos: single, chain y parallel.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pi&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;npm:pi-subagents
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Viene con 8 agentes incorporados (scout, researcher, planner, worker, reviewer…) y una TUI de preview donde puedes editar los pasos antes de lanzarlos. El modelo fallback en cascada es muy útil: si un modelo falla por quota, prueba el siguiente automáticamente.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://pablocaro.es/extensiones-subagentes-pi"&gt;Ya comparé esta extensión con otras alternativas&lt;/a&gt; (TintinWeb y Taskplane), pero mi elección diaria es NicoBailon sin duda.&lt;/p&gt;
+&lt;h2 id="utilidades-del-sistema"&gt;Utilidades del sistema&lt;a class="headerlink" href="#utilidades-del-sistema" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="pi-processes"&gt;pi-processes&lt;a class="headerlink" href="#pi-processes" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pi&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;npm:@aliou/pi-processes
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Gestiona procesos en segundo plano: servidores de desarrollo, watchers de tests, logs. El agente puede arrancar &lt;code&gt;npm run dev&lt;/code&gt; en background, seguir trabajando, y recibir una alerta si el proceso falla. Esencial para cualquier flujo de desarrollo.&lt;/p&gt;
+&lt;h3 id="pi-inspect"&gt;pi-inspect&lt;a class="headerlink" href="#pi-inspect" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pi&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;npm:pi-inspect
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Consola de depuración para pi. Muestra el estado interno, las herramientas registradas, los eventos que se están disparando. Útil cuando desarrollas tus propias extensiones o cuando algo no funciona como esperas.&lt;/p&gt;
+&lt;h3 id="pi-slim"&gt;pi-slim&lt;a class="headerlink" href="#pi-slim" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pi&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;npm:pi-slim
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Reduce el tamaño del prompt de sistema eliminando descripciones que el modelo no necesita. Cada token cuenta, y esta extensión recorta silenciosamente lo superfluo.&lt;/p&gt;
+&lt;h2 id="gestion-de-sesiones"&gt;Gestión de sesiones&lt;a class="headerlink" href="#gestion-de-sesiones" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="pi-smart-sessions-hazat"&gt;pi-smart-sessions (HazAT)&lt;a class="headerlink" href="#pi-smart-sessions-hazat" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pi&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;git:github.com/HazAT/pi-smart-sessions
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Añade gestión inteligente de sesiones: compactación automática, nombrado inteligente, y resumen de ramas abandonadas. Hace que trabajar con sesiones largas sea mucho más llevadero.&lt;/p&gt;
+&lt;h3 id="pi-slopchop"&gt;pi-slopchop&lt;a class="headerlink" href="#pi-slopchop" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pi&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;npm:pi-slopchop
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Compresión agresiva de contexto. Reduce el uso de tokens hasta un 98% comprimiendo mensajes antiguos sin perder información crítica. Cuando trabajas con sesiones de días, esto es un salvavidas.&lt;/p&gt;
+&lt;h3 id="pi-add-dir-itisbryan"&gt;pi-add-dir (itisbryan)&lt;a class="headerlink" href="#pi-add-dir-itisbryan" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pi&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;https://github.com/itisbryan/pi-add-dir
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Añade un directorio externo a la sesión para que el agente pueda trabajar con archivos fuera del directorio actual. Imprescindible cuando tienes que tocar código en varios repositorios.&lt;/p&gt;
+&lt;h2 id="busqueda-y-navegacion-web"&gt;Búsqueda y navegación web&lt;a class="headerlink" href="#busqueda-y-navegacion-web" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="alioupi-linkup"&gt;@aliou/pi-linkup&lt;a class="headerlink" href="#alioupi-linkup" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pi&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;npm:@aliou/pi-linkup
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Tres herramientas de búsqueda web: &lt;code&gt;linkup_web_search&lt;/code&gt; para descubrir fuentes, &lt;code&gt;linkup_web_answer&lt;/code&gt; para respuestas sintetizadas con citas, y &lt;code&gt;linkup_web_fetch&lt;/code&gt; para extraer contenido de URLs concretas. Lo uso constantemente para consultar documentación, investigar APIs, o verificar información durante una sesión de código.&lt;/p&gt;
+&lt;h3 id="agent-browser-skill"&gt;agent-browser skill&lt;a class="headerlink" href="#agent-browser-skill" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Instalado como skill desde el &lt;a href="https://github.com/vercel-labs/agent-browser"&gt;repositorio de Vercel Labs&lt;/a&gt;. Permite al agente navegar por páginas web como un humano: hacer clic, rellenar formularios, tomar capturas. &lt;a href="https://pablocaro.es/agent-browser-navegacion-agentes"&gt;Ya escribí sobre ello&lt;/a&gt;.&lt;/p&gt;
+&lt;h3 id="chrome-cdp-skill"&gt;chrome-cdp skill&lt;a class="headerlink" href="#chrome-cdp-skill" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pi&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;git:github.com/pasky/chrome-cdp-skill@v1.0.1
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Alternativa a agent-browser usando Chrome DevTools Protocol directamente. Más ligero y con control más granular sobre el navegador.&lt;/p&gt;
+&lt;h2 id="productividad-y-ui"&gt;Productividad y UI&lt;a class="headerlink" href="#productividad-y-ui" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="pi-powerline-footer"&gt;pi-powerline-footer&lt;a class="headerlink" href="#pi-powerline-footer" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pi&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;npm:pi-powerline-footer
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Personaliza la barra de estado de pi con información adicional: estado de CI, rama de git, tiempo de sesión. Lo tengo configurado con ítems personalizados:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;powerline&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;preset&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;default&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;customItems&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;id&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;ci&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;statusKey&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;ci&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;position&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;right&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;color&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;success&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id="tmustierpi-code-actions"&gt;@tmustier/pi-code-actions&lt;a class="headerlink" href="#tmustierpi-code-actions" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pi&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;npm:@tmustier/pi-code-actions
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Añade acciones de código rápidas: formatear archivo, organizar imports, ejecutar linter. El agente puede dispararlas sin tener que escribir comandos Bash manualmente.&lt;/p&gt;
+&lt;h3 id="alioupi-guardrails"&gt;@aliou/pi-guardrails&lt;a class="headerlink" href="#alioupi-guardrails" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pi&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;npm:@aliou/pi-guardrails
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Guarda raíles de seguridad: bloquea comandos peligrosos (&lt;code&gt;rm -rf&lt;/code&gt;, &lt;code&gt;sudo&lt;/code&gt;), protege archivos sensibles (&lt;code&gt;.env&lt;/code&gt;, &lt;code&gt;node_modules/&lt;/code&gt;), y confirma antes de operaciones destructivas. Tranquilidad mental cuando el agente trabaja autónomamente.&lt;/p&gt;
+&lt;h3 id="pi-ask-user-y-pi-schedule-prompt"&gt;pi-ask-user y pi-schedule-prompt&lt;a class="headerlink" href="#pi-ask-user-y-pi-schedule-prompt" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pi&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;npm:pi-ask-user
+pi&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;npm:pi-schedule-prompt
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code&gt;pi-ask-user&lt;/code&gt; permite al agente hacer preguntas al usuario con opciones estructuradas. &lt;code&gt;pi-schedule-prompt&lt;/code&gt; programa ejecuciones periódicas (cada hora, cada día) para tareas de mantenimiento.&lt;/p&gt;
+&lt;h3 id="pi-interactive-shell"&gt;pi-interactive-shell&lt;a class="headerlink" href="#pi-interactive-shell" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pi&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;npm:pi-interactive-shell
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Lanza agentes CLI interactivos (Claude Code, Cursor, Gemini CLI) desde dentro de pi. Modos dispatch, hands-free, monitor. Útil para delegar tareas específicas a otros agentes sin salir de pi.&lt;/p&gt;
+&lt;h2 id="skills-que-uso-todos-los-dias"&gt;Skills que uso todos los días&lt;a class="headerlink" href="#skills-que-uso-todos-los-dias" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="del-repositorio-oficial-de-pi"&gt;Del repositorio oficial de pi&lt;a class="headerlink" href="#del-repositorio-oficial-de-pi" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;commit&lt;/strong&gt;: Misión crítica. Cada commit que hago pasa por este skill, que genera mensajes descriptivos y bien estructurados. Lo tengo activado siempre.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;brainstorm&lt;/strong&gt;: Para sesiones de diseño estructurado. Sigue una cadena completa: investigar → clarificar → explorar → validar diseño → escribir plan → crear TODOs.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;learn-codebase&lt;/strong&gt;: Cuando entro en un proyecto nuevo, este skill escanea convenciones, agent config files y posibles problemas de seguridad.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;uv, ruff, ty&lt;/strong&gt;: El trío Python. &lt;code&gt;uv&lt;/code&gt; para gestión de paquetes, &lt;code&gt;ruff&lt;/code&gt; para linting+formato, &lt;code&gt;ty&lt;/code&gt; para type checking. Rápidos, modernos, sin fricción.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;github&lt;/strong&gt;: Interactuar con issues, PRs, CI runs y queries avanzadas de GitHub API, todo desde &lt;code&gt;gh&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;frontend-design&lt;/strong&gt;: Para cuando construyo interfaces. Genera componentes con alta calidad de diseño.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="de-mi-repositorio-pcaropi"&gt;De mi repositorio pcaropi&lt;a class="headerlink" href="#de-mi-repositorio-pcaropi" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Todas mis extensiones y skills personalizadas están en &lt;a href="https://github.com/pcaro/pcaropi"&gt;github.com/pcaro/pcaropi&lt;/a&gt;:&lt;/p&gt;
+&lt;h4 id="extensiones"&gt;Extensiones&lt;a class="headerlink" href="#extensiones" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;answer.ts&lt;/code&gt; — Q&amp;amp;A interactivo. Extrae preguntas de mensajes del asistente y las responde una a una (&lt;code&gt;/answer&lt;/code&gt; o &lt;code&gt;Ctrl+.&lt;/code&gt;).&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;context.ts&lt;/code&gt; — Visualización del uso de contexto (tokens, coste, archivos/skills cargados) vía &lt;code&gt;/context&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;files.ts&lt;/code&gt; — Navegador de archivos interactivo (&lt;code&gt;/files&lt;/code&gt; o &lt;code&gt;Ctrl+Shift+o&lt;/code&gt;) con estado git y vista rápida.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;notify.ts&lt;/code&gt; — Notificaciones de escritorio (Linux/notify-send) cuando el agente completa un turno.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;session-breakdown.ts&lt;/code&gt; — Historial de sesiones visualizado en 7/30/90 días (&lt;code&gt;/session-breakdown&lt;/code&gt;).&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;todos.ts&lt;/code&gt; — Gestor de TODOs en Markdown con TUI, bloqueo de archivos y asignación de tareas (&lt;code&gt;/todos&lt;/code&gt;).&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;uv.ts&lt;/code&gt; — Intercepta comandos Python (&lt;code&gt;pip&lt;/code&gt;, &lt;code&gt;poetry&lt;/code&gt;) y sugiere usar &lt;code&gt;uv&lt;/code&gt; en su lugar.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id="skills"&gt;Skills&lt;a class="headerlink" href="#skills" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;cli-tools&lt;/code&gt; — Documenta las herramientas CLI disponibles en mi sistema (jq, fx, gh, httpie, etc.)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;google-workspace&lt;/code&gt; — Acceso a APIs de Google (Drive, Docs, Calendar, Gmail) sin MCP.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;summarize&lt;/code&gt; — Convierte URLs o archivos locales a Markdown usando &lt;code&gt;uvx markitdown&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;update-changelog&lt;/code&gt; — Skill para mantener el changelog del repositorio actualizado.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;web-browser&lt;/code&gt; — Interacción con páginas web mediante Chrome DevTools Protocol.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;linkedin-post-formatter&lt;/code&gt; — Formatea posts para LinkedIn con Unicode bold/italic.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id="prompt-templates"&gt;Prompt templates&lt;a class="headerlink" href="#prompt-templates" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;pr-create.md&lt;/code&gt; — Template para crear PRs con estructura consistente.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;pr-fix-checks.md&lt;/code&gt; — Para arreglar checks fallidos en PRs.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;review.md&lt;/code&gt; — Template para revisiones de código estructuradas.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="mcp"&gt;MCP&lt;a class="headerlink" href="#mcp" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="pi-mcp-adapter-nicobailon"&gt;pi-mcp-adapter (NicoBailon)&lt;a class="headerlink" href="#pi-mcp-adapter-nicobailon" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pi&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;git:github.com/nicobailon/pi-mcp-adapter
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Adaptador para conectar servidores MCP estándar. Pi no trae MCP nativo (por diseño), pero con este adaptador puedes usar cualquier servidor MCP del ecosistema.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Fuente original&lt;/em&gt;: &lt;a href="https://pi.dev/"&gt;pi.dev&lt;/a&gt; | &lt;a href="https://github.com/pcaro/pcaropi"&gt;pcaropi&lt;/a&gt;&lt;/p&gt;</content><category term="ia"></category><category term="pi"></category><category term="coding-agent"></category><category term="extensiones"></category><category term="skills"></category><category term="subagentes"></category><category term="cli"></category></entry><entry><title>Matt Pocock — Skills sencillas que funcionan</title><link href="https://pablocaro.es/matt-pocock-skills" rel="alternate"></link><published>2026-05-06T00:00:00+02:00</published><updated>2026-05-06T00:00:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-05-06:/matt-pocock-skills</id><summary type="html">&lt;p&gt;Quinta entrega de la serie sobre ingeniería de programación con agentes. Hoy toca el proyecto que está arrasando estos días: las &lt;strong&gt;skills de Matt Pocock&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;He cubierto Superpowers (Jesse Vincent), Agent Skills (Addy Osmani) y Compound Engineering (Every). Cada uno aporta una pieza importante del puzzle. Pero las skills de …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Quinta entrega de la serie sobre ingeniería de programación con agentes. Hoy toca el proyecto que está arrasando estos días: las &lt;strong&gt;skills de Matt Pocock&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;He cubierto Superpowers (Jesse Vincent), Agent Skills (Addy Osmani) y Compound Engineering (Every). Cada uno aporta una pieza importante del puzzle. Pero las skills de Matt Pocock han explotado en popularidad en cuestión de días, y creo que sé por qué: aplican una filosofía KISS llevada al extremo. Skills cortas, directas, sin pretensiones. Y una de ellas, &lt;code&gt;/grill-me&lt;/code&gt;, se ha convertido en un fenómeno por sí sola.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Matt Pocock Skills" src="/images/matt-pocock-skills-cover.png"&gt;&lt;/p&gt;
