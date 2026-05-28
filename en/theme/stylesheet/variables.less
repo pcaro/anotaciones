@@ -1,17 +1,19 @@
 // Flex colors
-@orange: #D9411E;
-@light-orange: #FF5A09;
-@white:  #ffffff;
+@orange: #d9411e;
+@light-orange: #ff5a09;
+@white: #faf7f2;
 @grey: #333333;
-@light-grey:  #eeeeee;
-@med-grey:  #999999;
+@light-grey: #e8e4df;
+@med-grey: #757575;
 @dark-grey: #242121;
 @solid-dark-grey: #222222;
 @very-dark-grey: #1a1a1a;
 
 // Font family
-@sans: 'Source Sans Pro', 'Roboto', 'Open Sans', 'Liberation Sans', 'DejaVu Sans', 'Verdana', 'Helvetica', 'Arial', sans-serif;
-@mono: 'Source Code Pro', 'Consolas', 'Liberation Mono', 'DejaVu Sans Mono', monospace;
+@sans: "Source Sans Pro", "Roboto", "Open Sans", "Liberation Sans",
+  "DejaVu Sans", "Verdana", "Helvetica", "Arial", sans-serif;
+@mono: "Source Code Pro", "Consolas", "Liberation Mono", "DejaVu Sans Mono",
+  monospace;
 
 // Body
 @body-bg: @white;
@@ -56,33 +58,34 @@
 @nav-border-color: @light-grey;
 @nav-border-color-dark-theme: @solid-dark-grey;
 
-// Social buttons
+// Social buttons — all use a single tinted neutral on the dark sidebar
+@social-bg-color: rgba(255, 255, 255, 0.15);
 
-@email-bg-color: #578ad6;
-@facebook-bg-color: #3e5b98;
-@github-bg-color: #111010;
-@google-bg-color: #d93e2d;
-@instagram-bg-color: #125688;
-@keybase-bg-color: #4c8dff;
-@linkedin-bg-color: #3371b7;
-@medium-bg-color: #00ab6b;
-@pinterest-bg-color: #c92619;
-@reddit-bg-color: #ff4500;
-@rss-bg-color: #f26109;
-@soundcloud-bg-color: #ff5500;
-@stack-overflow-bg-color: #ff9900;
-@tumblr-bg-color: #36465d;
-@twitch-bg-color: #a970ff;
-@twitter-bg-color: #4da7de;
-@youtube-bg-color: #e02a20;
-@gitlab-bg-color: #fca326;
-@xing-bg-color: #007575;
-@bitbucket-bg-color: #0747A6;
-@mastodon-bg-color: #3088d4;
-@diaspora-color: #000000;
-@diaspora-bg-color: #D5D5D5;
-@flickr-bg-color: #ff0084;
-@lastfm-bg-color: #d92323;
+@email-bg-color: @social-bg-color;
+@facebook-bg-color: @social-bg-color;
+@github-bg-color: @social-bg-color;
+@google-bg-color: @social-bg-color;
+@instagram-bg-color: @social-bg-color;
+@keybase-bg-color: @social-bg-color;
+@linkedin-bg-color: @social-bg-color;
+@medium-bg-color: @social-bg-color;
+@pinterest-bg-color: @social-bg-color;
+@reddit-bg-color: @social-bg-color;
+@rss-bg-color: @social-bg-color;
+@soundcloud-bg-color: @social-bg-color;
+@stack-overflow-bg-color: @social-bg-color;
+@tumblr-bg-color: @social-bg-color;
+@twitch-bg-color: @social-bg-color;
+@twitter-bg-color: @social-bg-color;
+@youtube-bg-color: @social-bg-color;
+@gitlab-bg-color: @social-bg-color;
+@xing-bg-color: @social-bg-color;
+@bitbucket-bg-color: @social-bg-color;
+@mastodon-bg-color: @social-bg-color;
+@diaspora-color: @text-color;
+@diaspora-bg-color: @social-bg-color;
+@flickr-bg-color: @social-bg-color;
+@lastfm-bg-color: @social-bg-color;
 
 // Admonition colors
 @admonition-generic-color: @dark-grey;
@@ -120,7 +123,7 @@
 @admonition-error-bg-color-dark-theme: @admonition-danger-bg-color-dark-theme;
 @admonition-error-icon: @admonition-danger-icon;
 
-@admonition-hint-color: #004085 ;
+@admonition-hint-color: #004085;
 @admonition-hint-color-dark-theme: #7abaff;
 @admonition-hint-bg-color: #cce5ff;
 @admonition-hint-bg-color-dark-theme: #001933;
@@ -143,6 +146,24 @@
 @admonition-note-bg-color: @admonition-important-bg-color;
 @admonition-note-bg-color-dark-theme: @admonition-important-bg-color-dark-theme;
 @admonition-note-icon: @admonition-important-icon;
+
+// Inline code
+@inline-code-color: #b8332e;
+@inline-code-color-dark-theme: @text-color-dark-theme;
+@inline-code-bg: #f5f3f0;
+@inline-code-bg-dark-theme: #080808;
+@inline-code-border: #e0dcd6;
+@inline-code-border-dark-theme: #000;
+
+// Keyboard keys
+@kbd-bg: @white;
+@kbd-bg-dark-theme: #080808;
+@kbd-color: @text-color;
+@kbd-color-dark-theme: @light-grey;
+@kbd-border: rgba(36, 33, 33, 0.2);
+@kbd-border-dark-theme: rgba(232, 228, 223, 0.2);
+@kbd-shadow: rgba(36, 33, 33, 0.2);
+@kbd-shadow-dark-theme: rgba(232, 228, 223, 0.2);
 
 @figure-color: #6c757d;
 @figure-color-dark-theme: #bfbfbf;

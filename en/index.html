@@ -8,11 +8,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="" />
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" type="text/css" href="/en/theme/stylesheet/style.min.css">
 
+    <link id="dark-theme-style" rel="stylesheet" type="text/css"
+        disabled="disabled"
+    href="/en/theme/stylesheet/dark-theme.min.css">
 
+    <link id="pygments-dark-theme" rel="stylesheet" type="text/css"
+            disabled="disabled"
+          href="/en/theme/pygments/github.min.css">
     <link id="pygments-light-theme" rel="stylesheet" type="text/css"
           href="/en/theme/pygments/github.min.css">
 
@@ -73,7 +81,7 @@
 <aside>
   <div>
     <a href="/en/">
-      <img src="/theme/img/profile.png" alt="Anotaciones" title="Anotaciones">
+      <img src="/theme/img/profile.png" alt="Anotaciones" title="Anotaciones" />
     </a>
 
     <h1>
@@ -81,70 +89,237 @@
     </h1>
 
     <p>Anotaciones</p>
-
-    <p style="font-size: 0.9em; font-style: italic; margin-bottom: 20px;">
+     <p style="font-size: 0.9em; font-style: italic; margin-bottom: 20px">
       Dumping my brain onto the internet. A collection of technical notes and solutions written for my future self, shared here in case they save someone else a headache.
     </p>
-
-    <div class="stork">
-      <input class="stork-input" type="text" autocomplete="off" name="q" data-stork="sitesearch" placeholder="Search..." onclick="loadStorkIndex()"/>
+      <div class="stork">
+      <label for="sidebar-search" class="sr-only"
+        >Search articles</label
+      >
+      <div class="stork-input-wrap">
+      <input
+        id="sidebar-search"
+        class="stork-input"
+        type="text"
+        autocomplete="off"
+        name="q"
+        data-stork="sitesearch"
+        placeholder="Search..."
+        onclick="loadStorkIndex()"
+      />
+      </div>
       <div class="stork-output" data-stork="sitesearch-output"></div>
     </div>
-
-    <nav>
+      <nav>
       <ul class="list">
-
-
-
-          <li>
-            <a target="_self" href="http://x.com/pcaro" >pcaro@X</a>
-          </li>
-          <li>
-            <a target="_self" href="https://github.com/pcaro/" >pcaro@Github</a>
-          </li>
-          <li>
-            <a target="_self" href="https://www.linkedin.com/in/pcarorevuelta/" >LinkedIn</a>
-          </li>
+             <li>
+          <a target="_self" href="http://x.com/pcaro">pcaro@X</a>
+        </li>
+        <li>
+          <a target="_self" href="https://github.com/pcaro/">pcaro@Github</a>
+        </li>
+        <li>
+          <a target="_self" href="https://www.linkedin.com/in/pcarorevuelta/">LinkedIn</a>
+        </li>
       </ul>
     </nav>
-
-    <ul class="social">
+       <ul class="social">
       <li>
-        <a class="sc-Twitter"
-           href="http://twitter.com/pcaro"
-           target="_blank">
-          <i class="fa-brands fa-Twitter"></i>
+        <a
+          class="sc-Twitter"
+          href="http://twitter.com/pcaro"
+          target="_blank"
+          aria-label="Twitter"
+        >
+          <i
+            class="fa-brands fa-Twitter"
+            aria-hidden="true"
+          ></i>
         </a>
       </li>
       <li>
-        <a class="sc-Github"
-           href="http://github.com/pcaro"
-           target="_blank">
-          <i class="fa-brands fa-Github"></i>
+        <a
+          class="sc-Github"
+          href="http://github.com/pcaro"
+          target="_blank"
+          aria-label="Github"
+        >
+          <i
+            class="fa-brands fa-Github"
+            aria-hidden="true"
+          ></i>
         </a>
       </li>
       <li>
-        <a class="sc-Linkedin"
-           href="https://www.linkedin.com/in/pcarorevuelta"
-           target="_blank">
-          <i class="fa-brands fa-Linkedin"></i>
+        <a
+          class="sc-Linkedin"
+          href="https://www.linkedin.com/in/pcarorevuelta"
+          target="_blank"
+          aria-label="Linkedin"
+        >
+          <i
+            class="fa-brands fa-Linkedin"
+            aria-hidden="true"
+          ></i>
         </a>
       </li>
       <li>
-        <a class="sc-Facebook"
-           href="https://www.facebook.com/pablo.carorevuelta"
-           target="_blank">
-          <i class="fa-brands fa-Facebook"></i>
+        <a
+          class="sc-Facebook"
+          href="https://www.facebook.com/pablo.carorevuelta"
+          target="_blank"
+          aria-label="Facebook"
+        >
+          <i
+            class="fa-brands fa-Facebook"
+            aria-hidden="true"
+          ></i>
         </a>
       </li>
       <li>
-        <a class="sc-Email"
-           href="mailto:correo@pablocaro.es"
-           target="_blank">
-          <i class="fa-brands fa-Email"></i>
+        <a
+          class="sc-Email"
+          href="mailto:correo@pablocaro.es"
+          target="_blank"
+          aria-label="Email"
+        >
+          <i
+            class="fa-brands fa-Email"
+            aria-hidden="true"
+          ></i>
         </a>
       </li>
     </ul>
+     <nav class="sidebar-categories" aria-label="Categories">
+                                                                                                                                                           <a
+        href="/en/category/ia.html"
+        class="sidebar-category"
+        title="ia (13)"
+      >
+        <img
+          src="/en/images/categories/ia.png"
+          alt="ia"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">ia</span>
+      </a>
+      <a
+        href="/en/category/programacion.html"
+        class="sidebar-category"
+        title="Programación (28)"
+      >
+        <img
+          src="/en/images/categories/programacion.png"
+          alt="Programación"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Programación</span>
+      </a>
+      <a
+        href="/en/category/linux.html"
+        class="sidebar-category"
+        title="Linux (11)"
+      >
+        <img
+          src="/en/images/categories/linux.png"
+          alt="Linux"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Linux</span>
+      </a>
+      <a
+        href="/en/category/herramientas.html"
+        class="sidebar-category"
+        title="Herramientas (22)"
+      >
+        <img
+          src="/en/images/categories/herramientas.png"
+          alt="Herramientas"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Herramientas</span>
+      </a>
+      <a
+        href="/en/category/infraestructura.html"
+        class="sidebar-category"
+        title="Infraestructura (15)"
+      >
+        <img
+          src="/en/images/categories/infraestructura.png"
+          alt="Infraestructura"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Infraestructura</span>
+      </a>
+      <a
+        href="/en/category/documentacion.html"
+        class="sidebar-category"
+        title="Documentación (1)"
+      >
+        <img
+          src="/en/images/categories/documentacion.png"
+          alt="Documentación"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Documentación</span>
+      </a>
+      <a
+        href="/en/category/finanzas.html"
+        class="sidebar-category"
+        title="Finanzas (1)"
+      >
+        <img
+          src="/en/images/categories/finanzas.png"
+          alt="Finanzas"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Finanzas</span>
+      </a>
+      <a
+        href="/en/category/personal.html"
+        class="sidebar-category"
+        title="Personal (2)"
+      >
+        <img
+          src="/en/images/categories/personal.png"
+          alt="Personal"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Personal</span>
+      </a>
+      <a
+        href="/en/category/programming.html"
+        class="sidebar-category"
+        title="Programming (1)"
+      >
+        <span class="sidebar-category-icon">Pr</span>
+        <span class="sidebar-category-label">Programming</span>
+      </a>
+      <a
+        href="/en/category/tools.html"
+        class="sidebar-category"
+        title="tools (1)"
+      >
+        <span class="sidebar-category-icon">to</span>
+        <span class="sidebar-category-label">tools</span>
+      </a>
+    </nav>
   </div>
 
 </aside>
@@ -158,1913 +333,2187 @@
   <a href="/en/tags.html">Tags</a>
   <a href="/en/search.html">Search</a>
   <a href="/">Español</a>
-
-  <a href="/en/feeds/all.atom.xml">Atom</a>
-
-  <a href="/en/feeds/all.rss.xml">RSS</a>
+   <a href="javascript:void(0)" onclick="theme.switch('dark')">🌙</a>
+  <a href="javascript:void(0)" onclick="theme.switch('light')">☀</a>
+   <a href="/en/feeds/all.rss.xml">RSS</a>
 </nav>
 
-
-
-<article>
+  <article>
   <header>
-    <h2><a href="/en/limpiar-cache-npx#limpiar-cache-npx">Cleaning up npx's hidden cache</a></h2>
+    <h2>
+      <a
+        href="/en/limpiar-cache-npx#limpiar-cache-npx"
+        >Cleaning up npx's hidden cache</a
+      >
+    </h2>
     <p>
-      Posted on Thu, 28 May 2026 in <a href="/en/category/tools.html">tools</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/npm.html">npm</a>,              <a href="/en/tag/npx.html">npx</a>,              <a href="/en/tag/terminal.html">terminal</a>,              <a href="/en/tag/tools.html">tools</a>
-    </p>
+      Posted on Thu, 28 May 2026 in <a href="/en/category/tools.html">tools</a>       &#8226; Tagged with       <a href="/en/tag/npm.html">npm</a>,       <a href="/en/tag/npx.html">npx</a>,       <a href="/en/tag/terminal.html">terminal</a>,       <a href="/en/tag/tools.html">tools</a>       </p>
   </header>
   <div>
-        <img src="/images/limpiar-cache-npx.png">
-      <div><p>npx leaves a hidden package cache in ~/.npm/_npx/. Here's how to list what you've accumulated and clean it up.</p></div>
-        <br>
-        <a class="btn"
-           href="/en/limpiar-cache-npx#limpiar-cache-npx">
-          Continue reading
-        </a>
-  </div>
+     <img src="/images/limpiar-cache-npx.png" loading="lazy" />
+    <div><p>npx leaves a hidden package cache in ~/.npm/_npx/. Here's how to list what you've accumulated and clean it up.</p></div>
+    <br />
+    <a
+      class="btn"
+      href="/en/limpiar-cache-npx#limpiar-cache-npx"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/extensiones-pi-que-uso#extensiones-pi-que-uso">The Pi Extensions I Use Daily</a></h2>
+    <h2>
+      <a
+        href="/en/extensiones-pi-que-uso#extensiones-pi-que-uso"
+        >The Pi Extensions I Use Daily</a
+      >
+    </h2>
     <p>
-      Posted on Thu, 21 May 2026 in <a href="/en/category/ia.html">ia</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/pi.html">pi</a>,              <a href="/en/tag/coding-agent.html">coding-agent</a>,              <a href="/en/tag/extensions.html">extensions</a>,              <a href="/en/tag/skills.html">skills</a>,              <a href="/en/tag/subagents.html">subagents</a>,              <a href="/en/tag/cli.html">cli</a>
-    </p>
+      Posted on Thu, 21 May 2026 in <a href="/en/category/ia.html">ia</a>       &#8226; Tagged with       <a href="/en/tag/pi.html">pi</a>,       <a href="/en/tag/coding-agent.html">coding-agent</a>,       <a href="/en/tag/extensions.html">extensions</a>,       <a href="/en/tag/skills.html">skills</a>,       <a href="/en/tag/subagents.html">subagents</a>,       <a href="/en/tag/cli.html">cli</a>       </p>
   </header>
   <div>
-        <img src="/images/pi-extensiones.png">
-      <div><p>Third and final part of the series on <a href="https://pi.dev/">pi</a>. In the <a href="https://pablocaro.es/en/que-es-pi-coding-agent">first part</a> I explained what pi is and compared it to other agents. In the <a href="https://pablocaro.es/en/pi-de-principiante-a-avanzado">second</a> I wrote a complete usage guide. Now it's time for what really sets pi apart from everything else: <strong>the extensions</strong>.</p>
+     <img src="/images/pi-extensiones.png" loading="lazy" />
+    <div><p>Third and final part of the series on <a href="https://pi.dev/">pi</a>. In the <a href="https://pablocaro.es/en/que-es-pi-coding-agent">first part</a> I explained what pi is and compared it to other agents. In the <a href="https://pablocaro.es/en/pi-de-principiante-a-avanzado">second</a> I wrote a complete usage guide. Now it's time for what really sets pi apart from everything else: <strong>the extensions</strong>.</p>
 <p>I have over …</p></div>
-        <br>
-        <a class="btn"
-           href="/en/extensiones-pi-que-uso#extensiones-pi-que-uso">
-          Continue reading
-        </a>
-  </div>
+    <br />
+    <a
+      class="btn"
+      href="/en/extensiones-pi-que-uso#extensiones-pi-que-uso"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/pi-de-principiante-a-avanzado#pi-de-principiante-a-avanzado">Pi from Beginner to Advanced — The Complete Guide</a></h2>
+    <h2>
+      <a
+        href="/en/pi-de-principiante-a-avanzado#pi-de-principiante-a-avanzado"
+        >Pi from Beginner to Advanced — The Complete Guide</a
+      >
+    </h2>
     <p>
-      Posted on Thu, 21 May 2026 in <a href="/en/category/ia.html">ia</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/pi.html">pi</a>,              <a href="/en/tag/coding-agent.html">coding-agent</a>,              <a href="/en/tag/guide.html">guide</a>,              <a href="/en/tag/tutorial.html">tutorial</a>,              <a href="/en/tag/cli.html">cli</a>,              <a href="/en/tag/terminal.html">terminal</a>
-    </p>
+      Posted on Thu, 21 May 2026 in <a href="/en/category/ia.html">ia</a>       &#8226; Tagged with       <a href="/en/tag/pi.html">pi</a>,       <a href="/en/tag/coding-agent.html">coding-agent</a>,       <a href="/en/tag/guide.html">guide</a>,       <a href="/en/tag/tutorial.html">tutorial</a>,       <a href="/en/tag/cli.html">cli</a>,       <a href="/en/tag/terminal.html">terminal</a>       </p>
   </header>
   <div>
-        <img src="/images/pi-aprendizaje.jpg">
-      <div><p>Complete pi guide: from installation and first steps to tree sessions, branching, skills, extensions, and power-user tricks.</p></div>
-        <br>
-        <a class="btn"
-           href="/en/pi-de-principiante-a-avanzado#pi-de-principiante-a-avanzado">
-          Continue reading
-        </a>
-  </div>
+     <img src="/images/pi-aprendizaje.jpg" loading="lazy" />
+    <div><p>Complete pi guide: from installation and first steps to tree sessions, branching, skills, extensions, and power-user tricks.</p></div>
+    <br />
+    <a
+      class="btn"
+      href="/en/pi-de-principiante-a-avanzado#pi-de-principiante-a-avanzado"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/que-es-pi-coding-agent#que-es-pi-coding-agent">What is Pi? — The Minimal Coding Agent That Went Viral</a></h2>
+    <h2>
+      <a
+        href="/en/que-es-pi-coding-agent#que-es-pi-coding-agent"
+        >What is Pi? — The Minimal Coding Agent That Went Viral</a
+      >
+    </h2>
     <p>
-      Posted on Thu, 21 May 2026 in <a href="/en/category/ia.html">ia</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/pi.html">pi</a>,              <a href="/en/tag/coding-agent.html">coding-agent</a>,              <a href="/en/tag/agents.html">agents</a>,              <a href="/en/tag/claude-code.html">claude-code</a>,              <a href="/en/tag/codex.html">codex</a>,              <a href="/en/tag/opencode.html">opencode</a>,              <a href="/en/tag/gemini-cli.html">gemini-cli</a>
-    </p>
+      Posted on Thu, 21 May 2026 in <a href="/en/category/ia.html">ia</a>       &#8226; Tagged with       <a href="/en/tag/pi.html">pi</a>,       <a href="/en/tag/coding-agent.html">coding-agent</a>,       <a href="/en/tag/agents.html">agents</a>,       <a href="/en/tag/claude-code.html">claude-code</a>,       <a href="/en/tag/codex.html">codex</a>,       <a href="/en/tag/opencode.html">opencode</a>,       <a href="/en/tag/gemini-cli.html">gemini-cli</a>       </p>
   </header>
   <div>
-        <img src="/images/comparativa-agentes-pi.png">
-      <div><p>Pi is a minimal terminal coding agent. This article explains what it is, how it differs from Claude Code, Codex, OpenCode, and Gemini CLI, and why it went viral.</p></div>
-        <br>
-        <a class="btn"
-           href="/en/que-es-pi-coding-agent#que-es-pi-coding-agent">
-          Continue reading
-        </a>
-  </div>
+     <img src="/images/comparativa-agentes-pi.png" loading="lazy" />
+    <div><p>Pi is a minimal terminal coding agent. This article explains what it is, how it differs from Claude Code, Codex, OpenCode, and Gemini CLI, and why it went viral.</p></div>
+    <br />
+    <a
+      class="btn"
+      href="/en/que-es-pi-coding-agent#que-es-pi-coding-agent"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/programming-as-theory-building-naur#programming-as-theory-building-naur">Programming as Theory Building: Peter Naur's Essay</a></h2>
+    <h2>
+      <a
+        href="/en/programming-as-theory-building-naur#programming-as-theory-building-naur"
+        >Programming as Theory Building: Peter Naur's Essay</a
+      >
+    </h2>
     <p>
-      Posted on Mon, 18 May 2026 in <a href="/en/category/programming.html">Programming</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/programming.html">programming</a>,              <a href="/en/tag/theory.html">theory</a>,              <a href="/en/tag/architecture.html">architecture</a>,              <a href="/en/tag/ai.html">ai</a>,              <a href="/en/tag/llm.html">llm</a>,              <a href="/en/tag/naur.html">naur</a>
-    </p>
+      Posted on Mon, 18 May 2026 in <a href="/en/category/programming.html">Programming</a>       &#8226; Tagged with       <a href="/en/tag/programming.html">programming</a>,       <a href="/en/tag/theory.html">theory</a>,       <a href="/en/tag/architecture.html">architecture</a>,       <a href="/en/tag/ai.html">ai</a>,       <a href="/en/tag/llm.html">llm</a>,       <a href="/en/tag/naur.html">naur</a>       </p>
   </header>
   <div>
-        <img src="/images/programming-theory-building-naur.png">
-      <div><p>The key ideas from Christian Ekrem's article on Peter Naur's essay and why it matters more than ever in the age of generative AI.</p></div>
-        <br>
-        <a class="btn"
-           href="/en/programming-as-theory-building-naur#programming-as-theory-building-naur">
-          Continue reading
-        </a>
-  </div>
+     <img src="/images/programming-theory-building-naur.png" loading="lazy" />
+    <div><p>The key ideas from Christian Ekrem's article on Peter Naur's essay and why it matters more than ever in the age of generative AI.</p></div>
+    <br />
+    <a
+      class="btn"
+      href="/en/programming-as-theory-building-naur#programming-as-theory-building-naur"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/markdownpart-kate-preview#markdownpart-kate-preview">Markdown Preview in Kate Editor with markdownpart</a></h2>
+    <h2>
+      <a
+        href="/en/markdownpart-kate-preview#markdownpart-kate-preview"
+        >Markdown Preview in Kate Editor with markdownpart</a
+      >
+    </h2>
     <p>
-      Posted on Mon, 11 May 2026 in <a href="/en/category/linux.html">Linux</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/kate.html">kate</a>,              <a href="/en/tag/markdown.html">markdown</a>,              <a href="/en/tag/linux.html">linux</a>,              <a href="/en/tag/kde.html">kde</a>,              <a href="/en/tag/editor.html">editor</a>
-    </p>
+      Posted on Mon, 11 May 2026 in <a href="/en/category/linux.html">Linux</a>       &#8226; Tagged with       <a href="/en/tag/kate.html">kate</a>,       <a href="/en/tag/markdown.html">markdown</a>,       <a href="/en/tag/linux.html">linux</a>,       <a href="/en/tag/kde.html">kde</a>,       <a href="/en/tag/editor.html">editor</a>       </p>
   </header>
   <div>
-        <img src="/images/markdownpart-kate-preview.png">
-      <div><p>How to enable live Markdown preview in Kate using markdownpart.</p></div>
-        <br>
-        <a class="btn"
-           href="/en/markdownpart-kate-preview#markdownpart-kate-preview">
-          Continue reading
-        </a>
-  </div>
+     <img src="/images/markdownpart-kate-preview.png" loading="lazy" />
+    <div><p>How to enable live Markdown preview in Kate using markdownpart.</p></div>
+    <br />
+    <a
+      class="btn"
+      href="/en/markdownpart-kate-preview#markdownpart-kate-preview"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/vial-linux-udev#vial-linux-udev">Configuring udev permissions for Vial on Linux</a></h2>
+    <h2>
+      <a
+        href="/en/vial-linux-udev#vial-linux-udev"
+        >Configuring udev permissions for Vial on Linux</a
+      >
+    </h2>
     <p>
-      Posted on Mon, 11 May 2026 in <a href="/en/category/linux.html">Linux</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/vial.html">vial</a>,              <a href="/en/tag/linux.html">linux</a>,              <a href="/en/tag/udev.html">udev</a>,              <a href="/en/tag/keyboard.html">keyboard</a>,              <a href="/en/tag/keychron.html">keychron</a>,              <a href="/en/tag/qmk.html">qmk</a>
-    </p>
+      Posted on Mon, 11 May 2026 in <a href="/en/category/linux.html">Linux</a>       &#8226; Tagged with       <a href="/en/tag/vial.html">vial</a>,       <a href="/en/tag/linux.html">linux</a>,       <a href="/en/tag/udev.html">udev</a>,       <a href="/en/tag/keyboard.html">keyboard</a>,       <a href="/en/tag/keychron.html">keychron</a>,       <a href="/en/tag/qmk.html">qmk</a>       </p>
   </header>
   <div>
-        <img src="/images/vial-linux-udev.png">
-      <div><p>How to set up udev rules so Vial can detect your Vial-firmware keyboard on Linux, using the universal magic serial rule.</p></div>
-        <br>
-        <a class="btn"
-           href="/en/vial-linux-udev#vial-linux-udev">
-          Continue reading
-        </a>
-  </div>
+     <img src="/images/vial-linux-udev.png" loading="lazy" />
+    <div><p>How to set up udev rules so Vial can detect your Vial-firmware keyboard on Linux, using the universal magic serial rule.</p></div>
+    <br />
+    <a
+      class="btn"
+      href="/en/vial-linux-udev#vial-linux-udev"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/spec-kit-github#spec-kit-github">GitHub Spec Kit — Specifications as Source of Truth</a></h2>
+    <h2>
+      <a
+        href="/en/spec-kit-github#spec-kit-github"
+        >GitHub Spec Kit — Specifications as Source of Truth</a
+      >
+    </h2>
     <p>
-      Posted on Sun, 10 May 2026 in <a href="/en/category/ia.html">ia</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/agents.html">agents</a>,              <a href="/en/tag/ai.html">ai</a>,              <a href="/en/tag/spec-kit.html">spec-kit</a>,              <a href="/en/tag/github.html">github</a>,              <a href="/en/tag/spec-driven-development.html">spec-driven-development</a>
-    </p>
+      Posted on Sun, 10 May 2026 in <a href="/en/category/ia.html">ia</a>       &#8226; Tagged with       <a href="/en/tag/agents.html">agents</a>,       <a href="/en/tag/ai.html">ai</a>,       <a href="/en/tag/spec-kit.html">spec-kit</a>,       <a href="/en/tag/github.html">github</a>,       <a href="/en/tag/spec-driven-development.html">spec-driven-development</a>       </p>
   </header>
   <div>
-        <img src="/images/spec-kit-github-cover.png">
-      <div><p>Sixth installment in the series on software engineering with AI agents. Today we look at the project that GitHub has turned into the de facto standard for specification-driven development: <strong>Spec Kit</strong>.</p>
+     <img src="/images/spec-kit-github-cover.png" loading="lazy" />
+    <div><p>Sixth installment in the series on software engineering with AI agents. Today we look at the project that GitHub has turned into the de facto standard for specification-driven development: <strong>Spec Kit</strong>.</p>
 <p>So far we have covered methodologies for directing agents: compound engineering (Every), discipline skills (Addy Osmani), a complete operating …</p></div>
-        <br>
-        <a class="btn"
-           href="/en/spec-kit-github#spec-kit-github">
-          Continue reading
-        </a>
-  </div>
+    <br />
+    <a
+      class="btn"
+      href="/en/spec-kit-github#spec-kit-github"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/matt-pocock-skills#matt-pocock-skills">Matt Pocock — Simple Skills That Work</a></h2>
+    <h2>
+      <a
+        href="/en/matt-pocock-skills#matt-pocock-skills"
+        >Matt Pocock — Simple Skills That Work</a
+      >
+    </h2>
     <p>
-      Posted on Wed, 06 May 2026 in <a href="/en/category/ia.html">ia</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/agents.html">agents</a>,              <a href="/en/tag/ia.html">ia</a>,              <a href="/en/tag/skills.html">skills</a>,              <a href="/en/tag/matt-pocock.html">matt-pocock</a>,              <a href="/en/tag/claude-code.html">claude-code</a>
-    </p>
+      Posted on Wed, 06 May 2026 in <a href="/en/category/ia.html">ia</a>       &#8226; Tagged with       <a href="/en/tag/agents.html">agents</a>,       <a href="/en/tag/ia.html">ia</a>,       <a href="/en/tag/skills.html">skills</a>,       <a href="/en/tag/matt-pocock.html">matt-pocock</a>,       <a href="/en/tag/claude-code.html">claude-code</a>       </p>
   </header>
   <div>
-        <img src="/images/matt-pocock-skills-cover.png">
-      <div><p>Fifth installment of the series on software engineering with agents. Today it is the project that is taking off right now: <strong>Matt Pocock's skills</strong>.</p>
+     <img src="/images/matt-pocock-skills-cover.png" loading="lazy" />
+    <div><p>Fifth installment of the series on software engineering with agents. Today it is the project that is taking off right now: <strong>Matt Pocock's skills</strong>.</p>
 <p>I have covered Superpowers (Jesse Vincent), Agent Skills (Addy Osmani), and Compound Engineering (Every). Each brings an important piece of the puzzle. But Matt Pocock's skills …</p></div>
-        <br>
-        <a class="btn"
-           href="/en/matt-pocock-skills#matt-pocock-skills">
-          Continue reading
-        </a>
-  </div>
+    <br />
+    <a
+      class="btn"
+      href="/en/matt-pocock-skills#matt-pocock-skills"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/superpowers-obra-jesse-vincent#superpowers-obra-jesse-vincent">Superpowers — Jesse Vincent Imposes Methodology on Coding Agents</a></h2>
+    <h2>
+      <a
+        href="/en/superpowers-obra-jesse-vincent#superpowers-obra-jesse-vincent"
+        >Superpowers — Jesse Vincent Imposes Methodology on Coding Agents</a
+      >
+    </h2>
     <p>
-      Posted on Wed, 06 May 2026 in <a href="/en/category/ia.html">ia</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/agents.html">agents</a>,              <a href="/en/tag/ai.html">ai</a>,              <a href="/en/tag/superpowers.html">superpowers</a>,              <a href="/en/tag/jesse-vincent.html">jesse-vincent</a>,              <a href="/en/tag/claude-code.html">claude-code</a>,              <a href="/en/tag/prime-radiant.html">prime-radiant</a>
-    </p>
+      Posted on Wed, 06 May 2026 in <a href="/en/category/ia.html">ia</a>       &#8226; Tagged with       <a href="/en/tag/agents.html">agents</a>,       <a href="/en/tag/ai.html">ai</a>,       <a href="/en/tag/superpowers.html">superpowers</a>,       <a href="/en/tag/jesse-vincent.html">jesse-vincent</a>,       <a href="/en/tag/claude-code.html">claude-code</a>,       <a href="/en/tag/prime-radiant.html">prime-radiant</a>       </p>
   </header>
   <div>
-        <img src="/images/superpowers-obra-cover.png">
-      <div><p>Fourth installment in the series on agent-driven software engineering. Today I am covering a project that has changed the game: <strong>Superpowers</strong>, by Jesse Vincent.</p>
+     <img src="/images/superpowers-obra-cover.png" loading="lazy" />
+    <div><p>Fourth installment in the series on agent-driven software engineering. Today I am covering a project that has changed the game: <strong>Superpowers</strong>, by Jesse Vincent.</p>
 <p>With 180,000 stars on GitHub and 16,000 forks, Superpowers is the most popular agent skills framework today. But what makes it special is not …</p></div>
-        <br>
-        <a class="btn"
-           href="/en/superpowers-obra-jesse-vincent#superpowers-obra-jesse-vincent">
-          Continue reading
-        </a>
-  </div>
+    <br />
+    <a
+      class="btn"
+      href="/en/superpowers-obra-jesse-vincent#superpowers-obra-jesse-vincent"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/agent-skills-addy-osmani#agent-skills-addy-osmani">Agent Skills by Addy Osmani — Enforcing Senior Engineering Discipline on Agents</a></h2>
+    <h2>
+      <a
+        href="/en/agent-skills-addy-osmani#agent-skills-addy-osmani"
+        >Agent Skills by Addy Osmani — Enforcing Senior Engineering Discipline on Agents</a
+      >
+    </h2>
     <p>
-      Posted on Wed, 06 May 2026 in <a href="/en/category/ia.html">ia</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/agents.html">agents</a>,              <a href="/en/tag/ai.html">ai</a>,              <a href="/en/tag/agent-skills.html">agent-skills</a>,              <a href="/en/tag/addy-osmani.html">addy-osmani</a>,              <a href="/en/tag/google.html">google</a>,              <a href="/en/tag/claude-code.html">claude-code</a>
-    </p>
+      Posted on Wed, 06 May 2026 in <a href="/en/category/ia.html">ia</a>       &#8226; Tagged with       <a href="/en/tag/agents.html">agents</a>,       <a href="/en/tag/ai.html">ai</a>,       <a href="/en/tag/agent-skills.html">agent-skills</a>,       <a href="/en/tag/addy-osmani.html">addy-osmani</a>,       <a href="/en/tag/google.html">google</a>,       <a href="/en/tag/claude-code.html">claude-code</a>       </p>
   </header>
   <div>
-        <img src="/images/agent-skills-addy-cover.png">
-      <div><p>In the previous two parts of this series we have seen an overview of agent-driven engineering and then Every's compound engineering methodology. Now for another similar approach: <strong>Agent Skills</strong>, Addy Osmani's project at Google that has nearly 30,000 stars on GitHub and tackles the problem from a completely different …</p></div>
-        <br>
-        <a class="btn"
-           href="/en/agent-skills-addy-osmani#agent-skills-addy-osmani">
-          Continue reading
-        </a>
-  </div>
+     <img src="/images/agent-skills-addy-cover.png" loading="lazy" />
+    <div><p>In the previous two parts of this series we have seen an overview of agent-driven engineering and then Every's compound engineering methodology. Now for another similar approach: <strong>Agent Skills</strong>, Addy Osmani's project at Google that has nearly 30,000 stars on GitHub and tackles the problem from a completely different …</p></div>
+    <br />
+    <a
+      class="btn"
+      href="/en/agent-skills-addy-osmani#agent-skills-addy-osmani"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/compound-engineering-every#compound-engineering-every">Compound Engineering — Every's Vision for Agent-Driven Engineering</a></h2>
+    <h2>
+      <a
+        href="/en/compound-engineering-every#compound-engineering-every"
+        >Compound Engineering — Every's Vision for Agent-Driven Engineering</a
+      >
+    </h2>
     <p>
-      Posted on Wed, 06 May 2026 in <a href="/en/category/ia.html">ia</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/agents.html">agents</a>,              <a href="/en/tag/ai.html">ai</a>,              <a href="/en/tag/compound-engineering.html">compound-engineering</a>,              <a href="/en/tag/every.html">every</a>,              <a href="/en/tag/claude-code.html">claude-code</a>
-    </p>
+      Posted on Wed, 06 May 2026 in <a href="/en/category/ia.html">ia</a>       &#8226; Tagged with       <a href="/en/tag/agents.html">agents</a>,       <a href="/en/tag/ai.html">ai</a>,       <a href="/en/tag/compound-engineering.html">compound-engineering</a>,       <a href="/en/tag/every.html">every</a>,       <a href="/en/tag/claude-code.html">claude-code</a>       </p>
   </header>
   <div>
-        <img src="/images/compound-engineering-every-cover.png">
-      <div><p>In the first part of this series I talked about how AI agents have changed the way I build software. But that was just the warm-up. What follows is the vision of a company that has taken this idea to the extreme: <strong>Every</strong>, the startup from Dan Shipper and Kieran …</p></div>
-        <br>
-        <a class="btn"
-           href="/en/compound-engineering-every#compound-engineering-every">
-          Continue reading
-        </a>
-  </div>
+     <img src="/images/compound-engineering-every-cover.png" loading="lazy" />
+    <div><p>In the first part of this series I talked about how AI agents have changed the way I build software. But that was just the warm-up. What follows is the vision of a company that has taken this idea to the extreme: <strong>Every</strong>, the startup from Dan Shipper and Kieran …</p></div>
+    <br />
+    <a
+      class="btn"
+      href="/en/compound-engineering-every#compound-engineering-every"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/programming-with-agents#programming-with-agents">Programming with Agents</a></h2>
+    <h2>
+      <a
+        href="/en/programming-with-agents#programming-with-agents"
+        >Programming with Agents</a
+      >
+    </h2>
     <p>
-      Posted on Wed, 06 May 2026 in <a href="/en/category/ia.html">ia</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/agents.html">agents</a>,              <a href="/en/tag/ai.html">ai</a>,              <a href="/en/tag/productivity.html">productivity</a>
-    </p>
+      Posted on Wed, 06 May 2026 in <a href="/en/category/ia.html">ia</a>       &#8226; Tagged with       <a href="/en/tag/agents.html">agents</a>,       <a href="/en/tag/ai.html">ai</a>,       <a href="/en/tag/productivity.html">productivity</a>       </p>
   </header>
   <div>
-        <img src="/images/programming-with-agents-cover.jpg">
-      <div><p>After more than 20 years of writing code, the rise of AI agents has changed how I work more than any new framework or language ever could. It is not about the AI writing code for me, but about letting me stay focused on what actually matters: design, architecture, and …</p></div>
-        <br>
-        <a class="btn"
-           href="/en/programming-with-agents#programming-with-agents">
-          Continue reading
-        </a>
-  </div>
+     <img src="/images/programming-with-agents-cover.jpg" loading="lazy" />
+    <div><p>After more than 20 years of writing code, the rise of AI agents has changed how I work more than any new framework or language ever could. It is not about the AI writing code for me, but about letting me stay focused on what actually matters: design, architecture, and …</p></div>
+    <br />
+    <a
+      class="btn"
+      href="/en/programming-with-agents#programming-with-agents"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/winhance-windows-debloater#winhance-windows-debloater">Winhance: clean and optimize Windows without reinstalling</a></h2>
+    <h2>
+      <a
+        href="/en/winhance-windows-debloater#winhance-windows-debloater"
+        >Winhance: clean and optimize Windows without reinstalling</a
+      >
+    </h2>
     <p>
-      Posted on Tue, 05 May 2026 in <a href="/en/category/herramientas.html">Herramientas</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/windows.html">windows</a>,              <a href="/en/tag/debloater.html">debloater</a>,              <a href="/en/tag/herramientas.html">herramientas</a>,              <a href="/en/tag/winhance.html">winhance</a>
-    </p>
+      Posted on Tue, 05 May 2026 in <a href="/en/category/herramientas.html">Herramientas</a>       &#8226; Tagged with       <a href="/en/tag/windows.html">windows</a>,       <a href="/en/tag/debloater.html">debloater</a>,       <a href="/en/tag/herramientas.html">herramientas</a>,       <a href="/en/tag/winhance.html">winhance</a>       </p>
   </header>
   <div>
-        <img src="/images/winhance-windows-debloater.png">
-      <div><p>Winhance is a C# utility to debloat, optimize, and customize Windows 10/11 without needing to reinstall the system.</p></div>
-        <br>
-        <a class="btn"
-           href="/en/winhance-windows-debloater#winhance-windows-debloater">
-          Continue reading
-        </a>
-  </div>
+     <img src="/images/winhance-windows-debloater.png" loading="lazy" />
+    <div><p>Winhance is a C# utility to debloat, optimize, and customize Windows 10/11 without needing to reinstall the system.</p></div>
+    <br />
+    <a
+      class="btn"
+      href="/en/winhance-windows-debloater#winhance-windows-debloater"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/extensiones-subagentes-pi#extensiones-subagentes-pi">Pi subagent extensions: TintinWeb, NicoBailon and Taskplane</a></h2>
+    <h2>
+      <a
+        href="/en/extensiones-subagentes-pi#extensiones-subagentes-pi"
+        >Pi subagent extensions: TintinWeb, NicoBailon and Taskplane</a
+      >
+    </h2>
     <p>
-      Posted on Sun, 03 May 2026 in <a href="/en/category/ia.html">IA</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/pi.html">pi</a>,              <a href="/en/tag/coding-agent.html">coding-agent</a>,              <a href="/en/tag/subagentes.html">subagentes</a>,              <a href="/en/tag/extensiones.html">extensiones</a>,              <a href="/en/tag/cli.html">cli</a>,              <a href="/en/tag/herramientas.html">herramientas</a>
-    </p>
+      Posted on Sun, 03 May 2026 in <a href="/en/category/ia.html">IA</a>       &#8226; Tagged with       <a href="/en/tag/pi.html">pi</a>,       <a href="/en/tag/coding-agent.html">coding-agent</a>,       <a href="/en/tag/subagentes.html">subagentes</a>,       <a href="/en/tag/extensiones.html">extensiones</a>,       <a href="/en/tag/cli.html">cli</a>,       <a href="/en/tag/herramientas.html">herramientas</a>       </p>
   </header>
   <div>
-        <img src="/images/pi-subagentes.png">
-      <div><p>A comparison of three extensions for running subagents in pi — TintinWeb, NicoBailon, and Taskplane — each with a different approach.</p></div>
-        <br>
-        <a class="btn"
-           href="/en/extensiones-subagentes-pi#extensiones-subagentes-pi">
-          Continue reading
-        </a>
-  </div>
+     <img src="/images/pi-subagentes.png" loading="lazy" />
+    <div><p>A comparison of three extensions for running subagents in pi — TintinWeb, NicoBailon, and Taskplane — each with a different approach.</p></div>
+    <br />
+    <a
+      class="btn"
+      href="/en/extensiones-subagentes-pi#extensiones-subagentes-pi"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/bloqueo-dns-aliexpress-nextdns#bloqueo-dns-aliexpress-nextdns">DNS blocking of AliExpress links with NextDNS</a></h2>
+    <h2>
+      <a
+        href="/en/bloqueo-dns-aliexpress-nextdns#bloqueo-dns-aliexpress-nextdns"
+        >DNS blocking of AliExpress links with NextDNS</a
+      >
+    </h2>
     <p>
-      Posted on Sun, 03 May 2026 in <a href="/en/category/infraestructura.html">Infraestructura</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/dns.html">dns</a>,              <a href="/en/tag/nextdns.html">nextdns</a>,              <a href="/en/tag/aliexpress.html">aliexpress</a>,              <a href="/en/tag/bloqueo.html">bloqueo</a>,              <a href="/en/tag/linux.html">linux</a>
-    </p>
+      Posted on Sun, 03 May 2026 in <a href="/en/category/infraestructura.html">Infraestructura</a>       &#8226; Tagged with       <a href="/en/tag/dns.html">dns</a>,       <a href="/en/tag/nextdns.html">nextdns</a>,       <a href="/en/tag/aliexpress.html">aliexpress</a>,       <a href="/en/tag/bloqueo.html">bloqueo</a>,       <a href="/en/tag/linux.html">linux</a>       </p>
   </header>
   <div>
-        <img src="/images/dns-blocking-nextdns.jpg">
-      <div><p>Using an overly aggressive DNS blocklist in NextDNS broke AliExpress affiliate links. Diagnosed with dig and fixed by switching to HaGeZi Multi PRO.</p></div>
-        <br>
-        <a class="btn"
-           href="/en/bloqueo-dns-aliexpress-nextdns#bloqueo-dns-aliexpress-nextdns">
-          Continue reading
-        </a>
-  </div>
+     <img src="/images/dns-blocking-nextdns.jpg" loading="lazy" />
+    <div><p>Using an overly aggressive DNS blocklist in NextDNS broke AliExpress affiliate links. Diagnosed with dig and fixed by switching to HaGeZi Multi PRO.</p></div>
+    <br />
+    <a
+      class="btn"
+      href="/en/bloqueo-dns-aliexpress-nextdns#bloqueo-dns-aliexpress-nextdns"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/escaneo-doble-cara-brother-dcp-l3560cdw#escaneo-doble-cara-brother-dcp-l3560cdw">Double-sided scanning with the Brother DCP-L3560CDW</a></h2>
+    <h2>
+      <a
+        href="/en/escaneo-doble-cara-brother-dcp-l3560cdw#escaneo-doble-cara-brother-dcp-l3560cdw"
+        >Double-sided scanning with the Brother DCP-L3560CDW</a
+      >
+    </h2>
     <p>
-      Posted on Sun, 03 May 2026 in <a href="/en/category/infraestructura.html">Infraestructura</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/brother.html">brother</a>,              <a href="/en/tag/impresora.html">impresora</a>,              <a href="/en/tag/escaner.html">escaner</a>,              <a href="/en/tag/linux.html">linux</a>,              <a href="/en/tag/simple-scan.html">simple-scan</a>,              <a href="/en/tag/paperless.html">paperless</a>
-    </p>
+      Posted on Sun, 03 May 2026 in <a href="/en/category/infraestructura.html">Infraestructura</a>       &#8226; Tagged with       <a href="/en/tag/brother.html">brother</a>,       <a href="/en/tag/impresora.html">impresora</a>,       <a href="/en/tag/escaner.html">escaner</a>,       <a href="/en/tag/linux.html">linux</a>,       <a href="/en/tag/simple-scan.html">simple-scan</a>,       <a href="/en/tag/paperless.html">paperless</a>       </p>
   </header>
   <div>
-        <img src="/images/brother-escaneo-doble-pagina.png">
-      <div><p>Workaround for scanning double-sided documents with the Brother DCP-L3560CDW and its simplex document feeder.</p></div>
-        <br>
-        <a class="btn"
-           href="/en/escaneo-doble-cara-brother-dcp-l3560cdw#escaneo-doble-cara-brother-dcp-l3560cdw">
-          Continue reading
-        </a>
-  </div>
+     <img src="/images/brother-escaneo-doble-pagina.png" loading="lazy" />
+    <div><p>Workaround for scanning double-sided documents with the Brother DCP-L3560CDW and its simplex document feeder.</p></div>
+    <br />
+    <a
+      class="btn"
+      href="/en/escaneo-doble-cara-brother-dcp-l3560cdw#escaneo-doble-cara-brother-dcp-l3560cdw"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/marksman-lsp-markdown#marksman-lsp-markdown">marksman: Markdown LSP</a></h2>
+    <h2>
+      <a
+        href="/en/marksman-lsp-markdown#marksman-lsp-markdown"
+        >marksman: Markdown LSP</a
+      >
+    </h2>
     <p>
-      Posted on Wed, 29 Apr 2026 in <a href="/en/category/herramientas.html">Herramientas</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/markdown.html">markdown</a>,              <a href="/en/tag/lsp.html">lsp</a>,              <a href="/en/tag/fresh.html">fresh</a>,              <a href="/en/tag/editor.html">editor</a>,              <a href="/en/tag/linux.html">linux</a>
-    </p>
+      Posted on Wed, 29 Apr 2026 in <a href="/en/category/herramientas.html">Herramientas</a>       &#8226; Tagged with       <a href="/en/tag/markdown.html">markdown</a>,       <a href="/en/tag/lsp.html">lsp</a>,       <a href="/en/tag/fresh.html">fresh</a>,       <a href="/en/tag/editor.html">editor</a>,       <a href="/en/tag/linux.html">linux</a>       </p>
   </header>
   <div>
-        <img src="/images/marksman-splash.png">
-      <div><p>marksman is a language server protocol (LSP) implementation for Markdown that adds autocompletion, cross-file navigation, and error detection to any compatible editor.</p></div>
-        <br>
-        <a class="btn"
-           href="/en/marksman-lsp-markdown#marksman-lsp-markdown">
-          Continue reading
-        </a>
-  </div>
+     <img src="/images/marksman-splash.png" loading="lazy" />
+    <div><p>marksman is a language server protocol (LSP) implementation for Markdown that adds autocompletion, cross-file navigation, and error detection to any compatible editor.</p></div>
+    <br />
+    <a
+      class="btn"
+      href="/en/marksman-lsp-markdown#marksman-lsp-markdown"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/muerte-cacharritos#muerte-cacharritos">The Price Hike of SBCs (Single Board Computers)</a></h2>
+    <h2>
+      <a
+        href="/en/muerte-cacharritos#muerte-cacharritos"
+        >The Price Hike of SBCs (Single Board Computers)</a
+      >
+    </h2>
     <p>
-      Posted on Tue, 28 Apr 2026 in <a href="/en/category/linux.html">Linux</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/raspberry-pi.html">raspberry-pi</a>,              <a href="/en/tag/sbc.html">sbc</a>,              <a href="/en/tag/hardware.html">hardware</a>
-    </p>
+      Posted on Tue, 28 Apr 2026 in <a href="/en/category/linux.html">Linux</a>       &#8226; Tagged with       <a href="/en/tag/raspberry-pi.html">raspberry-pi</a>,       <a href="/en/tag/sbc.html">sbc</a>,       <a href="/en/tag/hardware.html">hardware</a>       </p>
   </header>
   <div>
-        <img src="/images/subida-precio-sbc.png">
-      <div><p>La subida de los 'cacharritos'</p></div>
-        <br>
-        <a class="btn"
-           href="/en/muerte-cacharritos#muerte-cacharritos">
-          Continue reading
-        </a>
-  </div>
+     <img src="/images/subida-precio-sbc.png" loading="lazy" />
+    <div><p>La subida de los 'cacharritos'</p></div>
+    <br />
+    <a
+      class="btn"
+      href="/en/muerte-cacharritos#muerte-cacharritos"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/neofetch#neofetch">neofetch</a></h2>
+    <h2>
+      <a
+        href="/en/neofetch#neofetch"
+        >neofetch</a
+      >
+    </h2>
     <p>
-      Posted on Mon, 27 Apr 2026 in <a href="/en/category/herramientas.html">Herramientas</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/linux.html">linux</a>,              <a href="/en/tag/terminal.html">terminal</a>
-    </p>
+      Posted on Mon, 27 Apr 2026 in <a href="/en/category/herramientas.html">Herramientas</a>       &#8226; Tagged with       <a href="/en/tag/linux.html">linux</a>,       <a href="/en/tag/terminal.html">terminal</a>       </p>
   </header>
   <div>
-        <img src="/images/neofetch.png">
-      <div><p>Neofetch, a command-line system information tool.</p></div>
-        <br>
-        <a class="btn"
-           href="/en/neofetch#neofetch">
-          Continue reading
-        </a>
-  </div>
+     <img src="/images/neofetch.png" loading="lazy" />
+    <div><p>Neofetch, a command-line system information tool.</p></div>
+    <br />
+    <a
+      class="btn"
+      href="/en/neofetch#neofetch"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/rufus-instalar-windows-limpio#rufus-instalar-windows-limpio">Rufus, the best way to install a clean Windows</a></h2>
+    <h2>
+      <a
+        href="/en/rufus-instalar-windows-limpio#rufus-instalar-windows-limpio"
+        >Rufus, the best way to install a clean Windows</a
+      >
+    </h2>
     <p>
-      Posted on Mon, 27 Apr 2026 in <a href="/en/category/herramientas.html">Herramientas</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/rufus.html">rufus</a>,              <a href="/en/tag/windows.html">windows</a>,              <a href="/en/tag/instalacion.html">instalacion</a>
-    </p>
+      Posted on Mon, 27 Apr 2026 in <a href="/en/category/herramientas.html">Herramientas</a>       &#8226; Tagged with       <a href="/en/tag/rufus.html">rufus</a>,       <a href="/en/tag/windows.html">windows</a>,       <a href="/en/tag/instalacion.html">instalacion</a>       </p>
   </header>
   <div>
-        <img src="/images/rufus-4-14-interfaz.png">
-      <div><p>Rufus, a great tool for creating Windows installation media, allowing you to disable Microsoft's forced AI integrations.</p></div>
-        <br>
-        <a class="btn"
-           href="/en/rufus-instalar-windows-limpio#rufus-instalar-windows-limpio">
-          Continue reading
-        </a>
-  </div>
+     <img src="/images/rufus-4-14-interfaz.png" loading="lazy" />
+    <div><p>Rufus, a great tool for creating Windows installation media, allowing you to disable Microsoft's forced AI integrations.</p></div>
+    <br />
+    <a
+      class="btn"
+      href="/en/rufus-instalar-windows-limpio#rufus-instalar-windows-limpio"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/probando-aurora-mi-primer-vistazo-al-futuro-del-escritorio-linux#probando-aurora-mi-primer-vistazo-al-futuro-del-escritorio-linux">Trying Aurora: my first look at the future of the Linux desktop</a></h2>
+    <h2>
+      <a
+        href="/en/probando-aurora-mi-primer-vistazo-al-futuro-del-escritorio-linux#probando-aurora-mi-primer-vistazo-al-futuro-del-escritorio-linux"
+        >Trying Aurora: my first look at the future of the Linux desktop</a
+      >
+    </h2>
     <p>
-      Posted on Fri, 24 Apr 2026 in <a href="/en/category/linux.html">Linux</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/aurora.html">aurora</a>,              <a href="/en/tag/kde.html">kde</a>,              <a href="/en/tag/escritorio.html">escritorio</a>,              <a href="/en/tag/devcontainers.html">devcontainers</a>,              <a href="/en/tag/homebrew.html">homebrew</a>
-    </p>
+      Posted on Fri, 24 Apr 2026 in <a href="/en/category/linux.html">Linux</a>       &#8226; Tagged with       <a href="/en/tag/aurora.html">aurora</a>,       <a href="/en/tag/kde.html">kde</a>,       <a href="/en/tag/escritorio.html">escritorio</a>,       <a href="/en/tag/devcontainers.html">devcontainers</a>,       <a href="/en/tag/homebrew.html">homebrew</a>       </p>
   </header>
   <div>
-        <img src="/images/aurora-desktop-2026-04-24.png">
-      <div><p>Aurora: Image-based, atomic updates, devcontainers, homebrew, and the whole DX experience I'm testing in a VM.</p></div>
-        <br>
-        <a class="btn"
-           href="/en/probando-aurora-mi-primer-vistazo-al-futuro-del-escritorio-linux#probando-aurora-mi-primer-vistazo-al-futuro-del-escritorio-linux">
-          Continue reading
-        </a>
-  </div>
+     <img src="/images/aurora-desktop-2026-04-24.png" loading="lazy" />
+    <div><p>Aurora: Image-based, atomic updates, devcontainers, homebrew, and the whole DX experience I'm testing in a VM.</p></div>
+    <br />
+    <a
+      class="btn"
+      href="/en/probando-aurora-mi-primer-vistazo-al-futuro-del-escritorio-linux#probando-aurora-mi-primer-vistazo-al-futuro-del-escritorio-linux"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/ampliar-disco-vm-aurora-unraid#ampliar-disco-vm-aurora-unraid">Expand Aurora VM disk on Unraid and resize partitions</a></h2>
+    <h2>
+      <a
+        href="/en/ampliar-disco-vm-aurora-unraid#ampliar-disco-vm-aurora-unraid"
+        >Expand Aurora VM disk on Unraid and resize partitions</a
+      >
+    </h2>
     <p>
-      Posted on Fri, 24 Apr 2026 in <a href="/en/category/linux.html">Linux</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/aurora.html">aurora</a>,              <a href="/en/tag/unraid.html">unraid</a>,              <a href="/en/tag/vm.html">vm</a>,              <a href="/en/tag/btrfs.html">btrfs</a>,              <a href="/en/tag/disco.html">disco</a>
-    </p>
+      Posted on Fri, 24 Apr 2026 in <a href="/en/category/linux.html">Linux</a>       &#8226; Tagged with       <a href="/en/tag/aurora.html">aurora</a>,       <a href="/en/tag/unraid.html">unraid</a>,       <a href="/en/tag/vm.html">vm</a>,       <a href="/en/tag/btrfs.html">btrfs</a>,       <a href="/en/tag/disco.html">disco</a>       </p>
   </header>
   <div>
-        <img src="/images/ampliar-disco-vm-aurora-unraid.png">
-      <div><p>How to expand the virtual disk of an Aurora VM running on Unraid and resize Btrfs partitions within the operating system.</p></div>
-        <br>
-        <a class="btn"
-           href="/en/ampliar-disco-vm-aurora-unraid#ampliar-disco-vm-aurora-unraid">
-          Continue reading
-        </a>
-  </div>
+     <img src="/images/ampliar-disco-vm-aurora-unraid.png" loading="lazy" />
+    <div><p>How to expand the virtual disk of an Aurora VM running on Unraid and resize Btrfs partitions within the operating system.</p></div>
+    <br />
+    <a
+      class="btn"
+      href="/en/ampliar-disco-vm-aurora-unraid#ampliar-disco-vm-aurora-unraid"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/rust-ebooks-nightly#rust-ebooks-nightly">Rust eBooks Nightly — Rust books in EPUB, AZW3, MOBI, and PDF</a></h2>
+    <h2>
+      <a
+        href="/en/rust-ebooks-nightly#rust-ebooks-nightly"
+        >Rust eBooks Nightly — Rust books in EPUB, AZW3, MOBI, and PDF</a
+      >
+    </h2>
     <p>
-      Posted on Tue, 21 Apr 2026 in <a href="/en/category/programacion.html">Programación</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/rust.html">rust</a>,              <a href="/en/tag/ebooks.html">ebooks</a>,              <a href="/en/tag/epub.html">epub</a>,              <a href="/en/tag/calibre.html">calibre</a>,              <a href="/en/tag/github-actions.html">github actions</a>
-    </p>
+      Posted on Tue, 21 Apr 2026 in <a href="/en/category/programacion.html">Programación</a>       &#8226; Tagged with       <a href="/en/tag/rust.html">rust</a>,       <a href="/en/tag/ebooks.html">ebooks</a>,       <a href="/en/tag/epub.html">epub</a>,       <a href="/en/tag/calibre.html">calibre</a>,       <a href="/en/tag/github-actions.html">github actions</a>       </p>
   </header>
   <div>
-        <img src="/images/rust-ebooks-nightly.png">
-      <div><p>Artur Sulej's project that automatically builds and publishes the latest versions of top Rust books as eBooks. Updated daily.</p></div>
-        <br>
-        <a class="btn"
-           href="/en/rust-ebooks-nightly#rust-ebooks-nightly">
-          Continue reading
-        </a>
-  </div>
+     <img src="/images/rust-ebooks-nightly.png" loading="lazy" />
+    <div><p>Artur Sulej's project that automatically builds and publishes the latest versions of top Rust books as eBooks. Updated daily.</p></div>
+    <br />
+    <a
+      class="btn"
+      href="/en/rust-ebooks-nightly#rust-ebooks-nightly"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/disable-git-autocrlf#disable-git-autocrlf">Disable git autocrlf</a></h2>
+    <h2>
+      <a
+        href="/en/disable-git-autocrlf#disable-git-autocrlf"
+        >Disable git autocrlf</a
+      >
+    </h2>
     <p>
-      Posted on Tue, 21 Apr 2026 in <a href="/en/category/programacion.html">Programación</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/git.html">git</a>,              <a href="/en/tag/windows.html">windows</a>,              <a href="/en/tag/wsl.html">wsl</a>,              <a href="/en/tag/line-endings.html">line endings</a>
-    </p>
+      Posted on Tue, 21 Apr 2026 in <a href="/en/category/programacion.html">Programación</a>       &#8226; Tagged with       <a href="/en/tag/git.html">git</a>,       <a href="/en/tag/windows.html">windows</a>,       <a href="/en/tag/wsl.html">wsl</a>,       <a href="/en/tag/line-endings.html">line endings</a>       </p>
   </header>
   <div>
-        <img src="/images/git-disable-autocrlf.png">
-      <div><p>If you use Windows (or WSL), Git has been silently converting your line endings. One command fixes it.</p></div>
-        <br>
-        <a class="btn"
-           href="/en/disable-git-autocrlf#disable-git-autocrlf">
-          Continue reading
-        </a>
-  </div>
+     <img src="/images/git-disable-autocrlf.png" loading="lazy" />
+    <div><p>If you use Windows (or WSL), Git has been silently converting your line endings. One command fixes it.</p></div>
+    <br />
+    <a
+      class="btn"
+      href="/en/disable-git-autocrlf#disable-git-autocrlf"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/installing-github-skills#installing-github-skills">Installing GitHub Skills</a></h2>
+    <h2>
+      <a
+        href="/en/installing-github-skills#installing-github-skills"
+        >Installing GitHub Skills</a
+      >
+    </h2>
     <p>
-      Posted on Sun, 19 Apr 2026 in <a href="/en/category/programacion.html">Programación</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/github.html">github</a>,              <a href="/en/tag/cli.html">cli</a>,              <a href="/en/tag/agentes-ia.html">agentes-ia</a>,              <a href="/en/tag/skills.html">skills</a>
-    </p>
+      Posted on Sun, 19 Apr 2026 in <a href="/en/category/programacion.html">Programación</a>       &#8226; Tagged with       <a href="/en/tag/github.html">github</a>,       <a href="/en/tag/cli.html">cli</a>,       <a href="/en/tag/agentes-ia.html">agentes-ia</a>,       <a href="/en/tag/skills.html">skills</a>       </p>
   </header>
   <div>
-        <img src="/images/gh-skill-vs-npx-skills.jpg">
-      <div><p>Comparing <code>gh skill</code> vs <code>npx skills</code> for installing and managing AI agent skills.</p></div>
-        <br>
-        <a class="btn"
-           href="/en/installing-github-skills#installing-github-skills">
-          Continue reading
-        </a>
-  </div>
+     <img src="/images/gh-skill-vs-npx-skills.jpg" loading="lazy" />
+    <div><p>Comparing <code>gh skill</code> vs <code>npx skills</code> for installing and managing AI agent skills.</p></div>
+    <br />
+    <a
+      class="btn"
+      href="/en/installing-github-skills#installing-github-skills"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/velvet-os#velvet-os">Velvet OS: modern kernels for old ARM hardware</a></h2>
+    <h2>
+      <a
+        href="/en/velvet-os#velvet-os"
+        >Velvet OS: modern kernels for old ARM hardware</a
+      >
+    </h2>
     <p>
-      Posted on Fri, 17 Apr 2026 in <a href="/en/category/linux.html">Linux</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/kernel.html">kernel</a>,              <a href="/en/tag/arm.html">arm</a>,              <a href="/en/tag/odroid.html">odroid</a>,              <a href="/en/tag/orangepi.html">orangepi</a>,              <a href="/en/tag/velvet-os.html">velvet-os</a>,              <a href="/en/tag/sbc.html">sbc</a>
-    </p>
+      Posted on Fri, 17 Apr 2026 in <a href="/en/category/linux.html">Linux</a>       &#8226; Tagged with       <a href="/en/tag/kernel.html">kernel</a>,       <a href="/en/tag/arm.html">arm</a>,       <a href="/en/tag/odroid.html">odroid</a>,       <a href="/en/tag/orangepi.html">orangepi</a>,       <a href="/en/tag/velvet-os.html">velvet-os</a>,       <a href="/en/tag/sbc.html">sbc</a>       </p>
   </header>
   <div>
-        <img src="/images/velvet-os.png">
-      <div><p>Mental note about Velvet OS, an interesting project to update kernels on old ARM devices.</p></div>
-        <br>
-        <a class="btn"
-           href="/en/velvet-os#velvet-os">
-          Continue reading
-        </a>
-  </div>
+     <img src="/images/velvet-os.png" loading="lazy" />
+    <div><p>Mental note about Velvet OS, an interesting project to update kernels on old ARM devices.</p></div>
+    <br />
+    <a
+      class="btn"
+      href="/en/velvet-os#velvet-os"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/video-gemini-sevilla#video-gemini-sevilla">Video Creation with Gemini: Seville Characters</a></h2>
+    <h2>
+      <a
+        href="/en/video-gemini-sevilla#video-gemini-sevilla"
+        >Video Creation with Gemini: Seville Characters</a
+      >
+    </h2>
     <p>
-      Posted on Wed, 15 Apr 2026 in <a href="/en/category/ia.html">IA</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/gemini.html">gemini</a>,              <a href="/en/tag/google.html">google</a>,              <a href="/en/tag/video.html">video</a>,              <a href="/en/tag/sevilla.html">sevilla</a>,              <a href="/en/tag/ia.html">ia</a>
-    </p>
+      Posted on Wed, 15 Apr 2026 in <a href="/en/category/ia.html">IA</a>       &#8226; Tagged with       <a href="/en/tag/gemini.html">gemini</a>,       <a href="/en/tag/google.html">google</a>,       <a href="/en/tag/video.html">video</a>,       <a href="/en/tag/sevilla.html">sevilla</a>,       <a href="/en/tag/ia.html">ia</a>       </p>
   </header>
   <div>
-      <div><p>Testing Gemini's video generation with Seville-based characters.</p></div>
-        <br>
-        <a class="btn"
-           href="/en/video-gemini-sevilla#video-gemini-sevilla">
-          Continue reading
-        </a>
-  </div>
+     <div><p>Testing Gemini's video generation with Seville-based characters.</p></div>
+    <br />
+    <a
+      class="btn"
+      href="/en/video-gemini-sevilla#video-gemini-sevilla"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/google-stitch#google-stitch">Google Stitch: UI generation and prototyping with AI</a></h2>
+    <h2>
+      <a
+        href="/en/google-stitch#google-stitch"
+        >Google Stitch: UI generation and prototyping with AI</a
+      >
+    </h2>
     <p>
-      Posted on Mon, 13 Apr 2026 in <a href="/en/category/herramientas.html">Herramientas</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/ia.html">ia</a>,              <a href="/en/tag/ui.html">ui</a>,              <a href="/en/tag/design.html">design</a>,              <a href="/en/tag/gemini.html">gemini</a>,              <a href="/en/tag/prototipado.html">prototipado</a>
-    </p>
+      Posted on Mon, 13 Apr 2026 in <a href="/en/category/herramientas.html">Herramientas</a>       &#8226; Tagged with       <a href="/en/tag/ia.html">ia</a>,       <a href="/en/tag/ui.html">ui</a>,       <a href="/en/tag/design.html">design</a>,       <a href="/en/tag/gemini.html">gemini</a>,       <a href="/en/tag/prototipado.html">prototipado</a>       </p>
   </header>
   <div>
-        <img src="/images/stitch.png">
-      <div><p>Overview of Google Stitch as a tool for generating user interfaces and interactive prototypes using artificial intelligence.</p></div>
-        <br>
-        <a class="btn"
-           href="/en/google-stitch#google-stitch">
-          Continue reading
-        </a>
-  </div>
+     <img src="/images/stitch.png" loading="lazy" />
+    <div><p>Overview of Google Stitch as a tool for generating user interfaces and interactive prototypes using artificial intelligence.</p></div>
+    <br />
+    <a
+      class="btn"
+      href="/en/google-stitch#google-stitch"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/rbw-sync-access-token#rbw-sync-access-token">rbw sync: missing field `access_token`</a></h2>
+    <h2>
+      <a
+        href="/en/rbw-sync-access-token#rbw-sync-access-token"
+        >rbw sync: missing field `access_token`</a
+      >
+    </h2>
     <p>
-      Posted on Sat, 11 Apr 2026 in <a href="/en/category/linux.html">Linux</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/bitwarden.html">bitwarden</a>,              <a href="/en/tag/cli.html">cli</a>,              <a href="/en/tag/bug.html">bug</a>,              <a href="/en/tag/vaultwarden.html">vaultwarden</a>
-    </p>
+      Posted on Sat, 11 Apr 2026 in <a href="/en/category/linux.html">Linux</a>       &#8226; Tagged with       <a href="/en/tag/bitwarden.html">bitwarden</a>,       <a href="/en/tag/cli.html">cli</a>,       <a href="/en/tag/bug.html">bug</a>,       <a href="/en/tag/vaultwarden.html">vaultwarden</a>       </p>
   </header>
   <div>
-        <img src="/images/rbw-sync-access-token.png">
-      <div><p>Known rbw bug when syncing with Bitwarden or Vaultwarden: "failed to parse JSON: missing field access_token". The fix is to clear the local cache.</p></div>
-        <br>
-        <a class="btn"
-           href="/en/rbw-sync-access-token#rbw-sync-access-token">
-          Continue reading
-        </a>
-  </div>
+     <img src="/images/rbw-sync-access-token.png" loading="lazy" />
+    <div><p>Known rbw bug when syncing with Bitwarden or Vaultwarden: "failed to parse JSON: missing field access_token". The fix is to clear the local cache.</p></div>
+    <br />
+    <a
+      class="btn"
+      href="/en/rbw-sync-access-token#rbw-sync-access-token"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/rbw-env#rbw-env">rbw-env: Export environment variables from Bitwarden</a></h2>
+    <h2>
+      <a
+        href="/en/rbw-env#rbw-env"
+        >rbw-env: Export environment variables from Bitwarden</a
+      >
+    </h2>
     <p>
-      Posted on Thu, 26 Mar 2026 in <a href="/en/category/herramientas.html">Herramientas</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/bitwarden.html">bitwarden</a>,              <a href="/en/tag/cli.html">cli</a>,              <a href="/en/tag/entorno.html">entorno</a>,              <a href="/en/tag/productividad.html">productividad</a>,              <a href="/en/tag/seguridad.html">seguridad</a>
-    </p>
+      Posted on Thu, 26 Mar 2026 in <a href="/en/category/herramientas.html">Herramientas</a>       &#8226; Tagged with       <a href="/en/tag/bitwarden.html">bitwarden</a>,       <a href="/en/tag/cli.html">cli</a>,       <a href="/en/tag/entorno.html">entorno</a>,       <a href="/en/tag/productividad.html">productividad</a>,       <a href="/en/tag/seguridad.html">seguridad</a>       </p>
   </header>
   <div>
-        <img src="/images/rbw-env-example.png">
-      <div><p>Using rbw to export environment variables from Bitwarden, useful for setting API keys securely without storing them on disk.</p></div>
-        <br>
-        <a class="btn"
-           href="/en/rbw-env#rbw-env">
-          Continue reading
-        </a>
-  </div>
+     <img src="/images/rbw-env-example.png" loading="lazy" />
+    <div><p>Using rbw to export environment variables from Bitwarden, useful for setting API keys securely without storing them on disk.</p></div>
+    <br />
+    <a
+      class="btn"
+      href="/en/rbw-env#rbw-env"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/crit-review-loop-agents#crit-review-loop-agents">Crit: The Review Loop for Agents</a></h2>
+    <h2>
+      <a
+        href="/en/crit-review-loop-agents#crit-review-loop-agents"
+        >Crit: The Review Loop for Agents</a
+      >
+    </h2>
     <p>
-      Posted on Sun, 22 Mar 2026 in <a href="/en/category/programacion.html">Programación</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/ia.html">ia</a>,              <a href="/en/tag/agents.html">agents</a>,              <a href="/en/tag/review.html">review</a>,              <a href="/en/tag/opencode.html">opencode</a>,              <a href="/en/tag/productividad.html">productividad</a>
-    </p>
+      Posted on Sun, 22 Mar 2026 in <a href="/en/category/programacion.html">Programación</a>       &#8226; Tagged with       <a href="/en/tag/ia.html">ia</a>,       <a href="/en/tag/agents.html">agents</a>,       <a href="/en/tag/review.html">review</a>,       <a href="/en/tag/opencode.html">opencode</a>,       <a href="/en/tag/productividad.html">productividad</a>       </p>
   </header>
   <div>
-        <img src="/images/crit-demo.png">
-      <div><p>Crit is a tool designed to close the code review loop for AI-generated code, providing an intuitive and efficient web interface.</p></div>
-        <br>
-        <a class="btn"
-           href="/en/crit-review-loop-agents#crit-review-loop-agents">
-          Continue reading
-        </a>
-  </div>
+     <img src="/images/crit-demo.png" loading="lazy" />
+    <div><p>Crit is a tool designed to close the code review loop for AI-generated code, providing an intuitive and efficient web interface.</p></div>
+    <br />
+    <a
+      class="btn"
+      href="/en/crit-review-loop-agents#crit-review-loop-agents"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/powerline-footer-hidden-gems#powerline-footer-hidden-gems">Hidden gems in pi-powerline-footer</a></h2>
+    <h2>
+      <a
+        href="/en/powerline-footer-hidden-gems#powerline-footer-hidden-gems"
+        >Hidden gems in pi-powerline-footer</a
+      >
+    </h2>
     <p>
-      Posted on Sun, 22 Mar 2026 in <a href="/en/category/ia.html">IA</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/pi.html">pi</a>,              <a href="/en/tag/terminal.html">terminal</a>,              <a href="/en/tag/productividad.html">productividad</a>
-    </p>
+      Posted on Sun, 22 Mar 2026 in <a href="/en/category/ia.html">IA</a>       &#8226; Tagged with       <a href="/en/tag/pi.html">pi</a>,       <a href="/en/tag/terminal.html">terminal</a>,       <a href="/en/tag/productividad.html">productividad</a>       </p>
   </header>
   <div>
-        <img src="/images/pi-powerline-footer.png">
-      <div><p>Two features of the pi-powerline-footer plugin that go beyond the typical footer with model information.</p></div>
-        <br>
-        <a class="btn"
-           href="/en/powerline-footer-hidden-gems#powerline-footer-hidden-gems">
-          Continue reading
-        </a>
-  </div>
+     <img src="/images/pi-powerline-footer.png" loading="lazy" />
+    <div><p>Two features of the pi-powerline-footer plugin that go beyond the typical footer with model information.</p></div>
+    <br />
+    <a
+      class="btn"
+      href="/en/powerline-footer-hidden-gems#powerline-footer-hidden-gems"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/agent-browser-navigation-agents#agent-browser-navigation-agents">Agent Browser: Browser Navigation for AI Agents</a></h2>
+    <h2>
+      <a
+        href="/en/agent-browser-navigation-agents#agent-browser-navigation-agents"
+        >Agent Browser: Browser Navigation for AI Agents</a
+      >
+    </h2>
     <p>
-      Posted on Wed, 18 Mar 2026 in <a href="/en/category/ia.html">IA</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/agent-browser.html">agent-browser</a>,              <a href="/en/tag/ia.html">ia</a>,              <a href="/en/tag/agents.html">agents</a>,              <a href="/en/tag/automation.html">automation</a>,              <a href="/en/tag/llm.html">llm</a>,              <a href="/en/tag/pi-agent.html">pi-agent</a>,              <a href="/en/tag/pi.html">pi</a>
-    </p>
+      Posted on Wed, 18 Mar 2026 in <a href="/en/category/ia.html">IA</a>       &#8226; Tagged with       <a href="/en/tag/agent-browser.html">agent-browser</a>,       <a href="/en/tag/ia.html">ia</a>,       <a href="/en/tag/agents.html">agents</a>,       <a href="/en/tag/automation.html">automation</a>,       <a href="/en/tag/llm.html">llm</a>,       <a href="/en/tag/pi-agent.html">pi-agent</a>,       <a href="/en/tag/pi.html">pi</a>       </p>
   </header>
   <div>
-        <img src="/images/agent-browser.png">
-      <div><p><code>agent-browser</code> is a tool from Vercel that allows AI agents to navigate the web and perform actions just like a human would, easily integrating with agent frameworks.</p></div>
-        <br>
-        <a class="btn"
-           href="/en/agent-browser-navigation-agents#agent-browser-navigation-agents">
-          Continue reading
-        </a>
-  </div>
+     <img src="/images/agent-browser.png" loading="lazy" />
+    <div><p><code>agent-browser</code> is a tool from Vercel that allows AI agents to navigate the web and perform actions just like a human would, easily integrating with agent frameworks.</p></div>
+    <br />
+    <a
+      class="btn"
+      href="/en/agent-browser-navigation-agents#agent-browser-navigation-agents"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/tailscale-aperture-gateway-ia-seguro#tailscale-aperture-gateway-ia-seguro">Tailscale Aperture: AI Gateway Without Distributing API Keys</a></h2>
+    <h2>
+      <a
+        href="/en/tailscale-aperture-gateway-ia-seguro#tailscale-aperture-gateway-ia-seguro"
+        >Tailscale Aperture: AI Gateway Without Distributing API Keys</a
+      >
+    </h2>
     <p>
-      Posted on Mon, 16 Mar 2026 in <a href="/en/category/herramientas.html">Herramientas</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/tailscale.html">tailscale</a>,              <a href="/en/tag/seguridad.html">seguridad</a>,              <a href="/en/tag/ia.html">ia</a>,              <a href="/en/tag/api.html">api</a>,              <a href="/en/tag/gateway.html">gateway</a>
-    </p>
+      Posted on Mon, 16 Mar 2026 in <a href="/en/category/herramientas.html">Herramientas</a>       &#8226; Tagged with       <a href="/en/tag/tailscale.html">tailscale</a>,       <a href="/en/tag/seguridad.html">seguridad</a>,       <a href="/en/tag/ia.html">ia</a>,       <a href="/en/tag/api.html">api</a>,       <a href="/en/tag/gateway.html">gateway</a>       </p>
   </header>
   <div>
-        <img src="/images/tailscale-aperture.png">
-      <div><p>Tailscale's Aperture centralizes LLM access by eliminating the need to distribute API keys to developers, using Tailscale identity for authentication.</p></div>
-        <br>
-        <a class="btn"
-           href="/en/tailscale-aperture-gateway-ia-seguro#tailscale-aperture-gateway-ia-seguro">
-          Continue reading
-        </a>
-  </div>
+     <img src="/images/tailscale-aperture.png" loading="lazy" />
+    <div><p>Tailscale's Aperture centralizes LLM access by eliminating the need to distribute API keys to developers, using Tailscale identity for authentication.</p></div>
+    <br />
+    <a
+      class="btn"
+      href="/en/tailscale-aperture-gateway-ia-seguro#tailscale-aperture-gateway-ia-seguro"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/sem-semantic-version-control#sem-semantic-version-control">sem: Semantic Version Control</a></h2>
+    <h2>
+      <a
+        href="/en/sem-semantic-version-control#sem-semantic-version-control"
+        >sem: Semantic Version Control</a
+      >
+    </h2>
     <p>
-      Posted on Sun, 15 Mar 2026 in <a href="/en/category/programacion.html">Programación</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/cli.html">cli</a>,              <a href="/en/tag/versionado.html">versionado</a>,              <a href="/en/tag/rust.html">rust</a>,              <a href="/en/tag/herramientas.html">herramientas</a>
-    </p>
+      Posted on Sun, 15 Mar 2026 in <a href="/en/category/programacion.html">Programación</a>       &#8226; Tagged with       <a href="/en/tag/cli.html">cli</a>,       <a href="/en/tag/versionado.html">versionado</a>,       <a href="/en/tag/rust.html">rust</a>,       <a href="/en/tag/herramientas.html">herramientas</a>       </p>
   </header>
   <div>
-        <img src="/images/sem-cli.png">
-      <div><p>Discovering sem, a CLI tool that understands your code's semantics and tells you what entities changed, not just what lines.</p></div>
-        <br>
-        <a class="btn"
-           href="/en/sem-semantic-version-control#sem-semantic-version-control">
-          Continue reading
-        </a>
-  </div>
+     <img src="/images/sem-cli.png" loading="lazy" />
+    <div><p>Discovering sem, a CLI tool that understands your code's semantics and tells you what entities changed, not just what lines.</p></div>
+    <br />
+    <a
+      class="btn"
+      href="/en/sem-semantic-version-control#sem-semantic-version-control"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/os-click-central-descarga-isos#os-click-central-descarga-isos">os.click: Operating System ISO Download Center</a></h2>
+    <h2>
+      <a
+        href="/en/os-click-central-descarga-isos#os-click-central-descarga-isos"
+        >os.click: Operating System ISO Download Center</a
+      >
+    </h2>
     <p>
-      Posted on Thu, 12 Mar 2026 in <a href="/en/category/programacion.html">Programación</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/linux.html">linux</a>,              <a href="/en/tag/windows.html">windows</a>,              <a href="/en/tag/iso.html">iso</a>,              <a href="/en/tag/operating-systems.html">operating systems</a>,              <a href="/en/tag/herramientas.html">herramientas</a>
-    </p>
+      Posted on Thu, 12 Mar 2026 in <a href="/en/category/programacion.html">Programación</a>       &#8226; Tagged with       <a href="/en/tag/linux.html">linux</a>,       <a href="/en/tag/windows.html">windows</a>,       <a href="/en/tag/iso.html">iso</a>,       <a href="/en/tag/operating-systems.html">operating systems</a>,       <a href="/en/tag/herramientas.html">herramientas</a>       </p>
   </header>
   <div>
-        <img src="/images/os-click.png">
-      <div><p>Quick reminder about os.click for downloading official ISOs.</p></div>
-        <br>
-        <a class="btn"
-           href="/en/os-click-central-descarga-isos#os-click-central-descarga-isos">
-          Continue reading
-        </a>
-  </div>
+     <img src="/images/os-click.png" loading="lazy" />
+    <div><p>Quick reminder about os.click for downloading official ISOs.</p></div>
+    <br />
+    <a
+      class="btn"
+      href="/en/os-click-central-descarga-isos#os-click-central-descarga-isos"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/net-tools-to-iproute#net-tools-to-iproute">From net-tools to iproute2: command equivalents</a></h2>
+    <h2>
+      <a
+        href="/en/net-tools-to-iproute#net-tools-to-iproute"
+        >From net-tools to iproute2: command equivalents</a
+      >
+    </h2>
     <p>
-      Posted on Fri, 06 Mar 2026 in <a href="/en/category/linux.html">Linux</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/redes.html">redes</a>,              <a href="/en/tag/iproute2.html">iproute2</a>,              <a href="/en/tag/net-tools.html">net-tools</a>,              <a href="/en/tag/terminal.html">terminal</a>
-    </p>
+      Posted on Fri, 06 Mar 2026 in <a href="/en/category/linux.html">Linux</a>       &#8226; Tagged with       <a href="/en/tag/redes.html">redes</a>,       <a href="/en/tag/iproute2.html">iproute2</a>,       <a href="/en/tag/net-tools.html">net-tools</a>,       <a href="/en/tag/terminal.html">terminal</a>       </p>
   </header>
   <div>
-      <div><p>A guide to equivalents between classic net-tools commands (ifconfig, route, arp) and modern iproute2 commands (ip).</p></div>
-        <br>
-        <a class="btn"
-           href="/en/net-tools-to-iproute#net-tools-to-iproute">
-          Continue reading
-        </a>
-  </div>
+     <div><p>A guide to equivalents between classic net-tools commands (ifconfig, route, arp) and modern iproute2 commands (ip).</p></div>
+    <br />
+    <a
+      class="btn"
+      href="/en/net-tools-to-iproute#net-tools-to-iproute"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/rodney-chrome-wayland-error#rodney-chrome-wayland-error">Fixing Rodney Chrome Error on Wayland</a></h2>
+    <h2>
+      <a
+        href="/en/rodney-chrome-wayland-error#rodney-chrome-wayland-error"
+        >Fixing Rodney Chrome Error on Wayland</a
+      >
+    </h2>
     <p>
-      Posted on Fri, 06 Mar 2026 in <a href="/en/category/herramientas.html">Herramientas</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/rodney.html">rodney</a>,              <a href="/en/tag/chrome.html">chrome</a>,              <a href="/en/tag/wayland.html">wayland</a>,              <a href="/en/tag/linux.html">linux</a>,              <a href="/en/tag/debugging.html">debugging</a>
-    </p>
+      Posted on Fri, 06 Mar 2026 in <a href="/en/category/herramientas.html">Herramientas</a>       &#8226; Tagged with       <a href="/en/tag/rodney.html">rodney</a>,       <a href="/en/tag/chrome.html">chrome</a>,       <a href="/en/tag/wayland.html">wayland</a>,       <a href="/en/tag/linux.html">linux</a>,       <a href="/en/tag/debugging.html">debugging</a>       </p>
   </header>
   <div>
-      <div><p>How to fix Rodney crash when starting Chrome on Wayland systems by using the system Chrome.</p></div>
-        <br>
-        <a class="btn"
-           href="/en/rodney-chrome-wayland-error#rodney-chrome-wayland-error">
-          Continue reading
-        </a>
-  </div>
+     <div><p>How to fix Rodney crash when starting Chrome on Wayland systems by using the system Chrome.</p></div>
+    <br />
+    <a
+      class="btn"
+      href="/en/rodney-chrome-wayland-error#rodney-chrome-wayland-error"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/asciinema-terminal-recorder#asciinema-terminal-recorder">Record and Share your Terminal Sessions with asciinema</a></h2>
+    <h2>
+      <a
+        href="/en/asciinema-terminal-recorder#asciinema-terminal-recorder"
+        >Record and Share your Terminal Sessions with asciinema</a
+      >
+    </h2>
     <p>
-      Posted on Fri, 27 Feb 2026 in <a href="/en/category/herramientas.html">Herramientas</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/asciinema.html">asciinema</a>,              <a href="/en/tag/terminal.html">terminal</a>,              <a href="/en/tag/linux.html">linux</a>,              <a href="/en/tag/productividad.html">productividad</a>
-    </p>
+      Posted on Fri, 27 Feb 2026 in <a href="/en/category/herramientas.html">Herramientas</a>       &#8226; Tagged with       <a href="/en/tag/asciinema.html">asciinema</a>,       <a href="/en/tag/terminal.html">terminal</a>,       <a href="/en/tag/linux.html">linux</a>,       <a href="/en/tag/productividad.html">productividad</a>       </p>
   </header>
   <div>
-        <img src="/images/asciinema_help.png">
-      <div><p>Discover asciinema, the perfect tool to record your terminal sessions in a lightweight, reproducible, and easy-to-share way.</p></div>
-        <br>
-        <a class="btn"
-           href="/en/asciinema-terminal-recorder#asciinema-terminal-recorder">
-          Continue reading
-        </a>
-  </div>
+     <img src="/images/asciinema_help.png" loading="lazy" />
+    <div><p>Discover asciinema, the perfect tool to record your terminal sessions in a lightweight, reproducible, and easy-to-share way.</p></div>
+    <br />
+    <a
+      class="btn"
+      href="/en/asciinema-terminal-recorder#asciinema-terminal-recorder"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/kitty-rbw-kitten#kitty-rbw-kitten">kitty-rbw: Fast Bitwarden access from your kitty terminal</a></h2>
+    <h2>
+      <a
+        href="/en/kitty-rbw-kitten#kitty-rbw-kitten"
+        >kitty-rbw: Fast Bitwarden access from your kitty terminal</a
+      >
+    </h2>
     <p>
-      Posted on Thu, 26 Feb 2026 in <a href="/en/category/herramientas.html">Herramientas</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/bitwarden.html">bitwarden</a>,              <a href="/en/tag/cli.html">cli</a>,              <a href="/en/tag/kitty.html">kitty</a>,              <a href="/en/tag/rust.html">rust</a>,              <a href="/en/tag/productividad.html">productividad</a>
-    </p>
+      Posted on Thu, 26 Feb 2026 in <a href="/en/category/herramientas.html">Herramientas</a>       &#8226; Tagged with       <a href="/en/tag/bitwarden.html">bitwarden</a>,       <a href="/en/tag/cli.html">cli</a>,       <a href="/en/tag/kitty.html">kitty</a>,       <a href="/en/tag/rust.html">rust</a>,       <a href="/en/tag/productividad.html">productividad</a>       </p>
   </header>
   <div>
-        <img src="/images/kitty-rbw.png">
-      <div><p>Introducing kitty-rbw, a "kitten" for the kitty terminal that allows you to search and use rbw (Bitwarden) credentials instantly using fzf.</p></div>
-        <br>
-        <a class="btn"
-           href="/en/kitty-rbw-kitten#kitty-rbw-kitten">
-          Continue reading
-        </a>
-  </div>
+     <img src="/images/kitty-rbw.png" loading="lazy" />
+    <div><p>Introducing kitty-rbw, a "kitten" for the kitty terminal that allows you to search and use rbw (Bitwarden) credentials instantly using fzf.</p></div>
+    <br />
+    <a
+      class="btn"
+      href="/en/kitty-rbw-kitten#kitty-rbw-kitten"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/rbw-bitwarden-cli#rbw-bitwarden-cli">rbw: The Bitwarden terminal client you should be using</a></h2>
+    <h2>
+      <a
+        href="/en/rbw-bitwarden-cli#rbw-bitwarden-cli"
+        >rbw: The Bitwarden terminal client you should be using</a
+      >
+    </h2>
     <p>
-      Posted on Thu, 26 Feb 2026 in <a href="/en/category/herramientas.html">Herramientas</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/bitwarden.html">bitwarden</a>,              <a href="/en/tag/cli.html">cli</a>,              <a href="/en/tag/rust.html">rust</a>,              <a href="/en/tag/seguridad.html">seguridad</a>,              <a href="/en/tag/pi-agent.html">pi-agent</a>
-    </p>
+      Posted on Thu, 26 Feb 2026 in <a href="/en/category/herramientas.html">Herramientas</a>       &#8226; Tagged with       <a href="/en/tag/bitwarden.html">bitwarden</a>,       <a href="/en/tag/cli.html">cli</a>,       <a href="/en/tag/rust.html">rust</a>,       <a href="/en/tag/seguridad.html">seguridad</a>,       <a href="/en/tag/pi-agent.html">pi-agent</a>       </p>
   </header>
   <div>
-        <img src="/images/rbw_help.png">
-      <div><p>How to install and configure rbw, a Rust implementation of the Bitwarden client, and how to integrate it into your workflows with pi-agent.</p></div>
-        <br>
-        <a class="btn"
-           href="/en/rbw-bitwarden-cli#rbw-bitwarden-cli">
-          Continue reading
-        </a>
-  </div>
+     <img src="/images/rbw_help.png" loading="lazy" />
+    <div><p>How to install and configure rbw, a Rust implementation of the Bitwarden client, and how to integrate it into your workflows with pi-agent.</p></div>
+    <br />
+    <a
+      class="btn"
+      href="/en/rbw-bitwarden-cli#rbw-bitwarden-cli"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/deepdiff-comparar-datos-python#deepdiff-comparar-datos-python">DeepDiff: The Swiss Army Knife for Data Comparison in Python</a></h2>
+    <h2>
+      <a
+        href="/en/deepdiff-comparar-datos-python#deepdiff-comparar-datos-python"
+        >DeepDiff: The Swiss Army Knife for Data Comparison in Python</a
+      >
+    </h2>
     <p>
-      Posted on Fri, 20 Feb 2026 in <a href="/en/category/programacion.html">Programación</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/data.html">data</a>,              <a href="/en/tag/cli.html">cli</a>,              <a href="/en/tag/herramientas.html">herramientas</a>,              <a href="/en/tag/diff.html">diff</a>
-    </p>
+      Posted on Fri, 20 Feb 2026 in <a href="/en/category/programacion.html">Programación</a>       &#8226; Tagged with       <a href="/en/tag/data.html">data</a>,       <a href="/en/tag/cli.html">cli</a>,       <a href="/en/tag/herramientas.html">herramientas</a>,       <a href="/en/tag/diff.html">diff</a>       </p>
   </header>
   <div>
-        <img src="/images/deep_help.png">
-      <div><p>When working with structured data in Python, we often need to compare two dictionaries, JSONs, or complex objects to find out what has changed. While direct comparison (<code>==</code>) is useful, sometimes we need to understand <em>exactly what</em> is different: which keys were added, which were removed, or where values have changed …</p></div>
-        <br>
-        <a class="btn"
-           href="/en/deepdiff-comparar-datos-python#deepdiff-comparar-datos-python">
-          Continue reading
-        </a>
-  </div>
+     <img src="/images/deep_help.png" loading="lazy" />
+    <div><p>When working with structured data in Python, we often need to compare two dictionaries, JSONs, or complex objects to find out what has changed. While direct comparison (<code>==</code>) is useful, sometimes we need to understand <em>exactly what</em> is different: which keys were added, which were removed, or where values have changed …</p></div>
+    <br />
+    <a
+      class="btn"
+      href="/en/deepdiff-comparar-datos-python#deepdiff-comparar-datos-python"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/renderizando-markdown-en-la-terminal-con-glow#renderizando-markdown-en-la-terminal-con-glow">Rendering Markdown in the terminal with Glow</a></h2>
+    <h2>
+      <a
+        href="/en/renderizando-markdown-en-la-terminal-con-glow#renderizando-markdown-en-la-terminal-con-glow"
+        >Rendering Markdown in the terminal with Glow</a
+      >
+    </h2>
     <p>
-      Posted on Fri, 20 Feb 2026 in <a href="/en/category/linux.html">Linux</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/cli.html">cli</a>,              <a href="/en/tag/markdown.html">markdown</a>,              <a href="/en/tag/herramientas.html">herramientas</a>,              <a href="/en/tag/kitty.html">kitty</a>
-    </p>
+      Posted on Fri, 20 Feb 2026 in <a href="/en/category/linux.html">Linux</a>       &#8226; Tagged with       <a href="/en/tag/cli.html">cli</a>,       <a href="/en/tag/markdown.html">markdown</a>,       <a href="/en/tag/herramientas.html">herramientas</a>,       <a href="/en/tag/kitty.html">kitty</a>       </p>
   </header>
   <div>
-        <img src="/images/glow_help.png">
-      <div><p>Discover Glow, a tool to render Markdown directly in the terminal, ideal for reading documentation and READMEs.</p></div>
-        <br>
-        <a class="btn"
-           href="/en/renderizando-markdown-en-la-terminal-con-glow#renderizando-markdown-en-la-terminal-con-glow">
-          Continue reading
-        </a>
-  </div>
+     <img src="/images/glow_help.png" loading="lazy" />
+    <div><p>Discover Glow, a tool to render Markdown directly in the terminal, ideal for reading documentation and READMEs.</p></div>
+    <br />
+    <a
+      class="btn"
+      href="/en/renderizando-markdown-en-la-terminal-con-glow#renderizando-markdown-en-la-terminal-con-glow"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/shot-scraper-capturas-pantalla-automatizadas#shot-scraper-capturas-pantalla-automatizadas">Shot-scraper: Automated Web Screenshots</a></h2>
+    <h2>
+      <a
+        href="/en/shot-scraper-capturas-pantalla-automatizadas#shot-scraper-capturas-pantalla-automatizadas"
+        >Shot-scraper: Automated Web Screenshots</a
+      >
+    </h2>
     <p>
-      Posted on Fri, 20 Feb 2026 in <a href="/en/category/programacion.html">Programación</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/cli.html">cli</a>,              <a href="/en/tag/herramientas.html">herramientas</a>,              <a href="/en/tag/web.html">web</a>,              <a href="/en/tag/scraping.html">scraping</a>,              <a href="/en/tag/screenshots.html">screenshots</a>
-    </p>
+      Posted on Fri, 20 Feb 2026 in <a href="/en/category/programacion.html">Programación</a>       &#8226; Tagged with       <a href="/en/tag/cli.html">cli</a>,       <a href="/en/tag/herramientas.html">herramientas</a>,       <a href="/en/tag/web.html">web</a>,       <a href="/en/tag/scraping.html">scraping</a>,       <a href="/en/tag/screenshots.html">screenshots</a>       </p>
   </header>
   <div>
-        <img src="/images/shot_scraper_help.png">
-      <div><p>Have you ever needed to take screenshots of a web page programmatically? Perhaps to document your project, monitor UI changes, or generate images for social media. There are many ways to do it, but <strong><a href="https://shot-scraper.datasette.io/">shot-scraper</a></strong> stands out for its ease of use and power.</p>
+     <img src="/images/shot_scraper_help.png" loading="lazy" />
+    <div><p>Have you ever needed to take screenshots of a web page programmatically? Perhaps to document your project, monitor UI changes, or generate images for social media. There are many ways to do it, but <strong><a href="https://shot-scraper.datasette.io/">shot-scraper</a></strong> stands out for its ease of use and power.</p>
 <p>Created by Simon Willison, <code>shot-scraper</code> is …</p></div>
-        <br>
-        <a class="btn"
-           href="/en/shot-scraper-capturas-pantalla-automatizadas#shot-scraper-capturas-pantalla-automatizadas">
-          Continue reading
-        </a>
-  </div>
+    <br />
+    <a
+      class="btn"
+      href="/en/shot-scraper-capturas-pantalla-automatizadas#shot-scraper-capturas-pantalla-automatizadas"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/stern-kubernetes-logs#stern-kubernetes-logs">Stern: Kubernetes Logs on Steroids</a></h2>
+    <h2>
+      <a
+        href="/en/stern-kubernetes-logs#stern-kubernetes-logs"
+        >Stern: Kubernetes Logs on Steroids</a
+      >
+    </h2>
     <p>
-      Posted on Fri, 20 Feb 2026 in <a href="/en/category/infraestructura.html">Infraestructura</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/kubernetes.html">kubernetes</a>,              <a href="/en/tag/cli.html">cli</a>,              <a href="/en/tag/logs.html">logs</a>,              <a href="/en/tag/herramientas.html">herramientas</a>
-    </p>
+      Posted on Fri, 20 Feb 2026 in <a href="/en/category/infraestructura.html">Infraestructura</a>       &#8226; Tagged with       <a href="/en/tag/kubernetes.html">kubernetes</a>,       <a href="/en/tag/cli.html">cli</a>,       <a href="/en/tag/logs.html">logs</a>,       <a href="/en/tag/herramientas.html">herramientas</a>       </p>
   </header>
   <div>
-        <img src="/images/stern_help.png">
-      <div><p>If you work with Kubernetes, you've probably suffered through the <code>kubectl logs</code> command. It's useful for viewing the logs of a specific pod, but it falls short when you have multiple replicas of a service or when pods restart and change names.</p>
+     <img src="/images/stern_help.png" loading="lazy" />
+    <div><p>If you work with Kubernetes, you've probably suffered through the <code>kubectl logs</code> command. It's useful for viewing the logs of a specific pod, but it falls short when you have multiple replicas of a service or when pods restart and change names.</p>
 <p>This is where <strong><a href="https://github.com/stern/stern">Stern</a></strong> comes in.</p>
 <p>Stern allows …</p></div>
-        <br>
-        <a class="btn"
-           href="/en/stern-kubernetes-logs#stern-kubernetes-logs">
-          Continue reading
-        </a>
-  </div>
+    <br />
+    <a
+      class="btn"
+      href="/en/stern-kubernetes-logs#stern-kubernetes-logs"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/gestionando-instalaciones-desde-github-con-gah#gestionando-instalaciones-desde-github-con-gah">Managing GitHub installations with gah</a></h2>
+    <h2>
+      <a
+        href="/en/gestionando-instalaciones-desde-github-con-gah#gestionando-instalaciones-desde-github-con-gah"
+        >Managing GitHub installations with gah</a
+      >
+    </h2>
     <p>
-      Posted on Wed, 11 Feb 2026 in <a href="/en/category/linux.html">Linux</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/herramientas.html">herramientas</a>,              <a href="/en/tag/cli.html">cli</a>
-    </p>
+      Posted on Wed, 11 Feb 2026 in <a href="/en/category/linux.html">Linux</a>       &#8226; Tagged with       <a href="/en/tag/herramientas.html">herramientas</a>,       <a href="/en/tag/cli.html">cli</a>       </p>
   </header>
   <div>
-      <div><p class="first last">Install binaries directly from GitHub releases easily with gah.</p>
+     <div><p class="first last">Install binaries directly from GitHub releases easily with gah.</p>
 </div>
-        <br>
-        <a class="btn"
-           href="/en/gestionando-instalaciones-desde-github-con-gah#gestionando-instalaciones-desde-github-con-gah">
-          Continue reading
-        </a>
-  </div>
+    <br />
+    <a
+      class="btn"
+      href="/en/gestionando-instalaciones-desde-github-con-gah#gestionando-instalaciones-desde-github-con-gah"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/broot-una-forma-diferente-de-navegar-directorios#broot-una-forma-diferente-de-navegar-directorios">broot, a different way to navigate your directories</a></h2>
+    <h2>
+      <a
+        href="/en/broot-una-forma-diferente-de-navegar-directorios#broot-una-forma-diferente-de-navegar-directorios"
+        >broot, a different way to navigate your directories</a
+      >
+    </h2>
     <p>
-      Posted on Fri, 02 Jan 2026 in <a href="/en/category/herramientas.html">Herramientas</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/terminal.html">terminal</a>,              <a href="/en/tag/cli.html">cli</a>,              <a href="/en/tag/broot.html">broot</a>,              <a href="/en/tag/rust.html">rust</a>
-    </p>
+      Posted on Fri, 02 Jan 2026 in <a href="/en/category/herramientas.html">Herramientas</a>       &#8226; Tagged with       <a href="/en/tag/terminal.html">terminal</a>,       <a href="/en/tag/cli.html">cli</a>,       <a href="/en/tag/broot.html">broot</a>,       <a href="/en/tag/rust.html">rust</a>       </p>
   </header>
   <div>
-        <img src="/images/broot_terminal.png">
-      <div><p>broot is a terminal tool for interactive directory exploration with fuzzy search, multiple panels, and file preview.</p></div>
-        <br>
-        <a class="btn"
-           href="/en/broot-una-forma-diferente-de-navegar-directorios#broot-una-forma-diferente-de-navegar-directorios">
-          Continue reading
-        </a>
-  </div>
+     <img src="/images/broot_terminal.png" loading="lazy" />
+    <div><p>broot is a terminal tool for interactive directory exploration with fuzzy search, multiple panels, and file preview.</p></div>
+    <br />
+    <a
+      class="btn"
+      href="/en/broot-una-forma-diferente-de-navegar-directorios#broot-una-forma-diferente-de-navegar-directorios"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/yaml-multilinea-cadenas-complejas#yaml-multilinea-cadenas-complejas">Multiline YAML: Understanding and testing complex strings</a></h2>
+    <h2>
+      <a
+        href="/en/yaml-multilinea-cadenas-complejas#yaml-multilinea-cadenas-complejas"
+        >Multiline YAML: Understanding and testing complex strings</a
+      >
+    </h2>
     <p>
-      Posted on Thu, 25 Dec 2025 in <a href="/en/category/herramientas.html">Herramientas</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/yaml.html">yaml</a>,              <a href="/en/tag/configuracion.html">configuracion</a>,              <a href="/en/tag/desarrollo.html">desarrollo</a>,              <a href="/en/tag/multiline.html">multiline</a>,              <a href="/en/tag/strings.html">strings</a>
-    </p>
+      Posted on Thu, 25 Dec 2025 in <a href="/en/category/herramientas.html">Herramientas</a>       &#8226; Tagged with       <a href="/en/tag/yaml.html">yaml</a>,       <a href="/en/tag/configuracion.html">configuracion</a>,       <a href="/en/tag/desarrollo.html">desarrollo</a>,       <a href="/en/tag/multiline.html">multiline</a>,       <a href="/en/tag/strings.html">strings</a>       </p>
   </header>
   <div>
-      <div><p>Explore YAML options for effectively handling multiline strings, with an interactive demo that allows you to test them in real-time.</p></div>
-        <br>
-        <a class="btn"
-           href="/en/yaml-multilinea-cadenas-complejas#yaml-multilinea-cadenas-complejas">
-          Continue reading
-        </a>
-  </div>
+     <div><p>Explore YAML options for effectively handling multiline strings, with an interactive demo that allows you to test them in real-time.</p></div>
+    <br />
+    <a
+      class="btn"
+      href="/en/yaml-multilinea-cadenas-complejas#yaml-multilinea-cadenas-complejas"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/pandas-styler-presentacion-dataframes#pandas-styler-presentacion-dataframes">Pandas Styler: Improve the Presentation of your DataFrames</a></h2>
+    <h2>
+      <a
+        href="/en/pandas-styler-presentacion-dataframes#pandas-styler-presentacion-dataframes"
+        >Pandas Styler: Improve the Presentation of your DataFrames</a
+      >
+    </h2>
     <p>
-      Posted on Thu, 25 Dec 2025 in <a href="/en/category/programacion.html">Programación</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/pandas.html">pandas</a>,              <a href="/en/tag/data-science.html">data-science</a>,              <a href="/en/tag/visualizacion.html">visualizacion</a>,              <a href="/en/tag/estilo.html">estilo</a>
-    </p>
+      Posted on Thu, 25 Dec 2025 in <a href="/en/category/programacion.html">Programación</a>       &#8226; Tagged with       <a href="/en/tag/pandas.html">pandas</a>,       <a href="/en/tag/data-science.html">data-science</a>,       <a href="/en/tag/visualizacion.html">visualizacion</a>,       <a href="/en/tag/estilo.html">estilo</a>       </p>
   </header>
   <div>
-      <div><p>Discover how the Pandas <code>Styler</code> object allows you to apply conditional formatting and CSS styles to your DataFrames for better data visualization and presentation.</p></div>
-        <br>
-        <a class="btn"
-           href="/en/pandas-styler-presentacion-dataframes#pandas-styler-presentacion-dataframes">
-          Continue reading
-        </a>
-  </div>
+     <div><p>Discover how the Pandas <code>Styler</code> object allows you to apply conditional formatting and CSS styles to your DataFrames for better data visualization and presentation.</p></div>
+    <br />
+    <a
+      class="btn"
+      href="/en/pandas-styler-presentacion-dataframes#pandas-styler-presentacion-dataframes"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/fresh-editor-terminal#fresh-editor-terminal">`fresh`: My preferred terminal editor for daily use</a></h2>
+    <h2>
+      <a
+        href="/en/fresh-editor-terminal#fresh-editor-terminal"
+        >`fresh`: My preferred terminal editor for daily use</a
+      >
+    </h2>
     <p>
-      Posted on Thu, 25 Dec 2025 in <a href="/en/category/herramientas.html">Herramientas</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/fresh.html">fresh</a>,              <a href="/en/tag/terminal.html">terminal</a>,              <a href="/en/tag/editor.html">editor</a>,              <a href="/en/tag/productividad.html">productividad</a>,              <a href="/en/tag/linux.html">linux</a>,              <a href="/en/tag/cli.html">cli</a>
-    </p>
+      Posted on Thu, 25 Dec 2025 in <a href="/en/category/herramientas.html">Herramientas</a>       &#8226; Tagged with       <a href="/en/tag/fresh.html">fresh</a>,       <a href="/en/tag/terminal.html">terminal</a>,       <a href="/en/tag/editor.html">editor</a>,       <a href="/en/tag/productividad.html">productividad</a>,       <a href="/en/tag/linux.html">linux</a>,       <a href="/en/tag/cli.html">cli</a>       </p>
   </header>
   <div>
-      <div><p>Discover <code>fresh</code>, a fast, modern, modeless terminal text editor, ideal for casual file editing, surpassing <code>nano</code> and <code>vim</code> in simplicity for regular use.</p></div>
-        <br>
-        <a class="btn"
-           href="/en/fresh-editor-terminal#fresh-editor-terminal">
-          Continue reading
-        </a>
-  </div>
+     <div><p>Discover <code>fresh</code>, a fast, modern, modeless terminal text editor, ideal for casual file editing, surpassing <code>nano</code> and <code>vim</code> in simplicity for regular use.</p></div>
+    <br />
+    <a
+      class="btn"
+      href="/en/fresh-editor-terminal#fresh-editor-terminal"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/ver-archivos-paquete-rpm#ver-archivos-paquete-rpm">How to View Files in an RPM Package on Linux</a></h2>
+    <h2>
+      <a
+        href="/en/ver-archivos-paquete-rpm#ver-archivos-paquete-rpm"
+        >How to View Files in an RPM Package on Linux</a
+      >
+    </h2>
     <p>
-      Posted on Thu, 25 Dec 2025 in <a href="/en/category/infraestructura.html">Infraestructura</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/linux.html">linux</a>,              <a href="/en/tag/rpm.html">rpm</a>,              <a href="/en/tag/paquetes.html">paquetes</a>,              <a href="/en/tag/comandos.html">comandos</a>,              <a href="/en/tag/administracion.html">administracion</a>,              <a href="/en/tag/dnf.html">dnf</a>,              <a href="/en/tag/yum.html">yum</a>
-    </p>
+      Posted on Thu, 25 Dec 2025 in <a href="/en/category/infraestructura.html">Infraestructura</a>       &#8226; Tagged with       <a href="/en/tag/linux.html">linux</a>,       <a href="/en/tag/rpm.html">rpm</a>,       <a href="/en/tag/paquetes.html">paquetes</a>,       <a href="/en/tag/comandos.html">comandos</a>,       <a href="/en/tag/administracion.html">administracion</a>,       <a href="/en/tag/dnf.html">dnf</a>,       <a href="/en/tag/yum.html">yum</a>       </p>
   </header>
   <div>
-      <div><p>Quick guide to inspecting the contents of RPM packages and determining which packages own specific files on your Linux system.</p></div>
-        <br>
-        <a class="btn"
-           href="/en/ver-archivos-paquete-rpm#ver-archivos-paquete-rpm">
-          Continue reading
-        </a>
-  </div>
+     <div><p>Quick guide to inspecting the contents of RPM packages and determining which packages own specific files on your Linux system.</p></div>
+    <br />
+    <a
+      class="btn"
+      href="/en/ver-archivos-paquete-rpm#ver-archivos-paquete-rpm"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/kooha-captura-pantalla-linux#kooha-captura-pantalla-linux">Kooha: Simple and Elegant Screen Recording on Linux</a></h2>
+    <h2>
+      <a
+        href="/en/kooha-captura-pantalla-linux#kooha-captura-pantalla-linux"
+        >Kooha: Simple and Elegant Screen Recording on Linux</a
+      >
+    </h2>
     <p>
-      Posted on Thu, 25 Dec 2025 in <a href="/en/category/herramientas.html">Herramientas</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/linux.html">linux</a>,              <a href="/en/tag/kooha.html">kooha</a>,              <a href="/en/tag/screen-recorder.html">screen-recorder</a>,              <a href="/en/tag/productividad.html">productividad</a>,              <a href="/en/tag/open-source.html">open-source</a>
-    </p>
+      Posted on Thu, 25 Dec 2025 in <a href="/en/category/herramientas.html">Herramientas</a>       &#8226; Tagged with       <a href="/en/tag/linux.html">linux</a>,       <a href="/en/tag/kooha.html">kooha</a>,       <a href="/en/tag/screen-recorder.html">screen-recorder</a>,       <a href="/en/tag/productividad.html">productividad</a>,       <a href="/en/tag/open-source.html">open-source</a>       </p>
   </header>
   <div>
-      <div><p>Discover Kooha, a minimalist screen recording application for Linux that combines ease of use with essential features.</p></div>
-        <br>
-        <a class="btn"
-           href="/en/kooha-captura-pantalla-linux#kooha-captura-pantalla-linux">
-          Continue reading
-        </a>
-  </div>
+     <div><p>Discover Kooha, a minimalist screen recording application for Linux that combines ease of use with essential features.</p></div>
+    <br />
+    <a
+      class="btn"
+      href="/en/kooha-captura-pantalla-linux#kooha-captura-pantalla-linux"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/open-evidence-plataforma-medica#open-evidence-plataforma-medica">OpenEvidence: The Leading Medical Information Platform for Professionals</a></h2>
+    <h2>
+      <a
+        href="/en/open-evidence-plataforma-medica#open-evidence-plataforma-medica"
+        >OpenEvidence: The Leading Medical Information Platform for Professionals</a
+      >
+    </h2>
     <p>
-      Posted on Thu, 25 Dec 2025 in <a href="/en/category/personal.html">Personal</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/open-evidence.html">open-evidence</a>,              <a href="/en/tag/medicina.html">medicina</a>,              <a href="/en/tag/salud.html">salud</a>,              <a href="/en/tag/informacion-medica.html">informacion-medica</a>,              <a href="/en/tag/profesionales-salud.html">profesionales-salud</a>,              <a href="/en/tag/investigacion.html">investigacion</a>,              <a href="/en/tag/clinica.html">clinica</a>
-    </p>
+      Posted on Thu, 25 Dec 2025 in <a href="/en/category/personal.html">Personal</a>       &#8226; Tagged with       <a href="/en/tag/open-evidence.html">open-evidence</a>,       <a href="/en/tag/medicina.html">medicina</a>,       <a href="/en/tag/salud.html">salud</a>,       <a href="/en/tag/informacion-medica.html">informacion-medica</a>,       <a href="/en/tag/profesionales-salud.html">profesionales-salud</a>,       <a href="/en/tag/investigacion.html">investigacion</a>,       <a href="/en/tag/clinica.html">clinica</a>       </p>
   </header>
   <div>
-      <div><p>Exploring OpenEvidence, a leading platform that consolidates medical information, clinical findings, and practice guidelines for healthcare professionals in the US.</p></div>
-        <br>
-        <a class="btn"
-           href="/en/open-evidence-plataforma-medica#open-evidence-plataforma-medica">
-          Continue reading
-        </a>
-  </div>
+     <div><p>Exploring OpenEvidence, a leading platform that consolidates medical information, clinical findings, and practice guidelines for healthcare professionals in the US.</p></div>
+    <br />
+    <a
+      class="btn"
+      href="/en/open-evidence-plataforma-medica#open-evidence-plataforma-medica"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/direnv-gestion-entornos#direnv-gestion-entornos">`direnv`: Manage your development environments intelligently</a></h2>
+    <h2>
+      <a
+        href="/en/direnv-gestion-entornos#direnv-gestion-entornos"
+        >`direnv`: Manage your development environments intelligently</a
+      >
+    </h2>
     <p>
-      Posted on Thu, 25 Dec 2025 in <a href="/en/category/herramientas.html">Herramientas</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/direnv.html">direnv</a>,              <a href="/en/tag/shell.html">shell</a>,              <a href="/en/tag/entorno.html">entorno</a>,              <a href="/en/tag/productividad.html">productividad</a>,              <a href="/en/tag/desarrollo.html">desarrollo</a>,              <a href="/en/tag/linux.html">linux</a>
-    </p>
+      Posted on Thu, 25 Dec 2025 in <a href="/en/category/herramientas.html">Herramientas</a>       &#8226; Tagged with       <a href="/en/tag/direnv.html">direnv</a>,       <a href="/en/tag/shell.html">shell</a>,       <a href="/en/tag/entorno.html">entorno</a>,       <a href="/en/tag/productividad.html">productividad</a>,       <a href="/en/tag/desarrollo.html">desarrollo</a>,       <a href="/en/tag/linux.html">linux</a>       </p>
   </header>
   <div>
-      <div><p>Discover <code>direnv</code>, a shell extension that automatically loads and unloads environment variables when changing directories, keeping your configuration clean and organized.</p></div>
-        <br>
-        <a class="btn"
-           href="/en/direnv-gestion-entornos#direnv-gestion-entornos">
-          Continue reading
-        </a>
-  </div>
+     <div><p>Discover <code>direnv</code>, a shell extension that automatically loads and unloads environment variables when changing directories, keeping your configuration clean and organized.</p></div>
+    <br />
+    <a
+      class="btn"
+      href="/en/direnv-gestion-entornos#direnv-gestion-entornos"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/docker-http-https-echo#docker-http-https-echo">`docker-http-https-echo`: An Essential Tool for Network Debugging</a></h2>
+    <h2>
+      <a
+        href="/en/docker-http-https-echo#docker-http-https-echo"
+        >`docker-http-https-echo`: An Essential Tool for Network Debugging</a
+      >
+    </h2>
     <p>
-      Posted on Thu, 25 Dec 2025 in <a href="/en/category/herramientas.html">Herramientas</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/docker.html">docker</a>,              <a href="/en/tag/http.html">http</a>,              <a href="/en/tag/https.html">https</a>,              <a href="/en/tag/debugging.html">debugging</a>,              <a href="/en/tag/redes.html">redes</a>,              <a href="/en/tag/contenedores.html">contenedores</a>
-    </p>
+      Posted on Thu, 25 Dec 2025 in <a href="/en/category/herramientas.html">Herramientas</a>       &#8226; Tagged with       <a href="/en/tag/docker.html">docker</a>,       <a href="/en/tag/http.html">http</a>,       <a href="/en/tag/https.html">https</a>,       <a href="/en/tag/debugging.html">debugging</a>,       <a href="/en/tag/redes.html">redes</a>,       <a href="/en/tag/contenedores.html">contenedores</a>       </p>
   </header>
   <div>
-      <div><p><code>mendhak/docker-http-https-echo</code> is a simple Docker container that facilitates debugging network configurations, proxies, and load balancers.</p></div>
-        <br>
-        <a class="btn"
-           href="/en/docker-http-https-echo#docker-http-https-echo">
-          Continue reading
-        </a>
-  </div>
+     <div><p><code>mendhak/docker-http-https-echo</code> is a simple Docker container that facilitates debugging network configurations, proxies, and load balancers.</p></div>
+    <br />
+    <a
+      class="btn"
+      href="/en/docker-http-https-echo#docker-http-https-echo"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/kubegres-postgresql-kubernetes#kubegres-postgresql-kubernetes">Kubegres: Simplified PostgreSQL Management on Kubernetes</a></h2>
+    <h2>
+      <a
+        href="/en/kubegres-postgresql-kubernetes#kubegres-postgresql-kubernetes"
+        >Kubegres: Simplified PostgreSQL Management on Kubernetes</a
+      >
+    </h2>
     <p>
-      Posted on Thu, 25 Dec 2025 in <a href="/en/category/infraestructura.html">Infraestructura</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/kubernetes.html">kubernetes</a>,              <a href="/en/tag/postgresql.html">postgresql</a>,              <a href="/en/tag/kubegres.html">kubegres</a>,              <a href="/en/tag/operador.html">operador</a>,              <a href="/en/tag/base-de-datos.html">base-de-datos</a>
-    </p>
+      Posted on Thu, 25 Dec 2025 in <a href="/en/category/infraestructura.html">Infraestructura</a>       &#8226; Tagged with       <a href="/en/tag/kubernetes.html">kubernetes</a>,       <a href="/en/tag/postgresql.html">postgresql</a>,       <a href="/en/tag/kubegres.html">kubegres</a>,       <a href="/en/tag/operador.html">operador</a>,       <a href="/en/tag/base-de-datos.html">base-de-datos</a>       </p>
   </header>
   <div>
-      <div><p>Discover Kubegres, a Kubernetes operator that simplifies the deployment and management of highly available and scalable PostgreSQL clusters.</p></div>
-        <br>
-        <a class="btn"
-           href="/en/kubegres-postgresql-kubernetes#kubegres-postgresql-kubernetes">
-          Continue reading
-        </a>
-  </div>
+     <div><p>Discover Kubegres, a Kubernetes operator that simplifies the deployment and management of highly available and scalable PostgreSQL clusters.</p></div>
+    <br />
+    <a
+      class="btn"
+      href="/en/kubegres-postgresql-kubernetes#kubegres-postgresql-kubernetes"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/estados-conexion-tcp-netstat-ss#estados-conexion-tcp-netstat-ss">TCP Connection States in GNU/Linux: netstat and ss</a></h2>
+    <h2>
+      <a
+        href="/en/estados-conexion-tcp-netstat-ss#estados-conexion-tcp-netstat-ss"
+        >TCP Connection States in GNU/Linux: netstat and ss</a
+      >
+    </h2>
     <p>
-      Posted on Thu, 25 Dec 2025 in <a href="/en/category/infraestructura.html">Infraestructura</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/linux.html">linux</a>,              <a href="/en/tag/tcp.html">tcp</a>,              <a href="/en/tag/netstat.html">netstat</a>,              <a href="/en/tag/ss.html">ss</a>
-    </p>
+      Posted on Thu, 25 Dec 2025 in <a href="/en/category/infraestructura.html">Infraestructura</a>       &#8226; Tagged with       <a href="/en/tag/linux.html">linux</a>,       <a href="/en/tag/tcp.html">tcp</a>,       <a href="/en/tag/netstat.html">netstat</a>,       <a href="/en/tag/ss.html">ss</a>       </p>
   </header>
   <div>
-      <div><p>Understand the different TCP connection states reported by netstat and ss, from establishment to termination, for better network diagnosis.</p></div>
-        <br>
-        <a class="btn"
-           href="/en/estados-conexion-tcp-netstat-ss#estados-conexion-tcp-netstat-ss">
-          Continue reading
-        </a>
-  </div>
+     <div><p>Understand the different TCP connection states reported by netstat and ss, from establishment to termination, for better network diagnosis.</p></div>
+    <br />
+    <a
+      class="btn"
+      href="/en/estados-conexion-tcp-netstat-ss#estados-conexion-tcp-netstat-ss"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/reduce-ruido-logs-python#reduce-ruido-logs-python">Reduce Noise in Your Python Logs: A Smart Approach</a></h2>
+    <h2>
+      <a
+        href="/en/reduce-ruido-logs-python#reduce-ruido-logs-python"
+        >Reduce Noise in Your Python Logs: A Smart Approach</a
+      >
+    </h2>
     <p>
-      Posted on Thu, 25 Dec 2025 in <a href="/en/category/programacion.html">Programación</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/logging.html">logging</a>,              <a href="/en/tag/logs.html">logs</a>,              <a href="/en/tag/debugging.html">debugging</a>,              <a href="/en/tag/desarrollo.html">desarrollo</a>
-    </p>
+      Posted on Thu, 25 Dec 2025 in <a href="/en/category/programacion.html">Programación</a>       &#8226; Tagged with       <a href="/en/tag/logging.html">logging</a>,       <a href="/en/tag/logs.html">logs</a>,       <a href="/en/tag/debugging.html">debugging</a>,       <a href="/en/tag/desarrollo.html">desarrollo</a>       </p>
   </header>
   <div>
-      <div><p>Learn how to configure Python's <code>logging</code> module to avoid message overload from third-party libraries, keeping your logs clean and useful.</p></div>
-        <br>
-        <a class="btn"
-           href="/en/reduce-ruido-logs-python#reduce-ruido-logs-python">
-          Continue reading
-        </a>
-  </div>
+     <div><p>Learn how to configure Python's <code>logging</code> module to avoid message overload from third-party libraries, keeping your logs clean and useful.</p></div>
+    <br />
+    <a
+      class="btn"
+      href="/en/reduce-ruido-logs-python#reduce-ruido-logs-python"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/kitty-acceso-rapido#kitty-acceso-rapido">Kitty as a Quick Access Terminal: The Convenience of a Dropdown</a></h2>
+    <h2>
+      <a
+        href="/en/kitty-acceso-rapido#kitty-acceso-rapido"
+        >Kitty as a Quick Access Terminal: The Convenience of a Dropdown</a
+      >
+    </h2>
     <p>
-      Posted on Thu, 25 Dec 2025 in <a href="/en/category/infraestructura.html">Infraestructura</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/kitty.html">kitty</a>,              <a href="/en/tag/terminal.html">terminal</a>,              <a href="/en/tag/acceso-rapido.html">acceso-rapido</a>,              <a href="/en/tag/productividad.html">productividad</a>,              <a href="/en/tag/linux.html">linux</a>,              <a href="/en/tag/atajos.html">atajos</a>
-    </p>
+      Posted on Thu, 25 Dec 2025 in <a href="/en/category/infraestructura.html">Infraestructura</a>       &#8226; Tagged with       <a href="/en/tag/kitty.html">kitty</a>,       <a href="/en/tag/terminal.html">terminal</a>,       <a href="/en/tag/acceso-rapido.html">acceso-rapido</a>,       <a href="/en/tag/productividad.html">productividad</a>,       <a href="/en/tag/linux.html">linux</a>,       <a href="/en/tag/atajos.html">atajos</a>       </p>
   </header>
   <div>
-      <div><p>Configure Kitty for instant and efficient access, combining the power of a modern terminal with the convenience of a dropdown.</p></div>
-        <br>
-        <a class="btn"
-           href="/en/kitty-acceso-rapido#kitty-acceso-rapido">
-          Continue reading
-        </a>
-  </div>
+     <div><p>Configure Kitty for instant and efficient access, combining the power of a modern terminal with the convenience of a dropdown.</p></div>
+    <br />
+    <a
+      class="btn"
+      href="/en/kitty-acceso-rapido#kitty-acceso-rapido"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/atajos-de-teclado-kitty#atajos-de-teclado-kitty">Essential Keyboard Shortcuts in Kitty: Mastering Your Terminal</a></h2>
+    <h2>
+      <a
+        href="/en/atajos-de-teclado-kitty#atajos-de-teclado-kitty"
+        >Essential Keyboard Shortcuts in Kitty: Mastering Your Terminal</a
+      >
+    </h2>
     <p>
-      Posted on Thu, 25 Dec 2025 in <a href="/en/category/infraestructura.html">Infraestructura</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/kitty.html">kitty</a>,              <a href="/en/tag/terminal.html">terminal</a>,              <a href="/en/tag/atajos.html">atajos</a>,              <a href="/en/tag/teclado.html">teclado</a>,              <a href="/en/tag/productividad.html">productividad</a>
-    </p>
+      Posted on Thu, 25 Dec 2025 in <a href="/en/category/infraestructura.html">Infraestructura</a>       &#8226; Tagged with       <a href="/en/tag/kitty.html">kitty</a>,       <a href="/en/tag/terminal.html">terminal</a>,       <a href="/en/tag/atajos.html">atajos</a>,       <a href="/en/tag/teclado.html">teclado</a>,       <a href="/en/tag/productividad.html">productividad</a>       </p>
   </header>
   <div>
-      <div><p>A quick guide to the most useful Kitty keyboard shortcuts to optimize your command-line workflow.</p></div>
-        <br>
-        <a class="btn"
-           href="/en/atajos-de-teclado-kitty#atajos-de-teclado-kitty">
-          Continue reading
-        </a>
-  </div>
+     <div><p>A quick guide to the most useful Kitty keyboard shortcuts to optimize your command-line workflow.</p></div>
+    <br />
+    <a
+      class="btn"
+      href="/en/atajos-de-teclado-kitty#atajos-de-teclado-kitty"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/de-yakuake-a-kitty#de-yakuake-a-kitty">From Yakuake to Kitty: My Transition to a Modern Terminal</a></h2>
+    <h2>
+      <a
+        href="/en/de-yakuake-a-kitty#de-yakuake-a-kitty"
+        >From Yakuake to Kitty: My Transition to a Modern Terminal</a
+      >
+    </h2>
     <p>
-      Posted on Thu, 25 Dec 2025 in <a href="/en/category/infraestructura.html">Infraestructura</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/kitty.html">kitty</a>,              <a href="/en/tag/yakuake.html">yakuake</a>,              <a href="/en/tag/terminal.html">terminal</a>,              <a href="/en/tag/linux.html">linux</a>,              <a href="/en/tag/productividad.html">productividad</a>,              <a href="/en/tag/herramientas.html">herramientas</a>
-    </p>
+      Posted on Thu, 25 Dec 2025 in <a href="/en/category/infraestructura.html">Infraestructura</a>       &#8226; Tagged with       <a href="/en/tag/kitty.html">kitty</a>,       <a href="/en/tag/yakuake.html">yakuake</a>,       <a href="/en/tag/terminal.html">terminal</a>,       <a href="/en/tag/linux.html">linux</a>,       <a href="/en/tag/productividad.html">productividad</a>,       <a href="/en/tag/herramientas.html">herramientas</a>       </p>
   </header>
   <div>
-      <div><p>Exploring the reasons and benefits of switching from Yakuake to Kitty for a more powerful and customizable terminal experience.</p></div>
-        <br>
-        <a class="btn"
-           href="/en/de-yakuake-a-kitty#de-yakuake-a-kitty">
-          Continue reading
-        </a>
-  </div>
+     <div><p>Exploring the reasons and benefits of switching from Yakuake to Kitty for a more powerful and customizable terminal experience.</p></div>
+    <br />
+    <a
+      class="btn"
+      href="/en/de-yakuake-a-kitty#de-yakuake-a-kitty"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/poe-the-poet-automatizando-tareas-en-proyectos-python-con-uv#poe-the-poet-automatizando-tareas-en-proyectos-python-con-uv">Poe the Poet: Automating Tasks in Python Projects with uv</a></h2>
+    <h2>
+      <a
+        href="/en/poe-the-poet-automatizando-tareas-en-proyectos-python-con-uv#poe-the-poet-automatizando-tareas-en-proyectos-python-con-uv"
+        >Poe the Poet: Automating Tasks in Python Projects with uv</a
+      >
+    </h2>
     <p>
-      Posted on Thu, 25 Dec 2025 in <a href="/en/category/programacion.html">Programación</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/uv.html">uv</a>,              <a href="/en/tag/poethepoet.html">poethepoet</a>,              <a href="/en/tag/automation.html">automation</a>,              <a href="/en/tag/pyprojecttoml.html">pyproject.toml</a>
-    </p>
+      Posted on Thu, 25 Dec 2025 in <a href="/en/category/programacion.html">Programación</a>       &#8226; Tagged with       <a href="/en/tag/uv.html">uv</a>,       <a href="/en/tag/poethepoet.html">poethepoet</a>,       <a href="/en/tag/automation.html">automation</a>,       <a href="/en/tag/pyprojecttoml.html">pyproject.toml</a>       </p>
   </header>
   <div>
-      <div><p>Discover how Poe the Poet allows you to define and execute custom commands directly from your pyproject.toml, optimizing your workflow in uv environments.</p></div>
-        <br>
-        <a class="btn"
-           href="/en/poe-the-poet-automatizando-tareas-en-proyectos-python-con-uv#poe-the-poet-automatizando-tareas-en-proyectos-python-con-uv">
-          Continue reading
-        </a>
-  </div>
+     <div><p>Discover how Poe the Poet allows you to define and execute custom commands directly from your pyproject.toml, optimizing your workflow in uv environments.</p></div>
+    <br />
+    <a
+      class="btn"
+      href="/en/poe-the-poet-automatizando-tareas-en-proyectos-python-con-uv#poe-the-poet-automatizando-tareas-en-proyectos-python-con-uv"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/como-uso-git-worktrees#como-uso-git-worktrees">How I Use Git Worktrees for Concurrent Work</a></h2>
+    <h2>
+      <a
+        href="/en/como-uso-git-worktrees#como-uso-git-worktrees"
+        >How I Use Git Worktrees for Concurrent Work</a
+      >
+    </h2>
     <p>
-      Posted on Wed, 23 Jul 2025 in <a href="/en/category/programacion.html">Programación</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/git.html">git</a>,              <a href="/en/tag/worktrees.html">worktrees</a>,              <a href="/en/tag/flujo-trabajo.html">flujo-trabajo</a>,              <a href="/en/tag/productividad.html">productividad</a>
-    </p>
+      Posted on Wed, 23 Jul 2025 in <a href="/en/category/programacion.html">Programación</a>       &#8226; Tagged with       <a href="/en/tag/git.html">git</a>,       <a href="/en/tag/worktrees.html">worktrees</a>,       <a href="/en/tag/flujo-trabajo.html">flujo-trabajo</a>,       <a href="/en/tag/productividad.html">productividad</a>       </p>
   </header>
   <div>
-      <div><p class="first last">A practical approach to using git worktrees and maximizing productivity with multiple simultaneous work contexts</p>
+     <div><p class="first last">A practical approach to using git worktrees and maximizing productivity with multiple simultaneous work contexts</p>
 </div>
-        <br>
-        <a class="btn"
-           href="/en/como-uso-git-worktrees#como-uso-git-worktrees">
-          Continue reading
-        </a>
-  </div>
+    <br />
+    <a
+      class="btn"
+      href="/en/como-uso-git-worktrees#como-uso-git-worktrees"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/busqueda-hibrida-sqlite-vector-texto#busqueda-hibrida-sqlite-vector-texto">Hybrid Search with SQLite: Vector + Full-Text</a></h2>
+    <h2>
+      <a
+        href="/en/busqueda-hibrida-sqlite-vector-texto#busqueda-hibrida-sqlite-vector-texto"
+        >Hybrid Search with SQLite: Vector + Full-Text</a
+      >
+    </h2>
     <p>
-      Posted on Sun, 06 Oct 2024 in <a href="/en/category/programacion.html">Programación</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/sqlite.html">sqlite</a>,              <a href="/en/tag/busqueda.html">busqueda</a>,              <a href="/en/tag/vectores.html">vectores</a>,              <a href="/en/tag/fts.html">fts</a>,              <a href="/en/tag/sql.html">sql</a>
-    </p>
+      Posted on Sun, 06 Oct 2024 in <a href="/en/category/programacion.html">Programación</a>       &#8226; Tagged with       <a href="/en/tag/sqlite.html">sqlite</a>,       <a href="/en/tag/busqueda.html">busqueda</a>,       <a href="/en/tag/vectores.html">vectores</a>,       <a href="/en/tag/fts.html">fts</a>,       <a href="/en/tag/sql.html">sql</a>       </p>
   </header>
   <div>
-      <div><p class="first last">Combining vector search and full-text search in SQLite using Reciprocal Rank Fusion for better results</p>
+     <div><p class="first last">Combining vector search and full-text search in SQLite using Reciprocal Rank Fusion for better results</p>
 </div>
-        <br>
-        <a class="btn"
-           href="/en/busqueda-hibrida-sqlite-vector-texto#busqueda-hibrida-sqlite-vector-texto">
-          Continue reading
-        </a>
-  </div>
+    <br />
+    <a
+      class="btn"
+      href="/en/busqueda-hibrida-sqlite-vector-texto#busqueda-hibrida-sqlite-vector-texto"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/conflacion-datos-geoespaciales-duckdb#conflacion-datos-geoespaciales-duckdb">Geospatial Data Conflation with DuckDB and Embeddings</a></h2>
+    <h2>
+      <a
+        href="/en/conflacion-datos-geoespaciales-duckdb#conflacion-datos-geoespaciales-duckdb"
+        >Geospatial Data Conflation with DuckDB and Embeddings</a
+      >
+    </h2>
     <p>
-      Posted on Tue, 01 Oct 2024 in <a href="/en/category/programacion.html">Programación</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/duckdb.html">duckdb</a>,              <a href="/en/tag/geoespacial.html">geoespacial</a>,              <a href="/en/tag/embeddings.html">embeddings</a>,              <a href="/en/tag/ollama.html">ollama</a>,              <a href="/en/tag/h3.html">h3</a>
-    </p>
+      Posted on Tue, 01 Oct 2024 in <a href="/en/category/programacion.html">Programación</a>       &#8226; Tagged with       <a href="/en/tag/duckdb.html">duckdb</a>,       <a href="/en/tag/geoespacial.html">geoespacial</a>,       <a href="/en/tag/embeddings.html">embeddings</a>,       <a href="/en/tag/ollama.html">ollama</a>,       <a href="/en/tag/h3.html">h3</a>       </p>
   </header>
   <div>
-      <div><p class="first last">Advanced techniques to integrate geospatial data sources using DuckDB, H3, Ollama, and embedding models</p>
+     <div><p class="first last">Advanced techniques to integrate geospatial data sources using DuckDB, H3, Ollama, and embedding models</p>
 </div>
-        <br>
-        <a class="btn"
-           href="/en/conflacion-datos-geoespaciales-duckdb#conflacion-datos-geoespaciales-duckdb">
-          Continue reading
-        </a>
-  </div>
+    <br />
+    <a
+      class="btn"
+      href="/en/conflacion-datos-geoespaciales-duckdb#conflacion-datos-geoespaciales-duckdb"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/httpx-cliente-http-moderno-python#httpx-cliente-http-moderno-python">HTTPX: Modern HTTP Client for Python</a></h2>
+    <h2>
+      <a
+        href="/en/httpx-cliente-http-moderno-python#httpx-cliente-http-moderno-python"
+        >HTTPX: Modern HTTP Client for Python</a
+      >
+    </h2>
     <p>
-      Posted on Mon, 23 Sep 2024 in <a href="/en/category/programacion.html">Programación</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/http.html">http</a>,              <a href="/en/tag/httpx.html">httpx</a>,              <a href="/en/tag/async.html">async</a>,              <a href="/en/tag/requests.html">requests</a>
-    </p>
+      Posted on Mon, 23 Sep 2024 in <a href="/en/category/programacion.html">Programación</a>       &#8226; Tagged with       <a href="/en/tag/http.html">http</a>,       <a href="/en/tag/httpx.html">httpx</a>,       <a href="/en/tag/async.html">async</a>,       <a href="/en/tag/requests.html">requests</a>       </p>
   </header>
   <div>
-      <div><p class="first last">HTTPX emerges as the natural successor to requests, offering async support, HTTP/2, and a modern API for contemporary Python applications.</p>
+     <div><p class="first last">HTTPX emerges as the natural successor to requests, offering async support, HTTP/2, and a modern API for contemporary Python applications.</p>
 </div>
-        <br>
-        <a class="btn"
-           href="/en/httpx-cliente-http-moderno-python#httpx-cliente-http-moderno-python">
-          Continue reading
-        </a>
-  </div>
+    <br />
+    <a
+      class="btn"
+      href="/en/httpx-cliente-http-moderno-python#httpx-cliente-http-moderno-python"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/server-sent-events-comunicacion-tiempo-real#server-sent-events-comunicacion-tiempo-real">Server-Sent Events: Simplified Real-Time Communication</a></h2>
+    <h2>
+      <a
+        href="/en/server-sent-events-comunicacion-tiempo-real#server-sent-events-comunicacion-tiempo-real"
+        >Server-Sent Events: Simplified Real-Time Communication</a
+      >
+    </h2>
     <p>
-      Posted on Mon, 23 Sep 2024 in <a href="/en/category/programacion.html">Programación</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/javascript.html">javascript</a>,              <a href="/en/tag/sse.html">sse</a>,              <a href="/en/tag/tiempo-real.html">tiempo-real</a>,              <a href="/en/tag/web-apis.html">web-apis</a>
-    </p>
+      Posted on Mon, 23 Sep 2024 in <a href="/en/category/programacion.html">Programación</a>       &#8226; Tagged with       <a href="/en/tag/javascript.html">javascript</a>,       <a href="/en/tag/sse.html">sse</a>,       <a href="/en/tag/tiempo-real.html">tiempo-real</a>,       <a href="/en/tag/web-apis.html">web-apis</a>       </p>
   </header>
   <div>
-      <div><p>Server-Sent Events offer a simple and efficient alternative to WebSockets for unidirectional server-to-client communication in web applications</p></div>
-        <br>
-        <a class="btn"
-           href="/en/server-sent-events-comunicacion-tiempo-real#server-sent-events-comunicacion-tiempo-real">
-          Continue reading
-        </a>
-  </div>
+     <div><p>Server-Sent Events offer a simple and efficient alternative to WebSockets for unidirectional server-to-client communication in web applications</p></div>
+    <br />
+    <a
+      class="btn"
+      href="/en/server-sent-events-comunicacion-tiempo-real#server-sent-events-comunicacion-tiempo-real"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/una-de-versiones#una-de-versiones">About Versions</a></h2>
+    <h2>
+      <a
+        href="/en/una-de-versiones#una-de-versiones"
+        >About Versions</a
+      >
+    </h2>
     <p>
-      Posted on Mon, 01 May 2017 in <a href="/en/category/programacion.html">Programación</a>
-
-
-    </p>
+      Posted on Mon, 01 May 2017 in <a href="/en/category/programacion.html">Programación</a>      </p>
   </header>
   <div>
-      <div></div>
-        <br>
-        <a class="btn"
-           href="/en/una-de-versiones#una-de-versiones">
-          Continue reading
-        </a>
-  </div>
+     <div></div>
+    <br />
+    <a
+      class="btn"
+      href="/en/una-de-versiones#una-de-versiones"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/mobaxterm-mucho-más-que-un-cliente-ssh#mobaxterm-mucho-más-que-un-cliente-ssh">MobaXterm. Much more than an ssh client</a></h2>
+    <h2>
+      <a
+        href="/en/mobaxterm-mucho-más-que-un-cliente-ssh#mobaxterm-mucho-más-que-un-cliente-ssh"
+        >MobaXterm. Much more than an ssh client</a
+      >
+    </h2>
     <p>
-      Posted on Tue, 11 Apr 2017 in <a href="/en/category/herramientas.html">Herramientas</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/linux.html">linux</a>
-    </p>
+      Posted on Tue, 11 Apr 2017 in <a href="/en/category/herramientas.html">Herramientas</a>       &#8226; Tagged with       <a href="/en/tag/linux.html">linux</a>       </p>
   </header>
   <div>
-      <div></div>
-        <br>
-        <a class="btn"
-           href="/en/mobaxterm-mucho-más-que-un-cliente-ssh#mobaxterm-mucho-más-que-un-cliente-ssh">
-          Continue reading
-        </a>
-  </div>
+     <div></div>
+    <br />
+    <a
+      class="btn"
+      href="/en/mobaxterm-mucho-más-que-un-cliente-ssh#mobaxterm-mucho-más-que-un-cliente-ssh"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/posterazor-crear-posters-grandes#posterazor-crear-posters-grandes">PosteRazor: Create Giant Posters from Any Image</a></h2>
+    <h2>
+      <a
+        href="/en/posterazor-crear-posters-grandes#posterazor-crear-posters-grandes"
+        >PosteRazor: Create Giant Posters from Any Image</a
+      >
+    </h2>
     <p>
-      Posted on Fri, 24 Feb 2017 in <a href="/en/category/herramientas.html">Herramientas</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/posterazor.html">posterazor</a>,              <a href="/en/tag/printing.html">printing</a>,              <a href="/en/tag/posters.html">posters</a>,              <a href="/en/tag/diy.html">diy</a>
-    </p>
+      Posted on Fri, 24 Feb 2017 in <a href="/en/category/herramientas.html">Herramientas</a>       &#8226; Tagged with       <a href="/en/tag/posterazor.html">posterazor</a>,       <a href="/en/tag/printing.html">printing</a>,       <a href="/en/tag/posters.html">posters</a>,       <a href="/en/tag/diy.html">diy</a>       </p>
   </header>
   <div>
-      <div><p>PosteRazor converts any image into a giant poster by splitting the image into printable pages that you can assemble</p></div>
-        <br>
-        <a class="btn"
-           href="/en/posterazor-crear-posters-grandes#posterazor-crear-posters-grandes">
-          Continue reading
-        </a>
-  </div>
+     <div><p>PosteRazor converts any image into a giant poster by splitting the image into printable pages that you can assemble</p></div>
+    <br />
+    <a
+      class="btn"
+      href="/en/posterazor-crear-posters-grandes#posterazor-crear-posters-grandes"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/gmail_correo_no_leido_solo_en_principal#gmail_correo_no_leido_solo_en_principal">Unread Mail in Gmail's Primary Tab</a></h2>
+    <h2>
+      <a
+        href="/en/gmail_correo_no_leido_solo_en_principal#gmail_correo_no_leido_solo_en_principal"
+        >Unread Mail in Gmail's Primary Tab</a
+      >
+    </h2>
     <p>
-      Posted on Thu, 28 Jul 2016 in <a href="/en/category/herramientas.html">Herramientas</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/linux.html">linux</a>
-    </p>
+      Posted on Thu, 28 Jul 2016 in <a href="/en/category/herramientas.html">Herramientas</a>       &#8226; Tagged with       <a href="/en/tag/linux.html">linux</a>       </p>
   </header>
   <div>
-      <div><p>As always, another reminder note.</p>
+     <div><p>As always, another reminder note.</p>
 <p>If you filter mail in gmail by unread (<code>is:unread</code>), you get all unread mail,
 which in my case always includes hundreds of notifications, social, promotions, or forums which is usually not what I'm looking for.</p>
 <p>To search for unread emails <em>from the Primary tab …</em></p></div>
-        <br>
-        <a class="btn"
-           href="/en/gmail_correo_no_leido_solo_en_principal#gmail_correo_no_leido_solo_en_principal">
-          Continue reading
-        </a>
-  </div>
+    <br />
+    <a
+      class="btn"
+      href="/en/gmail_correo_no_leido_solo_en_principal#gmail_correo_no_leido_solo_en_principal"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/documentacion-tecnica-sphinx-paver-cog#documentacion-tecnica-sphinx-paver-cog">Technical Documentation with Sphinx, Paver, and Cog</a></h2>
+    <h2>
+      <a
+        href="/en/documentacion-tecnica-sphinx-paver-cog#documentacion-tecnica-sphinx-paver-cog"
+        >Technical Documentation with Sphinx, Paver, and Cog</a
+      >
+    </h2>
     <p>
-      Posted on Thu, 14 Jul 2016 in <a href="/en/category/documentacion.html">Documentación</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/sphinx.html">sphinx</a>,              <a href="/en/tag/paver.html">paver</a>,              <a href="/en/tag/cog.html">cog</a>,              <a href="/en/tag/rst.html">rst</a>,              <a href="/en/tag/automation.html">automation</a>
-    </p>
+      Posted on Thu, 14 Jul 2016 in <a href="/en/category/documentacion.html">Documentación</a>       &#8226; Tagged with       <a href="/en/tag/sphinx.html">sphinx</a>,       <a href="/en/tag/paver.html">paver</a>,       <a href="/en/tag/cog.html">cog</a>,       <a href="/en/tag/rst.html">rst</a>,       <a href="/en/tag/automation.html">automation</a>       </p>
   </header>
   <div>
-      <div><p>Automated workflow to create technical documentation using Sphinx, Paver, and Cog, eliminating repetitive tasks and manual errors in code examples</p></div>
-        <br>
-        <a class="btn"
-           href="/en/documentacion-tecnica-sphinx-paver-cog#documentacion-tecnica-sphinx-paver-cog">
-          Continue reading
-        </a>
-  </div>
+     <div><p>Automated workflow to create technical documentation using Sphinx, Paver, and Cog, eliminating repetitive tasks and manual errors in code examples</p></div>
+    <br />
+    <a
+      class="btn"
+      href="/en/documentacion-tecnica-sphinx-paver-cog#documentacion-tecnica-sphinx-paver-cog"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/determinar-slots-ram-uso-linux#determinar-slots-ram-uso-linux">Determining RAM slots in use on Linux</a></h2>
+    <h2>
+      <a
+        href="/en/determinar-slots-ram-uso-linux#determinar-slots-ram-uso-linux"
+        >Determining RAM slots in use on Linux</a
+      >
+    </h2>
     <p>
-      Posted on Wed, 13 Jul 2016 in <a href="/en/category/linux.html">Linux</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/ram.html">ram</a>,              <a href="/en/tag/dmidecode.html">dmidecode</a>,              <a href="/en/tag/lshw.html">lshw</a>,              <a href="/en/tag/hardware.html">hardware</a>,              <a href="/en/tag/memoria.html">memoria</a>
-    </p>
+      Posted on Wed, 13 Jul 2016 in <a href="/en/category/linux.html">Linux</a>       &#8226; Tagged with       <a href="/en/tag/ram.html">ram</a>,       <a href="/en/tag/dmidecode.html">dmidecode</a>,       <a href="/en/tag/lshw.html">lshw</a>,       <a href="/en/tag/hardware.html">hardware</a>,       <a href="/en/tag/memoria.html">memoria</a>       </p>
   </header>
   <div>
-      <div><p>Linux commands to determine how many RAM slots are occupied and their capacity using dmidecode, lshw, and hardware inspection techniques</p></div>
-        <br>
-        <a class="btn"
-           href="/en/determinar-slots-ram-uso-linux#determinar-slots-ram-uso-linux">
-          Continue reading
-        </a>
-  </div>
+     <div><p>Linux commands to determine how many RAM slots are occupied and their capacity using dmidecode, lshw, and hardware inspection techniques</p></div>
+    <br />
+    <a
+      class="btn"
+      href="/en/determinar-slots-ram-uso-linux#determinar-slots-ram-uso-linux"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/introduccion-trading-alta-frecuencia#introduccion-trading-alta-frecuencia">Introduction to High-Frequency Trading Systems</a></h2>
+    <h2>
+      <a
+        href="/en/introduccion-trading-alta-frecuencia#introduccion-trading-alta-frecuencia"
+        >Introduction to High-Frequency Trading Systems</a
+      >
+    </h2>
     <p>
-      Posted on Mon, 27 Jun 2016 in <a href="/en/category/finanzas.html">Finanzas</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/trading.html">trading</a>,              <a href="/en/tag/hft.html">hft</a>,              <a href="/en/tag/high-frequency.html">high-frequency</a>,              <a href="/en/tag/algoritmos.html">algoritmos</a>
-    </p>
+      Posted on Mon, 27 Jun 2016 in <a href="/en/category/finanzas.html">Finanzas</a>       &#8226; Tagged with       <a href="/en/tag/trading.html">trading</a>,       <a href="/en/tag/hft.html">hft</a>,       <a href="/en/tag/high-frequency.html">high-frequency</a>,       <a href="/en/tag/algoritmos.html">algoritmos</a>       </p>
   </header>
   <div>
-      <div><p>Fundamental concepts about High-Frequency Trading (HFT) systems, programs that execute thousands of trades per day in fractions of a second</p></div>
-        <br>
-        <a class="btn"
-           href="/en/introduccion-trading-alta-frecuencia#introduccion-trading-alta-frecuencia">
-          Continue reading
-        </a>
-  </div>
+     <div><p>Fundamental concepts about High-Frequency Trading (HFT) systems, programs that execute thousands of trades per day in fractions of a second</p></div>
+    <br />
+    <a
+      class="btn"
+      href="/en/introduccion-trading-alta-frecuencia#introduccion-trading-alta-frecuencia"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/encontrar-hosts-vivos-red#encontrar-hosts-vivos-red">How to Find Live Hosts on Your Local Network</a></h2>
+    <h2>
+      <a
+        href="/en/encontrar-hosts-vivos-red#encontrar-hosts-vivos-red"
+        >How to Find Live Hosts on Your Local Network</a
+      >
+    </h2>
     <p>
-      Posted on Mon, 27 Jun 2016 in <a href="/en/category/infraestructura.html">Infraestructura</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/nmap.html">nmap</a>,              <a href="/en/tag/network-discovery.html">network-discovery</a>,              <a href="/en/tag/arp-scan.html">arp-scan</a>,              <a href="/en/tag/netdiscover.html">netdiscover</a>
-    </p>
+      Posted on Mon, 27 Jun 2016 in <a href="/en/category/infraestructura.html">Infraestructura</a>       &#8226; Tagged with       <a href="/en/tag/nmap.html">nmap</a>,       <a href="/en/tag/network-discovery.html">network-discovery</a>,       <a href="/en/tag/arp-scan.html">arp-scan</a>,       <a href="/en/tag/netdiscover.html">netdiscover</a>       </p>
   </header>
   <div>
-      <div><p>Methods and tools to discover active devices on local networks using nmap, arp-scan, netdiscover, and other reconnaissance techniques</p></div>
-        <br>
-        <a class="btn"
-           href="/en/encontrar-hosts-vivos-red#encontrar-hosts-vivos-red">
-          Continue reading
-        </a>
-  </div>
+     <div><p>Methods and tools to discover active devices on local networks using nmap, arp-scan, netdiscover, and other reconnaissance techniques</p></div>
+    <br />
+    <a
+      class="btn"
+      href="/en/encontrar-hosts-vivos-red#encontrar-hosts-vivos-red"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/herramientas-desarrolladores-linea-comandos#herramientas-desarrolladores-linea-comandos">Powerful Command Line Tools for Developers</a></h2>
+    <h2>
+      <a
+        href="/en/herramientas-desarrolladores-linea-comandos#herramientas-desarrolladores-linea-comandos"
+        >Powerful Command Line Tools for Developers</a
+      >
+    </h2>
     <p>
-      Posted on Tue, 07 Jun 2016 in <a href="/en/category/herramientas.html">Herramientas</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/cli.html">cli</a>,              <a href="/en/tag/desarrollo.html">desarrollo</a>,              <a href="/en/tag/redes.html">redes</a>,              <a href="/en/tag/testing.html">testing</a>
-    </p>
+      Posted on Tue, 07 Jun 2016 in <a href="/en/category/herramientas.html">Herramientas</a>       &#8226; Tagged with       <a href="/en/tag/cli.html">cli</a>,       <a href="/en/tag/desarrollo.html">desarrollo</a>,       <a href="/en/tag/redes.html">redes</a>,       <a href="/en/tag/testing.html">testing</a>       </p>
   </header>
   <div>
-      <div><p>Collection of essential command line tools for developers: curl, ngrep, netcat, sshuttle, siege, and mitmproxy</p></div>
-        <br>
-        <a class="btn"
-           href="/en/herramientas-desarrolladores-linea-comandos#herramientas-desarrolladores-linea-comandos">
-          Continue reading
-        </a>
-  </div>
+     <div><p>Collection of essential command line tools for developers: curl, ngrep, netcat, sshuttle, siege, and mitmproxy</p></div>
+    <br />
+    <a
+      class="btn"
+      href="/en/herramientas-desarrolladores-linea-comandos#herramientas-desarrolladores-linea-comandos"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/sysdig-seguridad-cloud-nativa#sysdig-seguridad-cloud-nativa">Sysdig: Cloud-Native Security Platform with AI</a></h2>
+    <h2>
+      <a
+        href="/en/sysdig-seguridad-cloud-nativa#sysdig-seguridad-cloud-nativa"
+        >Sysdig: Cloud-Native Security Platform with AI</a
+      >
+    </h2>
     <p>
-      Posted on Wed, 10 Feb 2016 in <a href="/en/category/herramientas.html">Herramientas</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/sysdig.html">sysdig</a>,              <a href="/en/tag/seguridad.html">seguridad</a>,              <a href="/en/tag/cloud.html">cloud</a>,              <a href="/en/tag/kubernetes.html">kubernetes</a>,              <a href="/en/tag/falco.html">falco</a>
-    </p>
+      Posted on Wed, 10 Feb 2016 in <a href="/en/category/herramientas.html">Herramientas</a>       &#8226; Tagged with       <a href="/en/tag/sysdig.html">sysdig</a>,       <a href="/en/tag/seguridad.html">seguridad</a>,       <a href="/en/tag/cloud.html">cloud</a>,       <a href="/en/tag/kubernetes.html">kubernetes</a>,       <a href="/en/tag/falco.html">falco</a>       </p>
   </header>
   <div>
-      <div><p>Sysdig offers a comprehensive security platform for cloud-native environments that combines AI, real-time visibility, and open source innovation</p></div>
-        <br>
-        <a class="btn"
-           href="/en/sysdig-seguridad-cloud-nativa#sysdig-seguridad-cloud-nativa">
-          Continue reading
-        </a>
-  </div>
+     <div><p>Sysdig offers a comprehensive security platform for cloud-native environments that combines AI, real-time visibility, and open source innovation</p></div>
+    <br />
+    <a
+      class="btn"
+      href="/en/sysdig-seguridad-cloud-nativa#sysdig-seguridad-cloud-nativa"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/python-generadores-repetibles#python-generadores-repetibles">Python: Create Repeating Generators</a></h2>
+    <h2>
+      <a
+        href="/en/python-generadores-repetibles#python-generadores-repetibles"
+        >Python: Create Repeating Generators</a
+      >
+    </h2>
     <p>
-      Posted on Tue, 09 Feb 2016 in <a href="/en/category/programacion.html">Programación</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/generadores.html">generadores</a>,              <a href="/en/tag/itertools.html">itertools</a>,              <a href="/en/tag/decoradores.html">decoradores</a>,              <a href="/en/tag/yield.html">yield</a>
-    </p>
+      Posted on Tue, 09 Feb 2016 in <a href="/en/category/programacion.html">Programación</a>       &#8226; Tagged with       <a href="/en/tag/generadores.html">generadores</a>,       <a href="/en/tag/itertools.html">itertools</a>,       <a href="/en/tag/decoradores.html">decoradores</a>,       <a href="/en/tag/yield.html">yield</a>       </p>
   </header>
   <div>
-      <div><p>Techniques in Python to create generators that can be iterated multiple times, overcoming the "one-shot" limitation of standard generators</p></div>
-        <br>
-        <a class="btn"
-           href="/en/python-generadores-repetibles#python-generadores-repetibles">
-          Continue reading
-        </a>
-  </div>
+     <div><p>Techniques in Python to create generators that can be iterated multiple times, overcoming the "one-shot" limitation of standard generators</p></div>
+    <br />
+    <a
+      class="btn"
+      href="/en/python-generadores-repetibles#python-generadores-repetibles"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/boton_central_firefox#boton_central_firefox">Middle click in firefox</a></h2>
+    <h2>
+      <a
+        href="/en/boton_central_firefox#boton_central_firefox"
+        >Middle click in firefox</a
+      >
+    </h2>
     <p>
-      Posted on Fri, 01 Jan 2016 in <a href="/en/category/infraestructura.html">Infraestructura</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/linux.html">linux</a>
-    </p>
+      Posted on Fri, 01 Jan 2016 in <a href="/en/category/infraestructura.html">Infraestructura</a>       &#8226; Tagged with       <a href="/en/tag/linux.html">linux</a>       </p>
   </header>
   <div>
-      <div><p class="first last">Stop firefox from opening the pasted url with the middle mouse button</p>
+     <div><p class="first last">Stop firefox from opening the pasted url with the middle mouse button</p>
 </div>
-        <br>
-        <a class="btn"
-           href="/en/boton_central_firefox#boton_central_firefox">
-          Continue reading
-        </a>
-  </div>
+    <br />
+    <a
+      class="btn"
+      href="/en/boton_central_firefox#boton_central_firefox"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/bootstrap-dropdown-enlaces-horizontal#bootstrap-dropdown-enlaces-horizontal">Bootstrap: Two Links in the Same Row in Dropdown</a></h2>
+    <h2>
+      <a
+        href="/en/bootstrap-dropdown-enlaces-horizontal#bootstrap-dropdown-enlaces-horizontal"
+        >Bootstrap: Two Links in the Same Row in Dropdown</a
+      >
+    </h2>
     <p>
-      Posted on Tue, 15 Dec 2015 in <a href="/en/category/programacion.html">Programación</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/bootstrap.html">bootstrap</a>,              <a href="/en/tag/css.html">css</a>,              <a href="/en/tag/dropdown.html">dropdown</a>,              <a href="/en/tag/flexbox.html">flexbox</a>,              <a href="/en/tag/html.html">html</a>
-    </p>
+      Posted on Tue, 15 Dec 2015 in <a href="/en/category/programacion.html">Programación</a>       &#8226; Tagged with       <a href="/en/tag/bootstrap.html">bootstrap</a>,       <a href="/en/tag/css.html">css</a>,       <a href="/en/tag/dropdown.html">dropdown</a>,       <a href="/en/tag/flexbox.html">flexbox</a>,       <a href="/en/tag/html.html">html</a>       </p>
   </header>
   <div>
-      <div><p>CSS technique to place two links on the same horizontal row within a Bootstrap dropdown menu using flexbox</p></div>
-        <br>
-        <a class="btn"
-           href="/en/bootstrap-dropdown-enlaces-horizontal#bootstrap-dropdown-enlaces-horizontal">
-          Continue reading
-        </a>
-  </div>
+     <div><p>CSS technique to place two links on the same horizontal row within a Bootstrap dropdown menu using flexbox</p></div>
+    <br />
+    <a
+      class="btn"
+      href="/en/bootstrap-dropdown-enlaces-horizontal#bootstrap-dropdown-enlaces-horizontal"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/galen-framework-testing-responsive#galen-framework-testing-responsive">Galen Framework: Automated Testing for Responsive Design</a></h2>
+    <h2>
+      <a
+        href="/en/galen-framework-testing-responsive#galen-framework-testing-responsive"
+        >Galen Framework: Automated Testing for Responsive Design</a
+      >
+    </h2>
     <p>
-      Posted on Fri, 13 Nov 2015 in <a href="/en/category/programacion.html">Programación</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/galen.html">galen</a>,              <a href="/en/tag/testing.html">testing</a>,              <a href="/en/tag/responsive.html">responsive</a>,              <a href="/en/tag/layout.html">layout</a>,              <a href="/en/tag/selenium.html">selenium</a>
-    </p>
+      Posted on Fri, 13 Nov 2015 in <a href="/en/category/programacion.html">Programación</a>       &#8226; Tagged with       <a href="/en/tag/galen.html">galen</a>,       <a href="/en/tag/testing.html">testing</a>,       <a href="/en/tag/responsive.html">responsive</a>,       <a href="/en/tag/layout.html">layout</a>,       <a href="/en/tag/selenium.html">selenium</a>       </p>
   </header>
   <div>
-      <div><p>Galen Framework simplifies automated testing of responsive layouts by verifying the position and appearance of elements across different devices</p></div>
-        <br>
-        <a class="btn"
-           href="/en/galen-framework-testing-responsive#galen-framework-testing-responsive">
-          Continue reading
-        </a>
-  </div>
+     <div><p>Galen Framework simplifies automated testing of responsive layouts by verifying the position and appearance of elements across different devices</p></div>
+    <br />
+    <a
+      class="btn"
+      href="/en/galen-framework-testing-responsive#galen-framework-testing-responsive"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/historia-x-forwarded-for-x-real-ip#historia-x-forwarded-for-x-real-ip">The Story Behind X-Forwarded-For and X-Real-IP</a></h2>
+    <h2>
+      <a
+        href="/en/historia-x-forwarded-for-x-real-ip#historia-x-forwarded-for-x-real-ip"
+        >The Story Behind X-Forwarded-For and X-Real-IP</a
+      >
+    </h2>
     <p>
-      Posted on Wed, 21 Oct 2015 in <a href="/en/category/infraestructura.html">Infraestructura</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/headers.html">headers</a>,              <a href="/en/tag/x-forwarded-for.html">x-forwarded-for</a>,              <a href="/en/tag/x-real-ip.html">x-real-ip</a>,              <a href="/en/tag/proxy.html">proxy</a>,              <a href="/en/tag/nginx.html">nginx</a>
-    </p>
+      Posted on Wed, 21 Oct 2015 in <a href="/en/category/infraestructura.html">Infraestructura</a>       &#8226; Tagged with       <a href="/en/tag/headers.html">headers</a>,       <a href="/en/tag/x-forwarded-for.html">x-forwarded-for</a>,       <a href="/en/tag/x-real-ip.html">x-real-ip</a>,       <a href="/en/tag/proxy.html">proxy</a>,       <a href="/en/tag/nginx.html">nginx</a>       </p>
   </header>
   <div>
-      <div><p>Analysis of X-Forwarded-For and X-Real-IP headers, their origins, differences, and how to determine the client's real IP in architectures with multiple proxies</p></div>
-        <br>
-        <a class="btn"
-           href="/en/historia-x-forwarded-for-x-real-ip#historia-x-forwarded-for-x-real-ip">
-          Continue reading
-        </a>
-  </div>
+     <div><p>Analysis of X-Forwarded-For and X-Real-IP headers, their origins, differences, and how to determine the client's real IP in architectures with multiple proxies</p></div>
+    <br />
+    <a
+      class="btn"
+      href="/en/historia-x-forwarded-for-x-real-ip#historia-x-forwarded-for-x-real-ip"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/nginx-x-forwarded-for-reverse-proxy#nginx-x-forwarded-for-reverse-proxy">Nginx: Configuring X-Forwarded-For in Reverse Proxy</a></h2>
+    <h2>
+      <a
+        href="/en/nginx-x-forwarded-for-reverse-proxy#nginx-x-forwarded-for-reverse-proxy"
+        >Nginx: Configuring X-Forwarded-For in Reverse Proxy</a
+      >
+    </h2>
     <p>
-      Posted on Wed, 21 Oct 2015 in <a href="/en/category/infraestructura.html">Infraestructura</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/nginx.html">nginx</a>,              <a href="/en/tag/reverse-proxy.html">reverse-proxy</a>,              <a href="/en/tag/x-forwarded-for.html">x-forwarded-for</a>,              <a href="/en/tag/ip-real.html">ip-real</a>,              <a href="/en/tag/configuracion.html">configuracion</a>
-    </p>
+      Posted on Wed, 21 Oct 2015 in <a href="/en/category/infraestructura.html">Infraestructura</a>       &#8226; Tagged with       <a href="/en/tag/nginx.html">nginx</a>,       <a href="/en/tag/reverse-proxy.html">reverse-proxy</a>,       <a href="/en/tag/x-forwarded-for.html">x-forwarded-for</a>,       <a href="/en/tag/ip-real.html">ip-real</a>,       <a href="/en/tag/configuracion.html">configuracion</a>       </p>
   </header>
   <div>
-      <div><p>How to configure Nginx to pass the client's real IP to backend servers using the X-Forwarded-For header in reverse proxy configurations</p></div>
-        <br>
-        <a class="btn"
-           href="/en/nginx-x-forwarded-for-reverse-proxy#nginx-x-forwarded-for-reverse-proxy">
-          Continue reading
-        </a>
-  </div>
+     <div><p>How to configure Nginx to pass the client's real IP to backend servers using the X-Forwarded-For header in reverse proxy configurations</p></div>
+    <br />
+    <a
+      class="btn"
+      href="/en/nginx-x-forwarded-for-reverse-proxy#nginx-x-forwarded-for-reverse-proxy"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/sql-select-rows-max-value#sql-select-rows-max-value">SQL: Select Rows with Max Value per Group</a></h2>
+    <h2>
+      <a
+        href="/en/sql-select-rows-max-value#sql-select-rows-max-value"
+        >SQL: Select Rows with Max Value per Group</a
+      >
+    </h2>
     <p>
-      Posted on Wed, 21 Oct 2015 in <a href="/en/category/programacion.html">Programación</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/sql.html">sql</a>,              <a href="/en/tag/mysql.html">mysql</a>,              <a href="/en/tag/consultas.html">consultas</a>,              <a href="/en/tag/window-functions.html">window-functions</a>,              <a href="/en/tag/joins.html">joins</a>
-    </p>
+      Posted on Wed, 21 Oct 2015 in <a href="/en/category/programacion.html">Programación</a>       &#8226; Tagged with       <a href="/en/tag/sql.html">sql</a>,       <a href="/en/tag/mysql.html">mysql</a>,       <a href="/en/tag/consultas.html">consultas</a>,       <a href="/en/tag/window-functions.html">window-functions</a>,       <a href="/en/tag/joins.html">joins</a>       </p>
   </header>
   <div>
-      <div><p>SQL techniques to select complete rows with the maximum value of a column within groups, comparing performance of subqueries, joins, and window functions</p></div>
-        <br>
-        <a class="btn"
-           href="/en/sql-select-rows-max-value#sql-select-rows-max-value">
-          Continue reading
-        </a>
-  </div>
+     <div><p>SQL techniques to select complete rows with the maximum value of a column within groups, comparing performance of subqueries, joins, and window functions</p></div>
+    <br />
+    <a
+      class="btn"
+      href="/en/sql-select-rows-max-value#sql-select-rows-max-value"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/repetiendo-una-función-con-hilos#repetiendo-una-función-con-hilos">Repeating a function with threads</a></h2>
+    <h2>
+      <a
+        href="/en/repetiendo-una-función-con-hilos#repetiendo-una-función-con-hilos"
+        >Repeating a function with threads</a
+      >
+    </h2>
     <p>
-      Posted on Sun, 03 May 2015 in <a href="/en/category/programacion.html">Programación</a>
-
-
-    </p>
+      Posted on Sun, 03 May 2015 in <a href="/en/category/programacion.html">Programación</a>      </p>
   </header>
   <div>
-      <div><p class="first last">Let's use threads in python to periodically execute a function</p>
+     <div><p class="first last">Let's use threads in python to periodically execute a function</p>
 </div>
-        <br>
-        <a class="btn"
-           href="/en/repetiendo-una-función-con-hilos#repetiendo-una-función-con-hilos">
-          Continue reading
-        </a>
-  </div>
+    <br />
+    <a
+      class="btn"
+      href="/en/repetiendo-una-función-con-hilos#repetiendo-una-función-con-hilos"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/instalar-insync-en-opensuse#instalar-insync-en-opensuse">Install InSync on Opensuse</a></h2>
+    <h2>
+      <a
+        href="/en/instalar-insync-en-opensuse#instalar-insync-en-opensuse"
+        >Install InSync on Opensuse</a
+      >
+    </h2>
     <p>
-      Posted on Mon, 20 Apr 2015 in <a href="/en/category/infraestructura.html">Infraestructura</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/django.html">django</a>,              <a href="/en/tag/python.html">python</a>
-    </p>
+      Posted on Mon, 20 Apr 2015 in <a href="/en/category/infraestructura.html">Infraestructura</a>       &#8226; Tagged with       <a href="/en/tag/django.html">django</a>,       <a href="/en/tag/python.html">python</a>       </p>
   </header>
   <div>
-      <div></div>
-        <br>
-        <a class="btn"
-           href="/en/instalar-insync-en-opensuse#instalar-insync-en-opensuse">
-          Continue reading
-        </a>
-  </div>
+     <div></div>
+    <br />
+    <a
+      class="btn"
+      href="/en/instalar-insync-en-opensuse#instalar-insync-en-opensuse"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/nethogs-ver-ancho-de-banda-consumido#nethogs-ver-ancho-de-banda-consumido">NetHogs see consumed bandwidth</a></h2>
+    <h2>
+      <a
+        href="/en/nethogs-ver-ancho-de-banda-consumido#nethogs-ver-ancho-de-banda-consumido"
+        >NetHogs see consumed bandwidth</a
+      >
+    </h2>
     <p>
-      Posted on Thu, 16 Apr 2015 in <a href="/en/category/infraestructura.html">Infraestructura</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/linux.html">linux</a>
-    </p>
+      Posted on Thu, 16 Apr 2015 in <a href="/en/category/infraestructura.html">Infraestructura</a>       &#8226; Tagged with       <a href="/en/tag/linux.html">linux</a>       </p>
   </header>
   <div>
-      <div><p>To measure the bandwidth I am using right now, I use NetHogs</p>
+     <div><p>To measure the bandwidth I am using right now, I use NetHogs</p>
 <p>By default, it looks for a network interface called &quot;eth0&quot;. If it doesn't find it, it complains like this:</p>
 <pre class="literal-block">
 ioctl failed while establishing local IP for selected device eth0. You may specify the device on the command line …</pre></div>
-        <br>
-        <a class="btn"
-           href="/en/nethogs-ver-ancho-de-banda-consumido#nethogs-ver-ancho-de-banda-consumido">
-          Continue reading
-        </a>
-  </div>
+    <br />
+    <a
+      class="btn"
+      href="/en/nethogs-ver-ancho-de-banda-consumido#nethogs-ver-ancho-de-banda-consumido"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/cierra-google-code#cierra-google-code">Google Code is Closing</a></h2>
+    <h2>
+      <a
+        href="/en/cierra-google-code#cierra-google-code"
+        >Google Code is Closing</a
+      >
+    </h2>
     <p>
-      Posted on Fri, 13 Mar 2015 in <a href="/en/category/programacion.html">Programación</a>
-
-
-    </p>
+      Posted on Fri, 13 Mar 2015 in <a href="/en/category/programacion.html">Programación</a>      </p>
   </header>
   <div>
-      <div><p>As I said, Google announced the closure of Google Code.</p>
+     <div><p>As I said, Google announced the closure of Google Code.</p>
 <p>Today I received the email notifying me (I had a test project hosted there) that I could move
 my projects simply to <a class="reference external" href="http://github.com">github</a>, the de facto repository for free software today
 (sorry for <a class="reference external" href="https://bitbucket.org/pcaro">bitbucket</a> and especially for <a class="reference external" href="http://mercurial.selenic.com/">mercurial</a>).</p>
 <p>Its interface …</p></div>
-        <br>
-        <a class="btn"
-           href="/en/cierra-google-code#cierra-google-code">
-          Continue reading
-        </a>
-  </div>
+    <br />
+    <a
+      class="btn"
+      href="/en/cierra-google-code#cierra-google-code"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/pgcli-el-descubrimiento-de-hoy#pgcli-el-descubrimiento-de-hoy">pgcli the discovery of the day</a></h2>
+    <h2>
+      <a
+        href="/en/pgcli-el-descubrimiento-de-hoy#pgcli-el-descubrimiento-de-hoy"
+        >pgcli the discovery of the day</a
+      >
+    </h2>
     <p>
-      Posted on Mon, 02 Mar 2015 in <a href="/en/category/programacion.html">Programación</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/postgresql.html">postgresql</a>
-    </p>
+      Posted on Mon, 02 Mar 2015 in <a href="/en/category/programacion.html">Programación</a>       &#8226; Tagged with       <a href="/en/tag/postgresql.html">postgresql</a>       </p>
   </header>
   <div>
-      <div><p class="first last">postresql command line</p>
+     <div><p class="first last">postresql command line</p>
 </div>
-        <br>
-        <a class="btn"
-           href="/en/pgcli-el-descubrimiento-de-hoy#pgcli-el-descubrimiento-de-hoy">
-          Continue reading
-        </a>
-  </div>
+    <br />
+    <a
+      class="btn"
+      href="/en/pgcli-el-descubrimiento-de-hoy#pgcli-el-descubrimiento-de-hoy"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/reactivando-el-blog#reactivando-el-blog">Blogging again</a></h2>
+    <h2>
+      <a
+        href="/en/reactivando-el-blog#reactivando-el-blog"
+        >Blogging again</a
+      >
+    </h2>
     <p>
-      Posted on Fri, 20 Feb 2015 in <a href="/en/category/personal.html">Personal</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/python.html">python</a>
-    </p>
+      Posted on Fri, 20 Feb 2015 in <a href="/en/category/personal.html">Personal</a>       &#8226; Tagged with       <a href="/en/tag/python.html">python</a>       </p>
   </header>
   <div>
-      <div><p class="first last">I am writing again.</p>
+     <div><p class="first last">I am writing again.</p>
 </div>
-        <br>
-        <a class="btn"
-           href="/en/reactivando-el-blog#reactivando-el-blog">
-          Continue reading
-        </a>
-  </div>
+    <br />
+    <a
+      class="btn"
+      href="/en/reactivando-el-blog#reactivando-el-blog"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/decorador-vista-ajax#decorador-vista-ajax">Ajax view decorator</a></h2>
+    <h2>
+      <a
+        href="/en/decorador-vista-ajax#decorador-vista-ajax"
+        >Ajax view decorator</a
+      >
+    </h2>
     <p>
-      Posted on Fri, 21 Nov 2014 in <a href="/en/category/programacion.html">Programación</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/django.html">django</a>
-    </p>
+      Posted on Fri, 21 Nov 2014 in <a href="/en/category/programacion.html">Programación</a>       &#8226; Tagged with       <a href="/en/tag/django.html">django</a>       </p>
   </header>
   <div>
-      <div><p>To force a <a class="reference external" href="https://www.djangoproject.com/">django</a> view to be called only via AJAX calls.</p>
+     <div><p>To force a <a class="reference external" href="https://www.djangoproject.com/">django</a> view to be called only via AJAX calls.</p>
 <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">ajax_required</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    AJAX request required decorator</span>
@@ -2081,26 +2530,29 @@ my projects simply to <a class="reference external" href="http://github.com">git
         <span class="k">return</span> <span class="n">f</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
     <span class="n">wrap</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="vm">__doc__</span>
     <span class="n">wrap</span><span class="o">.</span><span class="vm">__name__ …</span></pre></div></div>
-        <br>
-        <a class="btn"
-           href="/en/decorador-vista-ajax#decorador-vista-ajax">
-          Continue reading
-        </a>
-  </div>
+    <br />
+    <a
+      class="btn"
+      href="/en/decorador-vista-ajax#decorador-vista-ajax"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/funcion-generica-para-usar-como-upload_to#funcion-generica-para-usar-como-upload_to">Generic function to use as upload_to</a></h2>
+    <h2>
+      <a
+        href="/en/funcion-generica-para-usar-como-upload_to#funcion-generica-para-usar-como-upload_to"
+        >Generic function to use as upload_to</a
+      >
+    </h2>
     <p>
-      Posted on Sat, 11 Oct 2014 in <a href="/en/category/programacion.html">Programación</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/django.html">django</a>
-    </p>
+      Posted on Sat, 11 Oct 2014 in <a href="/en/category/programacion.html">Programación</a>       &#8226; Tagged with       <a href="/en/tag/django.html">django</a>       </p>
   </header>
   <div>
-      <div><p>FileFields in Django need an <a class="reference external" href="https://docs.djangoproject.com/en/1.7/ref/models/fields/#django.db.models.FileField.upload_to">upload_to</a> function that determines where the file will be uploaded.
+     <div><p>FileFields in Django need an <a class="reference external" href="https://docs.djangoproject.com/en/1.7/ref/models/fields/#django.db.models.FileField.upload_to">upload_to</a> function that determines where the file will be uploaded.
 I usually have a generic function in <code>utils.py</code> that leaves them in a subfolder with the model name.</p>
 <div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
 
@@ -2108,26 +2560,29 @@ I usually have a generic function in <code>utils.py</code> that leaves them in a
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Generic `upload_to` function for models.FileField and models.ImageField</span>
 <span class="sd">    which …</span></pre></div></div>
-        <br>
-        <a class="btn"
-           href="/en/funcion-generica-para-usar-como-upload_to#funcion-generica-para-usar-como-upload_to">
-          Continue reading
-        </a>
-  </div>
+    <br />
+    <a
+      class="btn"
+      href="/en/funcion-generica-para-usar-como-upload_to#funcion-generica-para-usar-como-upload_to"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/enlaces-en-listado-de-objectos#enlaces-en-listado-de-objectos">Django: links in object list</a></h2>
+    <h2>
+      <a
+        href="/en/enlaces-en-listado-de-objectos#enlaces-en-listado-de-objectos"
+        >Django: links in object list</a
+      >
+    </h2>
     <p>
-      Posted on Wed, 21 May 2014 in <a href="/en/category/programacion.html">Programación</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/django.html">django</a>
-    </p>
+      Posted on Wed, 21 May 2014 in <a href="/en/category/programacion.html">Programación</a>       &#8226; Tagged with       <a href="/en/tag/django.html">django</a>       </p>
   </header>
   <div>
-      <div><p>In my projects I usually use links to related items in the admin change_list.</p>
+     <div><p>In my projects I usually use links to related items in the admin change_list.</p>
 <div class="contents topic" id="files">
 <p class="topic-title">Files</p>
 <ul class="simple">
@@ -2142,26 +2597,29 @@ I usually have a generic function in <code>utils.py</code> that leaves them in a
 <span class="kn">from</span> <span class="nn">django.contrib.contenttypes.models</span> <span class="kn">import</span> <span class="n">ContentType</span>
 <span class="kn">from</span> <span class="nn">django.core</span> <span class="kn">import</span> <span class="n">urlresolvers</span>
 <span class="kn">from</span> <span class="nn">django.utils.datastructures</span> <span class="kn">import</span> <span class="n">SortedDict …</span></pre></div></div></div>
-        <br>
-        <a class="btn"
-           href="/en/enlaces-en-listado-de-objectos#enlaces-en-listado-de-objectos">
-          Continue reading
-        </a>
-  </div>
+    <br />
+    <a
+      class="btn"
+      href="/en/enlaces-en-listado-de-objectos#enlaces-en-listado-de-objectos"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/settings-vars-processor#settings-vars-processor">Settings vars processor</a></h2>
+    <h2>
+      <a
+        href="/en/settings-vars-processor#settings-vars-processor"
+        >Settings vars processor</a
+      >
+    </h2>
     <p>
-      Posted on Wed, 08 Jan 2014 in <a href="/en/category/programacion.html">Programación</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/django.html">django</a>
-    </p>
+      Posted on Wed, 08 Jan 2014 in <a href="/en/category/programacion.html">Programación</a>       &#8226; Tagged with       <a href="/en/tag/django.html">django</a>       </p>
   </header>
   <div>
-      <div><p>I usually use this at the beginning of projects.</p>
+     <div><p>I usually use this at the beginning of projects.</p>
 <div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.conf</span> <span class="kn">import</span> <span class="n">settings</span> <span class="k">as</span> <span class="n">django_settings</span>
 <span class="kn">from</span> <span class="nn">django.core.exceptions</span> <span class="kn">import</span> <span class="n">ImproperlyConfigured</span>
 
@@ -2176,23 +2634,33 @@ I usually have a generic function in <code>utils.py</code> that leaves them in a
         <span class="k">try</span><span class="p">:</span>
             <span class="n">new_settings</span><span class="p">[</span><span class="n">attr</span><span class="p">]</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">django_settings</span><span class="p">,</span> <span class="n">attr</span><span class="p">)</span>
         <span class="k">except</span> <span class="ne">AttributeError …</span></pre></div></div>
-        <br>
-        <a class="btn"
-           href="/en/settings-vars-processor#settings-vars-processor">
-          Continue reading
-        </a>
-  </div>
+    <br />
+    <a
+      class="btn"
+      href="/en/settings-vars-processor#settings-vars-processor"
+    >
+      Continue reading
+    </a>
+   </div>
 </article>
-
-
-
-
+   
 <footer>
 <p>
   &copy; 2026  - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
 </p>
 <p>
-Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+  Built with <a
+    href="http://getpelican.com"
+    target="_blank"
+    >Pelican</a
+  > using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a
+  > theme   <script
+    id="dark-theme-script"
+    src="/en/theme/dark-theme/dark-theme.min.js"
+    data-enable-auto-detect-theme="False"
+    data-default-theme="light"
+    type="text/javascript"
+  ></script>
 </p><p>
   <a rel="license"
      href="http://creativecommons.org/licenses/by-sa/3.0/"
@@ -2223,15 +2691,46 @@ Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a 
         return;
       }
       if (typeof stork === 'undefined') {
-        console.error('Stork is not loaded yet, retrying...');
         setTimeout(window.loadStorkIndex, 100);
         return;
       }
-      stork.register("sitesearch", "/en/search-index.st", { showProgress: false });
-      stork.register("sitesearch-page", "/en/search-index.st", { showProgress: false });
+      var url = "/en/search-index.st";
+      var opts = { showProgress: false };
+      stork.register("sitesearch", url, opts);
+      try {
+        stork.register("sitesearch-page", url, opts);
+      } catch (e) {
+        // Search page input not in DOM on this page — index still registered
+      }
       window.storkIndexLoaded = true;
     }
   </script>
 
+
+  <button id="back-to-top" aria-label="Back to top" title="Back to top">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <path d="M10 16V4m0 0L5 9m5-5l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+  <script>
+  (function() {
+    var btn = document.getElementById('back-to-top');
+    if (!btn) return;
+    var ticking = false;
+    function onScroll() {
+      if (!ticking) {
+        requestAnimationFrame(function() {
+          btn.classList.toggle('visible', window.scrollY > 500);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }
+    btn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    window.addEventListener('scroll', onScroll, { passive: true });
+  })();
+  </script>
 </body>
 </html>

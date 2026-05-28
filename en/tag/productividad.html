@@ -8,11 +8,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="" />
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" type="text/css" href="/en/theme/stylesheet/style.min.css">
 
+    <link id="dark-theme-style" rel="stylesheet" type="text/css"
+        disabled="disabled"
+    href="/en/theme/stylesheet/dark-theme.min.css">
 
+    <link id="pygments-dark-theme" rel="stylesheet" type="text/css"
+            disabled="disabled"
+          href="/en/theme/pygments/github.min.css">
     <link id="pygments-light-theme" rel="stylesheet" type="text/css"
           href="/en/theme/pygments/github.min.css">
 
@@ -73,7 +81,7 @@
 <aside>
   <div>
     <a href="/en/">
-      <img src="/theme/img/profile.png" alt="Anotaciones" title="Anotaciones">
+      <img src="/theme/img/profile.png" alt="Anotaciones" title="Anotaciones" />
     </a>
 
     <h1>
@@ -81,70 +89,237 @@
     </h1>
 
     <p>Anotaciones</p>
-
-    <p style="font-size: 0.9em; font-style: italic; margin-bottom: 20px;">
+     <p style="font-size: 0.9em; font-style: italic; margin-bottom: 20px">
       Dumping my brain onto the internet. A collection of technical notes and solutions written for my future self, shared here in case they save someone else a headache.
     </p>
-
-    <div class="stork">
-      <input class="stork-input" type="text" autocomplete="off" name="q" data-stork="sitesearch" placeholder="Search..." onclick="loadStorkIndex()"/>
+      <div class="stork">
+      <label for="sidebar-search" class="sr-only"
+        >Search articles</label
+      >
+      <div class="stork-input-wrap">
+      <input
+        id="sidebar-search"
+        class="stork-input"
+        type="text"
+        autocomplete="off"
+        name="q"
+        data-stork="sitesearch"
+        placeholder="Search..."
+        onclick="loadStorkIndex()"
+      />
+      </div>
       <div class="stork-output" data-stork="sitesearch-output"></div>
     </div>
-
-    <nav>
+      <nav>
       <ul class="list">
-
-
-
-          <li>
-            <a target="_self" href="http://x.com/pcaro" >pcaro@X</a>
-          </li>
-          <li>
-            <a target="_self" href="https://github.com/pcaro/" >pcaro@Github</a>
-          </li>
-          <li>
-            <a target="_self" href="https://www.linkedin.com/in/pcarorevuelta/" >LinkedIn</a>
-          </li>
+             <li>
+          <a target="_self" href="http://x.com/pcaro">pcaro@X</a>
+        </li>
+        <li>
+          <a target="_self" href="https://github.com/pcaro/">pcaro@Github</a>
+        </li>
+        <li>
+          <a target="_self" href="https://www.linkedin.com/in/pcarorevuelta/">LinkedIn</a>
+        </li>
       </ul>
     </nav>
-
-    <ul class="social">
+       <ul class="social">
       <li>
-        <a class="sc-Twitter"
-           href="http://twitter.com/pcaro"
-           target="_blank">
-          <i class="fa-brands fa-Twitter"></i>
+        <a
+          class="sc-Twitter"
+          href="http://twitter.com/pcaro"
+          target="_blank"
+          aria-label="Twitter"
+        >
+          <i
+            class="fa-brands fa-Twitter"
+            aria-hidden="true"
+          ></i>
         </a>
       </li>
       <li>
-        <a class="sc-Github"
-           href="http://github.com/pcaro"
-           target="_blank">
-          <i class="fa-brands fa-Github"></i>
+        <a
+          class="sc-Github"
+          href="http://github.com/pcaro"
+          target="_blank"
+          aria-label="Github"
+        >
+          <i
+            class="fa-brands fa-Github"
+            aria-hidden="true"
+          ></i>
         </a>
       </li>
       <li>
-        <a class="sc-Linkedin"
-           href="https://www.linkedin.com/in/pcarorevuelta"
-           target="_blank">
-          <i class="fa-brands fa-Linkedin"></i>
+        <a
+          class="sc-Linkedin"
+          href="https://www.linkedin.com/in/pcarorevuelta"
+          target="_blank"
+          aria-label="Linkedin"
+        >
+          <i
+            class="fa-brands fa-Linkedin"
+            aria-hidden="true"
+          ></i>
         </a>
       </li>
       <li>
-        <a class="sc-Facebook"
-           href="https://www.facebook.com/pablo.carorevuelta"
-           target="_blank">
-          <i class="fa-brands fa-Facebook"></i>
+        <a
+          class="sc-Facebook"
+          href="https://www.facebook.com/pablo.carorevuelta"
+          target="_blank"
+          aria-label="Facebook"
+        >
+          <i
+            class="fa-brands fa-Facebook"
+            aria-hidden="true"
+          ></i>
         </a>
       </li>
       <li>
-        <a class="sc-Email"
-           href="mailto:correo@pablocaro.es"
-           target="_blank">
-          <i class="fa-brands fa-Email"></i>
+        <a
+          class="sc-Email"
+          href="mailto:correo@pablocaro.es"
+          target="_blank"
+          aria-label="Email"
+        >
+          <i
+            class="fa-brands fa-Email"
+            aria-hidden="true"
+          ></i>
         </a>
       </li>
     </ul>
+     <nav class="sidebar-categories" aria-label="Categories">
+                                                                                                                                                           <a
+        href="/en/category/ia.html"
+        class="sidebar-category"
+        title="ia (13)"
+      >
+        <img
+          src="/en/images/categories/ia.png"
+          alt="ia"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">ia</span>
+      </a>
+      <a
+        href="/en/category/programacion.html"
+        class="sidebar-category"
+        title="Programación (28)"
+      >
+        <img
+          src="/en/images/categories/programacion.png"
+          alt="Programación"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Programación</span>
+      </a>
+      <a
+        href="/en/category/linux.html"
+        class="sidebar-category"
+        title="Linux (11)"
+      >
+        <img
+          src="/en/images/categories/linux.png"
+          alt="Linux"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Linux</span>
+      </a>
+      <a
+        href="/en/category/herramientas.html"
+        class="sidebar-category"
+        title="Herramientas (22)"
+      >
+        <img
+          src="/en/images/categories/herramientas.png"
+          alt="Herramientas"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Herramientas</span>
+      </a>
+      <a
+        href="/en/category/infraestructura.html"
+        class="sidebar-category"
+        title="Infraestructura (15)"
+      >
+        <img
+          src="/en/images/categories/infraestructura.png"
+          alt="Infraestructura"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Infraestructura</span>
+      </a>
+      <a
+        href="/en/category/documentacion.html"
+        class="sidebar-category"
+        title="Documentación (1)"
+      >
+        <img
+          src="/en/images/categories/documentacion.png"
+          alt="Documentación"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Documentación</span>
+      </a>
+      <a
+        href="/en/category/finanzas.html"
+        class="sidebar-category"
+        title="Finanzas (1)"
+      >
+        <img
+          src="/en/images/categories/finanzas.png"
+          alt="Finanzas"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Finanzas</span>
+      </a>
+      <a
+        href="/en/category/personal.html"
+        class="sidebar-category"
+        title="Personal (2)"
+      >
+        <img
+          src="/en/images/categories/personal.png"
+          alt="Personal"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Personal</span>
+      </a>
+      <a
+        href="/en/category/programming.html"
+        class="sidebar-category"
+        title="Programming (1)"
+      >
+        <span class="sidebar-category-icon">Pr</span>
+        <span class="sidebar-category-label">Programming</span>
+      </a>
+      <a
+        href="/en/category/tools.html"
+        class="sidebar-category"
+        title="tools (1)"
+      >
+        <span class="sidebar-category-icon">to</span>
+        <span class="sidebar-category-label">tools</span>
+      </a>
+    </nav>
   </div>
 
 </aside>
@@ -158,269 +333,310 @@
   <a href="/en/tags.html">Tags</a>
   <a href="/en/search.html">Search</a>
   <a href="/">Español</a>
-
-  <a href="/en/feeds/all.atom.xml">Atom</a>
-
-  <a href="/en/feeds/all.rss.xml">RSS</a>
+   <a href="javascript:void(0)" onclick="theme.switch('dark')">🌙</a>
+  <a href="javascript:void(0)" onclick="theme.switch('light')">☀</a>
+   <a href="/en/feeds/all.rss.xml">RSS</a>
 </nav>
 
-
-
-<article>
+  <article>
   <header>
-    <h2><a href="/en/rbw-env#rbw-env">rbw-env: Export environment variables from Bitwarden</a></h2>
+    <h2>
+      <a
+        href="/en/rbw-env#rbw-env"
+        >rbw-env: Export environment variables from Bitwarden</a
+      >
+    </h2>
     <p>
-      Posted on Thu, 26 Mar 2026 in <a href="/en/category/herramientas.html">Herramientas</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/bitwarden.html">bitwarden</a>,              <a href="/en/tag/cli.html">cli</a>,              <a href="/en/tag/entorno.html">entorno</a>,              <a href="/en/tag/productividad.html">productividad</a>,              <a href="/en/tag/seguridad.html">seguridad</a>
-    </p>
+      Posted on Thu, 26 Mar 2026 in <a href="/en/category/herramientas.html">Herramientas</a>       &#8226; Tagged with       <a href="/en/tag/bitwarden.html">bitwarden</a>,       <a href="/en/tag/cli.html">cli</a>,       <a href="/en/tag/entorno.html">entorno</a>,       <a href="/en/tag/productividad.html">productividad</a>,       <a href="/en/tag/seguridad.html">seguridad</a>       </p>
   </header>
   <div>
-        <img src="/images/rbw-env-example.png">
-      <div><p>Using rbw to export environment variables from Bitwarden, useful for setting API keys securely without storing them on disk.</p></div>
-        <br>
-        <a class="btn"
-           href="/en/rbw-env#rbw-env">
-          Continue reading
-        </a>
-  </div>
+     <img src="/images/rbw-env-example.png" loading="lazy" />
+    <div><p>Using rbw to export environment variables from Bitwarden, useful for setting API keys securely without storing them on disk.</p></div>
+    <br />
+    <a
+      class="btn"
+      href="/en/rbw-env#rbw-env"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/crit-review-loop-agents#crit-review-loop-agents">Crit: The Review Loop for Agents</a></h2>
+    <h2>
+      <a
+        href="/en/crit-review-loop-agents#crit-review-loop-agents"
+        >Crit: The Review Loop for Agents</a
+      >
+    </h2>
     <p>
-      Posted on Sun, 22 Mar 2026 in <a href="/en/category/programacion.html">Programación</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/ia.html">ia</a>,              <a href="/en/tag/agents.html">agents</a>,              <a href="/en/tag/review.html">review</a>,              <a href="/en/tag/opencode.html">opencode</a>,              <a href="/en/tag/productividad.html">productividad</a>
-    </p>
+      Posted on Sun, 22 Mar 2026 in <a href="/en/category/programacion.html">Programación</a>       &#8226; Tagged with       <a href="/en/tag/ia.html">ia</a>,       <a href="/en/tag/agents.html">agents</a>,       <a href="/en/tag/review.html">review</a>,       <a href="/en/tag/opencode.html">opencode</a>,       <a href="/en/tag/productividad.html">productividad</a>       </p>
   </header>
   <div>
-        <img src="/images/crit-demo.png">
-      <div><p>Crit is a tool designed to close the code review loop for AI-generated code, providing an intuitive and efficient web interface.</p></div>
-        <br>
-        <a class="btn"
-           href="/en/crit-review-loop-agents#crit-review-loop-agents">
-          Continue reading
-        </a>
-  </div>
+     <img src="/images/crit-demo.png" loading="lazy" />
+    <div><p>Crit is a tool designed to close the code review loop for AI-generated code, providing an intuitive and efficient web interface.</p></div>
+    <br />
+    <a
+      class="btn"
+      href="/en/crit-review-loop-agents#crit-review-loop-agents"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/powerline-footer-hidden-gems#powerline-footer-hidden-gems">Hidden gems in pi-powerline-footer</a></h2>
+    <h2>
+      <a
+        href="/en/powerline-footer-hidden-gems#powerline-footer-hidden-gems"
+        >Hidden gems in pi-powerline-footer</a
+      >
+    </h2>
     <p>
-      Posted on Sun, 22 Mar 2026 in <a href="/en/category/ia.html">IA</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/pi.html">pi</a>,              <a href="/en/tag/terminal.html">terminal</a>,              <a href="/en/tag/productividad.html">productividad</a>
-    </p>
+      Posted on Sun, 22 Mar 2026 in <a href="/en/category/ia.html">IA</a>       &#8226; Tagged with       <a href="/en/tag/pi.html">pi</a>,       <a href="/en/tag/terminal.html">terminal</a>,       <a href="/en/tag/productividad.html">productividad</a>       </p>
   </header>
   <div>
-        <img src="/images/pi-powerline-footer.png">
-      <div><p>Two features of the pi-powerline-footer plugin that go beyond the typical footer with model information.</p></div>
-        <br>
-        <a class="btn"
-           href="/en/powerline-footer-hidden-gems#powerline-footer-hidden-gems">
-          Continue reading
-        </a>
-  </div>
+     <img src="/images/pi-powerline-footer.png" loading="lazy" />
+    <div><p>Two features of the pi-powerline-footer plugin that go beyond the typical footer with model information.</p></div>
+    <br />
+    <a
+      class="btn"
+      href="/en/powerline-footer-hidden-gems#powerline-footer-hidden-gems"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/asciinema-terminal-recorder#asciinema-terminal-recorder">Record and Share your Terminal Sessions with asciinema</a></h2>
+    <h2>
+      <a
+        href="/en/asciinema-terminal-recorder#asciinema-terminal-recorder"
+        >Record and Share your Terminal Sessions with asciinema</a
+      >
+    </h2>
     <p>
-      Posted on Fri, 27 Feb 2026 in <a href="/en/category/herramientas.html">Herramientas</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/asciinema.html">asciinema</a>,              <a href="/en/tag/terminal.html">terminal</a>,              <a href="/en/tag/linux.html">linux</a>,              <a href="/en/tag/productividad.html">productividad</a>
-    </p>
+      Posted on Fri, 27 Feb 2026 in <a href="/en/category/herramientas.html">Herramientas</a>       &#8226; Tagged with       <a href="/en/tag/asciinema.html">asciinema</a>,       <a href="/en/tag/terminal.html">terminal</a>,       <a href="/en/tag/linux.html">linux</a>,       <a href="/en/tag/productividad.html">productividad</a>       </p>
   </header>
   <div>
-        <img src="/images/asciinema_help.png">
-      <div><p>Discover asciinema, the perfect tool to record your terminal sessions in a lightweight, reproducible, and easy-to-share way.</p></div>
-        <br>
-        <a class="btn"
-           href="/en/asciinema-terminal-recorder#asciinema-terminal-recorder">
-          Continue reading
-        </a>
-  </div>
+     <img src="/images/asciinema_help.png" loading="lazy" />
+    <div><p>Discover asciinema, the perfect tool to record your terminal sessions in a lightweight, reproducible, and easy-to-share way.</p></div>
+    <br />
+    <a
+      class="btn"
+      href="/en/asciinema-terminal-recorder#asciinema-terminal-recorder"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/kitty-rbw-kitten#kitty-rbw-kitten">kitty-rbw: Fast Bitwarden access from your kitty terminal</a></h2>
+    <h2>
+      <a
+        href="/en/kitty-rbw-kitten#kitty-rbw-kitten"
+        >kitty-rbw: Fast Bitwarden access from your kitty terminal</a
+      >
+    </h2>
     <p>
-      Posted on Thu, 26 Feb 2026 in <a href="/en/category/herramientas.html">Herramientas</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/bitwarden.html">bitwarden</a>,              <a href="/en/tag/cli.html">cli</a>,              <a href="/en/tag/kitty.html">kitty</a>,              <a href="/en/tag/rust.html">rust</a>,              <a href="/en/tag/productividad.html">productividad</a>
-    </p>
+      Posted on Thu, 26 Feb 2026 in <a href="/en/category/herramientas.html">Herramientas</a>       &#8226; Tagged with       <a href="/en/tag/bitwarden.html">bitwarden</a>,       <a href="/en/tag/cli.html">cli</a>,       <a href="/en/tag/kitty.html">kitty</a>,       <a href="/en/tag/rust.html">rust</a>,       <a href="/en/tag/productividad.html">productividad</a>       </p>
   </header>
   <div>
-        <img src="/images/kitty-rbw.png">
-      <div><p>Introducing kitty-rbw, a "kitten" for the kitty terminal that allows you to search and use rbw (Bitwarden) credentials instantly using fzf.</p></div>
-        <br>
-        <a class="btn"
-           href="/en/kitty-rbw-kitten#kitty-rbw-kitten">
-          Continue reading
-        </a>
-  </div>
+     <img src="/images/kitty-rbw.png" loading="lazy" />
+    <div><p>Introducing kitty-rbw, a "kitten" for the kitty terminal that allows you to search and use rbw (Bitwarden) credentials instantly using fzf.</p></div>
+    <br />
+    <a
+      class="btn"
+      href="/en/kitty-rbw-kitten#kitty-rbw-kitten"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/fresh-editor-terminal#fresh-editor-terminal">`fresh`: My preferred terminal editor for daily use</a></h2>
+    <h2>
+      <a
+        href="/en/fresh-editor-terminal#fresh-editor-terminal"
+        >`fresh`: My preferred terminal editor for daily use</a
+      >
+    </h2>
     <p>
-      Posted on Thu, 25 Dec 2025 in <a href="/en/category/herramientas.html">Herramientas</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/fresh.html">fresh</a>,              <a href="/en/tag/terminal.html">terminal</a>,              <a href="/en/tag/editor.html">editor</a>,              <a href="/en/tag/productividad.html">productividad</a>,              <a href="/en/tag/linux.html">linux</a>,              <a href="/en/tag/cli.html">cli</a>
-    </p>
+      Posted on Thu, 25 Dec 2025 in <a href="/en/category/herramientas.html">Herramientas</a>       &#8226; Tagged with       <a href="/en/tag/fresh.html">fresh</a>,       <a href="/en/tag/terminal.html">terminal</a>,       <a href="/en/tag/editor.html">editor</a>,       <a href="/en/tag/productividad.html">productividad</a>,       <a href="/en/tag/linux.html">linux</a>,       <a href="/en/tag/cli.html">cli</a>       </p>
   </header>
   <div>
-      <div><p>Discover <code>fresh</code>, a fast, modern, modeless terminal text editor, ideal for casual file editing, surpassing <code>nano</code> and <code>vim</code> in simplicity for regular use.</p></div>
-        <br>
-        <a class="btn"
-           href="/en/fresh-editor-terminal#fresh-editor-terminal">
-          Continue reading
-        </a>
-  </div>
+     <div><p>Discover <code>fresh</code>, a fast, modern, modeless terminal text editor, ideal for casual file editing, surpassing <code>nano</code> and <code>vim</code> in simplicity for regular use.</p></div>
+    <br />
+    <a
+      class="btn"
+      href="/en/fresh-editor-terminal#fresh-editor-terminal"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/kooha-captura-pantalla-linux#kooha-captura-pantalla-linux">Kooha: Simple and Elegant Screen Recording on Linux</a></h2>
+    <h2>
+      <a
+        href="/en/kooha-captura-pantalla-linux#kooha-captura-pantalla-linux"
+        >Kooha: Simple and Elegant Screen Recording on Linux</a
+      >
+    </h2>
     <p>
-      Posted on Thu, 25 Dec 2025 in <a href="/en/category/herramientas.html">Herramientas</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/linux.html">linux</a>,              <a href="/en/tag/kooha.html">kooha</a>,              <a href="/en/tag/screen-recorder.html">screen-recorder</a>,              <a href="/en/tag/productividad.html">productividad</a>,              <a href="/en/tag/open-source.html">open-source</a>
-    </p>
+      Posted on Thu, 25 Dec 2025 in <a href="/en/category/herramientas.html">Herramientas</a>       &#8226; Tagged with       <a href="/en/tag/linux.html">linux</a>,       <a href="/en/tag/kooha.html">kooha</a>,       <a href="/en/tag/screen-recorder.html">screen-recorder</a>,       <a href="/en/tag/productividad.html">productividad</a>,       <a href="/en/tag/open-source.html">open-source</a>       </p>
   </header>
   <div>
-      <div><p>Discover Kooha, a minimalist screen recording application for Linux that combines ease of use with essential features.</p></div>
-        <br>
-        <a class="btn"
-           href="/en/kooha-captura-pantalla-linux#kooha-captura-pantalla-linux">
-          Continue reading
-        </a>
-  </div>
+     <div><p>Discover Kooha, a minimalist screen recording application for Linux that combines ease of use with essential features.</p></div>
+    <br />
+    <a
+      class="btn"
+      href="/en/kooha-captura-pantalla-linux#kooha-captura-pantalla-linux"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/direnv-gestion-entornos#direnv-gestion-entornos">`direnv`: Manage your development environments intelligently</a></h2>
+    <h2>
+      <a
+        href="/en/direnv-gestion-entornos#direnv-gestion-entornos"
+        >`direnv`: Manage your development environments intelligently</a
+      >
+    </h2>
     <p>
-      Posted on Thu, 25 Dec 2025 in <a href="/en/category/herramientas.html">Herramientas</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/direnv.html">direnv</a>,              <a href="/en/tag/shell.html">shell</a>,              <a href="/en/tag/entorno.html">entorno</a>,              <a href="/en/tag/productividad.html">productividad</a>,              <a href="/en/tag/desarrollo.html">desarrollo</a>,              <a href="/en/tag/linux.html">linux</a>
-    </p>
+      Posted on Thu, 25 Dec 2025 in <a href="/en/category/herramientas.html">Herramientas</a>       &#8226; Tagged with       <a href="/en/tag/direnv.html">direnv</a>,       <a href="/en/tag/shell.html">shell</a>,       <a href="/en/tag/entorno.html">entorno</a>,       <a href="/en/tag/productividad.html">productividad</a>,       <a href="/en/tag/desarrollo.html">desarrollo</a>,       <a href="/en/tag/linux.html">linux</a>       </p>
   </header>
   <div>
-      <div><p>Discover <code>direnv</code>, a shell extension that automatically loads and unloads environment variables when changing directories, keeping your configuration clean and organized.</p></div>
-        <br>
-        <a class="btn"
-           href="/en/direnv-gestion-entornos#direnv-gestion-entornos">
-          Continue reading
-        </a>
-  </div>
+     <div><p>Discover <code>direnv</code>, a shell extension that automatically loads and unloads environment variables when changing directories, keeping your configuration clean and organized.</p></div>
+    <br />
+    <a
+      class="btn"
+      href="/en/direnv-gestion-entornos#direnv-gestion-entornos"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/kitty-acceso-rapido#kitty-acceso-rapido">Kitty as a Quick Access Terminal: The Convenience of a Dropdown</a></h2>
+    <h2>
+      <a
+        href="/en/kitty-acceso-rapido#kitty-acceso-rapido"
+        >Kitty as a Quick Access Terminal: The Convenience of a Dropdown</a
+      >
+    </h2>
     <p>
-      Posted on Thu, 25 Dec 2025 in <a href="/en/category/infraestructura.html">Infraestructura</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/kitty.html">kitty</a>,              <a href="/en/tag/terminal.html">terminal</a>,              <a href="/en/tag/acceso-rapido.html">acceso-rapido</a>,              <a href="/en/tag/productividad.html">productividad</a>,              <a href="/en/tag/linux.html">linux</a>,              <a href="/en/tag/atajos.html">atajos</a>
-    </p>
+      Posted on Thu, 25 Dec 2025 in <a href="/en/category/infraestructura.html">Infraestructura</a>       &#8226; Tagged with       <a href="/en/tag/kitty.html">kitty</a>,       <a href="/en/tag/terminal.html">terminal</a>,       <a href="/en/tag/acceso-rapido.html">acceso-rapido</a>,       <a href="/en/tag/productividad.html">productividad</a>,       <a href="/en/tag/linux.html">linux</a>,       <a href="/en/tag/atajos.html">atajos</a>       </p>
   </header>
   <div>
-      <div><p>Configure Kitty for instant and efficient access, combining the power of a modern terminal with the convenience of a dropdown.</p></div>
-        <br>
-        <a class="btn"
-           href="/en/kitty-acceso-rapido#kitty-acceso-rapido">
-          Continue reading
-        </a>
-  </div>
+     <div><p>Configure Kitty for instant and efficient access, combining the power of a modern terminal with the convenience of a dropdown.</p></div>
+    <br />
+    <a
+      class="btn"
+      href="/en/kitty-acceso-rapido#kitty-acceso-rapido"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/atajos-de-teclado-kitty#atajos-de-teclado-kitty">Essential Keyboard Shortcuts in Kitty: Mastering Your Terminal</a></h2>
+    <h2>
+      <a
+        href="/en/atajos-de-teclado-kitty#atajos-de-teclado-kitty"
+        >Essential Keyboard Shortcuts in Kitty: Mastering Your Terminal</a
+      >
+    </h2>
     <p>
-      Posted on Thu, 25 Dec 2025 in <a href="/en/category/infraestructura.html">Infraestructura</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/kitty.html">kitty</a>,              <a href="/en/tag/terminal.html">terminal</a>,              <a href="/en/tag/atajos.html">atajos</a>,              <a href="/en/tag/teclado.html">teclado</a>,              <a href="/en/tag/productividad.html">productividad</a>
-    </p>
+      Posted on Thu, 25 Dec 2025 in <a href="/en/category/infraestructura.html">Infraestructura</a>       &#8226; Tagged with       <a href="/en/tag/kitty.html">kitty</a>,       <a href="/en/tag/terminal.html">terminal</a>,       <a href="/en/tag/atajos.html">atajos</a>,       <a href="/en/tag/teclado.html">teclado</a>,       <a href="/en/tag/productividad.html">productividad</a>       </p>
   </header>
   <div>
-      <div><p>A quick guide to the most useful Kitty keyboard shortcuts to optimize your command-line workflow.</p></div>
-        <br>
-        <a class="btn"
-           href="/en/atajos-de-teclado-kitty#atajos-de-teclado-kitty">
-          Continue reading
-        </a>
-  </div>
+     <div><p>A quick guide to the most useful Kitty keyboard shortcuts to optimize your command-line workflow.</p></div>
+    <br />
+    <a
+      class="btn"
+      href="/en/atajos-de-teclado-kitty#atajos-de-teclado-kitty"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/de-yakuake-a-kitty#de-yakuake-a-kitty">From Yakuake to Kitty: My Transition to a Modern Terminal</a></h2>
+    <h2>
+      <a
+        href="/en/de-yakuake-a-kitty#de-yakuake-a-kitty"
+        >From Yakuake to Kitty: My Transition to a Modern Terminal</a
+      >
+    </h2>
     <p>
-      Posted on Thu, 25 Dec 2025 in <a href="/en/category/infraestructura.html">Infraestructura</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/kitty.html">kitty</a>,              <a href="/en/tag/yakuake.html">yakuake</a>,              <a href="/en/tag/terminal.html">terminal</a>,              <a href="/en/tag/linux.html">linux</a>,              <a href="/en/tag/productividad.html">productividad</a>,              <a href="/en/tag/herramientas.html">herramientas</a>
-    </p>
+      Posted on Thu, 25 Dec 2025 in <a href="/en/category/infraestructura.html">Infraestructura</a>       &#8226; Tagged with       <a href="/en/tag/kitty.html">kitty</a>,       <a href="/en/tag/yakuake.html">yakuake</a>,       <a href="/en/tag/terminal.html">terminal</a>,       <a href="/en/tag/linux.html">linux</a>,       <a href="/en/tag/productividad.html">productividad</a>,       <a href="/en/tag/herramientas.html">herramientas</a>       </p>
   </header>
   <div>
-      <div><p>Exploring the reasons and benefits of switching from Yakuake to Kitty for a more powerful and customizable terminal experience.</p></div>
-        <br>
-        <a class="btn"
-           href="/en/de-yakuake-a-kitty#de-yakuake-a-kitty">
-          Continue reading
-        </a>
-  </div>
+     <div><p>Exploring the reasons and benefits of switching from Yakuake to Kitty for a more powerful and customizable terminal experience.</p></div>
+    <br />
+    <a
+      class="btn"
+      href="/en/de-yakuake-a-kitty#de-yakuake-a-kitty"
+    >
+      Continue reading
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="/en/como-uso-git-worktrees#como-uso-git-worktrees">How I Use Git Worktrees for Concurrent Work</a></h2>
+    <h2>
+      <a
+        href="/en/como-uso-git-worktrees#como-uso-git-worktrees"
+        >How I Use Git Worktrees for Concurrent Work</a
+      >
+    </h2>
     <p>
-      Posted on Wed, 23 Jul 2025 in <a href="/en/category/programacion.html">Programación</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/git.html">git</a>,              <a href="/en/tag/worktrees.html">worktrees</a>,              <a href="/en/tag/flujo-trabajo.html">flujo-trabajo</a>,              <a href="/en/tag/productividad.html">productividad</a>
-    </p>
+      Posted on Wed, 23 Jul 2025 in <a href="/en/category/programacion.html">Programación</a>       &#8226; Tagged with       <a href="/en/tag/git.html">git</a>,       <a href="/en/tag/worktrees.html">worktrees</a>,       <a href="/en/tag/flujo-trabajo.html">flujo-trabajo</a>,       <a href="/en/tag/productividad.html">productividad</a>       </p>
   </header>
   <div>
-      <div><p class="first last">A practical approach to using git worktrees and maximizing productivity with multiple simultaneous work contexts</p>
+     <div><p class="first last">A practical approach to using git worktrees and maximizing productivity with multiple simultaneous work contexts</p>
 </div>
-        <br>
-        <a class="btn"
-           href="/en/como-uso-git-worktrees#como-uso-git-worktrees">
-          Continue reading
-        </a>
-  </div>
+    <br />
+    <a
+      class="btn"
+      href="/en/como-uso-git-worktrees#como-uso-git-worktrees"
+    >
+      Continue reading
+    </a>
+   </div>
 </article>
-
-
-
-
+   
 <footer>
 <p>
   &copy; 2026  - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
 </p>
 <p>
-Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+  Built with <a
+    href="http://getpelican.com"
+    target="_blank"
+    >Pelican</a
+  > using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a
+  > theme   <script
+    id="dark-theme-script"
+    src="/en/theme/dark-theme/dark-theme.min.js"
+    data-enable-auto-detect-theme="False"
+    data-default-theme="light"
+    type="text/javascript"
+  ></script>
 </p><p>
   <a rel="license"
      href="http://creativecommons.org/licenses/by-sa/3.0/"
@@ -451,15 +667,46 @@ Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a 
         return;
       }
       if (typeof stork === 'undefined') {
-        console.error('Stork is not loaded yet, retrying...');
         setTimeout(window.loadStorkIndex, 100);
         return;
       }
-      stork.register("sitesearch", "/en/search-index.st", { showProgress: false });
-      stork.register("sitesearch-page", "/en/search-index.st", { showProgress: false });
+      var url = "/en/search-index.st";
+      var opts = { showProgress: false };
+      stork.register("sitesearch", url, opts);
+      try {
+        stork.register("sitesearch-page", url, opts);
+      } catch (e) {
+        // Search page input not in DOM on this page — index still registered
+      }
       window.storkIndexLoaded = true;
     }
   </script>
 
+
+  <button id="back-to-top" aria-label="Back to top" title="Back to top">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <path d="M10 16V4m0 0L5 9m5-5l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+  <script>
+  (function() {
+    var btn = document.getElementById('back-to-top');
+    if (!btn) return;
+    var ticking = false;
+    function onScroll() {
+      if (!ticking) {
+        requestAnimationFrame(function() {
+          btn.classList.toggle('visible', window.scrollY > 500);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }
+    btn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    window.addEventListener('scroll', onScroll, { passive: true });
+  })();
+  </script>
 </body>
 </html>

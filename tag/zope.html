@@ -8,11 +8,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="" />
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/stylesheet/style.min.css">
 
+    <link id="dark-theme-style" rel="stylesheet" type="text/css"
+        disabled="disabled"
+    href="https://pablocaro.es/theme/stylesheet/dark-theme.min.css">
 
+    <link id="pygments-dark-theme" rel="stylesheet" type="text/css"
+            disabled="disabled"
+          href="https://pablocaro.es/theme/pygments/github.min.css">
     <link id="pygments-light-theme" rel="stylesheet" type="text/css"
           href="https://pablocaro.es/theme/pygments/github.min.css">
 
@@ -73,7 +81,7 @@
 <aside>
   <div>
     <a href="https://pablocaro.es/">
-      <img src="/theme/img/profile.png" alt="Anotaciones" title="Anotaciones">
+      <img src="/theme/img/profile.png" alt="Anotaciones" title="Anotaciones" />
     </a>
 
     <h1>
@@ -81,70 +89,221 @@
     </h1>
 
     <p>Anotaciones</p>
-
-    <p style="font-size: 0.9em; font-style: italic; margin-bottom: 20px;">
+     <p style="font-size: 0.9em; font-style: italic; margin-bottom: 20px">
       Volcando mi cerebro a internet. Colección de apuntes técnicos y soluciones que escribo para mi 'yo' del futuro, pero que comparto por si a alguien más le ahorran un dolor de cabeza.
     </p>
-
-    <div class="stork">
-      <input class="stork-input" type="text" autocomplete="off" name="q" data-stork="sitesearch" placeholder="Buscar..." onclick="loadStorkIndex()"/>
+      <div class="stork">
+      <label for="sidebar-search" class="sr-only"
+        >Search articles</label
+      >
+      <div class="stork-input-wrap">
+      <input
+        id="sidebar-search"
+        class="stork-input"
+        type="text"
+        autocomplete="off"
+        name="q"
+        data-stork="sitesearch"
+        placeholder="Buscar..."
+        onclick="loadStorkIndex()"
+      />
+      </div>
       <div class="stork-output" data-stork="sitesearch-output"></div>
     </div>
-
-    <nav>
+      <nav>
       <ul class="list">
-
-
-
-          <li>
-            <a target="_self" href="http://x.com/pcaro" >pcaro@X</a>
-          </li>
-          <li>
-            <a target="_self" href="https://github.com/pcaro/" >pcaro@Github</a>
-          </li>
-          <li>
-            <a target="_self" href="https://www.linkedin.com/in/pcarorevuelta/" >LinkedIn</a>
-          </li>
+             <li>
+          <a target="_self" href="http://x.com/pcaro">pcaro@X</a>
+        </li>
+        <li>
+          <a target="_self" href="https://github.com/pcaro/">pcaro@Github</a>
+        </li>
+        <li>
+          <a target="_self" href="https://www.linkedin.com/in/pcarorevuelta/">LinkedIn</a>
+        </li>
       </ul>
     </nav>
-
-    <ul class="social">
+       <ul class="social">
       <li>
-        <a class="sc-Twitter"
-           href="http://twitter.com/pcaro"
-           target="_blank">
-          <i class="fa-brands fa-Twitter"></i>
+        <a
+          class="sc-Twitter"
+          href="http://twitter.com/pcaro"
+          target="_blank"
+          aria-label="Twitter"
+        >
+          <i
+            class="fa-brands fa-Twitter"
+            aria-hidden="true"
+          ></i>
         </a>
       </li>
       <li>
-        <a class="sc-Github"
-           href="http://github.com/pcaro"
-           target="_blank">
-          <i class="fa-brands fa-Github"></i>
+        <a
+          class="sc-Github"
+          href="http://github.com/pcaro"
+          target="_blank"
+          aria-label="Github"
+        >
+          <i
+            class="fa-brands fa-Github"
+            aria-hidden="true"
+          ></i>
         </a>
       </li>
       <li>
-        <a class="sc-Linkedin"
-           href="https://www.linkedin.com/in/pcarorevuelta"
-           target="_blank">
-          <i class="fa-brands fa-Linkedin"></i>
+        <a
+          class="sc-Linkedin"
+          href="https://www.linkedin.com/in/pcarorevuelta"
+          target="_blank"
+          aria-label="Linkedin"
+        >
+          <i
+            class="fa-brands fa-Linkedin"
+            aria-hidden="true"
+          ></i>
         </a>
       </li>
       <li>
-        <a class="sc-Facebook"
-           href="https://www.facebook.com/pablo.carorevuelta"
-           target="_blank">
-          <i class="fa-brands fa-Facebook"></i>
+        <a
+          class="sc-Facebook"
+          href="https://www.facebook.com/pablo.carorevuelta"
+          target="_blank"
+          aria-label="Facebook"
+        >
+          <i
+            class="fa-brands fa-Facebook"
+            aria-hidden="true"
+          ></i>
         </a>
       </li>
       <li>
-        <a class="sc-Email"
-           href="mailto:correo@pablocaro.es"
-           target="_blank">
-          <i class="fa-brands fa-Email"></i>
+        <a
+          class="sc-Email"
+          href="mailto:correo@pablocaro.es"
+          target="_blank"
+          aria-label="Email"
+        >
+          <i
+            class="fa-brands fa-Email"
+            aria-hidden="true"
+          ></i>
         </a>
       </li>
     </ul>
+     <nav class="sidebar-categories" aria-label="Categorías">
+                                                                                                                                 <a
+        href="https://pablocaro.es/category/ia.html"
+        class="sidebar-category"
+        title="ia (13)"
+      >
+        <img
+          src="https://pablocaro.es/images/categories/ia.png"
+          alt="ia"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">ia</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/programacion.html"
+        class="sidebar-category"
+        title="Programación (78)"
+      >
+        <img
+          src="https://pablocaro.es/images/categories/programacion.png"
+          alt="Programación"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Programación</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/linux.html"
+        class="sidebar-category"
+        title="Linux (12)"
+      >
+        <img
+          src="https://pablocaro.es/images/categories/linux.png"
+          alt="Linux"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Linux</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/herramientas.html"
+        class="sidebar-category"
+        title="herramientas (23)"
+      >
+        <img
+          src="https://pablocaro.es/images/categories/herramientas.png"
+          alt="herramientas"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">herramientas</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/infraestructura.html"
+        class="sidebar-category"
+        title="Infraestructura (49)"
+      >
+        <img
+          src="https://pablocaro.es/images/categories/infraestructura.png"
+          alt="Infraestructura"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Infraestructura</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/documentacion.html"
+        class="sidebar-category"
+        title="Documentación (1)"
+      >
+        <img
+          src="https://pablocaro.es/images/categories/documentacion.png"
+          alt="Documentación"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Documentación</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/finanzas.html"
+        class="sidebar-category"
+        title="Finanzas (1)"
+      >
+        <img
+          src="https://pablocaro.es/images/categories/finanzas.png"
+          alt="Finanzas"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Finanzas</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/personal.html"
+        class="sidebar-category"
+        title="Personal (3)"
+      >
+        <img
+          src="https://pablocaro.es/images/categories/personal.png"
+          alt="Personal"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Personal</span>
+      </a>
+    </nav>
   </div>
 
 </aside>
@@ -158,26 +317,24 @@
   <a href="/tags.html">Etiquetas</a>
   <a href="/search.html">Búsqueda</a>
   <a href="/en/">English</a>
-
-  <a href="https://pablocaro.es/feeds/all.atom.xml">Atom</a>
-
-  <a href="https://pablocaro.es/feeds/all.rss.xml">RSS</a>
+   <a href="javascript:void(0)" onclick="theme.switch('dark')">🌙</a>
+  <a href="javascript:void(0)" onclick="theme.switch('light')">☀</a>
+   <a href="https://pablocaro.es/feeds/all.rss.xml">RSS</a>
 </nav>
 
-
-
-<article>
+  <article>
   <header>
-    <h2><a href="https://pablocaro.es/autorelad-en-plone#autorelad-en-plone">Autorelad en plone</a></h2>
+    <h2>
+      <a
+        href="https://pablocaro.es/autorelad-en-plone#autorelad-en-plone"
+        >Autorelad en plone</a
+      >
+    </h2>
     <p>
-      Publicado el 27 de July de 2012 en <a href="https://pablocaro.es/category/programacion.html">Programación</a>
-
-          &#8226; Etiquetado con
-              <a href="https://pablocaro.es/tag/zope.html">zope</a>
-    </p>
+      Publicado el 27 de July de 2012 en <a href="https://pablocaro.es/category/programacion.html">Programación</a>       &#8226; Etiquetado con       <a href="https://pablocaro.es/tag/zope.html">zope</a>       </p>
   </header>
   <div>
-      <div>
+     <div>
         Otro recordatorio.
 
 Para recargar mientras desarrollo una browserview en plone:
@@ -186,45 +343,49 @@ http://admin:admin@localhost:8080/@@reload?action=code</pre>
 Basta pues con usar <a title="when-changed" href="https://github.com/joh/when-changed">when-changed</a> y <a href="http://pypi.python.org/pypi/plone.reload/">plone.reload</a>
 
 Se que existen extensiones  para el navegador  que recargan una  pestaña cuando cambia un fichero …</div>
-        <br>
-        <a class="btn"
-           href="https://pablocaro.es/autorelad-en-plone#autorelad-en-plone">
-          Seguir leyendo
-        </a>
-  </div>
+    <br />
+    <a
+      class="btn"
+      href="https://pablocaro.es/autorelad-en-plone#autorelad-en-plone"
+    >
+      Seguir leyendo
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="https://pablocaro.es/scp-con-compresion#scp-con-compresion">scp con compresión</a></h2>
+    <h2>
+      <a
+        href="https://pablocaro.es/scp-con-compresion#scp-con-compresion"
+        >scp con compresión</a
+      >
+    </h2>
     <p>
-      Publicado el 04 de March de 2011 en <a href="https://pablocaro.es/category/programacion.html">Programación</a>
-
-          &#8226; Etiquetado con
-              <a href="https://pablocaro.es/tag/linux.html">linux</a>,              <a href="https://pablocaro.es/tag/zope.html">zope</a>
-    </p>
+      Publicado el 04 de March de 2011 en <a href="https://pablocaro.es/category/programacion.html">Programación</a>       &#8226; Etiquetado con       <a href="https://pablocaro.es/tag/linux.html">linux</a>,       <a href="https://pablocaro.es/tag/zope.html">zope</a>       </p>
   </header>
   <div>
-      <div>
+     <div>
         La mejor forma de descargar una zodb:
 <pre lang="bash">scp -C -o CompressionLevel=9 user@yoursite.com:~/plonefolder/zinstance/var/filestorage/Data.fs .</pre>
 Leído en: <a href="http://blog.mfabrik.com/2011/03/02/scp-file-copy-with-on-line-compression/">http://blog.mfabrik.com/2011/03/02/scp-file-copy-with-on-line-compression/</a>
     </div>
-  </div>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="https://pablocaro.es/zen-coding-y-komodo-edit#zen-coding-y-komodo-edit">Zen Coding y komodo edit</a></h2>
+    <h2>
+      <a
+        href="https://pablocaro.es/zen-coding-y-komodo-edit#zen-coding-y-komodo-edit"
+        >Zen Coding y komodo edit</a
+      >
+    </h2>
     <p>
-      Publicado el 15 de October de 2010 en <a href="https://pablocaro.es/category/programacion.html">Programación</a>
-
-          &#8226; Etiquetado con
-              <a href="https://pablocaro.es/tag/zope.html">zope</a>
-    </p>
+      Publicado el 15 de October de 2010 en <a href="https://pablocaro.es/category/programacion.html">Programación</a>       &#8226; Etiquetado con       <a href="https://pablocaro.es/tag/zope.html">zope</a>       </p>
   </header>
   <div>
-      <div>
+     <div>
         Mi editor favorito <a href="http://www.activestate.com/komodo-edit" target="_blank">Komodo Edit</a> tiene un plugin de <a href="http://code.google.com/p/zen-coding/" target="_blank">Zen Coding </a>y este funciona muy bien también con plantillas zpt. Por ejemplo:
 
 Así una expresión como la siguente
@@ -240,46 +401,50 @@ Se convierte en el siguiente trozo de html con los nesesarios tabstops:
     </tal:rep>
 </dl></pre>
 Muy pero que …</div>
-        <br>
-        <a class="btn"
-           href="https://pablocaro.es/zen-coding-y-komodo-edit#zen-coding-y-komodo-edit">
-          Seguir leyendo
-        </a>
-  </div>
+    <br />
+    <a
+      class="btn"
+      href="https://pablocaro.es/zen-coding-y-komodo-edit#zen-coding-y-komodo-edit"
+    >
+      Seguir leyendo
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="https://pablocaro.es/progreso-en-un-reindexado-de-zope#progreso-en-un-reindexado-de-zope">Progreso en un reindexado de zope</a></h2>
+    <h2>
+      <a
+        href="https://pablocaro.es/progreso-en-un-reindexado-de-zope#progreso-en-un-reindexado-de-zope"
+        >Progreso en un reindexado de zope</a
+      >
+    </h2>
     <p>
-      Publicado el 18 de September de 2010 en <a href="https://pablocaro.es/category/programacion.html">Programación</a>
-
-          &#8226; Etiquetado con
-              <a href="https://pablocaro.es/tag/zope.html">zope</a>
-    </p>
+      Publicado el 18 de September de 2010 en <a href="https://pablocaro.es/category/programacion.html">Programación</a>       &#8226; Etiquetado con       <a href="https://pablocaro.es/tag/zope.html">zope</a>       </p>
   </header>
   <div>
-      <div>
+     <div>
         Visto en el producto contentleadimage:
 <pre lang="python">from Products.ZCatalog.ProgressHandler import ZLogHandler
 ctool.reindexIndex(['hasContentLeadImage'], portal.REQUEST, pghandler=ZLogHandler())</pre>
 Esto muestra un progreso en la consola si estás ejecutando  en primer plano.
     </div>
-  </div>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="https://pablocaro.es/zope-y-noatime#zope-y-noatime">Zope y noatime</a></h2>
+    <h2>
+      <a
+        href="https://pablocaro.es/zope-y-noatime#zope-y-noatime"
+        >Zope y noatime</a
+      >
+    </h2>
     <p>
-      Publicado el 25 de July de 2010 en <a href="https://pablocaro.es/category/programacion.html">Programación</a>
-
-          &#8226; Etiquetado con
-              <a href="https://pablocaro.es/tag/zope.html">zope</a>
-    </p>
+      Publicado el 25 de July de 2010 en <a href="https://pablocaro.es/category/programacion.html">Programación</a>       &#8226; Etiquetado con       <a href="https://pablocaro.es/tag/zope.html">zope</a>       </p>
   </header>
   <div>
-      <div>
+     <div>
         Una fácil mejora para el rendimiento de un zope con problemas de acceso a disco es<a href="http://tldp.org/LDP/solrhe/Securing-Optimizing-Linux-RH-Edition-v1.3/chap6sec73.html"> no actualizar la fecha de último acceso</a> al fichero de la base de datos Data.fs:
 
 <pre lang="bash">
@@ -288,37 +453,46 @@ chattr -R +A Data.fs
 
 Simple y efectivo.
     </div>
-  </div>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="https://pablocaro.es/restaurando-objectos-plone-borrados#restaurando-objectos-plone-borrados">Restaurando objectos plone borrados</a></h2>
+    <h2>
+      <a
+        href="https://pablocaro.es/restaurando-objectos-plone-borrados#restaurando-objectos-plone-borrados"
+        >Restaurando objectos plone borrados</a
+      >
+    </h2>
     <p>
-      Publicado el 14 de July de 2010 en <a href="https://pablocaro.es/category/programacion.html">Programación</a>
-
-          &#8226; Etiquetado con
-              <a href="https://pablocaro.es/tag/zope.html">zope</a>
-    </p>
+      Publicado el 14 de July de 2010 en <a href="https://pablocaro.es/category/programacion.html">Programación</a>       &#8226; Etiquetado con       <a href="https://pablocaro.es/tag/zope.html">zope</a>       </p>
   </header>
   <div>
-      <div>
+     <div>
         Para esas situaciones donde no funciona el undo, la salvación se llama <a href="http://pypi.python.org/pypi/dm.historical">dm.historical</a>
 
 Un claro ejemplo en <a href="http://www.zopyx.de/blog/restoring-an-older-state-of-arbitrary-zope-objects" target="_blank">esta entrada</a> del Blog de Andreas Jung
     </div>
-  </div>
+   </div>
 </article>
-
-
-
-
+   
 <footer>
 <p>
   &copy; 2026  - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
 </p>
 <p>
-Construido con <a href="http://getpelican.com" target="_blank">Pelican</a> usando el tema <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> 
+  Construido con <a
+    href="http://getpelican.com"
+    target="_blank"
+    >Pelican</a
+  > usando el tema <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a
+  >    <script
+    id="dark-theme-script"
+    src="https://pablocaro.es/theme/dark-theme/dark-theme.min.js"
+    data-enable-auto-detect-theme="False"
+    data-default-theme="light"
+    type="text/javascript"
+  ></script>
 </p><p>
   <a rel="license"
      href="http://creativecommons.org/licenses/by-sa/3.0/"
@@ -349,15 +523,46 @@ Construido con <a href="http://getpelican.com" target="_blank">Pelican</a> usand
         return;
       }
       if (typeof stork === 'undefined') {
-        console.error('Stork is not loaded yet, retrying...');
         setTimeout(window.loadStorkIndex, 100);
         return;
       }
-      stork.register("sitesearch", "https://pablocaro.es/search-index.st", { showProgress: false });
-      stork.register("sitesearch-page", "https://pablocaro.es/search-index.st", { showProgress: false });
+      var url = "https://pablocaro.es/search-index.st";
+      var opts = { showProgress: false };
+      stork.register("sitesearch", url, opts);
+      try {
+        stork.register("sitesearch-page", url, opts);
+      } catch (e) {
+        // Search page input not in DOM on this page — index still registered
+      }
       window.storkIndexLoaded = true;
     }
   </script>
 
+
+  <button id="back-to-top" aria-label="Back to top" title="Back to top">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <path d="M10 16V4m0 0L5 9m5-5l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+  <script>
+  (function() {
+    var btn = document.getElementById('back-to-top');
+    if (!btn) return;
+    var ticking = false;
+    function onScroll() {
+      if (!ticking) {
+        requestAnimationFrame(function() {
+          btn.classList.toggle('visible', window.scrollY > 500);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }
+    btn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    window.addEventListener('scroll', onScroll, { passive: true });
+  })();
+  </script>
 </body>
 </html>

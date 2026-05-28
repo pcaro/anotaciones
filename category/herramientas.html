@@ -8,11 +8,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="" />
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/stylesheet/style.min.css">
 
+    <link id="dark-theme-style" rel="stylesheet" type="text/css"
+        disabled="disabled"
+    href="https://pablocaro.es/theme/stylesheet/dark-theme.min.css">
 
+    <link id="pygments-dark-theme" rel="stylesheet" type="text/css"
+            disabled="disabled"
+          href="https://pablocaro.es/theme/pygments/github.min.css">
     <link id="pygments-light-theme" rel="stylesheet" type="text/css"
           href="https://pablocaro.es/theme/pygments/github.min.css">
 
@@ -68,12 +76,12 @@
 
 
 </head>
-<body class="light-theme">
+<body class="nav-herramientas light-theme">
 
 <aside>
   <div>
     <a href="https://pablocaro.es/">
-      <img src="/theme/img/profile.png" alt="Anotaciones" title="Anotaciones">
+      <img src="/theme/img/profile.png" alt="Anotaciones" title="Anotaciones" />
     </a>
 
     <h1>
@@ -81,70 +89,221 @@
     </h1>
 
     <p>Anotaciones</p>
-
-    <p style="font-size: 0.9em; font-style: italic; margin-bottom: 20px;">
+     <p style="font-size: 0.9em; font-style: italic; margin-bottom: 20px">
       Volcando mi cerebro a internet. Colección de apuntes técnicos y soluciones que escribo para mi 'yo' del futuro, pero que comparto por si a alguien más le ahorran un dolor de cabeza.
     </p>
-
-    <div class="stork">
-      <input class="stork-input" type="text" autocomplete="off" name="q" data-stork="sitesearch" placeholder="Buscar..." onclick="loadStorkIndex()"/>
+      <div class="stork">
+      <label for="sidebar-search" class="sr-only"
+        >Search articles</label
+      >
+      <div class="stork-input-wrap">
+      <input
+        id="sidebar-search"
+        class="stork-input"
+        type="text"
+        autocomplete="off"
+        name="q"
+        data-stork="sitesearch"
+        placeholder="Buscar..."
+        onclick="loadStorkIndex()"
+      />
+      </div>
       <div class="stork-output" data-stork="sitesearch-output"></div>
     </div>
-
-    <nav>
+      <nav>
       <ul class="list">
-
-
-
-          <li>
-            <a target="_self" href="http://x.com/pcaro" >pcaro@X</a>
-          </li>
-          <li>
-            <a target="_self" href="https://github.com/pcaro/" >pcaro@Github</a>
-          </li>
-          <li>
-            <a target="_self" href="https://www.linkedin.com/in/pcarorevuelta/" >LinkedIn</a>
-          </li>
+             <li>
+          <a target="_self" href="http://x.com/pcaro">pcaro@X</a>
+        </li>
+        <li>
+          <a target="_self" href="https://github.com/pcaro/">pcaro@Github</a>
+        </li>
+        <li>
+          <a target="_self" href="https://www.linkedin.com/in/pcarorevuelta/">LinkedIn</a>
+        </li>
       </ul>
     </nav>
-
-    <ul class="social">
+       <ul class="social">
       <li>
-        <a class="sc-Twitter"
-           href="http://twitter.com/pcaro"
-           target="_blank">
-          <i class="fa-brands fa-Twitter"></i>
+        <a
+          class="sc-Twitter"
+          href="http://twitter.com/pcaro"
+          target="_blank"
+          aria-label="Twitter"
+        >
+          <i
+            class="fa-brands fa-Twitter"
+            aria-hidden="true"
+          ></i>
         </a>
       </li>
       <li>
-        <a class="sc-Github"
-           href="http://github.com/pcaro"
-           target="_blank">
-          <i class="fa-brands fa-Github"></i>
+        <a
+          class="sc-Github"
+          href="http://github.com/pcaro"
+          target="_blank"
+          aria-label="Github"
+        >
+          <i
+            class="fa-brands fa-Github"
+            aria-hidden="true"
+          ></i>
         </a>
       </li>
       <li>
-        <a class="sc-Linkedin"
-           href="https://www.linkedin.com/in/pcarorevuelta"
-           target="_blank">
-          <i class="fa-brands fa-Linkedin"></i>
+        <a
+          class="sc-Linkedin"
+          href="https://www.linkedin.com/in/pcarorevuelta"
+          target="_blank"
+          aria-label="Linkedin"
+        >
+          <i
+            class="fa-brands fa-Linkedin"
+            aria-hidden="true"
+          ></i>
         </a>
       </li>
       <li>
-        <a class="sc-Facebook"
-           href="https://www.facebook.com/pablo.carorevuelta"
-           target="_blank">
-          <i class="fa-brands fa-Facebook"></i>
+        <a
+          class="sc-Facebook"
+          href="https://www.facebook.com/pablo.carorevuelta"
+          target="_blank"
+          aria-label="Facebook"
+        >
+          <i
+            class="fa-brands fa-Facebook"
+            aria-hidden="true"
+          ></i>
         </a>
       </li>
       <li>
-        <a class="sc-Email"
-           href="mailto:correo@pablocaro.es"
-           target="_blank">
-          <i class="fa-brands fa-Email"></i>
+        <a
+          class="sc-Email"
+          href="mailto:correo@pablocaro.es"
+          target="_blank"
+          aria-label="Email"
+        >
+          <i
+            class="fa-brands fa-Email"
+            aria-hidden="true"
+          ></i>
         </a>
       </li>
     </ul>
+     <nav class="sidebar-categories" aria-label="Categorías">
+                                                                                                                                 <a
+        href="https://pablocaro.es/category/ia.html"
+        class="sidebar-category"
+        title="ia (13)"
+      >
+        <img
+          src="https://pablocaro.es/images/categories/ia.png"
+          alt="ia"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">ia</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/programacion.html"
+        class="sidebar-category"
+        title="Programación (78)"
+      >
+        <img
+          src="https://pablocaro.es/images/categories/programacion.png"
+          alt="Programación"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Programación</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/linux.html"
+        class="sidebar-category"
+        title="Linux (12)"
+      >
+        <img
+          src="https://pablocaro.es/images/categories/linux.png"
+          alt="Linux"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Linux</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/herramientas.html"
+        class="sidebar-category"
+        title="herramientas (23)"
+      >
+        <img
+          src="https://pablocaro.es/images/categories/herramientas.png"
+          alt="herramientas"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">herramientas</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/infraestructura.html"
+        class="sidebar-category"
+        title="Infraestructura (49)"
+      >
+        <img
+          src="https://pablocaro.es/images/categories/infraestructura.png"
+          alt="Infraestructura"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Infraestructura</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/documentacion.html"
+        class="sidebar-category"
+        title="Documentación (1)"
+      >
+        <img
+          src="https://pablocaro.es/images/categories/documentacion.png"
+          alt="Documentación"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Documentación</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/finanzas.html"
+        class="sidebar-category"
+        title="Finanzas (1)"
+      >
+        <img
+          src="https://pablocaro.es/images/categories/finanzas.png"
+          alt="Finanzas"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Finanzas</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/personal.html"
+        class="sidebar-category"
+        title="Personal (3)"
+      >
+        <img
+          src="https://pablocaro.es/images/categories/personal.png"
+          alt="Personal"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Personal</span>
+      </a>
+    </nav>
   </div>
 
 </aside>
@@ -158,10 +317,9 @@
   <a href="/tags.html">Etiquetas</a>
   <a href="/search.html">Búsqueda</a>
   <a href="/en/">English</a>
-
-  <a href="https://pablocaro.es/feeds/all.atom.xml">Atom</a>
-
-  <a href="https://pablocaro.es/feeds/all.rss.xml">RSS</a>
+   <a href="javascript:void(0)" onclick="theme.switch('dark')">🌙</a>
+  <a href="javascript:void(0)" onclick="theme.switch('light')">☀</a>
+   <a href="https://pablocaro.es/feeds/all.rss.xml">RSS</a>
 </nav>
 
 <div class="category-header">
@@ -170,496 +328,573 @@
     <img
       src="https://pablocaro.es/images/categories/herramientas.png"
       alt="herramientas"
+      width="1408"
+      height="768"
       loading="lazy"
     />
   </div>
 </div>
-
-
-<article>
+  <article>
   <header>
-    <h2><a href="https://pablocaro.es/limpiar-cache-npx#limpiar-cache-npx">Limpiando la caché escondida de npx</a></h2>
+    <h2>
+      <a
+        href="https://pablocaro.es/limpiar-cache-npx#limpiar-cache-npx"
+        >Limpiando la caché escondida de npx</a
+      >
+    </h2>
     <p>
-      Publicado el 28 de May de 2026 en <a href="https://pablocaro.es/category/herramientas.html">herramientas</a>
-
-          &#8226; Etiquetado con
-              <a href="https://pablocaro.es/tag/npm.html">npm</a>,              <a href="https://pablocaro.es/tag/npx.html">npx</a>,              <a href="https://pablocaro.es/tag/terminal.html">terminal</a>,              <a href="https://pablocaro.es/tag/herramientas.html">herramientas</a>
-    </p>
+      Publicado el 28 de May de 2026 en <a href="https://pablocaro.es/category/herramientas.html">herramientas</a>       &#8226; Etiquetado con       <a href="https://pablocaro.es/tag/npm.html">npm</a>,       <a href="https://pablocaro.es/tag/npx.html">npx</a>,       <a href="https://pablocaro.es/tag/terminal.html">terminal</a>,       <a href="https://pablocaro.es/tag/herramientas.html">herramientas</a>       </p>
   </header>
   <div>
-        <img src="/images/limpiar-cache-npx.png">
-      <div><p>npx deja una caché oculta de paquetes en ~/.npm/_npx/. Aquí explico cómo listar lo que tienes acumulado y cómo borrarlo.</p></div>
-        <br>
-        <a class="btn"
-           href="https://pablocaro.es/limpiar-cache-npx#limpiar-cache-npx">
-          Seguir leyendo
-        </a>
-  </div>
+     <img src="/images/limpiar-cache-npx.png" loading="lazy" />
+    <div><p>npx deja una caché oculta de paquetes en ~/.npm/_npx/. Aquí explico cómo listar lo que tienes acumulado y cómo borrarlo.</p></div>
+    <br />
+    <a
+      class="btn"
+      href="https://pablocaro.es/limpiar-cache-npx#limpiar-cache-npx"
+    >
+      Seguir leyendo
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="https://pablocaro.es/winhance-windows-debloater#winhance-windows-debloater">Winhance: limpiar y optimizar Windows sin reinstallar</a></h2>
+    <h2>
+      <a
+        href="https://pablocaro.es/winhance-windows-debloater#winhance-windows-debloater"
+        >Winhance: limpiar y optimizar Windows sin reinstallar</a
+      >
+    </h2>
     <p>
-      Publicado el 05 de May de 2026 en <a href="https://pablocaro.es/category/herramientas.html">Herramientas</a>
-
-          &#8226; Etiquetado con
-              <a href="https://pablocaro.es/tag/windows.html">windows</a>,              <a href="https://pablocaro.es/tag/debloater.html">debloater</a>,              <a href="https://pablocaro.es/tag/herramientas.html">herramientas</a>,              <a href="https://pablocaro.es/tag/winhance.html">winhance</a>
-    </p>
+      Publicado el 05 de May de 2026 en <a href="https://pablocaro.es/category/herramientas.html">Herramientas</a>       &#8226; Etiquetado con       <a href="https://pablocaro.es/tag/windows.html">windows</a>,       <a href="https://pablocaro.es/tag/debloater.html">debloater</a>,       <a href="https://pablocaro.es/tag/herramientas.html">herramientas</a>,       <a href="https://pablocaro.es/tag/winhance.html">winhance</a>       </p>
   </header>
   <div>
-        <img src="/images/winhance-windows-debloater.png">
-      <div><p>Winhance es una utilidad en C# para debloater, optimizar y personalizar Windows 10/11 sin necesidad de reinstalar el sistema.</p></div>
-        <br>
-        <a class="btn"
-           href="https://pablocaro.es/winhance-windows-debloater#winhance-windows-debloater">
-          Seguir leyendo
-        </a>
-  </div>
+     <img src="/images/winhance-windows-debloater.png" loading="lazy" />
+    <div><p>Winhance es una utilidad en C# para debloater, optimizar y personalizar Windows 10/11 sin necesidad de reinstalar el sistema.</p></div>
+    <br />
+    <a
+      class="btn"
+      href="https://pablocaro.es/winhance-windows-debloater#winhance-windows-debloater"
+    >
+      Seguir leyendo
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="https://pablocaro.es/marksman-lsp-markdown#marksman-lsp-markdown">marksman: LSP para Markdown</a></h2>
+    <h2>
+      <a
+        href="https://pablocaro.es/marksman-lsp-markdown#marksman-lsp-markdown"
+        >marksman: LSP para Markdown</a
+      >
+    </h2>
     <p>
-      Publicado el 29 de April de 2026 en <a href="https://pablocaro.es/category/herramientas.html">Herramientas</a>
-
-          &#8226; Etiquetado con
-              <a href="https://pablocaro.es/tag/markdown.html">markdown</a>,              <a href="https://pablocaro.es/tag/lsp.html">lsp</a>,              <a href="https://pablocaro.es/tag/fresh.html">fresh</a>,              <a href="https://pablocaro.es/tag/editor.html">editor</a>,              <a href="https://pablocaro.es/tag/linux.html">linux</a>
-    </p>
+      Publicado el 29 de April de 2026 en <a href="https://pablocaro.es/category/herramientas.html">Herramientas</a>       &#8226; Etiquetado con       <a href="https://pablocaro.es/tag/markdown.html">markdown</a>,       <a href="https://pablocaro.es/tag/lsp.html">lsp</a>,       <a href="https://pablocaro.es/tag/fresh.html">fresh</a>,       <a href="https://pablocaro.es/tag/editor.html">editor</a>,       <a href="https://pablocaro.es/tag/linux.html">linux</a>       </p>
   </header>
   <div>
-        <img src="/images/marksman-splash.png">
-      <div><p>marksman es un servidor de protocolo de lenguaje (LSP) para Markdown que añade autocompletado, navegación entre archivos y detección de errores a cualquier editor compatible.</p></div>
-        <br>
-        <a class="btn"
-           href="https://pablocaro.es/marksman-lsp-markdown#marksman-lsp-markdown">
-          Seguir leyendo
-        </a>
-  </div>
+     <img src="/images/marksman-splash.png" loading="lazy" />
+    <div><p>marksman es un servidor de protocolo de lenguaje (LSP) para Markdown que añade autocompletado, navegación entre archivos y detección de errores a cualquier editor compatible.</p></div>
+    <br />
+    <a
+      class="btn"
+      href="https://pablocaro.es/marksman-lsp-markdown#marksman-lsp-markdown"
+    >
+      Seguir leyendo
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="https://pablocaro.es/neofetch#neofetch">neofetch</a></h2>
+    <h2>
+      <a
+        href="https://pablocaro.es/neofetch#neofetch"
+        >neofetch</a
+      >
+    </h2>
     <p>
-      Publicado el 27 de April de 2026 en <a href="https://pablocaro.es/category/herramientas.html">Herramientas</a>
-
-          &#8226; Etiquetado con
-              <a href="https://pablocaro.es/tag/linux.html">linux</a>,              <a href="https://pablocaro.es/tag/terminal.html">terminal</a>
-    </p>
+      Publicado el 27 de April de 2026 en <a href="https://pablocaro.es/category/herramientas.html">Herramientas</a>       &#8226; Etiquetado con       <a href="https://pablocaro.es/tag/linux.html">linux</a>,       <a href="https://pablocaro.es/tag/terminal.html">terminal</a>       </p>
   </header>
   <div>
-        <img src="/images/neofetch.png">
-      <div><p>Neofetch, herramienta de línea de comandos para información del sistema.</p></div>
-        <br>
-        <a class="btn"
-           href="https://pablocaro.es/neofetch#neofetch">
-          Seguir leyendo
-        </a>
-  </div>
+     <img src="/images/neofetch.png" loading="lazy" />
+    <div><p>Neofetch, herramienta de línea de comandos para información del sistema.</p></div>
+    <br />
+    <a
+      class="btn"
+      href="https://pablocaro.es/neofetch#neofetch"
+    >
+      Seguir leyendo
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="https://pablocaro.es/rufus-instalar-windows-limpio#rufus-instalar-windows-limpio">Rufus, la mejor forma de instalar un Windows limpio</a></h2>
+    <h2>
+      <a
+        href="https://pablocaro.es/rufus-instalar-windows-limpio#rufus-instalar-windows-limpio"
+        >Rufus, la mejor forma de instalar un Windows limpio</a
+      >
+    </h2>
     <p>
-      Publicado el 27 de April de 2026 en <a href="https://pablocaro.es/category/herramientas.html">Herramientas</a>
-
-          &#8226; Etiquetado con
-              <a href="https://pablocaro.es/tag/rufus.html">rufus</a>,              <a href="https://pablocaro.es/tag/windows.html">windows</a>,              <a href="https://pablocaro.es/tag/instalacion.html">instalacion</a>
-    </p>
+      Publicado el 27 de April de 2026 en <a href="https://pablocaro.es/category/herramientas.html">Herramientas</a>       &#8226; Etiquetado con       <a href="https://pablocaro.es/tag/rufus.html">rufus</a>,       <a href="https://pablocaro.es/tag/windows.html">windows</a>,       <a href="https://pablocaro.es/tag/instalacion.html">instalacion</a>       </p>
   </header>
   <div>
-        <img src="/images/rufus-4-14-interfaz.png">
-      <div><p>Rufus, gran herramienta para crear medios de instalación de Windows, permitiendo deshabilitar las integraciones forzosas de IA de Microsoft.</p></div>
-        <br>
-        <a class="btn"
-           href="https://pablocaro.es/rufus-instalar-windows-limpio#rufus-instalar-windows-limpio">
-          Seguir leyendo
-        </a>
-  </div>
+     <img src="/images/rufus-4-14-interfaz.png" loading="lazy" />
+    <div><p>Rufus, gran herramienta para crear medios de instalación de Windows, permitiendo deshabilitar las integraciones forzosas de IA de Microsoft.</p></div>
+    <br />
+    <a
+      class="btn"
+      href="https://pablocaro.es/rufus-instalar-windows-limpio#rufus-instalar-windows-limpio"
+    >
+      Seguir leyendo
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="https://pablocaro.es/google-stitch#google-stitch">Google Stitch: Generación y prototipado UI con AI</a></h2>
+    <h2>
+      <a
+        href="https://pablocaro.es/google-stitch#google-stitch"
+        >Google Stitch: Generación y prototipado UI con AI</a
+      >
+    </h2>
     <p>
-      Publicado el 13 de April de 2026 en <a href="https://pablocaro.es/category/herramientas.html">Herramientas</a>
-
-          &#8226; Etiquetado con
-              <a href="https://pablocaro.es/tag/ia.html">ia</a>,              <a href="https://pablocaro.es/tag/ui.html">ui</a>,              <a href="https://pablocaro.es/tag/design.html">design</a>,              <a href="https://pablocaro.es/tag/gemini.html">gemini</a>,              <a href="https://pablocaro.es/tag/prototipado.html">prototipado</a>
-    </p>
+      Publicado el 13 de April de 2026 en <a href="https://pablocaro.es/category/herramientas.html">Herramientas</a>       &#8226; Etiquetado con       <a href="https://pablocaro.es/tag/ia.html">ia</a>,       <a href="https://pablocaro.es/tag/ui.html">ui</a>,       <a href="https://pablocaro.es/tag/design.html">design</a>,       <a href="https://pablocaro.es/tag/gemini.html">gemini</a>,       <a href="https://pablocaro.es/tag/prototipado.html">prototipado</a>       </p>
   </header>
   <div>
-        <img src="/images/stitch.png">
-      <div><p>Análisis de Google Stitch como herramienta para generar interfaces de usuario y prototipos interactivos mediante inteligencia artificial.</p></div>
-        <br>
-        <a class="btn"
-           href="https://pablocaro.es/google-stitch#google-stitch">
-          Seguir leyendo
-        </a>
-  </div>
+     <img src="/images/stitch.png" loading="lazy" />
+    <div><p>Análisis de Google Stitch como herramienta para generar interfaces de usuario y prototipos interactivos mediante inteligencia artificial.</p></div>
+    <br />
+    <a
+      class="btn"
+      href="https://pablocaro.es/google-stitch#google-stitch"
+    >
+      Seguir leyendo
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="https://pablocaro.es/rbw-env#rbw-env">rbw-env: Exportar variables de entorno desde Bitwarden</a></h2>
+    <h2>
+      <a
+        href="https://pablocaro.es/rbw-env#rbw-env"
+        >rbw-env: Exportar variables de entorno desde Bitwarden</a
+      >
+    </h2>
     <p>
-      Publicado el 26 de March de 2026 en <a href="https://pablocaro.es/category/herramientas.html">Herramientas</a>
-
-          &#8226; Etiquetado con
-              <a href="https://pablocaro.es/tag/bitwarden.html">bitwarden</a>,              <a href="https://pablocaro.es/tag/cli.html">cli</a>,              <a href="https://pablocaro.es/tag/entorno.html">entorno</a>,              <a href="https://pablocaro.es/tag/productividad.html">productividad</a>,              <a href="https://pablocaro.es/tag/seguridad.html">seguridad</a>
-    </p>
+      Publicado el 26 de March de 2026 en <a href="https://pablocaro.es/category/herramientas.html">Herramientas</a>       &#8226; Etiquetado con       <a href="https://pablocaro.es/tag/bitwarden.html">bitwarden</a>,       <a href="https://pablocaro.es/tag/cli.html">cli</a>,       <a href="https://pablocaro.es/tag/entorno.html">entorno</a>,       <a href="https://pablocaro.es/tag/productividad.html">productividad</a>,       <a href="https://pablocaro.es/tag/seguridad.html">seguridad</a>       </p>
   </header>
   <div>
-        <img src="/images/rbw-env-example.png">
-      <div><p>Cómo usar rbw para exportar variables de entorno desde Bitwarden, útil para establecer API keys de forma segura sin almacenarlas en el disco.</p></div>
-        <br>
-        <a class="btn"
-           href="https://pablocaro.es/rbw-env#rbw-env">
-          Seguir leyendo
-        </a>
-  </div>
+     <img src="/images/rbw-env-example.png" loading="lazy" />
+    <div><p>Cómo usar rbw para exportar variables de entorno desde Bitwarden, útil para establecer API keys de forma segura sin almacenarlas en el disco.</p></div>
+    <br />
+    <a
+      class="btn"
+      href="https://pablocaro.es/rbw-env#rbw-env"
+    >
+      Seguir leyendo
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="https://pablocaro.es/tailscale-aperture-gateway-ia-seguro#tailscale-aperture-gateway-ia-seguro">Tailscale Aperture: Gateway de IA sin distribuir API keys</a></h2>
+    <h2>
+      <a
+        href="https://pablocaro.es/tailscale-aperture-gateway-ia-seguro#tailscale-aperture-gateway-ia-seguro"
+        >Tailscale Aperture: Gateway de IA sin distribuir API keys</a
+      >
+    </h2>
     <p>
-      Publicado el 16 de March de 2026 en <a href="https://pablocaro.es/category/herramientas.html">Herramientas</a>
-
-          &#8226; Etiquetado con
-              <a href="https://pablocaro.es/tag/tailscale.html">tailscale</a>,              <a href="https://pablocaro.es/tag/seguridad.html">seguridad</a>,              <a href="https://pablocaro.es/tag/ia.html">ia</a>,              <a href="https://pablocaro.es/tag/api.html">api</a>,              <a href="https://pablocaro.es/tag/gateway.html">gateway</a>
-    </p>
+      Publicado el 16 de March de 2026 en <a href="https://pablocaro.es/category/herramientas.html">Herramientas</a>       &#8226; Etiquetado con       <a href="https://pablocaro.es/tag/tailscale.html">tailscale</a>,       <a href="https://pablocaro.es/tag/seguridad.html">seguridad</a>,       <a href="https://pablocaro.es/tag/ia.html">ia</a>,       <a href="https://pablocaro.es/tag/api.html">api</a>,       <a href="https://pablocaro.es/tag/gateway.html">gateway</a>       </p>
   </header>
   <div>
-        <img src="/images/tailscale-aperture.png">
-      <div><p>Aperture de Tailscale centraliza el acceso a LLMs eliminando la necesidad de distribuir API keys a desarrolladores, usando la identidad de Tailscale para autenticación.</p></div>
-        <br>
-        <a class="btn"
-           href="https://pablocaro.es/tailscale-aperture-gateway-ia-seguro#tailscale-aperture-gateway-ia-seguro">
-          Seguir leyendo
-        </a>
-  </div>
+     <img src="/images/tailscale-aperture.png" loading="lazy" />
+    <div><p>Aperture de Tailscale centraliza el acceso a LLMs eliminando la necesidad de distribuir API keys a desarrolladores, usando la identidad de Tailscale para autenticación.</p></div>
+    <br />
+    <a
+      class="btn"
+      href="https://pablocaro.es/tailscale-aperture-gateway-ia-seguro#tailscale-aperture-gateway-ia-seguro"
+    >
+      Seguir leyendo
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="https://pablocaro.es/rodney-chrome-wayland-error#rodney-chrome-wayland-error">Solución al Error de Rodney con Chrome en Wayland</a></h2>
+    <h2>
+      <a
+        href="https://pablocaro.es/rodney-chrome-wayland-error#rodney-chrome-wayland-error"
+        >Solución al Error de Rodney con Chrome en Wayland</a
+      >
+    </h2>
     <p>
-      Publicado el 06 de March de 2026 en <a href="https://pablocaro.es/category/herramientas.html">Herramientas</a>
-
-          &#8226; Etiquetado con
-              <a href="https://pablocaro.es/tag/rodney.html">rodney</a>,              <a href="https://pablocaro.es/tag/chrome.html">chrome</a>,              <a href="https://pablocaro.es/tag/wayland.html">wayland</a>,              <a href="https://pablocaro.es/tag/linux.html">linux</a>,              <a href="https://pablocaro.es/tag/debugging.html">debugging</a>
-    </p>
+      Publicado el 06 de March de 2026 en <a href="https://pablocaro.es/category/herramientas.html">Herramientas</a>       &#8226; Etiquetado con       <a href="https://pablocaro.es/tag/rodney.html">rodney</a>,       <a href="https://pablocaro.es/tag/chrome.html">chrome</a>,       <a href="https://pablocaro.es/tag/wayland.html">wayland</a>,       <a href="https://pablocaro.es/tag/linux.html">linux</a>,       <a href="https://pablocaro.es/tag/debugging.html">debugging</a>       </p>
   </header>
   <div>
-      <div><p>Cómo resolver el crash de Rodney al iniciar Chrome en sistemas Wayland usando el Chrome del sistema.</p></div>
-        <br>
-        <a class="btn"
-           href="https://pablocaro.es/rodney-chrome-wayland-error#rodney-chrome-wayland-error">
-          Seguir leyendo
-        </a>
-  </div>
+     <div><p>Cómo resolver el crash de Rodney al iniciar Chrome en sistemas Wayland usando el Chrome del sistema.</p></div>
+    <br />
+    <a
+      class="btn"
+      href="https://pablocaro.es/rodney-chrome-wayland-error#rodney-chrome-wayland-error"
+    >
+      Seguir leyendo
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="https://pablocaro.es/asciinema-terminal-recorder#asciinema-terminal-recorder">Graba y Comparte tus Sesiones de Terminal con asciinema</a></h2>
+    <h2>
+      <a
+        href="https://pablocaro.es/asciinema-terminal-recorder#asciinema-terminal-recorder"
+        >Graba y Comparte tus Sesiones de Terminal con asciinema</a
+      >
+    </h2>
     <p>
-      Publicado el 27 de February de 2026 en <a href="https://pablocaro.es/category/herramientas.html">Herramientas</a>
-
-          &#8226; Etiquetado con
-              <a href="https://pablocaro.es/tag/asciinema.html">asciinema</a>,              <a href="https://pablocaro.es/tag/terminal.html">terminal</a>,              <a href="https://pablocaro.es/tag/linux.html">linux</a>,              <a href="https://pablocaro.es/tag/productividad.html">productividad</a>
-    </p>
+      Publicado el 27 de February de 2026 en <a href="https://pablocaro.es/category/herramientas.html">Herramientas</a>       &#8226; Etiquetado con       <a href="https://pablocaro.es/tag/asciinema.html">asciinema</a>,       <a href="https://pablocaro.es/tag/terminal.html">terminal</a>,       <a href="https://pablocaro.es/tag/linux.html">linux</a>,       <a href="https://pablocaro.es/tag/productividad.html">productividad</a>       </p>
   </header>
   <div>
-        <img src="/images/asciinema_help.png">
-      <div><p>Descubre asciinema, la herramienta perfecta para grabar tus sesiones de terminal de forma ligera, reproducible y fácil de compartir.</p></div>
-        <br>
-        <a class="btn"
-           href="https://pablocaro.es/asciinema-terminal-recorder#asciinema-terminal-recorder">
-          Seguir leyendo
-        </a>
-  </div>
+     <img src="/images/asciinema_help.png" loading="lazy" />
+    <div><p>Descubre asciinema, la herramienta perfecta para grabar tus sesiones de terminal de forma ligera, reproducible y fácil de compartir.</p></div>
+    <br />
+    <a
+      class="btn"
+      href="https://pablocaro.es/asciinema-terminal-recorder#asciinema-terminal-recorder"
+    >
+      Seguir leyendo
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="https://pablocaro.es/kitty-rbw-kitten#kitty-rbw-kitten">kitty-rbw: Acceso rápido a Bitwarden desde tu terminal kitty</a></h2>
+    <h2>
+      <a
+        href="https://pablocaro.es/kitty-rbw-kitten#kitty-rbw-kitten"
+        >kitty-rbw: Acceso rápido a Bitwarden desde tu terminal kitty</a
+      >
+    </h2>
     <p>
-      Publicado el 26 de February de 2026 en <a href="https://pablocaro.es/category/herramientas.html">Herramientas</a>
-
-          &#8226; Etiquetado con
-              <a href="https://pablocaro.es/tag/bitwarden.html">bitwarden</a>,              <a href="https://pablocaro.es/tag/cli.html">cli</a>,              <a href="https://pablocaro.es/tag/kitty.html">kitty</a>,              <a href="https://pablocaro.es/tag/rust.html">rust</a>,              <a href="https://pablocaro.es/tag/productividad.html">productividad</a>
-    </p>
+      Publicado el 26 de February de 2026 en <a href="https://pablocaro.es/category/herramientas.html">Herramientas</a>       &#8226; Etiquetado con       <a href="https://pablocaro.es/tag/bitwarden.html">bitwarden</a>,       <a href="https://pablocaro.es/tag/cli.html">cli</a>,       <a href="https://pablocaro.es/tag/kitty.html">kitty</a>,       <a href="https://pablocaro.es/tag/rust.html">rust</a>,       <a href="https://pablocaro.es/tag/productividad.html">productividad</a>       </p>
   </header>
   <div>
-        <img src="/images/kitty-rbw.png">
-      <div><p>Presentación de kitty-rbw, un "kitten" para el terminal kitty que permite buscar y usar credenciales de rbw (Bitwarden) de forma instantánea mediante fzf.</p></div>
-        <br>
-        <a class="btn"
-           href="https://pablocaro.es/kitty-rbw-kitten#kitty-rbw-kitten">
-          Seguir leyendo
-        </a>
-  </div>
+     <img src="/images/kitty-rbw.png" loading="lazy" />
+    <div><p>Presentación de kitty-rbw, un "kitten" para el terminal kitty que permite buscar y usar credenciales de rbw (Bitwarden) de forma instantánea mediante fzf.</p></div>
+    <br />
+    <a
+      class="btn"
+      href="https://pablocaro.es/kitty-rbw-kitten#kitty-rbw-kitten"
+    >
+      Seguir leyendo
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="https://pablocaro.es/rbw-bitwarden-cli#rbw-bitwarden-cli">rbw: El cliente de Bitwarden para terminal que deberías usar</a></h2>
+    <h2>
+      <a
+        href="https://pablocaro.es/rbw-bitwarden-cli#rbw-bitwarden-cli"
+        >rbw: El cliente de Bitwarden para terminal que deberías usar</a
+      >
+    </h2>
     <p>
-      Publicado el 26 de February de 2026 en <a href="https://pablocaro.es/category/herramientas.html">Herramientas</a>
-
-          &#8226; Etiquetado con
-              <a href="https://pablocaro.es/tag/bitwarden.html">bitwarden</a>,              <a href="https://pablocaro.es/tag/cli.html">cli</a>,              <a href="https://pablocaro.es/tag/rust.html">rust</a>,              <a href="https://pablocaro.es/tag/seguridad.html">seguridad</a>,              <a href="https://pablocaro.es/tag/pi-agent.html">pi-agent</a>
-    </p>
+      Publicado el 26 de February de 2026 en <a href="https://pablocaro.es/category/herramientas.html">Herramientas</a>       &#8226; Etiquetado con       <a href="https://pablocaro.es/tag/bitwarden.html">bitwarden</a>,       <a href="https://pablocaro.es/tag/cli.html">cli</a>,       <a href="https://pablocaro.es/tag/rust.html">rust</a>,       <a href="https://pablocaro.es/tag/seguridad.html">seguridad</a>,       <a href="https://pablocaro.es/tag/pi-agent.html">pi-agent</a>       </p>
   </header>
   <div>
-        <img src="/images/rbw_help.png">
-      <div><p>Cómo instalar y configurar rbw, una implementación en Rust del cliente de Bitwarden, y cómo integrarlo en tus flujos de trabajo con pi-agent.</p></div>
-        <br>
-        <a class="btn"
-           href="https://pablocaro.es/rbw-bitwarden-cli#rbw-bitwarden-cli">
-          Seguir leyendo
-        </a>
-  </div>
+     <img src="/images/rbw_help.png" loading="lazy" />
+    <div><p>Cómo instalar y configurar rbw, una implementación en Rust del cliente de Bitwarden, y cómo integrarlo en tus flujos de trabajo con pi-agent.</p></div>
+    <br />
+    <a
+      class="btn"
+      href="https://pablocaro.es/rbw-bitwarden-cli#rbw-bitwarden-cli"
+    >
+      Seguir leyendo
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="https://pablocaro.es/broot-una-forma-diferente-de-navegar-directorios#broot-una-forma-diferente-de-navegar-directorios">broot, una forma diferente de navegar por tus directorios</a></h2>
+    <h2>
+      <a
+        href="https://pablocaro.es/broot-una-forma-diferente-de-navegar-directorios#broot-una-forma-diferente-de-navegar-directorios"
+        >broot, una forma diferente de navegar por tus directorios</a
+      >
+    </h2>
     <p>
-      Publicado el 02 de January de 2026 en <a href="https://pablocaro.es/category/herramientas.html">Herramientas</a>
-
-          &#8226; Etiquetado con
-              <a href="https://pablocaro.es/tag/terminal.html">terminal</a>,              <a href="https://pablocaro.es/tag/cli.html">cli</a>,              <a href="https://pablocaro.es/tag/broot.html">broot</a>,              <a href="https://pablocaro.es/tag/rust.html">rust</a>
-    </p>
+      Publicado el 02 de January de 2026 en <a href="https://pablocaro.es/category/herramientas.html">Herramientas</a>       &#8226; Etiquetado con       <a href="https://pablocaro.es/tag/terminal.html">terminal</a>,       <a href="https://pablocaro.es/tag/cli.html">cli</a>,       <a href="https://pablocaro.es/tag/broot.html">broot</a>,       <a href="https://pablocaro.es/tag/rust.html">rust</a>       </p>
   </header>
   <div>
-        <img src="/images/broot_terminal.png">
-      <div><p>broot es una herramienta para la terminal que permite explorar directorios de forma interactiva, con búsqueda fuzzy, paneles múltiples y previsualización de archivos.</p></div>
-        <br>
-        <a class="btn"
-           href="https://pablocaro.es/broot-una-forma-diferente-de-navegar-directorios#broot-una-forma-diferente-de-navegar-directorios">
-          Seguir leyendo
-        </a>
-  </div>
+     <img src="/images/broot_terminal.png" loading="lazy" />
+    <div><p>broot es una herramienta para la terminal que permite explorar directorios de forma interactiva, con búsqueda fuzzy, paneles múltiples y previsualización de archivos.</p></div>
+    <br />
+    <a
+      class="btn"
+      href="https://pablocaro.es/broot-una-forma-diferente-de-navegar-directorios#broot-una-forma-diferente-de-navegar-directorios"
+    >
+      Seguir leyendo
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="https://pablocaro.es/yaml-multilinea-cadenas-complejas#yaml-multilinea-cadenas-complejas">YAML Multilínea: Entendiendo y probando cadenas de texto complejas</a></h2>
+    <h2>
+      <a
+        href="https://pablocaro.es/yaml-multilinea-cadenas-complejas#yaml-multilinea-cadenas-complejas"
+        >YAML Multilínea: Entendiendo y probando cadenas de texto complejas</a
+      >
+    </h2>
     <p>
-      Publicado el 25 de December de 2025 en <a href="https://pablocaro.es/category/herramientas.html">Herramientas</a>
-
-          &#8226; Etiquetado con
-              <a href="https://pablocaro.es/tag/yaml.html">yaml</a>,              <a href="https://pablocaro.es/tag/configuracion.html">configuracion</a>,              <a href="https://pablocaro.es/tag/desarrollo.html">desarrollo</a>,              <a href="https://pablocaro.es/tag/multiline.html">multiline</a>,              <a href="https://pablocaro.es/tag/strings.html">strings</a>
-    </p>
+      Publicado el 25 de December de 2025 en <a href="https://pablocaro.es/category/herramientas.html">Herramientas</a>       &#8226; Etiquetado con       <a href="https://pablocaro.es/tag/yaml.html">yaml</a>,       <a href="https://pablocaro.es/tag/configuracion.html">configuracion</a>,       <a href="https://pablocaro.es/tag/desarrollo.html">desarrollo</a>,       <a href="https://pablocaro.es/tag/multiline.html">multiline</a>,       <a href="https://pablocaro.es/tag/strings.html">strings</a>       </p>
   </header>
   <div>
-      <div><p>Explora las opciones de YAML para manejar cadenas de texto multilínea de forma efectiva, con una demo interactiva que te permite probarlas en tiempo real.</p></div>
-        <br>
-        <a class="btn"
-           href="https://pablocaro.es/yaml-multilinea-cadenas-complejas#yaml-multilinea-cadenas-complejas">
-          Seguir leyendo
-        </a>
-  </div>
+     <div><p>Explora las opciones de YAML para manejar cadenas de texto multilínea de forma efectiva, con una demo interactiva que te permite probarlas en tiempo real.</p></div>
+    <br />
+    <a
+      class="btn"
+      href="https://pablocaro.es/yaml-multilinea-cadenas-complejas#yaml-multilinea-cadenas-complejas"
+    >
+      Seguir leyendo
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="https://pablocaro.es/fresh-editor-terminal#fresh-editor-terminal">`fresh`: Mi editor de terminal preferido para el día a día</a></h2>
+    <h2>
+      <a
+        href="https://pablocaro.es/fresh-editor-terminal#fresh-editor-terminal"
+        >`fresh`: Mi editor de terminal preferido para el día a día</a
+      >
+    </h2>
     <p>
-      Publicado el 25 de December de 2025 en <a href="https://pablocaro.es/category/herramientas.html">Herramientas</a>
-
-          &#8226; Etiquetado con
-              <a href="https://pablocaro.es/tag/fresh.html">fresh</a>,              <a href="https://pablocaro.es/tag/terminal.html">terminal</a>,              <a href="https://pablocaro.es/tag/editor.html">editor</a>,              <a href="https://pablocaro.es/tag/productividad.html">productividad</a>,              <a href="https://pablocaro.es/tag/linux.html">linux</a>,              <a href="https://pablocaro.es/tag/cli.html">cli</a>
-    </p>
+      Publicado el 25 de December de 2025 en <a href="https://pablocaro.es/category/herramientas.html">Herramientas</a>       &#8226; Etiquetado con       <a href="https://pablocaro.es/tag/fresh.html">fresh</a>,       <a href="https://pablocaro.es/tag/terminal.html">terminal</a>,       <a href="https://pablocaro.es/tag/editor.html">editor</a>,       <a href="https://pablocaro.es/tag/productividad.html">productividad</a>,       <a href="https://pablocaro.es/tag/linux.html">linux</a>,       <a href="https://pablocaro.es/tag/cli.html">cli</a>       </p>
   </header>
   <div>
-      <div><p>Descubre <code>fresh</code>, un editor de texto en terminal rápido, moderno y sin modos, ideal para la edición casual de archivos, superando a <code>nano</code> y <code>vim</code> en simplicidad para el uso habitual.</p></div>
-        <br>
-        <a class="btn"
-           href="https://pablocaro.es/fresh-editor-terminal#fresh-editor-terminal">
-          Seguir leyendo
-        </a>
-  </div>
+     <div><p>Descubre <code>fresh</code>, un editor de texto en terminal rápido, moderno y sin modos, ideal para la edición casual de archivos, superando a <code>nano</code> y <code>vim</code> en simplicidad para el uso habitual.</p></div>
+    <br />
+    <a
+      class="btn"
+      href="https://pablocaro.es/fresh-editor-terminal#fresh-editor-terminal"
+    >
+      Seguir leyendo
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="https://pablocaro.es/kooha-captura-pantalla-linux#kooha-captura-pantalla-linux">Kooha: Captura de pantalla sencilla y elegante en Linux</a></h2>
+    <h2>
+      <a
+        href="https://pablocaro.es/kooha-captura-pantalla-linux#kooha-captura-pantalla-linux"
+        >Kooha: Captura de pantalla sencilla y elegante en Linux</a
+      >
+    </h2>
     <p>
-      Publicado el 25 de December de 2025 en <a href="https://pablocaro.es/category/herramientas.html">Herramientas</a>
-
-          &#8226; Etiquetado con
-              <a href="https://pablocaro.es/tag/linux.html">linux</a>,              <a href="https://pablocaro.es/tag/kooha.html">kooha</a>,              <a href="https://pablocaro.es/tag/screen-recorder.html">screen-recorder</a>,              <a href="https://pablocaro.es/tag/productividad.html">productividad</a>,              <a href="https://pablocaro.es/tag/open-source.html">open-source</a>
-    </p>
+      Publicado el 25 de December de 2025 en <a href="https://pablocaro.es/category/herramientas.html">Herramientas</a>       &#8226; Etiquetado con       <a href="https://pablocaro.es/tag/linux.html">linux</a>,       <a href="https://pablocaro.es/tag/kooha.html">kooha</a>,       <a href="https://pablocaro.es/tag/screen-recorder.html">screen-recorder</a>,       <a href="https://pablocaro.es/tag/productividad.html">productividad</a>,       <a href="https://pablocaro.es/tag/open-source.html">open-source</a>       </p>
   </header>
   <div>
-      <div><p>Descubre Kooha, una aplicación de grabación de pantalla minimalista para Linux que combina facilidad de uso con funcionalidades esenciales.</p></div>
-        <br>
-        <a class="btn"
-           href="https://pablocaro.es/kooha-captura-pantalla-linux#kooha-captura-pantalla-linux">
-          Seguir leyendo
-        </a>
-  </div>
+     <div><p>Descubre Kooha, una aplicación de grabación de pantalla minimalista para Linux que combina facilidad de uso con funcionalidades esenciales.</p></div>
+    <br />
+    <a
+      class="btn"
+      href="https://pablocaro.es/kooha-captura-pantalla-linux#kooha-captura-pantalla-linux"
+    >
+      Seguir leyendo
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="https://pablocaro.es/direnv-gestion-entornos#direnv-gestion-entornos">`direnv`: Gestiona tus entornos de desarrollo de forma inteligente</a></h2>
+    <h2>
+      <a
+        href="https://pablocaro.es/direnv-gestion-entornos#direnv-gestion-entornos"
+        >`direnv`: Gestiona tus entornos de desarrollo de forma inteligente</a
+      >
+    </h2>
     <p>
-      Publicado el 25 de December de 2025 en <a href="https://pablocaro.es/category/herramientas.html">Herramientas</a>
-
-          &#8226; Etiquetado con
-              <a href="https://pablocaro.es/tag/direnv.html">direnv</a>,              <a href="https://pablocaro.es/tag/shell.html">shell</a>,              <a href="https://pablocaro.es/tag/entorno.html">entorno</a>,              <a href="https://pablocaro.es/tag/productividad.html">productividad</a>,              <a href="https://pablocaro.es/tag/desarrollo.html">desarrollo</a>,              <a href="https://pablocaro.es/tag/linux.html">linux</a>
-    </p>
+      Publicado el 25 de December de 2025 en <a href="https://pablocaro.es/category/herramientas.html">Herramientas</a>       &#8226; Etiquetado con       <a href="https://pablocaro.es/tag/direnv.html">direnv</a>,       <a href="https://pablocaro.es/tag/shell.html">shell</a>,       <a href="https://pablocaro.es/tag/entorno.html">entorno</a>,       <a href="https://pablocaro.es/tag/productividad.html">productividad</a>,       <a href="https://pablocaro.es/tag/desarrollo.html">desarrollo</a>,       <a href="https://pablocaro.es/tag/linux.html">linux</a>       </p>
   </header>
   <div>
-      <div><p>Descubre <code>direnv</code>, una extensión de shell que carga y descarga variables de entorno automáticamente al cambiar de directorio, manteniendo tu configuración limpia y organizada.</p></div>
-        <br>
-        <a class="btn"
-           href="https://pablocaro.es/direnv-gestion-entornos#direnv-gestion-entornos">
-          Seguir leyendo
-        </a>
-  </div>
+     <div><p>Descubre <code>direnv</code>, una extensión de shell que carga y descarga variables de entorno automáticamente al cambiar de directorio, manteniendo tu configuración limpia y organizada.</p></div>
+    <br />
+    <a
+      class="btn"
+      href="https://pablocaro.es/direnv-gestion-entornos#direnv-gestion-entornos"
+    >
+      Seguir leyendo
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="https://pablocaro.es/docker-http-https-echo#docker-http-https-echo">`docker-http-https-echo`: Una herramienta esencial para depuración de red</a></h2>
+    <h2>
+      <a
+        href="https://pablocaro.es/docker-http-https-echo#docker-http-https-echo"
+        >`docker-http-https-echo`: Una herramienta esencial para depuración de red</a
+      >
+    </h2>
     <p>
-      Publicado el 25 de December de 2025 en <a href="https://pablocaro.es/category/herramientas.html">Herramientas</a>
-
-          &#8226; Etiquetado con
-              <a href="https://pablocaro.es/tag/docker.html">docker</a>,              <a href="https://pablocaro.es/tag/http.html">http</a>,              <a href="https://pablocaro.es/tag/https.html">https</a>,              <a href="https://pablocaro.es/tag/depuracion.html">depuracion</a>,              <a href="https://pablocaro.es/tag/redes.html">redes</a>,              <a href="https://pablocaro.es/tag/contenedores.html">contenedores</a>
-    </p>
+      Publicado el 25 de December de 2025 en <a href="https://pablocaro.es/category/herramientas.html">Herramientas</a>       &#8226; Etiquetado con       <a href="https://pablocaro.es/tag/docker.html">docker</a>,       <a href="https://pablocaro.es/tag/http.html">http</a>,       <a href="https://pablocaro.es/tag/https.html">https</a>,       <a href="https://pablocaro.es/tag/depuracion.html">depuracion</a>,       <a href="https://pablocaro.es/tag/redes.html">redes</a>,       <a href="https://pablocaro.es/tag/contenedores.html">contenedores</a>       </p>
   </header>
   <div>
-      <div><p><code>mendhak/docker-http-https-echo</code> es un contenedor Docker simple que facilita la depuración de configuraciones de red, proxies y balanceadores de carga.</p></div>
-        <br>
-        <a class="btn"
-           href="https://pablocaro.es/docker-http-https-echo#docker-http-https-echo">
-          Seguir leyendo
-        </a>
-  </div>
+     <div><p><code>mendhak/docker-http-https-echo</code> es un contenedor Docker simple que facilita la depuración de configuraciones de red, proxies y balanceadores de carga.</p></div>
+    <br />
+    <a
+      class="btn"
+      href="https://pablocaro.es/docker-http-https-echo#docker-http-https-echo"
+    >
+      Seguir leyendo
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="https://pablocaro.es/mobaxterm-mucho-más-que-un-cliente-ssh#mobaxterm-mucho-más-que-un-cliente-ssh">MobaXterm. Mucho más que un cliente ssh</a></h2>
+    <h2>
+      <a
+        href="https://pablocaro.es/mobaxterm-mucho-más-que-un-cliente-ssh#mobaxterm-mucho-más-que-un-cliente-ssh"
+        >MobaXterm. Mucho más que un cliente ssh</a
+      >
+    </h2>
     <p>
-      Publicado el 11 de April de 2017 en <a href="https://pablocaro.es/category/herramientas.html">Herramientas</a>
-
-          &#8226; Etiquetado con
-              <a href="https://pablocaro.es/tag/linux.html">linux</a>
-    </p>
+      Publicado el 11 de April de 2017 en <a href="https://pablocaro.es/category/herramientas.html">Herramientas</a>       &#8226; Etiquetado con       <a href="https://pablocaro.es/tag/linux.html">linux</a>       </p>
   </header>
   <div>
-      <div></div>
-        <br>
-        <a class="btn"
-           href="https://pablocaro.es/mobaxterm-mucho-más-que-un-cliente-ssh#mobaxterm-mucho-más-que-un-cliente-ssh">
-          Seguir leyendo
-        </a>
-  </div>
+     <div></div>
+    <br />
+    <a
+      class="btn"
+      href="https://pablocaro.es/mobaxterm-mucho-más-que-un-cliente-ssh#mobaxterm-mucho-más-que-un-cliente-ssh"
+    >
+      Seguir leyendo
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="https://pablocaro.es/posterazor-crear-posters-grandes#posterazor-crear-posters-grandes">PosteRazor: Crea pósters gigantes desde cualquier imagen</a></h2>
+    <h2>
+      <a
+        href="https://pablocaro.es/posterazor-crear-posters-grandes#posterazor-crear-posters-grandes"
+        >PosteRazor: Crea pósters gigantes desde cualquier imagen</a
+      >
+    </h2>
     <p>
-      Publicado el 24 de February de 2017 en <a href="https://pablocaro.es/category/herramientas.html">Herramientas</a>
-
-          &#8226; Etiquetado con
-              <a href="https://pablocaro.es/tag/posterazor.html">posterazor</a>,              <a href="https://pablocaro.es/tag/impresion.html">impresión</a>,              <a href="https://pablocaro.es/tag/posters.html">posters</a>,              <a href="https://pablocaro.es/tag/diy.html">diy</a>
-    </p>
+      Publicado el 24 de February de 2017 en <a href="https://pablocaro.es/category/herramientas.html">Herramientas</a>       &#8226; Etiquetado con       <a href="https://pablocaro.es/tag/posterazor.html">posterazor</a>,       <a href="https://pablocaro.es/tag/impresion.html">impresión</a>,       <a href="https://pablocaro.es/tag/posters.html">posters</a>,       <a href="https://pablocaro.es/tag/diy.html">diy</a>       </p>
   </header>
   <div>
-      <div><p>PosteRazor convierte cualquier imagen en un póster gigante dividiendo la imagen en páginas imprimibles que puedes ensamblar</p></div>
-        <br>
-        <a class="btn"
-           href="https://pablocaro.es/posterazor-crear-posters-grandes#posterazor-crear-posters-grandes">
-          Seguir leyendo
-        </a>
-  </div>
+     <div><p>PosteRazor convierte cualquier imagen en un póster gigante dividiendo la imagen en páginas imprimibles que puedes ensamblar</p></div>
+    <br />
+    <a
+      class="btn"
+      href="https://pablocaro.es/posterazor-crear-posters-grandes#posterazor-crear-posters-grandes"
+    >
+      Seguir leyendo
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="https://pablocaro.es/gmail_correo_no_leido_solo_en_principal#gmail_correo_no_leido_solo_en_principal">Correo no leído en pestaña principal de gmail</a></h2>
+    <h2>
+      <a
+        href="https://pablocaro.es/gmail_correo_no_leido_solo_en_principal#gmail_correo_no_leido_solo_en_principal"
+        >Correo no leído en pestaña principal de gmail</a
+      >
+    </h2>
     <p>
-      Publicado el 28 de July de 2016 en <a href="https://pablocaro.es/category/herramientas.html">Herramientas</a>
-
-          &#8226; Etiquetado con
-              <a href="https://pablocaro.es/tag/linux.html">linux</a>
-    </p>
+      Publicado el 28 de July de 2016 en <a href="https://pablocaro.es/category/herramientas.html">Herramientas</a>       &#8226; Etiquetado con       <a href="https://pablocaro.es/tag/linux.html">linux</a>       </p>
   </header>
   <div>
-      <div><p>Lo de siempre, otra nota recordatoria.</p>
+     <div><p>Lo de siempre, otra nota recordatoria.</p>
 <p>Si filtras el correo en gmail por no leído (<code>is:unread</code>), obtienes todo el correo no leído,
 que en mi caso siempre incluye cientos de notificaciones, social, promociones o foros que no suele ser lo que busco.</p>
 <p>Para buscar los correos no leídos <em>de …</em></p></div>
-        <br>
-        <a class="btn"
-           href="https://pablocaro.es/gmail_correo_no_leido_solo_en_principal#gmail_correo_no_leido_solo_en_principal">
-          Seguir leyendo
-        </a>
-  </div>
+    <br />
+    <a
+      class="btn"
+      href="https://pablocaro.es/gmail_correo_no_leido_solo_en_principal#gmail_correo_no_leido_solo_en_principal"
+    >
+      Seguir leyendo
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="https://pablocaro.es/herramientas-desarrolladores-linea-comandos#herramientas-desarrolladores-linea-comandos">Potentes herramientas para desarrolladores desde línea de comandos</a></h2>
+    <h2>
+      <a
+        href="https://pablocaro.es/herramientas-desarrolladores-linea-comandos#herramientas-desarrolladores-linea-comandos"
+        >Potentes herramientas para desarrolladores desde línea de comandos</a
+      >
+    </h2>
     <p>
-      Publicado el 07 de June de 2016 en <a href="https://pablocaro.es/category/herramientas.html">Herramientas</a>
-
-          &#8226; Etiquetado con
-              <a href="https://pablocaro.es/tag/cli.html">cli</a>,              <a href="https://pablocaro.es/tag/desarrollo.html">desarrollo</a>,              <a href="https://pablocaro.es/tag/redes.html">redes</a>,              <a href="https://pablocaro.es/tag/testing.html">testing</a>
-    </p>
+      Publicado el 07 de June de 2016 en <a href="https://pablocaro.es/category/herramientas.html">Herramientas</a>       &#8226; Etiquetado con       <a href="https://pablocaro.es/tag/cli.html">cli</a>,       <a href="https://pablocaro.es/tag/desarrollo.html">desarrollo</a>,       <a href="https://pablocaro.es/tag/redes.html">redes</a>,       <a href="https://pablocaro.es/tag/testing.html">testing</a>       </p>
   </header>
   <div>
-      <div><p>Colección de herramientas de línea de comandos esenciales para desarrolladores: curl, ngrep, netcat, sshuttle, siege y mitmproxy</p></div>
-        <br>
-        <a class="btn"
-           href="https://pablocaro.es/herramientas-desarrolladores-linea-comandos#herramientas-desarrolladores-linea-comandos">
-          Seguir leyendo
-        </a>
-  </div>
+     <div><p>Colección de herramientas de línea de comandos esenciales para desarrolladores: curl, ngrep, netcat, sshuttle, siege y mitmproxy</p></div>
+    <br />
+    <a
+      class="btn"
+      href="https://pablocaro.es/herramientas-desarrolladores-linea-comandos#herramientas-desarrolladores-linea-comandos"
+    >
+      Seguir leyendo
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="https://pablocaro.es/sysdig-seguridad-cloud-nativa#sysdig-seguridad-cloud-nativa">Sysdig: Plataforma de seguridad cloud-nativa con IA</a></h2>
+    <h2>
+      <a
+        href="https://pablocaro.es/sysdig-seguridad-cloud-nativa#sysdig-seguridad-cloud-nativa"
+        >Sysdig: Plataforma de seguridad cloud-nativa con IA</a
+      >
+    </h2>
     <p>
-      Publicado el 10 de February de 2016 en <a href="https://pablocaro.es/category/herramientas.html">Herramientas</a>
-
-          &#8226; Etiquetado con
-              <a href="https://pablocaro.es/tag/sysdig.html">sysdig</a>,              <a href="https://pablocaro.es/tag/seguridad.html">seguridad</a>,              <a href="https://pablocaro.es/tag/cloud.html">cloud</a>,              <a href="https://pablocaro.es/tag/kubernetes.html">kubernetes</a>,              <a href="https://pablocaro.es/tag/falco.html">falco</a>
-    </p>
+      Publicado el 10 de February de 2016 en <a href="https://pablocaro.es/category/herramientas.html">Herramientas</a>       &#8226; Etiquetado con       <a href="https://pablocaro.es/tag/sysdig.html">sysdig</a>,       <a href="https://pablocaro.es/tag/seguridad.html">seguridad</a>,       <a href="https://pablocaro.es/tag/cloud.html">cloud</a>,       <a href="https://pablocaro.es/tag/kubernetes.html">kubernetes</a>,       <a href="https://pablocaro.es/tag/falco.html">falco</a>       </p>
   </header>
   <div>
-      <div><p>Sysdig ofrece una plataforma de seguridad integral para entornos cloud-nativos que combina IA, visibilidad en tiempo real e innovación open source</p></div>
-        <br>
-        <a class="btn"
-           href="https://pablocaro.es/sysdig-seguridad-cloud-nativa#sysdig-seguridad-cloud-nativa">
-          Seguir leyendo
-        </a>
-  </div>
+     <div><p>Sysdig ofrece una plataforma de seguridad integral para entornos cloud-nativos que combina IA, visibilidad en tiempo real e innovación open source</p></div>
+    <br />
+    <a
+      class="btn"
+      href="https://pablocaro.es/sysdig-seguridad-cloud-nativa#sysdig-seguridad-cloud-nativa"
+    >
+      Seguir leyendo
+    </a>
+   </div>
 </article>
-
-
-
- 
+    
 <footer>
 <p>
   &copy; 2026  - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
 </p>
 <p>
-Construido con <a href="http://getpelican.com" target="_blank">Pelican</a> usando el tema <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> 
+  Construido con <a
+    href="http://getpelican.com"
+    target="_blank"
+    >Pelican</a
+  > usando el tema <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a
+  >    <script
+    id="dark-theme-script"
+    src="https://pablocaro.es/theme/dark-theme/dark-theme.min.js"
+    data-enable-auto-detect-theme="False"
+    data-default-theme="light"
+    type="text/javascript"
+  ></script>
 </p><p>
   <a rel="license"
      href="http://creativecommons.org/licenses/by-sa/3.0/"
@@ -690,15 +925,46 @@ Construido con <a href="http://getpelican.com" target="_blank">Pelican</a> usand
         return;
       }
       if (typeof stork === 'undefined') {
-        console.error('Stork is not loaded yet, retrying...');
         setTimeout(window.loadStorkIndex, 100);
         return;
       }
-      stork.register("sitesearch", "https://pablocaro.es/search-index.st", { showProgress: false });
-      stork.register("sitesearch-page", "https://pablocaro.es/search-index.st", { showProgress: false });
+      var url = "https://pablocaro.es/search-index.st";
+      var opts = { showProgress: false };
+      stork.register("sitesearch", url, opts);
+      try {
+        stork.register("sitesearch-page", url, opts);
+      } catch (e) {
+        // Search page input not in DOM on this page — index still registered
+      }
       window.storkIndexLoaded = true;
     }
   </script>
 
+
+  <button id="back-to-top" aria-label="Back to top" title="Back to top">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <path d="M10 16V4m0 0L5 9m5-5l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+  <script>
+  (function() {
+    var btn = document.getElementById('back-to-top');
+    if (!btn) return;
+    var ticking = false;
+    function onScroll() {
+      if (!ticking) {
+        requestAnimationFrame(function() {
+          btn.classList.toggle('visible', window.scrollY > 500);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }
+    btn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    window.addEventListener('scroll', onScroll, { passive: true });
+  })();
+  </script>
 </body>
 </html>

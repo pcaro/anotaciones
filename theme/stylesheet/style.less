@@ -1,6 +1,7 @@
 @import "variables.less";
 
-html, body {
+html,
+body {
   width: 100%;
   height: 100%;
 }
@@ -15,28 +16,28 @@ h6 {
   line-height: 1.1;
 }
 
-h1{
-  font-size: 2.4em
+h1 {
+  font-size: 2.4em;
 }
 
 h2 {
-  font-size: 2em
+  font-size: 2em;
 }
 
 h3 {
-  font-size: 1.6em
+  font-size: 1.6em;
 }
 
 h4 {
-  font-size: 1.36em
+  font-size: 1.36em;
 }
 
 h5 {
-  font-size: 1.2em
+  font-size: 1.2em;
 }
 
 h6 {
-  font-size: 1.1em
+  font-size: 1.1em;
 }
 
 body {
@@ -46,7 +47,7 @@ body {
   color: @text-color;
   font-family: @sans;
   font-size: 1.02em;
-  line-height: 1.2em;
+  line-height: 1.6;
 }
 
 a {
@@ -90,7 +91,6 @@ aside {
 
     img {
       border-radius: 50%;
-      max-width: 140px;
     }
 
     h1 {
@@ -99,7 +99,7 @@ aside {
 
     p {
       margin: 0 0 15px 0;
-      font-size: .92em;
+      font-size: 0.92em;
     }
   }
 
@@ -127,7 +127,8 @@ main {
     font-size: 0;
   }
 
-  nav, .translations {
+  nav,
+  .translations {
     a {
       font-size: 12px;
       padding: 0 4px;
@@ -151,7 +152,7 @@ main {
 
   .social-share {
     p {
-      font-size: .8em;
+      font-size: 0.8em;
     }
   }
 
@@ -159,7 +160,8 @@ main {
     margin: 0 8% 2% 8%;
 
     header {
-      h1, h2 {
+      h1,
+      h2 {
         margin-bottom: 0;
       }
 
@@ -177,15 +179,19 @@ main {
       }
     }
 
-    code, kbd, samp, pre {
+    code,
+    kbd,
+    samp,
+    pre {
       font-family: @mono;
     }
 
-    blockquote, pre {
-      background-color: rgba(128,128,128,0.05);
+    blockquote,
+    pre {
+      background-color: rgba(128, 128, 128, 0.05);
       border-top-right-radius: 5px;
       border-bottom-right-radius: 5px;
-      border-left: 8px solid rgba(128,128,128,0.075);
+      border-left: 8px solid rgba(128, 128, 128, 0.075);
       border-left-width: 10px;
     }
 
@@ -198,7 +204,7 @@ main {
 
     pre {
       padding: 4px;
-      font-size: .9em;
+      font-size: 0.9em;
       overflow-x: auto;
     }
 
@@ -209,30 +215,30 @@ main {
     }
 
     kbd {
-      padding: .1em .6em;
-      border: 1px solid rgba(63,63,63,0.25);
-      box-shadow: 0 1px 0 rgba(63,63,63,0.25);
-      background-color: #fff;
-      color: #333;
+      padding: 0.1em 0.6em;
+      border: 1px solid @kbd-border;
+      box-shadow: 0 1px 0 @kbd-shadow;
+      background-color: @kbd-bg;
+      color: @kbd-color;
       border-radius: 3px;
       display: inline-block;
-      margin: 0 .1em;
+      margin: 0 0.1em;
       white-space: nowrap;
-      font-size: .78em;
+      font-size: 0.78em;
     }
 
     *:not(pre) > code {
-      font-size: .8em;
+      font-size: 0.8em;
       white-space: nowrap;
-      color: #c25;
+      color: @inline-code-color;
       padding: 1px 3px;
-      background-color: #f7f7f9;
-      border: 1px solid #e1e1e8;
+      background-color: @inline-code-bg;
+      border: 1px solid @inline-code-border;
       border-radius: 3px;
     }
 
     .comment-count {
-      font-size: .8em;
+      font-size: 0.8em;
     }
 
     table {
@@ -240,10 +246,11 @@ main {
       border-spacing: 0;
 
       thead:first-child tr:first-child th {
-         border-top: 0;
+        border-top: 0;
       }
 
-      th, td {
+      th,
+      td {
         padding: 8px;
         line-height: 20px;
         vertical-align: top;
@@ -264,7 +271,7 @@ main {
         width: 2.5em;
 
         pre {
-          padding-right: .8em;
+          padding-right: 0.8em;
           background-color: inherit;
           text-align: right;
         }
@@ -281,7 +288,7 @@ main {
       margin-top: 2em;
 
       .toctitle {
-        font-size: 1.3em
+        font-size: 1.3em;
       }
 
       ul {
@@ -317,14 +324,14 @@ main {
 .tag-cloud {
   a {
     background-color: @tag-bg;
-    padding: .2em .6em .2em;
-    font-size: .74em;
+    padding: 0.2em 0.6em 0.2em;
+    font-size: 0.74em;
     line-height: 1;
     color: @tag-text-color;
     text-align: center;
     white-space: nowrap;
     vertical-align: baseline;
-    border-radius: .25em;
+    border-radius: 0.25em;
   }
 
   a:hover {
@@ -335,22 +342,23 @@ main {
 a.btn,
 section#isso-thread section.auth-section p.post-action input {
   background-color: @btn-bg;
-  padding: .6em .6em;
-  font-size: .8em;
+  padding: 0.6em 0.6em;
+  font-size: 0.8em;
   line-height: 1;
   color: @btn-text-color;
   text-align: center;
   white-space: nowrap;
   vertical-align: baseline;
   border: none;
-  border-radius: .25em;
+  border-radius: 0.25em;
 }
 
 a.btn:hover {
   background-color: @btn-hover-color;
 }
 
-.center, .text-center {
+.center,
+.text-center {
   text-align: center;
 }
 
@@ -394,7 +402,9 @@ div.related-posts {
   }
 }
 
-ul.list, ul.social, ul.related-posts {
+ul.list,
+ul.social,
+ul.related-posts {
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -410,7 +420,6 @@ ul.list {
 
 ul.social {
   font-size: 1.6em;
-  padding-top: 20px;
 
   li {
     display: inline;
@@ -424,12 +433,12 @@ ul.social {
 
   a {
     display: inline-block;
-    width: 36px;
-    height: 36px;
+    width: 44px;
+    height: 44px;
     border-radius: 100%;
     text-align: center;
-    font-size: .8em;
-    line-height: 36px;
+    font-size: 0.9em;
+    line-height: 44px;
   }
 
   a.sc-facebook {
@@ -484,11 +493,14 @@ ul.social {
     background-color: @youtube-bg-color;
   }
 
-  a.sc-github, a.sc-github-alt {
+  a.sc-github,
+  a.sc-github-alt {
     background-color: @github-bg-color;
   }
 
-  a.sc-at, a.sc-mailbox, a.sc-envelope {
+  a.sc-at,
+  a.sc-mailbox,
+  a.sc-envelope {
     background-color: @email-bg-color;
   }
 
@@ -545,6 +557,69 @@ ul.social {
 }
 
 //
+// Mobile
+//
+
+@media screen and (max-width: 767px) {
+  aside {
+    width: 100%;
+    height: auto;
+    position: relative;
+    padding-bottom: 20px;
+
+    div {
+      padding: 20px 12px;
+
+      > a > img {
+        max-width: 100px;
+      }
+
+      h1 {
+        font-size: 1.4em;
+      }
+    }
+
+    nav ul li {
+      padding: 4px 8px;
+      font-size: 1.15em;
+    }
+  }
+
+  main {
+    padding-left: 0;
+    height: auto;
+
+    nav {
+      padding: 10px 0;
+
+      a {
+        font-size: 14px;
+        padding: 6px 10px;
+        display: inline-block;
+      }
+    }
+
+    article {
+      margin: 0 4% 2% 4%;
+
+      header h1 {
+        font-size: 1.8em;
+      }
+    }
+  }
+
+  ul.social {
+    li {
+      margin: 0 2px;
+    }
+  }
+
+  div.related-posts {
+    margin: 15px 0;
+  }
+}
+
+//
 // Desktop
 //
 
@@ -556,21 +631,20 @@ ul.social {
     z-index: 1000;
     top: 0;
     left: 0;
+    overflow-y: auto;
 
     div {
-      padding: 36px 18px;
+      padding: 10px 10px;
 
       nav {
         ul {
           li {
             padding: 0 !important;
-            display: block;
           }
         }
       }
 
       ul.social {
-        padding-top: 32px;
       }
     }
   }
@@ -579,6 +653,7 @@ ul.social {
     height: 100vh;
     position: relative;
     padding-left: 25vw;
+    overflow-y: auto;
 
     article {
       max-width: 760px;
@@ -621,7 +696,9 @@ div.admonition {
     margin-top: inherit;
   }
 
-  p, div, pre {
+  p,
+  div,
+  pre {
     margin-bottom: 0;
   }
 }
@@ -759,27 +836,30 @@ div.figure.align-right {
 }
 
 .github-corner:hover .octo-arm {
-  animation:octocat-wave 560ms ease-in-out;
+  animation: octocat-wave 560ms ease-in-out;
 }
 
 @keyframes octocat-wave {
-  0%,100% {
-    transform:rotate(0);
+  0%,
+  100% {
+    transform: rotate(0);
   }
-  20%,60% {
-    transform:rotate(-25deg);
+  20%,
+  60% {
+    transform: rotate(-25deg);
   }
-  40%,80% {
-    transform:rotate(10deg);
+  40%,
+  80% {
+    transform: rotate(10deg);
   }
 }
 
-@media (max-width:500px) {
+@media (max-width: 500px) {
   .github-corner:hover .octo-arm {
-    animation:none;
+    animation: none;
   }
 
-  .github-corner .octo-arm{
-    animation:octocat-wave 560ms ease-in-out;
+  .github-corner .octo-arm {
+    animation: octocat-wave 560ms ease-in-out;
   }
 }

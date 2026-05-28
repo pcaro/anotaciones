@@ -8,11 +8,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="" />
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" type="text/css" href="/en/theme/stylesheet/style.min.css">
 
+    <link id="dark-theme-style" rel="stylesheet" type="text/css"
+        disabled="disabled"
+    href="/en/theme/stylesheet/dark-theme.min.css">
 
+    <link id="pygments-dark-theme" rel="stylesheet" type="text/css"
+            disabled="disabled"
+          href="/en/theme/pygments/github.min.css">
     <link id="pygments-light-theme" rel="stylesheet" type="text/css"
           href="/en/theme/pygments/github.min.css">
 
@@ -68,12 +76,12 @@
 
 
 </head>
-<body class="light-theme">
+<body class="nav-tools light-theme">
 
 <aside>
   <div>
     <a href="/en/">
-      <img src="/theme/img/profile.png" alt="Anotaciones" title="Anotaciones">
+      <img src="/theme/img/profile.png" alt="Anotaciones" title="Anotaciones" />
     </a>
 
     <h1>
@@ -81,70 +89,237 @@
     </h1>
 
     <p>Anotaciones</p>
-
-    <p style="font-size: 0.9em; font-style: italic; margin-bottom: 20px;">
+     <p style="font-size: 0.9em; font-style: italic; margin-bottom: 20px">
       Dumping my brain onto the internet. A collection of technical notes and solutions written for my future self, shared here in case they save someone else a headache.
     </p>
-
-    <div class="stork">
-      <input class="stork-input" type="text" autocomplete="off" name="q" data-stork="sitesearch" placeholder="Search..." onclick="loadStorkIndex()"/>
+      <div class="stork">
+      <label for="sidebar-search" class="sr-only"
+        >Search articles</label
+      >
+      <div class="stork-input-wrap">
+      <input
+        id="sidebar-search"
+        class="stork-input"
+        type="text"
+        autocomplete="off"
+        name="q"
+        data-stork="sitesearch"
+        placeholder="Search..."
+        onclick="loadStorkIndex()"
+      />
+      </div>
       <div class="stork-output" data-stork="sitesearch-output"></div>
     </div>
-
-    <nav>
+      <nav>
       <ul class="list">
-
-
-
-          <li>
-            <a target="_self" href="http://x.com/pcaro" >pcaro@X</a>
-          </li>
-          <li>
-            <a target="_self" href="https://github.com/pcaro/" >pcaro@Github</a>
-          </li>
-          <li>
-            <a target="_self" href="https://www.linkedin.com/in/pcarorevuelta/" >LinkedIn</a>
-          </li>
+             <li>
+          <a target="_self" href="http://x.com/pcaro">pcaro@X</a>
+        </li>
+        <li>
+          <a target="_self" href="https://github.com/pcaro/">pcaro@Github</a>
+        </li>
+        <li>
+          <a target="_self" href="https://www.linkedin.com/in/pcarorevuelta/">LinkedIn</a>
+        </li>
       </ul>
     </nav>
-
-    <ul class="social">
+       <ul class="social">
       <li>
-        <a class="sc-Twitter"
-           href="http://twitter.com/pcaro"
-           target="_blank">
-          <i class="fa-brands fa-Twitter"></i>
+        <a
+          class="sc-Twitter"
+          href="http://twitter.com/pcaro"
+          target="_blank"
+          aria-label="Twitter"
+        >
+          <i
+            class="fa-brands fa-Twitter"
+            aria-hidden="true"
+          ></i>
         </a>
       </li>
       <li>
-        <a class="sc-Github"
-           href="http://github.com/pcaro"
-           target="_blank">
-          <i class="fa-brands fa-Github"></i>
+        <a
+          class="sc-Github"
+          href="http://github.com/pcaro"
+          target="_blank"
+          aria-label="Github"
+        >
+          <i
+            class="fa-brands fa-Github"
+            aria-hidden="true"
+          ></i>
         </a>
       </li>
       <li>
-        <a class="sc-Linkedin"
-           href="https://www.linkedin.com/in/pcarorevuelta"
-           target="_blank">
-          <i class="fa-brands fa-Linkedin"></i>
+        <a
+          class="sc-Linkedin"
+          href="https://www.linkedin.com/in/pcarorevuelta"
+          target="_blank"
+          aria-label="Linkedin"
+        >
+          <i
+            class="fa-brands fa-Linkedin"
+            aria-hidden="true"
+          ></i>
         </a>
       </li>
       <li>
-        <a class="sc-Facebook"
-           href="https://www.facebook.com/pablo.carorevuelta"
-           target="_blank">
-          <i class="fa-brands fa-Facebook"></i>
+        <a
+          class="sc-Facebook"
+          href="https://www.facebook.com/pablo.carorevuelta"
+          target="_blank"
+          aria-label="Facebook"
+        >
+          <i
+            class="fa-brands fa-Facebook"
+            aria-hidden="true"
+          ></i>
         </a>
       </li>
       <li>
-        <a class="sc-Email"
-           href="mailto:correo@pablocaro.es"
-           target="_blank">
-          <i class="fa-brands fa-Email"></i>
+        <a
+          class="sc-Email"
+          href="mailto:correo@pablocaro.es"
+          target="_blank"
+          aria-label="Email"
+        >
+          <i
+            class="fa-brands fa-Email"
+            aria-hidden="true"
+          ></i>
         </a>
       </li>
     </ul>
+     <nav class="sidebar-categories" aria-label="Categories">
+                                                                                                                                                           <a
+        href="/en/category/ia.html"
+        class="sidebar-category"
+        title="ia (13)"
+      >
+        <img
+          src="/en/images/categories/ia.png"
+          alt="ia"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">ia</span>
+      </a>
+      <a
+        href="/en/category/programacion.html"
+        class="sidebar-category"
+        title="Programación (28)"
+      >
+        <img
+          src="/en/images/categories/programacion.png"
+          alt="Programación"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Programación</span>
+      </a>
+      <a
+        href="/en/category/linux.html"
+        class="sidebar-category"
+        title="Linux (11)"
+      >
+        <img
+          src="/en/images/categories/linux.png"
+          alt="Linux"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Linux</span>
+      </a>
+      <a
+        href="/en/category/herramientas.html"
+        class="sidebar-category"
+        title="Herramientas (22)"
+      >
+        <img
+          src="/en/images/categories/herramientas.png"
+          alt="Herramientas"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Herramientas</span>
+      </a>
+      <a
+        href="/en/category/infraestructura.html"
+        class="sidebar-category"
+        title="Infraestructura (15)"
+      >
+        <img
+          src="/en/images/categories/infraestructura.png"
+          alt="Infraestructura"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Infraestructura</span>
+      </a>
+      <a
+        href="/en/category/documentacion.html"
+        class="sidebar-category"
+        title="Documentación (1)"
+      >
+        <img
+          src="/en/images/categories/documentacion.png"
+          alt="Documentación"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Documentación</span>
+      </a>
+      <a
+        href="/en/category/finanzas.html"
+        class="sidebar-category"
+        title="Finanzas (1)"
+      >
+        <img
+          src="/en/images/categories/finanzas.png"
+          alt="Finanzas"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Finanzas</span>
+      </a>
+      <a
+        href="/en/category/personal.html"
+        class="sidebar-category"
+        title="Personal (2)"
+      >
+        <img
+          src="/en/images/categories/personal.png"
+          alt="Personal"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Personal</span>
+      </a>
+      <a
+        href="/en/category/programming.html"
+        class="sidebar-category"
+        title="Programming (1)"
+      >
+        <span class="sidebar-category-icon">Pr</span>
+        <span class="sidebar-category-label">Programming</span>
+      </a>
+      <a
+        href="/en/category/tools.html"
+        class="sidebar-category"
+        title="tools (1)"
+      >
+        <span class="sidebar-category-icon">to</span>
+        <span class="sidebar-category-label">tools</span>
+      </a>
+    </nav>
   </div>
 
 </aside>
@@ -158,47 +333,55 @@
   <a href="/en/tags.html">Tags</a>
   <a href="/en/search.html">Search</a>
   <a href="/">Español</a>
-
-  <a href="/en/feeds/all.atom.xml">Atom</a>
-
-  <a href="/en/feeds/all.rss.xml">RSS</a>
+   <a href="javascript:void(0)" onclick="theme.switch('dark')">🌙</a>
+  <a href="javascript:void(0)" onclick="theme.switch('light')">☀</a>
+   <a href="/en/feeds/all.rss.xml">RSS</a>
 </nav>
 
 <div class="category-header">
   <h1>tools</h1>
 </div>
-
-
-<article>
+  <article>
   <header>
-    <h2><a href="/en/limpiar-cache-npx#limpiar-cache-npx">Cleaning up npx's hidden cache</a></h2>
+    <h2>
+      <a
+        href="/en/limpiar-cache-npx#limpiar-cache-npx"
+        >Cleaning up npx's hidden cache</a
+      >
+    </h2>
     <p>
-      Posted on Thu, 28 May 2026 in <a href="/en/category/tools.html">tools</a>
-
-          &#8226; Tagged with
-              <a href="/en/tag/npm.html">npm</a>,              <a href="/en/tag/npx.html">npx</a>,              <a href="/en/tag/terminal.html">terminal</a>,              <a href="/en/tag/tools.html">tools</a>
-    </p>
+      Posted on Thu, 28 May 2026 in <a href="/en/category/tools.html">tools</a>       &#8226; Tagged with       <a href="/en/tag/npm.html">npm</a>,       <a href="/en/tag/npx.html">npx</a>,       <a href="/en/tag/terminal.html">terminal</a>,       <a href="/en/tag/tools.html">tools</a>       </p>
   </header>
   <div>
-        <img src="/images/limpiar-cache-npx.png">
-      <div><p>npx leaves a hidden package cache in ~/.npm/_npx/. Here's how to list what you've accumulated and clean it up.</p></div>
-        <br>
-        <a class="btn"
-           href="/en/limpiar-cache-npx#limpiar-cache-npx">
-          Continue reading
-        </a>
-  </div>
+     <img src="/images/limpiar-cache-npx.png" loading="lazy" />
+    <div><p>npx leaves a hidden package cache in ~/.npm/_npx/. Here's how to list what you've accumulated and clean it up.</p></div>
+    <br />
+    <a
+      class="btn"
+      href="/en/limpiar-cache-npx#limpiar-cache-npx"
+    >
+      Continue reading
+    </a>
+   </div>
 </article>
-
-
-
- 
+    
 <footer>
 <p>
   &copy; 2026  - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
 </p>
 <p>
-Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+  Built with <a
+    href="http://getpelican.com"
+    target="_blank"
+    >Pelican</a
+  > using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a
+  > theme   <script
+    id="dark-theme-script"
+    src="/en/theme/dark-theme/dark-theme.min.js"
+    data-enable-auto-detect-theme="False"
+    data-default-theme="light"
+    type="text/javascript"
+  ></script>
 </p><p>
   <a rel="license"
      href="http://creativecommons.org/licenses/by-sa/3.0/"
@@ -229,15 +412,46 @@ Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a 
         return;
       }
       if (typeof stork === 'undefined') {
-        console.error('Stork is not loaded yet, retrying...');
         setTimeout(window.loadStorkIndex, 100);
         return;
       }
-      stork.register("sitesearch", "/en/search-index.st", { showProgress: false });
-      stork.register("sitesearch-page", "/en/search-index.st", { showProgress: false });
+      var url = "/en/search-index.st";
+      var opts = { showProgress: false };
+      stork.register("sitesearch", url, opts);
+      try {
+        stork.register("sitesearch-page", url, opts);
+      } catch (e) {
+        // Search page input not in DOM on this page — index still registered
+      }
       window.storkIndexLoaded = true;
     }
   </script>
 
+
+  <button id="back-to-top" aria-label="Back to top" title="Back to top">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <path d="M10 16V4m0 0L5 9m5-5l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+  <script>
+  (function() {
+    var btn = document.getElementById('back-to-top');
+    if (!btn) return;
+    var ticking = false;
+    function onScroll() {
+      if (!ticking) {
+        requestAnimationFrame(function() {
+          btn.classList.toggle('visible', window.scrollY > 500);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }
+    btn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    window.addEventListener('scroll', onScroll, { passive: true });
+  })();
+  </script>
 </body>
 </html>

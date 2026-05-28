@@ -1,3 +1,74 @@
+/* Theme toggle button in sidebar */
+#theme-toggle {
+	display: block;
+	margin: 16px auto 0 auto;
+	padding: 8px;
+	background: rgba(255, 255, 255, 0.1);
+	border: 1px solid rgba(255, 255, 255, 0.15);
+	border-radius: 50%;
+	color: inherit;
+	font-size: 1.1em;
+	line-height: 1;
+	cursor: pointer;
+	transition: background 0.15s ease;
+	width: 40px;
+	height: 40px;
+}
+
+#theme-toggle:hover {
+	background: rgba(255, 255, 255, 0.2);
+}
+
+#theme-toggle:focus-visible {
+	outline: 2px solid #d9411e;
+	outline-offset: 2px;
+}
+
+.stork {
+	padding-top: 1px;
+	padding-bottom: 0;
+}
+
+/* Sticky nav */
+main nav {
+	position: sticky;
+	top: 0;
+	z-index: 100;
+	background: #faf7f2;
+}
+
+.dark-theme main nav {
+	background: #333333;
+}
+
+/* Sticky nav offset for anchor links */
+article h1[id],
+article h2[id] {
+	scroll-margin-top: 60px;
+}
+
+/* Categorías always bold */
+main nav a[href*="/categories"] {
+	font-weight: 700;
+}
+:focus-visible {
+	outline: 2px solid #d9411e;
+	outline-offset: 2px;
+}
+
+/* Screen-reader-only utility */
+.sr-only {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border: 0;
+}
+
 .category-header {
 	margin: 0 8% 2% 8%;
 }
@@ -15,6 +86,12 @@
 	height: auto;
 	border-radius: 8px;
 	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+@media screen and (min-width: 768px) {
+	.category-header {
+		max-width: 760px;
+	}
 }
 
 .category-grid {
@@ -43,6 +120,22 @@
 		box-shadow 0.15s ease;
 }
 
+.category-box:visited {
+	color: inherit;
+}
+
+.category-box-link {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-decoration: none;
+	color: inherit;
+}
+
+.category-box-link:visited {
+	color: inherit;
+}
+
 .category-box:hover {
 	transform: translateY(-2px);
 	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
@@ -65,4 +158,153 @@
 .category-box .category-count {
 	font-size: 0.85em;
 	color: #666;
+}
+
+/* Back to top button */
+#back-to-top {
+	position: fixed;
+	bottom: 24px;
+	right: 24px;
+	z-index: 1001;
+	width: 44px;
+	height: 44px;
+	border-radius: 50%;
+	border: none;
+	background: #d9411e;
+	color: #faf7f2;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	opacity: 0;
+	transform: translateY(8px);
+	pointer-events: none;
+	transition:
+		opacity 0.2s ease,
+		transform 0.2s ease;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+#back-to-top.visible {
+	opacity: 1;
+	transform: translateY(0);
+	pointer-events: auto;
+}
+
+#back-to-top:hover {
+	background: #ff5a09;
+	transform: translateY(-1px);
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+#back-to-top.visible:hover {
+	transform: translateY(-1px);
+}
+
+#back-to-top:focus-visible {
+	outline: 2px solid #d9411e;
+	outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	#back-to-top {
+		transition: none;
+	}
+}
+
+/* Sidebar category grid */
+.sidebar-categories {
+	display: flex;
+	flex-wrap: wrap;
+	margin-top: 14px;
+}
+
+@media screen and (max-width: 767px) {
+	.sidebar-categories {
+		display: none;
+	}
+
+	main nav a[href*="/archives"],
+	main nav a[href*="/search"] {
+		display: none;
+	}
+}
+
+.sidebar-category {
+	flex: 0 0 50%;
+	box-sizing: border-box;
+	padding: 1px;
+	text-decoration: none;
+	color: inherit;
+	position: relative;
+	overflow: hidden;
+	opacity: 0.85;
+	transition: opacity 0.15s ease;
+}
+
+.sidebar-category:visited {
+	color: inherit;
+}
+
+.sidebar-category:hover {
+	opacity: 1;
+}
+
+.sidebar-category:hover {
+	opacity: 1;
+}
+
+.sidebar-category img {
+	display: block;
+	width: 100%;
+	height: auto;
+	border-radius: 2px;
+}
+
+.sidebar-category-label {
+	position: absolute;
+	bottom: 1px;
+	left: 1px;
+	right: 1px;
+	height: 25%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: rgba(0, 0, 0, 0.82);
+	color: #faf7f2;
+	font-size: 13px;
+	font-weight: 500;
+	text-transform: uppercase;
+	line-height: 1.1;
+	text-align: center;
+	border-radius: 0 0 2px 2px;
+	opacity: 1;
+}
+
+aside div > p {
+	margin-bottom: 10px !important;
+}
+
+/* Nav link separators */
+aside nav ul.list li::after {
+	content: " · ";
+	color: rgba(255, 255, 255, 0.35);
+}
+
+aside nav ul.list li:last-child::after {
+	content: none;
+}
+
+.sidebar-category-icon {
+	display: block;
+	width: 100%;
+	aspect-ratio: 1408 / 768;
+	border-radius: 2px;
+	background: rgba(255, 255, 255, 0.12);
+	font-size: 12px;
+	font-weight: 600;
+	text-transform: lowercase;
+	color: rgba(255, 255, 255, 0.5);
+	text-align: center;
+	line-height: 2.5;
 }

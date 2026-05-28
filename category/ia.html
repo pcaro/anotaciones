@@ -8,11 +8,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="" />
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/stylesheet/style.min.css">
 
+    <link id="dark-theme-style" rel="stylesheet" type="text/css"
+        disabled="disabled"
+    href="https://pablocaro.es/theme/stylesheet/dark-theme.min.css">
 
+    <link id="pygments-dark-theme" rel="stylesheet" type="text/css"
+            disabled="disabled"
+          href="https://pablocaro.es/theme/pygments/github.min.css">
     <link id="pygments-light-theme" rel="stylesheet" type="text/css"
           href="https://pablocaro.es/theme/pygments/github.min.css">
 
@@ -68,12 +76,12 @@
 
 
 </head>
-<body class="light-theme">
+<body class="nav-ia light-theme">
 
 <aside>
   <div>
     <a href="https://pablocaro.es/">
-      <img src="/theme/img/profile.png" alt="Anotaciones" title="Anotaciones">
+      <img src="/theme/img/profile.png" alt="Anotaciones" title="Anotaciones" />
     </a>
 
     <h1>
@@ -81,70 +89,221 @@
     </h1>
 
     <p>Anotaciones</p>
-
-    <p style="font-size: 0.9em; font-style: italic; margin-bottom: 20px;">
+     <p style="font-size: 0.9em; font-style: italic; margin-bottom: 20px">
       Volcando mi cerebro a internet. Colección de apuntes técnicos y soluciones que escribo para mi 'yo' del futuro, pero que comparto por si a alguien más le ahorran un dolor de cabeza.
     </p>
-
-    <div class="stork">
-      <input class="stork-input" type="text" autocomplete="off" name="q" data-stork="sitesearch" placeholder="Buscar..." onclick="loadStorkIndex()"/>
+      <div class="stork">
+      <label for="sidebar-search" class="sr-only"
+        >Search articles</label
+      >
+      <div class="stork-input-wrap">
+      <input
+        id="sidebar-search"
+        class="stork-input"
+        type="text"
+        autocomplete="off"
+        name="q"
+        data-stork="sitesearch"
+        placeholder="Buscar..."
+        onclick="loadStorkIndex()"
+      />
+      </div>
       <div class="stork-output" data-stork="sitesearch-output"></div>
     </div>
-
-    <nav>
+      <nav>
       <ul class="list">
-
-
-
-          <li>
-            <a target="_self" href="http://x.com/pcaro" >pcaro@X</a>
-          </li>
-          <li>
-            <a target="_self" href="https://github.com/pcaro/" >pcaro@Github</a>
-          </li>
-          <li>
-            <a target="_self" href="https://www.linkedin.com/in/pcarorevuelta/" >LinkedIn</a>
-          </li>
+             <li>
+          <a target="_self" href="http://x.com/pcaro">pcaro@X</a>
+        </li>
+        <li>
+          <a target="_self" href="https://github.com/pcaro/">pcaro@Github</a>
+        </li>
+        <li>
+          <a target="_self" href="https://www.linkedin.com/in/pcarorevuelta/">LinkedIn</a>
+        </li>
       </ul>
     </nav>
-
-    <ul class="social">
+       <ul class="social">
       <li>
-        <a class="sc-Twitter"
-           href="http://twitter.com/pcaro"
-           target="_blank">
-          <i class="fa-brands fa-Twitter"></i>
+        <a
+          class="sc-Twitter"
+          href="http://twitter.com/pcaro"
+          target="_blank"
+          aria-label="Twitter"
+        >
+          <i
+            class="fa-brands fa-Twitter"
+            aria-hidden="true"
+          ></i>
         </a>
       </li>
       <li>
-        <a class="sc-Github"
-           href="http://github.com/pcaro"
-           target="_blank">
-          <i class="fa-brands fa-Github"></i>
+        <a
+          class="sc-Github"
+          href="http://github.com/pcaro"
+          target="_blank"
+          aria-label="Github"
+        >
+          <i
+            class="fa-brands fa-Github"
+            aria-hidden="true"
+          ></i>
         </a>
       </li>
       <li>
-        <a class="sc-Linkedin"
-           href="https://www.linkedin.com/in/pcarorevuelta"
-           target="_blank">
-          <i class="fa-brands fa-Linkedin"></i>
+        <a
+          class="sc-Linkedin"
+          href="https://www.linkedin.com/in/pcarorevuelta"
+          target="_blank"
+          aria-label="Linkedin"
+        >
+          <i
+            class="fa-brands fa-Linkedin"
+            aria-hidden="true"
+          ></i>
         </a>
       </li>
       <li>
-        <a class="sc-Facebook"
-           href="https://www.facebook.com/pablo.carorevuelta"
-           target="_blank">
-          <i class="fa-brands fa-Facebook"></i>
+        <a
+          class="sc-Facebook"
+          href="https://www.facebook.com/pablo.carorevuelta"
+          target="_blank"
+          aria-label="Facebook"
+        >
+          <i
+            class="fa-brands fa-Facebook"
+            aria-hidden="true"
+          ></i>
         </a>
       </li>
       <li>
-        <a class="sc-Email"
-           href="mailto:correo@pablocaro.es"
-           target="_blank">
-          <i class="fa-brands fa-Email"></i>
+        <a
+          class="sc-Email"
+          href="mailto:correo@pablocaro.es"
+          target="_blank"
+          aria-label="Email"
+        >
+          <i
+            class="fa-brands fa-Email"
+            aria-hidden="true"
+          ></i>
         </a>
       </li>
     </ul>
+     <nav class="sidebar-categories" aria-label="Categorías">
+                                                                                                                                 <a
+        href="https://pablocaro.es/category/ia.html"
+        class="sidebar-category"
+        title="ia (13)"
+      >
+        <img
+          src="https://pablocaro.es/images/categories/ia.png"
+          alt="ia"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">ia</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/programacion.html"
+        class="sidebar-category"
+        title="Programación (78)"
+      >
+        <img
+          src="https://pablocaro.es/images/categories/programacion.png"
+          alt="Programación"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Programación</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/linux.html"
+        class="sidebar-category"
+        title="Linux (12)"
+      >
+        <img
+          src="https://pablocaro.es/images/categories/linux.png"
+          alt="Linux"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Linux</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/herramientas.html"
+        class="sidebar-category"
+        title="herramientas (23)"
+      >
+        <img
+          src="https://pablocaro.es/images/categories/herramientas.png"
+          alt="herramientas"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">herramientas</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/infraestructura.html"
+        class="sidebar-category"
+        title="Infraestructura (49)"
+      >
+        <img
+          src="https://pablocaro.es/images/categories/infraestructura.png"
+          alt="Infraestructura"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Infraestructura</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/documentacion.html"
+        class="sidebar-category"
+        title="Documentación (1)"
+      >
+        <img
+          src="https://pablocaro.es/images/categories/documentacion.png"
+          alt="Documentación"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Documentación</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/finanzas.html"
+        class="sidebar-category"
+        title="Finanzas (1)"
+      >
+        <img
+          src="https://pablocaro.es/images/categories/finanzas.png"
+          alt="Finanzas"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Finanzas</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/personal.html"
+        class="sidebar-category"
+        title="Personal (3)"
+      >
+        <img
+          src="https://pablocaro.es/images/categories/personal.png"
+          alt="Personal"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Personal</span>
+      </a>
+    </nav>
   </div>
 
 </aside>
@@ -158,10 +317,9 @@
   <a href="/tags.html">Etiquetas</a>
   <a href="/search.html">Búsqueda</a>
   <a href="/en/">English</a>
-
-  <a href="https://pablocaro.es/feeds/all.atom.xml">Atom</a>
-
-  <a href="https://pablocaro.es/feeds/all.rss.xml">RSS</a>
+   <a href="javascript:void(0)" onclick="theme.switch('dark')">🌙</a>
+  <a href="javascript:void(0)" onclick="theme.switch('light')">☀</a>
+   <a href="https://pablocaro.es/feeds/all.rss.xml">RSS</a>
 </nav>
 
 <div class="category-header">
@@ -170,298 +328,345 @@
     <img
       src="https://pablocaro.es/images/categories/ia.png"
       alt="ia"
+      width="1408"
+      height="768"
       loading="lazy"
     />
   </div>
 </div>
-
-
-<article>
+  <article>
   <header>
-    <h2><a href="https://pablocaro.es/extensiones-pi-que-uso#extensiones-pi-que-uso">Las extensiones de pi que uso en mi día a día</a></h2>
+    <h2>
+      <a
+        href="https://pablocaro.es/extensiones-pi-que-uso#extensiones-pi-que-uso"
+        >Las extensiones de pi que uso en mi día a día</a
+      >
+    </h2>
     <p>
-      Publicado el 21 de May de 2026 en <a href="https://pablocaro.es/category/ia.html">ia</a>
-
-          &#8226; Etiquetado con
-              <a href="https://pablocaro.es/tag/pi.html">pi</a>,              <a href="https://pablocaro.es/tag/coding-agent.html">coding-agent</a>,              <a href="https://pablocaro.es/tag/extensiones.html">extensiones</a>,              <a href="https://pablocaro.es/tag/skills.html">skills</a>,              <a href="https://pablocaro.es/tag/subagentes.html">subagentes</a>,              <a href="https://pablocaro.es/tag/cli.html">cli</a>
-    </p>
+      Publicado el 21 de May de 2026 en <a href="https://pablocaro.es/category/ia.html">ia</a>       &#8226; Etiquetado con       <a href="https://pablocaro.es/tag/pi.html">pi</a>,       <a href="https://pablocaro.es/tag/coding-agent.html">coding-agent</a>,       <a href="https://pablocaro.es/tag/extensiones.html">extensiones</a>,       <a href="https://pablocaro.es/tag/skills.html">skills</a>,       <a href="https://pablocaro.es/tag/subagentes.html">subagentes</a>,       <a href="https://pablocaro.es/tag/cli.html">cli</a>       </p>
   </header>
   <div>
-        <img src="/images/pi-extensiones.png">
-      <div><p>Tercera y última entrega de la serie sobre <a href="https://pi.dev/">pi</a>. En la <a href="https://pablocaro.es/que-es-pi-coding-agent">primera parte</a> expliqué qué es pi y lo comparé con otros agents. En la <a href="https://pablocaro.es/pi-de-principiante-a-avanzado">segunda</a> hice una guía completa de uso. Ahora toca lo que realmente diferencia a pi de todo lo demás: <strong>las extensiones</strong>.</p>
+     <img src="/images/pi-extensiones.png" loading="lazy" />
+    <div><p>Tercera y última entrega de la serie sobre <a href="https://pi.dev/">pi</a>. En la <a href="https://pablocaro.es/que-es-pi-coding-agent">primera parte</a> expliqué qué es pi y lo comparé con otros agents. En la <a href="https://pablocaro.es/pi-de-principiante-a-avanzado">segunda</a> hice una guía completa de uso. Ahora toca lo que realmente diferencia a pi de todo lo demás: <strong>las extensiones</strong>.</p>
 <p>Tengo más de 20 …</p></div>
-        <br>
-        <a class="btn"
-           href="https://pablocaro.es/extensiones-pi-que-uso#extensiones-pi-que-uso">
-          Seguir leyendo
-        </a>
-  </div>
+    <br />
+    <a
+      class="btn"
+      href="https://pablocaro.es/extensiones-pi-que-uso#extensiones-pi-que-uso"
+    >
+      Seguir leyendo
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="https://pablocaro.es/pi-de-principiante-a-avanzado#pi-de-principiante-a-avanzado">Pi de novato a avanzado — La guía completa</a></h2>
+    <h2>
+      <a
+        href="https://pablocaro.es/pi-de-principiante-a-avanzado#pi-de-principiante-a-avanzado"
+        >Pi de novato a avanzado — La guía completa</a
+      >
+    </h2>
     <p>
-      Publicado el 21 de May de 2026 en <a href="https://pablocaro.es/category/ia.html">ia</a>
-
-          &#8226; Etiquetado con
-              <a href="https://pablocaro.es/tag/pi.html">pi</a>,              <a href="https://pablocaro.es/tag/coding-agent.html">coding-agent</a>,              <a href="https://pablocaro.es/tag/guia.html">guia</a>,              <a href="https://pablocaro.es/tag/tutorial.html">tutorial</a>,              <a href="https://pablocaro.es/tag/cli.html">cli</a>,              <a href="https://pablocaro.es/tag/terminal.html">terminal</a>
-    </p>
+      Publicado el 21 de May de 2026 en <a href="https://pablocaro.es/category/ia.html">ia</a>       &#8226; Etiquetado con       <a href="https://pablocaro.es/tag/pi.html">pi</a>,       <a href="https://pablocaro.es/tag/coding-agent.html">coding-agent</a>,       <a href="https://pablocaro.es/tag/guia.html">guia</a>,       <a href="https://pablocaro.es/tag/tutorial.html">tutorial</a>,       <a href="https://pablocaro.es/tag/cli.html">cli</a>,       <a href="https://pablocaro.es/tag/terminal.html">terminal</a>       </p>
   </header>
   <div>
-        <img src="/images/pi-aprendizaje.jpg">
-      <div><p>Guía completa de pi: desde la instalación y primeros pasos hasta sesiones en árbol, branching, skills, extensiones, y trucos de power user.</p></div>
-        <br>
-        <a class="btn"
-           href="https://pablocaro.es/pi-de-principiante-a-avanzado#pi-de-principiante-a-avanzado">
-          Seguir leyendo
-        </a>
-  </div>
+     <img src="/images/pi-aprendizaje.jpg" loading="lazy" />
+    <div><p>Guía completa de pi: desde la instalación y primeros pasos hasta sesiones en árbol, branching, skills, extensiones, y trucos de power user.</p></div>
+    <br />
+    <a
+      class="btn"
+      href="https://pablocaro.es/pi-de-principiante-a-avanzado#pi-de-principiante-a-avanzado"
+    >
+      Seguir leyendo
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="https://pablocaro.es/que-es-pi-coding-agent#que-es-pi-coding-agent">¿Qué es pi? — El agente de código minimalista que se ha vuelto viral</a></h2>
+    <h2>
+      <a
+        href="https://pablocaro.es/que-es-pi-coding-agent#que-es-pi-coding-agent"
+        >¿Qué es pi? — El agente de código minimalista que se ha vuelto viral</a
+      >
+    </h2>
     <p>
-      Publicado el 21 de May de 2026 en <a href="https://pablocaro.es/category/ia.html">ia</a>
-
-          &#8226; Etiquetado con
-              <a href="https://pablocaro.es/tag/pi.html">pi</a>,              <a href="https://pablocaro.es/tag/coding-agent.html">coding-agent</a>,              <a href="https://pablocaro.es/tag/agentes-ia.html">agentes-ia</a>,              <a href="https://pablocaro.es/tag/claude-code.html">claude-code</a>,              <a href="https://pablocaro.es/tag/codex.html">codex</a>,              <a href="https://pablocaro.es/tag/opencode.html">opencode</a>,              <a href="https://pablocaro.es/tag/gemini-cli.html">gemini-cli</a>
-    </p>
+      Publicado el 21 de May de 2026 en <a href="https://pablocaro.es/category/ia.html">ia</a>       &#8226; Etiquetado con       <a href="https://pablocaro.es/tag/pi.html">pi</a>,       <a href="https://pablocaro.es/tag/coding-agent.html">coding-agent</a>,       <a href="https://pablocaro.es/tag/agentes-ia.html">agentes-ia</a>,       <a href="https://pablocaro.es/tag/claude-code.html">claude-code</a>,       <a href="https://pablocaro.es/tag/codex.html">codex</a>,       <a href="https://pablocaro.es/tag/opencode.html">opencode</a>,       <a href="https://pablocaro.es/tag/gemini-cli.html">gemini-cli</a>       </p>
   </header>
   <div>
-        <img src="/images/comparativa-agentes-pi.png">
-      <div><p>Pi es un agente de código minimalista para la terminal. En este artículo explico qué es, cómo se diferencia de Claude Code, Codex, OpenCode y Gemini CLI, y por qué se ha vuelto viral.</p></div>
-        <br>
-        <a class="btn"
-           href="https://pablocaro.es/que-es-pi-coding-agent#que-es-pi-coding-agent">
-          Seguir leyendo
-        </a>
-  </div>
+     <img src="/images/comparativa-agentes-pi.png" loading="lazy" />
+    <div><p>Pi es un agente de código minimalista para la terminal. En este artículo explico qué es, cómo se diferencia de Claude Code, Codex, OpenCode y Gemini CLI, y por qué se ha vuelto viral.</p></div>
+    <br />
+    <a
+      class="btn"
+      href="https://pablocaro.es/que-es-pi-coding-agent#que-es-pi-coding-agent"
+    >
+      Seguir leyendo
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="https://pablocaro.es/spec-kit-github#spec-kit-github">Spec Kit de GitHub — Especificaciones como fuente de verdad</a></h2>
+    <h2>
+      <a
+        href="https://pablocaro.es/spec-kit-github#spec-kit-github"
+        >Spec Kit de GitHub — Especificaciones como fuente de verdad</a
+      >
+    </h2>
     <p>
-      Publicado el 10 de May de 2026 en <a href="https://pablocaro.es/category/ia.html">ia</a>
-
-          &#8226; Etiquetado con
-              <a href="https://pablocaro.es/tag/agentes.html">agentes</a>,              <a href="https://pablocaro.es/tag/ia.html">ia</a>,              <a href="https://pablocaro.es/tag/spec-kit.html">spec-kit</a>,              <a href="https://pablocaro.es/tag/github.html">github</a>,              <a href="https://pablocaro.es/tag/spec-driven-development.html">spec-driven-development</a>
-    </p>
+      Publicado el 10 de May de 2026 en <a href="https://pablocaro.es/category/ia.html">ia</a>       &#8226; Etiquetado con       <a href="https://pablocaro.es/tag/agentes.html">agentes</a>,       <a href="https://pablocaro.es/tag/ia.html">ia</a>,       <a href="https://pablocaro.es/tag/spec-kit.html">spec-kit</a>,       <a href="https://pablocaro.es/tag/github.html">github</a>,       <a href="https://pablocaro.es/tag/spec-driven-development.html">spec-driven-development</a>       </p>
   </header>
   <div>
-        <img src="/images/spec-kit-github-cover.png">
-      <div><p>Sexta entrega de la serie sobre ingeniería de programación con agentes. Hoy toca el proyecto que GitHub ha convertido en el estándar de facto del desarrollo guiado por especificaciones: <strong>Spec Kit</strong>.</p>
+     <img src="/images/spec-kit-github-cover.png" loading="lazy" />
+    <div><p>Sexta entrega de la serie sobre ingeniería de programación con agentes. Hoy toca el proyecto que GitHub ha convertido en el estándar de facto del desarrollo guiado por especificaciones: <strong>Spec Kit</strong>.</p>
 <p>Hasta ahora hemos visto metodologías para dirigir agentes: compound engineering (Every), skills de disciplina (Addy Osmani), un sistema operativo …</p></div>
-        <br>
-        <a class="btn"
-           href="https://pablocaro.es/spec-kit-github#spec-kit-github">
-          Seguir leyendo
-        </a>
-  </div>
+    <br />
+    <a
+      class="btn"
+      href="https://pablocaro.es/spec-kit-github#spec-kit-github"
+    >
+      Seguir leyendo
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="https://pablocaro.es/matt-pocock-skills#matt-pocock-skills">Matt Pocock — Skills sencillas que funcionan</a></h2>
+    <h2>
+      <a
+        href="https://pablocaro.es/matt-pocock-skills#matt-pocock-skills"
+        >Matt Pocock — Skills sencillas que funcionan</a
+      >
+    </h2>
     <p>
-      Publicado el 06 de May de 2026 en <a href="https://pablocaro.es/category/ia.html">ia</a>
-
-          &#8226; Etiquetado con
-              <a href="https://pablocaro.es/tag/agentes.html">agentes</a>,              <a href="https://pablocaro.es/tag/ia.html">ia</a>,              <a href="https://pablocaro.es/tag/skills.html">skills</a>,              <a href="https://pablocaro.es/tag/matt-pocock.html">matt-pocock</a>,              <a href="https://pablocaro.es/tag/claude-code.html">claude-code</a>
-    </p>
+      Publicado el 06 de May de 2026 en <a href="https://pablocaro.es/category/ia.html">ia</a>       &#8226; Etiquetado con       <a href="https://pablocaro.es/tag/agentes.html">agentes</a>,       <a href="https://pablocaro.es/tag/ia.html">ia</a>,       <a href="https://pablocaro.es/tag/skills.html">skills</a>,       <a href="https://pablocaro.es/tag/matt-pocock.html">matt-pocock</a>,       <a href="https://pablocaro.es/tag/claude-code.html">claude-code</a>       </p>
   </header>
   <div>
-        <img src="/images/matt-pocock-skills-cover.png">
-      <div><p>Quinta entrega de la serie sobre ingeniería de programación con agentes. Hoy toca el proyecto que está arrasando estos días: las <strong>skills de Matt Pocock</strong>.</p>
+     <img src="/images/matt-pocock-skills-cover.png" loading="lazy" />
+    <div><p>Quinta entrega de la serie sobre ingeniería de programación con agentes. Hoy toca el proyecto que está arrasando estos días: las <strong>skills de Matt Pocock</strong>.</p>
 <p>He cubierto Superpowers (Jesse Vincent), Agent Skills (Addy Osmani) y Compound Engineering (Every). Cada uno aporta una pieza importante del puzzle. Pero las skills de …</p></div>
-        <br>
-        <a class="btn"
-           href="https://pablocaro.es/matt-pocock-skills#matt-pocock-skills">
-          Seguir leyendo
-        </a>
-  </div>
+    <br />
+    <a
+      class="btn"
+      href="https://pablocaro.es/matt-pocock-skills#matt-pocock-skills"
+    >
+      Seguir leyendo
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="https://pablocaro.es/superpowers-obra-jesse-vincent#superpowers-obra-jesse-vincent">Superpowers — Jesse Vincent impone metodología a los agentes de codificación</a></h2>
+    <h2>
+      <a
+        href="https://pablocaro.es/superpowers-obra-jesse-vincent#superpowers-obra-jesse-vincent"
+        >Superpowers — Jesse Vincent impone metodología a los agentes de codificación</a
+      >
+    </h2>
     <p>
-      Publicado el 06 de May de 2026 en <a href="https://pablocaro.es/category/ia.html">ia</a>
-
-          &#8226; Etiquetado con
-              <a href="https://pablocaro.es/tag/agentes.html">agentes</a>,              <a href="https://pablocaro.es/tag/ia.html">ia</a>,              <a href="https://pablocaro.es/tag/superpowers.html">superpowers</a>,              <a href="https://pablocaro.es/tag/jesse-vincent.html">jesse-vincent</a>,              <a href="https://pablocaro.es/tag/claude-code.html">claude-code</a>,              <a href="https://pablocaro.es/tag/prime-radiant.html">prime-radiant</a>
-    </p>
+      Publicado el 06 de May de 2026 en <a href="https://pablocaro.es/category/ia.html">ia</a>       &#8226; Etiquetado con       <a href="https://pablocaro.es/tag/agentes.html">agentes</a>,       <a href="https://pablocaro.es/tag/ia.html">ia</a>,       <a href="https://pablocaro.es/tag/superpowers.html">superpowers</a>,       <a href="https://pablocaro.es/tag/jesse-vincent.html">jesse-vincent</a>,       <a href="https://pablocaro.es/tag/claude-code.html">claude-code</a>,       <a href="https://pablocaro.es/tag/prime-radiant.html">prime-radiant</a>       </p>
   </header>
   <div>
-        <img src="/images/superpowers-obra-cover.png">
-      <div><p>Cuarta entrega de la serie sobre ingeniería de programación con agentes. Hoy toca un proyecto que ha cambiado las reglas del juego: <strong>Superpowers</strong>, de Jesse Vincent.</p>
+     <img src="/images/superpowers-obra-cover.png" loading="lazy" />
+    <div><p>Cuarta entrega de la serie sobre ingeniería de programación con agentes. Hoy toca un proyecto que ha cambiado las reglas del juego: <strong>Superpowers</strong>, de Jesse Vincent.</p>
 <p>Con 180.000 estrellas en GitHub y 16.000 forks, Superpowers es el marco de habilidades para agentes más popular del momento. Pero lo …</p></div>
-        <br>
-        <a class="btn"
-           href="https://pablocaro.es/superpowers-obra-jesse-vincent#superpowers-obra-jesse-vincent">
-          Seguir leyendo
-        </a>
-  </div>
+    <br />
+    <a
+      class="btn"
+      href="https://pablocaro.es/superpowers-obra-jesse-vincent#superpowers-obra-jesse-vincent"
+    >
+      Seguir leyendo
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="https://pablocaro.es/agent-skills-addy-osmani#agent-skills-addy-osmani">Agent Skills de Addy Osmani — Imponiendo disciplina de ingeniería senior a los agentes</a></h2>
+    <h2>
+      <a
+        href="https://pablocaro.es/agent-skills-addy-osmani#agent-skills-addy-osmani"
+        >Agent Skills de Addy Osmani — Imponiendo disciplina de ingeniería senior a los agentes</a
+      >
+    </h2>
     <p>
-      Publicado el 06 de May de 2026 en <a href="https://pablocaro.es/category/ia.html">ia</a>
-
-          &#8226; Etiquetado con
-              <a href="https://pablocaro.es/tag/agentes.html">agentes</a>,              <a href="https://pablocaro.es/tag/ia.html">ia</a>,              <a href="https://pablocaro.es/tag/agent-skills.html">agent-skills</a>,              <a href="https://pablocaro.es/tag/addy-osmani.html">addy-osmani</a>,              <a href="https://pablocaro.es/tag/google.html">google</a>,              <a href="https://pablocaro.es/tag/claude-code.html">claude-code</a>
-    </p>
+      Publicado el 06 de May de 2026 en <a href="https://pablocaro.es/category/ia.html">ia</a>       &#8226; Etiquetado con       <a href="https://pablocaro.es/tag/agentes.html">agentes</a>,       <a href="https://pablocaro.es/tag/ia.html">ia</a>,       <a href="https://pablocaro.es/tag/agent-skills.html">agent-skills</a>,       <a href="https://pablocaro.es/tag/addy-osmani.html">addy-osmani</a>,       <a href="https://pablocaro.es/tag/google.html">google</a>,       <a href="https://pablocaro.es/tag/claude-code.html">claude-code</a>       </p>
   </header>
   <div>
-        <img src="/images/agent-skills-addy-cover.png">
-      <div><p>En las dos partes anteriores de esta serie hemos visto una visión general de la ingeniería con agentes y luego la metodología de compound engineering de Every. Ahora toca otra aproximación similar: <strong>Agent Skills</strong>, el proyecto de Addy Osmani en Google que lleva casi 30.000 estrellas en GitHub y …</p></div>
-        <br>
-        <a class="btn"
-           href="https://pablocaro.es/agent-skills-addy-osmani#agent-skills-addy-osmani">
-          Seguir leyendo
-        </a>
-  </div>
+     <img src="/images/agent-skills-addy-cover.png" loading="lazy" />
+    <div><p>En las dos partes anteriores de esta serie hemos visto una visión general de la ingeniería con agentes y luego la metodología de compound engineering de Every. Ahora toca otra aproximación similar: <strong>Agent Skills</strong>, el proyecto de Addy Osmani en Google que lleva casi 30.000 estrellas en GitHub y …</p></div>
+    <br />
+    <a
+      class="btn"
+      href="https://pablocaro.es/agent-skills-addy-osmani#agent-skills-addy-osmani"
+    >
+      Seguir leyendo
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="https://pablocaro.es/compound-engineering-every#compound-engineering-every">Compound Engineering — La visión de Every sobre ingeniería con agentes</a></h2>
+    <h2>
+      <a
+        href="https://pablocaro.es/compound-engineering-every#compound-engineering-every"
+        >Compound Engineering — La visión de Every sobre ingeniería con agentes</a
+      >
+    </h2>
     <p>
-      Publicado el 06 de May de 2026 en <a href="https://pablocaro.es/category/ia.html">ia</a>
-
-          &#8226; Etiquetado con
-              <a href="https://pablocaro.es/tag/agentes.html">agentes</a>,              <a href="https://pablocaro.es/tag/ia.html">ia</a>,              <a href="https://pablocaro.es/tag/compound-engineering.html">compound-engineering</a>,              <a href="https://pablocaro.es/tag/every.html">every</a>,              <a href="https://pablocaro.es/tag/claude-code.html">claude-code</a>
-    </p>
+      Publicado el 06 de May de 2026 en <a href="https://pablocaro.es/category/ia.html">ia</a>       &#8226; Etiquetado con       <a href="https://pablocaro.es/tag/agentes.html">agentes</a>,       <a href="https://pablocaro.es/tag/ia.html">ia</a>,       <a href="https://pablocaro.es/tag/compound-engineering.html">compound-engineering</a>,       <a href="https://pablocaro.es/tag/every.html">every</a>,       <a href="https://pablocaro.es/tag/claude-code.html">claude-code</a>       </p>
   </header>
   <div>
-        <img src="/images/compound-engineering-every-cover.png">
-      <div><p>En la primera parte de esta serie hablé de cómo los agentes de IA han cambiado mi forma de construir software. Pero eso era solo el calentamiento. Lo que viene ahora es la visión de una empresa que ha llevado esta idea al extremo: <strong>Every</strong>, la startup de Dan Shipper …</p></div>
-        <br>
-        <a class="btn"
-           href="https://pablocaro.es/compound-engineering-every#compound-engineering-every">
-          Seguir leyendo
-        </a>
-  </div>
+     <img src="/images/compound-engineering-every-cover.png" loading="lazy" />
+    <div><p>En la primera parte de esta serie hablé de cómo los agentes de IA han cambiado mi forma de construir software. Pero eso era solo el calentamiento. Lo que viene ahora es la visión de una empresa que ha llevado esta idea al extremo: <strong>Every</strong>, la startup de Dan Shipper …</p></div>
+    <br />
+    <a
+      class="btn"
+      href="https://pablocaro.es/compound-engineering-every#compound-engineering-every"
+    >
+      Seguir leyendo
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="https://pablocaro.es/programming-with-agents#programming-with-agents">Ingeniería de Programación con Agentes</a></h2>
+    <h2>
+      <a
+        href="https://pablocaro.es/programming-with-agents#programming-with-agents"
+        >Ingeniería de Programación con Agentes</a
+      >
+    </h2>
     <p>
-      Publicado el 06 de May de 2026 en <a href="https://pablocaro.es/category/ia.html">ia</a>
-
-          &#8226; Etiquetado con
-              <a href="https://pablocaro.es/tag/agentes.html">agentes</a>,              <a href="https://pablocaro.es/tag/ia.html">ia</a>,              <a href="https://pablocaro.es/tag/productividad.html">productividad</a>
-    </p>
+      Publicado el 06 de May de 2026 en <a href="https://pablocaro.es/category/ia.html">ia</a>       &#8226; Etiquetado con       <a href="https://pablocaro.es/tag/agentes.html">agentes</a>,       <a href="https://pablocaro.es/tag/ia.html">ia</a>,       <a href="https://pablocaro.es/tag/productividad.html">productividad</a>       </p>
   </header>
   <div>
-        <img src="/images/programming-with-agents-cover.jpg">
-      <div><p>Después de más de 20 años picando código, la llegada de los agentes de IA ha cambiado cómo trabajo más que cualquier framework o lenguaje nuevo. No se trata de que la IA escriba código por mí, sino de que me permita mantener el foco en lo que realmente importa …</p></div>
-        <br>
-        <a class="btn"
-           href="https://pablocaro.es/programming-with-agents#programming-with-agents">
-          Seguir leyendo
-        </a>
-  </div>
+     <img src="/images/programming-with-agents-cover.jpg" loading="lazy" />
+    <div><p>Después de más de 20 años picando código, la llegada de los agentes de IA ha cambiado cómo trabajo más que cualquier framework o lenguaje nuevo. No se trata de que la IA escriba código por mí, sino de que me permita mantener el foco en lo que realmente importa …</p></div>
+    <br />
+    <a
+      class="btn"
+      href="https://pablocaro.es/programming-with-agents#programming-with-agents"
+    >
+      Seguir leyendo
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="https://pablocaro.es/extensiones-subagentes-pi#extensiones-subagentes-pi">Extensiones de subagentes para pi: TintinWeb, NicoBailon y Taskplane</a></h2>
+    <h2>
+      <a
+        href="https://pablocaro.es/extensiones-subagentes-pi#extensiones-subagentes-pi"
+        >Extensiones de subagentes para pi: TintinWeb, NicoBailon y Taskplane</a
+      >
+    </h2>
     <p>
-      Publicado el 03 de May de 2026 en <a href="https://pablocaro.es/category/ia.html">IA</a>
-
-          &#8226; Etiquetado con
-              <a href="https://pablocaro.es/tag/pi.html">pi</a>,              <a href="https://pablocaro.es/tag/coding-agent.html">coding-agent</a>,              <a href="https://pablocaro.es/tag/subagentes.html">subagentes</a>,              <a href="https://pablocaro.es/tag/extensiones.html">extensiones</a>,              <a href="https://pablocaro.es/tag/cli.html">cli</a>,              <a href="https://pablocaro.es/tag/herramientas.html">herramientas</a>
-    </p>
+      Publicado el 03 de May de 2026 en <a href="https://pablocaro.es/category/ia.html">IA</a>       &#8226; Etiquetado con       <a href="https://pablocaro.es/tag/pi.html">pi</a>,       <a href="https://pablocaro.es/tag/coding-agent.html">coding-agent</a>,       <a href="https://pablocaro.es/tag/subagentes.html">subagentes</a>,       <a href="https://pablocaro.es/tag/extensiones.html">extensiones</a>,       <a href="https://pablocaro.es/tag/cli.html">cli</a>,       <a href="https://pablocaro.es/tag/herramientas.html">herramientas</a>       </p>
   </header>
   <div>
-        <img src="/images/pi-subagentes.png">
-      <div><p>Comparativa de tres extensiones para ejecutar subagentes en pi — TintinWeb, NicoBailon y Taskplane — cada una con un enfoque distinto.</p></div>
-        <br>
-        <a class="btn"
-           href="https://pablocaro.es/extensiones-subagentes-pi#extensiones-subagentes-pi">
-          Seguir leyendo
-        </a>
-  </div>
+     <img src="/images/pi-subagentes.png" loading="lazy" />
+    <div><p>Comparativa de tres extensiones para ejecutar subagentes en pi — TintinWeb, NicoBailon y Taskplane — cada una con un enfoque distinto.</p></div>
+    <br />
+    <a
+      class="btn"
+      href="https://pablocaro.es/extensiones-subagentes-pi#extensiones-subagentes-pi"
+    >
+      Seguir leyendo
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="https://pablocaro.es/video-gemini-sevilla#video-gemini-sevilla">Creación de vídeo con Gemini: personajes de Sevilla</a></h2>
+    <h2>
+      <a
+        href="https://pablocaro.es/video-gemini-sevilla#video-gemini-sevilla"
+        >Creación de vídeo con Gemini: personajes de Sevilla</a
+      >
+    </h2>
     <p>
-      Publicado el 15 de April de 2026 en <a href="https://pablocaro.es/category/ia.html">IA</a>
-
-          &#8226; Etiquetado con
-              <a href="https://pablocaro.es/tag/gemini.html">gemini</a>,              <a href="https://pablocaro.es/tag/google.html">google</a>,              <a href="https://pablocaro.es/tag/video.html">video</a>,              <a href="https://pablocaro.es/tag/sevilla.html">sevilla</a>,              <a href="https://pablocaro.es/tag/ia.html">ia</a>
-    </p>
+      Publicado el 15 de April de 2026 en <a href="https://pablocaro.es/category/ia.html">IA</a>       &#8226; Etiquetado con       <a href="https://pablocaro.es/tag/gemini.html">gemini</a>,       <a href="https://pablocaro.es/tag/google.html">google</a>,       <a href="https://pablocaro.es/tag/video.html">video</a>,       <a href="https://pablocaro.es/tag/sevilla.html">sevilla</a>,       <a href="https://pablocaro.es/tag/ia.html">ia</a>       </p>
   </header>
   <div>
-        <img src="/images/Sevi.webp">
-      <div><p>Probando la generación de vídeo de Gemini con personajes basados en Sevilla.</p></div>
-        <br>
-        <a class="btn"
-           href="https://pablocaro.es/video-gemini-sevilla#video-gemini-sevilla">
-          Seguir leyendo
-        </a>
-  </div>
+     <img src="/images/Sevi.webp" loading="lazy" />
+    <div><p>Probando la generación de vídeo de Gemini con personajes basados en Sevilla.</p></div>
+    <br />
+    <a
+      class="btn"
+      href="https://pablocaro.es/video-gemini-sevilla#video-gemini-sevilla"
+    >
+      Seguir leyendo
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="https://pablocaro.es/powerline-footer-hidden-gems#powerline-footer-hidden-gems">Joyas ocultas en pi-powerline-footer</a></h2>
+    <h2>
+      <a
+        href="https://pablocaro.es/powerline-footer-hidden-gems#powerline-footer-hidden-gems"
+        >Joyas ocultas en pi-powerline-footer</a
+      >
+    </h2>
     <p>
-      Publicado el 22 de March de 2026 en <a href="https://pablocaro.es/category/ia.html">IA</a>
-
-          &#8226; Etiquetado con
-              <a href="https://pablocaro.es/tag/pi.html">pi</a>,              <a href="https://pablocaro.es/tag/terminal.html">terminal</a>,              <a href="https://pablocaro.es/tag/productividad.html">productividad</a>
-    </p>
+      Publicado el 22 de March de 2026 en <a href="https://pablocaro.es/category/ia.html">IA</a>       &#8226; Etiquetado con       <a href="https://pablocaro.es/tag/pi.html">pi</a>,       <a href="https://pablocaro.es/tag/terminal.html">terminal</a>,       <a href="https://pablocaro.es/tag/productividad.html">productividad</a>       </p>
   </header>
   <div>
-        <img src="/images/pi-powerline-footer.png">
-      <div><p>Dos características del plugin pi-powerline-footer que van más allá del típico footer con información del modelo.</p></div>
-        <br>
-        <a class="btn"
-           href="https://pablocaro.es/powerline-footer-hidden-gems#powerline-footer-hidden-gems">
-          Seguir leyendo
-        </a>
-  </div>
+     <img src="/images/pi-powerline-footer.png" loading="lazy" />
+    <div><p>Dos características del plugin pi-powerline-footer que van más allá del típico footer con información del modelo.</p></div>
+    <br />
+    <a
+      class="btn"
+      href="https://pablocaro.es/powerline-footer-hidden-gems#powerline-footer-hidden-gems"
+    >
+      Seguir leyendo
+    </a>
+   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="https://pablocaro.es/agent-browser-navegacion-agentes#agent-browser-navegacion-agentes">Agent Browser: Navegación para Agentes</a></h2>
+    <h2>
+      <a
+        href="https://pablocaro.es/agent-browser-navegacion-agentes#agent-browser-navegacion-agentes"
+        >Agent Browser: Navegación para Agentes</a
+      >
+    </h2>
     <p>
-      Publicado el 18 de March de 2026 en <a href="https://pablocaro.es/category/ia.html">IA</a>
-
-          &#8226; Etiquetado con
-              <a href="https://pablocaro.es/tag/agent-browser.html">agent-browser</a>,              <a href="https://pablocaro.es/tag/ia.html">ia</a>,              <a href="https://pablocaro.es/tag/agents.html">agents</a>,              <a href="https://pablocaro.es/tag/automation.html">automation</a>,              <a href="https://pablocaro.es/tag/llm.html">llm</a>,              <a href="https://pablocaro.es/tag/pi-agent.html">pi-agent</a>,              <a href="https://pablocaro.es/tag/pi.html">pi</a>
-    </p>
+      Publicado el 18 de March de 2026 en <a href="https://pablocaro.es/category/ia.html">IA</a>       &#8226; Etiquetado con       <a href="https://pablocaro.es/tag/agent-browser.html">agent-browser</a>,       <a href="https://pablocaro.es/tag/ia.html">ia</a>,       <a href="https://pablocaro.es/tag/agents.html">agents</a>,       <a href="https://pablocaro.es/tag/automation.html">automation</a>,       <a href="https://pablocaro.es/tag/llm.html">llm</a>,       <a href="https://pablocaro.es/tag/pi-agent.html">pi-agent</a>,       <a href="https://pablocaro.es/tag/pi.html">pi</a>       </p>
   </header>
   <div>
-        <img src="/images/agent-browser.png">
-      <div><p><code>agent-browser</code> es una herramienta de Vercel que permite a los agentes de IA navegar por la web y realizar acciones como lo haría un humano, integrándose fácilmente con frameworks de agentes.</p></div>
-        <br>
-        <a class="btn"
-           href="https://pablocaro.es/agent-browser-navegacion-agentes#agent-browser-navegacion-agentes">
-          Seguir leyendo
-        </a>
-  </div>
+     <img src="/images/agent-browser.png" loading="lazy" />
+    <div><p><code>agent-browser</code> es una herramienta de Vercel que permite a los agentes de IA navegar por la web y realizar acciones como lo haría un humano, integrándose fácilmente con frameworks de agentes.</p></div>
+    <br />
+    <a
+      class="btn"
+      href="https://pablocaro.es/agent-browser-navegacion-agentes#agent-browser-navegacion-agentes"
+    >
+      Seguir leyendo
+    </a>
+   </div>
 </article>
-
-
-
- 
+    
 <footer>
 <p>
   &copy; 2026  - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
 </p>
 <p>
-Construido con <a href="http://getpelican.com" target="_blank">Pelican</a> usando el tema <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> 
+  Construido con <a
+    href="http://getpelican.com"
+    target="_blank"
+    >Pelican</a
+  > usando el tema <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a
+  >    <script
+    id="dark-theme-script"
+    src="https://pablocaro.es/theme/dark-theme/dark-theme.min.js"
+    data-enable-auto-detect-theme="False"
+    data-default-theme="light"
+    type="text/javascript"
+  ></script>
 </p><p>
   <a rel="license"
      href="http://creativecommons.org/licenses/by-sa/3.0/"
@@ -492,15 +697,46 @@ Construido con <a href="http://getpelican.com" target="_blank">Pelican</a> usand
         return;
       }
       if (typeof stork === 'undefined') {
-        console.error('Stork is not loaded yet, retrying...');
         setTimeout(window.loadStorkIndex, 100);
         return;
       }
-      stork.register("sitesearch", "https://pablocaro.es/search-index.st", { showProgress: false });
-      stork.register("sitesearch-page", "https://pablocaro.es/search-index.st", { showProgress: false });
+      var url = "https://pablocaro.es/search-index.st";
+      var opts = { showProgress: false };
+      stork.register("sitesearch", url, opts);
+      try {
+        stork.register("sitesearch-page", url, opts);
+      } catch (e) {
+        // Search page input not in DOM on this page — index still registered
+      }
       window.storkIndexLoaded = true;
     }
   </script>
 
+
+  <button id="back-to-top" aria-label="Back to top" title="Back to top">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <path d="M10 16V4m0 0L5 9m5-5l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+  <script>
+  (function() {
+    var btn = document.getElementById('back-to-top');
+    if (!btn) return;
+    var ticking = false;
+    function onScroll() {
+      if (!ticking) {
+        requestAnimationFrame(function() {
+          btn.classList.toggle('visible', window.scrollY > 500);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }
+    btn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    window.addEventListener('scroll', onScroll, { passive: true });
+  })();
+  </script>
 </body>
 </html>
