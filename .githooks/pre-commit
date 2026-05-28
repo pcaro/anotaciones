@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if [[ "${SKIP_GITLEAKS:-}" == "1" || "${SKIP_GITLEAKS:-}" == "true" ]]; then
+  echo "Skipping gitleaks pre-commit scan because SKIP_GITLEAKS=${SKIP_GITLEAKS}." >&2
+  exit 0
+fi
+
+if ! command -v gitleaks >/dev/null 2>&1; then
+  cat >&2 <<'EOF'
+gitleaks is required by this repository's pre-commit hook but was not found.
+Install gitleaks, or set SKIP_GITLEAKS=1 for an intentional one-off bypass.
+EOF
+  exit 1
+fi
+
+echo "Running gitleaks on staged changes..." >&2
+gitleaks protect --staged --source . --redact --no-banner
