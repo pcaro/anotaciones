@@ -88,6 +88,12 @@ main nav a[href*="/categories"] {
 	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
+@media screen and (min-width: 768px) {
+	.category-header {
+		max-width: 760px;
+	}
+}
+
 .category-grid {
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
@@ -112,6 +118,22 @@ main nav a[href*="/categories"] {
 	transition:
 		transform 0.15s ease,
 		box-shadow 0.15s ease;
+}
+
+.category-box:visited {
+	color: inherit;
+}
+
+.category-box-link {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-decoration: none;
+	color: inherit;
+}
+
+.category-box-link:visited {
+	color: inherit;
 }
 
 .category-box:hover {
@@ -218,6 +240,10 @@ main nav a[href*="/categories"] {
 	overflow: hidden;
 	opacity: 0.85;
 	transition: opacity 0.15s ease;
+}
+
+.sidebar-category:visited {
+	color: inherit;
 }
 
 .sidebar-category:hover {

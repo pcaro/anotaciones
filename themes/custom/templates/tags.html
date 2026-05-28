@@ -18,6 +18,7 @@
       <div class="category-box">
         {% if category.slug in ['programacion', 'herramientas', 'linux',
         'infraestructura', 'ia', 'personal', 'documentacion', 'finanzas'] %}
+        <a href="{{ SITEURL }}/{{ category.url }}" class="category-box-link">
         <img
           src="{{ SITEURL }}/images/categories/{{ category.slug }}.png"
           alt="{{ category }}"
@@ -25,8 +26,13 @@
           height="768"
           loading="lazy"
         />
-        {% endif %}
         <span class="category-name">{{ category }}</span>
+        </a>
+        {% else %}
+        <a href="{{ SITEURL }}/{{ category.url }}" class="category-box-link">
+        <span class="category-name">{{ category }}</span>
+        </a>
+        {% endif %}
         <div class="category-tags">
           {% for tag, count in tags %}
           <a href="{{ SITEURL }}/{{ tag.url }}">
