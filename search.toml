@@ -3,6 +3,11 @@ html_selector = "main"
 base_directory = "/home/runner/work/anotaciones/anotaciones/output"
 
 [[input.files]]
+path = "gitleaks-deteccion-secrets-git.html"
+url = "/gitleaks-deteccion-secrets-git"
+title = "Detectando secretos en git con gitleaks"
+
+[[input.files]]
 path = "limpiar-cache-npx.html"
 url = "/limpiar-cache-npx"
 title = "Limpiando la caché escondida de npx"
@@ -901,6 +906,11 @@ title = "Corrector ortográfico de firefox 2.0 en castellano"
 path = "primera-anotacion-de-prueba.html"
 url = "/primera-anotacion-de-prueba"
 title = "Primera anotación de prueba"
+
+[[input.files]]
+path = "gitleaks-deteccion-secrets-git-en.html"
+url = "/en/gitleaks-deteccion-secrets-git"
+title = "Detecting secrets in git with gitleaks"
 
 [[input.files]]
 path = "limpiar-cache-npx-en.html"

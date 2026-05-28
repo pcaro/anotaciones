@@ -1,5 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Anotaciones por Pablo Caro - cli</title><link href="https://pablocaro.es/" rel="alternate"></link><link href="https://pablocaro.es/feeds/tags/cli.atom.xml" rel="self"></link><id>https://pablocaro.es/</id><updated>2026-05-21T00:00:00+02:00</updated><subtitle>Anotaciones</subtitle><entry><title>Las extensiones de pi que uso en mi día a día</title><link href="https://pablocaro.es/extensiones-pi-que-uso" rel="alternate"></link><published>2026-05-21T00:00:00+02:00</published><updated>2026-05-21T00:00:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-05-21:/extensiones-pi-que-uso</id><summary type="html">&lt;p&gt;Tercera y última entrega de la serie sobre &lt;a href="https://pi.dev/"&gt;pi&lt;/a&gt;. En la &lt;a href="https://pablocaro.es/que-es-pi-coding-agent"&gt;primera parte&lt;/a&gt; expliqué qué es pi y lo comparé con otros agents. En la &lt;a href="https://pablocaro.es/pi-de-principiante-a-avanzado"&gt;segunda&lt;/a&gt; hice una guía completa de uso. Ahora toca lo que realmente diferencia a pi de todo lo demás: &lt;strong&gt;las extensiones&lt;/strong&gt;.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Anotaciones por Pablo Caro - cli</title><link href="https://pablocaro.es/" rel="alternate"></link><link href="https://pablocaro.es/feeds/tags/cli.atom.xml" rel="self"></link><id>https://pablocaro.es/</id><updated>2026-05-28T00:00:00+02:00</updated><subtitle>Anotaciones</subtitle><entry><title>Detectando secretos en git con gitleaks</title><link href="https://pablocaro.es/gitleaks-deteccion-secrets-git" rel="alternate"></link><published>2026-05-28T00:00:00+02:00</published><updated>2026-05-28T00:00:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-05-28:/gitleaks-deteccion-secrets-git</id><summary type="html">&lt;p&gt;gitleaks escanea repositorios git en busca de secretos, claves API y contraseñas filtradas. Se instala en segundos con gah y puede ahorrarte un disgusto.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="gitleaks detectando secretos en un repo git" src="/images/gitleaks-deteccion-secrets-git.png"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;gitleaks&lt;/code&gt; es una herramienta que escanea repositorios git —incluyendo todo el historial— en busca de secretos: claves API, contraseñas, tokens de AWS, credenciales de base de datos y más de 150 patrones predefinidos.&lt;/p&gt;
+&lt;h2 id="instalacion-con-gah"&gt;Instalación con gah&lt;a class="headerlink" href="#instalacion-con-gah" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;La forma más rápida de instalarlo en Linux es con &lt;a href="https://github.com/user/gah"&gt;&lt;code&gt;gah&lt;/code&gt;&lt;/a&gt;, un descargador de assets de GitHub releases:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$&lt;span class="w"&gt; &lt;/span&gt;gah&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;gitleaks/gitleaks
+Fetching&lt;span class="w"&gt; &lt;/span&gt;release&lt;span class="w"&gt; &lt;/span&gt;info&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt;:&lt;span class="w"&gt; &lt;/span&gt;gitleaks/gitleaks&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;latest&lt;span class="o"&gt;]&lt;/span&gt;
+Found&lt;span class="w"&gt; &lt;/span&gt;release:&lt;span class="w"&gt; &lt;/span&gt;v8.30.1
+Downloading:&lt;span class="w"&gt; &lt;/span&gt;gitleaks_8.30.1_linux_x64.tar.gz
+&lt;span class="c1"&gt;############################################### 100.0%&lt;/span&gt;
+Verifying&lt;span class="w"&gt; &lt;/span&gt;digest&lt;span class="w"&gt; &lt;/span&gt;sha256&lt;span class="w"&gt; &lt;/span&gt;551f6fc8...&lt;span class="w"&gt; &lt;/span&gt;...
+Digest&lt;span class="w"&gt; &lt;/span&gt;verification&lt;span class="w"&gt; &lt;/span&gt;succeeded!
+Extracting:&lt;span class="w"&gt; &lt;/span&gt;gitleaks_8.30.1_linux_x64.tar.gz
+Installing:&lt;span class="w"&gt; &lt;/span&gt;gitleaks
+Done!
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Binario único, sin dependencias, listo en segundos.&lt;/p&gt;
+&lt;h2 id="uso-basico"&gt;Uso básico&lt;a class="headerlink" href="#uso-basico" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Para escanear un repo local, incluyendo todo el historial de commits:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$&lt;span class="w"&gt; &lt;/span&gt;gitleaks&lt;span class="w"&gt; &lt;/span&gt;git&lt;span class="w"&gt; &lt;/span&gt;--verbose&lt;span class="w"&gt; &lt;/span&gt;-v&lt;span class="w"&gt; &lt;/span&gt;/ruta/al/repo
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Esto rastrea cada commit y te muestra qué secretos encontró, en qué archivo y en qué línea.&lt;/p&gt;
+&lt;p&gt;Algunas flags útiles:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;--no-banner&lt;/code&gt;: quita el banner ASCII al inicio.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;--exit-code 0&lt;/code&gt;: no devuelve error si encuentra leaks (útil en CI).&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;--config .gitleaks.toml&lt;/code&gt;: usa una configuración personalizada con reglas propias.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;--gitleaks-ignore-path .&lt;/code&gt;: respeta el archivo &lt;code&gt;.gitleaksignore&lt;/code&gt; para falsos positivos.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;--redact&lt;/code&gt;: oculta los secretos en la salida (útil en logs públicos).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;También puedes escanear directorios sueltos con &lt;code&gt;gitleaks dir&lt;/code&gt; o pipear contenido con &lt;code&gt;gitleaks stdin&lt;/code&gt;.&lt;/p&gt;
+&lt;h2 id="cuando-usarlo"&gt;¿Cuándo usarlo?&lt;a class="headerlink" href="#cuando-usarlo" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Antes de hacer público un repo&lt;/strong&gt;: escanea el historial completo para asegurarte de que no hay claves coladas.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;En CI/CD&lt;/strong&gt;: añádelo como paso en GitHub Actions para que falle el build si alguien commitea un secreto.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Auditorías de seguridad&lt;/strong&gt;: ideal para revisar repos viejos que han pasado por muchas manos.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="pre-commit-hook"&gt;Pre-commit hook&lt;a class="headerlink" href="#pre-commit-hook" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;La forma más efectiva de usarlo es como &lt;a href="https://github.com/BadLiveware/pi/blob/main/.githooks/pre-commit"&gt;hook de pre-commit&lt;/a&gt; para que bloquee automáticamente cualquier commit que contenga secretos:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="ch"&gt;#!/usr/bin/env bash&lt;/span&gt;
+&lt;span class="nb"&gt;set&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;-euo&lt;span class="w"&gt; &lt;/span&gt;pipefail
+
+&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[[&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;SKIP_GITLEAKS&lt;/span&gt;&lt;span class="k"&gt;:-&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;1&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;||&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;SKIP_GITLEAKS&lt;/span&gt;&lt;span class="k"&gt;:-&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;true&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;]]&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;then&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Skipping gitleaks pre-commit scan because SKIP_GITLEAKS=&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;SKIP_GITLEAKS&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;.&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&amp;gt;&lt;span class="p"&gt;&amp;amp;&lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nb"&gt;exit&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;0&lt;/span&gt;
+&lt;span class="k"&gt;fi&lt;/span&gt;
+
+&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;!&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;command&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;-v&lt;span class="w"&gt; &lt;/span&gt;gitleaks&lt;span class="w"&gt; &lt;/span&gt;&amp;gt;/dev/null&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt;&amp;gt;&lt;span class="p"&gt;&amp;amp;&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;then&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;cat&lt;span class="w"&gt; &lt;/span&gt;&amp;gt;&lt;span class="p"&gt;&amp;amp;&lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;lt;&amp;lt;&amp;#39;EOF&amp;#39;&lt;/span&gt;
+&lt;span class="s"&gt;gitleaks is required by this repository&amp;#39;s pre-commit hook but was not found.&lt;/span&gt;
+&lt;span class="s"&gt;Install gitleaks, or set SKIP_GITLEAKS=1 for an intentional one-off bypass.&lt;/span&gt;
+&lt;span class="s"&gt;EOF&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nb"&gt;exit&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;
+&lt;span class="k"&gt;fi&lt;/span&gt;
+
+&lt;span class="nb"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Running gitleaks on staged changes...&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&amp;gt;&lt;span class="p"&gt;&amp;amp;&lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt;
+gitleaks&lt;span class="w"&gt; &lt;/span&gt;protect&lt;span class="w"&gt; &lt;/span&gt;--staged&lt;span class="w"&gt; &lt;/span&gt;--source&lt;span class="w"&gt; &lt;/span&gt;.&lt;span class="w"&gt; &lt;/span&gt;--redact&lt;span class="w"&gt; &lt;/span&gt;--no-banner
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Guarda esto en &lt;code&gt;.githooks/pre-commit&lt;/code&gt;, hazlo ejecutable (&lt;code&gt;chmod +x&lt;/code&gt;) y configura git para que use esa carpeta:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;git&lt;span class="w"&gt; &lt;/span&gt;config&lt;span class="w"&gt; &lt;/span&gt;core.hooksPath&lt;span class="w"&gt; &lt;/span&gt;.githooks
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;A partir de ahí, cada &lt;code&gt;git commit&lt;/code&gt; escaneará los cambios en busca de secretos. Si necesitas saltártelo puntualmente, &lt;code&gt;SKIP_GITLEAKS=1 git commit&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Es de esas herramientas que no necesitas hasta que la necesitas. Y cuando la necesitas, te alegras de tenerla a un &lt;code&gt;gah install&lt;/code&gt; de distancia.&lt;/p&gt;</content><category term="herramientas"></category><category term="git"></category><category term="seguridad"></category><category term="gitleaks"></category><category term="herramientas"></category><category term="cli"></category></entry><entry><title>Las extensiones de pi que uso en mi día a día</title><link href="https://pablocaro.es/extensiones-pi-que-uso" rel="alternate"></link><published>2026-05-21T00:00:00+02:00</published><updated>2026-05-21T00:00:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-05-21:/extensiones-pi-que-uso</id><summary type="html">&lt;p&gt;Tercera y última entrega de la serie sobre &lt;a href="https://pi.dev/"&gt;pi&lt;/a&gt;. En la &lt;a href="https://pablocaro.es/que-es-pi-coding-agent"&gt;primera parte&lt;/a&gt; expliqué qué es pi y lo comparé con otros agents. En la &lt;a href="https://pablocaro.es/pi-de-principiante-a-avanzado"&gt;segunda&lt;/a&gt; hice una guía completa de uso. Ahora toca lo que realmente diferencia a pi de todo lo demás: &lt;strong&gt;las extensiones&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;Tengo más de 20 …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Tercera y última entrega de la serie sobre &lt;a href="https://pi.dev/"&gt;pi&lt;/a&gt;. En la &lt;a href="https://pablocaro.es/que-es-pi-coding-agent"&gt;primera parte&lt;/a&gt; expliqué qué es pi y lo comparé con otros agents. En la &lt;a href="https://pablocaro.es/pi-de-principiante-a-avanzado"&gt;segunda&lt;/a&gt; hice una guía completa de uso. Ahora toca lo que realmente diferencia a pi de todo lo demás: &lt;strong&gt;las extensiones&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;Tengo más de 20 paquetes instalados, skills de varios repositorios, y mis propias extensiones en &lt;a href="https://github.com/pcaro/pcaropi"&gt;pcaropi&lt;/a&gt;. Aquí desgloso lo que uso realmente en el día a día.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Extensiones de pi" src="/images/pi-extensiones.png"&gt;&lt;/p&gt;

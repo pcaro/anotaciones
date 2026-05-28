@@ -5,36 +5,43 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/en/</loc>
-<lastmod>2026-05-28T15:59:30-00:00</lastmod>
+<lastmod>2026-05-28T16:53:28-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/en/tags.html</loc>
-<lastmod>2026-05-28T15:59:30-00:00</lastmod>
+<lastmod>2026-05-28T16:53:28-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/en/categories.html</loc>
-<lastmod>2026-05-28T15:59:30-00:00</lastmod>
+<lastmod>2026-05-28T16:53:28-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/en/archives.html</loc>
-<lastmod>2026-05-28T15:59:30-00:00</lastmod>
+<lastmod>2026-05-28T16:53:28-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/en/search.html</loc>
-<lastmod>2026-05-28T15:59:30-00:00</lastmod>
+<lastmod>2026-05-28T16:53:28-00:00</lastmod>
 <changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/en/gitleaks-deteccion-secrets-git</loc>
+<lastmod>2026-05-28T00:00:00+02:00</lastmod>
+<changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
@@ -774,6 +781,41 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+<loc>/en/tag/git.html</loc>
+<lastmod>2026-05-28T00:00:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/en/tag/security.html</loc>
+<lastmod>2026-05-28T00:00:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/en/tag/gitleaks.html</loc>
+<lastmod>2026-05-28T00:00:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/en/tag/tools.html</loc>
+<lastmod>2026-05-28T00:00:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/en/tag/cli.html</loc>
+<lastmod>2026-05-28T00:00:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
 <loc>/en/tag/npm.html</loc>
 <lastmod>2026-05-28T00:00:00+00:09</lastmod>
 <changefreq>daily</changefreq>
@@ -789,13 +831,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/en/tag/terminal.html</loc>
-<lastmod>2026-05-28T00:00:00+00:09</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>/en/tag/tools.html</loc>
 <lastmod>2026-05-28T00:00:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
@@ -831,13 +866,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/en/tag/subagents.html</loc>
-<lastmod>2026-05-21T00:00:00+00:09</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>/en/tag/cli.html</loc>
 <lastmod>2026-05-21T00:00:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
@@ -1343,13 +1371,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>/en/tag/github-actions.html</loc>
 <lastmod>2026-04-21T22:00:00+00:09</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>/en/tag/git.html</loc>
-<lastmod>2026-04-21T12:00:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
