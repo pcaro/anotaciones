@@ -1,0 +1,14 @@
+{% if MAIN_MENU %}
+<nav>
+  <a href="{{ SITEURL }}/">{{ _('Home') }}</a>
+
+  {% for title, link in MENUITEMS %}
+  <a href="{{ link }}">{{ _(title) }}</a>
+  {% endfor %} {% if THEME_COLOR_ENABLE_USER_OVERRIDE %}
+  <a href="javascript:void(0)" onclick="theme.switch('dark')">🌙</a>
+  <a href="javascript:void(0)" onclick="theme.switch('light')">☀</a>
+  {% endif %} {% if FEED_ALL_RSS %}
+  <a href="{{ FEED_DOMAIN }}/{{ FEED_ALL_RSS }}">{{ _('RSS') }}</a>
+  {% endif %}
+</nav>
+{% endif %}

@@ -180,6 +180,11 @@ SITETITLE = "Anotaciones"
 SITELOGO = "/theme/img/profile.png"  # Optional: add a logo image
 FAVICON = "/theme/img/favicon.ico"  # Optional: add a favicon
 
+# Theme switching
+THEME_COLOR = "light"
+THEME_COLOR_AUTO_DETECT_BROWSER_PREFERENCE = False
+THEME_COLOR_ENABLE_USER_OVERRIDE = True
+
 # Browser tab title
 BROWSER_COLOR = "#333333"
 PYGMENTS_STYLE = "github"
