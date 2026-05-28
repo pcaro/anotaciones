@@ -3,6 +3,11 @@ html_selector = "main"
 base_directory = "/home/runner/work/anotaciones/anotaciones/output/en"
 
 [[input.files]]
+path = "limpiar-cache-npx.html"
+url = "/limpiar-cache-npx"
+title = "Cleaning up npx's hidden cache"
+
+[[input.files]]
 path = "extensiones-pi-que-uso.html"
 url = "/extensiones-pi-que-uso"
 title = "The Pi Extensions I Use Daily"
@@ -471,6 +476,11 @@ title = "Django: links in object list"
 path = "settings-vars-processor.html"
 url = "/settings-vars-processor"
 title = "Settings vars processor"
+
+[[input.files]]
+path = "limpiar-cache-npx-es.html"
+url = "/../limpiar-cache-npx"
+title = "Limpiando la caché escondida de npx"
 
 [[input.files]]
 path = "extensiones-pi-que-uso-es.html"

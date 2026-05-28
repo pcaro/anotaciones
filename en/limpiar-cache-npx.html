@@ -55,36 +55,36 @@
  
 
 <meta name="author" content="Pablo Caro" />
-<meta name="description" content="A guide to equivalents between classic net-tools commands (ifconfig, route, arp) and modern iproute2 commands (ip)." />
-<meta name="keywords" content="redes, iproute2, net-tools, terminal" />
+<meta name="description" content="npx leaves a hidden package cache in ~/.npm/_npx/. Here&#39;s how to list what you&#39;ve accumulated and clean it up." />
+<meta name="keywords" content="npm, npx, terminal, tools" />
 
 <link
   rel="alternate"
-  href="/en/net-tools-to-iproute"
+  href="/en/limpiar-cache-npx"
   hreflang="en"
 />
 <link
   rel="alternate"
-  href="/en/../net-tools-to-iproute"
+  href="/en/../limpiar-cache-npx"
   hreflang="es"
 />
     <meta property="og:site_name" content="Annotations by Pablo Caro"/>
-  <meta property="og:title" content="From net-tools to iproute2: command equivalents"/>
-  <meta property="og:description" content="A guide to equivalents between classic net-tools commands (ifconfig, route, arp) and modern iproute2 commands (ip)."/>
+  <meta property="og:title" content="Cleaning up npx&#39;s hidden cache"/>
+  <meta property="og:description" content="npx leaves a hidden package cache in ~/.npm/_npx/. Here&#39;s how to list what you&#39;ve accumulated and clean it up."/>
   <meta property="og:locale" content="en_US"/>
-  <meta property="og:url" content="/en/net-tools-to-iproute"/>
+  <meta property="og:url" content="/en/limpiar-cache-npx"/>
   <meta property="og:type" content="article"/>
-  <meta property="article:published_time" content="2026-03-06 11:30:00+01:00"/>
+  <meta property="article:published_time" content="2026-05-28 00:00:00+02:00"/>
   <meta property="article:modified_time" content=""/>
   <meta property="article:author" content="/en/author/pablo-caro.html">
-  <meta property="article:section" content="Linux"/>
-  <meta property="article:tag" content="redes"/>
-  <meta property="article:tag" content="iproute2"/>
-  <meta property="article:tag" content="net-tools"/>
+  <meta property="article:section" content="tools"/>
+  <meta property="article:tag" content="npm"/>
+  <meta property="article:tag" content="npx"/>
   <meta property="article:tag" content="terminal"/>
+  <meta property="article:tag" content="tools"/>
   <meta property="og:image" content="/theme/img/profile.png">
  
-  <title>Annotations by Pablo Caro &ndash; From net-tools to iproute2: command equivalents</title>
+  <title>Annotations by Pablo Caro &ndash; Cleaning up npx&#39;s hidden cache</title>
 
 
 </head>
@@ -187,114 +187,62 @@
 <article class="single">
   <header>
       <div class="translations">
-            <a href="/en/../net-tools-to-iproute">Leer en español</a>
+            <a href="/en/../limpiar-cache-npx">Leer en español</a>
     </div>
 
-    <h1 id="net-tools-to-iproute">From net-tools to iproute2: command equivalents</h1>
+    <h1 id="limpiar-cache-npx">Cleaning up npx's hidden cache</h1>
     <p>
-      Posted on Fri, 06 Mar 2026 in <a href="/en/category/linux.html">Linux</a>     </p>
+      Posted on Thu, 28 May 2026 in <a href="/en/category/tools.html">tools</a>     </p>
   </header>
 
  
-  <div><p>Over 30 years with Linux, and it's hard to change what you're already used to. In my case, I've always used <strong>ifconfig</strong>, <strong>arp</strong>, <strong>route</strong>, and <strong>netstat</strong> to configure and diagnose the network. But these commands belong to the <strong>net-tools</strong> package, which has been replaced by <strong>iproute2</strong> years ago.</p>
-<h2 id="net-tools-vs-iproute2">net-tools vs iproute2<a class="headerlink" href="#net-tools-vs-iproute2" title="Permanent link">&para;</a></h2>
-<p>There are traditionally two ways of configuring the network in Linux:</p>
-<ul>
-<li><strong>The old way</strong>: with commands like <code>ifconfig</code>, <code>arp</code>, <code>route</code> and <code>netstat</code>, which are part of the <em>net-tools</em> package</li>
-<li><strong>The new way</strong>: mostly (but not entirely!) wrapped in a single <code>ip</code> command, which is part of the <em>iproute2</em> package</li>
-</ul>
-<p>It seems like the latter was made "important" in Debian in 2008, which means every release since Debian 5 "lenny" (!) has featured the <code>ip</code> command.</p>
-<p>I have been slowly training my brain to use the new commands but I sometimes forget some. So, here's a couple of equivalences from the old net-tools package to the new iproute2:</p>
-<table>
-<thead>
-<tr>
-<th>net-tools</th>
-<th>iproute2</th>
-<th>Shorter form</th>
-<th>What it does</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>ifconfig</code></td>
-<td><code>ip address</code></td>
-<td><code>ip a</code></td>
-<td>Show/configure IP addresses</td>
-</tr>
-<tr>
-<td><code>ifconfig -s</code></td>
-<td><code>ip link</code></td>
-<td><code>ip l</code></td>
-<td>Show link stats (up/down, packet counts)</td>
-</tr>
-<tr>
-<td><code>route</code></td>
-<td><code>ip route</code></td>
-<td><code>ip r</code></td>
-<td>Show or modify routing table</td>
-</tr>
-<tr>
-<td><code>arp</code></td>
-<td><code>ip neigh</code></td>
-<td><code>ip n</code></td>
-<td>Show ARP/neighbors table</td>
-</tr>
-<tr>
-<td><code>netstat</code></td>
-<td><code>ss</code></td>
-<td><code>ss</code></td>
-<td>Show socket statistics</td>
-</tr>
-</tbody>
-</table>
-<h2 id="visual-comparison">Visual comparison<a class="headerlink" href="#visual-comparison" title="Permanent link">&para;</a></h2>
-<p>Here's the difference between using <code>ip a</code> and <code>ip -br -c a</code>:</p>
-<h3 id="ip-a-full-output"><code>ip a</code> (full output)<a class="headerlink" href="#ip-a-full-output" title="Permanent link">&para;</a></h3>
-<p><img alt="ip a output" src="/images/net-tools-ip-a.png"></p>
-<h3 id="ip-br-c-a-brief-and-colored-output"><code>ip -br -c a</code> (brief and colored output)<a class="headerlink" href="#ip-br-c-a-brief-and-colored-output" title="Permanent link">&para;</a></h3>
-<p><img alt="ip -br -c a output" src="/images/net-tools-ip-br.png"></p>
-<h2 id="my-favorite-alias">My favorite alias<a class="headerlink" href="#my-favorite-alias" title="Permanent link">&para;</a></h2>
-<p>I often alias <code>ip</code> to provide much prettier output:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">alias</span><span class="w"> </span><span class="nv">ip</span><span class="o">=</span><span class="s1">&#39;ip -br -c&#39;</span>
+  <div><p>You run <code>npx howcode</code> to try out a tool, it doesn't convince you, and you move on. Do this a few times and, without realizing it, you've got hundreds of megabytes sitting in a cache you didn't even know existed.</p>
+<p><img alt="Cleaning up npx's hidden cache" src="/images/limpiar-cache-npx.png"></p>
+<h2 id="the-problem">The problem<a class="headerlink" href="#the-problem" title="Permanent link">&para;</a></h2>
+<p>Every time you run <code>npx &lt;package&gt;</code>, npm downloads the package and stores it in <code>~/.npm/_npx/</code>. This isn't like <code>npm install</code> — there's no <code>package.json</code> or <code>node_modules</code> you can inspect. It's an opaque cache that keeps growing without you noticing.</p>
+<p>After playing around with a few tools, here's what I had:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>npm<span class="w"> </span>cache<span class="w"> </span>npx<span class="w"> </span>ls
+06d0829110b3b3f:<span class="w"> </span>skill
+135b94ef511a5b29:<span class="w"> </span>pi-kanban
+1bf0be162bc0d832:<span class="w"> </span>@mvanhorn/printing-press
+483d2954a4c5190c:<span class="w"> </span>madge
+69c381f8ad94b576:<span class="w"> </span>vitest
+7439c0f00f94bc1a:<span class="w"> </span>snipgrapher
+9126f0a380537b3d:<span class="w"> </span>howcode<span class="w">   </span><span class="c1"># 237 MB for this one alone</span>
 </code></pre></div>
 
-<p>This provides a much nicer and readable output, as you can see in the second image.</p>
-<p>Do you still use the old commands or have you already switched to iproute2?</p></div>
+<h2 id="the-trap">The trap<a class="headerlink" href="#the-trap" title="Permanent link">&para;</a></h2>
+<p>Your first instinct is <code>npm cache npx rm vitest howcode</code> and call it a day. Not so fast:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>npm<span class="w"> </span>cache<span class="w"> </span>npx<span class="w"> </span>rm<span class="w"> </span>vitest<span class="w"> </span>snipgrapher<span class="w"> </span>howcode
+npm<span class="w"> </span>error<span class="w"> </span>code<span class="w"> </span>EUSAGE
+npm<span class="w"> </span>error<span class="w"> </span>Invalid<span class="w"> </span>npx<span class="w"> </span>key<span class="w"> </span>vitest
+</code></pre></div>
+
+<p><code>npm cache npx rm</code> only accepts the hex hash, not the package name. You need to copy the key from the first column:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>npm<span class="w"> </span>cache<span class="w"> </span>npx<span class="w"> </span>rm<span class="w"> </span>9126f0a380537b3d<span class="w"> </span>7439c0f00f94bc1a<span class="w"> </span>69c381f8ad94b576
+Removing<span class="w"> </span>npx<span class="w"> </span>key<span class="w"> </span>at<span class="w"> </span>/home/pcaro/.npm/_npx/9126f0a380537b3d
+Removing<span class="w"> </span>npx<span class="w"> </span>key<span class="w"> </span>at<span class="w"> </span>/home/pcaro/.npm/_npx/7439c0f00f94bc1a
+Removing<span class="w"> </span>npx<span class="w"> </span>key<span class="w"> </span>at<span class="w"> </span>/home/pcaro/.npm/_npx/69c381f8ad94b576
+</code></pre></div>
+
+<p>If you want to nuke everything at once, <code>npm cache clean</code> wipes the entire npm cache (including npx's). More drastic, but faster.</p></div>
   <div class="tag-cloud">
     <p>
-       <a href="/en/tag/redes.html">redes</a>
-      <a href="/en/tag/iproute2.html">iproute2</a>
-      <a href="/en/tag/net-tools.html">net-tools</a>
+       <a href="/en/tag/npm.html">npm</a>
+      <a href="/en/tag/npx.html">npx</a>
       <a href="/en/tag/terminal.html">terminal</a>
+      <a href="/en/tag/tools.html">tools</a>
      </p>
   </div>
 
     <div class="neighbors">
-    <a class="btn float-left" href="/en/rodney-chrome-wayland-error" title="Fixing Rodney Chrome Error on Wayland">
+    <a class="btn float-left" href="/en/extensiones-pi-que-uso" title="The Pi Extensions I Use Daily">
       <i class="fa fa-angle-left"></i> Previous Post
-    </a>
-    <a class="btn float-right" href="/en/os-click-central-descarga-isos" title="os.click: Operating System ISO Download Center">
-      Next Post <i class="fa fa-angle-right"></i>
     </a>
   </div>
    <div class="related-posts">
     <h4>You might enjoy</h4>
     <ul class="related-posts">
-      <li>
-        <a href="/en/docker-http-https-echo"
-          >`docker-http-https-echo`: An Essential Tool for Network Debugging</a
-        >
-      </li>
-      <li>
-        <a href="/en/herramientas-desarrolladores-linea-comandos"
-          >Powerful Command Line Tools for Developers</a
-        >
-      </li>
-      <li>
-        <a href="/en/limpiar-cache-npx"
-          >Cleaning up npx's hidden cache</a
-        >
-      </li>
       <li>
         <a href="/en/pi-de-principiante-a-avanzado"
           >Pi from Beginner to Advanced — The Complete Guide</a
@@ -303,6 +251,21 @@
       <li>
         <a href="/en/neofetch"
           >neofetch</a
+        >
+      </li>
+      <li>
+        <a href="/en/powerline-footer-hidden-gems"
+          >Hidden gems in pi-powerline-footer</a
+        >
+      </li>
+      <li>
+        <a href="/en/net-tools-to-iproute"
+          >From net-tools to iproute2: command equivalents</a
+        >
+      </li>
+      <li>
+        <a href="/en/asciinema-terminal-recorder"
+          >Record and Share your Terminal Sessions with asciinema</a
         >
       </li>
     </ul>

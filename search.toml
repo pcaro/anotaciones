@@ -3,6 +3,11 @@ html_selector = "main"
 base_directory = "/home/runner/work/anotaciones/anotaciones/output"
 
 [[input.files]]
+path = "limpiar-cache-npx.html"
+url = "/limpiar-cache-npx"
+title = "Limpiando la caché escondida de npx"
+
+[[input.files]]
 path = "extensiones-pi-que-uso.html"
 url = "/extensiones-pi-que-uso"
 title = "Las extensiones de pi que uso en mi día a día"
@@ -896,6 +901,11 @@ title = "Corrector ortográfico de firefox 2.0 en castellano"
 path = "primera-anotacion-de-prueba.html"
 url = "/primera-anotacion-de-prueba"
 title = "Primera anotación de prueba"
+
+[[input.files]]
+path = "limpiar-cache-npx-en.html"
+url = "/en/limpiar-cache-npx"
+title = "Cleaning up npx's hidden cache"
 
 [[input.files]]
 path = "extensiones-pi-que-uso-en.html"
