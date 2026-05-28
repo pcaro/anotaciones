@@ -57,15 +57,6 @@ LINKS = (
 
 GITHUB_URL = "http://github.com/pcaro"
 TWITTER_USERNAME = "pcaro"
-# Social
-SOCIAL = (
-    ("Twitter", "http://twitter.com/pcaro"),
-    ("Github", GITHUB_URL),
-    ("Linkedin", "https://www.linkedin.com/in/pcarorevuelta"),
-    ("Facebook", "https://www.facebook.com/pablo.carorevuelta"),
-    ("Email", "mailto:correo@pablocaro.es"),
-)
-
 DEFAULT_PAGINATION = 5
 
 PLUGIN_PATHS = ["plugins", "local_plugins"]
