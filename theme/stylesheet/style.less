@@ -1,9 +1,20 @@
 @import "variables.less";
 
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 html,
 body {
   width: 100%;
   height: 100%;
+}
+
+h1,
+h2,
+h3 {
+  text-wrap: balance;
 }
 
 h1,
@@ -40,6 +51,12 @@ h6 {
   font-size: 1.1em;
 }
 
+p,
+li,
+blockquote {
+  text-wrap: pretty;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -66,6 +83,12 @@ hr {
   border: none;
   margin-top: 40px;
   margin-bottom: 40px;
+}
+
+main img {
+  max-width: 100%;
+  outline: 1px solid rgba(0, 0, 0, 0.1);
+  outline-offset: -1px;
 }
 
 img {
@@ -351,10 +374,17 @@ section#isso-thread section.auth-section p.post-action input {
   vertical-align: baseline;
   border: none;
   border-radius: 0.25em;
+  transition-property: background-color, scale;
+  transition-duration: 150ms;
+  transition-timing-function: ease-out;
 }
 
 a.btn:hover {
   background-color: @btn-hover-color;
+}
+
+a.btn:active {
+  scale: 0.96;
 }
 
 .center,
@@ -425,12 +455,6 @@ ul.social {
     display: inline;
   }
 
-  a:hover {
-    z-index: 2;
-    -webkit-transform: translateY(-2px);
-    transform: translateY(-2px);
-  }
-
   a {
     display: inline-block;
     width: 44px;
@@ -439,6 +463,15 @@ ul.social {
     text-align: center;
     font-size: 0.9em;
     line-height: 44px;
+    transition-property: transform;
+    transition-duration: 150ms;
+    transition-timing-function: ease-out;
+  }
+
+  a:hover {
+    z-index: 2;
+    -webkit-transform: translateY(-2px);
+    transform: translateY(-2px);
   }
 
   a.sc-facebook {
