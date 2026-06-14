@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Anotaciones por Pablo Caro - coding agents</title><link href="https://pablocaro.es/" rel="alternate"></link><link href="https://pablocaro.es/feeds/tags/coding-agents.atom.xml" rel="self"></link><id>https://pablocaro.es/</id><updated>2026-06-10T00:00:00+02:00</updated><subtitle>Anotaciones</subtitle><entry><title>AgentsView: analíticas locales para tus coding agents</title><link href="https://pablocaro.es/agentsview-analytics-agentes" rel="alternate"></link><published>2026-06-10T00:00:00+02:00</published><updated>2026-06-10T00:00:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-06-10:/agentsview-analytics-agentes</id><summary type="html">&lt;p&gt;AgentsView es una herramienta open-source que indexa las sesiones de más de 20 coding agents en una base de datos SQLite local y ofrece dashboards de analíticas, tracking de costes y búsqueda full-text sin enviar datos fuera de tu máquina.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Si usas varios coding agents (Claude Code, Codex, Pi, Cursor...) sabes lo que es perder el hilo de cuánto has gastado, qué herramientas usas más o en qué proyecto pasas más horas. Cada agente guarda sus sesiones en su propio formato y directorio, y hasta ahora no había una forma unificada de verlo todo junto.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/kenn-io/agentsview"&gt;AgentsView&lt;/a&gt; resuelve esto. Es una herramienta open-source (Go + Svelte 5, MIT) que indexa todas tus sesiones de coding agents en una SQLite local y te da dashboards de analíticas, tracking de costes y búsqueda full-text. Sin cuentas, sin telemetría, sin que los datos salgan de tu máquina.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="AgentsView dashboard" src="/images/agentsview-dashboard.png"&gt;&lt;/p&gt;
+&lt;h2 id="instalacion"&gt;Instalación&lt;a class="headerlink" href="#instalacion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# macOS / Linux&lt;/span&gt;
+curl&lt;span class="w"&gt; &lt;/span&gt;-fsSL&lt;span class="w"&gt; &lt;/span&gt;https://agentsview.io/install.sh&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;bash
+
+&lt;span class="c1"&gt;# O con Homebrew (app de escritorio)&lt;/span&gt;
+brew&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;--cask&lt;span class="w"&gt; &lt;/span&gt;agentsview
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Una vez instalado, arrancas el servidor y abre el dashboard en &lt;code&gt;http://127.0.0.1:8080&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;agentsview&lt;span class="w"&gt; &lt;/span&gt;serve
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;En el primer arranque descubre automáticamente las sesiones de todos los agentes que tengas instalados.&lt;/p&gt;
+&lt;h2 id="que-te-muestra"&gt;Qué te muestra&lt;a class="headerlink" href="#que-te-muestra" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Dashboard de costes&lt;/strong&gt;: gasto diario por agente y por modelo, con precios vía LiteLLM. Calcula también los cache tokens (tanto de creación como de lectura).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Mapa de calor de actividad&lt;/strong&gt;: visualiza tus días y horas más productivos.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Búsqueda full-text (FTS5)&lt;/strong&gt;: busca en el contenido de todas tus sesiones pasadas. Ideal para recuperar ese comando o solución que usaste hace semanas.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Visor de sesiones&lt;/strong&gt;: navega sesión por sesión, exporta a HTML o publícala como GitHub Gist.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Estadísticas por proyecto&lt;/strong&gt;: tokens usados, herramientas más frecuentes, duración media de sesión.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Live updates vía SSE&lt;/strong&gt;: si tienes sesiones activas, el dashboard se actualiza solo.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="cli-para-costes"&gt;CLI para costes&lt;a class="headerlink" href="#cli-para-costes" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Además del dashboard web, tiene una CLI muy rápida que reemplaza a &lt;code&gt;ccusage&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Resumen diario de costes (últimos 30 días)&lt;/span&gt;
+agentsview&lt;span class="w"&gt; &lt;/span&gt;usage&lt;span class="w"&gt; &lt;/span&gt;daily
+
+&lt;span class="c1"&gt;# Desglose por modelo&lt;/span&gt;
+agentsview&lt;span class="w"&gt; &lt;/span&gt;usage&lt;span class="w"&gt; &lt;/span&gt;daily&lt;span class="w"&gt; &lt;/span&gt;--breakdown
+
+&lt;span class="c1"&gt;# Filtrar por agente y fechas&lt;/span&gt;
+agentsview&lt;span class="w"&gt; &lt;/span&gt;usage&lt;span class="w"&gt; &lt;/span&gt;daily&lt;span class="w"&gt; &lt;/span&gt;--agent&lt;span class="w"&gt; &lt;/span&gt;claude&lt;span class="w"&gt; &lt;/span&gt;--since&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;2026&lt;/span&gt;-05-01
+
+&lt;span class="c1"&gt;# Salida JSON para scripts&lt;/span&gt;
+agentsview&lt;span class="w"&gt; &lt;/span&gt;usage&lt;span class="w"&gt; &lt;/span&gt;daily&lt;span class="w"&gt; &lt;/span&gt;--json
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Como los datos ya están indexados en SQLite, las consultas son mucho más rápidas que reparsear los archivos de sesión cada vez.&lt;/p&gt;
+&lt;h2 id="agentes-soportados"&gt;Agentes soportados&lt;a class="headerlink" href="#agentes-soportados" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;AgentsView auto-detecta sesiones de más de 20 agentes: Claude Code, Codex, Pi, Cursor, Copilot CLI, Gemini CLI, OpenCode, OpenHands, Qwen Code, Kimi, Warp, Forge, Zencoder y varios más. La lista completa está en el &lt;a href="https://github.com/kenn-io/agentsview#supported-agents"&gt;README&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id="postgresql-para-equipos"&gt;PostgreSQL para equipos&lt;a class="headerlink" href="#postgresql-para-equipos" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Si trabajas en equipo, puedes sincronizar los datos a una PostgreSQL compartida:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;agentsview&lt;span class="w"&gt; &lt;/span&gt;pg&lt;span class="w"&gt; &lt;/span&gt;push&lt;span class="w"&gt; &lt;/span&gt;--watch&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="c1"&gt;# sincronización continua&lt;/span&gt;
+agentsview&lt;span class="w"&gt; &lt;/span&gt;pg&lt;span class="w"&gt; &lt;/span&gt;serve&lt;span class="w"&gt;           &lt;/span&gt;&lt;span class="c1"&gt;# servir UI desde PostgreSQL&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;La UI en modo PostgreSQL es read-only, así que cualquiera del equipo puede ver los dashboards sin modificar datos.&lt;/p&gt;
+&lt;h2 id="lo-que-no-hace"&gt;Lo que no hace&lt;a class="headerlink" href="#lo-que-no-hace" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;No envía datos a ningún servidor externo. El único tráfico saliente opcional es un check de actualizaciones al arrancar (se desactiva con &lt;code&gt;--no-update-check&lt;/code&gt;).&lt;/li&gt;
+&lt;li&gt;No requiere cuenta ni login.&lt;/li&gt;
+&lt;li&gt;No es un reemplazo del agente en sí. Es una capa de analíticas sobre lo que ya tienes.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;AgentsView cubre un vacío real en el ecosistema de coding agents: tener visibilidad unificada sobre cómo y cuánto usas estas herramientas. Si usas más de un agente, merece la pena.&lt;/p&gt;</content><category term="Herramientas"></category><category term="agentsview"></category><category term="ai"></category><category term="coding agents"></category><category term="analytics"></category><category term="claude code"></category><category term="pi"></category><category term="codex"></category><category term="open-source"></category></entry></feed>

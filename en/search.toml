@@ -3,6 +3,16 @@ html_selector = "main"
 base_directory = "/home/runner/work/anotaciones/anotaciones/output/en"
 
 [[input.files]]
+path = "unsloth-docs.html"
+url = "/unsloth-docs"
+title = "Unsloth docs: the clearest documentation on hardware requirements for local LLMs"
+
+[[input.files]]
+path = "agentsview-analytics-agentes.html"
+url = "/agentsview-analytics-agentes"
+title = "AgentsView: local analytics for your coding agents"
+
+[[input.files]]
 path = "gitleaks-deteccion-secrets-git.html"
 url = "/gitleaks-deteccion-secrets-git"
 title = "Detecting secrets in git with gitleaks"
@@ -481,6 +491,16 @@ title = "Django: links in object list"
 path = "settings-vars-processor.html"
 url = "/settings-vars-processor"
 title = "Settings vars processor"
+
+[[input.files]]
+path = "unsloth-docs-es.html"
+url = "/../unsloth-docs"
+title = "Unsloth docs: la documentación más clara sobre requisitos hardware para LLMs locales"
+
+[[input.files]]
+path = "agentsview-analytics-agentes-es.html"
+url = "/../agentsview-analytics-agentes"
+title = "AgentsView: analíticas locales para tus coding agents"
 
 [[input.files]]
 path = "gitleaks-deteccion-secrets-git-es.html"

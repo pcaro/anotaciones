@@ -1,5 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Annotations by Pablo Caro - claude-code</title><link href="/en/" rel="alternate"></link><link href="/en/feeds/tags/claude-code.atom.xml" rel="self"></link><id>/en/</id><updated>2026-05-21T00:00:00+02:00</updated><subtitle>Anotaciones</subtitle><entry><title>What is Pi? — The Minimal Coding Agent That Went Viral</title><link href="/en/que-es-pi-coding-agent" rel="alternate"></link><published>2026-05-21T00:00:00+02:00</published><updated>2026-05-21T00:00:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:None,2026-05-21:/en/que-es-pi-coding-agent</id><summary type="html">&lt;p&gt;Pi is a minimal terminal coding agent. This article explains what it is, how it differs from Claude Code, Codex, OpenCode, and Gemini CLI, and why it went viral.&lt;/p&gt;</summary><content type="html">&lt;p&gt;I've been using &lt;a href="https://pi.dev/"&gt;pi&lt;/a&gt; as my primary coding agent for several months now. It's one of those tools that, once you use it, you can't imagine how you worked before. In this article —the first of a three-part series— I'll explain what pi is, how it differs from other coding agents, and why it has become extremely popular on GitHub. Don't miss &lt;a href="https://pi.dev/"&gt;pi.dev&lt;/a&gt; — the site has great animations that explain the concepts visually.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Annotations by Pablo Caro - claude code</title><link href="/en/" rel="alternate"></link><link href="/en/feeds/tags/claude-code.atom.xml" rel="self"></link><id>/en/</id><updated>2026-06-10T00:00:00+02:00</updated><subtitle>Anotaciones</subtitle><entry><title>AgentsView: local analytics for your coding agents</title><link href="/en/agentsview-analytics-agentes" rel="alternate"></link><published>2026-06-10T00:00:00+02:00</published><updated>2026-06-10T00:00:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:None,2026-06-10:/en/agentsview-analytics-agentes</id><summary type="html">&lt;p&gt;AgentsView is an open-source tool that indexes sessions from 20+ coding agents into a local SQLite database, providing analytics dashboards, cost tracking, and full-text search without sending data off your machine.&lt;/p&gt;</summary><content type="html">&lt;p&gt;If you use multiple coding agents (Claude Code, Codex, Pi, Cursor...) you know the feeling of losing track of what you've spent, which tools you use most, or which project eats up most of your time. Each agent stores sessions in its own format and directory, and until now there was no unified way to see everything together.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/kenn-io/agentsview"&gt;AgentsView&lt;/a&gt; fixes this. It's an open-source tool (Go + Svelte 5, MIT) that indexes all your coding agent sessions into a local SQLite database and gives you analytics dashboards, cost tracking, and full-text search. No accounts, no telemetry, no data leaving your machine.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="AgentsView dashboard" src="/images/agentsview-dashboard.png"&gt;&lt;/p&gt;
+&lt;h2 id="installation"&gt;Installation&lt;a class="headerlink" href="#installation" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# macOS / Linux&lt;/span&gt;
+curl&lt;span class="w"&gt; &lt;/span&gt;-fsSL&lt;span class="w"&gt; &lt;/span&gt;https://agentsview.io/install.sh&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;bash
+
+&lt;span class="c1"&gt;# Or via Homebrew (desktop app)&lt;/span&gt;
+brew&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;--cask&lt;span class="w"&gt; &lt;/span&gt;agentsview
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Once installed, start the server and open the dashboard at &lt;code&gt;http://127.0.0.1:8080&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;agentsview&lt;span class="w"&gt; &lt;/span&gt;serve
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;On first run it automatically discovers sessions from all agents installed on your machine.&lt;/p&gt;
+&lt;h2 id="what-you-get"&gt;What you get&lt;a class="headerlink" href="#what-you-get" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Cost dashboard&lt;/strong&gt;: daily spend by agent and model, priced via LiteLLM. It also accounts for cache tokens (both creation and read).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Activity heatmap&lt;/strong&gt;: visualize your most productive days and hours.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Full-text search (FTS5)&lt;/strong&gt;: search across all your past session content. Perfect for recovering that command or solution you used weeks ago.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Session viewer&lt;/strong&gt;: browse sessions one by one, export to HTML, or publish as a GitHub Gist.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Per-project stats&lt;/strong&gt;: tokens used, most frequent tools, average session duration.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Live updates via SSE&lt;/strong&gt;: if you have active sessions, the dashboard updates automatically.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="cli-for-costs"&gt;CLI for costs&lt;a class="headerlink" href="#cli-for-costs" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Beyond the web dashboard, it has a fast CLI that replaces &lt;code&gt;ccusage&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Daily cost summary (last 30 days)&lt;/span&gt;
+agentsview&lt;span class="w"&gt; &lt;/span&gt;usage&lt;span class="w"&gt; &lt;/span&gt;daily
+
+&lt;span class="c1"&gt;# Per-model breakdown&lt;/span&gt;
+agentsview&lt;span class="w"&gt; &lt;/span&gt;usage&lt;span class="w"&gt; &lt;/span&gt;daily&lt;span class="w"&gt; &lt;/span&gt;--breakdown
+
+&lt;span class="c1"&gt;# Filter by agent and date range&lt;/span&gt;
+agentsview&lt;span class="w"&gt; &lt;/span&gt;usage&lt;span class="w"&gt; &lt;/span&gt;daily&lt;span class="w"&gt; &lt;/span&gt;--agent&lt;span class="w"&gt; &lt;/span&gt;claude&lt;span class="w"&gt; &lt;/span&gt;--since&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;2026&lt;/span&gt;-05-01
+
+&lt;span class="c1"&gt;# JSON output for scripting&lt;/span&gt;
+agentsview&lt;span class="w"&gt; &lt;/span&gt;usage&lt;span class="w"&gt; &lt;/span&gt;daily&lt;span class="w"&gt; &lt;/span&gt;--json
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Since data is already indexed in SQLite, queries are way faster than re-parsing session files every time.&lt;/p&gt;
+&lt;h2 id="supported-agents"&gt;Supported agents&lt;a class="headerlink" href="#supported-agents" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;AgentsView auto-discovers sessions from 20+ agents: Claude Code, Codex, Pi, Cursor, Copilot CLI, Gemini CLI, OpenCode, OpenHands, Qwen Code, Kimi, Warp, Forge, Zencoder, and many more. The full list is in the &lt;a href="https://github.com/kenn-io/agentsview#supported-agents"&gt;README&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id="postgresql-for-teams"&gt;PostgreSQL for teams&lt;a class="headerlink" href="#postgresql-for-teams" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;If you work in a team, you can sync data to a shared PostgreSQL instance:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;agentsview&lt;span class="w"&gt; &lt;/span&gt;pg&lt;span class="w"&gt; &lt;/span&gt;push&lt;span class="w"&gt; &lt;/span&gt;--watch&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="c1"&gt;# continuous sync&lt;/span&gt;
+agentsview&lt;span class="w"&gt; &lt;/span&gt;pg&lt;span class="w"&gt; &lt;/span&gt;serve&lt;span class="w"&gt;           &lt;/span&gt;&lt;span class="c1"&gt;# serve UI from PostgreSQL&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The PostgreSQL-mode UI is read-only, so anyone on the team can view dashboards without modifying data.&lt;/p&gt;
+&lt;h2 id="what-it-doesnt-do"&gt;What it doesn't do&lt;a class="headerlink" href="#what-it-doesnt-do" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;It doesn't send data to any external server. The only optional outbound traffic is an update check on startup (disabled with &lt;code&gt;--no-update-check&lt;/code&gt;).&lt;/li&gt;
+&lt;li&gt;No account or login required.&lt;/li&gt;
+&lt;li&gt;It doesn't replace the agent itself. It's an analytics layer on top of what you already have.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;AgentsView fills a real gap in the coding agent ecosystem: unified visibility into how and how much you use these tools. If you use more than one agent, it's worth installing.&lt;/p&gt;</content><category term="Tools"></category><category term="agentsview"></category><category term="ai"></category><category term="coding agents"></category><category term="analytics"></category><category term="claude code"></category><category term="pi"></category><category term="codex"></category><category term="open-source"></category></entry><entry><title>What is Pi? — The Minimal Coding Agent That Went Viral</title><link href="/en/que-es-pi-coding-agent" rel="alternate"></link><published>2026-05-21T00:00:00+02:00</published><updated>2026-05-21T00:00:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:None,2026-05-21:/en/que-es-pi-coding-agent</id><summary type="html">&lt;p&gt;Pi is a minimal terminal coding agent. This article explains what it is, how it differs from Claude Code, Codex, OpenCode, and Gemini CLI, and why it went viral.&lt;/p&gt;</summary><content type="html">&lt;p&gt;I've been using &lt;a href="https://pi.dev/"&gt;pi&lt;/a&gt; as my primary coding agent for several months now. It's one of those tools that, once you use it, you can't imagine how you worked before. In this article —the first of a three-part series— I'll explain what pi is, how it differs from other coding agents, and why it has become extremely popular on GitHub. Don't miss &lt;a href="https://pi.dev/"&gt;pi.dev&lt;/a&gt; — the site has great animations that explain the concepts visually.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Coding agent comparison" src="/images/comparativa-agentes-pi.png"&gt;&lt;/p&gt;
 &lt;h2 id="the-philosophy-less-is-more"&gt;The philosophy: less is more&lt;a class="headerlink" href="#the-philosophy-less-is-more" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Pi defines itself as &lt;em&gt;"a minimal terminal coding harness"&lt;/em&gt;. And when they say minimal, they mean it.&lt;/p&gt;

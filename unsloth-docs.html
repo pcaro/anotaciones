@@ -1,0 +1,523 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/stylesheet/style.min.css">
+
+    <link id="dark-theme-style" rel="stylesheet" type="text/css"
+        disabled="disabled"
+    href="https://pablocaro.es/theme/stylesheet/dark-theme.min.css">
+
+    <link id="pygments-dark-theme" rel="stylesheet" type="text/css"
+            disabled="disabled"
+          href="https://pablocaro.es/theme/pygments/github.min.css">
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+          href="https://pablocaro.es/theme/pygments/github.min.css">
+
+
+  <link rel="stylesheet"
+        type="text/css"
+        href="https://pablocaro.es/theme/stork/stork.css" />
+
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/font-awesome/css/solid.css">
+
+  <link rel="stylesheet" type="text/css" href="/extras/custom.css">
+
+  <link rel="shortcut icon" href="/theme/img/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/theme/img/favicon.ico" type="image/x-icon">
+
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#333333">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#333333">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Microsoft EDGE -->
+  <meta name="msapplication-TileColor" content="#333333">
+
+  <link href="https://pablocaro.es/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Anotaciones por Pablo Caro Atom">
+
+  <link href="https://pablocaro.es/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Anotaciones por Pablo Caro RSS">
+
+<script data-goatcounter="https://pcaro.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Pablo Caro" />
+<meta name="description" content="La documentación de Unsloth es una referencia imprescindible para saber qué hardware necesitas para ejecutar y hacer fine-tuning de modelos locales. Tablas de VRAM, requisitos por GPU, y guías paso a paso para cada modelo." />
+<meta name="keywords" content="llm, unsloth, hardware, local-llm, documentacion, vram" />
+
+<link
+  rel="alternate"
+  href="https://pablocaro.es/unsloth-docs"
+  hreflang="es"
+/>
+<link
+  rel="alternate"
+  href="https://pablocaro.es/en/unsloth-docs"
+  hreflang="en"
+/>
+    <meta property="og:site_name" content="Anotaciones por Pablo Caro"/>
+  <meta property="og:title" content="Unsloth docs: la documentación más clara sobre requisitos hardware para LLMs locales"/>
+  <meta property="og:description" content="La documentación de Unsloth es una referencia imprescindible para saber qué hardware necesitas para ejecutar y hacer fine-tuning de modelos locales. Tablas de VRAM, requisitos por GPU, y guías paso a paso para cada modelo."/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://pablocaro.es/unsloth-docs"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2026-06-14 00:00:00+02:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://pablocaro.es/author/pablo-caro.html">
+  <meta property="article:section" content="Herramientas"/>
+  <meta property="article:tag" content="llm"/>
+  <meta property="article:tag" content="unsloth"/>
+  <meta property="article:tag" content="hardware"/>
+  <meta property="article:tag" content="local-llm"/>
+  <meta property="article:tag" content="documentacion"/>
+  <meta property="article:tag" content="vram"/>
+  <meta property="og:image" content="/theme/img/profile.png">
+ 
+  <title>Anotaciones por Pablo Caro &ndash; Unsloth docs: la documentación más clara sobre requisitos hardware para LLMs locales</title>
+
+
+</head>
+<body class="light-theme">
+
+<aside>
+  <div>
+    <a href="https://pablocaro.es/">
+      <img src="/theme/img/profile.png" alt="Anotaciones" title="Anotaciones" />
+    </a>
+
+    <h1>
+      <a href="https://pablocaro.es/">Anotaciones</a>
+    </h1>
+
+    <p>Anotaciones</p>
+     <p style="font-size: 0.9em; font-style: italic; margin-bottom: 20px">
+      Volcando mi cerebro a internet. Colección de apuntes técnicos y soluciones que escribo para mi 'yo' del futuro, pero que comparto por si a alguien más le ahorran un dolor de cabeza.
+    </p>
+      <div class="stork">
+      <label for="sidebar-search" class="sr-only"
+        >Search articles</label
+      >
+      <div class="stork-input-wrap">
+      <input
+        id="sidebar-search"
+        class="stork-input"
+        type="text"
+        autocomplete="off"
+        name="q"
+        data-stork="sitesearch"
+        placeholder="Buscar..."
+        onclick="loadStorkIndex()"
+      />
+      </div>
+      <div class="stork-output" data-stork="sitesearch-output"></div>
+    </div>
+      <nav>
+      <ul class="list">
+             <li>
+          <a target="_self" href="http://x.com/pcaro">pcaro@X</a>
+        </li>
+        <li>
+          <a target="_self" href="https://github.com/pcaro/">pcaro@Github</a>
+        </li>
+        <li>
+          <a target="_self" href="https://www.linkedin.com/in/pcarorevuelta/">LinkedIn</a>
+        </li>
+      </ul>
+    </nav>
+      <nav class="sidebar-categories" aria-label="Categorías">
+                                                                                                                                 <a
+        href="https://pablocaro.es/category/ia.html"
+        class="sidebar-category"
+        title="ia (13)"
+      >
+        <img
+          src="https://pablocaro.es/images/categories/ia.png"
+          alt="ia"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">ia</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/programacion.html"
+        class="sidebar-category"
+        title="Programación (78)"
+      >
+        <img
+          src="https://pablocaro.es/images/categories/programacion.png"
+          alt="Programación"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Programación</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/linux.html"
+        class="sidebar-category"
+        title="Linux (12)"
+      >
+        <img
+          src="https://pablocaro.es/images/categories/linux.png"
+          alt="Linux"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Linux</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/herramientas.html"
+        class="sidebar-category"
+        title="Herramientas (26)"
+      >
+        <img
+          src="https://pablocaro.es/images/categories/herramientas.png"
+          alt="Herramientas"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Herramientas</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/infraestructura.html"
+        class="sidebar-category"
+        title="Infraestructura (49)"
+      >
+        <img
+          src="https://pablocaro.es/images/categories/infraestructura.png"
+          alt="Infraestructura"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Infraestructura</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/documentacion.html"
+        class="sidebar-category"
+        title="Documentación (1)"
+      >
+        <img
+          src="https://pablocaro.es/images/categories/documentacion.png"
+          alt="Documentación"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Documentación</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/finanzas.html"
+        class="sidebar-category"
+        title="Finanzas (1)"
+      >
+        <img
+          src="https://pablocaro.es/images/categories/finanzas.png"
+          alt="Finanzas"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Finanzas</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/personal.html"
+        class="sidebar-category"
+        title="Personal (3)"
+      >
+        <img
+          src="https://pablocaro.es/images/categories/personal.png"
+          alt="Personal"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Personal</span>
+      </a>
+    </nav>
+  </div>
+
+</aside>
+  <main>
+
+<nav>
+  <a href="https://pablocaro.es/">Inicio</a>
+
+  <a href="/archives.html">Archivo</a>
+  <a href="/categories.html">Categorías</a>
+  <a href="/tags.html">Etiquetas</a>
+  <a href="/search.html">Búsqueda</a>
+  <a href="/en/">English</a>
+   <a href="javascript:void(0)" onclick="theme.switch('dark')">🌙</a>
+  <a href="javascript:void(0)" onclick="theme.switch('light')">☀</a>
+   <a href="https://pablocaro.es/feeds/all.rss.xml">RSS</a>
+</nav>
+
+<article class="single">
+  <header>
+      <div class="translations">
+            <a href="https://pablocaro.es/en/unsloth-docs">Read in English</a>
+    </div>
+
+    <h1 id="unsloth-docs">Unsloth docs: la documentación más clara sobre requisitos hardware para LLMs locales</h1>
+    <p>
+      Publicado el 14 de June de 2026 en <a href="https://pablocaro.es/category/herramientas.html">Herramientas</a>     </p>
+  </header>
+
+ 
+  <div><p><img alt="Unsloth docs" src="/images/unsloth-docs.png"></p>
+<p>Cuando te empiezas a interesar por ejecutar LLMs en local, la primera pregunta es siempre la misma: ¿qué hardware necesito? Y no es fácil encontrar una respuesta clara. Cada modelo publica sus requisitos en su Hugging Face, en blogs, en papers... La documentación de <a href="https://unsloth.ai/docs">Unsloth</a> hace un trabajo excelente centralizando y organizando esta información.</p>
+<h2 id="tablas-de-vram-para-fine-tuning">Tablas de VRAM para fine-tuning<a class="headerlink" href="#tablas-de-vram-para-fine-tuning" title="Permanent link">&para;</a></h2>
+<p>Una de las páginas más útiles es la de <a href="https://unsloth.ai/docs/get-started/fine-tuning-for-beginners/unsloth-requirements">requisitos del sistema</a>, que incluye una tabla directa con VRAM necesaria para fine-tuning según el tamaño del modelo:</p>
+<table>
+<thead>
+<tr>
+<th>Parámetros</th>
+<th>QLoRA (4-bit)</th>
+<th>LoRA (16-bit)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>3B</td>
+<td>3.5 GB</td>
+<td>8 GB</td>
+</tr>
+<tr>
+<td>7B</td>
+<td>5 GB</td>
+<td>19 GB</td>
+</tr>
+<tr>
+<td>8B</td>
+<td>6 GB</td>
+<td>22 GB</td>
+</tr>
+<tr>
+<td>14B</td>
+<td>8.5 GB</td>
+<td>33 GB</td>
+</tr>
+<tr>
+<td>27B</td>
+<td>22 GB</td>
+<td>64 GB</td>
+</tr>
+<tr>
+<td>32B</td>
+<td>26 GB</td>
+<td>76 GB</td>
+</tr>
+<tr>
+<td>70B</td>
+<td>41 GB</td>
+<td>164 GB</td>
+</tr>
+<tr>
+<td>405B</td>
+<td>237 GB</td>
+<td>950 GB</td>
+</tr>
+</tbody>
+</table>
+<p>Esto te permite hacer cálculos rápidos: con una RTX 3090/4090 de 24 GB puedes hacer QLoRA de modelos de hasta ~27B parámetros.</p>
+<p>Recomiendan mantener el batch size en 1, 2 o 3 para no OOMear. Y <a href="https://unsloth.ai/docs/basics/unsloth-benchmarks#context-length-benchmarks">aquí</a> tienen benchmarks de context length.</p>
+<h2 id="guias-por-modelo-con-requisitos-especificos">Guías por modelo con requisitos específicos<a class="headerlink" href="#guias-por-modelo-con-requisitos-especificos" title="Permanent link">&para;</a></h2>
+<p>Cada modelo que soportan tiene su propia guía con requisitos detallados. Algunos ejemplos:</p>
+<ul>
+<li><strong>Gemma 4</strong>: la 12B corre en 8 GB RAM (4-bit), la 26B-A4B necesita 18 GB y la 31B necesita 20 GB.</li>
+<li><strong>Qwen3.5</strong>: la serie Small (hasta 9B) funciona con <strong>12 GB de RAM/VRAM</strong>. La 35B-A3B cabe en 22 GB.</li>
+<li><strong>Qwen3.6</strong>: la 27B corre en 18 GB, la 35B-A3B en 22 GB.</li>
+<li><strong>Kimi K2.5</strong>: necesitas ~240 GB+ para 10+ tokens/s con cuantización 4-bit. El modelo completo en FP16 ocupa 630 GB.</li>
+<li><strong>Kimi K2.6</strong>: la cuantización 2-bit dinámica necesita 350 GB+.</li>
+<li><strong>MiniMax M3</strong>: mínimo 133 GB RAM para la cuantización más ligera, recomendado 159 GB.</li>
+<li><strong>GLM-4.6 (355B)</strong>: recomiendan 205 GB+ para 5 tokens/s.</li>
+</ul>
+<h2 id="lo-que-hace-buena-esta-documentacion">Lo que hace buena esta documentación<a class="headerlink" href="#lo-que-hace-buena-esta-documentacion" title="Permanent link">&para;</a></h2>
+<p>Varias cosas que la hacen especialmente útil:</p>
+<ul>
+<li><strong>Tablas directas</strong>: sin rodeos. Necesitas saber VRAM para un modelo de X parámetros con Y método de fine-tuning? La tabla está ahí.</li>
+<li><strong>Guías por modelo</strong>: cada modelo tiene su página con tabla de requisitos, instrucciones de instalación con llama.cpp y ejemplos de uso.</li>
+<li><strong>Cubre inferencia y fine-tuning</strong>: no solo para entrenar, también para ejecutar modelos.</li>
+<li><strong>Multiplataforma</strong>: requisitos específicos para Windows (con y sin WSL), macOS (Intel y Apple Silicon), Linux, y CPU-only.</li>
+<li><strong>Cuantizaciones</strong>: explican qué tamaño ocupa cada cuantización (GGUF) y qué hardware necesitas para cada una. Consejo recurrente: <em>tu RAM + VRAM combinada debe superar el tamaño del archivo cuantizado que descargues</em>.</li>
+<li><strong>MTP (Multi-Token Prediction)</strong>: incluyen requisitos específicos para esta técnica que predice varios tokens futuros en paralelo (~1 GB extra sobre la GGUF normal).</li>
+</ul>
+<p>Todo está en <a href="https://unsloth.ai/docs">unsloth.ai/docs</a>. Si estás mirando hardware para montar un equipo de inferencia local, es la primera página que deberías visitar.</p>
+<p><em>Fuente original</em>: <a href="https://unsloth.ai/docs">Unsloth Documentation</a></p></div>
+  <div class="tag-cloud">
+    <p>
+       <a href="https://pablocaro.es/tag/llm.html">llm</a>
+      <a href="https://pablocaro.es/tag/unsloth.html">unsloth</a>
+      <a href="https://pablocaro.es/tag/hardware.html">hardware</a>
+      <a href="https://pablocaro.es/tag/local-llm.html">local-llm</a>
+      <a href="https://pablocaro.es/tag/documentacion.html">documentacion</a>
+      <a href="https://pablocaro.es/tag/vram.html">vram</a>
+     </p>
+  </div>
+
+    <div class="neighbors">
+    <a class="btn float-left" href="https://pablocaro.es/agentsview-analytics-agentes" title="AgentsView: analíticas locales para tus coding agents">
+      <i class="fa fa-angle-left"></i> Artículo anterior
+    </a>
+  </div>
+   <div class="related-posts">
+    <h4>Te puede gustar</h4>
+    <ul class="related-posts">
+      <li>
+        <a href="https://pablocaro.es/programming-as-theory-building-naur"
+          >Programming as Theory Building: el artículo de Peter Naur</a
+        >
+      </li>
+      <li>
+        <a href="https://pablocaro.es/agent-browser-navegacion-agentes"
+          >Agent Browser: Navegación para Agentes</a
+        >
+      </li>
+      <li>
+        <a href="https://pablocaro.es/muerte-cacharritos"
+          >La subida de precio de los SBC (Single Board Computers)</a
+        >
+      </li>
+      <li>
+        <a href="https://pablocaro.es/determinar-slots-ram-uso-linux"
+          >Determinar slots de RAM en uso en Linux</a
+        >
+      </li>
+      <li>
+        <a href="https://pablocaro.es/documentacion-tecnica-sphinx-paver-cog"
+          >Documentación técnica con Sphinx, Paver y Cog</a
+        >
+      </li>
+    </ul>
+  </div>
+  <!-- Disqus -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'anotaciones';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>
+    Por favor, habilita JavaScript para ver los comentarios.
+</noscript>
+<!-- End Disqus -->
+ </article>
+
+<footer>
+<p>
+  &copy; 2026  - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+  Construido con <a
+    href="http://getpelican.com"
+    target="_blank"
+    >Pelican</a
+  > usando el tema <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a
+  >    <script
+    id="dark-theme-script"
+    src="https://pablocaro.es/theme/dark-theme/dark-theme.min.js"
+    data-enable-auto-detect-theme="False"
+    data-default-theme="light"
+    type="text/javascript"
+  ></script>
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/3.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/3.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Anotaciones por Pablo Caro ",
+  "url" : "https://pablocaro.es",
+  "image": "/theme/img/profile.png",
+  "description": ""
+}
+</script>  <script src="https://files.stork-search.net/releases/v1.6.0/stork.js"></script>
+  <script>
+    window.storkIndexLoaded = false;
+    window.loadStorkIndex = function () {
+      if (window.storkIndexLoaded) {
+        return;
+      }
+      if (typeof stork === 'undefined') {
+        setTimeout(window.loadStorkIndex, 100);
+        return;
+      }
+      var url = "https://pablocaro.es/search-index.st";
+      var opts = { showProgress: false };
+      stork.register("sitesearch", url, opts);
+      try {
+        stork.register("sitesearch-page", url, opts);
+      } catch (e) {
+        // Search page input not in DOM on this page — index still registered
+      }
+      window.storkIndexLoaded = true;
+    }
+  </script>
+
+
+  <button id="back-to-top" aria-label="Back to top" title="Back to top">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <path d="M10 16V4m0 0L5 9m5-5l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+  <script>
+  (function() {
+    var btn = document.getElementById('back-to-top');
+    if (!btn) return;
+    var ticking = false;
+    function onScroll() {
+      if (!ticking) {
+        requestAnimationFrame(function() {
+          btn.classList.toggle('visible', window.scrollY > 500);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }
+    btn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    window.addEventListener('scroll', onScroll, { passive: true });
+  })();
+  </script>
+</body>
+</html>

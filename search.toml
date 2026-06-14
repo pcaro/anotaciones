@@ -3,6 +3,16 @@ html_selector = "main"
 base_directory = "/home/runner/work/anotaciones/anotaciones/output"
 
 [[input.files]]
+path = "unsloth-docs.html"
+url = "/unsloth-docs"
+title = "Unsloth docs: la documentación más clara sobre requisitos hardware para LLMs locales"
+
+[[input.files]]
+path = "agentsview-analytics-agentes.html"
+url = "/agentsview-analytics-agentes"
+title = "AgentsView: analíticas locales para tus coding agents"
+
+[[input.files]]
 path = "gitleaks-deteccion-secrets-git.html"
 url = "/gitleaks-deteccion-secrets-git"
 title = "Detectando secretos en git con gitleaks"
@@ -906,6 +916,16 @@ title = "Corrector ortográfico de firefox 2.0 en castellano"
 path = "primera-anotacion-de-prueba.html"
 url = "/primera-anotacion-de-prueba"
 title = "Primera anotación de prueba"
+
+[[input.files]]
+path = "unsloth-docs-en.html"
+url = "/en/unsloth-docs"
+title = "Unsloth docs: the clearest documentation on hardware requirements for local LLMs"
+
+[[input.files]]
+path = "agentsview-analytics-agentes-en.html"
+url = "/en/agentsview-analytics-agentes"
+title = "AgentsView: local analytics for your coding agents"
 
 [[input.files]]
 path = "gitleaks-deteccion-secrets-git-en.html"

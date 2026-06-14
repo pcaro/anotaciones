@@ -1,0 +1,534 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="/en/theme/stylesheet/style.min.css">
+
+    <link id="dark-theme-style" rel="stylesheet" type="text/css"
+        disabled="disabled"
+    href="/en/theme/stylesheet/dark-theme.min.css">
+
+    <link id="pygments-dark-theme" rel="stylesheet" type="text/css"
+            disabled="disabled"
+          href="/en/theme/pygments/github.min.css">
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+          href="/en/theme/pygments/github.min.css">
+
+
+  <link rel="stylesheet"
+        type="text/css"
+        href="/en/theme/stork/stork.css" />
+
+  <link rel="stylesheet" type="text/css" href="/en/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="/en/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="/en/theme/font-awesome/css/solid.css">
+
+  <link rel="stylesheet" type="text/css" href="/extras/custom.css">
+
+  <link rel="shortcut icon" href="/theme/img/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/theme/img/favicon.ico" type="image/x-icon">
+
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#333333">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#333333">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Microsoft EDGE -->
+  <meta name="msapplication-TileColor" content="#333333">
+
+  <link href="/en/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Annotations by Pablo Caro Atom">
+
+  <link href="/en/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Annotations by Pablo Caro RSS">
+
+<script data-goatcounter="https://pcaro.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Pablo Caro" />
+<meta name="description" content="Unsloth&#39;s documentation is an essential reference for knowing what hardware you need to run and fine-tune local models. VRAM tables, GPU requirements, and step-by-step guides for each model." />
+<meta name="keywords" content="llm, unsloth, hardware, local-llm, documentation, vram" />
+
+<link
+  rel="alternate"
+  href="/en/unsloth-docs"
+  hreflang="en"
+/>
+<link
+  rel="alternate"
+  href="/en/../unsloth-docs"
+  hreflang="es"
+/>
+    <meta property="og:site_name" content="Annotations by Pablo Caro"/>
+  <meta property="og:title" content="Unsloth docs: the clearest documentation on hardware requirements for local LLMs"/>
+  <meta property="og:description" content="Unsloth&#39;s documentation is an essential reference for knowing what hardware you need to run and fine-tune local models. VRAM tables, GPU requirements, and step-by-step guides for each model."/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="/en/unsloth-docs"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2026-06-14 00:00:00+02:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="/en/author/pablo-caro.html">
+  <meta property="article:section" content="Herramientas"/>
+  <meta property="article:tag" content="llm"/>
+  <meta property="article:tag" content="unsloth"/>
+  <meta property="article:tag" content="hardware"/>
+  <meta property="article:tag" content="local-llm"/>
+  <meta property="article:tag" content="documentation"/>
+  <meta property="article:tag" content="vram"/>
+  <meta property="og:image" content="/theme/img/profile.png">
+ 
+  <title>Annotations by Pablo Caro &ndash; Unsloth docs: the clearest documentation on hardware requirements for local LLMs</title>
+
+
+</head>
+<body class="light-theme">
+
+<aside>
+  <div>
+    <a href="/en/">
+      <img src="/theme/img/profile.png" alt="Anotaciones" title="Anotaciones" />
+    </a>
+
+    <h1>
+      <a href="/en/">Anotaciones</a>
+    </h1>
+
+    <p>Anotaciones</p>
+     <p style="font-size: 0.9em; font-style: italic; margin-bottom: 20px">
+      Dumping my brain onto the internet. A collection of technical notes and solutions written for my future self, shared here in case they save someone else a headache.
+    </p>
+      <div class="stork">
+      <label for="sidebar-search" class="sr-only"
+        >Search articles</label
+      >
+      <div class="stork-input-wrap">
+      <input
+        id="sidebar-search"
+        class="stork-input"
+        type="text"
+        autocomplete="off"
+        name="q"
+        data-stork="sitesearch"
+        placeholder="Search..."
+        onclick="loadStorkIndex()"
+      />
+      </div>
+      <div class="stork-output" data-stork="sitesearch-output"></div>
+    </div>
+      <nav>
+      <ul class="list">
+             <li>
+          <a target="_self" href="http://x.com/pcaro">pcaro@X</a>
+        </li>
+        <li>
+          <a target="_self" href="https://github.com/pcaro/">pcaro@Github</a>
+        </li>
+        <li>
+          <a target="_self" href="https://www.linkedin.com/in/pcarorevuelta/">LinkedIn</a>
+        </li>
+      </ul>
+    </nav>
+      <nav class="sidebar-categories" aria-label="Categories">
+                                                                                                                                                           <a
+        href="/en/category/ia.html"
+        class="sidebar-category"
+        title="ia (13)"
+      >
+        <img
+          src="/en/images/categories/ia.png"
+          alt="ia"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">ia</span>
+      </a>
+      <a
+        href="/en/category/programacion.html"
+        class="sidebar-category"
+        title="Programación (28)"
+      >
+        <img
+          src="/en/images/categories/programacion.png"
+          alt="Programación"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Programación</span>
+      </a>
+      <a
+        href="/en/category/linux.html"
+        class="sidebar-category"
+        title="Linux (11)"
+      >
+        <img
+          src="/en/images/categories/linux.png"
+          alt="Linux"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Linux</span>
+      </a>
+      <a
+        href="/en/category/herramientas.html"
+        class="sidebar-category"
+        title="Herramientas (23)"
+      >
+        <img
+          src="/en/images/categories/herramientas.png"
+          alt="Herramientas"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Herramientas</span>
+      </a>
+      <a
+        href="/en/category/infraestructura.html"
+        class="sidebar-category"
+        title="Infraestructura (15)"
+      >
+        <img
+          src="/en/images/categories/infraestructura.png"
+          alt="Infraestructura"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Infraestructura</span>
+      </a>
+      <a
+        href="/en/category/documentacion.html"
+        class="sidebar-category"
+        title="Documentación (1)"
+      >
+        <img
+          src="/en/images/categories/documentacion.png"
+          alt="Documentación"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Documentación</span>
+      </a>
+      <a
+        href="/en/category/finanzas.html"
+        class="sidebar-category"
+        title="Finanzas (1)"
+      >
+        <img
+          src="/en/images/categories/finanzas.png"
+          alt="Finanzas"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Finanzas</span>
+      </a>
+      <a
+        href="/en/category/personal.html"
+        class="sidebar-category"
+        title="Personal (2)"
+      >
+        <img
+          src="/en/images/categories/personal.png"
+          alt="Personal"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Personal</span>
+      </a>
+      <a
+        href="/en/category/programming.html"
+        class="sidebar-category"
+        title="Programming (1)"
+      >
+        <span class="sidebar-category-icon">Pr</span>
+        <span class="sidebar-category-label">Programming</span>
+      </a>
+      <a
+        href="/en/category/tools.html"
+        class="sidebar-category"
+        title="Tools (3)"
+      >
+        <span class="sidebar-category-icon">To</span>
+        <span class="sidebar-category-label">Tools</span>
+      </a>
+    </nav>
+  </div>
+
+</aside>
+  <main>
+
+<nav>
+  <a href="/en/">Home</a>
+
+  <a href="/en/archives.html">Archives</a>
+  <a href="/en/categories.html">Categories</a>
+  <a href="/en/tags.html">Tags</a>
+  <a href="/en/search.html">Search</a>
+  <a href="/">Español</a>
+   <a href="javascript:void(0)" onclick="theme.switch('dark')">🌙</a>
+  <a href="javascript:void(0)" onclick="theme.switch('light')">☀</a>
+   <a href="/en/feeds/all.rss.xml">RSS</a>
+</nav>
+
+<article class="single">
+  <header>
+      <div class="translations">
+            <a href="/en/../unsloth-docs">Leer en español</a>
+    </div>
+
+    <h1 id="unsloth-docs">Unsloth docs: the clearest documentation on hardware requirements for local LLMs</h1>
+    <p>
+      Posted on Sun, 14 Jun 2026 in <a href="/en/category/herramientas.html">Herramientas</a>     </p>
+  </header>
+
+ 
+  <div><p><img alt="Unsloth docs" src="/images/unsloth-docs.png"></p>
+<p>When you start getting interested in running LLMs locally, the first question is always the same: what hardware do I need? And it's not easy to find a clear answer. Each model publishes its requirements on Hugging Face, blogs, papers... <a href="https://unsloth.ai/docs">Unsloth</a>'s documentation does an excellent job centralizing and organizing this information.</p>
+<h2 id="vram-tables-for-fine-tuning">VRAM tables for fine-tuning<a class="headerlink" href="#vram-tables-for-fine-tuning" title="Permanent link">&para;</a></h2>
+<p>One of the most useful pages is the <a href="https://unsloth.ai/docs/get-started/fine-tuning-for-beginners/unsloth-requirements">system requirements</a>, which includes a straightforward VRAM table for fine-tuning by model size:</p>
+<table>
+<thead>
+<tr>
+<th>Parameters</th>
+<th>QLoRA (4-bit)</th>
+<th>LoRA (16-bit)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>3B</td>
+<td>3.5 GB</td>
+<td>8 GB</td>
+</tr>
+<tr>
+<td>7B</td>
+<td>5 GB</td>
+<td>19 GB</td>
+</tr>
+<tr>
+<td>8B</td>
+<td>6 GB</td>
+<td>22 GB</td>
+</tr>
+<tr>
+<td>14B</td>
+<td>8.5 GB</td>
+<td>33 GB</td>
+</tr>
+<tr>
+<td>27B</td>
+<td>22 GB</td>
+<td>64 GB</td>
+</tr>
+<tr>
+<td>32B</td>
+<td>26 GB</td>
+<td>76 GB</td>
+</tr>
+<tr>
+<td>70B</td>
+<td>41 GB</td>
+<td>164 GB</td>
+</tr>
+<tr>
+<td>405B</td>
+<td>237 GB</td>
+<td>950 GB</td>
+</tr>
+</tbody>
+</table>
+<p>This lets you make quick calculations: with an RTX 3090/4090 (24 GB) you can QLoRA fine-tune models up to ~27B parameters.</p>
+<p>They recommend keeping batch size at 1, 2, or 3 to avoid OOM errors. And <a href="https://unsloth.ai/docs/basics/unsloth-benchmarks#context-length-benchmarks">here</a> they have context length benchmarks.</p>
+<h2 id="per-model-guides-with-specific-requirements">Per-model guides with specific requirements<a class="headerlink" href="#per-model-guides-with-specific-requirements" title="Permanent link">&para;</a></h2>
+<p>Each supported model has its own guide with detailed requirements. A few examples:</p>
+<ul>
+<li><strong>Gemma 4</strong>: the 12B runs on 8 GB RAM (4-bit), the 26B-A4B needs 18 GB, and the 31B needs 20 GB.</li>
+<li><strong>Qwen3.5</strong>: the Small series (up to 9B) runs on <strong>12 GB RAM/VRAM</strong>. The 35B-A3B fits in 22 GB.</li>
+<li><strong>Qwen3.6</strong>: the 27B runs on 18 GB, the 35B-A3B on 22 GB.</li>
+<li><strong>Kimi K2.5</strong>: you need ~240 GB+ for 10+ tokens/s with 4-bit quantization. The full FP16 model is 630 GB.</li>
+<li><strong>Kimi K2.6</strong>: dynamic 2-bit quantization needs 350 GB+.</li>
+<li><strong>MiniMax M3</strong>: minimum 133 GB RAM for the lightest quantization, 159 GB recommended.</li>
+<li><strong>GLM-4.6 (355B)</strong>: they recommend 205 GB+ for 5 tokens/s.</li>
+</ul>
+<h2 id="what-makes-this-documentation-great">What makes this documentation great<a class="headerlink" href="#what-makes-this-documentation-great" title="Permanent link">&para;</a></h2>
+<p>Several things make it especially useful:</p>
+<ul>
+<li><strong>Straightforward tables</strong>: no fluff. Need to know VRAM for an X-parameter model with Y fine-tuning method? The table is right there.</li>
+<li><strong>Per-model guides</strong>: each model has its own page with requirement tables, llama.cpp installation instructions, and usage examples.</li>
+<li><strong>Covers inference and fine-tuning</strong>: not just for training, but also for running models.</li>
+<li><strong>Cross-platform</strong>: specific requirements for Windows (with and without WSL), macOS (Intel and Apple Silicon), Linux, and CPU-only.</li>
+<li><strong>Quantizations</strong>: they explain the size of each quantization (GGUF) and what hardware you need for each. Recurring tip: <em>your combined RAM + VRAM must exceed the size of the quantized file you download</em>.</li>
+<li><strong>MTP (Multi-Token Prediction)</strong>: they include specific requirements for this technique that predicts several future tokens in parallel (~1 GB extra over regular GGUF).</li>
+</ul>
+<p>Everything is at <a href="https://unsloth.ai/docs">unsloth.ai/docs</a>. If you're looking at hardware for a local inference setup, it's the first page you should visit.</p>
+<p><em>Original source</em>: <a href="https://unsloth.ai/docs">Unsloth Documentation</a></p></div>
+  <div class="tag-cloud">
+    <p>
+       <a href="/en/tag/llm.html">llm</a>
+      <a href="/en/tag/unsloth.html">unsloth</a>
+      <a href="/en/tag/hardware.html">hardware</a>
+      <a href="/en/tag/local-llm.html">local-llm</a>
+      <a href="/en/tag/documentation.html">documentation</a>
+      <a href="/en/tag/vram.html">vram</a>
+     </p>
+  </div>
+
+    <div class="neighbors">
+    <a class="btn float-left" href="/en/agentsview-analytics-agentes" title="AgentsView: local analytics for your coding agents">
+      <i class="fa fa-angle-left"></i> Previous Post
+    </a>
+  </div>
+   <div class="related-posts">
+    <h4>You might enjoy</h4>
+    <ul class="related-posts">
+      <li>
+        <a href="/en/programming-as-theory-building-naur"
+          >Programming as Theory Building: Peter Naur's Essay</a
+        >
+      </li>
+      <li>
+        <a href="/en/agent-browser-navigation-agents"
+          >Agent Browser: Browser Navigation for AI Agents</a
+        >
+      </li>
+      <li>
+        <a href="/en/muerte-cacharritos"
+          >The Price Hike of SBCs (Single Board Computers)</a
+        >
+      </li>
+      <li>
+        <a href="/en/determinar-slots-ram-uso-linux"
+          >Determining RAM slots in use on Linux</a
+        >
+      </li>
+    </ul>
+  </div>
+  <!-- Disqus -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'anotaciones';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>
+    Please enable JavaScript to view comments.
+</noscript>
+<!-- End Disqus -->
+ </article>
+
+<footer>
+<p>
+  &copy; 2026  - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+  Built with <a
+    href="http://getpelican.com"
+    target="_blank"
+    >Pelican</a
+  > using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a
+  > theme   <script
+    id="dark-theme-script"
+    src="/en/theme/dark-theme/dark-theme.min.js"
+    data-enable-auto-detect-theme="False"
+    data-default-theme="light"
+    type="text/javascript"
+  ></script>
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/3.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/3.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Annotations by Pablo Caro ",
+  "url" : "/en",
+  "image": "/theme/img/profile.png",
+  "description": ""
+}
+</script>  <script src="https://files.stork-search.net/releases/v1.6.0/stork.js"></script>
+  <script>
+    window.storkIndexLoaded = false;
+    window.loadStorkIndex = function () {
+      if (window.storkIndexLoaded) {
+        return;
+      }
+      if (typeof stork === 'undefined') {
+        setTimeout(window.loadStorkIndex, 100);
+        return;
+      }
+      var url = "/en/search-index.st";
+      var opts = { showProgress: false };
+      stork.register("sitesearch", url, opts);
+      try {
+        stork.register("sitesearch-page", url, opts);
+      } catch (e) {
+        // Search page input not in DOM on this page — index still registered
+      }
+      window.storkIndexLoaded = true;
+    }
+  </script>
+
+
+  <button id="back-to-top" aria-label="Back to top" title="Back to top">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <path d="M10 16V4m0 0L5 9m5-5l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+  <script>
+  (function() {
+    var btn = document.getElementById('back-to-top');
+    if (!btn) return;
+    var ticking = false;
+    function onScroll() {
+      if (!ticking) {
+        requestAnimationFrame(function() {
+          btn.classList.toggle('visible', window.scrollY > 500);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }
+    btn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    window.addEventListener('scroll', onScroll, { passive: true });
+  })();
+  </script>
+</body>
+</html>
