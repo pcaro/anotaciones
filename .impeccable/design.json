@@ -1,0 +1,311 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-05-28T00:00:00.000Z",
+  "title": "Design System: Anotaciones",
+  "extensions": {
+    "colorMeta": {
+      "lab-orange": {
+        "role": "primary",
+        "displayName": "Lab Orange",
+        "canonical": "oklch(52% 0.19 32)",
+        "tonalRamp": [
+          "oklch(18% 0.06 32)",
+          "oklch(28% 0.10 32)",
+          "oklch(38% 0.15 32)",
+          "oklch(48% 0.18 32)",
+          "oklch(52% 0.19 32)",
+          "oklch(62% 0.15 32)",
+          "oklch(75% 0.08 32)",
+          "oklch(92% 0.03 32)"
+        ]
+      },
+      "signal-orange": {
+        "role": "primary-hover",
+        "displayName": "Signal Orange",
+        "canonical": "oklch(62% 0.22 38)",
+        "tonalRamp": [
+          "oklch(20% 0.08 38)",
+          "oklch(32% 0.13 38)",
+          "oklch(44% 0.18 38)",
+          "oklch(54% 0.21 38)",
+          "oklch(62% 0.22 38)",
+          "oklch(70% 0.17 38)",
+          "oklch(82% 0.09 38)",
+          "oklch(94% 0.03 38)"
+        ]
+      },
+      "notebook-page": {
+        "role": "neutral-bg",
+        "displayName": "Notebook Page",
+        "canonical": "oklch(97.5% 0.005 60)",
+        "tonalRamp": [
+          "oklch(85% 0.003 60)",
+          "oklch(88% 0.003 60)",
+          "oklch(91% 0.004 60)",
+          "oklch(94% 0.004 60)",
+          "oklch(96% 0.005 60)",
+          "oklch(97.5% 0.005 60)",
+          "oklch(98.5% 0.003 60)",
+          "oklch(99.5% 0.002 60)"
+        ]
+      },
+      "bench-charcoal": {
+        "role": "neutral-surface",
+        "displayName": "Bench Charcoal",
+        "canonical": "oklch(26% 0.008 60)",
+        "tonalRamp": [
+          "oklch(14% 0.005 60)",
+          "oklch(18% 0.006 60)",
+          "oklch(22% 0.007 60)",
+          "oklch(26% 0.008 60)",
+          "oklch(30% 0.007 60)",
+          "oklch(36% 0.006 60)",
+          "oklch(44% 0.005 60)",
+          "oklch(55% 0.004 60)"
+        ]
+      },
+      "archive-ink": {
+        "role": "neutral-text",
+        "displayName": "Archive Ink",
+        "canonical": "oklch(18% 0.004 60)",
+        "tonalRamp": [
+          "oklch(10% 0.002 60)",
+          "oklch(14% 0.003 60)",
+          "oklch(18% 0.004 60)",
+          "oklch(22% 0.004 60)",
+          "oklch(28% 0.004 60)",
+          "oklch(36% 0.003 60)",
+          "oklch(48% 0.002 60)",
+          "oklch(62% 0.002 60)"
+        ]
+      },
+      "notebook-graphite": {
+        "role": "neutral-secondary",
+        "displayName": "Notebook Graphite",
+        "canonical": "oklch(62% 0.005 60)",
+        "tonalRamp": [
+          "oklch(38% 0.004 60)",
+          "oklch(46% 0.004 60)",
+          "oklch(54% 0.005 60)",
+          "oklch(62% 0.005 60)",
+          "oklch(70% 0.004 60)",
+          "oklch(78% 0.004 60)",
+          "oklch(86% 0.003 60)",
+          "oklch(94% 0.002 60)"
+        ]
+      },
+      "bench-dust": {
+        "role": "neutral-border",
+        "displayName": "Bench Dust",
+        "canonical": "oklch(90% 0.005 70)",
+        "tonalRamp": [
+          "oklch(74% 0.004 70)",
+          "oklch(80% 0.004 70)",
+          "oklch(86% 0.005 70)",
+          "oklch(90% 0.005 70)",
+          "oklch(93% 0.004 70)",
+          "oklch(95% 0.003 70)",
+          "oklch(97% 0.002 70)",
+          "oklch(99% 0.001 70)"
+        ]
+      },
+      "inline-ruby": {
+        "role": "accent-code",
+        "displayName": "Inline Ruby",
+        "canonical": "oklch(42% 0.15 22)",
+        "tonalRamp": [
+          "oklch(18% 0.06 22)",
+          "oklch(26% 0.10 22)",
+          "oklch(34% 0.13 22)",
+          "oklch(42% 0.15 22)",
+          "oklch(52% 0.13 22)",
+          "oklch(64% 0.10 22)",
+          "oklch(78% 0.06 22)",
+          "oklch(92% 0.03 22)"
+        ]
+      },
+      "code-surface": {
+        "role": "neutral-code-bg",
+        "displayName": "Code Surface",
+        "canonical": "oklch(96% 0.004 70)",
+        "tonalRamp": [
+          "oklch(86% 0.003 70)",
+          "oklch(90% 0.003 70)",
+          "oklch(93% 0.004 70)",
+          "oklch(96% 0.004 70)",
+          "oklch(97.5% 0.003 70)",
+          "oklch(98.5% 0.002 70)",
+          "oklch(99% 0.001 70)",
+          "oklch(99.5% 0.001 70)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Article titles. Only one per page. Light weight gives air; tight line-height keeps it anchored."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section headers within articles. H3 and below."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "All prose. Max line length 65ch. Line-height opened to 1.6 for comfortable technical reading."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Navigation links, button text, metadata. The only place 600 weight appears."
+      },
+      "mono": {
+        "displayName": "Mono",
+        "purpose": "Code blocks, pre elements, inline code. Slightly smaller than body to fit longer lines."
+      }
+    },
+    "shadows": [
+      {
+        "name": "card-lift",
+        "value": "0 4px 12px rgba(0,0,0,0.12)",
+        "purpose": "Applied to category cards on hover only. Paired with translateY(-2px)."
+      },
+      {
+        "name": "kbd-key",
+        "value": "0 1px 0 rgba(63,63,63,0.25)",
+        "purpose": "Subtle bottom shadow on kbd elements to suggest a physical key. Only element lifted at rest."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-hover",
+        "value": "cubic-bezier(0.4, 0, 0.2, 1)",
+        "purpose": "Hover transitions on buttons, tags, and cards. 150ms duration."
+      },
+      {
+        "name": "octocat-wave",
+        "value": "cubic-bezier(0.42, 0, 0.58, 1) 560ms",
+        "purpose": "GitHub corner octocat arm wave animation. Playful but restrained."
+      }
+    ],
+    "breakpoints": [
+      { "name": "desktop", "value": "768px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Lab Orange filled button for primary actions. Flat at rest, shifts to Signal Orange on hover.",
+      "html": "<a href=\"#\" class=\"ds-btn-primary\">Read more</a>",
+      "css": ".ds-btn-primary { background-color: #D9411E; color: #ffffff; padding: 0.6em 1em; font-size: 0.8em; line-height: 1; text-align: center; white-space: nowrap; vertical-align: baseline; border: none; border-radius: 3px; text-decoration: none; display: inline-block; font-family: 'Source Sans Pro', Roboto, sans-serif; font-weight: 400; transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1); cursor: pointer; } .ds-btn-primary:hover { background-color: #FF5A09; } .ds-btn-primary:focus-visible { outline: 2px solid #D9411E; outline-offset: 2px; }"
+    },
+    {
+      "name": "Tag",
+      "kind": "chip",
+      "refersTo": "tag",
+      "description": "Small Lab Orange pill for article tags in footers. Same fill as buttons, smaller scale.",
+      "html": "<a href=\"#\" class=\"ds-tag\">python</a>",
+      "css": ".ds-tag { background-color: #D9411E; color: #ffffff; padding: 0.2em 0.6em; font-size: 0.74em; line-height: 1; text-align: center; white-space: nowrap; vertical-align: baseline; border-radius: 3px; text-decoration: none; font-family: 'Source Sans Pro', Roboto, sans-serif; font-weight: 400; transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1); } .ds-tag:hover { background-color: #FF5A09; }"
+    },
+    {
+      "name": "Category Card",
+      "kind": "card",
+      "refersTo": "card-category",
+      "description": "Subtle tinted card for the category grid. Flat at rest, lifts 2px on hover with a light shadow.",
+      "html": "<a href=\"#\" class=\"ds-card-category\"><img src=\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 24 24' fill='none' stroke='%23999999' stroke-width='1.5'%3E%3Cpath d='M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z'/%3E%3Cpolyline points='14 2 14 8 20 8'/%3E%3C/svg%3E\" alt=\"Folder icon\" style=\"width:48px;height:48px;margin-bottom:0.75rem\"><span class=\"ds-card-label\">Python</span><span class=\"ds-card-count\">12 artículos</span></a>",
+      "css": ".ds-card-category { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 1rem; border-radius: 8px; background: rgba(0,0,0,0.03); text-decoration: none; color: #242121; font-family: 'Source Sans Pro', Roboto, sans-serif; transition: transform 150ms cubic-bezier(0.4, 0, 0.2, 1), box-shadow 150ms cubic-bezier(0.4, 0, 0.2, 1); } .ds-card-category:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.12); } .ds-card-category:focus-visible { outline: 2px solid #D9411E; outline-offset: 2px; } .ds-card-label { font-weight: 600; font-size: 1em; margin-bottom: 0.25rem; } .ds-card-count { font-size: 0.85em; color: #999999; }"
+    },
+    {
+      "name": "Inline Code",
+      "kind": "custom",
+      "refersTo": "inline-code",
+      "description": "Subtle ruby-red inline code within body text. Warm off-white background with a faint border.",
+      "html": "<code class=\"ds-inline-code\">print('hello')</code>",
+      "css": ".ds-inline-code { font-family: 'Source Code Pro', Consolas, 'Liberation Mono', monospace; font-size: 0.8em; white-space: nowrap; color: #b8332e; padding: 1px 3px; background-color: #f5f3f0; border: 1px solid #e0dcd6; border-radius: 3px; }"
+    },
+    {
+      "name": "Pre Block",
+      "kind": "custom",
+      "refersTo": "pre-block",
+      "description": "Code block with a subtle left accent border and warm background tint. Horizontally scrollable.",
+      "html": "<pre class=\"ds-pre-block\"><code>def hello():<br>    print('Hello, world!')</code></pre>",
+      "css": ".ds-pre-block { font-family: 'Source Code Pro', Consolas, 'Liberation Mono', monospace; font-size: 0.9em; padding: 4px; overflow-x: auto; background-color: rgba(128,128,128,0.05); border-left: 8px solid rgba(128,128,128,0.075); border-top-right-radius: 5px; border-bottom-right-radius: 5px; line-height: 1.5; } .ds-pre-block code { font-family: inherit; font-size: inherit; }"
+    },
+    {
+      "name": "Blockquote",
+      "kind": "custom",
+      "refersTo": "blockquote",
+      "description": "Lightweight quote block with a left border accent. No quotation marks — the border is the signal.",
+      "html": "<blockquote class=\"ds-blockquote\"><p>The best code is the code you never have to write.</p></blockquote>",
+      "css": ".ds-blockquote { margin: 0; padding: 10px 20px; font-family: 'Source Sans Pro', Roboto, sans-serif; font-weight: 300; font-size: 1.1em; line-height: 1.6; background-color: rgba(128,128,128,0.05); border-left: 8px solid rgba(128,128,128,0.075); border-top-right-radius: 5px; border-bottom-right-radius: 5px; color: #242121; }"
+    },
+    {
+      "name": "Sidebar Nav Link",
+      "kind": "nav",
+      "refersTo": "sidebar-link",
+      "description": "Vertical nav link in the fixed dark sidebar. Lowercase, generous size, white on charcoal.",
+      "html": "<a href=\"#\" class=\"ds-sidebar-link\">archivo</a>",
+      "css": ".ds-sidebar-link { display: block; font-family: 'Source Sans Pro', Roboto, sans-serif; font-size: 1.28em; line-height: 1.6em; text-transform: lowercase; color: #ffffff; text-decoration: none; padding: 4px 0; transition: color 150ms cubic-bezier(0.4, 0, 0.2, 1); } .ds-sidebar-link:hover { color: #e8e4df; }"
+    },
+    {
+      "name": "Admonition (Hint)",
+      "kind": "custom",
+      "refersTo": "admonition-hint",
+      "description": "Blue-tinted admonition for hints and tips. Icon-prefixed title via Font Awesome.",
+      "html": "<div class=\"ds-admonition ds-admonition-hint\"><p class=\"ds-admonition-title\">Hint</p><p>This is a helpful tip to keep in mind.</p></div>",
+      "css": ".ds-admonition { margin-bottom: 2.5rem; border-radius: 4px; padding: 0.5em 1.25em 1.25em; font-family: 'Source Sans Pro', Roboto, sans-serif; } .ds-admonition-hint { color: #004085; background-color: #cce5ff; } .ds-admonition-title { font-weight: 600; line-height: 1.25em; margin-bottom: 1.25em; margin-top: inherit; } .ds-admonition-title::before { display: inline-block; font-style: normal; font-variant: normal; text-rendering: auto; font-family: 'Font Awesome 5 Free'; font-weight: 900; content: '\\f0eb'; margin-right: 0.5em; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Lab Notebook",
+    "overview": "A scientist's bench journal, kept in pen with orange underlining — functional, personal, slightly informal. The design serves the note-taker first: Pablo writes for his future self, and that intention shapes every visual choice. Nothing here is dressed up for an audience; everything is organized enough to find, loose enough to feel lived-in.\n\nThe system is restrained by nature, not by anxiety. A single burnt-orange accent does all the work: links, buttons, tags, the pulse of the page. Neutrals are warm — the notebook page is off-white, not sterile; the sidebar is deep charcoal, not pure black. Typography is a single humanist sans at light weights for headings, regular for body, with a technical mono for code. The layout is a classic two-column: a fixed dark sidebar anchors the left, and the content scrolls calmly in the right, capped at a comfortable reading measure.\n\nThis system rejects terminal-nostalgia, hacker-culture visual tropes, and any form of decoration that competes with the words. If it looks like a themed developer blog from 2018, it has failed. If it feels like opening a well-worn Moleskine, it has succeeded.",
+    "keyCharacteristics": [
+      "Content-first, code-capable: body text and code blocks share equal visual care",
+      "Warm restraint: off-white pages, a single burnt-orange accent, no second accent",
+      "Lived-in, not sterile: rounded corners are gentle (3-4px), shadows are rare and light",
+      "Two-column permanence: the dark sidebar never hides; it's the spine of the notebook",
+      "Bilingual by default: language switching lives in the header, consistently available"
+    ],
+    "rules": [
+      {
+        "name": "The One Accent Rule",
+        "body": "Lab Orange is the only accent color in the system. No secondary accent, no tertiary. Its power comes from its rarity: if Lab Orange appears, it matters.",
+        "section": "colors"
+      },
+      {
+        "name": "The Paper Rule",
+        "body": "No pure black (#000) and no pure white (#fff) anywhere. Every neutral carries a warm undertone toward the orange family.",
+        "section": "colors"
+      },
+      {
+        "name": "The Single-Voice Rule",
+        "body": "One font family carries all prose. No serif/sans contrast, no display/body pairing. The hierarchy is built on weight and scale alone — 300 for headings, 400 for body, 600 only for labels. This is a notebook, not a magazine.",
+        "section": "typography"
+      },
+      {
+        "name": "The Flat-By-Default Rule",
+        "body": "Surfaces are flat at rest. Shadows appear only as a response to interaction (hover, focus). If a card has a shadow without being hovered, ask why.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Use Lab Orange (#D9411E) as the sole accent. Its power is its scarcity.",
+      "Tint every neutral toward warmth. Notebook Page (#faf7f2) not #fff. Archive Ink (#242121) not #000.",
+      "Keep body line length at 65ch max. Open body line-height to 1.6 for technical reading comfort.",
+      "Treat code blocks with the same typographic care as body text. Mono is content, not decoration.",
+      "Let the sidebar stay fixed and visible. It's the notebook's spine.",
+      "Keep shadows light and infrequent. Lift cards only on hover, and only by 2px.",
+      "Show language switching prominently in the article header. Bilingual is a feature, not an afterthought."
+    ],
+    "donts": [
+      "Don't introduce a secondary accent color. One orange is enough. Let the warm neutrals do the rest.",
+      "Don't use border-left greater than 1px as a colored accent stripe on cards or list items.",
+      "Don't apply gradient text anywhere. Emphasis comes from weight and scale, not decorative effects.",
+      "Don't let the design slip into friky/nerdy territory — no terminal emulator aesthetic, no monospace-as-body, no hacker-culture tropes. This is a human writing for humans who happen to code.",
+      "Don't wrap everything in identical cards. The category grid is the only card pattern. Body content is free-flowing.",
+      "Don't use glassmorphism or decorative blurs. The surface is paper, not glass.",
+      "Don't add animations that aren't direct responses to user action. No scroll-driven choreography, no entrance animations.",
+      "Don't use pure black or pure white anywhere. The Paper Rule is unconditional."
+    ]
+  }
+}

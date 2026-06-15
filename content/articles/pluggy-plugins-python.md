@@ -3,8 +3,8 @@ title: Pluggy — Un framework de plugins para usar en tus proyectos
 slug: pluggy-plugins-python
 lang: es
 date: 2026-06-15
-category: python
-tags: pluggy, plugins, python, pytest, simon-willison, testing
+category: Programación
+tags: plugins, python, pytest, testing, herramientas
 featured_image: /images/pluggy-pluggy-logo.png
 Summary: Pluggy es el framework de plugins que usa pytest, Datasette, y otros proyectos Python. Apareció en un artículo reciente de Eli Bendersky donde analiza si merece la pena, y la respuesta es: depende.
 ---
