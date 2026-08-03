@@ -1,5 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Anotaciones por Pablo Caro</title><link href="https://pablocaro.es/" rel="alternate"></link><link href="https://pablocaro.es/feeds/all.atom.xml" rel="self"></link><id>https://pablocaro.es/</id><updated>2026-06-15T00:00:00+02:00</updated><subtitle>Anotaciones</subtitle><entry><title>Pluggy — Un framework de plugins para usar en tus proyectos</title><link href="https://pablocaro.es/pluggy-plugins-python" rel="alternate"></link><published>2026-06-15T00:00:00+02:00</published><updated>2026-06-15T00:00:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-06-15:/pluggy-plugins-python</id><summary type="html">&lt;p&gt;Pluggy es el framework de plugins que usa pytest, Datasette, y otros proyectos Python. Apareció en un artículo reciente de Eli Bendersky donde analiza si merece la pena, y la respuesta es: depende.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Los dos usos que más conozco de Pluggy son &lt;strong&gt;pytest&lt;/strong&gt; y &lt;strong&gt;Datasette&lt;/strong&gt;. pytest tiene posiblemente el ecosistema de plugins más rico de todo el ecosistema Python, y todo ese sistema — los &lt;code&gt;conftest.py&lt;/code&gt;, los markers, los fixtures, los reporters — funciona sobre Pluggy. Datasette es el otro ejemplo que sigo de cerca: Simon Willison lo usa para que cualquiera pueda extender Datasette con nuevos hooks sin tocar el core. De hecho, Pluggy nació extrayendo el sistema de plugins de pytest para que otros proyectos como Datasette pudieran reutilizarlo.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Anotaciones por Pablo Caro</title><link href="https://pablocaro.es/" rel="alternate"></link><link href="https://pablocaro.es/feeds/all.atom.xml" rel="self"></link><id>https://pablocaro.es/</id><updated>2026-08-03T00:00:00+02:00</updated><subtitle>Anotaciones</subtitle><entry><title>ku: Kubernetes desde la terminal como un ninja</title><link href="https://pablocaro.es/ku-kubernetes-tui" rel="alternate"></link><published>2026-08-03T00:00:00+02:00</published><updated>2026-08-03T00:00:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-08-03:/ku-kubernetes-tui</id><summary type="html">&lt;p&gt;ku es una TUI para Kubernetes rápida, navegable solo con teclado e inspirada en k9s y lazygit. Read-only por defecto, con cockpit de cluster, logs, shell en pods, port-forward y edición de objetos.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="ku TUI" src="/images/ku-kubernetes-tui.jpg"&gt;&lt;/p&gt;
+&lt;p&gt;He vuelto a trabajar con Kubernetes. Tengo desplegada en local una arquitectura de micrositios — varios namespaces, deployments, servicios, ingresses — y necesitaba una forma rápida de moverme por todo sin estar constantemente tirando de &lt;code&gt;kubectl get&lt;/code&gt; y &lt;code&gt;kubectl describe&lt;/code&gt; a mano. La memoria muscular del &lt;code&gt;kubectl&lt;/code&gt; está bien, pero para navegar un cluster con soltura necesitas ver el panorama completo.&lt;/p&gt;
+&lt;p&gt;Entré a GitHub y encontré &lt;a href="https://github.com/bjarneo/ku"&gt;ku&lt;/a&gt;, una TUI para Kubernetes de un desarrollador noruego. Es rápida, va solo con teclado y está claramente inspirada en k9s, Lens y lazygit. Me gustó desde el primer &lt;code&gt;ku&lt;/code&gt;.&lt;/p&gt;
+&lt;h2 id="instalacion"&gt;Instalación&lt;a class="headerlink" href="#instalacion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;curl&lt;span class="w"&gt; &lt;/span&gt;-fsSL&lt;span class="w"&gt; &lt;/span&gt;https://raw.githubusercontent.com/bjarneo/ku/main/install.sh&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;sh
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;O con Go:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;go&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;github.com/bjarneo/ku@latest
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="lo-que-me-ha-convencido"&gt;Lo que me ha convencido&lt;a class="headerlink" href="#lo-que-me-ha-convencido" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Read-only por defecto&lt;/strong&gt;. Arrancas y no puedes romper nada. Para editar, borrar o escalar tienes que activar el modo edición con &lt;code&gt;Shift+E&lt;/code&gt;. El header muestra un chip verde &lt;code&gt;● READ-ONLY&lt;/code&gt; o rojo &lt;code&gt;● EDIT&lt;/code&gt; para que siempre sepas en qué modo estás. Para los que tenemos dedos de mantequilla, esto es paz mental.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Cockpit al arrancar&lt;/strong&gt;. Una vista general del cluster: versión del server, estado de los nodos, gauges de CPU y memoria en vivo, pods por fase, deployments listos y warnings recientes (deduplicados, con contador de recurrencia). Se refresca solo cada pocos segundos.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Tablas con las columnas correctas&lt;/strong&gt;. Usa la misma representación &lt;code&gt;Table&lt;/code&gt; de la API que &lt;code&gt;kubectl get&lt;/code&gt;, así que las columnas son exactamente las que esperas para cada recurso. Los CRDs también funcionan. Las celdas tienen color semántico: verde sano, amarillo transitorio, rojo roto. La columna ordenada muestra la dirección.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Layout lazygit&lt;/strong&gt;: panel izquierdo con la navegación de recursos, &lt;code&gt;Tab&lt;/code&gt; para cambiar entre paneles, barra de estado inferior que muestra solo las teclas relevantes para lo que tienes seleccionado.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Resúmenes curados&lt;/strong&gt;. &lt;code&gt;Enter&lt;/code&gt; sobre un objeto abre un resumen específico para ese tipo: los pods muestran uso live, health, requests/limits; los servicios, ingress, configmaps y secrets tienen vistas adaptadas. &lt;code&gt;d&lt;/code&gt; o &lt;code&gt;y&lt;/code&gt; abre el YAML completo con syntax highlighting.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Logs con follow&lt;/strong&gt;. &lt;code&gt;l&lt;/code&gt; sobre un pod streamea los logs. Puedes filtrar con regex, copiar líneas, cambiar entre instancia actual y anterior, y hacer toggle de auto-scroll. Todo dentro de la TUI.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Shell en pods y nodos&lt;/strong&gt;. &lt;code&gt;s&lt;/code&gt; sobre un pod abre una shell interactiva (&lt;code&gt;bash&lt;/code&gt; o &lt;code&gt;sh&lt;/code&gt;) en un overlay con terminal virtual. Sobre un nodo, levanta un pod de debug privilegiado con &lt;code&gt;chroot /host&lt;/code&gt;. &lt;code&gt;Ctrl+\&lt;/code&gt; detacha.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Port-forward de servicios&lt;/strong&gt;. &lt;code&gt;p&lt;/code&gt; sobre un Service y eliges el puerto. Puedes mapear &lt;code&gt;8080:http&lt;/code&gt; o &lt;code&gt;18080:80&lt;/code&gt;. Los forwards activos se ven en el header y los gestionas desde la paleta de comandos.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Comando &lt;code&gt;kubectl&lt;/code&gt; equivalente&lt;/strong&gt;. &lt;code&gt;C&lt;/code&gt; te muestra el comando &lt;code&gt;kubectl&lt;/code&gt; que replica la vista actual. Ideal para aprender o para copiarlo a un script.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Documentación de Kubernetes integrada&lt;/strong&gt;. &lt;code&gt;O&lt;/code&gt; abre la doc upstream del recurso seleccionado en el navegador.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Sidebar configurable&lt;/strong&gt;. Con &lt;code&gt;ku config init&lt;/code&gt; generas un &lt;code&gt;~/.config/ku/config.yaml&lt;/code&gt; donde puedes añadir CRDs al menú lateral. Soporta recursos con grupo (&lt;code&gt;scaledobjects.keda.sh&lt;/code&gt;, &lt;code&gt;certificates.cert-manager.io&lt;/code&gt;).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Modo desarrollador&lt;/strong&gt;. &lt;code&gt;ku --dev&lt;/code&gt; oculta recursos de administración del cluster (nodos, PVs, namespaces, eventos) y desactiva operaciones de nodo. Para cuando solo gestionas tus propias apps.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Recuerda contexto y namespace&lt;/strong&gt;. Los persiste en &lt;code&gt;~/.config/ku/state.json&lt;/code&gt; entre sesiones.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="lo-que-no-tiene-aun"&gt;Lo que no tiene (aún)&lt;a class="headerlink" href="#lo-que-no-tiene-aun" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;No hay vista de gráficos de dependencias ni topología.&lt;/li&gt;
+&lt;li&gt;El port-forward es solo para Services, no para pods individuales.&lt;/li&gt;
+&lt;li&gt;No tiene integración con Helm.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Es un proyecto joven (~500 estrellas, ~100 commits) pero muy bien pensado. La sensación al usarlo es la de una herramienta que entiende cómo trabajas con Kubernetes y te quita fricción en cada paso. Para mi caso actual — una arquitectura de micrositios con varios namespaces — me permite saltar entre recursos, seguir logs y ver el estado general del cluster sin salir de la terminal.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Fuente original&lt;/em&gt;: &lt;a href="https://github.com/bjarneo/ku"&gt;github.com/bjarneo/ku&lt;/a&gt;&lt;/p&gt;</content><category term="Herramientas"></category><category term="kubernetes"></category><category term="herramientas"></category><category term="terminal"></category><category term="tui"></category><category term="k8s"></category></entry><entry><title>Pluggy — Un framework de plugins para usar en tus proyectos</title><link href="https://pablocaro.es/pluggy-plugins-python" rel="alternate"></link><published>2026-06-15T00:00:00+02:00</published><updated>2026-06-15T00:00:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-06-15:/pluggy-plugins-python</id><summary type="html">&lt;p&gt;Pluggy es el framework de plugins que usa pytest, Datasette, y otros proyectos Python. Apareció en un artículo reciente de Eli Bendersky donde analiza si merece la pena, y la respuesta es: depende.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Los dos usos que más conozco de Pluggy son &lt;strong&gt;pytest&lt;/strong&gt; y &lt;strong&gt;Datasette&lt;/strong&gt;. pytest tiene posiblemente el ecosistema de plugins más rico de todo el ecosistema Python, y todo ese sistema — los &lt;code&gt;conftest.py&lt;/code&gt;, los markers, los fixtures, los reporters — funciona sobre Pluggy. Datasette es el otro ejemplo que sigo de cerca: Simon Willison lo usa para que cualquiera pueda extender Datasette con nuevos hooks sin tocar el core. De hecho, Pluggy nació extrayendo el sistema de plugins de pytest para que otros proyectos como Datasette pudieran reutilizarlo.&lt;/p&gt;
 &lt;p&gt;Hace poco cayó en mis manos un artículo de &lt;strong&gt;Eli Bendersky&lt;/strong&gt; — de esos que escribe cada cierto tiempo y que merecen la pena — donde analiza Pluggy como caso de estudio de sistemas de plugins. Eli tiene toda una &lt;a href="https://eli.thegreenplace.net/tag/plugins"&gt;serie sobre fundamentos de plugins&lt;/a&gt; y aquí aplica su framework conceptual a Pluggy.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Eli Bendersky plugins" src="/images/pluggy-pluggy-logo.png"&gt;&lt;/p&gt;
 &lt;h2 id="es-pluggy-una-shallow-api"&gt;¿Es Pluggy una shallow API?&lt;a class="headerlink" href="#es-pluggy-una-shallow-api" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;

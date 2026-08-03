@@ -1,5 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Annotations by Pablo Caro - kubernetes</title><link href="/en/" rel="alternate"></link><link href="/en/feeds/tags/kubernetes.atom.xml" rel="self"></link><id>/en/</id><updated>2026-02-20T00:00:00+01:00</updated><subtitle>Anotaciones</subtitle><entry><title>Stern: Kubernetes Logs on Steroids</title><link href="/en/stern-kubernetes-logs" rel="alternate"></link><published>2026-02-20T00:00:00+01:00</published><updated>2026-02-20T00:00:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:None,2026-02-20:/en/stern-kubernetes-logs</id><summary type="html">&lt;p&gt;If you work with Kubernetes, you've probably suffered through the &lt;code&gt;kubectl logs&lt;/code&gt; command. It's useful for viewing the logs of a specific pod, but it falls short when you have multiple replicas of a service or when pods restart and change names.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Annotations by Pablo Caro - kubernetes</title><link href="/en/" rel="alternate"></link><link href="/en/feeds/tags/kubernetes.atom.xml" rel="self"></link><id>/en/</id><updated>2026-08-03T00:00:00+02:00</updated><subtitle>Anotaciones</subtitle><entry><title>ku: navigate Kubernetes from the terminal like a pro</title><link href="/en/ku-kubernetes-tui" rel="alternate"></link><published>2026-08-03T00:00:00+02:00</published><updated>2026-08-03T00:00:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:None,2026-08-03:/en/ku-kubernetes-tui</id><summary type="html">&lt;p&gt;ku is a fast, keyboard-driven Kubernetes TUI inspired by k9s and lazygit. Read-only by default, with a cluster cockpit, logs, pod shells, port-forwarding, and object editing.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="ku TUI" src="/images/ku-kubernetes-tui.jpg"&gt;&lt;/p&gt;
+&lt;p&gt;I'm back working with Kubernetes. I have a locally deployed microsite architecture — several namespaces, deployments, services, ingresses — and needed a fast way to navigate everything without constantly running &lt;code&gt;kubectl get&lt;/code&gt; and &lt;code&gt;kubectl describe&lt;/code&gt; by hand. &lt;code&gt;kubectl&lt;/code&gt; muscle memory is fine, but to move through a cluster fluently you need to see the whole picture.&lt;/p&gt;
+&lt;p&gt;I went to GitHub and found &lt;a href="https://github.com/bjarneo/ku"&gt;ku&lt;/a&gt;, a Kubernetes TUI by a Norwegian developer. It's fast, keyboard-only, and clearly inspired by k9s, Lens, and lazygit. I liked it from the first &lt;code&gt;ku&lt;/code&gt;.&lt;/p&gt;
+&lt;h2 id="installation"&gt;Installation&lt;a class="headerlink" href="#installation" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;curl&lt;span class="w"&gt; &lt;/span&gt;-fsSL&lt;span class="w"&gt; &lt;/span&gt;https://raw.githubusercontent.com/bjarneo/ku/main/install.sh&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;sh
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Or with Go:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;go&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;github.com/bjarneo/ku@latest
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="what-sold-me"&gt;What sold me&lt;a class="headerlink" href="#what-sold-me" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Read-only by default&lt;/strong&gt;. You start up and can't break anything. To edit, delete, or scale you have to enable edit mode with &lt;code&gt;Shift+E&lt;/code&gt;. The header shows a green &lt;code&gt;● READ-ONLY&lt;/code&gt; or red &lt;code&gt;● EDIT&lt;/code&gt; chip so you always know what mode you're in. For those of us with butterfingers, this is peace of mind.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Cockpit on launch&lt;/strong&gt;. A cluster overview: server version, node status, live CPU and memory gauges, pods by phase, ready deployments, and recent warnings (deduplicated, with recurrence count). Auto-refreshes every few seconds.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Tables with the right columns&lt;/strong&gt;. Uses the same &lt;code&gt;Table&lt;/code&gt; API representation as &lt;code&gt;kubectl get&lt;/code&gt;, so columns are exactly what you expect for every resource. CRDs work too. Cells have semantic coloring: green for healthy, yellow for transient, red for broken. The sorted column shows its direction.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;lazygit-style layout&lt;/strong&gt;: left panel with resource navigation, &lt;code&gt;Tab&lt;/code&gt; to switch panes, bottom status bar showing only the keys relevant to your current selection.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Curated summaries&lt;/strong&gt;. &lt;code&gt;Enter&lt;/code&gt; on an object opens a type-specific summary: pods show live usage, health, requests/limits; services, ingresses, configmaps, and secrets get purpose-built views. &lt;code&gt;d&lt;/code&gt; or &lt;code&gt;y&lt;/code&gt; opens the full YAML with syntax highlighting.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Logs with follow&lt;/strong&gt;. &lt;code&gt;l&lt;/code&gt; on a pod streams logs. Filter with regex, copy lines, switch between current and previous instance, and toggle auto-scroll. All inside the TUI.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Shell into pods and nodes&lt;/strong&gt;. &lt;code&gt;s&lt;/code&gt; on a pod opens an interactive shell (&lt;code&gt;bash&lt;/code&gt; or &lt;code&gt;sh&lt;/code&gt;) in an overlay with a virtual terminal. On a node, it spins up a privileged debug pod with &lt;code&gt;chroot /host&lt;/code&gt;. &lt;code&gt;Ctrl+\&lt;/code&gt; detaches.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Service port-forwarding&lt;/strong&gt;. &lt;code&gt;p&lt;/code&gt; on a Service and pick the port. Map &lt;code&gt;8080:http&lt;/code&gt; or &lt;code&gt;18080:80&lt;/code&gt;. Active forwards show in the header and you manage them from the command palette.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Equivalent &lt;code&gt;kubectl&lt;/code&gt; command&lt;/strong&gt;. &lt;code&gt;C&lt;/code&gt; shows the &lt;code&gt;kubectl&lt;/code&gt; command that replicates the current view. Great for learning or copying to a script.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Built-in Kubernetes docs&lt;/strong&gt;. &lt;code&gt;O&lt;/code&gt; opens the upstream docs for the selected resource in your browser.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Customizable sidebar&lt;/strong&gt;. &lt;code&gt;ku config init&lt;/code&gt; generates &lt;code&gt;~/.config/ku/config.yaml&lt;/code&gt; where you can add CRDs to the sidebar. Supports group-qualified resources (&lt;code&gt;scaledobjects.keda.sh&lt;/code&gt;, &lt;code&gt;certificates.cert-manager.io&lt;/code&gt;).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Developer mode&lt;/strong&gt;. &lt;code&gt;ku --dev&lt;/code&gt; hides cluster admin resources (nodes, PVs, namespaces, events) and disables node operations. For when you only manage your own apps.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Remembers context and namespace&lt;/strong&gt;. Persists them in &lt;code&gt;~/.config/ku/state.json&lt;/code&gt; between sessions.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="whats-missing-for-now"&gt;What's missing (for now)&lt;a class="headerlink" href="#whats-missing-for-now" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;No dependency graph or topology view.&lt;/li&gt;
+&lt;li&gt;Port-forward is Services only, not individual pods.&lt;/li&gt;
+&lt;li&gt;No Helm integration.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;It's a young project (~500 stars, ~100 commits) but very well thought out. Using it feels like a tool that understands how you work with Kubernetes and removes friction at every step. For my current setup — a microsite architecture with multiple namespaces — it lets me jump between resources, follow logs, and check cluster health without leaving the terminal.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Original source&lt;/em&gt;: &lt;a href="https://github.com/bjarneo/ku"&gt;github.com/bjarneo/ku&lt;/a&gt;&lt;/p&gt;</content><category term="Tools"></category><category term="kubernetes"></category><category term="tools"></category><category term="terminal"></category><category term="tui"></category><category term="k8s"></category></entry><entry><title>Stern: Kubernetes Logs on Steroids</title><link href="/en/stern-kubernetes-logs" rel="alternate"></link><published>2026-02-20T00:00:00+01:00</published><updated>2026-02-20T00:00:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:None,2026-02-20:/en/stern-kubernetes-logs</id><summary type="html">&lt;p&gt;If you work with Kubernetes, you've probably suffered through the &lt;code&gt;kubectl logs&lt;/code&gt; command. It's useful for viewing the logs of a specific pod, but it falls short when you have multiple replicas of a service or when pods restart and change names.&lt;/p&gt;
 &lt;p&gt;This is where &lt;strong&gt;&lt;a href="https://github.com/stern/stern"&gt;Stern&lt;/a&gt;&lt;/strong&gt; comes in.&lt;/p&gt;
 &lt;p&gt;Stern allows …&lt;/p&gt;</summary><content type="html">&lt;p&gt;If you work with Kubernetes, you've probably suffered through the &lt;code&gt;kubectl logs&lt;/code&gt; command. It's useful for viewing the logs of a specific pod, but it falls short when you have multiple replicas of a service or when pods restart and change names.&lt;/p&gt;
 &lt;p&gt;This is where &lt;strong&gt;&lt;a href="https://github.com/stern/stern"&gt;Stern&lt;/a&gt;&lt;/strong&gt; comes in.&lt;/p&gt;

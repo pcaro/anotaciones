@@ -3,6 +3,11 @@ html_selector = "main"
 base_directory = "/home/runner/work/anotaciones/anotaciones/output"
 
 [[input.files]]
+path = "ku-kubernetes-tui.html"
+url = "/ku-kubernetes-tui"
+title = "ku: Kubernetes desde la terminal como un ninja"
+
+[[input.files]]
 path = "pluggy-plugins-python.html"
 url = "/pluggy-plugins-python"
 title = "Pluggy — Un framework de plugins para usar en tus proyectos"
@@ -921,6 +926,11 @@ title = "Corrector ortográfico de firefox 2.0 en castellano"
 path = "primera-anotacion-de-prueba.html"
 url = "/primera-anotacion-de-prueba"
 title = "Primera anotación de prueba"
+
+[[input.files]]
+path = "ku-kubernetes-tui-en.html"
+url = "/en/ku-kubernetes-tui"
+title = "ku: navigate Kubernetes from the terminal like a pro"
 
 [[input.files]]
 path = "pluggy-plugins-python-en.html"
