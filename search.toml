@@ -3,6 +3,11 @@ html_selector = "main"
 base_directory = "/home/runner/work/anotaciones/anotaciones/output"
 
 [[input.files]]
+path = "pluggy-plugins-python.html"
+url = "/pluggy-plugins-python"
+title = "Pluggy — Un framework de plugins para usar en tus proyectos"
+
+[[input.files]]
 path = "unsloth-docs.html"
 url = "/unsloth-docs"
 title = "Unsloth docs: la documentación más clara sobre requisitos hardware para LLMs locales"
@@ -916,6 +921,11 @@ title = "Corrector ortográfico de firefox 2.0 en castellano"
 path = "primera-anotacion-de-prueba.html"
 url = "/primera-anotacion-de-prueba"
 title = "Primera anotación de prueba"
+
+[[input.files]]
+path = "pluggy-plugins-python-en.html"
+url = "/en/pluggy-plugins-python"
+title = "Pluggy — A plugin framework to use in your projects"
 
 [[input.files]]
 path = "unsloth-docs-en.html"

@@ -5,36 +5,43 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/en/</loc>
-<lastmod>2026-06-14T14:28:03-00:00</lastmod>
+<lastmod>2026-08-03T18:44:00-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/en/tags.html</loc>
-<lastmod>2026-06-14T14:28:03-00:00</lastmod>
+<lastmod>2026-08-03T18:44:00-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/en/categories.html</loc>
-<lastmod>2026-06-14T14:28:03-00:00</lastmod>
+<lastmod>2026-08-03T18:44:00-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/en/archives.html</loc>
-<lastmod>2026-06-14T14:28:03-00:00</lastmod>
+<lastmod>2026-08-03T18:44:00-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/en/search.html</loc>
-<lastmod>2026-06-14T14:28:03-00:00</lastmod>
+<lastmod>2026-08-03T18:44:00-00:00</lastmod>
 <changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/en/pluggy-plugins-python</loc>
+<lastmod>2026-06-15T00:00:00+02:00</lastmod>
+<changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
@@ -775,7 +782,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/en/category/programacion.html</loc>
-<lastmod>2026-04-21T22:00:00+00:09</lastmod>
+<lastmod>2026-06-15T00:00:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -790,6 +797,41 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>/en/category/tools.html</loc>
 <lastmod>2026-06-10T00:00:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/en/tag/plugins.html</loc>
+<lastmod>2026-06-15T00:00:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/en/tag/python.html</loc>
+<lastmod>2026-06-15T00:00:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/en/tag/pytest.html</loc>
+<lastmod>2026-06-15T00:00:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/en/tag/testing.html</loc>
+<lastmod>2026-06-15T00:00:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/en/tag/herramientas.html</loc>
+<lastmod>2026-06-15T00:00:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -1216,13 +1258,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/en/tag/debloater.html</loc>
-<lastmod>2026-05-05T00:00:00+00:09</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>/en/tag/herramientas.html</loc>
 <lastmod>2026-05-05T00:00:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
@@ -2363,13 +2398,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>/en/tag/testing.html</loc>
-<lastmod>2016-06-07T11:36:00+00:09</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
 <loc>/en/tag/sysdig.html</loc>
 <lastmod>2016-02-10T14:37:00+00:09</lastmod>
 <changefreq>daily</changefreq>
@@ -2560,13 +2588,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/en/tag/django.html</loc>
-<lastmod>2015-04-20T18:18:00+00:09</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>/en/tag/python.html</loc>
 <lastmod>2015-04-20T18:18:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>

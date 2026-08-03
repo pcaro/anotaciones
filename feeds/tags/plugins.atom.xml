@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Anotaciones por Pablo Caro - plugins</title><link href="https://pablocaro.es/" rel="alternate"></link><link href="https://pablocaro.es/feeds/tags/plugins.atom.xml" rel="self"></link><id>https://pablocaro.es/</id><updated>2026-06-15T00:00:00+02:00</updated><subtitle>Anotaciones</subtitle><entry><title>Pluggy — Un framework de plugins para usar en tus proyectos</title><link href="https://pablocaro.es/pluggy-plugins-python" rel="alternate"></link><published>2026-06-15T00:00:00+02:00</published><updated>2026-06-15T00:00:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-06-15:/pluggy-plugins-python</id><summary type="html">&lt;p&gt;Pluggy es el framework de plugins que usa pytest, Datasette, y otros proyectos Python. Apareció en un artículo reciente de Eli Bendersky donde analiza si merece la pena, y la respuesta es: depende.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Los dos usos que más conozco de Pluggy son &lt;strong&gt;pytest&lt;/strong&gt; y &lt;strong&gt;Datasette&lt;/strong&gt;. pytest tiene posiblemente el ecosistema de plugins más rico de todo el ecosistema Python, y todo ese sistema — los &lt;code&gt;conftest.py&lt;/code&gt;, los markers, los fixtures, los reporters — funciona sobre Pluggy. Datasette es el otro ejemplo que sigo de cerca: Simon Willison lo usa para que cualquiera pueda extender Datasette con nuevos hooks sin tocar el core. De hecho, Pluggy nació extrayendo el sistema de plugins de pytest para que otros proyectos como Datasette pudieran reutilizarlo.&lt;/p&gt;
+&lt;p&gt;Hace poco cayó en mis manos un artículo de &lt;strong&gt;Eli Bendersky&lt;/strong&gt; — de esos que escribe cada cierto tiempo y que merecen la pena — donde analiza Pluggy como caso de estudio de sistemas de plugins. Eli tiene toda una &lt;a href="https://eli.thegreenplace.net/tag/plugins"&gt;serie sobre fundamentos de plugins&lt;/a&gt; y aquí aplica su framework conceptual a Pluggy.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Eli Bendersky plugins" src="/images/pluggy-pluggy-logo.png"&gt;&lt;/p&gt;
+&lt;h2 id="es-pluggy-una-shallow-api"&gt;¿Es Pluggy una shallow API?&lt;a class="headerlink" href="#es-pluggy-una-shallow-api" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Eli es bastante claro en su veredicto, y estoy de acuerdo:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Plugin frameworks are very easy to create, and the functionality they provide is relatively small compared to their large surface area. In other words, this is a &lt;em&gt;shallow API&lt;/em&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;O sea: los frameworks de plugins son fáciles de crear, y la funcionalidad que aportan es pequeña en comparación con su superficie de API. Una API &lt;em&gt;shallow&lt;/em&gt; — poca profundidad para mucho interfaz. Tiene razón. Hacer un sistema de plugins cutre en Python son cuatro líneas con &lt;code&gt;__init_subclass__&lt;/code&gt; o &lt;code&gt;entry_points&lt;/code&gt;. Pero la cuestión es qué necesitas exactamente.&lt;/p&gt;
+&lt;h2 id="lo-que-realmente-aporta-pluggy"&gt;Lo que realmente aporta Pluggy&lt;a class="headerlink" href="#lo-que-realmente-aporta-pluggy" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Donde Pluggy marca la diferencia es cuando necesitas algunas de estas funcionalidades:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Registro automático via entry points&lt;/strong&gt; — si lo necesitas&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Validación de firmas&lt;/strong&gt; de los hooks&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Recolección consistente de resultados&lt;/strong&gt; entre múltiples hooks en un mismo plugin y entre varios plugins&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Ordenación de plugins&lt;/strong&gt; con &lt;code&gt;firstresult&lt;/code&gt;, &lt;code&gt;tryfirst&lt;/code&gt;, &lt;code&gt;trylast&lt;/code&gt;, etc.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Hook "wrappers"&lt;/strong&gt; para casos de uso avanzados&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Las dos que más me interesan son la validación de firmas y la ordenación de plugins. La validación de firmas te evita el clásico bug de que tu plugin tenga una función con parámetros incorrectos y el sistema lo ignore silenciosamente. Y la ordenación es clave cuando tienes varios plugins compitiendo por el mismo hook; poder decir "este va primero" o "este va al final" sin tener que implementar un priority system tú mismo ahorra mucho.&lt;/p&gt;
+&lt;p&gt;Eli concluye con la pregunta correcta:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Are these worthwhile for your project? It really depends on the project, and it's always worth keeping the tradeoff between dependencies and project effort in mind.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Pluggy es una dependencia ligera, pero sigue siendo una dependencia. Si tu sistema de plugins tiene tres hooks y dos plugins, probablemente no la necesites. Si tienes un ecosistema de plugins abierto como Datasette o pytest, tiene todo el sentido.&lt;/p&gt;
+&lt;h2 id="como-se-usa-pluggy-en-tests"&gt;Cómo se usa Pluggy en tests&lt;a class="headerlink" href="#como-se-usa-pluggy-en-tests" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Simon Willison tiene dos TILs prácticos sobre Pluggy que merecen ser guardados aquí como referencia.&lt;/p&gt;
+&lt;h3 id="registrar-plugins-temporales-en-tests"&gt;Registrar plugins temporales en tests&lt;a class="headerlink" href="#registrar-plugins-temporales-en-tests" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;En &lt;a href="https://til.simonwillison.net/pytest/registering-plugins-in-tests"&gt;Registering temporary pluggy plugins inside tests&lt;/a&gt;, Simon muestra cómo registrar un plugin de Datasette para la duración de un test concreto usando &lt;code&gt;pm.register()&lt;/code&gt; y &lt;code&gt;pm.unregister()&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;datasette&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;hookimpl&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;datasette.plugins&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;pm&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pytest&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;test_using_test_plugin&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+    &lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;TestPlugin&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="vm"&gt;__name__&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;TestPlugin&amp;quot;&lt;/span&gt;
+
+        &lt;span class="nd"&gt;@hookimpl&lt;/span&gt;
+        &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;permission_allowed&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;datasette&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;actor&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;action&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+            &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;action&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;startswith&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;insert-api:&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+                &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;permissions&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;action&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;replace&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;insert-api:&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+    &lt;span class="n"&gt;pm&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;register&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;TestPlugin&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;undo&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;try&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="c1"&gt;# Rest of test goes here&lt;/span&gt;
+    &lt;span class="k"&gt;finally&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;pm&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;unregister&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;undo&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;El patrón &lt;code&gt;try/finally&lt;/code&gt; es la clave para no dejar el plugin registrado después del test. También se puede hacer con un fixture de pytest:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nd"&gt;@pytest&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fixture&lt;/span&gt;
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;unsafe&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+    &lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;UnsafeInsertAll&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="vm"&gt;__name__&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;UnsafeInsertAll&amp;quot;&lt;/span&gt;
+
+        &lt;span class="nd"&gt;@hookimpl&lt;/span&gt;
+        &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;permission_allowed&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;action&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+            &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;action&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;insert:all&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+                &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="kc"&gt;True&lt;/span&gt;
+
+    &lt;span class="n"&gt;pm&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;register&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;UnsafeInsertAll&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;undo&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;yield&lt;/span&gt;
+    &lt;span class="n"&gt;pm&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;unregister&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;undo&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Esto es muy potente para tests de integración donde necesitas mockear comportamientos de plugins sin tener que crear un plugin real.&lt;/p&gt;
+&lt;h3 id="registrar-multiples-hooks-en-un-mismo-fichero"&gt;Registrar múltiples hooks en un mismo fichero&lt;a class="headerlink" href="#registrar-multiples-hooks-en-un-mismo-fichero" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;En &lt;a href="https://til.simonwillison.net/pluggy/multiple-hooks-same-file"&gt;Registering the same Pluggy hook multiple times in a single file&lt;/a&gt;, Simon explica cómo registrar dos implementaciones del mismo hook en un solo módulo usando &lt;code&gt;specname&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;datasette&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;hookimpl&lt;/span&gt;
+
+&lt;span class="nd"&gt;@hookimpl&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;specname&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;menu_links&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;tryfirst&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;menu_links_1&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;datasette&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
+        &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;href&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;datasette&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;urls&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;/&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;label&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Home&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;
+    &lt;span class="p"&gt;]&lt;/span&gt;
+
+&lt;span class="nd"&gt;@hookimpl&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;specname&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;menu_links&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;trylast&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;menu_links_2&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
+        &lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="s2"&gt;&amp;quot;href&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;http://www.example.com/&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+            &lt;span class="s2"&gt;&amp;quot;label&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Link at the end&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="p"&gt;},&lt;/span&gt;
+    &lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;La función no se llama &lt;code&gt;menu_links&lt;/code&gt; sino &lt;code&gt;menu_links_1&lt;/code&gt; y &lt;code&gt;menu_links_2&lt;/code&gt;, y el parámetro &lt;code&gt;specname&lt;/code&gt; le dice a Pluggy qué hook implementa cada una. Esto requiere &lt;strong&gt;Pluggy 1.0.0+&lt;/strong&gt; (que tiene ya unos años, así que probablemente lo tengas si usas algo moderno). Combinado con &lt;code&gt;tryfirst&lt;/code&gt;/&lt;code&gt;trylast&lt;/code&gt;, es una forma limpia de aportar múltiples contribuciones al mismo hook desde un único plugin.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Fuente original&lt;/em&gt;: &lt;a href="https://eli.thegreenplace.net/2026/plugins-case-study-pluggy/"&gt;Plugins case study: Pluggy&lt;/a&gt; — Eli Bendersky&lt;/p&gt;</content><category term="Programación"></category><category term="plugins"></category><category term="python"></category><category term="pytest"></category><category term="testing"></category><category term="herramientas"></category></entry></feed>

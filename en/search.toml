@@ -3,6 +3,11 @@ html_selector = "main"
 base_directory = "/home/runner/work/anotaciones/anotaciones/output/en"
 
 [[input.files]]
+path = "pluggy-plugins-python.html"
+url = "/pluggy-plugins-python"
+title = "Pluggy — A plugin framework to use in your projects"
+
+[[input.files]]
 path = "unsloth-docs.html"
 url = "/unsloth-docs"
 title = "Unsloth docs: the clearest documentation on hardware requirements for local LLMs"
@@ -491,6 +496,11 @@ title = "Django: links in object list"
 path = "settings-vars-processor.html"
 url = "/settings-vars-processor"
 title = "Settings vars processor"
+
+[[input.files]]
+path = "pluggy-plugins-python-es.html"
+url = "/../pluggy-plugins-python"
+title = "Pluggy — Un framework de plugins para usar en tus proyectos"
 
 [[input.files]]
 path = "unsloth-docs-es.html"

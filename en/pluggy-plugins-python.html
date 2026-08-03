@@ -1,0 +1,544 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="/en/theme/stylesheet/style.min.css">
+
+    <link id="dark-theme-style" rel="stylesheet" type="text/css"
+        disabled="disabled"
+    href="/en/theme/stylesheet/dark-theme.min.css">
+
+    <link id="pygments-dark-theme" rel="stylesheet" type="text/css"
+            disabled="disabled"
+          href="/en/theme/pygments/github.min.css">
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+          href="/en/theme/pygments/github.min.css">
+
+
+  <link rel="stylesheet"
+        type="text/css"
+        href="/en/theme/stork/stork.css" />
+
+  <link rel="stylesheet" type="text/css" href="/en/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="/en/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="/en/theme/font-awesome/css/solid.css">
+
+  <link rel="stylesheet" type="text/css" href="/extras/custom.css">
+
+  <link rel="shortcut icon" href="/theme/img/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/theme/img/favicon.ico" type="image/x-icon">
+
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#333333">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#333333">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Microsoft EDGE -->
+  <meta name="msapplication-TileColor" content="#333333">
+
+  <link href="/en/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Annotations by Pablo Caro Atom">
+
+  <link href="/en/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Annotations by Pablo Caro RSS">
+
+<script data-goatcounter="https://pcaro.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Pablo Caro" />
+<meta name="description" content="Pluggy is the plugin framework behind pytest, Datasette, and other Python projects. Eli Bendersky recently analyzed whether it&#39;s worth using, and the answer is: it depends." />
+<meta name="keywords" content="plugins, python, pytest, testing, herramientas" />
+
+<link
+  rel="alternate"
+  href="/en/pluggy-plugins-python"
+  hreflang="en"
+/>
+<link
+  rel="alternate"
+  href="/en/../pluggy-plugins-python"
+  hreflang="es"
+/>
+    <meta property="og:site_name" content="Annotations by Pablo Caro"/>
+  <meta property="og:title" content="Pluggy — A plugin framework to use in your projects"/>
+  <meta property="og:description" content="Pluggy is the plugin framework behind pytest, Datasette, and other Python projects. Eli Bendersky recently analyzed whether it&#39;s worth using, and the answer is: it depends."/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="/en/pluggy-plugins-python"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2026-06-15 00:00:00+02:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="/en/author/pablo-caro.html">
+  <meta property="article:section" content="Programación"/>
+  <meta property="article:tag" content="plugins"/>
+  <meta property="article:tag" content="python"/>
+  <meta property="article:tag" content="pytest"/>
+  <meta property="article:tag" content="testing"/>
+  <meta property="article:tag" content="herramientas"/>
+  <meta property="og:image" content="/theme/img/profile.png">
+ 
+  <title>Annotations by Pablo Caro &ndash; Pluggy — A plugin framework to use in your projects</title>
+
+
+</head>
+<body class="light-theme">
+
+<aside>
+  <div>
+    <a href="/en/">
+      <img src="/theme/img/profile.png" alt="Anotaciones" title="Anotaciones" />
+    </a>
+
+    <h1>
+      <a href="/en/">Anotaciones</a>
+    </h1>
+
+    <p>Anotaciones</p>
+     <p style="font-size: 0.9em; font-style: italic; margin-bottom: 20px">
+      Dumping my brain onto the internet. A collection of technical notes and solutions written for my future self, shared here in case they save someone else a headache.
+    </p>
+      <div class="stork">
+      <label for="sidebar-search" class="sr-only"
+        >Search articles</label
+      >
+      <div class="stork-input-wrap">
+      <input
+        id="sidebar-search"
+        class="stork-input"
+        type="text"
+        autocomplete="off"
+        name="q"
+        data-stork="sitesearch"
+        placeholder="Search..."
+        onclick="loadStorkIndex()"
+      />
+      </div>
+      <div class="stork-output" data-stork="sitesearch-output"></div>
+    </div>
+      <nav>
+      <ul class="list">
+             <li>
+          <a target="_self" href="http://x.com/pcaro">pcaro@X</a>
+        </li>
+        <li>
+          <a target="_self" href="https://github.com/pcaro/">pcaro@Github</a>
+        </li>
+        <li>
+          <a target="_self" href="https://www.linkedin.com/in/pcarorevuelta/">LinkedIn</a>
+        </li>
+      </ul>
+    </nav>
+      <nav class="sidebar-categories" aria-label="Categories">
+                                                                                                                                                           <a
+        href="/en/category/ia.html"
+        class="sidebar-category"
+        title="ia (13)"
+      >
+        <img
+          src="/en/images/categories/ia.png"
+          alt="ia"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">ia</span>
+      </a>
+      <a
+        href="/en/category/programacion.html"
+        class="sidebar-category"
+        title="Programación (29)"
+      >
+        <img
+          src="/en/images/categories/programacion.png"
+          alt="Programación"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Programación</span>
+      </a>
+      <a
+        href="/en/category/linux.html"
+        class="sidebar-category"
+        title="Linux (11)"
+      >
+        <img
+          src="/en/images/categories/linux.png"
+          alt="Linux"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Linux</span>
+      </a>
+      <a
+        href="/en/category/herramientas.html"
+        class="sidebar-category"
+        title="Herramientas (23)"
+      >
+        <img
+          src="/en/images/categories/herramientas.png"
+          alt="Herramientas"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Herramientas</span>
+      </a>
+      <a
+        href="/en/category/infraestructura.html"
+        class="sidebar-category"
+        title="Infraestructura (15)"
+      >
+        <img
+          src="/en/images/categories/infraestructura.png"
+          alt="Infraestructura"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Infraestructura</span>
+      </a>
+      <a
+        href="/en/category/documentacion.html"
+        class="sidebar-category"
+        title="Documentación (1)"
+      >
+        <img
+          src="/en/images/categories/documentacion.png"
+          alt="Documentación"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Documentación</span>
+      </a>
+      <a
+        href="/en/category/finanzas.html"
+        class="sidebar-category"
+        title="Finanzas (1)"
+      >
+        <img
+          src="/en/images/categories/finanzas.png"
+          alt="Finanzas"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Finanzas</span>
+      </a>
+      <a
+        href="/en/category/personal.html"
+        class="sidebar-category"
+        title="Personal (2)"
+      >
+        <img
+          src="/en/images/categories/personal.png"
+          alt="Personal"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Personal</span>
+      </a>
+      <a
+        href="/en/category/programming.html"
+        class="sidebar-category"
+        title="Programming (1)"
+      >
+        <span class="sidebar-category-icon">Pr</span>
+        <span class="sidebar-category-label">Programming</span>
+      </a>
+      <a
+        href="/en/category/tools.html"
+        class="sidebar-category"
+        title="Tools (3)"
+      >
+        <span class="sidebar-category-icon">To</span>
+        <span class="sidebar-category-label">Tools</span>
+      </a>
+    </nav>
+  </div>
+
+</aside>
+  <main>
+
+<nav>
+  <a href="/en/">Home</a>
+
+  <a href="/en/archives.html">Archives</a>
+  <a href="/en/categories.html">Categories</a>
+  <a href="/en/tags.html">Tags</a>
+  <a href="/en/search.html">Search</a>
+  <a href="/">Español</a>
+   <a href="javascript:void(0)" onclick="theme.switch('dark')">🌙</a>
+  <a href="javascript:void(0)" onclick="theme.switch('light')">☀</a>
+   <a href="/en/feeds/all.rss.xml">RSS</a>
+</nav>
+
+<article class="single">
+  <header>
+      <div class="translations">
+            <a href="/en/../pluggy-plugins-python">Leer en español</a>
+    </div>
+
+    <h1 id="pluggy-plugins-python">Pluggy — A plugin framework to use in your projects</h1>
+    <p>
+      Posted on Mon, 15 Jun 2026 in <a href="/en/category/programacion.html">Programación</a>     </p>
+  </header>
+
+ 
+  <div><p>The two use cases I know best for Pluggy are <strong>pytest</strong> and <strong>Datasette</strong>. pytest has arguably the richest plugin ecosystem in all of Python, and the entire system — <code>conftest.py</code>, markers, fixtures, reporters — runs on Pluggy. Datasette is the other one I follow closely: Simon Willison uses it so anyone can extend Datasette with new hooks without touching the core. In fact, Pluggy was born by extracting pytest's plugin system so other projects like Datasette could reuse it.</p>
+<p>I recently came across an article by <strong>Eli Bendersky</strong> — one of those he writes every so often that are always worth reading — where he analyzes Pluggy as a plugin systems case study. Eli has a whole <a href="https://eli.thegreenplace.net/tag/plugins">series on plugin fundamentals</a>, and here he applies his conceptual framework to Pluggy.</p>
+<p><img alt="Eli Bendersky plugins" src="/images/pluggy-pluggy-logo.png"></p>
+<h2 id="is-pluggy-a-shallow-api">Is Pluggy a shallow API?<a class="headerlink" href="#is-pluggy-a-shallow-api" title="Permanent link">&para;</a></h2>
+<p>Eli is quite clear in his verdict, and I agree:</p>
+<blockquote>
+<p>Plugin frameworks are very easy to create, and the functionality they provide is relatively small compared to their large surface area. In other words, this is a <em>shallow API</em>.</p>
+</blockquote>
+<p>A <em>shallow</em> API — little depth for a lot of interface. He's right. A crappy plugin system in Python is four lines with <code>__init_subclass__</code> or <code>entry_points</code>. But the question is what exactly you need.</p>
+<h2 id="what-pluggy-actually-brings-to-the-table">What Pluggy actually brings to the table<a class="headerlink" href="#what-pluggy-actually-brings-to-the-table" title="Permanent link">&para;</a></h2>
+<p>Where Pluggy makes a difference is when you need some of these features:</p>
+<ul>
+<li><strong>Automatic entry point registration</strong> — if you need it</li>
+<li><strong>Signature validation</strong> for hooks</li>
+<li><strong>Consistent result collection</strong> across multiple hooks in a single plugin and across many plugins</li>
+<li><strong>Plugin ordering</strong> with <code>firstresult</code>, <code>tryfirst</code>, <code>trylast</code>, etc.</li>
+<li><strong>Hook "wrappers"</strong> for advanced use cases</li>
+</ul>
+<p>The two I care about most are signature validation and plugin ordering. Signature validation saves you from the classic bug where your plugin has a function with wrong parameters and the system silently ignores it. And ordering is key when you have multiple plugins competing for the same hook; being able to say "this one goes first" or "this one goes last" without implementing a priority system yourself saves a lot of effort.</p>
+<p>Eli ends with the right question:</p>
+<blockquote>
+<p>Are these worthwhile for your project? It really depends on the project, and it's always worth keeping the tradeoff between dependencies and project effort in mind.</p>
+</blockquote>
+<p>Pluggy is a lightweight dependency, but it's still a dependency. If your plugin system has three hooks and two plugins, you probably don't need it. If you have an open plugin ecosystem like Datasette or pytest, it makes perfect sense.</p>
+<h2 id="how-to-use-pluggy-in-tests">How to use Pluggy in tests<a class="headerlink" href="#how-to-use-pluggy-in-tests" title="Permanent link">&para;</a></h2>
+<p>Simon Willison has two practical TILs on Pluggy worth saving here as a reference.</p>
+<h3 id="registering-temporary-plugins-in-tests">Registering temporary plugins in tests<a class="headerlink" href="#registering-temporary-plugins-in-tests" title="Permanent link">&para;</a></h3>
+<p>In <a href="https://til.simonwillison.net/pytest/registering-plugins-in-tests">Registering temporary pluggy plugins inside tests</a>, Simon shows how to register a Datasette plugin for the duration of a single test using <code>pm.register()</code> and <code>pm.unregister()</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">datasette</span> <span class="kn">import</span> <span class="n">hookimpl</span>
+<span class="kn">from</span> <span class="nn">datasette.plugins</span> <span class="kn">import</span> <span class="n">pm</span>
+<span class="kn">import</span> <span class="nn">pytest</span>
+
+<span class="k">def</span> <span class="nf">test_using_test_plugin</span><span class="p">():</span>
+    <span class="k">class</span> <span class="nc">TestPlugin</span><span class="p">:</span>
+        <span class="vm">__name__</span> <span class="o">=</span> <span class="s2">&quot;TestPlugin&quot;</span>
+
+        <span class="nd">@hookimpl</span>
+        <span class="k">def</span> <span class="nf">permission_allowed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">datasette</span><span class="p">,</span> <span class="n">actor</span><span class="p">,</span> <span class="n">action</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">action</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;insert-api:&quot;</span><span class="p">):</span>
+                <span class="k">return</span> <span class="n">permissions</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">action</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;insert-api:&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">))</span>
+
+    <span class="n">pm</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">TestPlugin</span><span class="p">(),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;undo&quot;</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Rest of test goes here</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="n">pm</span><span class="o">.</span><span class="n">unregister</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;undo&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p>The <code>try/finally</code> pattern is key to not leaving the plugin registered after the test. You can also use a pytest fixture:</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span>
+<span class="k">def</span> <span class="nf">unsafe</span><span class="p">():</span>
+    <span class="k">class</span> <span class="nc">UnsafeInsertAll</span><span class="p">:</span>
+        <span class="vm">__name__</span> <span class="o">=</span> <span class="s2">&quot;UnsafeInsertAll&quot;</span>
+
+        <span class="nd">@hookimpl</span>
+        <span class="k">def</span> <span class="nf">permission_allowed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">action</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">action</span> <span class="o">==</span> <span class="s2">&quot;insert:all&quot;</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">True</span>
+
+    <span class="n">pm</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">UnsafeInsertAll</span><span class="p">(),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;undo&quot;</span><span class="p">)</span>
+    <span class="k">yield</span>
+    <span class="n">pm</span><span class="o">.</span><span class="n">unregister</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;undo&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p>This is very powerful for integration tests where you need to mock plugin behaviors without creating an actual plugin.</p>
+<h3 id="registering-multiple-hooks-in-a-single-file">Registering multiple hooks in a single file<a class="headerlink" href="#registering-multiple-hooks-in-a-single-file" title="Permanent link">&para;</a></h3>
+<p>In <a href="https://til.simonwillison.net/pluggy/multiple-hooks-same-file">Registering the same Pluggy hook multiple times in a single file</a>, Simon explains how to register two implementations of the same hook in one module using <code>specname</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">datasette</span> <span class="kn">import</span> <span class="n">hookimpl</span>
+
+<span class="nd">@hookimpl</span><span class="p">(</span><span class="n">specname</span><span class="o">=</span><span class="s2">&quot;menu_links&quot;</span><span class="p">,</span> <span class="n">tryfirst</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">menu_links_1</span><span class="p">(</span><span class="n">datasette</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">[</span>
+        <span class="p">{</span><span class="s2">&quot;href&quot;</span><span class="p">:</span> <span class="n">datasette</span><span class="o">.</span><span class="n">urls</span><span class="o">.</span><span class="n">path</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">),</span> <span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="s2">&quot;Home&quot;</span><span class="p">},</span>
+    <span class="p">]</span>
+
+<span class="nd">@hookimpl</span><span class="p">(</span><span class="n">specname</span><span class="o">=</span><span class="s2">&quot;menu_links&quot;</span><span class="p">,</span> <span class="n">trylast</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">menu_links_2</span><span class="p">():</span>
+    <span class="k">return</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;http://www.example.com/&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="s2">&quot;Link at the end&quot;</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">]</span>
+</code></pre></div>
+
+<p>The function isn't called <code>menu_links</code> but <code>menu_links_1</code> and <code>menu_links_2</code>, and <code>specname</code> tells Pluggy which hook each one implements. This requires <strong>Pluggy 1.0.0+</strong> (which has been around for a while, so you likely have it if you're using anything modern). Combined with <code>tryfirst</code>/<code>trylast</code>, it's a clean way to contribute multiple things to the same hook from a single plugin.</p>
+<p><em>Original source</em>: <a href="https://eli.thegreenplace.net/2026/plugins-case-study-pluggy/">Plugins case study: Pluggy</a> — Eli Bendersky</p></div>
+  <div class="tag-cloud">
+    <p>
+       <a href="/en/tag/plugins.html">plugins</a>
+      <a href="/en/tag/python.html">python</a>
+      <a href="/en/tag/pytest.html">pytest</a>
+      <a href="/en/tag/testing.html">testing</a>
+      <a href="/en/tag/herramientas.html">herramientas</a>
+     </p>
+  </div>
+
+    <div class="neighbors">
+    <a class="btn float-left" href="/en/unsloth-docs" title="Unsloth docs: the clearest documentation on hardware requirements for local LLMs">
+      <i class="fa fa-angle-left"></i> Previous Post
+    </a>
+  </div>
+   <div class="related-posts">
+    <h4>You might enjoy</h4>
+    <ul class="related-posts">
+      <li>
+        <a href="/en/instalar-insync-en-opensuse"
+          >Install InSync on Opensuse</a
+        >
+      </li>
+      <li>
+        <a href="/en/reactivando-el-blog"
+          >Blogging again</a
+        >
+      </li>
+      <li>
+        <a href="/en/herramientas-desarrolladores-linea-comandos"
+          >Powerful Command Line Tools for Developers</a
+        >
+      </li>
+      <li>
+        <a href="/en/galen-framework-testing-responsive"
+          >Galen Framework: Automated Testing for Responsive Design</a
+        >
+      </li>
+      <li>
+        <a href="/en/winhance-windows-debloater"
+          >Winhance: clean and optimize Windows without reinstalling</a
+        >
+      </li>
+    </ul>
+  </div>
+  <!-- Disqus -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'anotaciones';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>
+    Please enable JavaScript to view comments.
+</noscript>
+<!-- End Disqus -->
+ </article>
+
+<footer>
+<p>
+  &copy; 2026  - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+  Built with <a
+    href="http://getpelican.com"
+    target="_blank"
+    >Pelican</a
+  > using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a
+  > theme   <script
+    id="dark-theme-script"
+    src="/en/theme/dark-theme/dark-theme.min.js"
+    data-enable-auto-detect-theme="False"
+    data-default-theme="light"
+    type="text/javascript"
+  ></script>
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/3.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/3.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Annotations by Pablo Caro ",
+  "url" : "/en",
+  "image": "/theme/img/profile.png",
+  "description": ""
+}
+</script>  <script src="https://files.stork-search.net/releases/v1.6.0/stork.js"></script>
+  <script>
+    window.storkIndexLoaded = false;
+    window.loadStorkIndex = function () {
+      if (window.storkIndexLoaded) {
+        return;
+      }
+      if (typeof stork === 'undefined') {
+        setTimeout(window.loadStorkIndex, 100);
+        return;
+      }
+      var url = "/en/search-index.st";
+      var opts = { showProgress: false };
+      stork.register("sitesearch", url, opts);
+      try {
+        stork.register("sitesearch-page", url, opts);
+      } catch (e) {
+        // Search page input not in DOM on this page — index still registered
+      }
+      window.storkIndexLoaded = true;
+    }
+  </script>
+
+
+  <button id="back-to-top" aria-label="Back to top" title="Back to top">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <path d="M10 16V4m0 0L5 9m5-5l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+  <script>
+  (function() {
+    var btn = document.getElementById('back-to-top');
+    if (!btn) return;
+    var ticking = false;
+    function onScroll() {
+      if (!ticking) {
+        requestAnimationFrame(function() {
+          btn.classList.toggle('visible', window.scrollY > 500);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }
+    btn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    window.addEventListener('scroll', onScroll, { passive: true });
+  })();
+  </script>
+</body>
+</html>
