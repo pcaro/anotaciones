@@ -1,0 +1,22 @@
+{% if DEFAULT_LANG == 'es' %}
+<div id="lang-nudge" role="status" style="display:none;position:sticky;top:0;z-index:100;background-color:#d9411e;color:#fff;text-align:center;font-size:14px;padding:8px 16px;line-height:1.5;font-family:inherit;">
+  <span>&#127760; This blog is also available in <a href="{{ SITEURL }}/en/" style="color:#fff;font-weight:bold;text-decoration:underline;">English</a></span>
+  <button id="lang-nudge-dismiss" style="background:none;border:none;color:#fff;font-size:18px;margin-left:12px;cursor:pointer;vertical-align:middle;" aria-label="Dismiss">&times;</button>
+</div>
+<script>
+(function() {
+  var nudge = document.getElementById('lang-nudge');
+  if (!nudge) return;
+  if (localStorage.getItem('lang-nudge-dismissed')) return;
+  var langs = navigator.languages || [navigator.language || navigator.userLanguage || ''];
+  var isSpanish = langs.some(function(l) { return l.startsWith('es'); });
+  if (!isSpanish) {
+    nudge.style.display = 'block';
+  }
+  document.getElementById('lang-nudge-dismiss').addEventListener('click', function() {
+    nudge.style.display = 'none';
+    localStorage.setItem('lang-nudge-dismissed', '1');
+  });
+})();
+</script>
+{% endif %}
