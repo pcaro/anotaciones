@@ -5,36 +5,43 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/en/</loc>
-<lastmod>2026-08-03T18:51:59-00:00</lastmod>
+<lastmod>2026-09-11T11:10:10-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/en/tags.html</loc>
-<lastmod>2026-08-03T18:51:59-00:00</lastmod>
+<lastmod>2026-09-11T11:10:10-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/en/categories.html</loc>
-<lastmod>2026-08-03T18:51:59-00:00</lastmod>
+<lastmod>2026-09-11T11:10:10-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/en/archives.html</loc>
-<lastmod>2026-08-03T18:51:59-00:00</lastmod>
+<lastmod>2026-09-11T11:10:10-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/en/search.html</loc>
-<lastmod>2026-08-03T18:51:59-00:00</lastmod>
+<lastmod>2026-09-11T11:10:10-00:00</lastmod>
 <changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/en/qemu-wasm-maquinas-virtuales-en-el-navegador</loc>
+<lastmod>2026-09-11T00:00:00+02:00</lastmod>
+<changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
@@ -803,7 +810,49 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/en/category/tools.html</loc>
-<lastmod>2026-08-03T00:00:00+00:09</lastmod>
+<lastmod>2026-09-11T00:00:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/en/tag/webassembly.html</loc>
+<lastmod>2026-09-11T00:00:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/en/tag/qemu.html</loc>
+<lastmod>2026-09-11T00:00:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/en/tag/browser.html</loc>
+<lastmod>2026-09-11T00:00:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/en/tag/nix.html</loc>
+<lastmod>2026-09-11T00:00:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/en/tag/virtual-machines.html</loc>
+<lastmod>2026-09-11T00:00:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/en/tag/github-actions.html</loc>
+<lastmod>2026-09-11T00:00:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -1496,13 +1545,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/en/tag/calibre.html</loc>
-<lastmod>2026-04-21T22:00:00+00:09</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>/en/tag/github-actions.html</loc>
 <lastmod>2026-04-21T22:00:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>

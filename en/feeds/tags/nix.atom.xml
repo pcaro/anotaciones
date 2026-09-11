@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Annotations by Pablo Caro - nix</title><link href="/en/" rel="alternate"></link><link href="/en/feeds/tags/nix.atom.xml" rel="self"></link><id>/en/</id><updated>2026-09-11T00:00:00+02:00</updated><subtitle>Anotaciones</subtitle><entry><title>qemu-wasm: full virtual machines inside your browser</title><link href="/en/qemu-wasm-maquinas-virtuales-en-el-navegador" rel="alternate"></link><published>2026-09-11T00:00:00+02:00</published><updated>2026-09-11T00:00:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:None,2026-09-11:/en/qemu-wasm-maquinas-virtuales-en-el-navegador</id><summary type="html">&lt;p&gt;qemu-wasm ports QEMU to WebAssembly to boot a full x86_64 virtual machine inside the browser. trynix.dev runs any nixpkgs package from the last 13 years, and a GitHub Action boots a PR's build from a single link.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="trynix.dev running a virtual machine in the browser" src="/images/trynix-qemu-wasm.png"&gt;&lt;/p&gt;
+&lt;p&gt;Every once in a while something reminds me how far browsers have come. Today: a full x86_64 virtual machine, booting inside a tab, with no server behind it.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/ktock/qemu-wasm"&gt;qemu-wasm&lt;/a&gt; is a patched QEMU that runs in the browser. It's not a reimplementation or a toy: it's QEMU compiled to WebAssembly, with JIT binary translation (TCG) and multi-threading support. The same QEMU you use on your machine, running in a tab.&lt;/p&gt;
+&lt;h2 id="how-it-works"&gt;How it works&lt;a class="headerlink" href="#how-it-works" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;QEMU has several backends for running guest code. The fastest is TCG, which translates the guest binary to native machine code. Here the "host" is WebAssembly, so the project adds a TCG backend that translates QEMU's IR to Wasm.&lt;/p&gt;
+&lt;p&gt;WebAssembly doesn't let you jump to code generated in memory, so instead they lean on browser APIs (&lt;code&gt;WebAssembly.Module&lt;/code&gt; and &lt;code&gt;WebAssembly.Instance&lt;/code&gt;). Each translation block (TB) is compiled as a standalone Wasm module that imports memory and helper functions from the main QEMU module.&lt;/p&gt;
+&lt;p&gt;The problem: compiling every block to Wasm is expensive, and browsers can't handle creating thousands of modules. So the solution is hybrid. Cold blocks are interpreted (TCI, the slow interpreter) and only blocks that run many times (~1000) get compiled to Wasm.&lt;/p&gt;
+&lt;p&gt;It's experimental software, but it works. There's a &lt;a href="https://ktock.github.io/qemu-wasm-demo/"&gt;demo&lt;/a&gt; with x86_64, aarch64 (it even emulates a Raspberry Pi), and riscv64 guests. And part of this is being upstreamed into QEMU: the interpreter mode (TCI) for 32-bit guests already landed in QEMU 10.1, and the rest is still under discussion.&lt;/p&gt;
+&lt;h2 id="the-use-case-that-blew-my-mind-trynixdev"&gt;The use case that blew my mind: trynix.dev&lt;a class="headerlink" href="#the-use-case-that-blew-my-mind-trynixdev" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Knowing the engine is fine, but the part I find brutal is the use &lt;a href="https://fzakaria.com/"&gt;Farid Zakaria&lt;/a&gt; gave it: &lt;a href="https://trynix.dev"&gt;trynix.dev&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The idea: boot an x86_64 Linux VM in your tab and give it a Nix store as its filesystem. The result is that you can run &lt;strong&gt;any nixpkgs package from the last 13 years&lt;/strong&gt; — over 310,000 versions — without installing anything on your machine.&lt;/p&gt;
+&lt;p&gt;And they're URL-addressable. Try this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;https://trynix.dev/?pkg=python3%403.6.2
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Click &lt;strong&gt;Boot&lt;/strong&gt; and you get an interactive shell against a virtual machine running Python 3.6.2 from 2017. Nothing runs on a server: the page is static, the kernel is WebAssembly, and the package closure downloads from cache.nixos.org (which serves &lt;code&gt;access-control-allow-origin: *&lt;/code&gt;, the thing that makes all this possible).&lt;/p&gt;
+&lt;p&gt;You can even boot two versions of &lt;code&gt;hello&lt;/code&gt; at once without them clashing, because in Nix each binary references its dependencies by absolute path:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;https://trynix.dev/?pkg=hello@2.10&amp;amp;pkg=hello@2.12.2
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;To make it feel instant, the site pre-fetches the engine and a VM snapshot in the background, and never boots from scratch: it resumes a machine that was booted once with the native QEMU and paused right before mounting the store.&lt;/p&gt;
+&lt;h2 id="the-github-action-review-a-pr-by-booting-it"&gt;The GitHub Action: review a PR by booting it&lt;a class="headerlink" href="#the-github-action-review-a-pr-by-booting-it" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The most practical part is &lt;a href="https://github.com/marketplace/actions/trynix-preview"&gt;trynix-preview&lt;/a&gt;, a GitHub Action that comments on every pull request with a link to boot the PR's build in the browser. No servers, no SSH, no cloning, no building. Just a link.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Set up Cachix as our Nix cache.&lt;/span&gt;
+&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;uses&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;cachix/cachix-action@v17&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;with&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;sqlelf&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;authToken&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;${{ secrets.CACHIX_AUTH_TOKEN }}&lt;/span&gt;
+&lt;span class="c1"&gt;# Build the PR&amp;#39;s code and push it to the cache.&lt;/span&gt;
+&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;run&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;nix build .#default&lt;/span&gt;
+&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;uses&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;fzakaria/trynix@v1&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;with&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;cache&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;https://sqlelf.cachix.org&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;publicKey&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;sqlelf.cachix.org-1:MLnjolA9AsKscTOJKDSA+ZAcgIK8BwZA574j4+Cs2bg=&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;attrs&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;.#default&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Two caveats: the action builds and caches nothing — you need to have filled the cache yourself — and since the workflow runs on fork PRs, use a segregated cache and &lt;code&gt;allow-unsafe-pr-checkout: true&lt;/code&gt;.&lt;/p&gt;
+&lt;h2 id="limitations"&gt;Limitations&lt;a class="headerlink" href="#limitations" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;It's not all magic:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Large binaries are slow: they can take 1-2 minutes to run. There's a &lt;a href="https://trynix.dev/bench/"&gt;benchmark page&lt;/a&gt; with data.&lt;/li&gt;
+&lt;li&gt;The whole closure has to fit in tab memory (~1.5 GiB cap, and WebAssembly limits it to 4 GiB since it's a 32-bit address space).&lt;/li&gt;
+&lt;li&gt;The first run of a binary is slow because it has to translate from x86_64 to Wasm; subsequent runs are faster because it's cached in memory.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Still, as a workflow for small and medium binaries it's impressive. "Does this fix the bug?" stops being a thought experiment.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Original source&lt;/em&gt;: &lt;a href="https://simonwillison.net/2026/Sep/10/trynix/"&gt;Simon Willison - Any Nix package, live in your browser&lt;/a&gt;&lt;/p&gt;</content><category term="Tools"></category><category term="webassembly"></category><category term="qemu"></category><category term="browser"></category><category term="nix"></category><category term="virtual-machines"></category><category term="github-actions"></category></entry></feed>

@@ -3,6 +3,11 @@ html_selector = "main"
 base_directory = "/home/runner/work/anotaciones/anotaciones/output/en"
 
 [[input.files]]
+path = "qemu-wasm-maquinas-virtuales-en-el-navegador.html"
+url = "/qemu-wasm-maquinas-virtuales-en-el-navegador"
+title = "qemu-wasm: full virtual machines inside your browser"
+
+[[input.files]]
 path = "ku-kubernetes-tui.html"
 url = "/ku-kubernetes-tui"
 title = "ku: navigate Kubernetes from the terminal like a pro"
@@ -501,6 +506,11 @@ title = "Django: links in object list"
 path = "settings-vars-processor.html"
 url = "/settings-vars-processor"
 title = "Settings vars processor"
+
+[[input.files]]
+path = "qemu-wasm-maquinas-virtuales-en-el-navegador-es.html"
+url = "/../qemu-wasm-maquinas-virtuales-en-el-navegador"
+title = "qemu-wasm: máquinas virtuales completas dentro del navegador"
 
 [[input.files]]
 path = "ku-kubernetes-tui-es.html"

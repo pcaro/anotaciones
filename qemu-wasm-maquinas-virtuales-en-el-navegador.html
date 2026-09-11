@@ -1,0 +1,470 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/stylesheet/style.min.css">
+
+    <link id="dark-theme-style" rel="stylesheet" type="text/css"
+        disabled="disabled"
+    href="https://pablocaro.es/theme/stylesheet/dark-theme.min.css">
+
+    <link id="pygments-dark-theme" rel="stylesheet" type="text/css"
+            disabled="disabled"
+          href="https://pablocaro.es/theme/pygments/github.min.css">
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+          href="https://pablocaro.es/theme/pygments/github.min.css">
+
+
+  <link rel="stylesheet"
+        type="text/css"
+        href="https://pablocaro.es/theme/stork/stork.css" />
+
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/font-awesome/css/solid.css">
+
+  <link rel="stylesheet" type="text/css" href="/extras/custom.css">
+
+  <link rel="shortcut icon" href="/theme/img/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/theme/img/favicon.ico" type="image/x-icon">
+
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#333333">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#333333">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Microsoft EDGE -->
+  <meta name="msapplication-TileColor" content="#333333">
+
+  <link href="https://pablocaro.es/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Anotaciones por Pablo Caro Atom">
+
+  <link href="https://pablocaro.es/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Anotaciones por Pablo Caro RSS">
+
+<script data-goatcounter="https://pcaro.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Pablo Caro" />
+<meta name="description" content="qemu-wasm porta QEMU a WebAssembly para arrancar una máquina virtual x86_64 entera dentro del navegador. trynix.dev lo lleva al límite ejecutando cualquier paquete de nixpkgs de los últimos 13 años, y una GitHub Action arranca la build de un PR con un solo enlace." />
+<meta name="keywords" content="webassembly, qemu, navegador, nix, maquinas-virtuales, github-actions" />
+
+<link
+  rel="alternate"
+  href="https://pablocaro.es/qemu-wasm-maquinas-virtuales-en-el-navegador"
+  hreflang="es"
+/>
+<link
+  rel="alternate"
+  href="https://pablocaro.es/en/qemu-wasm-maquinas-virtuales-en-el-navegador"
+  hreflang="en"
+/>
+    <meta property="og:site_name" content="Anotaciones por Pablo Caro"/>
+  <meta property="og:title" content="qemu-wasm: máquinas virtuales completas dentro del navegador"/>
+  <meta property="og:description" content="qemu-wasm porta QEMU a WebAssembly para arrancar una máquina virtual x86_64 entera dentro del navegador. trynix.dev lo lleva al límite ejecutando cualquier paquete de nixpkgs de los últimos 13 años, y una GitHub Action arranca la build de un PR con un solo enlace."/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://pablocaro.es/qemu-wasm-maquinas-virtuales-en-el-navegador"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2026-09-11 00:00:00+02:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://pablocaro.es/author/pablo-caro.html">
+  <meta property="article:section" content="Herramientas"/>
+  <meta property="article:tag" content="webassembly"/>
+  <meta property="article:tag" content="qemu"/>
+  <meta property="article:tag" content="navegador"/>
+  <meta property="article:tag" content="nix"/>
+  <meta property="article:tag" content="maquinas-virtuales"/>
+  <meta property="article:tag" content="github-actions"/>
+  <meta property="og:image" content="/theme/img/profile.png">
+ 
+  <title>Anotaciones por Pablo Caro &ndash; qemu-wasm: máquinas virtuales completas dentro del navegador</title>
+
+
+</head>
+<body class="light-theme">
+
+<aside>
+  <div>
+    <a href="https://pablocaro.es/">
+      <img src="/theme/img/profile.png" alt="Anotaciones" title="Anotaciones" />
+    </a>
+
+    <h1>
+      <a href="https://pablocaro.es/">Anotaciones</a>
+    </h1>
+
+    <p>Anotaciones</p>
+     <p style="font-size: 0.9em; font-style: italic; margin-bottom: 20px">
+      Volcando mi cerebro a internet. Colección de apuntes técnicos y soluciones que escribo para mi 'yo' del futuro, pero que comparto por si a alguien más le ahorran un dolor de cabeza.
+    </p>
+      <div class="stork">
+      <label for="sidebar-search" class="sr-only"
+        >Search articles</label
+      >
+      <div class="stork-input-wrap">
+      <input
+        id="sidebar-search"
+        class="stork-input"
+        type="text"
+        autocomplete="off"
+        name="q"
+        data-stork="sitesearch"
+        placeholder="Buscar..."
+        onclick="loadStorkIndex()"
+      />
+      </div>
+      <div class="stork-output" data-stork="sitesearch-output"></div>
+    </div>
+      <nav>
+      <ul class="list">
+             <li>
+          <a target="_self" href="http://x.com/pcaro">pcaro@X</a>
+        </li>
+        <li>
+          <a target="_self" href="https://github.com/pcaro/">pcaro@Github</a>
+        </li>
+        <li>
+          <a target="_self" href="https://www.linkedin.com/in/pcarorevuelta/">LinkedIn</a>
+        </li>
+      </ul>
+    </nav>
+      <nav class="sidebar-categories" aria-label="Categorías">
+                                                                                                                                 <a
+        href="https://pablocaro.es/category/ia.html"
+        class="sidebar-category"
+        title="ia (13)"
+      >
+        <img
+          src="https://pablocaro.es/images/categories/ia.png"
+          alt="ia"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">ia</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/programacion.html"
+        class="sidebar-category"
+        title="Programación (79)"
+      >
+        <img
+          src="https://pablocaro.es/images/categories/programacion.png"
+          alt="Programación"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Programación</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/linux.html"
+        class="sidebar-category"
+        title="Linux (12)"
+      >
+        <img
+          src="https://pablocaro.es/images/categories/linux.png"
+          alt="Linux"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Linux</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/herramientas.html"
+        class="sidebar-category"
+        title="Herramientas (28)"
+      >
+        <img
+          src="https://pablocaro.es/images/categories/herramientas.png"
+          alt="Herramientas"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Herramientas</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/infraestructura.html"
+        class="sidebar-category"
+        title="Infraestructura (49)"
+      >
+        <img
+          src="https://pablocaro.es/images/categories/infraestructura.png"
+          alt="Infraestructura"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Infraestructura</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/documentacion.html"
+        class="sidebar-category"
+        title="Documentación (1)"
+      >
+        <img
+          src="https://pablocaro.es/images/categories/documentacion.png"
+          alt="Documentación"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Documentación</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/finanzas.html"
+        class="sidebar-category"
+        title="Finanzas (1)"
+      >
+        <img
+          src="https://pablocaro.es/images/categories/finanzas.png"
+          alt="Finanzas"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Finanzas</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/personal.html"
+        class="sidebar-category"
+        title="Personal (3)"
+      >
+        <img
+          src="https://pablocaro.es/images/categories/personal.png"
+          alt="Personal"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Personal</span>
+      </a>
+    </nav>
+  </div>
+
+</aside>
+  <main>
+
+<nav>
+  <a href="https://pablocaro.es/">Inicio</a>
+
+  <a href="/archives.html">Archivo</a>
+  <a href="/categories.html">Categorías</a>
+  <a href="/tags.html">Etiquetas</a>
+  <a href="/search.html">Búsqueda</a>
+  <a href="/en/">English</a>
+   <a href="javascript:void(0)" onclick="theme.switch('dark')">🌙</a>
+  <a href="javascript:void(0)" onclick="theme.switch('light')">☀</a>
+   <a href="https://pablocaro.es/feeds/all.rss.xml">RSS</a>
+</nav>
+
+<article class="single">
+  <header>
+      <div class="translations">
+            <a href="https://pablocaro.es/en/qemu-wasm-maquinas-virtuales-en-el-navegador">Read in English</a>
+    </div>
+
+    <h1 id="qemu-wasm-maquinas-virtuales-en-el-navegador">qemu-wasm: máquinas virtuales completas dentro del navegador</h1>
+    <p>
+      Publicado el 11 de September de 2026 en <a href="https://pablocaro.es/category/herramientas.html">Herramientas</a>     </p>
+  </header>
+
+ 
+  <div><p><img alt="trynix.dev ejecutando una máquina virtual en el navegador" src="/images/trynix-qemu-wasm.png"></p>
+<p>Cada cierto tiempo algo me recuerda lo lejos que han llegado los navegadores. Hoy toca: una máquina virtual x86_64 completa, arrancando dentro de una pestaña, sin servidor detrás.</p>
+<p><a href="https://github.com/ktock/qemu-wasm">qemu-wasm</a> es un QEMU parcheado para que corra en el navegador. No es una reimplementación ni un juguete: es QEMU compilado a WebAssembly, con traducción binaria JIT (TCG) y soporte de múltiples hilos. El mismo QEMU que usas en tu máquina, corriendo en una pestaña.</p>
+<h2 id="como-funciona">Cómo funciona<a class="headerlink" href="#como-funciona" title="Permanent link">&para;</a></h2>
+<p>QEMU tiene varios backends para ejecutar código de invitado. El más rápido es TCG, que traduce el binario del invitado a código nativo de la máquina host. Aquí el "host" es WebAssembly, así que el proyecto añade un backend de TCG que traduce el IR de QEMU a Wasm.</p>
+<p>WebAssembly no permite saltar a código generado en memoria, así que en su lugar se apoyan en las APIs del navegador (<code>WebAssembly.Module</code> y <code>WebAssembly.Instance</code>). Cada bloque de traducción (TB) se compila como un módulo Wasm independiente que importa la memoria y las funciones helper del módulo principal de QEMU.</p>
+<p>El problema: compilar todos los bloques a Wasm es caro, y los navegadores no aguantan crear miles de módulos. La solución es híbrida. Los bloques fríos se interpretan (TCI, el intérprete lento) y solo los bloques que se ejecutan muchas veces (~1000) se compilan a Wasm.</p>
+<p>Es software experimental, pero funciona. Hay una <a href="https://ktock.github.io/qemu-wasm-demo/">demo</a> con invitados x86_64, aarch64 (emula hasta una Raspberry Pi) y riscv64. Y parte de esto se está subiendo a QEMU upstream: el modo intérprete (TCI) para invitados de 32 bits ya entró en QEMU 10.1, y el resto sigue en discusión.</p>
+<h2 id="el-caso-de-uso-que-me-ha-volado-la-cabeza-trynixdev">El caso de uso que me ha volado la cabeza: trynix.dev<a class="headerlink" href="#el-caso-de-uso-que-me-ha-volado-la-cabeza-trynixdev" title="Permanent link">&para;</a></h2>
+<p>Conocer el motor está bien, pero lo que me parece brutal es el uso que le ha dado <a href="https://fzakaria.com/">Farid Zakaria</a>: <a href="https://trynix.dev">trynix.dev</a>.</p>
+<p>La idea: arrancar una VM Linux x86_64 en tu pestaña y darle un store de Nix como sistema de archivos. El resultado es que puedes ejecutar <strong>cualquier paquete de nixpkgs de los últimos 13 años</strong> — más de 310.000 versiones — sin instalar nada en tu máquina.</p>
+<p>Y son URL-addressable. Prueba esto:</p>
+<div class="highlight"><pre><span></span><code>https://trynix.dev/?pkg=python3%403.6.2
+</code></pre></div>
+
+<p>Pulsa <strong>Boot</strong> y tienes una shell interactiva contra una máquina virtual que ejecuta Python 3.6.2 de 2017. Nada corre en un servidor: la página es estática, el kernel es WebAssembly y la closure del paquete se descarga de cache.nixos.org (que sirve <code>access-control-allow-origin: *</code>, cosa que hace posible todo esto).</p>
+<p>Incluso puedes arrancar dos versiones de <code>hello</code> a la vez sin que choquen, porque en Nix cada binario referencia sus dependencias por ruta absoluta:</p>
+<div class="highlight"><pre><span></span><code>https://trynix.dev/?pkg=hello@2.10&amp;pkg=hello@2.12.2
+</code></pre></div>
+
+<p>Para que se sienta instantáneo, el sitio pre-carga el motor y un snapshot de la VM en segundo plano, y nunca arranca desde cero: reanuda una máquina que ya fue arrancada una vez con el QEMU nativo y pausada justo antes de montar el store.</p>
+<h2 id="la-accion-de-github-revisar-un-pr-arrancandolo">La acción de GitHub: revisar un PR arrancándolo<a class="headerlink" href="#la-accion-de-github-revisar-un-pr-arrancandolo" title="Permanent link">&para;</a></h2>
+<p>La parte más aplicada es <a href="https://github.com/marketplace/actions/trynix-preview">trynix-preview</a>, una GitHub Action que comenta en cada pull request un enlace para arrancar la build del PR en el navegador. Sin servidores, sin SSH, sin clonar, sin compilar. Solo un enlace.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Setup Cachix como caché de Nix.</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cachix/cachix-action@v17</span>
+<span class="w">  </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sqlelf</span>
+<span class="w">    </span><span class="nt">authToken</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.CACHIX_AUTH_TOKEN }}</span>
+<span class="c1"># Construimos el código del PR y lo subimos a la caché.</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nix build .#default</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fzakaria/trynix@v1</span>
+<span class="w">  </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">cache</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://sqlelf.cachix.org</span>
+<span class="w">    </span><span class="nt">publicKey</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sqlelf.cachix.org-1:MLnjolA9AsKscTOJKDSA+ZAcgIK8BwZA574j4+Cs2bg=</span>
+<span class="w">    </span><span class="nt">attrs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.#default</span>
+</code></pre></div>
+
+<p>Ojo a dos detalles: la acción no construye ni cachea nada — tú ya tienes que haber llenado la caché — y como el workflow corre sobre PRs de forks, conviene usar una caché segregada y <code>allow-unsafe-pr-checkout: true</code>.</p>
+<h2 id="limitaciones">Limitaciones<a class="headerlink" href="#limitaciones" title="Permanent link">&para;</a></h2>
+<p>No todo es magia:</p>
+<ul>
+<li>Los binarios grandes son lentos: pueden tardar 1-2 minutos en ejecutarse. Hay una <a href="https://trynix.dev/bench/">página de benchmarks</a> con datos.</li>
+<li>La closure entera tiene que caber en la memoria de la pestaña (~1.5 GiB de tope, y WebAssembly limita a 4 GiB por ser de 32 bits).</li>
+<li>La primera ejecución de un binario es lenta porque hay que traducir de x86_64 a Wasm; las siguientes van más rápido porque se cachea en memoria.</li>
+</ul>
+<p>Aun así, como flujo de trabajo para binarios pequeños y medianos es impresionante. "¿Esto arregla el bug?" deja de ser un experimento mental.</p>
+<p><em>Fuente original</em>: <a href="https://simonwillison.net/2026/Sep/10/trynix/">Simon Willison - Any Nix package, live in your browser</a></p></div>
+  <div class="tag-cloud">
+    <p>
+       <a href="https://pablocaro.es/tag/webassembly.html">webassembly</a>
+      <a href="https://pablocaro.es/tag/qemu.html">qemu</a>
+      <a href="https://pablocaro.es/tag/navegador.html">navegador</a>
+      <a href="https://pablocaro.es/tag/nix.html">nix</a>
+      <a href="https://pablocaro.es/tag/maquinas-virtuales.html">maquinas-virtuales</a>
+      <a href="https://pablocaro.es/tag/github-actions.html">github-actions</a>
+     </p>
+  </div>
+
+    <div class="neighbors">
+    <a class="btn float-left" href="https://pablocaro.es/ku-kubernetes-tui" title="ku: Kubernetes desde la terminal como un ninja">
+      <i class="fa fa-angle-left"></i> Artículo anterior
+    </a>
+  </div>
+   <div class="related-posts">
+    <h4>Te puede gustar</h4>
+    <ul class="related-posts">
+      <li>
+        <a href="https://pablocaro.es/rust-ebooks-nightly"
+          >Rust eBooks Nightly — libros de Rust en EPUB, AZW3, MOBI y PDF</a
+        >
+      </li>
+    </ul>
+  </div>
+  <!-- Disqus -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'anotaciones';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>
+    Por favor, habilita JavaScript para ver los comentarios.
+</noscript>
+<!-- End Disqus -->
+ </article>
+
+<footer>
+<p>
+  &copy; 2026  - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+  Construido con <a
+    href="http://getpelican.com"
+    target="_blank"
+    >Pelican</a
+  > usando el tema <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a
+  >    <script
+    id="dark-theme-script"
+    src="https://pablocaro.es/theme/dark-theme/dark-theme.min.js"
+    data-enable-auto-detect-theme="False"
+    data-default-theme="light"
+    type="text/javascript"
+  ></script>
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/3.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/3.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Anotaciones por Pablo Caro ",
+  "url" : "https://pablocaro.es",
+  "image": "/theme/img/profile.png",
+  "description": ""
+}
+</script>  <script src="https://files.stork-search.net/releases/v1.6.0/stork.js"></script>
+  <script>
+    window.storkIndexLoaded = false;
+    window.loadStorkIndex = function () {
+      if (window.storkIndexLoaded) {
+        return;
+      }
+      if (typeof stork === 'undefined') {
+        setTimeout(window.loadStorkIndex, 100);
+        return;
+      }
+      var url = "https://pablocaro.es/search-index.st";
+      var opts = { showProgress: false };
+      stork.register("sitesearch", url, opts);
+      try {
+        stork.register("sitesearch-page", url, opts);
+      } catch (e) {
+        // Search page input not in DOM on this page — index still registered
+      }
+      window.storkIndexLoaded = true;
+    }
+  </script>
+
+
+  <button id="back-to-top" aria-label="Back to top" title="Back to top">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <path d="M10 16V4m0 0L5 9m5-5l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+  <script>
+  (function() {
+    var btn = document.getElementById('back-to-top');
+    if (!btn) return;
+    var ticking = false;
+    function onScroll() {
+      if (!ticking) {
+        requestAnimationFrame(function() {
+          btn.classList.toggle('visible', window.scrollY > 500);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }
+    btn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    window.addEventListener('scroll', onScroll, { passive: true });
+  })();
+  </script>
+</body>
+</html>
