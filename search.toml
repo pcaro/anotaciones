@@ -3,6 +3,11 @@ html_selector = "main"
 base_directory = "/home/runner/work/anotaciones/anotaciones/output"
 
 [[input.files]]
+path = "wrapture.html"
+url = "/wrapture"
+title = "wrapture — monkey patching y observabilidad en un solo mecanismo"
+
+[[input.files]]
 path = "qemu-wasm-maquinas-virtuales-en-el-navegador.html"
 url = "/qemu-wasm-maquinas-virtuales-en-el-navegador"
 title = "qemu-wasm: máquinas virtuales completas dentro del navegador"
@@ -931,6 +936,11 @@ title = "Corrector ortográfico de firefox 2.0 en castellano"
 path = "primera-anotacion-de-prueba.html"
 url = "/primera-anotacion-de-prueba"
 title = "Primera anotación de prueba"
+
+[[input.files]]
+path = "wrapture-en.html"
+url = "/en/wrapture"
+title = "wrapture — monkey patching and observability in a single mechanism"
 
 [[input.files]]
 path = "qemu-wasm-maquinas-virtuales-en-el-navegador-en.html"

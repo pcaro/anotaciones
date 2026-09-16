@@ -3,6 +3,11 @@ html_selector = "main"
 base_directory = "/home/runner/work/anotaciones/anotaciones/output/en"
 
 [[input.files]]
+path = "wrapture.html"
+url = "/wrapture"
+title = "wrapture — monkey patching and observability in a single mechanism"
+
+[[input.files]]
 path = "qemu-wasm-maquinas-virtuales-en-el-navegador.html"
 url = "/qemu-wasm-maquinas-virtuales-en-el-navegador"
 title = "qemu-wasm: full virtual machines inside your browser"
@@ -506,6 +511,11 @@ title = "Django: links in object list"
 path = "settings-vars-processor.html"
 url = "/settings-vars-processor"
 title = "Settings vars processor"
+
+[[input.files]]
+path = "wrapture-es.html"
+url = "/../wrapture"
+title = "wrapture — monkey patching y observabilidad en un solo mecanismo"
 
 [[input.files]]
 path = "qemu-wasm-maquinas-virtuales-en-el-navegador-es.html"

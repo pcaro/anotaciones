@@ -1,0 +1,477 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/stylesheet/style.min.css">
+
+    <link id="dark-theme-style" rel="stylesheet" type="text/css"
+        disabled="disabled"
+    href="https://pablocaro.es/theme/stylesheet/dark-theme.min.css">
+
+    <link id="pygments-dark-theme" rel="stylesheet" type="text/css"
+            disabled="disabled"
+          href="https://pablocaro.es/theme/pygments/github.min.css">
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+          href="https://pablocaro.es/theme/pygments/github.min.css">
+
+
+  <link rel="stylesheet"
+        type="text/css"
+        href="https://pablocaro.es/theme/stork/stork.css" />
+
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/font-awesome/css/solid.css">
+
+  <link rel="stylesheet" type="text/css" href="/extras/custom.css">
+
+  <link rel="shortcut icon" href="/theme/img/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/theme/img/favicon.ico" type="image/x-icon">
+
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#333333">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#333333">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Microsoft EDGE -->
+  <meta name="msapplication-TileColor" content="#333333">
+
+  <link href="https://pablocaro.es/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Anotaciones por Pablo Caro Atom">
+
+  <link href="https://pablocaro.es/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Anotaciones por Pablo Caro RSS">
+
+<script data-goatcounter="https://pcaro.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Pablo Caro" />
+<meta name="description" content="wrapture es la nueva librería de monkey patching de Graham Dumpleton (autor de wrapt) que combina testing y observabilidad con un único mecanismo. Configurable desde un archivo TOML sin tocar el código de la aplicación." />
+<meta name="keywords" content="python, monkey-patching, testing, observabilidad, opentelemetry, wrapt" />
+
+<link
+  rel="alternate"
+  href="https://pablocaro.es/wrapture"
+  hreflang="es"
+/>
+<link
+  rel="alternate"
+  href="https://pablocaro.es/en/wrapture"
+  hreflang="en"
+/>
+    <meta property="og:site_name" content="Anotaciones por Pablo Caro"/>
+  <meta property="og:title" content="wrapture — monkey patching y observabilidad en un solo mecanismo"/>
+  <meta property="og:description" content="wrapture es la nueva librería de monkey patching de Graham Dumpleton (autor de wrapt) que combina testing y observabilidad con un único mecanismo. Configurable desde un archivo TOML sin tocar el código de la aplicación."/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://pablocaro.es/wrapture"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2026-09-16 00:00:00+02:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://pablocaro.es/author/pablo-caro.html">
+  <meta property="article:section" content="Programación"/>
+  <meta property="article:tag" content="python"/>
+  <meta property="article:tag" content="monkey-patching"/>
+  <meta property="article:tag" content="testing"/>
+  <meta property="article:tag" content="observabilidad"/>
+  <meta property="article:tag" content="opentelemetry"/>
+  <meta property="article:tag" content="wrapt"/>
+  <meta property="og:image" content="/theme/img/profile.png">
+ 
+  <title>Anotaciones por Pablo Caro &ndash; wrapture — monkey patching y observabilidad en un solo mecanismo</title>
+
+
+</head>
+<body class="light-theme">
+
+<aside>
+  <div>
+    <a href="https://pablocaro.es/">
+      <img src="/theme/img/profile.png" alt="Anotaciones" title="Anotaciones" />
+    </a>
+
+    <h1>
+      <a href="https://pablocaro.es/">Anotaciones</a>
+    </h1>
+
+    <p>Anotaciones</p>
+     <p style="font-size: 0.9em; font-style: italic; margin-bottom: 20px">
+      Volcando mi cerebro a internet. Colección de apuntes técnicos y soluciones que escribo para mi 'yo' del futuro, pero que comparto por si a alguien más le ahorran un dolor de cabeza.
+    </p>
+      <div class="stork">
+      <label for="sidebar-search" class="sr-only"
+        >Search articles</label
+      >
+      <div class="stork-input-wrap">
+      <input
+        id="sidebar-search"
+        class="stork-input"
+        type="text"
+        autocomplete="off"
+        name="q"
+        data-stork="sitesearch"
+        placeholder="Buscar..."
+        onclick="loadStorkIndex()"
+      />
+      </div>
+      <div class="stork-output" data-stork="sitesearch-output"></div>
+    </div>
+      <nav>
+      <ul class="list">
+             <li>
+          <a target="_self" href="http://x.com/pcaro">pcaro@X</a>
+        </li>
+        <li>
+          <a target="_self" href="https://github.com/pcaro/">pcaro@Github</a>
+        </li>
+        <li>
+          <a target="_self" href="https://www.linkedin.com/in/pcarorevuelta/">LinkedIn</a>
+        </li>
+      </ul>
+    </nav>
+      <nav class="sidebar-categories" aria-label="Categorías">
+                                                                                                                                 <a
+        href="https://pablocaro.es/category/ia.html"
+        class="sidebar-category"
+        title="ia (13)"
+      >
+        <img
+          src="https://pablocaro.es/images/categories/ia.png"
+          alt="ia"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">ia</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/programacion.html"
+        class="sidebar-category"
+        title="Programación (80)"
+      >
+        <img
+          src="https://pablocaro.es/images/categories/programacion.png"
+          alt="Programación"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Programación</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/linux.html"
+        class="sidebar-category"
+        title="Linux (12)"
+      >
+        <img
+          src="https://pablocaro.es/images/categories/linux.png"
+          alt="Linux"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Linux</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/herramientas.html"
+        class="sidebar-category"
+        title="Herramientas (28)"
+      >
+        <img
+          src="https://pablocaro.es/images/categories/herramientas.png"
+          alt="Herramientas"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Herramientas</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/infraestructura.html"
+        class="sidebar-category"
+        title="Infraestructura (49)"
+      >
+        <img
+          src="https://pablocaro.es/images/categories/infraestructura.png"
+          alt="Infraestructura"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Infraestructura</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/documentacion.html"
+        class="sidebar-category"
+        title="Documentación (1)"
+      >
+        <img
+          src="https://pablocaro.es/images/categories/documentacion.png"
+          alt="Documentación"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Documentación</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/finanzas.html"
+        class="sidebar-category"
+        title="Finanzas (1)"
+      >
+        <img
+          src="https://pablocaro.es/images/categories/finanzas.png"
+          alt="Finanzas"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Finanzas</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/personal.html"
+        class="sidebar-category"
+        title="Personal (3)"
+      >
+        <img
+          src="https://pablocaro.es/images/categories/personal.png"
+          alt="Personal"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Personal</span>
+      </a>
+    </nav>
+  </div>
+
+</aside>
+  <main>
+
+<nav>
+  <a href="https://pablocaro.es/">Inicio</a>
+
+  <a href="/archives.html">Archivo</a>
+  <a href="/categories.html">Categorías</a>
+  <a href="/tags.html">Etiquetas</a>
+  <a href="/search.html">Búsqueda</a>
+  <a href="/en/">English</a>
+   <a href="javascript:void(0)" onclick="theme.switch('dark')">🌙</a>
+  <a href="javascript:void(0)" onclick="theme.switch('light')">☀</a>
+   <a href="https://pablocaro.es/feeds/all.rss.xml">RSS</a>
+</nav>
+
+<article class="single">
+  <header>
+      <div class="translations">
+            <a href="https://pablocaro.es/en/wrapture">Read in English</a>
+    </div>
+
+    <h1 id="wrapture">wrapture — monkey patching y observabilidad en un solo mecanismo</h1>
+    <p>
+      Publicado el 16 de September de 2026 en <a href="https://pablocaro.es/category/programacion.html">Programación</a>     </p>
+  </header>
+
+ 
+  <div><p><a href="https://simonwillison.net/2026/Sep/11/wrapture/">Simon Willison</a> ha publicado una nota recomendando <strong>wrapture</strong>, la nueva librería de <a href="https://grahamdumpleton.me/posts/2026/08/introducing-wrapture/">Graham Dumpleton</a> (el autor de <code>wrapt</code> y <code>autowrapt</code>). Se lanzó el 31 de agosto y está en beta antes de 1.0.0, pero ya es muy usable. Su lema: <em>"Wrap anything, capture everything, change nothing"</em>.</p>
+<p><img alt="Documentación de wrapture" src="/images/wrapture.png"></p>
+<h2 id="que-es">Qué es<a class="headerlink" href="#que-es" title="Permanent link">&para;</a></h2>
+<p><code>wrapture</code> (<code>wrapt</code> + <code>capture</code>) es una librería Python para enlazar bindings a puntos de llamada arbitrarios, sin modificar el código observado. Un solo mecanismo con tres usos:</p>
+<ol>
+<li><strong>Monkey patching</strong>: ciclo de vida y vocabulario de comportamiento limpio sobre <code>wrapt.wrap_object()</code>: stub, fallo, transformación de argumentos o resultados, y reversión con detección honesta de parches desplazados.</li>
+<li><strong>Testing unitario</strong>: observa y asevera cómo fluyeron las llamadas por el grafo real (anidamiento, orden, argumentos y retornos) e interviene opcionalmente. A diferencia de un <code>Mock</code> de <code>unittest.mock</code> (que fabrica valores y no ve llamadas que un objeto se hace a sí mismo), wrapture observa el código real y ofrece <code>stub()</code> y <code>mock()</code> estrictos.</li>
+<li><strong>Tracing ad-hoc</strong>: adjunta bindings a una aplicación en ejecución —incluso una que no puedes modificar— y emite un trace estructurado y anidado.</li>
+</ol>
+<h2 id="lo-que-me-llama-la-atencion">Lo que me llama la atención<a class="headerlink" href="#lo-que-me-llama-la-atencion" title="Permanent link">&para;</a></h2>
+<p><strong>Configuración sin tocar código</strong>: con un archivo <code>wrapture.toml</code> que nombra los métodos y un sink, basta con:</p>
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>-m<span class="w"> </span>wrapture<span class="w"> </span>manage.py<span class="w"> </span>runserver
+</code></pre></div>
+
+<p>Y con <code>autowrapt</code> instalado, ni siquiera el lanzador:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">AUTOWRAPT_BOOTSTRAP</span><span class="o">=</span>wrapture<span class="w"> </span>python<span class="w"> </span>manage.py<span class="w"> </span>runserver
+</code></pre></div>
+
+<p><strong>Export a OpenTelemetry</strong>: los mismos eventos registrados se pueden enviar a cualquier backend OTLP como traces, métricas y logs correlacionados con una tabla <code>[otel]</code> en la config, con identidad de trace propagada por cabeceras W3C <code>traceparent</code> entre servicios.</p>
+<p><strong>Instrumentación empaquetada</strong>: el paquete <a href="https://github.com/GrahamDumpleton/wrapture-instrumentation">wrapture-instrumentation</a> cubre <code>flask</code>, <code>django</code>, <code>fastapi</code>, <code>starlette</code>, <code>aiohttp</code>, <code>httpx</code>, <code>requests</code>, <code>sqlalchemy</code>, <code>sqlite3</code>, <code>grpc</code>, <code>jinja2</code>, <code>uvicorn</code> y más.</p>
+<h2 id="ejemplo-minimo">Ejemplo mínimo<a class="headerlink" href="#ejemplo-minimo" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="n">place</span> <span class="o">=</span> <span class="n">wrapture</span><span class="o">.</span><span class="n">binding</span><span class="p">(</span><span class="n">OrderService</span><span class="p">,</span> <span class="s2">&quot;place&quot;</span><span class="p">)</span>
+<span class="n">charge</span> <span class="o">=</span> <span class="n">wrapture</span><span class="o">.</span><span class="n">binding</span><span class="p">(</span><span class="n">Gateway</span><span class="p">,</span> <span class="s2">&quot;charge&quot;</span><span class="p">)</span>
+<span class="n">record</span> <span class="o">=</span> <span class="n">wrapture</span><span class="o">.</span><span class="n">binding</span><span class="p">(</span><span class="n">Ledger</span><span class="p">,</span> <span class="s2">&quot;record&quot;</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="n">wrapture</span><span class="o">.</span><span class="n">timeline</span><span class="p">(</span><span class="n">place</span><span class="p">,</span> <span class="n">charge</span><span class="p">,</span> <span class="n">record</span><span class="p">)</span> <span class="k">as</span> <span class="n">tape</span><span class="p">:</span>
+    <span class="n">OrderService</span><span class="p">()</span><span class="o">.</span><span class="n">place</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">tape</span><span class="o">.</span><span class="n">tree</span><span class="p">())</span>
+</code></pre></div>
+
+<p>Ninguna de las clases sabe que está siendo observada.</p>
+<p>Graham publica <a href="https://wrapture.readthedocs.io/en/latest/blog-posts-and-workshops.html">tutoriales casi a diario</a> y hay <a href="https://github.com/GrahamDumpleton/wrapture-workshops">workshops interactivos</a> en JupyterLab. La idea de que un monkey patch de test pueda crecer hasta convertirse en observabilidad de producción sin reescribir código me parece una navaja suiza que dará juego durante años.</p>
+<p><em>Fuente original</em>: <a href="https://simonwillison.net/2026/Sep/11/wrapture/">Don't sleep on wrapture — Simon Willison</a></p></div>
+  <div class="tag-cloud">
+    <p>
+       <a href="https://pablocaro.es/tag/python.html">python</a>
+      <a href="https://pablocaro.es/tag/monkey-patching.html">monkey-patching</a>
+      <a href="https://pablocaro.es/tag/testing.html">testing</a>
+      <a href="https://pablocaro.es/tag/observabilidad.html">observabilidad</a>
+      <a href="https://pablocaro.es/tag/opentelemetry.html">opentelemetry</a>
+      <a href="https://pablocaro.es/tag/wrapt.html">wrapt</a>
+     </p>
+  </div>
+
+    <div class="neighbors">
+    <a class="btn float-left" href="https://pablocaro.es/qemu-wasm-maquinas-virtuales-en-el-navegador" title="qemu-wasm: máquinas virtuales completas dentro del navegador">
+      <i class="fa fa-angle-left"></i> Artículo anterior
+    </a>
+  </div>
+   <div class="related-posts">
+    <h4>Te puede gustar</h4>
+    <ul class="related-posts">
+      <li>
+        <a href="https://pablocaro.es/pluggy-plugins-python"
+          >Pluggy — Un framework de plugins para usar en tus proyectos</a
+        >
+      </li>
+      <li>
+        <a href="https://pablocaro.es/instalar-insync-en-opensuse"
+          >Instalar InSync en Opensuse</a
+        >
+      </li>
+      <li>
+        <a href="https://pablocaro.es/reactivando-el-blog"
+          >Reactivando el blog</a
+        >
+      </li>
+      <li>
+        <a href="https://pablocaro.es/pyinotify-ejecutar-comando-cuando-se-modifica-un-fichero"
+          >pyinotify: Ejecutar comando cuando se modifica un fichero</a
+        >
+      </li>
+      <li>
+        <a href="https://pablocaro.es/cambiar-de-lugar-un-virtualenv"
+          >Cambiar de lugar un virtualenv</a
+        >
+      </li>
+    </ul>
+  </div>
+  <!-- Disqus -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'anotaciones';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>
+    Por favor, habilita JavaScript para ver los comentarios.
+</noscript>
+<!-- End Disqus -->
+ </article>
+
+<footer>
+<p>
+  &copy; 2026  - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+  Construido con <a
+    href="http://getpelican.com"
+    target="_blank"
+    >Pelican</a
+  > usando el tema <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a
+  >    <script
+    id="dark-theme-script"
+    src="https://pablocaro.es/theme/dark-theme/dark-theme.min.js"
+    data-enable-auto-detect-theme="False"
+    data-default-theme="light"
+    type="text/javascript"
+  ></script>
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/3.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/3.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Anotaciones por Pablo Caro ",
+  "url" : "https://pablocaro.es",
+  "image": "/theme/img/profile.png",
+  "description": ""
+}
+</script>  <script src="https://files.stork-search.net/releases/v1.6.0/stork.js"></script>
+  <script>
+    window.storkIndexLoaded = false;
+    window.loadStorkIndex = function () {
+      if (window.storkIndexLoaded) {
+        return;
+      }
+      if (typeof stork === 'undefined') {
+        setTimeout(window.loadStorkIndex, 100);
+        return;
+      }
+      var url = "https://pablocaro.es/search-index.st";
+      var opts = { showProgress: false };
+      stork.register("sitesearch", url, opts);
+      try {
+        stork.register("sitesearch-page", url, opts);
+      } catch (e) {
+        // Search page input not in DOM on this page — index still registered
+      }
+      window.storkIndexLoaded = true;
+    }
+  </script>
+
+
+  <button id="back-to-top" aria-label="Back to top" title="Back to top">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <path d="M10 16V4m0 0L5 9m5-5l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+  <script>
+  (function() {
+    var btn = document.getElementById('back-to-top');
+    if (!btn) return;
+    var ticking = false;
+    function onScroll() {
+      if (!ticking) {
+        requestAnimationFrame(function() {
+          btn.classList.toggle('visible', window.scrollY > 500);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }
+    btn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    window.addEventListener('scroll', onScroll, { passive: true });
+  })();
+  </script>
+</body>
+</html>
