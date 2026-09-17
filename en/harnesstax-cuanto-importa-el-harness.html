@@ -1,0 +1,478 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="/en/theme/stylesheet/style.min.css">
+
+    <link id="dark-theme-style" rel="stylesheet" type="text/css"
+        disabled="disabled"
+    href="/en/theme/stylesheet/dark-theme.min.css">
+
+    <link id="pygments-dark-theme" rel="stylesheet" type="text/css"
+            disabled="disabled"
+          href="/en/theme/pygments/github.min.css">
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+          href="/en/theme/pygments/github.min.css">
+
+
+  <link rel="stylesheet"
+        type="text/css"
+        href="/en/theme/stork/stork.css" />
+
+  <link rel="stylesheet" type="text/css" href="/en/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="/en/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="/en/theme/font-awesome/css/solid.css">
+
+  <link rel="stylesheet" type="text/css" href="/extras/custom.css">
+
+  <link rel="shortcut icon" href="/theme/img/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/theme/img/favicon.ico" type="image/x-icon">
+
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#333333">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#333333">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Microsoft EDGE -->
+  <meta name="msapplication-TileColor" content="#333333">
+
+  <link href="/en/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Annotations by Pablo Caro Atom">
+
+  <link href="/en/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Annotations by Pablo Caro RSS">
+
+<script data-goatcounter="https://pcaro.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Pablo Caro" />
+<meta name="description" content="The HarnessTax study from UC Berkeley and Arena evaluates 21 model-harness pairings and reaches three surprising conclusions. They back up with data why I use pi and OpenCode daily." />
+<meta name="keywords" content="pi, opencode, coding-agent, ai, harness, claude-code, codex, benchmarks, ai-agents" />
+
+<link
+  rel="alternate"
+  href="/en/harnesstax-cuanto-importa-el-harness"
+  hreflang="en"
+/>
+<link
+  rel="alternate"
+  href="/en/../harnesstax-cuanto-importa-el-harness"
+  hreflang="es"
+/>
+    <meta property="og:site_name" content="Annotations by Pablo Caro"/>
+  <meta property="og:title" content="HarnessTax: The Harness Matters Less Than You Think"/>
+  <meta property="og:description" content="The HarnessTax study from UC Berkeley and Arena evaluates 21 model-harness pairings and reaches three surprising conclusions. They back up with data why I use pi and OpenCode daily."/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="/en/harnesstax-cuanto-importa-el-harness"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2026-09-17 00:00:00+02:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="/en/author/pablo-caro.html">
+  <meta property="article:section" content="ia"/>
+  <meta property="article:tag" content="pi"/>
+  <meta property="article:tag" content="opencode"/>
+  <meta property="article:tag" content="coding-agent"/>
+  <meta property="article:tag" content="ai"/>
+  <meta property="article:tag" content="harness"/>
+  <meta property="article:tag" content="claude-code"/>
+  <meta property="article:tag" content="codex"/>
+  <meta property="article:tag" content="benchmarks"/>
+  <meta property="article:tag" content="ai-agents"/>
+  <meta property="og:image" content="/theme/img/profile.png">
+ 
+  <title>Annotations by Pablo Caro &ndash; HarnessTax: The Harness Matters Less Than You Think</title>
+
+
+</head>
+<body class="light-theme">
+
+<aside>
+  <div>
+    <a href="/en/">
+      <img src="/theme/img/profile.png" alt="Anotaciones" title="Anotaciones" />
+    </a>
+
+    <h1>
+      <a href="/en/">Anotaciones</a>
+    </h1>
+
+    <p>Anotaciones</p>
+     <p style="font-size: 0.9em; font-style: italic; margin-bottom: 20px">
+      Dumping my brain onto the internet. A collection of technical notes and solutions written for my future self, shared here in case they save someone else a headache.
+    </p>
+      <div class="stork">
+      <label for="sidebar-search" class="sr-only"
+        >Search articles</label
+      >
+      <div class="stork-input-wrap">
+      <input
+        id="sidebar-search"
+        class="stork-input"
+        type="text"
+        autocomplete="off"
+        name="q"
+        data-stork="sitesearch"
+        placeholder="Search..."
+        onclick="loadStorkIndex()"
+      />
+      </div>
+      <div class="stork-output" data-stork="sitesearch-output"></div>
+    </div>
+      <nav>
+      <ul class="list">
+             <li>
+          <a target="_self" href="http://x.com/pcaro">pcaro@X</a>
+        </li>
+        <li>
+          <a target="_self" href="https://github.com/pcaro/">pcaro@Github</a>
+        </li>
+        <li>
+          <a target="_self" href="https://www.linkedin.com/in/pcarorevuelta/">LinkedIn</a>
+        </li>
+      </ul>
+    </nav>
+      <nav class="sidebar-categories" aria-label="Categories">
+                                                                                                                                                           <a
+        href="/en/category/ia.html"
+        class="sidebar-category"
+        title="ia (14)"
+      >
+        <img
+          src="/en/images/categories/ia.png"
+          alt="ia"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">ia</span>
+      </a>
+      <a
+        href="/en/category/programacion.html"
+        class="sidebar-category"
+        title="Programación (30)"
+      >
+        <img
+          src="/en/images/categories/programacion.png"
+          alt="Programación"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Programación</span>
+      </a>
+      <a
+        href="/en/category/linux.html"
+        class="sidebar-category"
+        title="Linux (11)"
+      >
+        <img
+          src="/en/images/categories/linux.png"
+          alt="Linux"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Linux</span>
+      </a>
+      <a
+        href="/en/category/herramientas.html"
+        class="sidebar-category"
+        title="Herramientas (23)"
+      >
+        <img
+          src="/en/images/categories/herramientas.png"
+          alt="Herramientas"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Herramientas</span>
+      </a>
+      <a
+        href="/en/category/infraestructura.html"
+        class="sidebar-category"
+        title="Infraestructura (15)"
+      >
+        <img
+          src="/en/images/categories/infraestructura.png"
+          alt="Infraestructura"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Infraestructura</span>
+      </a>
+      <a
+        href="/en/category/documentacion.html"
+        class="sidebar-category"
+        title="Documentación (1)"
+      >
+        <img
+          src="/en/images/categories/documentacion.png"
+          alt="Documentación"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Documentación</span>
+      </a>
+      <a
+        href="/en/category/finanzas.html"
+        class="sidebar-category"
+        title="Finanzas (1)"
+      >
+        <img
+          src="/en/images/categories/finanzas.png"
+          alt="Finanzas"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Finanzas</span>
+      </a>
+      <a
+        href="/en/category/personal.html"
+        class="sidebar-category"
+        title="Personal (2)"
+      >
+        <img
+          src="/en/images/categories/personal.png"
+          alt="Personal"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Personal</span>
+      </a>
+      <a
+        href="/en/category/programming.html"
+        class="sidebar-category"
+        title="Programming (1)"
+      >
+        <span class="sidebar-category-icon">Pr</span>
+        <span class="sidebar-category-label">Programming</span>
+      </a>
+      <a
+        href="/en/category/tools.html"
+        class="sidebar-category"
+        title="Tools (5)"
+      >
+        <span class="sidebar-category-icon">To</span>
+        <span class="sidebar-category-label">Tools</span>
+      </a>
+    </nav>
+  </div>
+
+</aside>
+  <main>
+
+<nav>
+  <a href="/en/">Home</a>
+
+  <a href="/en/archives.html">Archives</a>
+  <a href="/en/categories.html">Categories</a>
+  <a href="/en/tags.html">Tags</a>
+  <a href="/en/search.html">Search</a>
+  <a href="/">Español</a>
+   <a href="javascript:void(0)" onclick="theme.switch('dark')">🌙</a>
+  <a href="javascript:void(0)" onclick="theme.switch('light')">☀</a>
+   <a href="/en/feeds/all.rss.xml">RSS</a>
+</nav>
+
+<article class="single">
+  <header>
+      <div class="translations">
+            <a href="/en/../harnesstax-cuanto-importa-el-harness">Leer en español</a>
+    </div>
+
+    <h1 id="harnesstax-cuanto-importa-el-harness">HarnessTax: The Harness Matters Less Than You Think</h1>
+    <p>
+      Posted on Thu, 17 Sep 2026 in <a href="/en/category/ia.html">ia</a>     </p>
+  </header>
+
+ 
+  <div><p>When you pick a coding agent, you're not just choosing a model: you're also choosing its <em>harness</em>, the software that manages tools, context, and task execution. What if switching harnesses improves results or cuts the bill? That's the question <a href="https://harnesstax.github.io/">HarnessTax</a> asks. The study from UC Berkeley and Arena evaluates 21 model–harness pairs (Claude Code, Codex CLI, and <strong>pi</strong>, across 7 models) on SWE-bench Lite and Terminal-Bench 2.0: 30 random tasks per benchmark, 3 attempts per task.</p>
+<p><img alt="HarnessTax: How Much Does the Harness Matter for Coding Agents?" src="/images/harnesstax.png"></p>
+<p>Its three main conclusions are quite surprising:</p>
+<h2 id="1-the-harness-barely-affects-success-rate-but-it-does-affect-cost">1. The harness barely affects success rate, but it does affect cost<a class="headerlink" href="#1-the-harness-barely-affects-success-rate-but-it-does-affect-cost" title="Permanent link">&para;</a></h2>
+<p>The same model achieves nearly identical success rates across different harnesses, but cost can vary up to <strong>5x</strong>. The clearest case: Claude Fable 5 solves 97.8% of attempts in Claude Code and 96.7% in pi... but Claude Code costs twice as much ($1.33 vs $0.67). On average, Claude Code comes out <strong>2x more expensive than pi</strong> on SWE-bench Lite and 1.5x on Terminal-Bench 2.0. They call that price difference for practically the same quality a <em>harness tax</em>.</p>
+<h2 id="2-a-simple-harness-can-be-competitive">2. A simple harness can be competitive<a class="headerlink" href="#2-a-simple-harness-can-be-competitive" title="Permanent link">&para;</a></h2>
+<p>Pi reaches the <strong>Pareto frontier on both benchmarks</strong> with just four tools: <code>read</code>, <code>write</code>, <code>edit</code>, and <code>bash</code>. The key is at startup: Claude Code's mean initial context is <strong>over 10x pi's</strong>, with longer instructions and fatter tool schemas. That overhead is paid on every model call. Less scaffolding, same result.</p>
+<h2 id="3-models-can-perform-better-outside-their-providers-harness">3. Models can perform better outside their provider's harness<a class="headerlink" href="#3-models-can-perform-better-outside-their-providers-harness" title="Permanent link">&para;</a></h2>
+<p>This is the most groundbreaking one. Even though OpenAI says GPT-5-Codex is optimized for Codex, in <strong>9 of the 12 comparisons between Anthropic and OpenAI models, the best success rate is achieved with a harness other than the provider's own</strong>. For example, GPT-5.6 Sol gets an 83.3% success rate in pi versus 78.9% in Codex... at half the price. A model's capabilities are portable; the provider-harness coupling guarantees nothing.</p>
+<h2 id="what-this-means-for-me">What this means for me<a class="headerlink" href="#what-this-means-for-me" title="Permanent link">&para;</a></h2>
+<p>For anyone using coding agents daily, the takeaway is clear: <strong>compare harnesses before accepting the default one</strong>, or you'll be paying the harness tax without noticing.</p>
+<p>And for me personally, the study is a data-backed validation of what I already suspected. I've been using <a href="https://pablocaro.es/tag/pi.html">pi</a> as my main agent for months —<a href="https://pablocaro.es/en/que-es-pi-coding-agent">I explained what it is and why it convinced me</a>— and <a href="https://pablocaro.es/tag/opencode.html">OpenCode</a> as a complement. The study confirms exactly why: a minimalist harness, with just the right tools and minimal initial context, delivers the same result as the heavyweight all-in-one agents at a fraction of the cost. The pi trilogy on this blog ages better than I expected.</p>
+<p><em>Original source</em>: <a href="https://harnesstax.github.io/">HarnessTax: How Much Does the Harness Matter for Coding Agents?</a> (UC Berkeley / Arena, September 2026). There's also an <a href="https://arena.ai/blog/coding-agents-harness-tax">extended version on Arena's blog</a>.</p></div>
+  <div class="tag-cloud">
+    <p>
+       <a href="/en/tag/pi.html">pi</a>
+      <a href="/en/tag/opencode.html">opencode</a>
+      <a href="/en/tag/coding-agent.html">coding-agent</a>
+      <a href="/en/tag/ai.html">ai</a>
+      <a href="/en/tag/harness.html">harness</a>
+      <a href="/en/tag/claude-code.html">claude-code</a>
+      <a href="/en/tag/codex.html">codex</a>
+      <a href="/en/tag/benchmarks.html">benchmarks</a>
+      <a href="/en/tag/ai-agents.html">ai-agents</a>
+     </p>
+  </div>
+
+    <div class="neighbors">
+    <a class="btn float-left" href="/en/wrapture" title="wrapture — monkey patching and observability in a single mechanism">
+      <i class="fa fa-angle-left"></i> Previous Post
+    </a>
+  </div>
+   <div class="related-posts">
+    <h4>You might enjoy</h4>
+    <ul class="related-posts">
+      <li>
+        <a href="/en/que-es-pi-coding-agent"
+          >What is Pi? — The Minimal Coding Agent That Went Viral</a
+        >
+      </li>
+      <li>
+        <a href="/en/agentsview-analytics-agentes"
+          >AgentsView: local analytics for your coding agents</a
+        >
+      </li>
+      <li>
+        <a href="/en/extensiones-pi-que-uso"
+          >The Pi Extensions I Use Daily</a
+        >
+      </li>
+      <li>
+        <a href="/en/pi-de-principiante-a-avanzado"
+          >Pi from Beginner to Advanced — The Complete Guide</a
+        >
+      </li>
+      <li>
+        <a href="/en/extensiones-subagentes-pi"
+          >Pi subagent extensions: TintinWeb, NicoBailon and Taskplane</a
+        >
+      </li>
+    </ul>
+  </div>
+  <!-- Disqus -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'anotaciones';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>
+    Please enable JavaScript to view comments.
+</noscript>
+<!-- End Disqus -->
+ </article>
+
+<footer>
+<p>
+  &copy; 2026  - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+  Built with <a
+    href="http://getpelican.com"
+    target="_blank"
+    >Pelican</a
+  > using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a
+  > theme   <script
+    id="dark-theme-script"
+    src="/en/theme/dark-theme/dark-theme.min.js"
+    data-enable-auto-detect-theme="False"
+    data-default-theme="light"
+    type="text/javascript"
+  ></script>
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/3.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/3.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Annotations by Pablo Caro ",
+  "url" : "/en",
+  "image": "/theme/img/profile.png",
+  "description": ""
+}
+</script>  <script src="https://files.stork-search.net/releases/v1.6.0/stork.js"></script>
+  <script>
+    window.storkIndexLoaded = false;
+    window.loadStorkIndex = function () {
+      if (window.storkIndexLoaded) {
+        return;
+      }
+      if (typeof stork === 'undefined') {
+        setTimeout(window.loadStorkIndex, 100);
+        return;
+      }
+      var url = "/en/search-index.st";
+      var opts = { showProgress: false };
+      stork.register("sitesearch", url, opts);
+      try {
+        stork.register("sitesearch-page", url, opts);
+      } catch (e) {
+        // Search page input not in DOM on this page — index still registered
+      }
+      window.storkIndexLoaded = true;
+    }
+  </script>
+
+
+  <button id="back-to-top" aria-label="Back to top" title="Back to top">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <path d="M10 16V4m0 0L5 9m5-5l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+  <script>
+  (function() {
+    var btn = document.getElementById('back-to-top');
+    if (!btn) return;
+    var ticking = false;
+    function onScroll() {
+      if (!ticking) {
+        requestAnimationFrame(function() {
+          btn.classList.toggle('visible', window.scrollY > 500);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }
+    btn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    window.addEventListener('scroll', onScroll, { passive: true });
+  })();
+  </script>
+</body>
+</html>

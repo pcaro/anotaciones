@@ -3,6 +3,11 @@ html_selector = "main"
 base_directory = "/home/runner/work/anotaciones/anotaciones/output/en"
 
 [[input.files]]
+path = "harnesstax-cuanto-importa-el-harness.html"
+url = "/harnesstax-cuanto-importa-el-harness"
+title = "HarnessTax: The Harness Matters Less Than You Think"
+
+[[input.files]]
 path = "wrapture.html"
 url = "/wrapture"
 title = "wrapture — monkey patching and observability in a single mechanism"
@@ -511,6 +516,11 @@ title = "Django: links in object list"
 path = "settings-vars-processor.html"
 url = "/settings-vars-processor"
 title = "Settings vars processor"
+
+[[input.files]]
+path = "harnesstax-cuanto-importa-el-harness-es.html"
+url = "/../harnesstax-cuanto-importa-el-harness"
+title = "HarnessTax: el harness importa menos de lo que crees"
 
 [[input.files]]
 path = "wrapture-es.html"

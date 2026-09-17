@@ -3,6 +3,11 @@ html_selector = "main"
 base_directory = "/home/runner/work/anotaciones/anotaciones/output"
 
 [[input.files]]
+path = "harnesstax-cuanto-importa-el-harness.html"
+url = "/harnesstax-cuanto-importa-el-harness"
+title = "HarnessTax: el harness importa menos de lo que crees"
+
+[[input.files]]
 path = "wrapture.html"
 url = "/wrapture"
 title = "wrapture — monkey patching y observabilidad en un solo mecanismo"
@@ -936,6 +941,11 @@ title = "Corrector ortográfico de firefox 2.0 en castellano"
 path = "primera-anotacion-de-prueba.html"
 url = "/primera-anotacion-de-prueba"
 title = "Primera anotación de prueba"
+
+[[input.files]]
+path = "harnesstax-cuanto-importa-el-harness-en.html"
+url = "/en/harnesstax-cuanto-importa-el-harness"
+title = "HarnessTax: The Harness Matters Less Than You Think"
 
 [[input.files]]
 path = "wrapture-en.html"

@@ -1,0 +1,462 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/stylesheet/style.min.css">
+
+    <link id="dark-theme-style" rel="stylesheet" type="text/css"
+        disabled="disabled"
+    href="https://pablocaro.es/theme/stylesheet/dark-theme.min.css">
+
+    <link id="pygments-dark-theme" rel="stylesheet" type="text/css"
+            disabled="disabled"
+          href="https://pablocaro.es/theme/pygments/github.min.css">
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+          href="https://pablocaro.es/theme/pygments/github.min.css">
+
+
+  <link rel="stylesheet"
+        type="text/css"
+        href="https://pablocaro.es/theme/stork/stork.css" />
+
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/font-awesome/css/solid.css">
+
+  <link rel="stylesheet" type="text/css" href="/extras/custom.css">
+
+  <link rel="shortcut icon" href="/theme/img/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/theme/img/favicon.ico" type="image/x-icon">
+
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#333333">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#333333">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Microsoft EDGE -->
+  <meta name="msapplication-TileColor" content="#333333">
+
+  <link href="https://pablocaro.es/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Anotaciones por Pablo Caro Atom">
+
+  <link href="https://pablocaro.es/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Anotaciones por Pablo Caro RSS">
+
+<script data-goatcounter="https://pcaro.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Pablo Caro" />
+<meta name="description" content="El estudio HarnessTax de UC Berkeley y Arena evalúa 21 combinaciones modelo-harness y llega a tres conclusiones sorprendentes. Validan con datos por qué uso pi y OpenCode a diario." />
+<meta name="keywords" content="pi, opencode, coding-agent, ia, harness, claude-code, codex, benchmarks, agentes-ia" />
+
+<link
+  rel="alternate"
+  href="https://pablocaro.es/harnesstax-cuanto-importa-el-harness"
+  hreflang="es"
+/>
+<link
+  rel="alternate"
+  href="https://pablocaro.es/en/harnesstax-cuanto-importa-el-harness"
+  hreflang="en"
+/>
+    <meta property="og:site_name" content="Anotaciones por Pablo Caro"/>
+  <meta property="og:title" content="HarnessTax: el harness importa menos de lo que crees"/>
+  <meta property="og:description" content="El estudio HarnessTax de UC Berkeley y Arena evalúa 21 combinaciones modelo-harness y llega a tres conclusiones sorprendentes. Validan con datos por qué uso pi y OpenCode a diario."/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://pablocaro.es/harnesstax-cuanto-importa-el-harness"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2026-09-17 00:00:00+02:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://pablocaro.es/author/pablo-caro.html">
+  <meta property="article:section" content="ia"/>
+  <meta property="article:tag" content="pi"/>
+  <meta property="article:tag" content="opencode"/>
+  <meta property="article:tag" content="coding-agent"/>
+  <meta property="article:tag" content="ia"/>
+  <meta property="article:tag" content="harness"/>
+  <meta property="article:tag" content="claude-code"/>
+  <meta property="article:tag" content="codex"/>
+  <meta property="article:tag" content="benchmarks"/>
+  <meta property="article:tag" content="agentes-ia"/>
+  <meta property="og:image" content="/theme/img/profile.png">
+ 
+  <title>Anotaciones por Pablo Caro &ndash; HarnessTax: el harness importa menos de lo que crees</title>
+
+
+</head>
+<body class="light-theme">
+
+<aside>
+  <div>
+    <a href="https://pablocaro.es/">
+      <img src="/theme/img/profile.png" alt="Anotaciones" title="Anotaciones" />
+    </a>
+
+    <h1>
+      <a href="https://pablocaro.es/">Anotaciones</a>
+    </h1>
+
+    <p>Anotaciones</p>
+     <p style="font-size: 0.9em; font-style: italic; margin-bottom: 20px">
+      Volcando mi cerebro a internet. Colección de apuntes técnicos y soluciones que escribo para mi 'yo' del futuro, pero que comparto por si a alguien más le ahorran un dolor de cabeza.
+    </p>
+      <div class="stork">
+      <label for="sidebar-search" class="sr-only"
+        >Search articles</label
+      >
+      <div class="stork-input-wrap">
+      <input
+        id="sidebar-search"
+        class="stork-input"
+        type="text"
+        autocomplete="off"
+        name="q"
+        data-stork="sitesearch"
+        placeholder="Buscar..."
+        onclick="loadStorkIndex()"
+      />
+      </div>
+      <div class="stork-output" data-stork="sitesearch-output"></div>
+    </div>
+      <nav>
+      <ul class="list">
+             <li>
+          <a target="_self" href="http://x.com/pcaro">pcaro@X</a>
+        </li>
+        <li>
+          <a target="_self" href="https://github.com/pcaro/">pcaro@Github</a>
+        </li>
+        <li>
+          <a target="_self" href="https://www.linkedin.com/in/pcarorevuelta/">LinkedIn</a>
+        </li>
+      </ul>
+    </nav>
+      <nav class="sidebar-categories" aria-label="Categorías">
+                                                                                                                                 <a
+        href="https://pablocaro.es/category/ia.html"
+        class="sidebar-category"
+        title="ia (14)"
+      >
+        <img
+          src="https://pablocaro.es/images/categories/ia.png"
+          alt="ia"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">ia</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/programacion.html"
+        class="sidebar-category"
+        title="Programación (80)"
+      >
+        <img
+          src="https://pablocaro.es/images/categories/programacion.png"
+          alt="Programación"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Programación</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/linux.html"
+        class="sidebar-category"
+        title="Linux (12)"
+      >
+        <img
+          src="https://pablocaro.es/images/categories/linux.png"
+          alt="Linux"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Linux</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/herramientas.html"
+        class="sidebar-category"
+        title="Herramientas (28)"
+      >
+        <img
+          src="https://pablocaro.es/images/categories/herramientas.png"
+          alt="Herramientas"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Herramientas</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/infraestructura.html"
+        class="sidebar-category"
+        title="Infraestructura (49)"
+      >
+        <img
+          src="https://pablocaro.es/images/categories/infraestructura.png"
+          alt="Infraestructura"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Infraestructura</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/documentacion.html"
+        class="sidebar-category"
+        title="Documentación (1)"
+      >
+        <img
+          src="https://pablocaro.es/images/categories/documentacion.png"
+          alt="Documentación"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Documentación</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/finanzas.html"
+        class="sidebar-category"
+        title="Finanzas (1)"
+      >
+        <img
+          src="https://pablocaro.es/images/categories/finanzas.png"
+          alt="Finanzas"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Finanzas</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/personal.html"
+        class="sidebar-category"
+        title="Personal (3)"
+      >
+        <img
+          src="https://pablocaro.es/images/categories/personal.png"
+          alt="Personal"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Personal</span>
+      </a>
+    </nav>
+  </div>
+
+</aside>
+  <main>
+
+<nav>
+  <a href="https://pablocaro.es/">Inicio</a>
+
+  <a href="/archives.html">Archivo</a>
+  <a href="/categories.html">Categorías</a>
+  <a href="/tags.html">Etiquetas</a>
+  <a href="/search.html">Búsqueda</a>
+  <a href="/en/">English</a>
+   <a href="javascript:void(0)" onclick="theme.switch('dark')">🌙</a>
+  <a href="javascript:void(0)" onclick="theme.switch('light')">☀</a>
+   <a href="https://pablocaro.es/feeds/all.rss.xml">RSS</a>
+</nav>
+
+<article class="single">
+  <header>
+      <div class="translations">
+            <a href="https://pablocaro.es/en/harnesstax-cuanto-importa-el-harness">Read in English</a>
+    </div>
+
+    <h1 id="harnesstax-cuanto-importa-el-harness">HarnessTax: el harness importa menos de lo que crees</h1>
+    <p>
+      Publicado el 17 de September de 2026 en <a href="https://pablocaro.es/category/ia.html">ia</a>     </p>
+  </header>
+
+ 
+  <div><p>Si eliges un coding agent no estás eligiendo solo un modelo: estás eligiendo también su <em>harness</em>, el software que gestiona herramientas, contexto y ejecución de tareas. ¿Y si cambiar de harness mejora los resultados o abarata la factura? Esa es la pregunta que se hace <a href="https://harnesstax.github.io/">HarnessTax</a>, un estudio de UC Berkeley y Arena que evalúa 21 pares modelo–harness (Claude Code, Codex CLI y <strong>pi</strong>, con 7 modelos) sobre SWE-bench Lite y Terminal-Bench 2.0: 30 tareas aleatorias por benchmark, 3 intentos por tarea.</p>
+<p><img alt="HarnessTax: How Much Does the Harness Matter for Coding Agents?" src="/images/harnesstax.png"></p>
+<p>Sus tres conclusiones principales son bastante sorprendentes:</p>
+<h2 id="1-el-harness-apenas-afecta-la-tasa-de-exito-pero-si-el-coste">1. El harness apenas afecta la tasa de éxito, pero sí el coste<a class="headerlink" href="#1-el-harness-apenas-afecta-la-tasa-de-exito-pero-si-el-coste" title="Permanent link">&para;</a></h2>
+<p>El mismo modelo logra tasas de éxito casi idénticas en harnesses distintos, pero el coste puede variar hasta <strong>5x</strong>. El caso más claro: Claude Fable 5 resuelve el 97.8% de intentos en Claude Code y el 96.7% en pi... pero Claude Code cuesta el doble ($1.33 frente a $0.67). En media, Claude Code sale <strong>2x más caro que pi</strong> en SWE-bench Lite y 1.5x en Terminal-Bench 2.0. A esa diferencia de precio por calidad prácticamente igual la llaman, con muy buen nombre, <em>harness tax</em>.</p>
+<h2 id="2-un-harness-simple-puede-ser-competitivo">2. Un harness simple puede ser competitivo<a class="headerlink" href="#2-un-harness-simple-puede-ser-competitivo" title="Permanent link">&para;</a></h2>
+<p>Pi llega a la <strong>frontera de Pareto en ambos benchmarks</strong> aportando solo cuatro herramientas: <code>read</code>, <code>write</code>, <code>edit</code> y <code>bash</code>. La clave está en el arranque: el contexto inicial de Claude Code es de media <strong>más de 10 veces el de pi</strong>, con instrucciones más largas y esquemas de herramientas más gordos. Ese sobrecoste se paga en cada llamada al modelo. Menos andamiaje, mismo resultado.</p>
+<h2 id="3-los-modelos-rinden-mejor-fuera-del-harness-de-su-proveedor">3. Los modelos rinden mejor fuera del harness de su proveedor<a class="headerlink" href="#3-los-modelos-rinden-mejor-fuera-del-harness-de-su-proveedor" title="Permanent link">&para;</a></h2>
+<p>Este es el más rompedor. Aunque OpenAI diga que GPT-5-Codex está optimizado para Codex, en <strong>9 de las 12 comparaciones entre modelos de Anthropic y OpenAI, la mejor tasa de éxito se consigue con un harness alternativo</strong> al de su proveedor. Por ejemplo, GPT-5.6 Sol consigue un 83.3% de éxito en pi frente al 78.9% en Codex... a mitad de precio. Las capacidades de un modelo son portables; el acoplamiento proveedor-harness no garantiza nada.</p>
+<h2 id="lo-que-esto-significa-para-mi">Lo que esto significa para mí<a class="headerlink" href="#lo-que-esto-significa-para-mi" title="Permanent link">&para;</a></h2>
+<p>Para cualquiera que use coding agents a diario, la moraleja es clara: <strong>compara harnesses antes de aceptar el que viene por defecto</strong>, o estarás pagando la harness tax sin darte cuenta.</p>
+<p>Y para mí en particular, el estudio es una validación con datos de lo que ya intuía. Llevo meses usando <a href="https://pablocaro.es/tag/pi.html">pi</a> como agente principal —<a href="https://pablocaro.es/que-es-pi-coding-agent">ya expliqué qué es y por qué me convenció</a>— y <a href="https://pablocaro.es/tag/opencode.html">OpenCode</a> como complemento. El estudio confirma exactamente por qué: un harness minimalista, con las herramientas justas y el contexto inicial al mínimo, da el mismo resultado que los todoterrenos pesados a una fracción del coste. La trilogía de pi en este blog envejece mejor de lo que esperaba.</p>
+<p><em>Fuente original</em>: <a href="https://harnesstax.github.io/">HarnessTax: How Much Does the Harness Matter for Coding Agents?</a> (UC Berkeley / Arena, septiembre 2026). También hay una <a href="https://arena.ai/blog/coding-agents-harness-tax">versión extendida en el blog de Arena</a>.</p></div>
+  <div class="tag-cloud">
+    <p>
+       <a href="https://pablocaro.es/tag/pi.html">pi</a>
+      <a href="https://pablocaro.es/tag/opencode.html">opencode</a>
+      <a href="https://pablocaro.es/tag/coding-agent.html">coding-agent</a>
+      <a href="https://pablocaro.es/tag/ia.html">ia</a>
+      <a href="https://pablocaro.es/tag/harness.html">harness</a>
+      <a href="https://pablocaro.es/tag/claude-code.html">claude-code</a>
+      <a href="https://pablocaro.es/tag/codex.html">codex</a>
+      <a href="https://pablocaro.es/tag/benchmarks.html">benchmarks</a>
+      <a href="https://pablocaro.es/tag/agentes-ia.html">agentes-ia</a>
+     </p>
+  </div>
+
+    <div class="neighbors">
+    <a class="btn float-left" href="https://pablocaro.es/wrapture" title="wrapture — monkey patching y observabilidad en un solo mecanismo">
+      <i class="fa fa-angle-left"></i> Artículo anterior
+    </a>
+  </div>
+   <div class="related-posts">
+    <h4>Te puede gustar</h4>
+    <ul class="related-posts">
+      <li>
+        <a href="https://pablocaro.es/que-es-pi-coding-agent"
+          >¿Qué es pi? — El agente de código minimalista que se ha vuelto viral</a
+        >
+      </li>
+      <li>
+        <a href="https://pablocaro.es/agentsview-analytics-agentes"
+          >AgentsView: analíticas locales para tus coding agents</a
+        >
+      </li>
+      <li>
+        <a href="https://pablocaro.es/extensiones-pi-que-uso"
+          >Las extensiones de pi que uso en mi día a día</a
+        >
+      </li>
+      <li>
+        <a href="https://pablocaro.es/pi-de-principiante-a-avanzado"
+          >Pi de novato a avanzado — La guía completa</a
+        >
+      </li>
+      <li>
+        <a href="https://pablocaro.es/extensiones-subagentes-pi"
+          >Extensiones de subagentes para pi: TintinWeb, NicoBailon y Taskplane</a
+        >
+      </li>
+    </ul>
+  </div>
+  <!-- Disqus -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'anotaciones';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>
+    Por favor, habilita JavaScript para ver los comentarios.
+</noscript>
+<!-- End Disqus -->
+ </article>
+
+<footer>
+<p>
+  &copy; 2026  - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+  Construido con <a
+    href="http://getpelican.com"
+    target="_blank"
+    >Pelican</a
+  > usando el tema <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a
+  >    <script
+    id="dark-theme-script"
+    src="https://pablocaro.es/theme/dark-theme/dark-theme.min.js"
+    data-enable-auto-detect-theme="False"
+    data-default-theme="light"
+    type="text/javascript"
+  ></script>
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/3.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/3.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Anotaciones por Pablo Caro ",
+  "url" : "https://pablocaro.es",
+  "image": "/theme/img/profile.png",
+  "description": ""
+}
+</script>  <script src="https://files.stork-search.net/releases/v1.6.0/stork.js"></script>
+  <script>
+    window.storkIndexLoaded = false;
+    window.loadStorkIndex = function () {
+      if (window.storkIndexLoaded) {
+        return;
+      }
+      if (typeof stork === 'undefined') {
+        setTimeout(window.loadStorkIndex, 100);
+        return;
+      }
+      var url = "https://pablocaro.es/search-index.st";
+      var opts = { showProgress: false };
+      stork.register("sitesearch", url, opts);
+      try {
+        stork.register("sitesearch-page", url, opts);
+      } catch (e) {
+        // Search page input not in DOM on this page — index still registered
+      }
+      window.storkIndexLoaded = true;
+    }
+  </script>
+
+
+  <button id="back-to-top" aria-label="Back to top" title="Back to top">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <path d="M10 16V4m0 0L5 9m5-5l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+  <script>
+  (function() {
+    var btn = document.getElementById('back-to-top');
+    if (!btn) return;
+    var ticking = false;
+    function onScroll() {
+      if (!ticking) {
+        requestAnimationFrame(function() {
+          btn.classList.toggle('visible', window.scrollY > 500);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }
+    btn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    window.addEventListener('scroll', onScroll, { passive: true });
+  })();
+  </script>
+</body>
+</html>
