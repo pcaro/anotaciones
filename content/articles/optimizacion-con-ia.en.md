@@ -1,5 +1,5 @@
 ---
-title: The Summer of AI Optimization
+title: AI Optimization
 slug: optimizacion-con-ia
 lang: en
 date: 2026-09-22
