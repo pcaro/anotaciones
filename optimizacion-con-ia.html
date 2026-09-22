@@ -1,0 +1,461 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/stylesheet/style.min.css">
+
+    <link id="dark-theme-style" rel="stylesheet" type="text/css"
+        disabled="disabled"
+    href="https://pablocaro.es/theme/stylesheet/dark-theme.min.css">
+
+    <link id="pygments-dark-theme" rel="stylesheet" type="text/css"
+            disabled="disabled"
+          href="https://pablocaro.es/theme/pygments/github.min.css">
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+          href="https://pablocaro.es/theme/pygments/github.min.css">
+
+
+  <link rel="stylesheet"
+        type="text/css"
+        href="https://pablocaro.es/theme/stork/stork.css" />
+
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/font-awesome/css/solid.css">
+
+  <link rel="stylesheet" type="text/css" href="/extras/custom.css">
+
+  <link rel="shortcut icon" href="/theme/img/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/theme/img/favicon.ico" type="image/x-icon">
+
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#333333">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#333333">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Microsoft EDGE -->
+  <meta name="msapplication-TileColor" content="#333333">
+
+  <link href="https://pablocaro.es/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Anotaciones por Pablo Caro Atom">
+
+  <link href="https://pablocaro.es/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Anotaciones por Pablo Caro RSS">
+
+<script data-goatcounter="https://pcaro.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Pablo Caro" />
+<meta name="description" content="Mientras solo se habla de lo malo de la IA, en el software maduro está bajando el coste de optimización. Daniel Lemire documenta cómo seis librerías open source se volvieron hasta 2,4x más rápidas en un verano." />
+<meta name="keywords" content="ia, optimización, rendimiento, open-source, librerías" />
+
+<link
+  rel="alternate"
+  href="https://pablocaro.es/optimizacion-con-ia"
+  hreflang="es"
+/>
+<link
+  rel="alternate"
+  href="https://pablocaro.es/en/optimizacion-con-ia"
+  hreflang="en"
+/>
+    <meta property="og:site_name" content="Anotaciones por Pablo Caro"/>
+  <meta property="og:title" content="Optimización con IA"/>
+  <meta property="og:description" content="Mientras solo se habla de lo malo de la IA, en el software maduro está bajando el coste de optimización. Daniel Lemire documenta cómo seis librerías open source se volvieron hasta 2,4x más rápidas en un verano."/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://pablocaro.es/optimizacion-con-ia"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2026-09-22 00:00:00+02:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://pablocaro.es/author/pablo-caro.html">
+  <meta property="article:section" content="ia"/>
+  <meta property="article:tag" content="ia"/>
+  <meta property="article:tag" content="optimización"/>
+  <meta property="article:tag" content="rendimiento"/>
+  <meta property="article:tag" content="open-source"/>
+  <meta property="article:tag" content="librerías"/>
+  <meta property="og:image" content="/theme/img/profile.png">
+ 
+  <title>Anotaciones por Pablo Caro &ndash; Optimización con IA</title>
+
+
+</head>
+<body class="light-theme">
+
+<aside>
+  <div>
+    <a href="https://pablocaro.es/">
+      <img src="/theme/img/profile.png" alt="Anotaciones" title="Anotaciones" />
+    </a>
+
+    <h1>
+      <a href="https://pablocaro.es/">Anotaciones</a>
+    </h1>
+
+    <p>Anotaciones</p>
+     <p style="font-size: 0.9em; font-style: italic; margin-bottom: 20px">
+      Volcando mi cerebro a internet. Colección de apuntes técnicos y soluciones que escribo para mi 'yo' del futuro, pero que comparto por si a alguien más le ahorran un dolor de cabeza.
+    </p>
+      <div class="stork">
+      <label for="sidebar-search" class="sr-only"
+        >Search articles</label
+      >
+      <div class="stork-input-wrap">
+      <input
+        id="sidebar-search"
+        class="stork-input"
+        type="text"
+        autocomplete="off"
+        name="q"
+        data-stork="sitesearch"
+        placeholder="Buscar..."
+        onclick="loadStorkIndex()"
+      />
+      </div>
+      <div class="stork-output" data-stork="sitesearch-output"></div>
+    </div>
+      <nav>
+      <ul class="list">
+             <li>
+          <a target="_self" href="http://x.com/pcaro">pcaro@X</a>
+        </li>
+        <li>
+          <a target="_self" href="https://github.com/pcaro/">pcaro@Github</a>
+        </li>
+        <li>
+          <a target="_self" href="https://www.linkedin.com/in/pcarorevuelta/">LinkedIn</a>
+        </li>
+      </ul>
+    </nav>
+      <nav class="sidebar-categories" aria-label="Categorías">
+                                                                                                                                 <a
+        href="https://pablocaro.es/category/ia.html"
+        class="sidebar-category"
+        title="ia (15)"
+      >
+        <img
+          src="https://pablocaro.es/images/categories/ia.png"
+          alt="ia"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">ia</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/programacion.html"
+        class="sidebar-category"
+        title="Programación (80)"
+      >
+        <img
+          src="https://pablocaro.es/images/categories/programacion.png"
+          alt="Programación"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Programación</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/linux.html"
+        class="sidebar-category"
+        title="Linux (12)"
+      >
+        <img
+          src="https://pablocaro.es/images/categories/linux.png"
+          alt="Linux"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Linux</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/herramientas.html"
+        class="sidebar-category"
+        title="Herramientas (28)"
+      >
+        <img
+          src="https://pablocaro.es/images/categories/herramientas.png"
+          alt="Herramientas"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Herramientas</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/infraestructura.html"
+        class="sidebar-category"
+        title="Infraestructura (49)"
+      >
+        <img
+          src="https://pablocaro.es/images/categories/infraestructura.png"
+          alt="Infraestructura"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Infraestructura</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/documentacion.html"
+        class="sidebar-category"
+        title="Documentación (1)"
+      >
+        <img
+          src="https://pablocaro.es/images/categories/documentacion.png"
+          alt="Documentación"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Documentación</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/finanzas.html"
+        class="sidebar-category"
+        title="Finanzas (1)"
+      >
+        <img
+          src="https://pablocaro.es/images/categories/finanzas.png"
+          alt="Finanzas"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Finanzas</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/personal.html"
+        class="sidebar-category"
+        title="Personal (3)"
+      >
+        <img
+          src="https://pablocaro.es/images/categories/personal.png"
+          alt="Personal"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Personal</span>
+      </a>
+    </nav>
+  </div>
+
+</aside>
+  <main>
+
+<nav>
+  <a href="https://pablocaro.es/">Inicio</a>
+
+  <a href="/archives.html">Archivo</a>
+  <a href="/categories.html">Categorías</a>
+  <a href="/tags.html">Etiquetas</a>
+  <a href="/search.html">Búsqueda</a>
+  <a href="/en/">English</a>
+   <a href="javascript:void(0)" onclick="theme.switch('dark')">🌙</a>
+  <a href="javascript:void(0)" onclick="theme.switch('light')">☀</a>
+   <a href="https://pablocaro.es/feeds/all.rss.xml">RSS</a>
+</nav>
+
+<article class="single">
+  <header>
+      <div class="translations">
+            <a href="https://pablocaro.es/en/optimizacion-con-ia">Read in English</a>
+    </div>
+
+    <h1 id="optimizacion-con-ia">Optimización con IA</h1>
+    <p>
+      Publicado el 22 de September de 2026 en <a href="https://pablocaro.es/category/ia.html">ia</a>     </p>
+  </header>
+
+ 
+  <div><p>Solo se habla de lo malo de la IA. Del desempleo, del slop, de las alucinaciones, del coste energético. Y casi nunca de lo que está haciendo bien. En la producción de software la revolución es real y va en una dirección muy concreta: está abaratando todo tipo de costes.</p>
+<p>Se habla mucho de lo fácil que es ahora hacer prototipos y crear software nuevo. De acuerdo. Pero el caso interesante es el software <strong>estable</strong>, el que ya está optimizado y donde cada mejora costaba días de trabajo. Ahí es donde el cambio se nota más.</p>
+<p>Daniel Lemire lo ha documentado este verano. Mantiene varias librerías open source que usa medio internet: <code>ada</code> (parseo de URLs en Node.js), <code>simdjson</code> (JSON en Node.js), <code>simdutf</code> (Unicode en Node.js), <code>fast_float</code> (números en la libc de GCC y Chromium) o las librerías Roaring (bitmaps comprimidos dentro de motores de bases de datos).</p>
+<p><img alt="ada: velocidad de parseo de URLs a lo largo del tiempo" src="/images/optimizacion-con-ia.png"></p>
+<p>Estas librerías llevaban años con el rendimiento plano. No porque a nadie le importara, sino porque cada mejora restante exigía días de trabajo fino y nadie tenía esos días. En 2026, seis de ellas se volvieron mucho más rápidas, casi todo en unas semanas de verano.</p>
+<p>Los números:</p>
+<ul>
+<li><strong>ada</strong>: de 0,54 GB/s a 1,28 GB/s en seis semanas (2,4x). Unos 15 millones de URLs por segundo por núcleo.</li>
+<li><strong>simdutf</strong>: la validación ASCII pasó de 83 GB/s a 160 GB/s.</li>
+<li><strong>roaring</strong> (Go): la unión <code>FastOr</code> 3,1x más rápida y el iterador de múltiples valores entre 4,5x y 5,9x.</li>
+<li><strong>CRoaring</strong> (C): el cardinal de bitmaps de 64 bits 4,9x más rápido.</li>
+<li><strong>fast_float</strong>: +43% y +70% en dos ficheros de prueba.</li>
+<li><strong>simdjson</strong>: serialización 1,6x–2,1x más rápida con reflexión de C++26.</li>
+</ul>
+<p>Lemire es honesto: no sabe cuánta IA hubo en cada caso concreto. No pregunta cómo llegó cada uno a su código; solo pide que sea bueno. Él mismo programa con Claude (Opus 5), Grok y DeepSeek (V4 Pro).</p>
+<p>Su explicación de por qué pasó es la clave del asunto: <strong>las técnicas son conocidas desde hace años. Lo que cambió es que ahora es barato probar ideas.</strong> Antes cada intento de optimización costaba días; ahora puedes lanzar veinte experimentos en el tiempo que antes dedicabas a uno, descartar los diecinueve que no funcionan y quedarte con el bueno. Eso es todo.</p>
+<p>Hay un sesgo muy humano aquí, el de la apuesta unilateral (<em>one-sided bet fallacy</em>): cuando vemos los perjuicios de algo, ignoramos los beneficios. Los coches matan, pero las ambulancias salvan. Con la IA estamos en esa fase: solo miramos el lado malo.</p>
+<p>En este caso el beneficio es concreto y medible. Millones de personas ejecutan estas librerías, y este verano van más rápido. Gratis. Sin cambiar nada de su lado.</p>
+<p>El software nuevo y los prototipos molan, pero la caída del coste de optimización en software maduro quizá sea el efecto más infravalorado de todo esto.</p>
+<p><em>Fuente original</em>: <a href="https://lemire.me/blog/2026/09/22/a-summer-of-ai-optimization/">A summer of AI optimization</a> — Daniel Lemire.</p></div>
+  <div class="tag-cloud">
+    <p>
+       <a href="https://pablocaro.es/tag/ia.html">ia</a>
+      <a href="https://pablocaro.es/tag/optimizacion.html">optimización</a>
+      <a href="https://pablocaro.es/tag/rendimiento.html">rendimiento</a>
+      <a href="https://pablocaro.es/tag/open-source.html">open-source</a>
+      <a href="https://pablocaro.es/tag/librerias.html">librerías</a>
+     </p>
+  </div>
+
+    <div class="neighbors">
+    <a class="btn float-left" href="https://pablocaro.es/harnesstax-cuanto-importa-el-harness" title="HarnessTax: el harness importa menos de lo que crees">
+      <i class="fa fa-angle-left"></i> Artículo anterior
+    </a>
+  </div>
+   <div class="related-posts">
+    <h4>Te puede gustar</h4>
+    <ul class="related-posts">
+      <li>
+        <a href="https://pablocaro.es/harnesstax-cuanto-importa-el-harness"
+          >HarnessTax: el harness importa menos de lo que crees</a
+        >
+      </li>
+      <li>
+        <a href="https://pablocaro.es/programming-as-theory-building-naur"
+          >Programming as Theory Building: el artículo de Peter Naur</a
+        >
+      </li>
+      <li>
+        <a href="https://pablocaro.es/spec-kit-github"
+          >Spec Kit de GitHub — Especificaciones como fuente de verdad</a
+        >
+      </li>
+      <li>
+        <a href="https://pablocaro.es/matt-pocock-skills"
+          >Matt Pocock — Skills sencillas que funcionan</a
+        >
+      </li>
+      <li>
+        <a href="https://pablocaro.es/superpowers-obra-jesse-vincent"
+          >Superpowers — Jesse Vincent impone metodología a los agentes de codificación</a
+        >
+      </li>
+    </ul>
+  </div>
+  <!-- Disqus -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'anotaciones';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>
+    Por favor, habilita JavaScript para ver los comentarios.
+</noscript>
+<!-- End Disqus -->
+ </article>
+
+<footer>
+<p>
+  &copy; 2026  - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+  Construido con <a
+    href="http://getpelican.com"
+    target="_blank"
+    >Pelican</a
+  > usando el tema <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a
+  >    <script
+    id="dark-theme-script"
+    src="https://pablocaro.es/theme/dark-theme/dark-theme.min.js"
+    data-enable-auto-detect-theme="False"
+    data-default-theme="light"
+    type="text/javascript"
+  ></script>
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/3.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/3.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Anotaciones por Pablo Caro ",
+  "url" : "https://pablocaro.es",
+  "image": "/theme/img/profile.png",
+  "description": ""
+}
+</script>  <script src="https://files.stork-search.net/releases/v1.6.0/stork.js"></script>
+  <script>
+    window.storkIndexLoaded = false;
+    window.loadStorkIndex = function () {
+      if (window.storkIndexLoaded) {
+        return;
+      }
+      if (typeof stork === 'undefined') {
+        setTimeout(window.loadStorkIndex, 100);
+        return;
+      }
+      var url = "https://pablocaro.es/search-index.st";
+      var opts = { showProgress: false };
+      stork.register("sitesearch", url, opts);
+      try {
+        stork.register("sitesearch-page", url, opts);
+      } catch (e) {
+        // Search page input not in DOM on this page — index still registered
+      }
+      window.storkIndexLoaded = true;
+    }
+  </script>
+
+
+  <button id="back-to-top" aria-label="Back to top" title="Back to top">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <path d="M10 16V4m0 0L5 9m5-5l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+  <script>
+  (function() {
+    var btn = document.getElementById('back-to-top');
+    if (!btn) return;
+    var ticking = false;
+    function onScroll() {
+      if (!ticking) {
+        requestAnimationFrame(function() {
+          btn.classList.toggle('visible', window.scrollY > 500);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }
+    btn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    window.addEventListener('scroll', onScroll, { passive: true });
+  })();
+  </script>
+</body>
+</html>

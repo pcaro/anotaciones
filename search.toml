@@ -3,6 +3,11 @@ html_selector = "main"
 base_directory = "/home/runner/work/anotaciones/anotaciones/output"
 
 [[input.files]]
+path = "optimizacion-con-ia.html"
+url = "/optimizacion-con-ia"
+title = "Optimización con IA"
+
+[[input.files]]
 path = "harnesstax-cuanto-importa-el-harness.html"
 url = "/harnesstax-cuanto-importa-el-harness"
 title = "HarnessTax: el harness importa menos de lo que crees"
@@ -941,6 +946,11 @@ title = "Corrector ortográfico de firefox 2.0 en castellano"
 path = "primera-anotacion-de-prueba.html"
 url = "/primera-anotacion-de-prueba"
 title = "Primera anotación de prueba"
+
+[[input.files]]
+path = "optimizacion-con-ia-en.html"
+url = "/en/optimizacion-con-ia"
+title = "The Summer of AI Optimization"
 
 [[input.files]]
 path = "harnesstax-cuanto-importa-el-harness-en.html"

@@ -1,0 +1,477 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="/en/theme/stylesheet/style.min.css">
+
+    <link id="dark-theme-style" rel="stylesheet" type="text/css"
+        disabled="disabled"
+    href="/en/theme/stylesheet/dark-theme.min.css">
+
+    <link id="pygments-dark-theme" rel="stylesheet" type="text/css"
+            disabled="disabled"
+          href="/en/theme/pygments/github.min.css">
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+          href="/en/theme/pygments/github.min.css">
+
+
+  <link rel="stylesheet"
+        type="text/css"
+        href="/en/theme/stork/stork.css" />
+
+  <link rel="stylesheet" type="text/css" href="/en/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="/en/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="/en/theme/font-awesome/css/solid.css">
+
+  <link rel="stylesheet" type="text/css" href="/extras/custom.css">
+
+  <link rel="shortcut icon" href="/theme/img/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/theme/img/favicon.ico" type="image/x-icon">
+
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#333333">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#333333">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Microsoft EDGE -->
+  <meta name="msapplication-TileColor" content="#333333">
+
+  <link href="/en/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Annotations by Pablo Caro Atom">
+
+  <link href="/en/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Annotations by Pablo Caro RSS">
+
+<script data-goatcounter="https://pcaro.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Pablo Caro" />
+<meta name="description" content="While only the bad side of AI gets airtime, in mature software it is driving down the cost of optimization. Daniel Lemire documents how six open-source libraries got up to 2.4x faster in a single summer." />
+<meta name="keywords" content="ai, optimization, performance, open-source, libraries" />
+
+<link
+  rel="alternate"
+  href="/en/optimizacion-con-ia"
+  hreflang="en"
+/>
+<link
+  rel="alternate"
+  href="/en/../optimizacion-con-ia"
+  hreflang="es"
+/>
+    <meta property="og:site_name" content="Annotations by Pablo Caro"/>
+  <meta property="og:title" content="The Summer of AI Optimization"/>
+  <meta property="og:description" content="While only the bad side of AI gets airtime, in mature software it is driving down the cost of optimization. Daniel Lemire documents how six open-source libraries got up to 2.4x faster in a single summer."/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="/en/optimizacion-con-ia"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2026-09-22 00:00:00+02:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="/en/author/pablo-caro.html">
+  <meta property="article:section" content="ia"/>
+  <meta property="article:tag" content="ai"/>
+  <meta property="article:tag" content="optimization"/>
+  <meta property="article:tag" content="performance"/>
+  <meta property="article:tag" content="open-source"/>
+  <meta property="article:tag" content="libraries"/>
+  <meta property="og:image" content="/theme/img/profile.png">
+ 
+  <title>Annotations by Pablo Caro &ndash; The Summer of AI Optimization</title>
+
+
+</head>
+<body class="light-theme">
+
+<aside>
+  <div>
+    <a href="/en/">
+      <img src="/theme/img/profile.png" alt="Anotaciones" title="Anotaciones" />
+    </a>
+
+    <h1>
+      <a href="/en/">Anotaciones</a>
+    </h1>
+
+    <p>Anotaciones</p>
+     <p style="font-size: 0.9em; font-style: italic; margin-bottom: 20px">
+      Dumping my brain onto the internet. A collection of technical notes and solutions written for my future self, shared here in case they save someone else a headache.
+    </p>
+      <div class="stork">
+      <label for="sidebar-search" class="sr-only"
+        >Search articles</label
+      >
+      <div class="stork-input-wrap">
+      <input
+        id="sidebar-search"
+        class="stork-input"
+        type="text"
+        autocomplete="off"
+        name="q"
+        data-stork="sitesearch"
+        placeholder="Search..."
+        onclick="loadStorkIndex()"
+      />
+      </div>
+      <div class="stork-output" data-stork="sitesearch-output"></div>
+    </div>
+      <nav>
+      <ul class="list">
+             <li>
+          <a target="_self" href="http://x.com/pcaro">pcaro@X</a>
+        </li>
+        <li>
+          <a target="_self" href="https://github.com/pcaro/">pcaro@Github</a>
+        </li>
+        <li>
+          <a target="_self" href="https://www.linkedin.com/in/pcarorevuelta/">LinkedIn</a>
+        </li>
+      </ul>
+    </nav>
+      <nav class="sidebar-categories" aria-label="Categories">
+                                                                                                                                                           <a
+        href="/en/category/ia.html"
+        class="sidebar-category"
+        title="ia (15)"
+      >
+        <img
+          src="/en/images/categories/ia.png"
+          alt="ia"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">ia</span>
+      </a>
+      <a
+        href="/en/category/programacion.html"
+        class="sidebar-category"
+        title="Programación (30)"
+      >
+        <img
+          src="/en/images/categories/programacion.png"
+          alt="Programación"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Programación</span>
+      </a>
+      <a
+        href="/en/category/linux.html"
+        class="sidebar-category"
+        title="Linux (11)"
+      >
+        <img
+          src="/en/images/categories/linux.png"
+          alt="Linux"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Linux</span>
+      </a>
+      <a
+        href="/en/category/herramientas.html"
+        class="sidebar-category"
+        title="Herramientas (23)"
+      >
+        <img
+          src="/en/images/categories/herramientas.png"
+          alt="Herramientas"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Herramientas</span>
+      </a>
+      <a
+        href="/en/category/infraestructura.html"
+        class="sidebar-category"
+        title="Infraestructura (15)"
+      >
+        <img
+          src="/en/images/categories/infraestructura.png"
+          alt="Infraestructura"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Infraestructura</span>
+      </a>
+      <a
+        href="/en/category/documentacion.html"
+        class="sidebar-category"
+        title="Documentación (1)"
+      >
+        <img
+          src="/en/images/categories/documentacion.png"
+          alt="Documentación"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Documentación</span>
+      </a>
+      <a
+        href="/en/category/finanzas.html"
+        class="sidebar-category"
+        title="Finanzas (1)"
+      >
+        <img
+          src="/en/images/categories/finanzas.png"
+          alt="Finanzas"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Finanzas</span>
+      </a>
+      <a
+        href="/en/category/personal.html"
+        class="sidebar-category"
+        title="Personal (2)"
+      >
+        <img
+          src="/en/images/categories/personal.png"
+          alt="Personal"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Personal</span>
+      </a>
+      <a
+        href="/en/category/programming.html"
+        class="sidebar-category"
+        title="Programming (1)"
+      >
+        <span class="sidebar-category-icon">Pr</span>
+        <span class="sidebar-category-label">Programming</span>
+      </a>
+      <a
+        href="/en/category/tools.html"
+        class="sidebar-category"
+        title="Tools (5)"
+      >
+        <span class="sidebar-category-icon">To</span>
+        <span class="sidebar-category-label">Tools</span>
+      </a>
+    </nav>
+  </div>
+
+</aside>
+  <main>
+
+<nav>
+  <a href="/en/">Home</a>
+
+  <a href="/en/archives.html">Archives</a>
+  <a href="/en/categories.html">Categories</a>
+  <a href="/en/tags.html">Tags</a>
+  <a href="/en/search.html">Search</a>
+  <a href="/">Español</a>
+   <a href="javascript:void(0)" onclick="theme.switch('dark')">🌙</a>
+  <a href="javascript:void(0)" onclick="theme.switch('light')">☀</a>
+   <a href="/en/feeds/all.rss.xml">RSS</a>
+</nav>
+
+<article class="single">
+  <header>
+      <div class="translations">
+            <a href="/en/../optimizacion-con-ia">Leer en español</a>
+    </div>
+
+    <h1 id="optimizacion-con-ia">The Summer of AI Optimization</h1>
+    <p>
+      Posted on Tue, 22 Sep 2026 in <a href="/en/category/ia.html">ia</a>     </p>
+  </header>
+
+ 
+  <div><p>Only the bad side of AI gets airtime. Unemployment, slop, hallucinations, energy cost. Almost never what it is doing right. In software production the revolution is real and it moves in one very specific direction: it is making every kind of cost cheaper.</p>
+<p>There is a lot of talk about how easy prototyping and greenfield software are now. Fair enough. But the interesting case is <strong>stable</strong> software, the kind that is already optimized, where each further improvement used to cost days of work. That is where the change shows up most clearly.</p>
+<p>Daniel Lemire documented it this summer. He maintains several open-source libraries that half the internet runs on: <code>ada</code> (URL parsing in Node.js), <code>simdjson</code> (JSON in Node.js), <code>simdutf</code> (Unicode in Node.js), <code>fast_float</code> (number parsing in GCC's libc and Chromium), and the Roaring bitmap libraries (inside many database engines).</p>
+<p><img alt="ada: URL parsing throughput over time" src="/images/optimizacion-con-ia.png"></p>
+<p>These libraries had flat performance for years. Not because nobody cared, but because the remaining gains required days of careful work and nobody had the days. In 2026, six of them got much faster, most of it in a few weeks of summer.</p>
+<p>The numbers:</p>
+<ul>
+<li><strong>ada</strong>: from 0.54 GB/s to 1.28 GB/s in six weeks (2.4x). About 15 million URLs per second on one core.</li>
+<li><strong>simdutf</strong>: ASCII validation went from 83 GB/s to 160 GB/s.</li>
+<li><strong>roaring</strong> (Go): the <code>FastOr</code> union got 3.1x faster and the many-value iterator 4.5x–5.9x.</li>
+<li><strong>CRoaring</strong> (C): 64-bit bitmap cardinality got 4.9x faster.</li>
+<li><strong>fast_float</strong>: +43% and +70% on two test files.</li>
+<li><strong>simdjson</strong>: serialization 1.6x–2.1x faster with C++26 reflection.</li>
+</ul>
+<p>Lemire is honest: he cannot know how much AI was involved in each case. He does not ask how people arrived at their code; he only asks that it be good. He himself codes with Claude (Opus 5), Grok, and DeepSeek (V4 Pro).</p>
+<p>His explanation of why it happened is the whole point: <strong>the techniques have been known for years. What changed is that trying new ideas got cheap.</strong> Each optimization attempt used to cost days; now you can run twenty experiments in the time one used to take, throw away the nineteen that do not work, and keep the good one. That is it.</p>
+<p>There is a very human bias at play here, the one-sided bet fallacy: when we see the downsides of something, we ignore the benefits. Cars kill people, but ambulances save them. With AI we are in that phase: we only look at the bad side.</p>
+<p>In this case the benefit is concrete and measurable. Millions of people run these libraries, and this summer they got faster. For free. Without changing anything on their end.</p>
+<p>New software and prototypes are cool, but the falling cost of optimization in mature software may be the most underrated effect of all this.</p>
+<p><em>Original source</em>: <a href="https://lemire.me/blog/2026/09/22/a-summer-of-ai-optimization/">A summer of AI optimization</a> — Daniel Lemire.</p></div>
+  <div class="tag-cloud">
+    <p>
+       <a href="/en/tag/ai.html">ai</a>
+      <a href="/en/tag/optimization.html">optimization</a>
+      <a href="/en/tag/performance.html">performance</a>
+      <a href="/en/tag/open-source.html">open-source</a>
+      <a href="/en/tag/libraries.html">libraries</a>
+     </p>
+  </div>
+
+    <div class="neighbors">
+    <a class="btn float-left" href="/en/harnesstax-cuanto-importa-el-harness" title="HarnessTax: The Harness Matters Less Than You Think">
+      <i class="fa fa-angle-left"></i> Previous Post
+    </a>
+  </div>
+   <div class="related-posts">
+    <h4>You might enjoy</h4>
+    <ul class="related-posts">
+      <li>
+        <a href="/en/agentsview-analytics-agentes"
+          >AgentsView: local analytics for your coding agents</a
+        >
+      </li>
+      <li>
+        <a href="/en/harnesstax-cuanto-importa-el-harness"
+          >HarnessTax: The Harness Matters Less Than You Think</a
+        >
+      </li>
+      <li>
+        <a href="/en/programming-as-theory-building-naur"
+          >Programming as Theory Building: Peter Naur's Essay</a
+        >
+      </li>
+      <li>
+        <a href="/en/spec-kit-github"
+          >GitHub Spec Kit — Specifications as Source of Truth</a
+        >
+      </li>
+      <li>
+        <a href="/en/superpowers-obra-jesse-vincent"
+          >Superpowers — Jesse Vincent Imposes Methodology on Coding Agents</a
+        >
+      </li>
+    </ul>
+  </div>
+  <!-- Disqus -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'anotaciones';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>
+    Please enable JavaScript to view comments.
+</noscript>
+<!-- End Disqus -->
+ </article>
+
+<footer>
+<p>
+  &copy; 2026  - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+  Built with <a
+    href="http://getpelican.com"
+    target="_blank"
+    >Pelican</a
+  > using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a
+  > theme   <script
+    id="dark-theme-script"
+    src="/en/theme/dark-theme/dark-theme.min.js"
+    data-enable-auto-detect-theme="False"
+    data-default-theme="light"
+    type="text/javascript"
+  ></script>
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/3.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/3.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Annotations by Pablo Caro ",
+  "url" : "/en",
+  "image": "/theme/img/profile.png",
+  "description": ""
+}
+</script>  <script src="https://files.stork-search.net/releases/v1.6.0/stork.js"></script>
+  <script>
+    window.storkIndexLoaded = false;
+    window.loadStorkIndex = function () {
+      if (window.storkIndexLoaded) {
+        return;
+      }
+      if (typeof stork === 'undefined') {
+        setTimeout(window.loadStorkIndex, 100);
+        return;
+      }
+      var url = "/en/search-index.st";
+      var opts = { showProgress: false };
+      stork.register("sitesearch", url, opts);
+      try {
+        stork.register("sitesearch-page", url, opts);
+      } catch (e) {
+        // Search page input not in DOM on this page — index still registered
+      }
+      window.storkIndexLoaded = true;
+    }
+  </script>
+
+
+  <button id="back-to-top" aria-label="Back to top" title="Back to top">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <path d="M10 16V4m0 0L5 9m5-5l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+  <script>
+  (function() {
+    var btn = document.getElementById('back-to-top');
+    if (!btn) return;
+    var ticking = false;
+    function onScroll() {
+      if (!ticking) {
+        requestAnimationFrame(function() {
+          btn.classList.toggle('visible', window.scrollY > 500);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }
+    btn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    window.addEventListener('scroll', onScroll, { passive: true });
+  })();
+  </script>
+</body>
+</html>
