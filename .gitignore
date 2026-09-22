@@ -38,3 +38,6 @@ pelican-elegant
 plugins
 *.pid
 .playwright-mcp/
+
+# AI agent tooling state
+.pi-lens/
