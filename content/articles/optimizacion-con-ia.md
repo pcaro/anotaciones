@@ -1,5 +1,5 @@
 ---
-title: El verano de la optimización con IA
+title: Optimización con IA
 slug: optimizacion-con-ia
 lang: es
 date: 2026-09-22
