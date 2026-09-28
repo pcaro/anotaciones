@@ -3,6 +3,11 @@ html_selector = "main"
 base_directory = "/home/runner/work/anotaciones/anotaciones/output"
 
 [[input.files]]
+path = "hnrss-freshrss.html"
+url = "/hnrss-freshrss"
+title = "hnrss: feeds RSS a medida para Hacker News"
+
+[[input.files]]
 path = "optimizacion-con-ia.html"
 url = "/optimizacion-con-ia"
 title = "Optimización con IA"
@@ -946,6 +951,11 @@ title = "Corrector ortográfico de firefox 2.0 en castellano"
 path = "primera-anotacion-de-prueba.html"
 url = "/primera-anotacion-de-prueba"
 title = "Primera anotación de prueba"
+
+[[input.files]]
+path = "hnrss-freshrss-en.html"
+url = "/en/hnrss-freshrss"
+title = "hnrss: custom RSS feeds for Hacker News"
 
 [[input.files]]
 path = "optimizacion-con-ia-en.html"

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Annotations by Pablo Caro - freshrss</title><link href="/en/" rel="alternate"></link><link href="/en/feeds/tags/freshrss.atom.xml" rel="self"></link><id>/en/</id><updated>2026-09-28T00:00:00+02:00</updated><subtitle>Anotaciones</subtitle><entry><title>hnrss: custom RSS feeds for Hacker News</title><link href="/en/hnrss-freshrss" rel="alternate"></link><published>2026-09-28T00:00:00+02:00</published><updated>2026-09-28T00:00:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:None,2026-09-28:/en/hnrss-freshrss</id><summary type="html">&lt;p&gt;hnrss.org generates custom RSS, Atom and JSON feeds for Hacker News. I use it to follow only what matters to me from my self-hosted FreshRSS on the NAS.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="hnrss and FreshRSS on the NAS" src="/images/hnrss-freshrss.png"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://news.ycombinator.com/"&gt;Hacker News&lt;/a&gt; has no RSS. Or rather, it doesn't have the RSS I'd want: a single front-page feed with no filters or searches. Luckily there's &lt;a href="https://hnrss.github.io/"&gt;hnrss.org&lt;/a&gt;, which generates custom, real-time feeds from the site and Algolia's search API.&lt;/p&gt;
+&lt;h2 id="what-hnrssorg-is"&gt;What hnrss.org is&lt;a class="headerlink" href="#what-hnrssorg-is" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;It's a service (with &lt;a href="https://github.com/hnrss/hnrss"&gt;open source&lt;/a&gt;) that exposes dozens of endpoints. You build the URL around whatever you want to follow and get valid RSS over HTTPS. The main feed types:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Firehose&lt;/strong&gt;: everything new, posts and comments.
+  &lt;code&gt;text
+  https://hnrss.org/newest
+  https://hnrss.org/newcomments
+  https://hnrss.org/frontpage&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Searches&lt;/strong&gt;: posts or comments containing a keyword.
+  &lt;code&gt;text
+  https://hnrss.org/newest?q=rust
+  https://hnrss.org/newcomments?q=kubernetes&lt;/code&gt;
+  You can combine terms with &lt;code&gt;OR&lt;/code&gt; and percent-encode reserved characters (e.g. &lt;code&gt;C%2B%2B&lt;/code&gt;).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Replies&lt;/strong&gt;: comments replying to a user or a specific comment.
+  &lt;code&gt;text
+  https://hnrss.org/replies?id=USERNAME
+  https://hnrss.org/replies?id=17752464&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Points and activity&lt;/strong&gt;: only items above a threshold.
+  &lt;code&gt;text
+  https://hnrss.org/newest?points=300
+  https://hnrss.org/newest?comments=250&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Self-posts&lt;/strong&gt;: Ask HN, Show HN and polls.
+  &lt;code&gt;text
+  https://hnrss.org/ask
+  https://hnrss.org/show
+  https://hnrss.org/polls&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Jobs&lt;/strong&gt;: YC startup openings and the monthly "Who is hiring?" threads.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Users&lt;/strong&gt;: what a given person posts or comments.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Besides RSS, any endpoint accepts &lt;code&gt;.atom&lt;/code&gt; or &lt;code&gt;.jsonfeed&lt;/code&gt; at the end:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;https://hnrss.org/frontpage.atom
+https://hnrss.org/ask.jsonfeed?comments=10
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="parameters-i-use"&gt;Parameters I use&lt;a class="headerlink" href="#parameters-i-use" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The ones I get the most out of:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;points=N&lt;/code&gt; and &lt;code&gt;comments=N&lt;/code&gt; to filter firehose noise. It's the quickest way to turn down the volume on &lt;code&gt;newest&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;q=...&lt;/code&gt; to watch specific topics without opening a browser.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;count=N&lt;/code&gt; to get more than the default 20 items (hard limit of 100).&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;link=comments&lt;/code&gt; so the item link points to the HN thread instead of the original article.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;description=0&lt;/code&gt; if you only want links, with no description.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;https://hnrss.org/newest?q=linux&amp;amp;points=100&amp;amp;count=50
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="how-i-use-it-in-my-nas-freshrss"&gt;How I use it in my NAS FreshRSS&lt;a class="headerlink" href="#how-i-use-it-in-my-nas-freshrss" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I run &lt;a href="https://freshrss.org/"&gt;FreshRSS&lt;/a&gt; in Docker on the NAS, which is my central feed reader. Adding an hnrss feed works like any other: in the web UI, &lt;strong&gt;Subscription → Add a feed&lt;/strong&gt;, paste the URL, done.&lt;/p&gt;
+&lt;p&gt;What I have set up:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The front page (&lt;code&gt;/frontpage&lt;/code&gt;) for the daily pulse.&lt;/li&gt;
+&lt;li&gt;A couple of per-topic searches (&lt;code&gt;?q=python&lt;/code&gt;, &lt;code&gt;?q=postgres&lt;/code&gt;) with a minimum &lt;code&gt;points&lt;/code&gt;, which is where saving time really pays off.&lt;/li&gt;
+&lt;li&gt;The "Who is hiring?" threads filtered with &lt;code&gt;q=&lt;/code&gt; whenever I feel like checking the market.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Since FreshRSS fetches on a schedule, it's worth tuning the frequency. The hnrss docs ask you to be especially conservative with the endpoints that scrape HN (e.g. &lt;code&gt;/favorites&lt;/code&gt;), so a long interval is better there. For the rest, updating every 30-60 minutes is plenty: HN isn't going anywhere in that time.&lt;/p&gt;
+&lt;p&gt;The advantage of having it all in FreshRSS is obvious: a single place where I read, star and search, with my own filtering rules, and without depending on the HN front page or its ranking.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Source&lt;/em&gt;: &lt;a href="https://hnrss.github.io/"&gt;Hacker News RSS&lt;/a&gt;&lt;/p&gt;</content><category term="Herramientas"></category><category term="rss"></category><category term="hackernews"></category><category term="freshrss"></category><category term="nas"></category><category term="self-hosted"></category><category term="feeds"></category></entry></feed>

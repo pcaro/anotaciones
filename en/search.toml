@@ -3,6 +3,11 @@ html_selector = "main"
 base_directory = "/home/runner/work/anotaciones/anotaciones/output/en"
 
 [[input.files]]
+path = "hnrss-freshrss.html"
+url = "/hnrss-freshrss"
+title = "hnrss: custom RSS feeds for Hacker News"
+
+[[input.files]]
 path = "optimizacion-con-ia.html"
 url = "/optimizacion-con-ia"
 title = "AI Optimization"
@@ -521,6 +526,11 @@ title = "Django: links in object list"
 path = "settings-vars-processor.html"
 url = "/settings-vars-processor"
 title = "Settings vars processor"
+
+[[input.files]]
+path = "hnrss-freshrss-es.html"
+url = "/../hnrss-freshrss"
+title = "hnrss: feeds RSS a medida para Hacker News"
 
 [[input.files]]
 path = "optimizacion-con-ia-es.html"

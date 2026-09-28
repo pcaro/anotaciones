@@ -1,0 +1,472 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/stylesheet/style.min.css">
+
+    <link id="dark-theme-style" rel="stylesheet" type="text/css"
+        disabled="disabled"
+    href="https://pablocaro.es/theme/stylesheet/dark-theme.min.css">
+
+    <link id="pygments-dark-theme" rel="stylesheet" type="text/css"
+            disabled="disabled"
+          href="https://pablocaro.es/theme/pygments/github.min.css">
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+          href="https://pablocaro.es/theme/pygments/github.min.css">
+
+
+  <link rel="stylesheet"
+        type="text/css"
+        href="https://pablocaro.es/theme/stork/stork.css" />
+
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/font-awesome/css/solid.css">
+
+  <link rel="stylesheet" type="text/css" href="/extras/custom.css">
+
+  <link rel="shortcut icon" href="/theme/img/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/theme/img/favicon.ico" type="image/x-icon">
+
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#333333">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#333333">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Microsoft EDGE -->
+  <meta name="msapplication-TileColor" content="#333333">
+
+  <link href="https://pablocaro.es/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Anotaciones por Pablo Caro Atom">
+
+  <link href="https://pablocaro.es/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Anotaciones por Pablo Caro RSS">
+
+<script data-goatcounter="https://pcaro.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Pablo Caro" />
+<meta name="description" content="hnrss.org genera feeds RSS, Atom y JSON personalizados de Hacker News. Lo uso para seguir solo lo que me interesa desde mi FreshRSS autoalojado en el NAS." />
+<meta name="keywords" content="rss, hackernews, freshrss, nas, self-hosted, feeds" />
+
+<link
+  rel="alternate"
+  href="https://pablocaro.es/hnrss-freshrss"
+  hreflang="es"
+/>
+<link
+  rel="alternate"
+  href="https://pablocaro.es/en/hnrss-freshrss"
+  hreflang="en"
+/>
+    <meta property="og:site_name" content="Anotaciones por Pablo Caro"/>
+  <meta property="og:title" content="hnrss: feeds RSS a medida para Hacker News"/>
+  <meta property="og:description" content="hnrss.org genera feeds RSS, Atom y JSON personalizados de Hacker News. Lo uso para seguir solo lo que me interesa desde mi FreshRSS autoalojado en el NAS."/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://pablocaro.es/hnrss-freshrss"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2026-09-28 00:00:00+02:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://pablocaro.es/author/pablo-caro.html">
+  <meta property="article:section" content="Herramientas"/>
+  <meta property="article:tag" content="rss"/>
+  <meta property="article:tag" content="hackernews"/>
+  <meta property="article:tag" content="freshrss"/>
+  <meta property="article:tag" content="nas"/>
+  <meta property="article:tag" content="self-hosted"/>
+  <meta property="article:tag" content="feeds"/>
+  <meta property="og:image" content="/theme/img/profile.png">
+ 
+  <title>Anotaciones por Pablo Caro &ndash; hnrss: feeds RSS a medida para Hacker News</title>
+
+
+</head>
+<body class="light-theme">
+
+<aside>
+  <div>
+    <a href="https://pablocaro.es/">
+      <img src="/theme/img/profile.png" alt="Anotaciones" title="Anotaciones" />
+    </a>
+
+    <h1>
+      <a href="https://pablocaro.es/">Anotaciones</a>
+    </h1>
+
+    <p>Anotaciones</p>
+     <p style="font-size: 0.9em; font-style: italic; margin-bottom: 20px">
+      Volcando mi cerebro a internet. Colección de apuntes técnicos y soluciones que escribo para mi 'yo' del futuro, pero que comparto por si a alguien más le ahorran un dolor de cabeza.
+    </p>
+      <div class="stork">
+      <label for="sidebar-search" class="sr-only"
+        >Search articles</label
+      >
+      <div class="stork-input-wrap">
+      <input
+        id="sidebar-search"
+        class="stork-input"
+        type="text"
+        autocomplete="off"
+        name="q"
+        data-stork="sitesearch"
+        placeholder="Buscar..."
+        onclick="loadStorkIndex()"
+      />
+      </div>
+      <div class="stork-output" data-stork="sitesearch-output"></div>
+    </div>
+      <nav>
+      <ul class="list">
+             <li>
+          <a target="_self" href="http://x.com/pcaro">pcaro@X</a>
+        </li>
+        <li>
+          <a target="_self" href="https://github.com/pcaro/">pcaro@Github</a>
+        </li>
+        <li>
+          <a target="_self" href="https://www.linkedin.com/in/pcarorevuelta/">LinkedIn</a>
+        </li>
+      </ul>
+    </nav>
+      <nav class="sidebar-categories" aria-label="Categorías">
+                                                                                                                                 <a
+        href="https://pablocaro.es/category/ia.html"
+        class="sidebar-category"
+        title="ia (15)"
+      >
+        <img
+          src="https://pablocaro.es/images/categories/ia.png"
+          alt="ia"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">ia</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/programacion.html"
+        class="sidebar-category"
+        title="Programación (80)"
+      >
+        <img
+          src="https://pablocaro.es/images/categories/programacion.png"
+          alt="Programación"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Programación</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/linux.html"
+        class="sidebar-category"
+        title="Linux (12)"
+      >
+        <img
+          src="https://pablocaro.es/images/categories/linux.png"
+          alt="Linux"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Linux</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/herramientas.html"
+        class="sidebar-category"
+        title="Herramientas (29)"
+      >
+        <img
+          src="https://pablocaro.es/images/categories/herramientas.png"
+          alt="Herramientas"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Herramientas</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/infraestructura.html"
+        class="sidebar-category"
+        title="Infraestructura (49)"
+      >
+        <img
+          src="https://pablocaro.es/images/categories/infraestructura.png"
+          alt="Infraestructura"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Infraestructura</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/documentacion.html"
+        class="sidebar-category"
+        title="Documentación (1)"
+      >
+        <img
+          src="https://pablocaro.es/images/categories/documentacion.png"
+          alt="Documentación"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Documentación</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/finanzas.html"
+        class="sidebar-category"
+        title="Finanzas (1)"
+      >
+        <img
+          src="https://pablocaro.es/images/categories/finanzas.png"
+          alt="Finanzas"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Finanzas</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/personal.html"
+        class="sidebar-category"
+        title="Personal (3)"
+      >
+        <img
+          src="https://pablocaro.es/images/categories/personal.png"
+          alt="Personal"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Personal</span>
+      </a>
+    </nav>
+  </div>
+
+</aside>
+  <main>
+
+<nav>
+  <a href="https://pablocaro.es/">Inicio</a>
+
+  <a href="/archives.html">Archivo</a>
+  <a href="/categories.html">Categorías</a>
+  <a href="/tags.html">Etiquetas</a>
+  <a href="/search.html">Búsqueda</a>
+  <a href="/en/">English</a>
+   <a href="javascript:void(0)" onclick="theme.switch('dark')">🌙</a>
+  <a href="javascript:void(0)" onclick="theme.switch('light')">☀</a>
+   <a href="https://pablocaro.es/feeds/all.rss.xml">RSS</a>
+</nav>
+
+<article class="single">
+  <header>
+      <div class="translations">
+            <a href="https://pablocaro.es/en/hnrss-freshrss">Read in English</a>
+    </div>
+
+    <h1 id="hnrss-freshrss">hnrss: feeds RSS a medida para Hacker News</h1>
+    <p>
+      Publicado el 28 de September de 2026 en <a href="https://pablocaro.es/category/herramientas.html">Herramientas</a>     </p>
+  </header>
+
+ 
+  <div><p><img alt="hnrss y FreshRSS en el NAS" src="/images/hnrss-freshrss.png"></p>
+<p><a href="https://news.ycombinator.com/">Hacker News</a> no tiene RSS. O mejor dicho, no tiene los RSS que a mí me gustaría: un feed único de portada, sin filtros ni búsquedas. Por suerte existe <a href="https://hnrss.github.io/">hnrss.org</a>, que genera feeds RSS personalizados en tiempo real a partir de la web y de la API de búsqueda de Algolia.</p>
+<h2 id="que-es-hnrssorg">Qué es hnrss.org<a class="headerlink" href="#que-es-hnrssorg" title="Permanent link">&para;</a></h2>
+<p>Es un servicio (con <a href="https://github.com/hnrss/hnrss">código abierto</a>) que expone decenas de endpoints. Tú construyes la URL según lo que quieras seguir y obtienes un RSS válido por HTTPS. Los tipos de feed principales:</p>
+<ul>
+<li><strong>Firehose</strong>: todo lo nuevo, posts y comentarios.
+  <code>text
+  https://hnrss.org/newest
+  https://hnrss.org/newcomments
+  https://hnrss.org/frontpage</code></li>
+<li><strong>Búsquedas</strong>: posts o comentarios que contengan una palabra clave.
+  <code>text
+  https://hnrss.org/newest?q=rust
+  https://hnrss.org/newcomments?q=kubernetes</code>
+  Puedes combinar términos con <code>OR</code> y percent-encodear caracteres reservados (por ejemplo <code>C%2B%2B</code>).</li>
+<li><strong>Respuestas</strong>: comentarios que responden a un usuario o a un comentario concreto.
+  <code>text
+  https://hnrss.org/replies?id=USERNAME
+  https://hnrss.org/replies?id=17752464</code></li>
+<li><strong>Puntos y actividad</strong>: solo lo que supera un umbral.
+  <code>text
+  https://hnrss.org/newest?points=300
+  https://hnrss.org/newest?comments=250</code></li>
+<li><strong>Self-posts</strong>: Ask HN, Show HN y encuestas.
+  <code>text
+  https://hnrss.org/ask
+  https://hnrss.org/show
+  https://hnrss.org/polls</code></li>
+<li><strong>Jobs</strong>: ofertas de startups de YC y los hilos mensuales de "Who is hiring?".</li>
+<li><strong>Usuarios</strong>: lo que publica o comenta alguien concreto.</li>
+</ul>
+<p>Además de RSS, cualquier endpoint acepta <code>.atom</code> o <code>.jsonfeed</code> al final:</p>
+<div class="highlight"><pre><span></span><code>https://hnrss.org/frontpage.atom
+https://hnrss.org/ask.jsonfeed?comments=10
+</code></pre></div>
+
+<h2 id="parametros-que-uso">Parámetros que uso<a class="headerlink" href="#parametros-que-uso" title="Permanent link">&para;</a></h2>
+<p>Los que más rentabilizo:</p>
+<ul>
+<li><code>points=N</code> y <code>comments=N</code> para filtrar el ruido del firehose. Es la forma más rápida de bajarle el volumen a <code>newest</code>.</li>
+<li><code>q=...</code> para vigilancia de temas concretos sin abrir el navegador.</li>
+<li><code>count=N</code> para traer más de los 20 items por defecto (tope de 100).</li>
+<li><code>link=comments</code> para que el enlace del item apunte al hilo de HN en vez de al artículo original.</li>
+<li><code>description=0</code> si solo quieres los enlaces, sin descripción.</li>
+</ul>
+<div class="highlight"><pre><span></span><code>https://hnrss.org/newest?q=linux&amp;points=100&amp;count=50
+</code></pre></div>
+
+<h2 id="como-lo-uso-en-mi-freshrss-del-nas">Cómo lo uso en mi FreshRSS del NAS<a class="headerlink" href="#como-lo-uso-en-mi-freshrss-del-nas" title="Permanent link">&para;</a></h2>
+<p>Tengo <a href="https://freshrss.org/">FreshRSS</a> corriendo en Docker en el NAS, que es mi lector de feeds central. Añadir un feed de hnrss es como cualquier otro: en la interfaz web, <strong>Suscripción → Añadir un feed</strong>, pegas la URL y listo.</p>
+<p>Lo que tengo montado:</p>
+<ul>
+<li>La portada (<code>/frontpage</code>) para el pulso diario.</li>
+<li>Un par de búsquedas por tema (<code>?q=python</code>, <code>?q=postgres</code>) con <code>points</code> mínimo, que es donde de verdad merece la pena ahorrar tiempo.</li>
+<li>Los hilos de "Who is hiring?" filtrados con <code>q=</code> cuando me interesa mirar el mercado.</li>
+</ul>
+<p>Como FreshRSS hace fetch de forma programada, conviene ajustar la frecuencia. La documentación de hnrss pide ser especialmente conservador con los endpoints que raspan HN (por ejemplo <code>/favorites</code>), así que ahí mejor un intervalo largo. Para el resto, con actualizaciones cada 30-60 minutos sobra: HN tampoco va a irse a ningún lado en ese rato.</p>
+<p>La ventaja de tenerlo todo en FreshRSS es obvia: un único sitio donde leo, marco y busco, con mis reglas de filtrado, y sin depender de la portada de HN ni de su ranking.</p>
+<p><em>Fuente original</em>: <a href="https://hnrss.github.io/">Hacker News RSS</a></p></div>
+  <div class="tag-cloud">
+    <p>
+       <a href="https://pablocaro.es/tag/rss.html">rss</a>
+      <a href="https://pablocaro.es/tag/hackernews.html">hackernews</a>
+      <a href="https://pablocaro.es/tag/freshrss.html">freshrss</a>
+      <a href="https://pablocaro.es/tag/nas.html">nas</a>
+      <a href="https://pablocaro.es/tag/self-hosted.html">self-hosted</a>
+      <a href="https://pablocaro.es/tag/feeds.html">feeds</a>
+     </p>
+  </div>
+
+    <div class="neighbors">
+    <a class="btn float-left" href="https://pablocaro.es/optimizacion-con-ia" title="Optimización con IA">
+      <i class="fa fa-angle-left"></i> Artículo anterior
+    </a>
+  </div>
+   <!-- Disqus -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'anotaciones';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>
+    Por favor, habilita JavaScript para ver los comentarios.
+</noscript>
+<!-- End Disqus -->
+ </article>
+
+<footer>
+<p>
+  &copy; 2026  - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+  Construido con <a
+    href="http://getpelican.com"
+    target="_blank"
+    >Pelican</a
+  > usando el tema <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a
+  >    <script
+    id="dark-theme-script"
+    src="https://pablocaro.es/theme/dark-theme/dark-theme.min.js"
+    data-enable-auto-detect-theme="False"
+    data-default-theme="light"
+    type="text/javascript"
+  ></script>
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/3.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/3.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Anotaciones por Pablo Caro ",
+  "url" : "https://pablocaro.es",
+  "image": "/theme/img/profile.png",
+  "description": ""
+}
+</script>  <script src="https://files.stork-search.net/releases/v1.6.0/stork.js"></script>
+  <script>
+    window.storkIndexLoaded = false;
+    window.loadStorkIndex = function () {
+      if (window.storkIndexLoaded) {
+        return;
+      }
+      if (typeof stork === 'undefined') {
+        setTimeout(window.loadStorkIndex, 100);
+        return;
+      }
+      var url = "https://pablocaro.es/search-index.st";
+      var opts = { showProgress: false };
+      stork.register("sitesearch", url, opts);
+      try {
+        stork.register("sitesearch-page", url, opts);
+      } catch (e) {
+        // Search page input not in DOM on this page — index still registered
+      }
+      window.storkIndexLoaded = true;
+    }
+  </script>
+
+
+  <button id="back-to-top" aria-label="Back to top" title="Back to top">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <path d="M10 16V4m0 0L5 9m5-5l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+  <script>
+  (function() {
+    var btn = document.getElementById('back-to-top');
+    if (!btn) return;
+    var ticking = false;
+    function onScroll() {
+      if (!ticking) {
+        requestAnimationFrame(function() {
+          btn.classList.toggle('visible', window.scrollY > 500);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }
+    btn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    window.addEventListener('scroll', onScroll, { passive: true });
+  })();
+  </script>
+</body>
+</html>
