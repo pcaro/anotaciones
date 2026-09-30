@@ -3,33 +3,36 @@
 &lt;p&gt;&lt;a href="https://news.ycombinator.com/"&gt;Hacker News&lt;/a&gt; has no RSS. Or rather, it doesn't have the RSS I'd want: a single front-page feed with no filters or searches. Luckily there's &lt;a href="https://hnrss.github.io/"&gt;hnrss.org&lt;/a&gt;, which generates custom, real-time feeds from the site and Algolia's search API.&lt;/p&gt;
 &lt;h2 id="what-hnrssorg-is"&gt;What hnrss.org is&lt;a class="headerlink" href="#what-hnrssorg-is" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;It's a service (with &lt;a href="https://github.com/hnrss/hnrss"&gt;open source&lt;/a&gt;) that exposes dozens of endpoints. You build the URL around whatever you want to follow and get valid RSS over HTTPS. The main feed types:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Firehose&lt;/strong&gt;: everything new, posts and comments.
-  &lt;code&gt;text
-  https://hnrss.org/newest
-  https://hnrss.org/newcomments
-  https://hnrss.org/frontpage&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Searches&lt;/strong&gt;: posts or comments containing a keyword.
-  &lt;code&gt;text
-  https://hnrss.org/newest?q=rust
-  https://hnrss.org/newcomments?q=kubernetes&lt;/code&gt;
-  You can combine terms with &lt;code&gt;OR&lt;/code&gt; and percent-encode reserved characters (e.g. &lt;code&gt;C%2B%2B&lt;/code&gt;).&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Replies&lt;/strong&gt;: comments replying to a user or a specific comment.
-  &lt;code&gt;text
-  https://hnrss.org/replies?id=USERNAME
-  https://hnrss.org/replies?id=17752464&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Points and activity&lt;/strong&gt;: only items above a threshold.
-  &lt;code&gt;text
-  https://hnrss.org/newest?points=300
-  https://hnrss.org/newest?comments=250&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Self-posts&lt;/strong&gt;: Ask HN, Show HN and polls.
-  &lt;code&gt;text
-  https://hnrss.org/ask
-  https://hnrss.org/show
-  https://hnrss.org/polls&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Jobs&lt;/strong&gt;: YC startup openings and the monthly "Who is hiring?" threads.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Users&lt;/strong&gt;: what a given person posts or comments.&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Firehose&lt;/strong&gt;: everything new, posts and comments.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;https://hnrss.org/newest
+https://hnrss.org/newcomments
+https://hnrss.org/frontpage
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Searches&lt;/strong&gt;: posts or comments containing a keyword.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;https://hnrss.org/newest?q=rust
+https://hnrss.org/newcomments?q=kubernetes
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;You can combine terms with &lt;code&gt;OR&lt;/code&gt; and percent-encode reserved characters (e.g. &lt;code&gt;C%2B%2B&lt;/code&gt;).&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Replies&lt;/strong&gt;: comments replying to a user or a specific comment.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;https://hnrss.org/replies?id=USERNAME
+https://hnrss.org/replies?id=17752464
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Points and activity&lt;/strong&gt;: only items above a threshold.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;https://hnrss.org/newest?points=300
+https://hnrss.org/newest?comments=250
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Self-posts&lt;/strong&gt;: Ask HN, Show HN and polls.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;https://hnrss.org/ask
+https://hnrss.org/show
+https://hnrss.org/polls
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Jobs&lt;/strong&gt;: YC startup openings and the monthly "Who is hiring?" threads.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Users&lt;/strong&gt;: what a given person posts or comments.&lt;/p&gt;
 &lt;p&gt;Besides RSS, any endpoint accepts &lt;code&gt;.atom&lt;/code&gt; or &lt;code&gt;.jsonfeed&lt;/code&gt; at the end:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;https://hnrss.org/frontpage.atom
 https://hnrss.org/ask.jsonfeed?comments=10

@@ -293,33 +293,36 @@
 <p><a href="https://news.ycombinator.com/">Hacker News</a> no tiene RSS. O mejor dicho, no tiene los RSS que a mí me gustaría: un feed único de portada, sin filtros ni búsquedas. Por suerte existe <a href="https://hnrss.github.io/">hnrss.org</a>, que genera feeds RSS personalizados en tiempo real a partir de la web y de la API de búsqueda de Algolia.</p>
 <h2 id="que-es-hnrssorg">Qué es hnrss.org<a class="headerlink" href="#que-es-hnrssorg" title="Permanent link">&para;</a></h2>
 <p>Es un servicio (con <a href="https://github.com/hnrss/hnrss">código abierto</a>) que expone decenas de endpoints. Tú construyes la URL según lo que quieras seguir y obtienes un RSS válido por HTTPS. Los tipos de feed principales:</p>
-<ul>
-<li><strong>Firehose</strong>: todo lo nuevo, posts y comentarios.
-  <code>text
-  https://hnrss.org/newest
-  https://hnrss.org/newcomments
-  https://hnrss.org/frontpage</code></li>
-<li><strong>Búsquedas</strong>: posts o comentarios que contengan una palabra clave.
-  <code>text
-  https://hnrss.org/newest?q=rust
-  https://hnrss.org/newcomments?q=kubernetes</code>
-  Puedes combinar términos con <code>OR</code> y percent-encodear caracteres reservados (por ejemplo <code>C%2B%2B</code>).</li>
-<li><strong>Respuestas</strong>: comentarios que responden a un usuario o a un comentario concreto.
-  <code>text
-  https://hnrss.org/replies?id=USERNAME
-  https://hnrss.org/replies?id=17752464</code></li>
-<li><strong>Puntos y actividad</strong>: solo lo que supera un umbral.
-  <code>text
-  https://hnrss.org/newest?points=300
-  https://hnrss.org/newest?comments=250</code></li>
-<li><strong>Self-posts</strong>: Ask HN, Show HN y encuestas.
-  <code>text
-  https://hnrss.org/ask
-  https://hnrss.org/show
-  https://hnrss.org/polls</code></li>
-<li><strong>Jobs</strong>: ofertas de startups de YC y los hilos mensuales de "Who is hiring?".</li>
-<li><strong>Usuarios</strong>: lo que publica o comenta alguien concreto.</li>
-</ul>
+<p><strong>Firehose</strong>: todo lo nuevo, posts y comentarios.</p>
+<div class="highlight"><pre><span></span><code>https://hnrss.org/newest
+https://hnrss.org/newcomments
+https://hnrss.org/frontpage
+</code></pre></div>
+
+<p><strong>Búsquedas</strong>: posts o comentarios que contengan una palabra clave.</p>
+<div class="highlight"><pre><span></span><code>https://hnrss.org/newest?q=rust
+https://hnrss.org/newcomments?q=kubernetes
+</code></pre></div>
+
+<p>Puedes combinar términos con <code>OR</code> y percent-encodear caracteres reservados (por ejemplo <code>C%2B%2B</code>).</p>
+<p><strong>Respuestas</strong>: comentarios que responden a un usuario o a un comentario concreto.</p>
+<div class="highlight"><pre><span></span><code>https://hnrss.org/replies?id=USERNAME
+https://hnrss.org/replies?id=17752464
+</code></pre></div>
+
+<p><strong>Puntos y actividad</strong>: solo lo que supera un umbral.</p>
+<div class="highlight"><pre><span></span><code>https://hnrss.org/newest?points=300
+https://hnrss.org/newest?comments=250
+</code></pre></div>
+
+<p><strong>Self-posts</strong>: Ask HN, Show HN y encuestas.</p>
+<div class="highlight"><pre><span></span><code>https://hnrss.org/ask
+https://hnrss.org/show
+https://hnrss.org/polls
+</code></pre></div>
+
+<p><strong>Jobs</strong>: ofertas de startups de YC y los hilos mensuales de "Who is hiring?".</p>
+<p><strong>Usuarios</strong>: lo que publica o comenta alguien concreto.</p>
 <p>Además de RSS, cualquier endpoint acepta <code>.atom</code> o <code>.jsonfeed</code> al final:</p>
 <div class="highlight"><pre><span></span><code>https://hnrss.org/frontpage.atom
 https://hnrss.org/ask.jsonfeed?comments=10
