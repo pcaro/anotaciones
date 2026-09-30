@@ -15,36 +15,48 @@ Category: Herramientas
 
 It's a service (with [open source](https://github.com/hnrss/hnrss)) that exposes dozens of endpoints. You build the URL around whatever you want to follow and get valid RSS over HTTPS. The main feed types:
 
-- **Firehose**: everything new, posts and comments.
-  ```text
-  https://hnrss.org/newest
-  https://hnrss.org/newcomments
-  https://hnrss.org/frontpage
-  ```
-- **Searches**: posts or comments containing a keyword.
-  ```text
-  https://hnrss.org/newest?q=rust
-  https://hnrss.org/newcomments?q=kubernetes
-  ```
-  You can combine terms with `OR` and percent-encode reserved characters (e.g. `C%2B%2B`).
-- **Replies**: comments replying to a user or a specific comment.
-  ```text
-  https://hnrss.org/replies?id=USERNAME
-  https://hnrss.org/replies?id=17752464
-  ```
-- **Points and activity**: only items above a threshold.
-  ```text
-  https://hnrss.org/newest?points=300
-  https://hnrss.org/newest?comments=250
-  ```
-- **Self-posts**: Ask HN, Show HN and polls.
-  ```text
-  https://hnrss.org/ask
-  https://hnrss.org/show
-  https://hnrss.org/polls
-  ```
-- **Jobs**: YC startup openings and the monthly "Who is hiring?" threads.
-- **Users**: what a given person posts or comments.
+**Firehose**: everything new, posts and comments.
+
+```text
+https://hnrss.org/newest
+https://hnrss.org/newcomments
+https://hnrss.org/frontpage
+```
+
+**Searches**: posts or comments containing a keyword.
+
+```text
+https://hnrss.org/newest?q=rust
+https://hnrss.org/newcomments?q=kubernetes
+```
+
+You can combine terms with `OR` and percent-encode reserved characters (e.g. `C%2B%2B`).
+
+**Replies**: comments replying to a user or a specific comment.
+
+```text
+https://hnrss.org/replies?id=USERNAME
+https://hnrss.org/replies?id=17752464
+```
+
+**Points and activity**: only items above a threshold.
+
+```text
+https://hnrss.org/newest?points=300
+https://hnrss.org/newest?comments=250
+```
+
+**Self-posts**: Ask HN, Show HN and polls.
+
+```text
+https://hnrss.org/ask
+https://hnrss.org/show
+https://hnrss.org/polls
+```
+
+**Jobs**: YC startup openings and the monthly "Who is hiring?" threads.
+
+**Users**: what a given person posts or comments.
 
 Besides RSS, any endpoint accepts `.atom` or `.jsonfeed` at the end:
 

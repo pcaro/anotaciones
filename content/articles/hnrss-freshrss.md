@@ -15,36 +15,48 @@ Category: Herramientas
 
 Es un servicio (con [código abierto](https://github.com/hnrss/hnrss)) que expone decenas de endpoints. Tú construyes la URL según lo que quieras seguir y obtienes un RSS válido por HTTPS. Los tipos de feed principales:
 
-- **Firehose**: todo lo nuevo, posts y comentarios.
-  ```text
-  https://hnrss.org/newest
-  https://hnrss.org/newcomments
-  https://hnrss.org/frontpage
-  ```
-- **Búsquedas**: posts o comentarios que contengan una palabra clave.
-  ```text
-  https://hnrss.org/newest?q=rust
-  https://hnrss.org/newcomments?q=kubernetes
-  ```
-  Puedes combinar términos con `OR` y percent-encodear caracteres reservados (por ejemplo `C%2B%2B`).
-- **Respuestas**: comentarios que responden a un usuario o a un comentario concreto.
-  ```text
-  https://hnrss.org/replies?id=USERNAME
-  https://hnrss.org/replies?id=17752464
-  ```
-- **Puntos y actividad**: solo lo que supera un umbral.
-  ```text
-  https://hnrss.org/newest?points=300
-  https://hnrss.org/newest?comments=250
-  ```
-- **Self-posts**: Ask HN, Show HN y encuestas.
-  ```text
-  https://hnrss.org/ask
-  https://hnrss.org/show
-  https://hnrss.org/polls
-  ```
-- **Jobs**: ofertas de startups de YC y los hilos mensuales de "Who is hiring?".
-- **Usuarios**: lo que publica o comenta alguien concreto.
+**Firehose**: todo lo nuevo, posts y comentarios.
+
+```text
+https://hnrss.org/newest
+https://hnrss.org/newcomments
+https://hnrss.org/frontpage
+```
+
+**Búsquedas**: posts o comentarios que contengan una palabra clave.
+
+```text
+https://hnrss.org/newest?q=rust
+https://hnrss.org/newcomments?q=kubernetes
+```
+
+Puedes combinar términos con `OR` y percent-encodear caracteres reservados (por ejemplo `C%2B%2B`).
+
+**Respuestas**: comentarios que responden a un usuario o a un comentario concreto.
+
+```text
+https://hnrss.org/replies?id=USERNAME
+https://hnrss.org/replies?id=17752464
+```
+
+**Puntos y actividad**: solo lo que supera un umbral.
+
+```text
+https://hnrss.org/newest?points=300
+https://hnrss.org/newest?comments=250
+```
+
+**Self-posts**: Ask HN, Show HN y encuestas.
+
+```text
+https://hnrss.org/ask
+https://hnrss.org/show
+https://hnrss.org/polls
+```
+
+**Jobs**: ofertas de startups de YC y los hilos mensuales de "Who is hiring?".
+
+**Usuarios**: lo que publica o comenta alguien concreto.
 
 Además de RSS, cualquier endpoint acepta `.atom` o `.jsonfeed` al final:
 
