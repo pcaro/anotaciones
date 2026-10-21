@@ -1,0 +1,511 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="/en/theme/stylesheet/style.min.css">
+
+    <link id="dark-theme-style" rel="stylesheet" type="text/css"
+        disabled="disabled"
+    href="/en/theme/stylesheet/dark-theme.min.css">
+
+    <link id="pygments-dark-theme" rel="stylesheet" type="text/css"
+            disabled="disabled"
+          href="/en/theme/pygments/github.min.css">
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+          href="/en/theme/pygments/github.min.css">
+
+
+  <link rel="stylesheet"
+        type="text/css"
+        href="/en/theme/stork/stork.css" />
+
+  <link rel="stylesheet" type="text/css" href="/en/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="/en/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="/en/theme/font-awesome/css/solid.css">
+
+  <link rel="stylesheet" type="text/css" href="/extras/custom.css">
+
+  <link rel="shortcut icon" href="/theme/img/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/theme/img/favicon.ico" type="image/x-icon">
+
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#333333">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#333333">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Microsoft EDGE -->
+  <meta name="msapplication-TileColor" content="#333333">
+
+  <link href="/en/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Annotations by Pablo Caro Atom">
+
+  <link href="/en/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Annotations by Pablo Caro RSS">
+
+<script data-goatcounter="https://pcaro.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Pablo Caro" />
+<meta name="description" content="aa-opencode crosses the OpenCode model catalog with Artificial Analysis benchmarks and prints one table with intelligence, speed, and price per model. A Python CLI I just published." />
+<meta name="keywords" content="opencode, ai, benchmarks, pricing, cli, python" />
+
+<link
+  rel="alternate"
+  href="/en/aa-opencode"
+  hreflang="en"
+/>
+<link
+  rel="alternate"
+  href="/en/../aa-opencode"
+  hreflang="es"
+/>
+    <meta property="og:site_name" content="Annotations by Pablo Caro"/>
+  <meta property="og:title" content="aa-opencode: OpenCode models with benchmarks and price in one table"/>
+  <meta property="og:description" content="aa-opencode crosses the OpenCode model catalog with Artificial Analysis benchmarks and prints one table with intelligence, speed, and price per model. A Python CLI I just published."/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="/en/aa-opencode"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2026-10-21 00:00:00+02:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="/en/author/pablo-caro.html">
+  <meta property="article:section" content="Tools"/>
+  <meta property="article:tag" content="opencode"/>
+  <meta property="article:tag" content="ai"/>
+  <meta property="article:tag" content="benchmarks"/>
+  <meta property="article:tag" content="pricing"/>
+  <meta property="article:tag" content="cli"/>
+  <meta property="article:tag" content="python"/>
+  <meta property="og:image" content="/theme/img/profile.png">
+ 
+  <title>Annotations by Pablo Caro &ndash; aa-opencode: OpenCode models with benchmarks and price in one table</title>
+
+
+</head>
+<body class="light-theme">
+
+<aside>
+  <div>
+    <a href="/en/">
+      <img src="/theme/img/profile.png" alt="Anotaciones" title="Anotaciones" />
+    </a>
+
+    <h1>
+      <a href="/en/">Anotaciones</a>
+    </h1>
+
+    <p>Anotaciones</p>
+     <p style="font-size: 0.9em; font-style: italic; margin-bottom: 20px">
+      Dumping my brain onto the internet. A collection of technical notes and solutions written for my future self, shared here in case they save someone else a headache.
+    </p>
+      <div class="stork">
+      <label for="sidebar-search" class="sr-only"
+        >Search articles</label
+      >
+      <div class="stork-input-wrap">
+      <input
+        id="sidebar-search"
+        class="stork-input"
+        type="text"
+        autocomplete="off"
+        name="q"
+        data-stork="sitesearch"
+        placeholder="Search..."
+        onclick="loadStorkIndex()"
+      />
+      </div>
+      <div class="stork-output" data-stork="sitesearch-output"></div>
+    </div>
+      <nav>
+      <ul class="list">
+             <li>
+          <a target="_self" href="http://x.com/pcaro">pcaro@X</a>
+        </li>
+        <li>
+          <a target="_self" href="https://github.com/pcaro/">pcaro@Github</a>
+        </li>
+        <li>
+          <a target="_self" href="https://www.linkedin.com/in/pcarorevuelta/">LinkedIn</a>
+        </li>
+      </ul>
+    </nav>
+      <nav class="sidebar-categories" aria-label="Categories">
+                                                                                                                                                           <a
+        href="/en/category/ia.html"
+        class="sidebar-category"
+        title="ia (15)"
+      >
+        <img
+          src="/en/images/categories/ia.png"
+          alt="ia"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">ia</span>
+      </a>
+      <a
+        href="/en/category/programacion.html"
+        class="sidebar-category"
+        title="Programación (30)"
+      >
+        <img
+          src="/en/images/categories/programacion.png"
+          alt="Programación"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Programación</span>
+      </a>
+      <a
+        href="/en/category/linux.html"
+        class="sidebar-category"
+        title="Linux (11)"
+      >
+        <img
+          src="/en/images/categories/linux.png"
+          alt="Linux"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Linux</span>
+      </a>
+      <a
+        href="/en/category/herramientas.html"
+        class="sidebar-category"
+        title="Herramientas (24)"
+      >
+        <img
+          src="/en/images/categories/herramientas.png"
+          alt="Herramientas"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Herramientas</span>
+      </a>
+      <a
+        href="/en/category/infraestructura.html"
+        class="sidebar-category"
+        title="Infraestructura (15)"
+      >
+        <img
+          src="/en/images/categories/infraestructura.png"
+          alt="Infraestructura"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Infraestructura</span>
+      </a>
+      <a
+        href="/en/category/documentacion.html"
+        class="sidebar-category"
+        title="Documentación (1)"
+      >
+        <img
+          src="/en/images/categories/documentacion.png"
+          alt="Documentación"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Documentación</span>
+      </a>
+      <a
+        href="/en/category/finanzas.html"
+        class="sidebar-category"
+        title="Finanzas (1)"
+      >
+        <img
+          src="/en/images/categories/finanzas.png"
+          alt="Finanzas"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Finanzas</span>
+      </a>
+      <a
+        href="/en/category/personal.html"
+        class="sidebar-category"
+        title="Personal (2)"
+      >
+        <img
+          src="/en/images/categories/personal.png"
+          alt="Personal"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Personal</span>
+      </a>
+      <a
+        href="/en/category/programming.html"
+        class="sidebar-category"
+        title="Programming (1)"
+      >
+        <span class="sidebar-category-icon">Pr</span>
+        <span class="sidebar-category-label">Programming</span>
+      </a>
+      <a
+        href="/en/category/tools.html"
+        class="sidebar-category"
+        title="Tools (6)"
+      >
+        <span class="sidebar-category-icon">To</span>
+        <span class="sidebar-category-label">Tools</span>
+      </a>
+    </nav>
+  </div>
+
+</aside>
+  <main>
+
+<nav>
+  <a href="/en/">Home</a>
+
+  <a href="/en/archives.html">Archives</a>
+  <a href="/en/categories.html">Categories</a>
+  <a href="/en/tags.html">Tags</a>
+  <a href="/en/search.html">Search</a>
+  <a href="/">Español</a>
+   <a href="javascript:void(0)" onclick="theme.switch('dark')">🌙</a>
+  <a href="javascript:void(0)" onclick="theme.switch('light')">☀</a>
+   <a href="/en/feeds/all.rss.xml">RSS</a>
+</nav>
+
+<article class="single">
+  <header>
+      <div class="translations">
+            <a href="/en/../aa-opencode">Leer en español</a>
+    </div>
+
+    <h1 id="aa-opencode">aa-opencode: OpenCode models with benchmarks and price in one table</h1>
+    <p>
+      Posted on Wed, 21 Oct 2026 in <a href="/en/category/tools.html">Tools</a>     </p>
+  </header>
+
+ 
+  <div><p><img alt="aa-opencode output with the Go catalog" src="/images/aa-opencode.png"></p>
+<p>I use <a href="https://opencode.ai/">OpenCode</a> as one of the model providers in <a href="https://pablocaro.es/en/que-es-pi-coding-agent">pi</a>, and there's the problem: the list of available models is long and says nothing. You get names, sure. What you don't get is how well each one reasons, how fast it answers, or what a million tokens costs you. Picking by eye is a coin toss.</p>
+<p><a href="https://artificialanalysis.ai/">Artificial Analysis</a> publishes exactly that: independent intelligence, coding, and math indices, plus output speed, time to first token, and price. But it has its own catalog and its own names, so crossing it by hand against OpenCode's models is a chunk of work every time you want to check.</p>
+<p>So I wrote <a href="https://github.com/pcaro/aa-opencode">aa-opencode</a>: it grabs the OpenCode model list, crosses it with the Artificial Analysis API, and prints a table. Nothing else. It's about 430 lines of Python with <code>httpx</code> and <code>rich</code>.</p>
+<h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>uv<span class="w"> </span>tool<span class="w"> </span>install<span class="w"> </span>git+https://github.com/pcaro/aa-opencode
+</code></pre></div>
+
+<p>It needs an Artificial Analysis API key, which is free: create an account, generate the key, and put it in the environment.</p>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">ARTIFICIAL_ANALYSIS_API_KEY</span><span class="o">=</span><span class="s2">&quot;your-key&quot;</span>
+</code></pre></div>
+
+<p>It also reads <code>AA_API_KEY</code>, and if you want to pass it ad hoc there's <code>--api-key</code>.</p>
+<h2 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="c1"># Default table, sorted by intelligence</span>
+aa-opencode
+
+<span class="c1"># Other sort keys</span>
+aa-opencode<span class="w"> </span>--sort<span class="w"> </span>price
+aa-opencode<span class="w"> </span>--sort<span class="w"> </span>speed
+aa-opencode<span class="w"> </span>--sort<span class="w"> </span>coding
+
+<span class="c1"># JSON to chain into something else</span>
+aa-opencode<span class="w"> </span>--format<span class="w"> </span>json
+</code></pre></div>
+
+<p>By default it pulls the <strong>Go</strong> catalog. For the <strong>Zen</strong> catalog:</p>
+<div class="highlight"><pre><span></span><code>aa-opencode<span class="w"> </span>--catalog<span class="w"> </span>zen
+</code></pre></div>
+
+<h2 id="what-comes-out">What comes out<a class="headerlink" href="#what-comes-out" title="Permanent link">&para;</a></h2>
+<p>The Go catalog has 33 models with data in Artificial Analysis. The first thing that jumps out is that the smartest model in the catalog isn't the one I'd use for coding every day. <code>gemini-4-argon-contributor</code> leads with a 52.6 index and costs $8.0 per million. <code>mimo-v2.6-pro</code> scores 46.3 and costs $0.5. Sixteen times less for 11% less index.</p>
+<p>On coding it flips. <code>mimo-v2.5</code> scores 60.2 on the coding index at $0.2 per million, and <code>muse-spark-1.2-contributor</code> scores 58.6 at $0.1. Those are models I would never have considered opening without seeing those numbers side by side.</p>
+<p>Speed: <code>claude-haiku-5-5</code> runs at 238.9 tok/s and <code>deepseek-v4.1-flash</code> at 216.1. But look at the first one's TTFT: 285.8 seconds. That's not time to first token, it's an artifact of the test (queues, rate limits, whatever happened that day). TTFT from the API has to be read with tongs.</p>
+<p>And price. OpenCode's price doesn't come from Artificial Analysis: it comes from <a href="https://models.dev/">models.dev</a>, which is the source OpenCode uses for its catalog. Comparing the two, there are models where OpenCode charges you noticeably less than the public reference: <code>mimo-v2.5</code> 68% less, <code>longcat-2.0</code> 60% less, <code>deepseek-v4.1-flash</code> 50% less.</p>
+<p>Zen is a different picture. There the top models run $20 per million (<code>claude-fable-5-1</code>, <code>gpt-6-astra</code>), and the quality/price ranking fills up with models that don't even show in Go.</p>
+<p>Four Go models have no Artificial Analysis data: <code>omen-alpha</code>, <code>hy4-preview</code>, <code>longcat-2.5-preview-free</code>, and <code>beam-free</code>. They're previews and free models, so that's expected. In JSON they show up with <code>matched: false</code>, and in the human table you list them with <code>--show-unmatched</code>.</p>
+<h2 id="how-it-matches-models">How it matches models<a class="headerlink" href="#how-it-matches-models" title="Permanent link">&para;</a></h2>
+<p>OpenCode IDs and Artificial Analysis slugs almost never match, so the matcher tries three things in order:</p>
+<p><strong>Exact slug.</strong> <code>gpt-5.4</code> against <code>gpt-5.4</code>. Normalizing first: lowercase, dots to dashes, and everything non-alphanumeric stripped.</p>
+<p><strong>Substring.</strong> If one contains the other, it keeps the shortest slug, which is the most specific one. That's where things like <code>gemini-4-argon-contributor</code> → <code>gemini-4-argon</code> land.</p>
+<p><strong>Token set.</strong> For reordered names, like <code>haiku-4-5</code> against <code>4-5-haiku</code>.</p>
+<p>It's pure heuristics, there's no hand-written equivalence table. It works well enough, but a badly matched model gives you believable, wrong numbers, which is the worst kind of error. When OpenCode adds new models, it's worth eyeballing the row before trusting it.</p>
+<h2 id="what-it-doesnt-do">What it doesn't do<a class="headerlink" href="#what-it-doesnt-do" title="Permanent link">&para;</a></h2>
+<ul>
+<li>It doesn't tell you which model suits you. It just puts the numbers together and sorts them.</li>
+<li>It doesn't check availability: if a model is down, it won't notice.</li>
+<li>It keeps no history. Every run is a snapshot.</li>
+<li>There's no manual equivalence table, so odd matches are possible.</li>
+</ul>
+<p>Using the free Artificial Analysis API requires attribution, so: benchmarks come from <a href="https://artificialanalysis.ai/">Artificial Analysis</a> and OpenCode pricing from <a href="https://models.dev/">models.dev</a>.</p>
+<p><em>Original source</em>: <a href="https://github.com/pcaro/aa-opencode">github.com/pcaro/aa-opencode</a></p></div>
+  <div class="tag-cloud">
+    <p>
+       <a href="/en/tag/opencode.html">opencode</a>
+      <a href="/en/tag/ai.html">ai</a>
+      <a href="/en/tag/benchmarks.html">benchmarks</a>
+      <a href="/en/tag/pricing.html">pricing</a>
+      <a href="/en/tag/cli.html">cli</a>
+      <a href="/en/tag/python.html">python</a>
+     </p>
+  </div>
+
+    <div class="neighbors">
+    <a class="btn float-left" href="/en/hnrss-freshrss" title="hnrss: custom RSS feeds for Hacker News">
+      <i class="fa fa-angle-left"></i> Previous Post
+    </a>
+  </div>
+   <div class="related-posts">
+    <h4>You might enjoy</h4>
+    <ul class="related-posts">
+      <li>
+        <a href="/en/harnesstax-cuanto-importa-el-harness"
+          >HarnessTax: The Harness Matters Less Than You Think</a
+        >
+      </li>
+      <li>
+        <a href="/en/que-es-pi-coding-agent"
+          >What is Pi? — The Minimal Coding Agent That Went Viral</a
+        >
+      </li>
+      <li>
+        <a href="/en/crit-review-loop-agents"
+          >Crit: The Review Loop for Agents</a
+        >
+      </li>
+      <li>
+        <a href="/en/optimizacion-con-ia"
+          >AI Optimization</a
+        >
+      </li>
+      <li>
+        <a href="/en/agentsview-analytics-agentes"
+          >AgentsView: local analytics for your coding agents</a
+        >
+      </li>
+    </ul>
+  </div>
+  <!-- Disqus -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'anotaciones';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>
+    Please enable JavaScript to view comments.
+</noscript>
+<!-- End Disqus -->
+ </article>
+
+<footer>
+<p>
+  &copy; 2026  - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+  Built with <a
+    href="http://getpelican.com"
+    target="_blank"
+    >Pelican</a
+  > using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a
+  > theme   <script
+    id="dark-theme-script"
+    src="/en/theme/dark-theme/dark-theme.min.js"
+    data-enable-auto-detect-theme="False"
+    data-default-theme="light"
+    type="text/javascript"
+  ></script>
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/3.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/3.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Annotations by Pablo Caro ",
+  "url" : "/en",
+  "image": "/theme/img/profile.png",
+  "description": ""
+}
+</script>  <script src="https://files.stork-search.net/releases/v1.6.0/stork.js"></script>
+  <script>
+    window.storkIndexLoaded = false;
+    window.loadStorkIndex = function () {
+      if (window.storkIndexLoaded) {
+        return;
+      }
+      if (typeof stork === 'undefined') {
+        setTimeout(window.loadStorkIndex, 100);
+        return;
+      }
+      var url = "/en/search-index.st";
+      var opts = { showProgress: false };
+      stork.register("sitesearch", url, opts);
+      try {
+        stork.register("sitesearch-page", url, opts);
+      } catch (e) {
+        // Search page input not in DOM on this page — index still registered
+      }
+      window.storkIndexLoaded = true;
+    }
+  </script>
+
+
+  <button id="back-to-top" aria-label="Back to top" title="Back to top">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <path d="M10 16V4m0 0L5 9m5-5l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+  <script>
+  (function() {
+    var btn = document.getElementById('back-to-top');
+    if (!btn) return;
+    var ticking = false;
+    function onScroll() {
+      if (!ticking) {
+        requestAnimationFrame(function() {
+          btn.classList.toggle('visible', window.scrollY > 500);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }
+    btn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    window.addEventListener('scroll', onScroll, { passive: true });
+  })();
+  </script>
+</body>
+</html>

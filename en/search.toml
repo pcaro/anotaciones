@@ -3,6 +3,11 @@ html_selector = "main"
 base_directory = "/home/runner/work/anotaciones/anotaciones/output/en"
 
 [[input.files]]
+path = "aa-opencode.html"
+url = "/aa-opencode"
+title = "aa-opencode: OpenCode models with benchmarks and price in one table"
+
+[[input.files]]
 path = "hnrss-freshrss.html"
 url = "/hnrss-freshrss"
 title = "hnrss: custom RSS feeds for Hacker News"
@@ -526,6 +531,11 @@ title = "Django: links in object list"
 path = "settings-vars-processor.html"
 url = "/settings-vars-processor"
 title = "Settings vars processor"
+
+[[input.files]]
+path = "aa-opencode-es.html"
+url = "/../aa-opencode"
+title = "aa-opencode: modelos de OpenCode con benchmarks y precio en una tabla"
 
 [[input.files]]
 path = "hnrss-freshrss-es.html"
