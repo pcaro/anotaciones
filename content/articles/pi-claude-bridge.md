@@ -106,7 +106,7 @@ Con `plan: "pro"` (el valor por defecto) tienes 1M en Fable 5/5.1, Opus 5.5/5/4.
 
 Esto no es un provider más, y tiene trampas que documenta el propio repo. Las importantes:
 
-**Reconstruir la sesión reenvía toda la conversación.** La extensión reescribe la sesión de Claude Code desde el historial de pi cada vez que divergen: después de un abort, de un `/compact`, de navegar por el árbol de la sesión, de un error de API, o al volver a una sesión. La siguiente petición suele fallar la caché de prompt de todo lo que va después del system prompt. En sesiones con muchos aborts, se nota en la factura.
+**Reconstruir la sesión reenvía toda la conversación.** La extensión reescribe la sesión de Claude Code desde el historial de pi cada vez que divergen: después de un abort, de un `/compact`, de navegar por el árbol de la sesión, de un error de API, o al volver a una sesión. La siguiente petición suele perder la caché de prompt de todo lo que va después del system prompt. En sesiones con muchos aborts, se nota en la factura.
 
 **Los archivos que edita Claude Code no sobreviven a una reconstrucción.** La edición sí, queda en el historial como llamada y resultado de herramienta. Lo que se pierde es el snapshot del archivo después de la edición. Las expansiones `@file` sí se conservan.
 
@@ -118,7 +118,7 @@ Esto no es un provider más, y tiene trampas que documenta el propio repo. Las i
 
 ## Detalles que me han sorprendido para bien
 
-**Los hooks de Claude Code siguen funcionando.** `~/.claude/settings.json` se dispara dentro de los turnos de claude-bridge. Eso puede ser útil o un desastre: un hook que inyecta guía específica de Claude duplica lo que ya hacen tus extensiones de pi. La salida es la que sugiere el README:
+**Los hooks de Claude Code siguen funcionando.** `~/.claude/settings.json` se dispara dentro de los turnos de claude-bridge. Eso puede ser útil o un desastre: un hook que inyecta instrucciones específicas de Claude duplica lo que ya hacen tus extensiones de pi. La salida es la que sugiere el README:
 
 ```sh
 [ -n "$PI_CODING_AGENT" ] && exit 0

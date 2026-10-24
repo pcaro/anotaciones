@@ -68,7 +68,7 @@ Una cosa importante: la extensión es **solo OAuth**. No ofrece el "Enter API ke
 
 Cada provider tiene su fuente:
 
-- **`opencode-go-console`** tira del catálogo público `GET https://opencode.ai/inference/go/v1/models`, la lista `lite`, y la enriquece con datos de models.dev descartando ids deshabilitados o deprecados.
+- **`opencode-go-console`** tira del catálogo público `GET https://opencode.ai/inference/go/v1/models`, la lista `lite`, y la enriquece con datos de models.dev descartando ids deshabilitados o retirados.
 - **`opencode-console`** tira del endpoint *org-scoped* `GET {server}/api/config` con `Authorization: Bearer` y `x-org-id`, así que cada organización ve los modelos que le corresponden.
 
 Para refrescar sin volver a hacer login:
