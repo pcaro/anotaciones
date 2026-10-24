@@ -1,13 +1,13 @@
-Title: pi-claude-bridge: your Claude Pro/Max subscription inside pi
+Title: pi-claude-bridge: your Claude Pro, Max or Team subscription inside pi
 Date: 2026-10-24
 Category: Tools
 Tags: pi, claude, claude-code, coding-agent, subscriptions, cli
 Slug: pi-claude-bridge
 Lang: en
-Summary: pi-claude-bridge wires pi to the Claude Code Agent SDK so you can use Opus, Sonnet and Haiku from your Pro or Max subscription as regular pi models, with no API key and every tool call flowing through pi's TUI.
+Summary: pi-claude-bridge wires pi to the Claude Code Agent SDK so you can use Opus, Sonnet and Haiku from your Pro, Max or Team subscription as regular pi models, with no API key and every tool call flowing through pi's TUI.
 Featured_image: /images/pi-claude-bridge.png
 
-At work my model budget is the Claude subscription. Before this I had two options: open Claude Code in another tab, or put a separate API key into pi and pay twice. [pi-claude-bridge](https://github.com/elidickinson/pi-claude-bridge) solves exactly that: Claude models show up in pi's `/model` and the conversation spends your subscription quota instead of billed tokens.
+At work the model budget is a **Claude Team** account. And that always raises the same question: does this session come out of the subscription, or out of a separate API key? [pi-claude-bridge](https://github.com/elidickinson/pi-claude-bridge) goes exactly there: Claude models show up in pi's `/model` and the conversation spends subscription quota instead of billed tokens.
 
 ![pi-claude-bridge repository](/images/pi-claude-bridge.png)
 
@@ -37,6 +37,26 @@ That's it. Behind the scenes pi translates its tools into Claude Code's format, 
 - **Mid-turn steering** reaches Claude at the next tool boundary, not immediately.
 - **The model list is pi-ai's**. When pi-ai adds a Claude model it appears in `/model` after you update the package, without waiting for a bridge release. Dated snapshot ids (`claude-opus-4-5-20251101`) are hidden.
 
+## Login: the bridge has no login of its own
+
+This is where quite a few people trip first (issue #201 in the repo). The extension does not authenticate against Anthropic on its own: it spawns the `claude` binary and uses **whatever session Claude Code already has**. pi's `/login` for the `anthropic` provider is unrelated, and using it expecting the bridge to inherit it ends with you paying Extra Usage without noticing.
+
+So the first thing is to check which account `claude` is logged in with. Inside Claude Code:
+
+```text
+/status
+```
+
+```text
+Account:       you@company.com
+Organization:  Your Company
+Login method:  Claude Team account
+```
+
+If it says `Claude Max account`, `Claude Pro account` or `Claude Team account`, the bridge uses that session. If it says an API key, it doesn't.
+
+And just in case: turn **Extra Usage** off in Claude's settings. If Claude Code can't draw on your subscription for a request, the fallback is billing you the overage, and that's better found out before the invoice than after.
+
 ## 1M context
 
 A million-token context isn't available the same way on every plan, and the bridge needs to know yours. It's configured in `~/.pi/agent/claude-bridge.json`:
@@ -50,7 +70,7 @@ A million-token context isn't available the same way on every plan, and the brid
 }
 ```
 
-With `plan: "pro"` (the default) you get 1M on Fable 5/5.1, Opus 5.5/5/4.8/4.7 and Sonnet 5.5/5. Opus 4.6 only reaches 1M on a Max plan or with Extra Usage, and Sonnet 4.6 only with Extra Usage. If your plan advertises 1M but Claude Code won't serve it, `forceTwoHundredK` pins specific models to 200K:
+With `plan: "pro"` (the default) you get 1M on Fable 5/5.1, Opus 5.5/5/4.8/4.7 and Sonnet 5.5/5. Opus 4.6 only reaches 1M on a Max plan or with Extra Usage, and Sonnet 4.6 only with Extra Usage. Watch the value's name: if your account is a company one, the README still tells you to set `max`, because that's what enables long context on **Team Premium and Enterprise**. Odd, but that's how it is. If your plan advertises 1M but Claude Code won't serve it, `forceTwoHundredK` pins specific models to 200K:
 
 ```json
 {
@@ -118,13 +138,17 @@ pi sets `PI_CODING_AGENT=true` on child processes, so the hook opts itself out w
 
 ## On billing
 
-Anthropic announced and then un-announced a change to how Agent SDK usage gets billed. As of today this extension spends your subscription quota just like Claude Code. That's why I use it at work and not at home: where I have Claude paid for, the bridge pays off; where I don't, it makes no sense.
+Anthropic announced and then un-announced a change to how Agent SDK usage gets billed. As of today this extension spends your subscription quota just like Claude Code. There is also an announced change where Max and Team plans include monthly API credits, and the repo doesn't know yet whether that will eventually reach the bridge: the consensus in the issues is "same as ever for now".
+
+That's why it interests me at work and not at home: where Claude is already paid for, the bridge makes sense; where it isn't, none.
 
 ## How I use it
 
-On the work machine I have Claude paid for and pi is my harness. `claude-bridge` lets me stay in pi without giving up the models I already pay for, and without a loose API key lying around. The TUI is pi's, the tools are pi's, the skills are pi's, and underneath the thing talking to Anthropic is Claude Code with my session.
+On the work machine I have a Claude Team account and pi is my harness. This is what I want to set up there, and it's worth saying plainly: **I haven't tested it on that machine yet**. What I have verified is what I describe above — configuration, how it works inside, and the traps the repo documents. Once it's been running for a few days I'll update this post with the verdict and with whatever `plan` value I end up with.
 
-The real downside is abort-heavy sessions, where the bridge pays the price of rebuilding history. I accept it: my normal flow has few aborts, and in exchange I don't have to choose between the agent I like and the model I've paid for.
+The approach is what interests me: the TUI is pi's, the tools are pi's, the skills are pi's, and underneath the thing talking to Anthropic is Claude Code with my session. No loose API keys, and no choosing between the agent I like and the model that's already paid for.
+
+The real downside, when I test it, will be abort-heavy sessions, where the bridge pays the price of rebuilding history.
 
 At home the setup is the opposite: an OpenCode Go subscription and [pi-provider-opencode-console](https://pablocaro.es/en/pi-provider-opencode-console) for a live model catalog.
 
