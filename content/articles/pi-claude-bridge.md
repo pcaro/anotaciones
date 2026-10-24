@@ -32,14 +32,14 @@ Necesita pi 1.2.0 o superior para tener todos los modelos disponibles.
 
 Y ya está. Detrás, pi traduce sus herramientas al formato de Claude Code, así que el flujo de trabajo no cambia: mismas herramientas, misma sesión, mismos subagentes. Hay unos cuantos detalles que sí cambian y conviene conocer:
 
-- **Bash tiene timeout de 120 segundos**, el que aplica Claude Code por defecto. El bash de pi no tiene timeout propio, así que hereda el del puente.
+- **Bash tiene timeout de 120 segundos**, el que aplica Claude Code por defecto. El bash de pi no tiene timeout propio, así que hereda el que impone Claude Code.
 - **Las skills se reenvían** al system prompt de Claude Code.
 - **El steering a mitad de turno** llega a Claude en el siguiente límite de herramienta, no de inmediato.
-- **La lista de modelos es la de `pi-ai`**. Cuando `pi-ai` añade un modelo de Claude, aparece en `/model` al actualizar el paquete, sin esperar una release del puente. Los ids con fecha (`claude-opus-4-5-20251101`) no se muestran.
+- **La lista de modelos es la de `pi-ai`**. Cuando `pi-ai` añade un modelo de Claude, aparece en `/model` al actualizar el paquete, sin esperar una release del plugin. Los ids con fecha (`claude-opus-4-5-20251101`) no se muestran.
 
-## Login: el puente no tiene login propio
+## El plugin no autentica directamente
 
-Esto es la causa del primer tropiezo de bastante gente (issue #201 del repo). La extensión no autentica contra Anthropic por su cuenta: lanza el binario `claude` y usa **la sesión que ya tenga Claude Code**. El `/login` de pi para el provider `anthropic` no tiene nada que ver, y si lo usas pensando que el puente lo va a heredar, acabas pagando Extra Usage sin enterarte.
+Esto es la causa del primer tropiezo de bastante gente (issue #201 del repo). La extensión no autentica contra Anthropic por su cuenta: lanza el binario `claude` y usa **la sesión que ya tenga Claude Code**. El `/login` de pi para el provider `anthropic` no tiene nada que ver, y si lo usas pensando que el plugin lo va a heredar, acabas pagando Extra Usage sin enterarte.
 
 Así que lo primero es comprobar con qué cuenta está logueado `claude`. Dentro de Claude Code:
 
@@ -53,13 +53,13 @@ Organization:  Tu Empresa
 Login method:  Claude Team account
 ```
 
-Si ahí pone `Claude Max account`, `Claude Pro account` o `Claude Team account`, el puente usará esa sesión. Si pone una API key, no.
+Si ahí pone `Claude Max account`, `Claude Pro account` o `Claude Team account`, claude-bridge usará esa sesión. Si pone una API key, no.
 
 Y por si acaso: desactiva **Extra Usage** en los ajustes de Claude. Si Claude Code no puede tirar de tu suscripción para una petición, la alternativa es facturarte el excedente, y eso es mejor saberlo antes que después.
 
 ## Contexto de 1M
 
-El contexto de un millón de tokens no está disponible igual en todos los planes, y el puente necesita saber el tuyo. Se configura en `~/.pi/agent/claude-bridge.json`:
+El contexto de un millón de tokens no está disponible igual en todos los planes, y el plugin necesita saber el tuyo. Se configura en `~/.pi/agent/claude-bridge.json`:
 
 ```json
 {
@@ -70,7 +70,7 @@ El contexto de un millón de tokens no está disponible igual en todos los plane
 }
 ```
 
-Con `plan: "pro"` (el valor por defecto) tienes 1M en Fable 5/5.1, Opus 5.5/5/4.8/4.7 y Sonnet 5.5/5. Opus 4.6 solo llega a 1M con plan Max o con Extra Usage, y Sonnet 4.6 solo con Extra Usage. Ojo con el nombre del valor: si tu cuenta es de empresa, el README pide poner igualmente `max`, porque es el que habilita el contexto largo en **Team Premium y Enterprise**. Llamativo, pero así está. Si tu plan declara 1M pero Claude Code no te lo sirve, `forceTwoHundredK` pinea modelos concretos a 200K:
+Con `plan: "pro"` (el valor por defecto) tienes 1M en Fable 5/5.1, Opus 5.5/5/4.8/4.7 y Sonnet 5.5/5. Opus 4.6 solo llega a 1M con plan Max o con Extra Usage, y Sonnet 4.6 solo con Extra Usage. Ojo con el nombre del valor: si tu cuenta es de empresa, el README pide poner igualmente `max`, porque es el que habilita el contexto largo en **Team Premium y Enterprise**. Llamativo, pero así está. Si tu plan declara 1M pero Claude Code no te lo sirve, `forceTwoHundredK` fija modelos concretos a 200K:
 
 ```json
 {
@@ -106,7 +106,7 @@ Con `plan: "pro"` (el valor por defecto) tienes 1M en Fable 5/5.1, Opus 5.5/5/4.
 
 Esto no es un provider más, y tiene trampas que documenta el propio repo. Las importantes:
 
-**Reconstruir la sesión reenvía toda la conversación.** El puente reescribe la sesión de Claude Code desde el historial de pi cada vez que divergen: después de un abort, de un `/compact`, de navegar por el árbol de la sesión, de un error de API, o al volver a una sesión. La siguiente petición suele fallar la caché de prompt de todo lo que va después del system prompt. En sesiones con muchos aborts, se nota en la factura.
+**Reconstruir la sesión reenvía toda la conversación.** La extensión reescribe la sesión de Claude Code desde el historial de pi cada vez que divergen: después de un abort, de un `/compact`, de navegar por el árbol de la sesión, de un error de API, o al volver a una sesión. La siguiente petición suele fallar la caché de prompt de todo lo que va después del system prompt. En sesiones con muchos aborts, se nota en la factura.
 
 **Los archivos que edita Claude Code no sobreviven a una reconstrucción.** La edición sí, queda en el historial como llamada y resultado de herramienta. Lo que se pierde es el snapshot del archivo después de la edición. Las expansiones `@file` sí se conservan.
 
@@ -118,7 +118,7 @@ Esto no es un provider más, y tiene trampas que documenta el propio repo. Las i
 
 ## Detalles que me han sorprendido para bien
 
-**Los hooks de Claude Code siguen funcionando.** `~/.claude/settings.json` se dispara dentro de los turnos del puente. Eso puede ser útil o un desastre: un hook que inyecta guía específica de Claude duplica lo que ya hacen tus extensiones de pi. La salida es la que sugiere el README:
+**Los hooks de Claude Code siguen funcionando.** `~/.claude/settings.json` se dispara dentro de los turnos de claude-bridge. Eso puede ser útil o un desastre: un hook que inyecta guía específica de Claude duplica lo que ya hacen tus extensiones de pi. La salida es la que sugiere el README:
 
 ```sh
 [ -n "$PI_CODING_AGENT" ] && exit 0
@@ -126,9 +126,9 @@ Esto no es un provider más, y tiene trampas que documenta el propio repo. Las i
 
 pi pone `PI_CODING_AGENT=true` en los procesos hijos, así que el hook se autodescarta cuando corre dentro de pi.
 
-**La compactación la sigue haciendo pi.** El puente enruta esas llamadas a consultas aisladas de Claude Code, sin tocar la sesión viva hasta que pi termina de reescribir el historial.
+**La compactación la sigue haciendo pi.** La extensión enruta esas llamadas a consultas aisladas de Claude Code, sin tocar la sesión viva hasta que pi termina de reescribir el historial.
 
-**El uso del plan se puede leer desde otras extensiones.** Claude Code emite un `rate_limit_event` cuando cambia una ventana de uso, y el puente lo pasa por el evento `after_provider_response` como cabeceras `anthropic-ratelimit-unified-*`, con los mismos nombres que usa la API de Anthropic. Una extensión que ya lea esas cabeceras para el provider `anthropic` nativo puede aceptar `claude-bridge` sin cambios.
+**El uso del plan se puede leer desde otras extensiones.** Claude Code emite un `rate_limit_event` cuando cambia una ventana de uso, y claude-bridge lo pasa por el evento `after_provider_response` como cabeceras `anthropic-ratelimit-unified-*`, con los mismos nombres que usa la API de Anthropic. Una extensión que ya lea esas cabeceras para el provider `anthropic` nativo puede aceptar `claude-bridge` sin cambios.
 
 **Convivencia con subagentes.** Con `@gotgenes/pi-subagents` hay que añadir esto en `~/.pi/agent/subagents.json`:
 
@@ -138,9 +138,9 @@ pi pone `PI_CODING_AGENT=true` en los procesos hijos, así que el hook se autode
 
 ## Sobre la facturación
 
-Anthropic anunció y luego desanunció un cambio en cómo se factura el uso del Agent SDK. A día de hoy, esta extensión consume tu cuota de suscripción igual que Claude Code. Hay además un cambio anunciado por el que los planes Max y Team incluyen créditos mensuales de API, y el propio repo no sabe todavía si eso acabará tocando al puente: el consenso en los issues es "de momento igual que siempre".
+Anthropic anunció y luego desanunció un cambio en cómo se factura el uso del Agent SDK. A día de hoy, esta extensión consume tu cuota de suscripción igual que Claude Code. Hay además un cambio anunciado por el que los planes Max y Team incluyen créditos mensuales de API, y el propio repo no sabe todavía si eso acabará afectando al plugin: el consenso en los issues es "de momento igual que siempre".
 
-Es el motivo por el que me interesa en el trabajo y no en casa: donde hay Claude contratado, el puente tiene sentido; donde no, ninguno.
+Es el motivo por el que me interesa en el trabajo y no en casa: donde hay Claude contratado, el plugin tiene sentido; donde no, ninguno.
 
 ## Mi caso de uso
 
@@ -148,7 +148,7 @@ En la máquina del trabajo tengo una cuenta Claude Team y pi es mi harness. Esto
 
 El planteamiento es el que me interesa: la TUI es la de pi, las herramientas son las de pi, las skills son las de pi, y por debajo el que habla con Anthropic es Claude Code con mi sesión. Nada de API keys sueltas y nada de elegir entre el agente que me gusta y el modelo que ya está pagado.
 
-La pega real, cuando lo pruebe, va a ser la de las sesiones con muchos aborts, que es donde el puente paga el precio de reconstruir el historial.
+La pega real, cuando lo pruebe, va a ser la de las sesiones con muchos aborts, que es donde el plugin paga el precio de reconstruir el historial.
 
 En casa el planteamiento es el contrario: suscripción de OpenCode Go y [pi-provider-opencode-console](https://pablocaro.es/pi-provider-opencode-console) para tener el catálogo de modelos en vivo.
 
@@ -158,4 +158,4 @@ En casa el planteamiento es el contrario: suscripción de OpenCode Go y [pi-prov
 - [En npm](https://www.npmjs.com/package/pi-claude-bridge) — `pi install npm:pi-claude-bridge`
 - [Claude Agent SDK](https://github.com/anthropics/claude-agent-sdk-typescript) — La base sobre la que se apoya
 - [claude-agent-sdk-pi](https://github.com/prateekmedia/claude-agent-sdk-pi) — El proyecto del que nació
-- [El puente de OpenCode](https://pablocaro.es/pi-provider-opencode-console) — La otra extensión de providers que uso
+- [El plugin de OpenCode](https://pablocaro.es/pi-provider-opencode-console) — La otra extensión de providers que uso
