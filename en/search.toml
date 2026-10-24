@@ -3,6 +3,16 @@ html_selector = "main"
 base_directory = "/home/runner/work/anotaciones/anotaciones/output/en"
 
 [[input.files]]
+path = "pi-claude-bridge.html"
+url = "/pi-claude-bridge"
+title = "pi-claude-bridge: your Claude Pro, Max or Team subscription inside pi"
+
+[[input.files]]
+path = "pi-provider-opencode-console.html"
+url = "/pi-provider-opencode-console"
+title = "pi-provider-opencode-console: live OpenCode Go models without waiting for pi releases"
+
+[[input.files]]
 path = "aa-opencode.html"
 url = "/aa-opencode"
 title = "aa-opencode: OpenCode models with benchmarks and price in one table"
@@ -531,6 +541,16 @@ title = "Django: links in object list"
 path = "settings-vars-processor.html"
 url = "/settings-vars-processor"
 title = "Settings vars processor"
+
+[[input.files]]
+path = "pi-claude-bridge-es.html"
+url = "/../pi-claude-bridge"
+title = "pi-claude-bridge: la suscripción de Claude Pro, Max o Team dentro de pi"
+
+[[input.files]]
+path = "pi-provider-opencode-console-es.html"
+url = "/../pi-provider-opencode-console"
+title = "pi-provider-opencode-console: los modelos de OpenCode Go al día sin esperar releases de pi"
 
 [[input.files]]
 path = "aa-opencode-es.html"

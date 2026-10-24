@@ -1,0 +1,602 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="/en/theme/stylesheet/style.min.css">
+
+    <link id="dark-theme-style" rel="stylesheet" type="text/css"
+        disabled="disabled"
+    href="/en/theme/stylesheet/dark-theme.min.css">
+
+    <link id="pygments-dark-theme" rel="stylesheet" type="text/css"
+            disabled="disabled"
+          href="/en/theme/pygments/github.min.css">
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+          href="/en/theme/pygments/github.min.css">
+
+
+  <link rel="stylesheet"
+        type="text/css"
+        href="/en/theme/stork/stork.css" />
+
+  <link rel="stylesheet" type="text/css" href="/en/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="/en/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="/en/theme/font-awesome/css/solid.css">
+
+  <link rel="stylesheet" type="text/css" href="/extras/custom.css">
+
+  <link rel="shortcut icon" href="/theme/img/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/theme/img/favicon.ico" type="image/x-icon">
+
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#333333">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#333333">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Microsoft EDGE -->
+  <meta name="msapplication-TileColor" content="#333333">
+
+  <link href="/en/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Annotations by Pablo Caro Atom">
+
+  <link href="/en/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Annotations by Pablo Caro RSS">
+
+<script data-goatcounter="https://pcaro.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Pablo Caro" />
+<meta name="description" content="pi-provider-opencode-console adds OpenCode Console and OpenCode Go to pi with OAuth device-code login and a live model catalog, so you no longer wait for a pi release to refresh its static model list." />
+<meta name="keywords" content="pi, opencode, coding-agent, oauth, providers, cli" />
+
+<link
+  rel="alternate"
+  href="/en/pi-provider-opencode-console"
+  hreflang="en"
+/>
+<link
+  rel="alternate"
+  href="/en/../pi-provider-opencode-console"
+  hreflang="es"
+/>
+    <meta property="og:site_name" content="Annotations by Pablo Caro"/>
+  <meta property="og:title" content="pi-provider-opencode-console: live OpenCode Go models without waiting for pi releases"/>
+  <meta property="og:description" content="pi-provider-opencode-console adds OpenCode Console and OpenCode Go to pi with OAuth device-code login and a live model catalog, so you no longer wait for a pi release to refresh its static model list."/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="/en/pi-provider-opencode-console"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2026-10-24 00:00:00+02:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="/en/author/pablo-caro.html">
+  <meta property="article:section" content="Tools"/>
+  <meta property="article:tag" content="pi"/>
+  <meta property="article:tag" content="opencode"/>
+  <meta property="article:tag" content="coding-agent"/>
+  <meta property="article:tag" content="oauth"/>
+  <meta property="article:tag" content="providers"/>
+  <meta property="article:tag" content="cli"/>
+  <meta property="og:image" content="/theme/img/profile.png">
+ 
+  <title>Annotations by Pablo Caro &ndash; pi-provider-opencode-console: live OpenCode Go models without waiting for pi releases</title>
+
+
+</head>
+<body class="light-theme">
+
+<aside>
+  <div>
+    <a href="/en/">
+      <img src="/theme/img/profile.png" alt="Anotaciones" title="Anotaciones" />
+    </a>
+
+    <h1>
+      <a href="/en/">Anotaciones</a>
+    </h1>
+
+    <p>Anotaciones</p>
+     <p style="font-size: 0.9em; font-style: italic; margin-bottom: 20px">
+      Dumping my brain onto the internet. A collection of technical notes and solutions written for my future self, shared here in case they save someone else a headache.
+    </p>
+      <div class="stork">
+      <label for="sidebar-search" class="sr-only"
+        >Search articles</label
+      >
+      <div class="stork-input-wrap">
+      <input
+        id="sidebar-search"
+        class="stork-input"
+        type="text"
+        autocomplete="off"
+        name="q"
+        data-stork="sitesearch"
+        placeholder="Search..."
+        onclick="loadStorkIndex()"
+      />
+      </div>
+      <div class="stork-output" data-stork="sitesearch-output"></div>
+    </div>
+      <nav>
+      <ul class="list">
+             <li>
+          <a target="_self" href="http://x.com/pcaro">pcaro@X</a>
+        </li>
+        <li>
+          <a target="_self" href="https://github.com/pcaro/">pcaro@Github</a>
+        </li>
+        <li>
+          <a target="_self" href="https://www.linkedin.com/in/pcarorevuelta/">LinkedIn</a>
+        </li>
+      </ul>
+    </nav>
+      <nav class="sidebar-categories" aria-label="Categories">
+                                                                                                                                                           <a
+        href="/en/category/ia.html"
+        class="sidebar-category"
+        title="ia (15)"
+      >
+        <img
+          src="/en/images/categories/ia.png"
+          alt="ia"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">ia</span>
+      </a>
+      <a
+        href="/en/category/programacion.html"
+        class="sidebar-category"
+        title="Programación (30)"
+      >
+        <img
+          src="/en/images/categories/programacion.png"
+          alt="Programación"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Programación</span>
+      </a>
+      <a
+        href="/en/category/linux.html"
+        class="sidebar-category"
+        title="Linux (11)"
+      >
+        <img
+          src="/en/images/categories/linux.png"
+          alt="Linux"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Linux</span>
+      </a>
+      <a
+        href="/en/category/herramientas.html"
+        class="sidebar-category"
+        title="Herramientas (24)"
+      >
+        <img
+          src="/en/images/categories/herramientas.png"
+          alt="Herramientas"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Herramientas</span>
+      </a>
+      <a
+        href="/en/category/infraestructura.html"
+        class="sidebar-category"
+        title="Infraestructura (15)"
+      >
+        <img
+          src="/en/images/categories/infraestructura.png"
+          alt="Infraestructura"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Infraestructura</span>
+      </a>
+      <a
+        href="/en/category/documentacion.html"
+        class="sidebar-category"
+        title="Documentación (1)"
+      >
+        <img
+          src="/en/images/categories/documentacion.png"
+          alt="Documentación"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Documentación</span>
+      </a>
+      <a
+        href="/en/category/finanzas.html"
+        class="sidebar-category"
+        title="Finanzas (1)"
+      >
+        <img
+          src="/en/images/categories/finanzas.png"
+          alt="Finanzas"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Finanzas</span>
+      </a>
+      <a
+        href="/en/category/personal.html"
+        class="sidebar-category"
+        title="Personal (2)"
+      >
+        <img
+          src="/en/images/categories/personal.png"
+          alt="Personal"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Personal</span>
+      </a>
+      <a
+        href="/en/category/programming.html"
+        class="sidebar-category"
+        title="Programming (1)"
+      >
+        <span class="sidebar-category-icon">Pr</span>
+        <span class="sidebar-category-label">Programming</span>
+      </a>
+      <a
+        href="/en/category/tools.html"
+        class="sidebar-category"
+        title="Tools (8)"
+      >
+        <span class="sidebar-category-icon">To</span>
+        <span class="sidebar-category-label">Tools</span>
+      </a>
+    </nav>
+  </div>
+
+</aside>
+  <main>
+
+<nav>
+  <a href="/en/">Home</a>
+
+  <a href="/en/archives.html">Archives</a>
+  <a href="/en/categories.html">Categories</a>
+  <a href="/en/tags.html">Tags</a>
+  <a href="/en/search.html">Search</a>
+  <a href="/">Español</a>
+   <a href="javascript:void(0)" onclick="theme.switch('dark')">🌙</a>
+  <a href="javascript:void(0)" onclick="theme.switch('light')">☀</a>
+   <a href="/en/feeds/all.rss.xml">RSS</a>
+</nav>
+
+<article class="single">
+  <header>
+      <div class="translations">
+            <a href="/en/../pi-provider-opencode-console">Leer en español</a>
+    </div>
+
+    <h1 id="pi-provider-opencode-console">pi-provider-opencode-console: live OpenCode Go models without waiting for pi releases</h1>
+    <p>
+      Posted on Sat, 24 Oct 2026 in <a href="/en/category/tools.html">Tools</a>     </p>
+  </header>
+
+ 
+  <div><p>For my personal work I use the <strong>OpenCode Go</strong> subscription as the model provider in <a href="https://pablocaro.es/en/que-es-pi-coding-agent">pi</a>. And there was one detail that annoyed me every week: when OpenCode changed the subscription model catalog, pi kept showing me the old list until a new release shipped.</p>
+<p><img alt="pi-provider-opencode-console repository" src="/images/pi-provider-opencode-console.png"></p>
+<h2 id="the-problem-a-model-list-frozen-into-the-binary">The problem: a model list frozen into the binary<a class="headerlink" href="#the-problem-a-model-list-frozen-into-the-binary" title="Permanent link">&para;</a></h2>
+<p>pi does not discover models at runtime for its built-in providers. The catalog lives in <code>pi-ai</code>, in a file generated at build time:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// This file is auto-generated by scripts/generate-models.ts</span>
+<span class="c1">// Do not edit manually - run &#39;npm run generate-models&#39; to update</span>
+</code></pre></div>
+
+<p>For a provider with a public API and a stable catalog that's fine. For a subscription that adds and retires models every few weeks, it's constant friction: you see new names on the OpenCode site that don't exist in <code>/model</code>, and retired models that are still there taking up space.</p>
+<p>The alternative was hand-editing <code>models.json</code>, which is worse: you maintain it, it drifts, and model overrides don't always behave the same way with extension providers.</p>
+<h2 id="the-fix-device-code-oauth-and-a-live-catalog">The fix: device-code OAuth and a live catalog<a class="headerlink" href="#the-fix-device-code-oauth-and-a-live-catalog" title="Permanent link">&para;</a></h2>
+<p><a href="https://github.com/grikomsn/pi-provider-opencode-console">pi-provider-opencode-console</a> is a pi extension that registers two new providers — <code>opencode-console</code> and <code>opencode-go-console</code> — with OAuth 2.0 device authorization grant login (RFC 8628) and model discovery against OpenCode's real catalog.</p>
+<div class="highlight"><pre><span></span><code>pi<span class="w"> </span>install<span class="w"> </span>npm:pi-provider-opencode-console
+</code></pre></div>
+
+<p>The two providers are deliberately distinct from the ones pi ships with:</p>
+<table>
+<thead>
+<tr>
+<th>Provider</th>
+<th>Auth</th>
+<th>Model catalog</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>opencode</code> / <code>opencode-go</code> (built-in)</td>
+<td>API key</td>
+<td>Static, compiled into <code>pi-ai</code></td>
+</tr>
+<tr>
+<td><code>opencode-console</code> / <code>opencode-go-console</code> (extension)</td>
+<td>OAuth device code</td>
+<td>Live, from the server</td>
+</tr>
+</tbody>
+</table>
+<p>That leaves the built-in providers untouched and lets you pick whichever matches your setup: API key or subscription. No name collisions, no credential conflicts.</p>
+<h2 id="login">Login<a class="headerlink" href="#login" title="Permanent link">&para;</a></h2>
+<p>The flow is the usual one: you request the login, pi gives you a code and a URL, you approve in the browser, done.</p>
+<div class="highlight"><pre><span></span><code>/login<span class="w"> </span>opencode-go-console
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code># pi prints a user code and the verification URL
+# you approve in the browser and the credential lands in ~/.pi/agent/auth.json
+</code></pre></div>
+
+<p>For the full console (the one that absorbed Zen) it's the same flow:</p>
+<div class="highlight"><pre><span></span><code>/login<span class="w"> </span>opencode-console
+</code></pre></div>
+
+<p>Both share the device-code session, so authenticating one leaves the other ready. The credential is stored as <code>oauth</code> in <code>auth.json</code>, and the access token renews itself: with less than five minutes to expiry the extension refreshes before the next request, single-flight so two concurrent calls don't request two tokens, and mirrors the rotated token into the sibling entry.</p>
+<p>One important thing: the extension is <strong>OAuth-only</strong>. It does not offer pi's generic "Enter API key" login. If you want API-key access with a static list, that's exactly why the built-in providers exist.</p>
+<h2 id="where-the-models-come-from">Where the models come from<a class="headerlink" href="#where-the-models-come-from" title="Permanent link">&para;</a></h2>
+<p>Each provider has its own source:</p>
+<ul>
+<li><strong><code>opencode-go-console</code></strong> pulls the public <code>GET https://opencode.ai/inference/go/v1/models</code> catalog, the <code>lite</code> list, and enriches it with models.dev data while dropping disabled or deprecated ids.</li>
+<li><strong><code>opencode-console</code></strong> pulls the org-scoped <code>GET {server}/api/config</code> endpoint with <code>Authorization: Bearer</code> and <code>x-org-id</code>, so each organization sees the models it actually has.</li>
+</ul>
+<p>To refresh without logging in again:</p>
+<div class="highlight"><pre><span></span><code>/opencode-go-console<span class="w"> </span>refresh
+</code></pre></div>
+
+<p>And to see what's behind it:</p>
+<div class="highlight"><pre><span></span><code>/opencode-go-console<span class="w"> </span>status<span class="w">    </span><span class="c1"># auth method, account, org, token expiry</span>
+/opencode-go-console<span class="w"> </span><span class="nb">logout</span><span class="w">    </span><span class="c1"># clears the Go credential, keeps Console&#39;s</span>
+</code></pre></div>
+
+<p>The console provider also has <code>switch-org</code> to change organization when the session isn't already scoped to one from the browser. If the grant requested org scoping, <code>switch-org</code> doesn't apply: you log in again.</p>
+<h2 id="the-detail-that-makes-this-work-well">The detail that makes this work well<a class="headerlink" href="#the-detail-that-makes-this-work-well" title="Permanent link">&para;</a></h2>
+<p>OpenCode does not expose every model over the same protocol. Some models speak <code>anthropic-messages</code>, others <code>openai-completions</code>, others <code>openai-responses</code>, and the Gemini ones go through <code>google-generative-ai</code>. The extension routes each request to the right wire API for the model you picked, and normalizes the base URL per API kind before letting the SDK compose its own:</p>
+<table>
+<thead>
+<tr>
+<th>API kind</th>
+<th>Normalized base</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>anthropic-messages</code></td>
+<td><code>/inference[/go]/anthropic</code></td>
+</tr>
+<tr>
+<td><code>openai-completions</code></td>
+<td><code>/inference[/go]/openai/v1</code></td>
+</tr>
+<tr>
+<td><code>openai-responses</code></td>
+<td><code>/inference[/go]/openai/v1</code></td>
+</tr>
+<tr>
+<td><code>google-generative-ai</code></td>
+<td><code>/inference[/go]/google/v1beta</code></td>
+</tr>
+</tbody>
+</table>
+<p>Streaming and parsing are delegated to <code>pi-ai</code>'s implementations instead of being reimplemented. That means a new model speaking an already-supported protocol works without touching the extension, and streaming bugs get fixed where they belong: in <code>pi-ai</code>.</p>
+<p>It also injects per-request identity headers (<code>x-opencode-org-id</code>, <code>x-opencode-client</code>, <code>x-opencode-request</code>), which is what makes the session recognizable as yours on OpenCode's side.</p>
+<h2 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h2>
+<p>Just two environment variables, and usually none:</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Default</th>
+<th>What for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>OPENCODE_CONSOLE_SERVER</code></td>
+<td><code>https://opencode.ai/console</code></td>
+<td>Self-hosted consoles. Persisted to <code>auth.json</code> on first sign-in.</td>
+</tr>
+<tr>
+<td><code>PI_CODING_AGENT_DIR</code></td>
+<td><code>~/.pi/agent</code></td>
+<td>pi's agent directory. Useful for testing in an isolated setup.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="migrating-from-older-versions">Migrating from older versions<a class="headerlink" href="#migrating-from-older-versions" title="Permanent link">&para;</a></h2>
+<p>2.0 broke compatibility on purpose: service-key auth (<code>sk-…</code>) was removed. If you still have one of those entries in <code>auth.json</code>, it's inert and pi reports "Provider is not configured". Delete it and do the device-code sign-in.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># coming from 1.x? check and clean up</span>
+cat<span class="w"> </span>~/.pi/agent/auth.json
+</code></pre></div>
+
+<h2 id="how-i-use-it">How I use it<a class="headerlink" href="#how-i-use-it" title="Permanent link">&para;</a></h2>
+<p>I run pi on two machines with two different budgets: the OpenCode Go subscription for personal work and the Claude subscription for work (that's <a href="https://pablocaro.es/en/pi-claude-bridge">pi-claude-bridge</a>). On the personal machine, this extension removed an entire class of friction: there's no longer a "let's see if this week's release brings the new model" moment.</p>
+<p>The catalog you see in <code>/model</code> is the one you're paying for right now. If OpenCode adds a model in the morning, I have it in pi after a <code>refresh</code>, without updating anything.</p>
+<p>And if you want to know how each of those models performs before picking one, <a href="https://pablocaro.es/en/aa-opencode">aa-opencode</a> crosses the catalog with Artificial Analysis benchmarks.</p>
+<h2 id="resources">Resources<a class="headerlink" href="#resources" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://github.com/grikomsn/pi-provider-opencode-console">pi-provider-opencode-console on GitHub</a> — Code and docs</li>
+<li><a href="https://www.npmjs.com/package/pi-provider-opencode-console">On npm</a> — <code>pi install npm:pi-provider-opencode-console</code></li>
+<li><a href="https://opencode.ai/console">OpenCode Console</a> — The console and model catalog</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc8628">RFC 8628</a> — OAuth 2.0 Device Authorization Grant</li>
+<li><a href="https://pablocaro.es/en/que-es-pi-coding-agent">What is pi?</a> — First part of the pi series</li>
+</ul></div>
+  <div class="tag-cloud">
+    <p>
+       <a href="/en/tag/pi.html">pi</a>
+      <a href="/en/tag/opencode.html">opencode</a>
+      <a href="/en/tag/coding-agent.html">coding-agent</a>
+      <a href="/en/tag/oauth.html">oauth</a>
+      <a href="/en/tag/providers.html">providers</a>
+      <a href="/en/tag/cli.html">cli</a>
+     </p>
+  </div>
+
+    <div class="neighbors">
+    <a class="btn float-left" href="/en/aa-opencode" title="aa-opencode: OpenCode models with benchmarks and price in one table">
+      <i class="fa fa-angle-left"></i> Previous Post
+    </a>
+    <a class="btn float-right" href="/en/pi-claude-bridge" title="pi-claude-bridge: your Claude Pro, Max or Team subscription inside pi">
+      Next Post <i class="fa fa-angle-right"></i>
+    </a>
+  </div>
+   <div class="related-posts">
+    <h4>You might enjoy</h4>
+    <ul class="related-posts">
+      <li>
+        <a href="/en/pi-claude-bridge"
+          >pi-claude-bridge: your Claude Pro, Max or Team subscription inside pi</a
+        >
+      </li>
+      <li>
+        <a href="/en/harnesstax-cuanto-importa-el-harness"
+          >HarnessTax: The Harness Matters Less Than You Think</a
+        >
+      </li>
+      <li>
+        <a href="/en/extensiones-pi-que-uso"
+          >The Pi Extensions I Use Daily</a
+        >
+      </li>
+      <li>
+        <a href="/en/pi-de-principiante-a-avanzado"
+          >Pi from Beginner to Advanced — The Complete Guide</a
+        >
+      </li>
+      <li>
+        <a href="/en/que-es-pi-coding-agent"
+          >What is Pi? — The Minimal Coding Agent That Went Viral</a
+        >
+      </li>
+    </ul>
+  </div>
+  <!-- Disqus -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'anotaciones';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>
+    Please enable JavaScript to view comments.
+</noscript>
+<!-- End Disqus -->
+ </article>
+
+<footer>
+<p>
+  &copy; 2026  - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+  Built with <a
+    href="http://getpelican.com"
+    target="_blank"
+    >Pelican</a
+  > using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a
+  > theme   <script
+    id="dark-theme-script"
+    src="/en/theme/dark-theme/dark-theme.min.js"
+    data-enable-auto-detect-theme="False"
+    data-default-theme="light"
+    type="text/javascript"
+  ></script>
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/3.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/3.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Annotations by Pablo Caro ",
+  "url" : "/en",
+  "image": "/theme/img/profile.png",
+  "description": ""
+}
+</script>  <script src="https://files.stork-search.net/releases/v1.6.0/stork.js"></script>
+  <script>
+    window.storkIndexLoaded = false;
+    window.loadStorkIndex = function () {
+      if (window.storkIndexLoaded) {
+        return;
+      }
+      if (typeof stork === 'undefined') {
+        setTimeout(window.loadStorkIndex, 100);
+        return;
+      }
+      var url = "/en/search-index.st";
+      var opts = { showProgress: false };
+      stork.register("sitesearch", url, opts);
+      try {
+        stork.register("sitesearch-page", url, opts);
+      } catch (e) {
+        // Search page input not in DOM on this page — index still registered
+      }
+      window.storkIndexLoaded = true;
+    }
+  </script>
+
+
+  <button id="back-to-top" aria-label="Back to top" title="Back to top">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <path d="M10 16V4m0 0L5 9m5-5l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+  <script>
+  (function() {
+    var btn = document.getElementById('back-to-top');
+    if (!btn) return;
+    var ticking = false;
+    function onScroll() {
+      if (!ticking) {
+        requestAnimationFrame(function() {
+          btn.classList.toggle('visible', window.scrollY > 500);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }
+    btn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    window.addEventListener('scroll', onScroll, { passive: true });
+  })();
+  </script>
+</body>
+</html>

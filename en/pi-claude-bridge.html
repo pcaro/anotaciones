@@ -1,0 +1,566 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="/en/theme/stylesheet/style.min.css">
+
+    <link id="dark-theme-style" rel="stylesheet" type="text/css"
+        disabled="disabled"
+    href="/en/theme/stylesheet/dark-theme.min.css">
+
+    <link id="pygments-dark-theme" rel="stylesheet" type="text/css"
+            disabled="disabled"
+          href="/en/theme/pygments/github.min.css">
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+          href="/en/theme/pygments/github.min.css">
+
+
+  <link rel="stylesheet"
+        type="text/css"
+        href="/en/theme/stork/stork.css" />
+
+  <link rel="stylesheet" type="text/css" href="/en/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="/en/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="/en/theme/font-awesome/css/solid.css">
+
+  <link rel="stylesheet" type="text/css" href="/extras/custom.css">
+
+  <link rel="shortcut icon" href="/theme/img/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/theme/img/favicon.ico" type="image/x-icon">
+
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#333333">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#333333">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Microsoft EDGE -->
+  <meta name="msapplication-TileColor" content="#333333">
+
+  <link href="/en/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Annotations by Pablo Caro Atom">
+
+  <link href="/en/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Annotations by Pablo Caro RSS">
+
+<script data-goatcounter="https://pcaro.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Pablo Caro" />
+<meta name="description" content="pi-claude-bridge wires pi to the Claude Code Agent SDK so you can use Opus, Sonnet and Haiku from your Pro, Max or Team subscription as regular pi models, with no API key and every tool call flowing through pi&#39;s TUI." />
+<meta name="keywords" content="pi, claude, claude-code, coding-agent, subscriptions, cli" />
+
+<link
+  rel="alternate"
+  href="/en/pi-claude-bridge"
+  hreflang="en"
+/>
+<link
+  rel="alternate"
+  href="/en/../pi-claude-bridge"
+  hreflang="es"
+/>
+    <meta property="og:site_name" content="Annotations by Pablo Caro"/>
+  <meta property="og:title" content="pi-claude-bridge: your Claude Pro, Max or Team subscription inside pi"/>
+  <meta property="og:description" content="pi-claude-bridge wires pi to the Claude Code Agent SDK so you can use Opus, Sonnet and Haiku from your Pro, Max or Team subscription as regular pi models, with no API key and every tool call flowing through pi&#39;s TUI."/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="/en/pi-claude-bridge"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2026-10-24 00:00:00+02:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="/en/author/pablo-caro.html">
+  <meta property="article:section" content="Tools"/>
+  <meta property="article:tag" content="pi"/>
+  <meta property="article:tag" content="claude"/>
+  <meta property="article:tag" content="claude-code"/>
+  <meta property="article:tag" content="coding-agent"/>
+  <meta property="article:tag" content="subscriptions"/>
+  <meta property="article:tag" content="cli"/>
+  <meta property="og:image" content="/theme/img/profile.png">
+ 
+  <title>Annotations by Pablo Caro &ndash; pi-claude-bridge: your Claude Pro, Max or Team subscription inside pi</title>
+
+
+</head>
+<body class="light-theme">
+
+<aside>
+  <div>
+    <a href="/en/">
+      <img src="/theme/img/profile.png" alt="Anotaciones" title="Anotaciones" />
+    </a>
+
+    <h1>
+      <a href="/en/">Anotaciones</a>
+    </h1>
+
+    <p>Anotaciones</p>
+     <p style="font-size: 0.9em; font-style: italic; margin-bottom: 20px">
+      Dumping my brain onto the internet. A collection of technical notes and solutions written for my future self, shared here in case they save someone else a headache.
+    </p>
+      <div class="stork">
+      <label for="sidebar-search" class="sr-only"
+        >Search articles</label
+      >
+      <div class="stork-input-wrap">
+      <input
+        id="sidebar-search"
+        class="stork-input"
+        type="text"
+        autocomplete="off"
+        name="q"
+        data-stork="sitesearch"
+        placeholder="Search..."
+        onclick="loadStorkIndex()"
+      />
+      </div>
+      <div class="stork-output" data-stork="sitesearch-output"></div>
+    </div>
+      <nav>
+      <ul class="list">
+             <li>
+          <a target="_self" href="http://x.com/pcaro">pcaro@X</a>
+        </li>
+        <li>
+          <a target="_self" href="https://github.com/pcaro/">pcaro@Github</a>
+        </li>
+        <li>
+          <a target="_self" href="https://www.linkedin.com/in/pcarorevuelta/">LinkedIn</a>
+        </li>
+      </ul>
+    </nav>
+      <nav class="sidebar-categories" aria-label="Categories">
+                                                                                                                                                           <a
+        href="/en/category/ia.html"
+        class="sidebar-category"
+        title="ia (15)"
+      >
+        <img
+          src="/en/images/categories/ia.png"
+          alt="ia"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">ia</span>
+      </a>
+      <a
+        href="/en/category/programacion.html"
+        class="sidebar-category"
+        title="Programación (30)"
+      >
+        <img
+          src="/en/images/categories/programacion.png"
+          alt="Programación"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Programación</span>
+      </a>
+      <a
+        href="/en/category/linux.html"
+        class="sidebar-category"
+        title="Linux (11)"
+      >
+        <img
+          src="/en/images/categories/linux.png"
+          alt="Linux"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Linux</span>
+      </a>
+      <a
+        href="/en/category/herramientas.html"
+        class="sidebar-category"
+        title="Herramientas (24)"
+      >
+        <img
+          src="/en/images/categories/herramientas.png"
+          alt="Herramientas"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Herramientas</span>
+      </a>
+      <a
+        href="/en/category/infraestructura.html"
+        class="sidebar-category"
+        title="Infraestructura (15)"
+      >
+        <img
+          src="/en/images/categories/infraestructura.png"
+          alt="Infraestructura"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Infraestructura</span>
+      </a>
+      <a
+        href="/en/category/documentacion.html"
+        class="sidebar-category"
+        title="Documentación (1)"
+      >
+        <img
+          src="/en/images/categories/documentacion.png"
+          alt="Documentación"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Documentación</span>
+      </a>
+      <a
+        href="/en/category/finanzas.html"
+        class="sidebar-category"
+        title="Finanzas (1)"
+      >
+        <img
+          src="/en/images/categories/finanzas.png"
+          alt="Finanzas"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Finanzas</span>
+      </a>
+      <a
+        href="/en/category/personal.html"
+        class="sidebar-category"
+        title="Personal (2)"
+      >
+        <img
+          src="/en/images/categories/personal.png"
+          alt="Personal"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Personal</span>
+      </a>
+      <a
+        href="/en/category/programming.html"
+        class="sidebar-category"
+        title="Programming (1)"
+      >
+        <span class="sidebar-category-icon">Pr</span>
+        <span class="sidebar-category-label">Programming</span>
+      </a>
+      <a
+        href="/en/category/tools.html"
+        class="sidebar-category"
+        title="Tools (8)"
+      >
+        <span class="sidebar-category-icon">To</span>
+        <span class="sidebar-category-label">Tools</span>
+      </a>
+    </nav>
+  </div>
+
+</aside>
+  <main>
+
+<nav>
+  <a href="/en/">Home</a>
+
+  <a href="/en/archives.html">Archives</a>
+  <a href="/en/categories.html">Categories</a>
+  <a href="/en/tags.html">Tags</a>
+  <a href="/en/search.html">Search</a>
+  <a href="/">Español</a>
+   <a href="javascript:void(0)" onclick="theme.switch('dark')">🌙</a>
+  <a href="javascript:void(0)" onclick="theme.switch('light')">☀</a>
+   <a href="/en/feeds/all.rss.xml">RSS</a>
+</nav>
+
+<article class="single">
+  <header>
+      <div class="translations">
+            <a href="/en/../pi-claude-bridge">Leer en español</a>
+    </div>
+
+    <h1 id="pi-claude-bridge">pi-claude-bridge: your Claude Pro, Max or Team subscription inside pi</h1>
+    <p>
+      Posted on Sat, 24 Oct 2026 in <a href="/en/category/tools.html">Tools</a>     </p>
+  </header>
+
+ 
+  <div><p>At work the model budget is a <strong>Claude Team</strong> account. And that always raises the same question: does this session come out of the subscription, or out of a separate API key? <a href="https://github.com/elidickinson/pi-claude-bridge">pi-claude-bridge</a> goes exactly there: Claude models show up in pi's <code>/model</code> and the conversation spends subscription quota instead of billed tokens.</p>
+<p><img alt="pi-claude-bridge repository" src="/images/pi-claude-bridge.png"></p>
+<h2 id="what-it-actually-is">What it actually is<a class="headerlink" href="#what-it-actually-is" title="Permanent link">&para;</a></h2>
+<p>It's a pi extension built on the <a href="https://github.com/anthropics/claude-agent-sdk-typescript">Claude Code Agent SDK</a>. It started as a fork of Prateek Sunal's <code>claude-agent-sdk-pi</code> and does two things:</p>
+<ol>
+<li><strong>Provider</strong> — Registers a <code>claude-bridge</code> provider with the Claude models from pi-ai's catalog. Every tool call flows through pi's TUI, so you see what you'd see with any other model.</li>
+<li><strong><code>AskClaude</code> tool</strong> — Lets you delegate a question to Claude Code while running another provider. It's marked deprecated.</li>
+</ol>
+<div class="highlight"><pre><span></span><code>pi<span class="w"> </span>install<span class="w"> </span>npm:pi-claude-bridge
+</code></pre></div>
+
+<p>Requires pi 1.2.0 or newer for all models to be available.</p>
+<h2 id="using-it-as-a-provider">Using it as a provider<a class="headerlink" href="#using-it-as-a-provider" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>/model<span class="w"> </span>claude-bridge/claude-opus-5
+</code></pre></div>
+
+<p>That's it. Behind the scenes pi translates its tools into Claude Code's format, so the workflow doesn't change: same tools, same session, same subagents. A few things do change and are worth knowing:</p>
+<ul>
+<li><strong>Bash gets a 120-second timeout</strong>, Claude Code's default. pi's bash has no timeout of its own, so it inherits the bridge's.</li>
+<li><strong>Skills are forwarded</strong> into Claude Code's system prompt.</li>
+<li><strong>Mid-turn steering</strong> reaches Claude at the next tool boundary, not immediately.</li>
+<li><strong>The model list is pi-ai's</strong>. When pi-ai adds a Claude model it appears in <code>/model</code> after you update the package, without waiting for a bridge release. Dated snapshot ids (<code>claude-opus-4-5-20251101</code>) are hidden.</li>
+</ul>
+<h2 id="login-the-bridge-has-no-login-of-its-own">Login: the bridge has no login of its own<a class="headerlink" href="#login-the-bridge-has-no-login-of-its-own" title="Permanent link">&para;</a></h2>
+<p>This is where quite a few people trip first (issue #201 in the repo). The extension does not authenticate against Anthropic on its own: it spawns the <code>claude</code> binary and uses <strong>whatever session Claude Code already has</strong>. pi's <code>/login</code> for the <code>anthropic</code> provider is unrelated, and using it expecting the bridge to inherit it ends with you paying Extra Usage without noticing.</p>
+<p>So the first thing is to check which account <code>claude</code> is logged in with. Inside Claude Code:</p>
+<div class="highlight"><pre><span></span><code>/status
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>Account:       you@company.com
+Organization:  Your Company
+Login method:  Claude Team account
+</code></pre></div>
+
+<p>If it says <code>Claude Max account</code>, <code>Claude Pro account</code> or <code>Claude Team account</code>, the bridge uses that session. If it says an API key, it doesn't.</p>
+<p>And just in case: turn <strong>Extra Usage</strong> off in Claude's settings. If Claude Code can't draw on your subscription for a request, the fallback is billing you the overage, and that's better found out before the invoice than after.</p>
+<h2 id="1m-context">1M context<a class="headerlink" href="#1m-context" title="Permanent link">&para;</a></h2>
+<p>A million-token context isn't available the same way on every plan, and the bridge needs to know yours. It's configured in <code>~/.pi/agent/claude-bridge.json</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;provider&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;plan&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;max&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;longContextExtraUsage&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>With <code>plan: "pro"</code> (the default) you get 1M on Fable 5/5.1, Opus 5.5/5/4.8/4.7 and Sonnet 5.5/5. Opus 4.6 only reaches 1M on a Max plan or with Extra Usage, and Sonnet 4.6 only with Extra Usage. Watch the value's name: if your account is a company one, the README still tells you to set <code>max</code>, because that's what enables long context on <strong>Team Premium and Enterprise</strong>. Odd, but that's how it is. If your plan advertises 1M but Claude Code won't serve it, <code>forceTwoHundredK</code> pins specific models to 200K:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;provider&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;plan&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;max&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;forceTwoHundredK&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;claude-opus-4-6&quot;</span><span class="p">]</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="the-rest-of-the-config">The rest of the config<a class="headerlink" href="#the-rest-of-the-config" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;provider&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;strictMcpConfig&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;autoMemoryEnabled&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;pathToClaudeCodeExecutable&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/home/you/.nix-profile/bin/claude&quot;</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;askClaude&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;enabled&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;defaultMode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;read&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;allowFullMode&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><code>strictMcpConfig</code> is on by default and blocks MCP servers from <code>~/.claude.json</code> and <code>.mcp.json</code>. That makes sense: if you already have MCP in pi, loading Claude Code's on top duplicates tools and burns context. Cloud MCP (Gmail, Drive via claude.ai OAuth) is always blocked.</p>
+<p><code>pathToClaudeCodeExecutable</code> is for when the SDK's bundled binaries can't run on your system. Nix is the classic case: point it at the <code>claude</code> from your profile.</p>
+<h2 id="what-to-know-before-using-it">What to know before using it<a class="headerlink" href="#what-to-know-before-using-it" title="Permanent link">&para;</a></h2>
+<p>This is not just another provider, and it has traps the repo documents. The important ones:</p>
+<p><strong>Rebuilding a session re-sends the whole conversation.</strong> The bridge rewrites Claude Code's session from pi's history whenever the two diverge: after an abort, a <code>/compact</code>, tree navigation, an API error, or on returning to a session. The next request usually misses the prompt cache for everything past the system prompt. In abort-heavy sessions you feel it in the bill.</p>
+<p><strong>Files Claude Code edits don't survive a rebuild.</strong> The edit itself does, it stays in the history as a tool call and result. What's lost is the file snapshot after the edit. <code>@file</code> expansions are preserved.</p>
+<p><strong>System prompt changes mid-session may not reach the model.</strong> Claude Code records the first request's prompt (project context, skills, extension instructions) and reuses it on resume. That keeps the cached prefix stable, but if you edit <code>AGENTS.md</code> mid-session it may not take effect until a rebuild or compaction.</p>
+<p><strong>Exported <code>ANTHROPIC_*</code> variables hijack the child process.</strong> An <code>ANTHROPIC_BASE_URL</code>, <code>ANTHROPIC_API_KEY</code> or <code>ANTHROPIC_AUTH_TOKEN</code> in your environment redirects Claude Code to that gateway and every turn fails with its auth error. If you have one of those in your <code>.zshrc</code>, drop it from the pi process.</p>
+<p><strong><code>modelOverrides</code> from <code>models.json</code> doesn't work here.</strong> They only apply to pi-side settings like the compaction threshold. To change <code>contextWindow</code> you edit <code>src/models.ts</code> or use <code>forceTwoHundredK</code>.</p>
+<h2 id="details-that-surprised-me-for-the-better">Details that surprised me for the better<a class="headerlink" href="#details-that-surprised-me-for-the-better" title="Permanent link">&para;</a></h2>
+<p><strong>Claude Code hooks keep working.</strong> <code>~/.claude/settings.json</code> fires inside bridge turns. That can be useful or a mess: a hook injecting Claude-specific guidance duplicates what your pi extensions already do. The escape hatch is the one the README suggests:</p>
+<div class="highlight"><pre><span></span><code><span class="o">[</span><span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$PI_CODING_AGENT</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">exit</span><span class="w"> </span><span class="m">0</span>
+</code></pre></div>
+
+<p>pi sets <code>PI_CODING_AGENT=true</code> on child processes, so the hook opts itself out when it runs inside pi.</p>
+<p><strong>Compaction is still pi's job.</strong> The bridge routes those calls to isolated Claude Code queries, leaving the live session untouched until pi finishes rewriting the history.</p>
+<p><strong>Plan usage can be read from other extensions.</strong> Claude Code emits a <code>rate_limit_event</code> when a usage window changes, and the bridge passes it through the <code>after_provider_response</code> event as <code>anthropic-ratelimit-unified-*</code> headers, with the same names the Anthropic API uses. An extension that already reads those headers for the native <code>anthropic</code> provider can accept <code>claude-bridge</code> unchanged.</p>
+<p><strong>Coexistence with subagents.</strong> With <code>@gotgenes/pi-subagents</code> you need this in <code>~/.pi/agent/subagents.json</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="nt">&quot;promptInheritance&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;claude-bridge&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;portable&quot;</span><span class="p">}}</span>
+</code></pre></div>
+
+<h2 id="on-billing">On billing<a class="headerlink" href="#on-billing" title="Permanent link">&para;</a></h2>
+<p>Anthropic announced and then un-announced a change to how Agent SDK usage gets billed. As of today this extension spends your subscription quota just like Claude Code. There is also an announced change where Max and Team plans include monthly API credits, and the repo doesn't know yet whether that will eventually reach the bridge: the consensus in the issues is "same as ever for now".</p>
+<p>That's why it interests me at work and not at home: where Claude is already paid for, the bridge makes sense; where it isn't, none.</p>
+<h2 id="how-i-use-it">How I use it<a class="headerlink" href="#how-i-use-it" title="Permanent link">&para;</a></h2>
+<p>On the work machine I have a Claude Team account and pi is my harness. This is what I want to set up there, and it's worth saying plainly: <strong>I haven't tested it on that machine yet</strong>. What I have verified is what I describe above — configuration, how it works inside, and the traps the repo documents. Once it's been running for a few days I'll update this post with the verdict and with whatever <code>plan</code> value I end up with.</p>
+<p>The approach is what interests me: the TUI is pi's, the tools are pi's, the skills are pi's, and underneath the thing talking to Anthropic is Claude Code with my session. No loose API keys, and no choosing between the agent I like and the model that's already paid for.</p>
+<p>The real downside, when I test it, will be abort-heavy sessions, where the bridge pays the price of rebuilding history.</p>
+<p>At home the setup is the opposite: an OpenCode Go subscription and <a href="https://pablocaro.es/en/pi-provider-opencode-console">pi-provider-opencode-console</a> for a live model catalog.</p>
+<h2 id="resources">Resources<a class="headerlink" href="#resources" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://github.com/elidickinson/pi-claude-bridge">pi-claude-bridge on GitHub</a> — Code, config and known issues</li>
+<li><a href="https://www.npmjs.com/package/pi-claude-bridge">On npm</a> — <code>pi install npm:pi-claude-bridge</code></li>
+<li><a href="https://github.com/anthropics/claude-agent-sdk-typescript">Claude Agent SDK</a> — The foundation it builds on</li>
+<li><a href="https://github.com/prateekmedia/claude-agent-sdk-pi">claude-agent-sdk-pi</a> — The project it came from</li>
+<li><a href="https://pablocaro.es/en/pi-provider-opencode-console">The OpenCode bridge</a> — The other provider extension I use</li>
+</ul></div>
+  <div class="tag-cloud">
+    <p>
+       <a href="/en/tag/pi.html">pi</a>
+      <a href="/en/tag/claude.html">claude</a>
+      <a href="/en/tag/claude-code.html">claude-code</a>
+      <a href="/en/tag/coding-agent.html">coding-agent</a>
+      <a href="/en/tag/subscriptions.html">subscriptions</a>
+      <a href="/en/tag/cli.html">cli</a>
+     </p>
+  </div>
+
+    <div class="neighbors">
+    <a class="btn float-left" href="/en/pi-provider-opencode-console" title="pi-provider-opencode-console: live OpenCode Go models without waiting for pi releases">
+      <i class="fa fa-angle-left"></i> Previous Post
+    </a>
+  </div>
+   <div class="related-posts">
+    <h4>You might enjoy</h4>
+    <ul class="related-posts">
+      <li>
+        <a href="/en/pi-provider-opencode-console"
+          >pi-provider-opencode-console: live OpenCode Go models without waiting for pi releases</a
+        >
+      </li>
+      <li>
+        <a href="/en/harnesstax-cuanto-importa-el-harness"
+          >HarnessTax: The Harness Matters Less Than You Think</a
+        >
+      </li>
+      <li>
+        <a href="/en/extensiones-pi-que-uso"
+          >The Pi Extensions I Use Daily</a
+        >
+      </li>
+      <li>
+        <a href="/en/pi-de-principiante-a-avanzado"
+          >Pi from Beginner to Advanced — The Complete Guide</a
+        >
+      </li>
+      <li>
+        <a href="/en/que-es-pi-coding-agent"
+          >What is Pi? — The Minimal Coding Agent That Went Viral</a
+        >
+      </li>
+    </ul>
+  </div>
+  <!-- Disqus -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'anotaciones';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>
+    Please enable JavaScript to view comments.
+</noscript>
+<!-- End Disqus -->
+ </article>
+
+<footer>
+<p>
+  &copy; 2026  - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+  Built with <a
+    href="http://getpelican.com"
+    target="_blank"
+    >Pelican</a
+  > using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a
+  > theme   <script
+    id="dark-theme-script"
+    src="/en/theme/dark-theme/dark-theme.min.js"
+    data-enable-auto-detect-theme="False"
+    data-default-theme="light"
+    type="text/javascript"
+  ></script>
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/3.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/3.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Annotations by Pablo Caro ",
+  "url" : "/en",
+  "image": "/theme/img/profile.png",
+  "description": ""
+}
+</script>  <script src="https://files.stork-search.net/releases/v1.6.0/stork.js"></script>
+  <script>
+    window.storkIndexLoaded = false;
+    window.loadStorkIndex = function () {
+      if (window.storkIndexLoaded) {
+        return;
+      }
+      if (typeof stork === 'undefined') {
+        setTimeout(window.loadStorkIndex, 100);
+        return;
+      }
+      var url = "/en/search-index.st";
+      var opts = { showProgress: false };
+      stork.register("sitesearch", url, opts);
+      try {
+        stork.register("sitesearch-page", url, opts);
+      } catch (e) {
+        // Search page input not in DOM on this page — index still registered
+      }
+      window.storkIndexLoaded = true;
+    }
+  </script>
+
+
+  <button id="back-to-top" aria-label="Back to top" title="Back to top">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <path d="M10 16V4m0 0L5 9m5-5l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+  <script>
+  (function() {
+    var btn = document.getElementById('back-to-top');
+    if (!btn) return;
+    var ticking = false;
+    function onScroll() {
+      if (!ticking) {
+        requestAnimationFrame(function() {
+          btn.classList.toggle('visible', window.scrollY > 500);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }
+    btn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    window.addEventListener('scroll', onScroll, { passive: true });
+  })();
+  </script>
+</body>
+</html>

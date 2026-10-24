@@ -1,5 +1,250 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Anotaciones por Pablo Caro - pi</title><link href="https://pablocaro.es/" rel="alternate"></link><link href="https://pablocaro.es/feeds/tags/pi.atom.xml" rel="self"></link><id>https://pablocaro.es/</id><updated>2026-09-17T00:00:00+02:00</updated><subtitle>Anotaciones</subtitle><entry><title>HarnessTax: el harness importa menos de lo que crees</title><link href="https://pablocaro.es/harnesstax-cuanto-importa-el-harness" rel="alternate"></link><published>2026-09-17T00:00:00+02:00</published><updated>2026-09-17T00:00:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-09-17:/harnesstax-cuanto-importa-el-harness</id><summary type="html">&lt;p&gt;El estudio HarnessTax de UC Berkeley y Arena evalúa 21 combinaciones modelo-harness y llega a tres conclusiones sorprendentes. Validan con datos por qué uso pi y OpenCode a diario.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Si eliges un coding agent no estás eligiendo solo un modelo: estás eligiendo también su &lt;em&gt;harness&lt;/em&gt;, el software que gestiona herramientas, contexto y ejecución de tareas. ¿Y si cambiar de harness mejora los resultados o abarata la factura? Esa es la pregunta que se hace &lt;a href="https://harnesstax.github.io/"&gt;HarnessTax&lt;/a&gt;, un estudio de UC Berkeley y Arena que evalúa 21 pares modelo–harness (Claude Code, Codex CLI y &lt;strong&gt;pi&lt;/strong&gt;, con 7 modelos) sobre SWE-bench Lite y Terminal-Bench 2.0: 30 tareas aleatorias por benchmark, 3 intentos por tarea.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Anotaciones por Pablo Caro - pi</title><link href="https://pablocaro.es/" rel="alternate"></link><link href="https://pablocaro.es/feeds/tags/pi.atom.xml" rel="self"></link><id>https://pablocaro.es/</id><updated>2026-10-24T00:00:00+02:00</updated><subtitle>Anotaciones</subtitle><entry><title>pi-claude-bridge: la suscripción de Claude Pro, Max o Team dentro de pi</title><link href="https://pablocaro.es/pi-claude-bridge" rel="alternate"></link><published>2026-10-24T00:00:00+02:00</published><updated>2026-10-24T00:00:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-10-24:/pi-claude-bridge</id><summary type="html">&lt;p&gt;pi-claude-bridge conecta pi con el Agent SDK de Claude Code para usar Opus, Sonnet y Haiku de tu suscripción Pro, Max o Team como modelos normales de pi, sin API key y con todas las herramientas pasando por la TUI de pi.&lt;/p&gt;</summary><content type="html">&lt;p&gt;En el trabajo el presupuesto de modelos es una cuenta de &lt;strong&gt;Claude Team&lt;/strong&gt;. Y con eso la pregunta es siempre la misma: ¿esta sesión la pago con la suscripción o con una API key aparte? &lt;a href="https://github.com/elidickinson/pi-claude-bridge"&gt;pi-claude-bridge&lt;/a&gt; va justo a eso: los modelos de Claude aparecen en &lt;code&gt;/model&lt;/code&gt; de pi y la conversación consume cuota de suscripción, no tokens facturados.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Repositorio de pi-claude-bridge" src="/images/pi-claude-bridge.png"&gt;&lt;/p&gt;
+&lt;h2 id="que-es-exactamente"&gt;Qué es exactamente&lt;a class="headerlink" href="#que-es-exactamente" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Es una extensión de pi que se apoya en el &lt;a href="https://github.com/anthropics/claude-agent-sdk-typescript"&gt;Agent SDK de Claude Code&lt;/a&gt;. Nació como fork de &lt;code&gt;claude-agent-sdk-pi&lt;/code&gt; de Prateek Sunal y hace dos cosas:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Provider&lt;/strong&gt; — Registra un provider &lt;code&gt;claude-bridge&lt;/code&gt; con los modelos de Claude del catálogo de &lt;code&gt;pi-ai&lt;/code&gt;. Todas las llamadas a herramientas pasan por la TUI de pi, así que ves lo mismo que verías con cualquier otro modelo.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Herramienta &lt;code&gt;AskClaude&lt;/code&gt;&lt;/strong&gt; — Permite delegar una pregunta a Claude Code mientras usas otro provider. Está marcada como deprecada.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pi&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;npm:pi-claude-bridge
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Necesita pi 1.2.0 o superior para tener todos los modelos disponibles.&lt;/p&gt;
+&lt;h2 id="uso-como-provider"&gt;Uso como provider&lt;a class="headerlink" href="#uso-como-provider" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;/model&lt;span class="w"&gt; &lt;/span&gt;claude-bridge/claude-opus-5
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Y ya está. Detrás, pi traduce sus herramientas al formato de Claude Code, así que el flujo de trabajo no cambia: mismas herramientas, misma sesión, mismos subagentes. Hay unos cuantos detalles que sí cambian y conviene conocer:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Bash tiene timeout de 120 segundos&lt;/strong&gt;, el que aplica Claude Code por defecto. El bash de pi no tiene timeout propio, así que hereda el que impone Claude Code.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Las skills se reenvían&lt;/strong&gt; al system prompt de Claude Code.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;El steering a mitad de turno&lt;/strong&gt; llega a Claude en la siguiente llamada a herramienta, no de inmediato.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;La lista de modelos es la de &lt;code&gt;pi-ai&lt;/code&gt;&lt;/strong&gt;. Cuando &lt;code&gt;pi-ai&lt;/code&gt; añade un modelo de Claude, aparece en &lt;code&gt;/model&lt;/code&gt; al actualizar el paquete, sin esperar una release del plugin. Los ids con fecha (&lt;code&gt;claude-opus-4-5-20251101&lt;/code&gt;) no se muestran.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="el-plugin-no-autentica-directamente"&gt;El plugin no autentica directamente&lt;a class="headerlink" href="#el-plugin-no-autentica-directamente" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Esto es la causa del primer tropiezo de bastante gente (issue #201 del repo). La extensión no autentica contra Anthropic por su cuenta: lanza el binario &lt;code&gt;claude&lt;/code&gt; y usa &lt;strong&gt;la sesión que ya tenga Claude Code&lt;/strong&gt;. El &lt;code&gt;/login&lt;/code&gt; de pi para el provider &lt;code&gt;anthropic&lt;/code&gt; no tiene nada que ver, y si lo usas pensando que el plugin lo va a heredar, acabas pagando Extra Usage sin enterarte.&lt;/p&gt;
+&lt;p&gt;Así que lo primero es comprobar con qué cuenta está logueado &lt;code&gt;claude&lt;/code&gt;. Dentro de Claude Code:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;/status
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;Account:       tu@empresa.com
+Organization:  Tu Empresa
+Login method:  Claude Team account
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Si ahí pone &lt;code&gt;Claude Max account&lt;/code&gt;, &lt;code&gt;Claude Pro account&lt;/code&gt; o &lt;code&gt;Claude Team account&lt;/code&gt;, claude-bridge usará esa sesión. Si pone una API key, no.&lt;/p&gt;
+&lt;p&gt;Y por si acaso: desactiva &lt;strong&gt;Extra Usage&lt;/strong&gt; en los ajustes de Claude. Si Claude Code no puede tirar de tu suscripción para una petición, la alternativa es facturarte el excedente, y eso es mejor saberlo antes que después.&lt;/p&gt;
+&lt;h2 id="contexto-de-1m"&gt;Contexto de 1M&lt;a class="headerlink" href="#contexto-de-1m" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;El contexto de un millón de tokens no está disponible igual en todos los planes, y el plugin necesita saber el tuyo. Se configura en &lt;code&gt;~/.pi/agent/claude-bridge.json&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;provider&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;plan&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;max&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;longContextExtraUsage&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kc"&gt;false&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Con &lt;code&gt;plan: "pro"&lt;/code&gt; (el valor por defecto) tienes 1M en Fable 5/5.1, Opus 5.5/5/4.8/4.7 y Sonnet 5.5/5. Opus 4.6 solo llega a 1M con plan Max o con Extra Usage, y Sonnet 4.6 solo con Extra Usage. Ojo con el nombre del valor: si tu cuenta es de empresa, el README pide poner igualmente &lt;code&gt;max&lt;/code&gt;, porque es el que habilita el contexto largo en &lt;strong&gt;Team Premium y Enterprise&lt;/strong&gt;. Llamativo, pero así está. Si tu plan declara 1M pero Claude Code no te lo sirve, &lt;code&gt;forceTwoHundredK&lt;/code&gt; fija modelos concretos a 200K:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;provider&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;plan&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;max&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;forceTwoHundredK&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;claude-opus-4-6&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="el-resto-de-la-configuracion"&gt;El resto de la configuración&lt;a class="headerlink" href="#el-resto-de-la-configuracion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;provider&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;strictMcpConfig&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kc"&gt;true&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;autoMemoryEnabled&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kc"&gt;false&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;pathToClaudeCodeExecutable&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;/home/you/.nix-profile/bin/claude&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;askClaude&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;enabled&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kc"&gt;false&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;defaultMode&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;read&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;allowFullMode&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kc"&gt;true&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code&gt;strictMcpConfig&lt;/code&gt; viene activado y bloquea los servidores MCP de &lt;code&gt;~/.claude.json&lt;/code&gt; y &lt;code&gt;.mcp.json&lt;/code&gt;. Tiene sentido: si ya tienes MCP en pi, cargar además los de Claude Code duplica herramientas y gasta contexto. El MCP en la nube (Gmail, Drive vía OAuth de claude.ai) está bloqueado siempre.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;pathToClaudeCodeExecutable&lt;/code&gt; es para cuando los binarios que trae el SDK no pueden ejecutarse en tu sistema. En Nix es el caso típico: apuntas al &lt;code&gt;claude&lt;/code&gt; del perfil.&lt;/p&gt;
+&lt;h2 id="lo-que-hay-que-saber-antes-de-usarlo"&gt;Lo que hay que saber antes de usarlo&lt;a class="headerlink" href="#lo-que-hay-que-saber-antes-de-usarlo" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Esto no es un provider más, y tiene trampas que documenta el propio repo. Las importantes:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Reconstruir la sesión reenvía toda la conversación.&lt;/strong&gt; La extensión reescribe la sesión de Claude Code desde el historial de pi cada vez que divergen: después de un abort, de un &lt;code&gt;/compact&lt;/code&gt;, de navegar por el árbol de la sesión, de un error de API, o al volver a una sesión. La siguiente petición suele perder la caché de prompt de todo lo que va después del system prompt. En sesiones con muchos aborts, se nota en la factura.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Los archivos que edita Claude Code no sobreviven a una reconstrucción.&lt;/strong&gt; La edición sí, queda en el historial como llamada y resultado de herramienta. Lo que se pierde es el snapshot del archivo después de la edición. Las expansiones &lt;code&gt;@file&lt;/code&gt; sí se conservan.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Los cambios de system prompt a mitad de sesión pueden no llegar al modelo.&lt;/strong&gt; Claude Code graba el prompt de la primera petición (contexto del proyecto, skills, instrucciones de extensiones) y lo reutiliza al reanudar. Eso mantiene estable el prefijo cacheado, pero si cambias &lt;code&gt;AGENTS.md&lt;/code&gt; a mitad de sesión, puede que no surta efecto hasta una reconstrucción o una compactación.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Las variables &lt;code&gt;ANTHROPIC_*&lt;/code&gt; exportadas secuestran el proceso hijo.&lt;/strong&gt; Un &lt;code&gt;ANTHROPIC_BASE_URL&lt;/code&gt;, &lt;code&gt;ANTHROPIC_API_KEY&lt;/code&gt; o &lt;code&gt;ANTHROPIC_AUTH_TOKEN&lt;/code&gt; en el entorno redirige Claude Code a esa pasarela y todos los turnos fallan con su error de autenticación. Si tienes una de esas en tu &lt;code&gt;.zshrc&lt;/code&gt;, quítala del proceso de pi.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;modelOverrides&lt;/code&gt; de &lt;code&gt;models.json&lt;/code&gt; no funciona aquí.&lt;/strong&gt; Solo aplican a ajustes del lado de pi, como el umbral de compactación. Para tocar &lt;code&gt;contextWindow&lt;/code&gt; hay que editar &lt;code&gt;src/models.ts&lt;/code&gt; o usar &lt;code&gt;forceTwoHundredK&lt;/code&gt;.&lt;/p&gt;
+&lt;h2 id="detalles-que-me-han-sorprendido-para-bien"&gt;Detalles que me han sorprendido para bien&lt;a class="headerlink" href="#detalles-que-me-han-sorprendido-para-bien" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Los hooks de Claude Code siguen funcionando.&lt;/strong&gt; &lt;code&gt;~/.claude/settings.json&lt;/code&gt; se dispara dentro de los turnos de claude-bridge. Eso puede ser útil o un desastre: un hook que inyecta instrucciones específicas de Claude duplica lo que ya hacen tus extensiones de pi. La salida es la que sugiere el README:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;-n&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$PI_CODING_AGENT&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;exit&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;0&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;pi pone &lt;code&gt;PI_CODING_AGENT=true&lt;/code&gt; en los procesos hijos, así que el hook se autodescarta cuando corre dentro de pi.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;La compactación la sigue haciendo pi.&lt;/strong&gt; La extensión enruta esas llamadas a consultas aisladas de Claude Code, sin tocar la sesión viva hasta que pi termina de reescribir el historial.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;El uso del plan se puede leer desde otras extensiones.&lt;/strong&gt; Claude Code emite un &lt;code&gt;rate_limit_event&lt;/code&gt; cuando cambia una ventana de uso, y claude-bridge lo pasa por el evento &lt;code&gt;after_provider_response&lt;/code&gt; como cabeceras &lt;code&gt;anthropic-ratelimit-unified-*&lt;/code&gt;, con los mismos nombres que usa la API de Anthropic. Una extensión que ya lea esas cabeceras para el provider &lt;code&gt;anthropic&lt;/code&gt; nativo puede aceptar &lt;code&gt;claude-bridge&lt;/code&gt; sin cambios.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Convivencia con subagentes.&lt;/strong&gt; Con &lt;code&gt;@gotgenes/pi-subagents&lt;/code&gt; hay que añadir esto en &lt;code&gt;~/.pi/agent/subagents.json&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;promptInheritance&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;claude-bridge&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;portable&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;}}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="sobre-la-facturacion"&gt;Sobre la facturación&lt;a class="headerlink" href="#sobre-la-facturacion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Anthropic anunció y luego desanunció un cambio en cómo se factura el uso del Agent SDK. A día de hoy, esta extensión consume tu cuota de suscripción igual que Claude Code. Hay además un cambio anunciado por el que los planes Max y Team incluyen créditos mensuales de API, y el propio repo no sabe todavía si eso acabará afectando al plugin: el consenso en los issues es "de momento igual que siempre".&lt;/p&gt;
+&lt;p&gt;Es el motivo por el que me interesa en el trabajo y no en casa: donde hay Claude contratado, el plugin tiene sentido; donde no, ninguno.&lt;/p&gt;
+&lt;h2 id="mi-caso-de-uso"&gt;Mi caso de uso&lt;a class="headerlink" href="#mi-caso-de-uso" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;En la máquina del trabajo tengo una cuenta Claude Team y pi es mi harness. Esto es lo que quiero montar ahí, y conviene decirlo claro: &lt;strong&gt;todavía no lo he probado en esa máquina&lt;/strong&gt;. Lo que he verificado es lo que cuento arriba — configuración, cómo funciona por dentro y las trampas que documenta el repo. Cuando lo tenga rodando unos días actualizo esta entrada con el veredicto y con el valor de &lt;code&gt;plan&lt;/code&gt; con el que me haya quedado.&lt;/p&gt;
+&lt;p&gt;El planteamiento es el que me interesa: la TUI es la de pi, las herramientas son las de pi, las skills son las de pi, y por debajo el que habla con Anthropic es Claude Code con mi sesión. Nada de API keys sueltas y nada de elegir entre el agente que me gusta y el modelo que ya está pagado.&lt;/p&gt;
+&lt;p&gt;La pega real, cuando lo pruebe, va a ser la de las sesiones con muchos aborts, que es donde el plugin paga el precio de reconstruir el historial.&lt;/p&gt;
+&lt;p&gt;En casa el planteamiento es el contrario: suscripción de OpenCode Go y &lt;a href="https://pablocaro.es/pi-provider-opencode-console"&gt;pi-provider-opencode-console&lt;/a&gt; para tener el catálogo de modelos en vivo.&lt;/p&gt;
+&lt;h2 id="recursos"&gt;Recursos&lt;a class="headerlink" href="#recursos" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/elidickinson/pi-claude-bridge"&gt;pi-claude-bridge en GitHub&lt;/a&gt; — Código, configuración y &lt;em&gt;known issues&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.npmjs.com/package/pi-claude-bridge"&gt;En npm&lt;/a&gt; — &lt;code&gt;pi install npm:pi-claude-bridge&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/anthropics/claude-agent-sdk-typescript"&gt;Claude Agent SDK&lt;/a&gt; — La base sobre la que se apoya&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/prateekmedia/claude-agent-sdk-pi"&gt;claude-agent-sdk-pi&lt;/a&gt; — El proyecto del que nació&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://pablocaro.es/pi-provider-opencode-console"&gt;El plugin de OpenCode&lt;/a&gt; — La otra extensión de providers que uso&lt;/li&gt;
+&lt;/ul&gt;</content><category term="Herramientas"></category><category term="pi"></category><category term="claude"></category><category term="claude-code"></category><category term="coding-agent"></category><category term="suscripciones"></category><category term="cli"></category></entry><entry><title>pi-provider-opencode-console: los modelos de OpenCode Go al día sin esperar releases de pi</title><link href="https://pablocaro.es/pi-provider-opencode-console" rel="alternate"></link><published>2026-10-24T00:00:00+02:00</published><updated>2026-10-24T00:00:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-10-24:/pi-provider-opencode-console</id><summary type="html">&lt;p&gt;pi-provider-opencode-console añade OpenCode Console y OpenCode Go a pi con login OAuth por device code y catálogo de modelos en vivo, sin esperar a que una release de pi actualice su lista estática.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Para mi trabajo personal uso la suscripción de &lt;strong&gt;OpenCode Go&lt;/strong&gt; como proveedor de modelos en &lt;a href="https://pablocaro.es/que-es-pi-coding-agent"&gt;pi&lt;/a&gt;. Y ahí había un detalle que me molestaba cada semana: cuando OpenCode cambiaba el catálogo de modelos de la suscripción, en pi seguía viendo la lista vieja hasta que salía una release nueva.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Repositorio de pi-provider-opencode-console" src="/images/pi-provider-opencode-console.png"&gt;&lt;/p&gt;
+&lt;h2 id="el-problema-una-lista-de-modelos-congelada-en-el-binario"&gt;El problema: una lista de modelos congelada en el binario&lt;a class="headerlink" href="#el-problema-una-lista-de-modelos-congelada-en-el-binario" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;pi no descubre modelos en tiempo de ejecución para sus providers incorporados. El catálogo vive en &lt;code&gt;pi-ai&lt;/code&gt;, en un archivo generado en el build:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;// This file is auto-generated by scripts/generate-models.ts&lt;/span&gt;
+&lt;span class="c1"&gt;// Do not edit manually - run &amp;#39;npm run generate-models&amp;#39; to update&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Para un proveedor con API pública y catálogo estable eso está bien. Para una suscripción que añade y retira modelos cada pocas semanas, es una fricción constante: ves nombres nuevos en la web de OpenCode que no existen en &lt;code&gt;/model&lt;/code&gt;, y modelos retirados que siguen ahí ocupando sitio.&lt;/p&gt;
+&lt;p&gt;La alternativa era editar &lt;code&gt;models.json&lt;/code&gt; a mano, que es peor: lo mantienes tú, se desincroniza, y encima los overrides de modelos no siempre se comportan igual con providers de extensión.&lt;/p&gt;
+&lt;h2 id="la-solucion-oauth-por-device-code-y-catalogo-en-vivo"&gt;La solución: OAuth por device code y catálogo en vivo&lt;a class="headerlink" href="#la-solucion-oauth-por-device-code-y-catalogo-en-vivo" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://github.com/grikomsn/pi-provider-opencode-console"&gt;pi-provider-opencode-console&lt;/a&gt; es una extensión de pi que registra dos providers nuevos — &lt;code&gt;opencode-console&lt;/code&gt; y &lt;code&gt;opencode-go-console&lt;/code&gt; — con login OAuth 2.0 por &lt;em&gt;device authorization grant&lt;/em&gt; (RFC 8628) y descubrimiento de modelos contra el catálogo real de OpenCode.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pi&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;npm:pi-provider-opencode-console
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Los dos providers son deliberadamente distintos de los que trae pi de serie:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Provider&lt;/th&gt;
+&lt;th&gt;Autenticación&lt;/th&gt;
+&lt;th&gt;Catálogo de modelos&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;opencode&lt;/code&gt; / &lt;code&gt;opencode-go&lt;/code&gt; (nativos)&lt;/td&gt;
+&lt;td&gt;API key&lt;/td&gt;
+&lt;td&gt;Estático, compilado en &lt;code&gt;pi-ai&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;opencode-console&lt;/code&gt; / &lt;code&gt;opencode-go-console&lt;/code&gt; (extensión)&lt;/td&gt;
+&lt;td&gt;OAuth device code&lt;/td&gt;
+&lt;td&gt;En vivo, del servidor&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Así los providers nativos quedan intactos y tú eliges cuál usar según tengas API key o suscripción. No hay conflicto de nombres ni de credenciales.&lt;/p&gt;
+&lt;h2 id="login"&gt;Login&lt;a class="headerlink" href="#login" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;El flujo es el de toda la vida: pides el login, pi te da un código y una URL, apruebas en el navegador y listo.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;/login&lt;span class="w"&gt; &lt;/span&gt;opencode-go-console
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;# pi muestra un código de usuario y la URL de verificación
+# apruebas en el navegador y la credencial queda en ~/.pi/agent/auth.json
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Para la consola completa (la que absorbió Zen) es el mismo flujo:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;/login&lt;span class="w"&gt; &lt;/span&gt;opencode-console
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Los dos comparten la sesión de device code, así que autenticarte en uno deja el otro listo. La credencial se guarda como &lt;code&gt;oauth&lt;/code&gt; en &lt;code&gt;auth.json&lt;/code&gt;, y el token de acceso se renueva solo: si quedan menos de cinco minutos para que caduque, la extensión lo refresca antes de la siguiente petición, con &lt;em&gt;single-flight&lt;/em&gt; para que dos llamadas simultáneas no pidan dos tokens, y espeja el token rotado en la entrada hermana.&lt;/p&gt;
+&lt;p&gt;Una cosa importante: la extensión es &lt;strong&gt;solo OAuth&lt;/strong&gt;. No ofrece el "Enter API key" genérico de pi. Si quieres acceso con API key y lista estática, esa es justo la razón por la que existen los providers nativos.&lt;/p&gt;
+&lt;h2 id="de-donde-salen-los-modelos"&gt;De dónde salen los modelos&lt;a class="headerlink" href="#de-donde-salen-los-modelos" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Cada provider tiene su fuente:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;opencode-go-console&lt;/code&gt;&lt;/strong&gt; tira del catálogo público &lt;code&gt;GET https://opencode.ai/inference/go/v1/models&lt;/code&gt;, la lista &lt;code&gt;lite&lt;/code&gt;, y la enriquece con datos de models.dev descartando ids deshabilitados o retirados.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;opencode-console&lt;/code&gt;&lt;/strong&gt; tira del endpoint &lt;em&gt;org-scoped&lt;/em&gt; &lt;code&gt;GET {server}/api/config&lt;/code&gt; con &lt;code&gt;Authorization: Bearer&lt;/code&gt; y &lt;code&gt;x-org-id&lt;/code&gt;, así que cada organización ve los modelos que le corresponden.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Para refrescar sin volver a hacer login:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;/opencode-go-console&lt;span class="w"&gt; &lt;/span&gt;refresh
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Y para ver qué hay detrás:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;/opencode-go-console&lt;span class="w"&gt; &lt;/span&gt;status&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="c1"&gt;# método de auth, cuenta, org, caducidad del token&lt;/span&gt;
+/opencode-go-console&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;logout&lt;/span&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="c1"&gt;# borra la credencial de Go, conserva la de Console&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;En el provider de consola hay además &lt;code&gt;switch-org&lt;/code&gt; para cambiar de organización cuando la sesión no viene ya ligada a una desde el navegador. Si el grant pidió scoping de organización, ese &lt;code&gt;switch-org&lt;/code&gt; no aplica: hay que volver a hacer login.&lt;/p&gt;
+&lt;h2 id="el-detalle-que-hace-que-esto-funcione-bien"&gt;El detalle que hace que esto funcione bien&lt;a class="headerlink" href="#el-detalle-que-hace-que-esto-funcione-bien" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;OpenCode no expone todos sus modelos por el mismo protocolo. Hay modelos que hablan &lt;code&gt;anthropic-messages&lt;/code&gt;, otros &lt;code&gt;openai-completions&lt;/code&gt;, otros &lt;code&gt;openai-responses&lt;/code&gt;, y los Gemini van por &lt;code&gt;google-generative-ai&lt;/code&gt;. La extensión enruta cada petición al &lt;em&gt;wire API&lt;/em&gt; correcto según el modelo que hayas elegido, y normaliza la base URL por tipo de API antes de dejar que el SDK componga la suya:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Tipo de API&lt;/th&gt;
+&lt;th&gt;Base normalizada&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;anthropic-messages&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;/inference[/go]/anthropic&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;openai-completions&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;/inference[/go]/openai/v1&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;openai-responses&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;/inference[/go]/openai/v1&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;google-generative-ai&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;/inference[/go]/google/v1beta&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;El streaming y el parseo los delega a las implementaciones de &lt;code&gt;pi-ai&lt;/code&gt;, en vez de reimplementarlas. Eso significa que un modelo nuevo que hable un protocolo ya soportado funciona sin tocar la extensión, y que los bugs de streaming se arreglan donde toca: en &lt;code&gt;pi-ai&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;También inyecta las cabeceras de identidad por petición (&lt;code&gt;x-opencode-org-id&lt;/code&gt;, &lt;code&gt;x-opencode-client&lt;/code&gt;, &lt;code&gt;x-opencode-request&lt;/code&gt;), que es lo que hace que la sesión sea reconocible como tuya en el lado de OpenCode.&lt;/p&gt;
+&lt;h2 id="configuracion"&gt;Configuración&lt;a class="headerlink" href="#configuracion" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Solo dos variables de entorno, y normalmente ninguna:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Variable&lt;/th&gt;
+&lt;th&gt;Por defecto&lt;/th&gt;
+&lt;th&gt;Para qué&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;OPENCODE_CONSOLE_SERVER&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;https://opencode.ai/console&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Consolas autoalojadas. Se persiste en &lt;code&gt;auth.json&lt;/code&gt; al primer login.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;PI_CODING_AGENT_DIR&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;~/.pi/agent&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;El directorio de pi. Útil para probar con un entorno aislado.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id="migracion-desde-versiones-viejas"&gt;Migración desde versiones viejas&lt;a class="headerlink" href="#migracion-desde-versiones-viejas" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;La 2.0 rompió compatibilidad a propósito: se eliminó la autenticación por &lt;em&gt;service key&lt;/em&gt; (&lt;code&gt;sk-…&lt;/code&gt;). Si te queda una entrada de ese tipo en &lt;code&gt;auth.json&lt;/code&gt;, está muerta y pi te dirá "Provider is not configured". Bórrala y haz el login por device code.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# si venías de la 1.x, revisa y limpia&lt;/span&gt;
+cat&lt;span class="w"&gt; &lt;/span&gt;~/.pi/agent/auth.json
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="mi-caso-de-uso"&gt;Mi caso de uso&lt;a class="headerlink" href="#mi-caso-de-uso" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Trabajo con pi en dos máquinas y con dos presupuestos distintos: la suscripción de OpenCode Go para lo personal y la de Claude para el trabajo (de eso hablo en &lt;a href="https://pablocaro.es/pi-claude-bridge"&gt;pi-claude-bridge&lt;/a&gt;). En la máquina personal, esta extensión ha eliminado una clase entera de fricción: ya no hay un momento "a ver si esta semana sale la release que trae el modelo nuevo".&lt;/p&gt;
+&lt;p&gt;El catálogo que ves en &lt;code&gt;/model&lt;/code&gt; es el que tienes contratado ahora mismo. Si OpenCode añade un modelo por la mañana, lo tengo en pi después de un &lt;code&gt;refresh&lt;/code&gt;, sin actualizar nada.&lt;/p&gt;
+&lt;p&gt;Y si quieres saber qué tal rinde cada uno de esos modelos antes de elegirlo, &lt;a href="https://pablocaro.es/aa-opencode"&gt;aa-opencode&lt;/a&gt; cruza el catálogo con los benchmarks de Artificial Analysis.&lt;/p&gt;
+&lt;h2 id="recursos"&gt;Recursos&lt;a class="headerlink" href="#recursos" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/grikomsn/pi-provider-opencode-console"&gt;pi-provider-opencode-console en GitHub&lt;/a&gt; — Código y documentación&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.npmjs.com/package/pi-provider-opencode-console"&gt;En npm&lt;/a&gt; — &lt;code&gt;pi install npm:pi-provider-opencode-console&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://opencode.ai/console"&gt;OpenCode Console&lt;/a&gt; — La consola y el catálogo de modelos&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://datatracker.ietf.org/doc/html/rfc8628"&gt;RFC 8628&lt;/a&gt; — OAuth 2.0 Device Authorization Grant&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://pablocaro.es/que-es-pi-coding-agent"&gt;¿Qué es pi?&lt;/a&gt; — Primera parte de la serie sobre pi&lt;/li&gt;
+&lt;/ul&gt;</content><category term="Herramientas"></category><category term="pi"></category><category term="opencode"></category><category term="coding-agent"></category><category term="oauth"></category><category term="providers"></category><category term="cli"></category></entry><entry><title>HarnessTax: el harness importa menos de lo que crees</title><link href="https://pablocaro.es/harnesstax-cuanto-importa-el-harness" rel="alternate"></link><published>2026-09-17T00:00:00+02:00</published><updated>2026-09-17T00:00:00+02:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-09-17:/harnesstax-cuanto-importa-el-harness</id><summary type="html">&lt;p&gt;El estudio HarnessTax de UC Berkeley y Arena evalúa 21 combinaciones modelo-harness y llega a tres conclusiones sorprendentes. Validan con datos por qué uso pi y OpenCode a diario.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Si eliges un coding agent no estás eligiendo solo un modelo: estás eligiendo también su &lt;em&gt;harness&lt;/em&gt;, el software que gestiona herramientas, contexto y ejecución de tareas. ¿Y si cambiar de harness mejora los resultados o abarata la factura? Esa es la pregunta que se hace &lt;a href="https://harnesstax.github.io/"&gt;HarnessTax&lt;/a&gt;, un estudio de UC Berkeley y Arena que evalúa 21 pares modelo–harness (Claude Code, Codex CLI y &lt;strong&gt;pi&lt;/strong&gt;, con 7 modelos) sobre SWE-bench Lite y Terminal-Bench 2.0: 30 tareas aleatorias por benchmark, 3 intentos por tarea.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="HarnessTax: How Much Does the Harness Matter for Coding Agents?" src="/images/harnesstax.png"&gt;&lt;/p&gt;
 &lt;p&gt;Sus tres conclusiones principales son bastante sorprendentes:&lt;/p&gt;
 &lt;h2 id="1-el-harness-apenas-afecta-la-tasa-de-exito-pero-si-el-coste"&gt;1. El harness apenas afecta la tasa de éxito, pero sí el coste&lt;a class="headerlink" href="#1-el-harness-apenas-afecta-la-tasa-de-exito-pero-si-el-coste" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;

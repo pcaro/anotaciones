@@ -1,0 +1,586 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/stylesheet/style.min.css">
+
+    <link id="dark-theme-style" rel="stylesheet" type="text/css"
+        disabled="disabled"
+    href="https://pablocaro.es/theme/stylesheet/dark-theme.min.css">
+
+    <link id="pygments-dark-theme" rel="stylesheet" type="text/css"
+            disabled="disabled"
+          href="https://pablocaro.es/theme/pygments/github.min.css">
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+          href="https://pablocaro.es/theme/pygments/github.min.css">
+
+
+  <link rel="stylesheet"
+        type="text/css"
+        href="https://pablocaro.es/theme/stork/stork.css" />
+
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/font-awesome/css/solid.css">
+
+  <link rel="stylesheet" type="text/css" href="/extras/custom.css">
+
+  <link rel="shortcut icon" href="/theme/img/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/theme/img/favicon.ico" type="image/x-icon">
+
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#333333">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#333333">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Microsoft EDGE -->
+  <meta name="msapplication-TileColor" content="#333333">
+
+  <link href="https://pablocaro.es/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Anotaciones por Pablo Caro Atom">
+
+  <link href="https://pablocaro.es/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Anotaciones por Pablo Caro RSS">
+
+<script data-goatcounter="https://pcaro.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Pablo Caro" />
+<meta name="description" content="pi-provider-opencode-console añade OpenCode Console y OpenCode Go a pi con login OAuth por device code y catálogo de modelos en vivo, sin esperar a que una release de pi actualice su lista estática." />
+<meta name="keywords" content="pi, opencode, coding-agent, oauth, providers, cli" />
+
+<link
+  rel="alternate"
+  href="https://pablocaro.es/pi-provider-opencode-console"
+  hreflang="es"
+/>
+<link
+  rel="alternate"
+  href="https://pablocaro.es/en/pi-provider-opencode-console"
+  hreflang="en"
+/>
+    <meta property="og:site_name" content="Anotaciones por Pablo Caro"/>
+  <meta property="og:title" content="pi-provider-opencode-console: los modelos de OpenCode Go al día sin esperar releases de pi"/>
+  <meta property="og:description" content="pi-provider-opencode-console añade OpenCode Console y OpenCode Go a pi con login OAuth por device code y catálogo de modelos en vivo, sin esperar a que una release de pi actualice su lista estática."/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://pablocaro.es/pi-provider-opencode-console"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2026-10-24 00:00:00+02:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://pablocaro.es/author/pablo-caro.html">
+  <meta property="article:section" content="Herramientas"/>
+  <meta property="article:tag" content="pi"/>
+  <meta property="article:tag" content="opencode"/>
+  <meta property="article:tag" content="coding-agent"/>
+  <meta property="article:tag" content="oauth"/>
+  <meta property="article:tag" content="providers"/>
+  <meta property="article:tag" content="cli"/>
+  <meta property="og:image" content="/theme/img/profile.png">
+ 
+  <title>Anotaciones por Pablo Caro &ndash; pi-provider-opencode-console: los modelos de OpenCode Go al día sin esperar releases de pi</title>
+
+
+</head>
+<body class="light-theme">
+
+<aside>
+  <div>
+    <a href="https://pablocaro.es/">
+      <img src="/theme/img/profile.png" alt="Anotaciones" title="Anotaciones" />
+    </a>
+
+    <h1>
+      <a href="https://pablocaro.es/">Anotaciones</a>
+    </h1>
+
+    <p>Anotaciones</p>
+     <p style="font-size: 0.9em; font-style: italic; margin-bottom: 20px">
+      Volcando mi cerebro a internet. Colección de apuntes técnicos y soluciones que escribo para mi 'yo' del futuro, pero que comparto por si a alguien más le ahorran un dolor de cabeza.
+    </p>
+      <div class="stork">
+      <label for="sidebar-search" class="sr-only"
+        >Search articles</label
+      >
+      <div class="stork-input-wrap">
+      <input
+        id="sidebar-search"
+        class="stork-input"
+        type="text"
+        autocomplete="off"
+        name="q"
+        data-stork="sitesearch"
+        placeholder="Buscar..."
+        onclick="loadStorkIndex()"
+      />
+      </div>
+      <div class="stork-output" data-stork="sitesearch-output"></div>
+    </div>
+      <nav>
+      <ul class="list">
+             <li>
+          <a target="_self" href="http://x.com/pcaro">pcaro@X</a>
+        </li>
+        <li>
+          <a target="_self" href="https://github.com/pcaro/">pcaro@Github</a>
+        </li>
+        <li>
+          <a target="_self" href="https://www.linkedin.com/in/pcarorevuelta/">LinkedIn</a>
+        </li>
+      </ul>
+    </nav>
+      <nav class="sidebar-categories" aria-label="Categorías">
+                                                                                                                                 <a
+        href="https://pablocaro.es/category/ia.html"
+        class="sidebar-category"
+        title="ia (15)"
+      >
+        <img
+          src="https://pablocaro.es/images/categories/ia.png"
+          alt="ia"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">ia</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/programacion.html"
+        class="sidebar-category"
+        title="Programación (80)"
+      >
+        <img
+          src="https://pablocaro.es/images/categories/programacion.png"
+          alt="Programación"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Programación</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/linux.html"
+        class="sidebar-category"
+        title="Linux (12)"
+      >
+        <img
+          src="https://pablocaro.es/images/categories/linux.png"
+          alt="Linux"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Linux</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/herramientas.html"
+        class="sidebar-category"
+        title="Herramientas (32)"
+      >
+        <img
+          src="https://pablocaro.es/images/categories/herramientas.png"
+          alt="Herramientas"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Herramientas</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/infraestructura.html"
+        class="sidebar-category"
+        title="Infraestructura (49)"
+      >
+        <img
+          src="https://pablocaro.es/images/categories/infraestructura.png"
+          alt="Infraestructura"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Infraestructura</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/documentacion.html"
+        class="sidebar-category"
+        title="Documentación (1)"
+      >
+        <img
+          src="https://pablocaro.es/images/categories/documentacion.png"
+          alt="Documentación"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Documentación</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/finanzas.html"
+        class="sidebar-category"
+        title="Finanzas (1)"
+      >
+        <img
+          src="https://pablocaro.es/images/categories/finanzas.png"
+          alt="Finanzas"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Finanzas</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/personal.html"
+        class="sidebar-category"
+        title="Personal (3)"
+      >
+        <img
+          src="https://pablocaro.es/images/categories/personal.png"
+          alt="Personal"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Personal</span>
+      </a>
+    </nav>
+  </div>
+
+</aside>
+  <main>
+
+<nav>
+  <a href="https://pablocaro.es/">Inicio</a>
+
+  <a href="/archives.html">Archivo</a>
+  <a href="/categories.html">Categorías</a>
+  <a href="/tags.html">Etiquetas</a>
+  <a href="/search.html">Búsqueda</a>
+  <a href="/en/">English</a>
+   <a href="javascript:void(0)" onclick="theme.switch('dark')">🌙</a>
+  <a href="javascript:void(0)" onclick="theme.switch('light')">☀</a>
+   <a href="https://pablocaro.es/feeds/all.rss.xml">RSS</a>
+</nav>
+
+<article class="single">
+  <header>
+      <div class="translations">
+            <a href="https://pablocaro.es/en/pi-provider-opencode-console">Read in English</a>
+    </div>
+
+    <h1 id="pi-provider-opencode-console">pi-provider-opencode-console: los modelos de OpenCode Go al día sin esperar releases de pi</h1>
+    <p>
+      Publicado el 24 de October de 2026 en <a href="https://pablocaro.es/category/herramientas.html">Herramientas</a>     </p>
+  </header>
+
+ 
+  <div><p>Para mi trabajo personal uso la suscripción de <strong>OpenCode Go</strong> como proveedor de modelos en <a href="https://pablocaro.es/que-es-pi-coding-agent">pi</a>. Y ahí había un detalle que me molestaba cada semana: cuando OpenCode cambiaba el catálogo de modelos de la suscripción, en pi seguía viendo la lista vieja hasta que salía una release nueva.</p>
+<p><img alt="Repositorio de pi-provider-opencode-console" src="/images/pi-provider-opencode-console.png"></p>
+<h2 id="el-problema-una-lista-de-modelos-congelada-en-el-binario">El problema: una lista de modelos congelada en el binario<a class="headerlink" href="#el-problema-una-lista-de-modelos-congelada-en-el-binario" title="Permanent link">&para;</a></h2>
+<p>pi no descubre modelos en tiempo de ejecución para sus providers incorporados. El catálogo vive en <code>pi-ai</code>, en un archivo generado en el build:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// This file is auto-generated by scripts/generate-models.ts</span>
+<span class="c1">// Do not edit manually - run &#39;npm run generate-models&#39; to update</span>
+</code></pre></div>
+
+<p>Para un proveedor con API pública y catálogo estable eso está bien. Para una suscripción que añade y retira modelos cada pocas semanas, es una fricción constante: ves nombres nuevos en la web de OpenCode que no existen en <code>/model</code>, y modelos retirados que siguen ahí ocupando sitio.</p>
+<p>La alternativa era editar <code>models.json</code> a mano, que es peor: lo mantienes tú, se desincroniza, y encima los overrides de modelos no siempre se comportan igual con providers de extensión.</p>
+<h2 id="la-solucion-oauth-por-device-code-y-catalogo-en-vivo">La solución: OAuth por device code y catálogo en vivo<a class="headerlink" href="#la-solucion-oauth-por-device-code-y-catalogo-en-vivo" title="Permanent link">&para;</a></h2>
+<p><a href="https://github.com/grikomsn/pi-provider-opencode-console">pi-provider-opencode-console</a> es una extensión de pi que registra dos providers nuevos — <code>opencode-console</code> y <code>opencode-go-console</code> — con login OAuth 2.0 por <em>device authorization grant</em> (RFC 8628) y descubrimiento de modelos contra el catálogo real de OpenCode.</p>
+<div class="highlight"><pre><span></span><code>pi<span class="w"> </span>install<span class="w"> </span>npm:pi-provider-opencode-console
+</code></pre></div>
+
+<p>Los dos providers son deliberadamente distintos de los que trae pi de serie:</p>
+<table>
+<thead>
+<tr>
+<th>Provider</th>
+<th>Autenticación</th>
+<th>Catálogo de modelos</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>opencode</code> / <code>opencode-go</code> (nativos)</td>
+<td>API key</td>
+<td>Estático, compilado en <code>pi-ai</code></td>
+</tr>
+<tr>
+<td><code>opencode-console</code> / <code>opencode-go-console</code> (extensión)</td>
+<td>OAuth device code</td>
+<td>En vivo, del servidor</td>
+</tr>
+</tbody>
+</table>
+<p>Así los providers nativos quedan intactos y tú eliges cuál usar según tengas API key o suscripción. No hay conflicto de nombres ni de credenciales.</p>
+<h2 id="login">Login<a class="headerlink" href="#login" title="Permanent link">&para;</a></h2>
+<p>El flujo es el de toda la vida: pides el login, pi te da un código y una URL, apruebas en el navegador y listo.</p>
+<div class="highlight"><pre><span></span><code>/login<span class="w"> </span>opencode-go-console
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code># pi muestra un código de usuario y la URL de verificación
+# apruebas en el navegador y la credencial queda en ~/.pi/agent/auth.json
+</code></pre></div>
+
+<p>Para la consola completa (la que absorbió Zen) es el mismo flujo:</p>
+<div class="highlight"><pre><span></span><code>/login<span class="w"> </span>opencode-console
+</code></pre></div>
+
+<p>Los dos comparten la sesión de device code, así que autenticarte en uno deja el otro listo. La credencial se guarda como <code>oauth</code> en <code>auth.json</code>, y el token de acceso se renueva solo: si quedan menos de cinco minutos para que caduque, la extensión lo refresca antes de la siguiente petición, con <em>single-flight</em> para que dos llamadas simultáneas no pidan dos tokens, y espeja el token rotado en la entrada hermana.</p>
+<p>Una cosa importante: la extensión es <strong>solo OAuth</strong>. No ofrece el "Enter API key" genérico de pi. Si quieres acceso con API key y lista estática, esa es justo la razón por la que existen los providers nativos.</p>
+<h2 id="de-donde-salen-los-modelos">De dónde salen los modelos<a class="headerlink" href="#de-donde-salen-los-modelos" title="Permanent link">&para;</a></h2>
+<p>Cada provider tiene su fuente:</p>
+<ul>
+<li><strong><code>opencode-go-console</code></strong> tira del catálogo público <code>GET https://opencode.ai/inference/go/v1/models</code>, la lista <code>lite</code>, y la enriquece con datos de models.dev descartando ids deshabilitados o retirados.</li>
+<li><strong><code>opencode-console</code></strong> tira del endpoint <em>org-scoped</em> <code>GET {server}/api/config</code> con <code>Authorization: Bearer</code> y <code>x-org-id</code>, así que cada organización ve los modelos que le corresponden.</li>
+</ul>
+<p>Para refrescar sin volver a hacer login:</p>
+<div class="highlight"><pre><span></span><code>/opencode-go-console<span class="w"> </span>refresh
+</code></pre></div>
+
+<p>Y para ver qué hay detrás:</p>
+<div class="highlight"><pre><span></span><code>/opencode-go-console<span class="w"> </span>status<span class="w">    </span><span class="c1"># método de auth, cuenta, org, caducidad del token</span>
+/opencode-go-console<span class="w"> </span><span class="nb">logout</span><span class="w">    </span><span class="c1"># borra la credencial de Go, conserva la de Console</span>
+</code></pre></div>
+
+<p>En el provider de consola hay además <code>switch-org</code> para cambiar de organización cuando la sesión no viene ya ligada a una desde el navegador. Si el grant pidió scoping de organización, ese <code>switch-org</code> no aplica: hay que volver a hacer login.</p>
+<h2 id="el-detalle-que-hace-que-esto-funcione-bien">El detalle que hace que esto funcione bien<a class="headerlink" href="#el-detalle-que-hace-que-esto-funcione-bien" title="Permanent link">&para;</a></h2>
+<p>OpenCode no expone todos sus modelos por el mismo protocolo. Hay modelos que hablan <code>anthropic-messages</code>, otros <code>openai-completions</code>, otros <code>openai-responses</code>, y los Gemini van por <code>google-generative-ai</code>. La extensión enruta cada petición al <em>wire API</em> correcto según el modelo que hayas elegido, y normaliza la base URL por tipo de API antes de dejar que el SDK componga la suya:</p>
+<table>
+<thead>
+<tr>
+<th>Tipo de API</th>
+<th>Base normalizada</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>anthropic-messages</code></td>
+<td><code>/inference[/go]/anthropic</code></td>
+</tr>
+<tr>
+<td><code>openai-completions</code></td>
+<td><code>/inference[/go]/openai/v1</code></td>
+</tr>
+<tr>
+<td><code>openai-responses</code></td>
+<td><code>/inference[/go]/openai/v1</code></td>
+</tr>
+<tr>
+<td><code>google-generative-ai</code></td>
+<td><code>/inference[/go]/google/v1beta</code></td>
+</tr>
+</tbody>
+</table>
+<p>El streaming y el parseo los delega a las implementaciones de <code>pi-ai</code>, en vez de reimplementarlas. Eso significa que un modelo nuevo que hable un protocolo ya soportado funciona sin tocar la extensión, y que los bugs de streaming se arreglan donde toca: en <code>pi-ai</code>.</p>
+<p>También inyecta las cabeceras de identidad por petición (<code>x-opencode-org-id</code>, <code>x-opencode-client</code>, <code>x-opencode-request</code>), que es lo que hace que la sesión sea reconocible como tuya en el lado de OpenCode.</p>
+<h2 id="configuracion">Configuración<a class="headerlink" href="#configuracion" title="Permanent link">&para;</a></h2>
+<p>Solo dos variables de entorno, y normalmente ninguna:</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Por defecto</th>
+<th>Para qué</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>OPENCODE_CONSOLE_SERVER</code></td>
+<td><code>https://opencode.ai/console</code></td>
+<td>Consolas autoalojadas. Se persiste en <code>auth.json</code> al primer login.</td>
+</tr>
+<tr>
+<td><code>PI_CODING_AGENT_DIR</code></td>
+<td><code>~/.pi/agent</code></td>
+<td>El directorio de pi. Útil para probar con un entorno aislado.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="migracion-desde-versiones-viejas">Migración desde versiones viejas<a class="headerlink" href="#migracion-desde-versiones-viejas" title="Permanent link">&para;</a></h2>
+<p>La 2.0 rompió compatibilidad a propósito: se eliminó la autenticación por <em>service key</em> (<code>sk-…</code>). Si te queda una entrada de ese tipo en <code>auth.json</code>, está muerta y pi te dirá "Provider is not configured". Bórrala y haz el login por device code.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># si venías de la 1.x, revisa y limpia</span>
+cat<span class="w"> </span>~/.pi/agent/auth.json
+</code></pre></div>
+
+<h2 id="mi-caso-de-uso">Mi caso de uso<a class="headerlink" href="#mi-caso-de-uso" title="Permanent link">&para;</a></h2>
+<p>Trabajo con pi en dos máquinas y con dos presupuestos distintos: la suscripción de OpenCode Go para lo personal y la de Claude para el trabajo (de eso hablo en <a href="https://pablocaro.es/pi-claude-bridge">pi-claude-bridge</a>). En la máquina personal, esta extensión ha eliminado una clase entera de fricción: ya no hay un momento "a ver si esta semana sale la release que trae el modelo nuevo".</p>
+<p>El catálogo que ves en <code>/model</code> es el que tienes contratado ahora mismo. Si OpenCode añade un modelo por la mañana, lo tengo en pi después de un <code>refresh</code>, sin actualizar nada.</p>
+<p>Y si quieres saber qué tal rinde cada uno de esos modelos antes de elegirlo, <a href="https://pablocaro.es/aa-opencode">aa-opencode</a> cruza el catálogo con los benchmarks de Artificial Analysis.</p>
+<h2 id="recursos">Recursos<a class="headerlink" href="#recursos" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://github.com/grikomsn/pi-provider-opencode-console">pi-provider-opencode-console en GitHub</a> — Código y documentación</li>
+<li><a href="https://www.npmjs.com/package/pi-provider-opencode-console">En npm</a> — <code>pi install npm:pi-provider-opencode-console</code></li>
+<li><a href="https://opencode.ai/console">OpenCode Console</a> — La consola y el catálogo de modelos</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc8628">RFC 8628</a> — OAuth 2.0 Device Authorization Grant</li>
+<li><a href="https://pablocaro.es/que-es-pi-coding-agent">¿Qué es pi?</a> — Primera parte de la serie sobre pi</li>
+</ul></div>
+  <div class="tag-cloud">
+    <p>
+       <a href="https://pablocaro.es/tag/pi.html">pi</a>
+      <a href="https://pablocaro.es/tag/opencode.html">opencode</a>
+      <a href="https://pablocaro.es/tag/coding-agent.html">coding-agent</a>
+      <a href="https://pablocaro.es/tag/oauth.html">oauth</a>
+      <a href="https://pablocaro.es/tag/providers.html">providers</a>
+      <a href="https://pablocaro.es/tag/cli.html">cli</a>
+     </p>
+  </div>
+
+    <div class="neighbors">
+    <a class="btn float-left" href="https://pablocaro.es/aa-opencode" title="aa-opencode: modelos de OpenCode con benchmarks y precio en una tabla">
+      <i class="fa fa-angle-left"></i> Artículo anterior
+    </a>
+    <a class="btn float-right" href="https://pablocaro.es/pi-claude-bridge" title="pi-claude-bridge: la suscripción de Claude Pro, Max o Team dentro de pi">
+      Próximo artículo <i class="fa fa-angle-right"></i>
+    </a>
+  </div>
+   <div class="related-posts">
+    <h4>Te puede gustar</h4>
+    <ul class="related-posts">
+      <li>
+        <a href="https://pablocaro.es/pi-claude-bridge"
+          >pi-claude-bridge: la suscripción de Claude Pro, Max o Team dentro de pi</a
+        >
+      </li>
+      <li>
+        <a href="https://pablocaro.es/harnesstax-cuanto-importa-el-harness"
+          >HarnessTax: el harness importa menos de lo que crees</a
+        >
+      </li>
+      <li>
+        <a href="https://pablocaro.es/extensiones-pi-que-uso"
+          >Las extensiones de pi que uso en mi día a día</a
+        >
+      </li>
+      <li>
+        <a href="https://pablocaro.es/pi-de-principiante-a-avanzado"
+          >Pi de novato a avanzado — La guía completa</a
+        >
+      </li>
+      <li>
+        <a href="https://pablocaro.es/que-es-pi-coding-agent"
+          >¿Qué es pi? — El agente de código minimalista que se ha vuelto viral</a
+        >
+      </li>
+    </ul>
+  </div>
+  <!-- Disqus -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'anotaciones';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>
+    Por favor, habilita JavaScript para ver los comentarios.
+</noscript>
+<!-- End Disqus -->
+ </article>
+
+<footer>
+<p>
+  &copy; 2026  - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+  Construido con <a
+    href="http://getpelican.com"
+    target="_blank"
+    >Pelican</a
+  > usando el tema <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a
+  >    <script
+    id="dark-theme-script"
+    src="https://pablocaro.es/theme/dark-theme/dark-theme.min.js"
+    data-enable-auto-detect-theme="False"
+    data-default-theme="light"
+    type="text/javascript"
+  ></script>
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/3.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/3.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Anotaciones por Pablo Caro ",
+  "url" : "https://pablocaro.es",
+  "image": "/theme/img/profile.png",
+  "description": ""
+}
+</script>  <script src="https://files.stork-search.net/releases/v1.6.0/stork.js"></script>
+  <script>
+    window.storkIndexLoaded = false;
+    window.loadStorkIndex = function () {
+      if (window.storkIndexLoaded) {
+        return;
+      }
+      if (typeof stork === 'undefined') {
+        setTimeout(window.loadStorkIndex, 100);
+        return;
+      }
+      var url = "https://pablocaro.es/search-index.st";
+      var opts = { showProgress: false };
+      stork.register("sitesearch", url, opts);
+      try {
+        stork.register("sitesearch-page", url, opts);
+      } catch (e) {
+        // Search page input not in DOM on this page — index still registered
+      }
+      window.storkIndexLoaded = true;
+    }
+  </script>
+
+
+  <button id="back-to-top" aria-label="Back to top" title="Back to top">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <path d="M10 16V4m0 0L5 9m5-5l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+  <script>
+  (function() {
+    var btn = document.getElementById('back-to-top');
+    if (!btn) return;
+    var ticking = false;
+    function onScroll() {
+      if (!ticking) {
+        requestAnimationFrame(function() {
+          btn.classList.toggle('visible', window.scrollY > 500);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }
+    btn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    window.addEventListener('scroll', onScroll, { passive: true });
+  })();
+  </script>
+</body>
+</html>
