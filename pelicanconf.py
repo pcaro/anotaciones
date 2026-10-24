@@ -100,6 +100,7 @@ I18N_UNTRANSLATED_PAGES = "remove"
 I18N_SUBSITES = {
     "en": {
         "SITENAME": "Annotations by Pablo Caro",
+        "SITETITLE": "Annotations",
         "SITEURL": "/en",
         "FEED_DOMAIN": "/en",
         "SIDEBAR_DESCRIPTION": "Dumping my brain onto the internet. A collection of technical notes and solutions written for my future self, shared here in case they save someone else a headache.",
@@ -208,7 +209,7 @@ MENUITEMS = (
 TWITTER_USERNAME = "pcaro"
 # FEATURED_IMAGE defined in publishconf.py for production
 
-SITESUBTITLE = "Anotaciones"
+SITESUBTITLE = "by Pablo Caro"
 SIDEBAR_DESCRIPTION = "Volcando mi cerebro a internet. Colección de apuntes técnicos y soluciones que escribo para mi 'yo' del futuro, pero que comparto por si a alguien más le ahorran un dolor de cabeza."
 
 # Legal
