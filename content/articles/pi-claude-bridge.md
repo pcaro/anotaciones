@@ -34,7 +34,7 @@ Y ya está. Detrás, pi traduce sus herramientas al formato de Claude Code, así
 
 - **Bash tiene timeout de 120 segundos**, el que aplica Claude Code por defecto. El bash de pi no tiene timeout propio, así que hereda el que impone Claude Code.
 - **Las skills se reenvían** al system prompt de Claude Code.
-- **El steering a mitad de turno** llega a Claude en el siguiente límite de herramienta, no de inmediato.
+- **El steering a mitad de turno** llega a Claude en la siguiente llamada a herramienta, no de inmediato.
 - **La lista de modelos es la de `pi-ai`**. Cuando `pi-ai` añade un modelo de Claude, aparece en `/model` al actualizar el paquete, sin esperar una release del plugin. Los ids con fecha (`claude-opus-4-5-20251101`) no se muestran.
 
 ## El plugin no autentica directamente
