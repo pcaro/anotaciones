@@ -3,6 +3,11 @@ html_selector = "main"
 base_directory = "/home/runner/work/anotaciones/anotaciones/output/en"
 
 [[input.files]]
+path = "opencode-desktop-linux.html"
+url = "/opencode-desktop-linux"
+title = "From OpenCode in the terminal to OpenCode Desktop (on Linux)"
+
+[[input.files]]
 path = "pi-claude-bridge.html"
 url = "/pi-claude-bridge"
 title = "pi-claude-bridge: your Claude Pro, Max or Team subscription inside pi"
@@ -541,6 +546,11 @@ title = "Django: links in object list"
 path = "settings-vars-processor.html"
 url = "/settings-vars-processor"
 title = "Settings vars processor"
+
+[[input.files]]
+path = "opencode-desktop-linux-es.html"
+url = "/../opencode-desktop-linux"
+title = "De OpenCode en la terminal a OpenCode Desktop (en Linux)"
 
 [[input.files]]
 path = "pi-claude-bridge-es.html"

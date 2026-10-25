@@ -1,0 +1,513 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/stylesheet/style.min.css">
+
+    <link id="dark-theme-style" rel="stylesheet" type="text/css"
+        disabled="disabled"
+    href="https://pablocaro.es/theme/stylesheet/dark-theme.min.css">
+
+    <link id="pygments-dark-theme" rel="stylesheet" type="text/css"
+            disabled="disabled"
+          href="https://pablocaro.es/theme/pygments/github.min.css">
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+          href="https://pablocaro.es/theme/pygments/github.min.css">
+
+
+  <link rel="stylesheet"
+        type="text/css"
+        href="https://pablocaro.es/theme/stork/stork.css" />
+
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/font-awesome/css/solid.css">
+
+  <link rel="stylesheet" type="text/css" href="/extras/custom.css">
+
+  <link rel="shortcut icon" href="/theme/img/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/theme/img/favicon.ico" type="image/x-icon">
+
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#333333">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#333333">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Microsoft EDGE -->
+  <meta name="msapplication-TileColor" content="#333333">
+
+  <link href="https://pablocaro.es/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Anotaciones por Pablo Caro Atom">
+
+  <link href="https://pablocaro.es/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Anotaciones por Pablo Caro RSS">
+
+<script data-goatcounter="https://pcaro.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Pablo Caro" />
+<meta name="description" content="Llevo meses usando OpenCode en la terminal. Ahora estoy probando la app de escritorio en mi Linux personal, con la misma suscripción de OpenCode Go y sin tocar la configuración." />
+<meta name="keywords" content="opencode, coding-agent, linux, claude, pi, agentes-ia" />
+
+<link
+  rel="alternate"
+  href="https://pablocaro.es/opencode-desktop-linux"
+  hreflang="es"
+/>
+<link
+  rel="alternate"
+  href="https://pablocaro.es/en/opencode-desktop-linux"
+  hreflang="en"
+/>
+    <meta property="og:site_name" content="Anotaciones por Pablo Caro"/>
+  <meta property="og:title" content="De OpenCode en la terminal a OpenCode Desktop (en Linux)"/>
+  <meta property="og:description" content="Llevo meses usando OpenCode en la terminal. Ahora estoy probando la app de escritorio en mi Linux personal, con la misma suscripción de OpenCode Go y sin tocar la configuración."/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://pablocaro.es/opencode-desktop-linux"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2026-10-25 00:00:00+02:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://pablocaro.es/author/pablo-caro.html">
+  <meta property="article:section" content="Herramientas"/>
+  <meta property="article:tag" content="opencode"/>
+  <meta property="article:tag" content="coding-agent"/>
+  <meta property="article:tag" content="linux"/>
+  <meta property="article:tag" content="claude"/>
+  <meta property="article:tag" content="pi"/>
+  <meta property="article:tag" content="agentes-ia"/>
+  <meta property="og:image" content="/theme/img/profile.png">
+ 
+  <title>Anotaciones por Pablo Caro &ndash; De OpenCode en la terminal a OpenCode Desktop (en Linux)</title>
+
+
+</head>
+<body class="light-theme">
+
+<aside>
+  <div>
+    <a href="https://pablocaro.es/">
+      <img src="/theme/img/profile.png" alt="Anotaciones" title="Anotaciones" />
+    </a>
+
+    <h1>
+      <a href="https://pablocaro.es/">Anotaciones</a>
+    </h1>
+
+    <p>by Pablo Caro</p>
+     <p style="font-size: 0.9em; font-style: italic; margin-bottom: 20px">
+      Volcando mi cerebro a internet. Colección de apuntes técnicos y soluciones que escribo para mi 'yo' del futuro, pero que comparto por si a alguien más le ahorran un dolor de cabeza.
+    </p>
+      <div class="stork">
+      <label for="sidebar-search" class="sr-only"
+        >Search articles</label
+      >
+      <div class="stork-input-wrap">
+      <input
+        id="sidebar-search"
+        class="stork-input"
+        type="text"
+        autocomplete="off"
+        name="q"
+        data-stork="sitesearch"
+        placeholder="Buscar..."
+        onclick="loadStorkIndex()"
+      />
+      </div>
+      <div class="stork-output" data-stork="sitesearch-output"></div>
+    </div>
+      <nav>
+      <ul class="list">
+             <li>
+          <a target="_self" href="http://x.com/pcaro">pcaro@X</a>
+        </li>
+        <li>
+          <a target="_self" href="https://github.com/pcaro/">pcaro@Github</a>
+        </li>
+        <li>
+          <a target="_self" href="https://www.linkedin.com/in/pcarorevuelta/">LinkedIn</a>
+        </li>
+      </ul>
+    </nav>
+      <nav class="sidebar-categories" aria-label="Categorías">
+                                                                                                                                 <a
+        href="https://pablocaro.es/category/ia.html"
+        class="sidebar-category"
+        title="ia (15)"
+      >
+        <img
+          src="/images/categories/ia.png"
+          alt="ia"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">ia</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/programacion.html"
+        class="sidebar-category"
+        title="Programación (80)"
+      >
+        <img
+          src="/images/categories/programacion.png"
+          alt="Programación"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Programación</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/linux.html"
+        class="sidebar-category"
+        title="Linux (12)"
+      >
+        <img
+          src="/images/categories/linux.png"
+          alt="Linux"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Linux</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/herramientas.html"
+        class="sidebar-category"
+        title="Herramientas (33)"
+      >
+        <img
+          src="/images/categories/herramientas.png"
+          alt="Herramientas"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Herramientas</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/infraestructura.html"
+        class="sidebar-category"
+        title="Infraestructura (49)"
+      >
+        <img
+          src="/images/categories/infraestructura.png"
+          alt="Infraestructura"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Infraestructura</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/documentacion.html"
+        class="sidebar-category"
+        title="Documentación (1)"
+      >
+        <img
+          src="/images/categories/documentacion.png"
+          alt="Documentación"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Documentación</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/finanzas.html"
+        class="sidebar-category"
+        title="Finanzas (1)"
+      >
+        <img
+          src="/images/categories/finanzas.png"
+          alt="Finanzas"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Finanzas</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/personal.html"
+        class="sidebar-category"
+        title="Personal (3)"
+      >
+        <img
+          src="/images/categories/personal.png"
+          alt="Personal"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Personal</span>
+      </a>
+    </nav>
+  </div>
+
+</aside>
+  <main>
+
+<nav>
+  <a href="https://pablocaro.es/">Inicio</a>
+
+  <a href="/archives.html">Archivo</a>
+  <a href="/categories.html">Categorías</a>
+  <a href="/tags.html">Etiquetas</a>
+  <a href="/search.html">Búsqueda</a>
+  <a href="/en/">English</a>
+   <a href="javascript:void(0)" onclick="theme.switch('dark')">🌙</a>
+  <a href="javascript:void(0)" onclick="theme.switch('light')">☀</a>
+   <a href="https://pablocaro.es/feeds/all.rss.xml">RSS</a>
+</nav>
+
+<article class="single">
+  <header>
+      <div class="translations">
+            <a href="https://pablocaro.es/en/opencode-desktop-linux">Read in English</a>
+    </div>
+
+    <h1 id="opencode-desktop-linux">De OpenCode en la terminal a OpenCode Desktop (en Linux)</h1>
+    <p>
+      Publicado el 25 de October de 2026 en <a href="https://pablocaro.es/category/herramientas.html">Herramientas</a>     </p>
+  </header>
+
+ 
+  <div><p>Llevo mucho tiempo usando <a href="https://opencode.ai/">OpenCode</a> dentro de la terminal. Después de pi, es el segundo agente que más utilizo, y hasta ahora no había sentido la necesidad de salir de la TUI. Estas últimas semanas estoy probando la <strong>app de escritorio</strong> en mi ordenador personal con Linux. En el trabajo, además, he cambiado a <strong>Claude Desktop</strong> en Mac.</p>
+<p>Mi stack ahora mismo son tres agentes: <a href="https://pablocaro.es/que-es-pi-coding-agent">pi</a>, OpenCode (con los tokens de <a href="https://pablocaro.es/pi-provider-opencode-console">OpenCode Go</a>) y Claude.</p>
+<p><img alt="Página de descarga de OpenCode con las opciones de escritorio para Linux" src="/images/opencode-desktop-linux.png"></p>
+<h2 id="tres-agentes-tres-interfaces">Tres agentes, tres interfaces<a class="headerlink" href="#tres-agentes-tres-interfaces" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Agente</th>
+<th>Interfaz</th>
+<th>Modelos</th>
+<th>Para qué lo uso</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>pi</strong></td>
+<td>Terminal</td>
+<td>OpenCode Go vía <a href="https://pablocaro.es/pi-provider-opencode-console">provider</a></td>
+<td>Trabajo personal, sesiones largas, extensiones propias</td>
+</tr>
+<tr>
+<td><strong>OpenCode</strong></td>
+<td>Terminal + escritorio</td>
+<td>OpenCode Go ($10/mes)</td>
+<td>Proyectos del blog, scripts y revisión de cambios</td>
+</tr>
+<tr>
+<td><strong>Claude</strong></td>
+<td>Claude Desktop (Mac, trabajo)</td>
+<td>Suscripción de Claude</td>
+<td>Cosas del trabajo y tareas donde quiero Opus o Sonnet</td>
+</tr>
+</tbody>
+</table>
+<p>Los tres conviven sin pisarse porque cada uno tiene su configuración y sus credenciales. La novedad es que OpenCode ya no lo abro solo con <code>opencode</code>: cada vez más veces arranco la app.</p>
+<h2 id="lo-que-cambia-al-abrir-la-app">Lo que cambia al abrir la app<a class="headerlink" href="#lo-que-cambia-al-abrir-la-app" title="Permanent link">&para;</a></h2>
+<p>OpenCode no es un binario con una ventana pegada encima. Desde hace tiempo funciona como cliente/servidor: hay un servidor de fondo que guarda las sesiones, la configuración y los proveedores, y la TUI, la web y la app de escritorio son clientes que hablan con él.</p>
+<p>Eso es lo importante para mi caso: <strong>la app no es un producto distinto</strong>. Es el mismo OpenCode con otra cara. Al abrirla encuentro las mismas sesiones, el mismo <code>AGENTS.md</code>, los mismos providers y la misma suscripción de OpenCode Go, sin volver a loguearme ni duplicar configuración.</p>
+<p>La descarga está en <a href="https://opencode.ai/download">opencode.ai/download</a>, con builds para macOS (Apple Silicon e Intel), Windows (x64 y ARM64) y Linux en <code>.deb</code> y <code>.rpm</code>. En macOS también se puede instalar con Homebrew:</p>
+<div class="highlight"><pre><span></span><code>brew<span class="w"> </span>install<span class="w"> </span>--cask<span class="w"> </span>opencode-desktop
+</code></pre></div>
+
+<p>En Linux, con el paquete descargado:</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>dpkg<span class="w"> </span>-i<span class="w"> </span>opencode-desktop_*.deb
+</code></pre></div>
+
+<p>O con <code>rpm</code> si estás en Fedora o similar. El proyecto sigue publicando builds con frecuencia, así que conviene mirar la página de descarga antes de instalarse una versión vieja de un mirror.</p>
+<h2 id="lo-que-me-gusta">Lo que me gusta<a class="headerlink" href="#lo-que-me-gusta" title="Permanent link">&para;</a></h2>
+<p>Si tengo que quedarme con dos cosas, me quedo con el <strong>navegador integrado</strong> y con los <strong>diffs integrados</strong>. Son los dos motivos por los que la app me ha enganchado.</p>
+<ul>
+<li><strong>Diffs integrados.</strong> Ver el cambio completo y dejar una nota en una línea concreta es mucho más cómodo que leer <code>git diff</code> en la terminal. Es lo que más uso.</li>
+<li><strong>Navegador integrado.</strong> Puedo abrir la web del proyecto, la documentación o el servidor de desarrollo en un panel dentro de la app, sin saltar al navegador y perder el hilo de la sesión.</li>
+<li><strong>Pestañas y sesiones por proyecto.</strong> Puedo tener una sesión de este blog, otra de un script de Python y otra de un repositorio del trabajo en la misma ventana, sin abrir cinco terminales.</li>
+<li><strong>Terminal integrada.</strong> Para lanzar el servidor de desarrollo o un test sin cambiar de ventana.</li>
+<li><strong>Formularios de MCP.</strong> Cuando un servidor MCP pide un dato a mitad de una herramienta, la app muestra el formulario en vez de dejar la llamada esperando.</li>
+<li><strong>Notificaciones.</strong> Puedo dejar una sesión trabajando y enterarme cuando termina.</li>
+</ul>
+<h2 id="lo-que-sigo-haciendo-en-la-tui">Lo que sigo haciendo en la TUI<a class="headerlink" href="#lo-que-sigo-haciendo-en-la-tui" title="Permanent link">&para;</a></h2>
+<p>No he abandonado la terminal, y creo que no lo voy a hacer.</p>
+<ul>
+<li>Arrancar y trabajar con el teclado sigue siendo más rápido. La TUI no tiene latencia de ventana ni clics de más.</li>
+<li>Para <strong>scripts y CI</strong>, <code>opencode run</code> es la única vía sensata. La app no sustituye eso.</li>
+<li>En <strong>SSH remoto</strong> la terminal gana por goleada. La app está pensada para tu máquina.</li>
+<li>Los <strong>worktrees</strong> y el trabajo en paralelo con varias ramas siguen siendo más cómodos desde la CLI.</li>
+</ul>
+<p>Mi uso real se ha quedado así: TUI para escribir código y desktop para revisar, comparar y llevar varias sesiones a la vez.</p>
+<h2 id="conclusion">Conclusión<a class="headerlink" href="#conclusion" title="Permanent link">&para;</a></h2>
+<p>OpenCode Desktop no me ha hecho cambiar de herramienta, sino de ventana. Sigo usando la TUI para el trabajo fino y la app para revisar y coordinar sesiones, que es justo donde una interfaz gráfica aporta algo. Y como comparte servidor, configuración y proveedores con la versión de terminal, probarla no tiene ningún coste: si no me convence, cierro la ventana y sigo donde estaba.</p>
+<p>En el trabajo uso <strong>Claude Desktop en Mac</strong>, no en Linux, y también me gusta: la pestaña Code trae Claude Code con sesiones en paralelo, worktrees y diffs comentados, y se siente más pulido. Pero está atado a los modelos de Claude y a un plan de pago (Pro, Max, Team o Enterprise), mientras que OpenCode me deja el mismo tipo de trabajo con el catálogo de modelos que yo elija. A día de hoy eso sigue pesando más.</p>
+<p><em>Fuente original</em>: <a href="https://opencode.ai/download">OpenCode — Download</a>.</p></div>
+  <div class="tag-cloud">
+    <p>
+       <a href="https://pablocaro.es/tag/opencode.html">opencode</a>
+      <a href="https://pablocaro.es/tag/coding-agent.html">coding-agent</a>
+      <a href="https://pablocaro.es/tag/linux.html">linux</a>
+      <a href="https://pablocaro.es/tag/claude.html">claude</a>
+      <a href="https://pablocaro.es/tag/pi.html">pi</a>
+      <a href="https://pablocaro.es/tag/agentes-ia.html">agentes-ia</a>
+     </p>
+  </div>
+
+    <div class="neighbors">
+    <a class="btn float-left" href="https://pablocaro.es/pi-claude-bridge" title="pi-claude-bridge: la suscripción de Claude Pro, Max o Team dentro de pi">
+      <i class="fa fa-angle-left"></i> Artículo anterior
+    </a>
+  </div>
+   <div class="related-posts">
+    <h4>Te puede gustar</h4>
+    <ul class="related-posts">
+      <li>
+        <a href="https://pablocaro.es/harnesstax-cuanto-importa-el-harness"
+          >HarnessTax: el harness importa menos de lo que crees</a
+        >
+      </li>
+      <li>
+        <a href="https://pablocaro.es/que-es-pi-coding-agent"
+          >¿Qué es pi? — El agente de código minimalista que se ha vuelto viral</a
+        >
+      </li>
+      <li>
+        <a href="https://pablocaro.es/pi-provider-opencode-console"
+          >pi-provider-opencode-console: los modelos de OpenCode Go al día sin esperar releases de pi</a
+        >
+      </li>
+      <li>
+        <a href="https://pablocaro.es/pi-claude-bridge"
+          >pi-claude-bridge: la suscripción de Claude Pro, Max o Team dentro de pi</a
+        >
+      </li>
+      <li>
+        <a href="https://pablocaro.es/extensiones-pi-que-uso"
+          >Las extensiones de pi que uso en mi día a día</a
+        >
+      </li>
+    </ul>
+  </div>
+  <!-- Disqus -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'anotaciones';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>
+    Por favor, habilita JavaScript para ver los comentarios.
+</noscript>
+<!-- End Disqus -->
+ </article>
+
+<footer>
+<p>
+  &copy; 2026  - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+  Construido con <a
+    href="http://getpelican.com"
+    target="_blank"
+    >Pelican</a
+  > usando el tema <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a
+  >    <script
+    id="dark-theme-script"
+    src="https://pablocaro.es/theme/dark-theme/dark-theme.min.js"
+    data-enable-auto-detect-theme="False"
+    data-default-theme="light"
+    type="text/javascript"
+  ></script>
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/3.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/3.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Anotaciones por Pablo Caro ",
+  "url" : "https://pablocaro.es",
+  "image": "/theme/img/profile.png",
+  "description": ""
+}
+</script>  <script src="https://files.stork-search.net/releases/v1.6.0/stork.js"></script>
+  <script>
+    window.storkIndexLoaded = false;
+    window.loadStorkIndex = function () {
+      if (window.storkIndexLoaded) {
+        return;
+      }
+      if (typeof stork === 'undefined') {
+        setTimeout(window.loadStorkIndex, 100);
+        return;
+      }
+      var url = "https://pablocaro.es/search-index.st";
+      var opts = { showProgress: false };
+      stork.register("sitesearch", url, opts);
+      try {
+        stork.register("sitesearch-page", url, opts);
+      } catch (e) {
+        // Search page input not in DOM on this page — index still registered
+      }
+      window.storkIndexLoaded = true;
+    }
+  </script>
+
+
+  <button id="back-to-top" aria-label="Back to top" title="Back to top">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <path d="M10 16V4m0 0L5 9m5-5l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+  <script>
+  (function() {
+    var btn = document.getElementById('back-to-top');
+    if (!btn) return;
+    var ticking = false;
+    function onScroll() {
+      if (!ticking) {
+        requestAnimationFrame(function() {
+          btn.classList.toggle('visible', window.scrollY > 500);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }
+    btn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    window.addEventListener('scroll', onScroll, { passive: true });
+  })();
+  </script>
+</body>
+</html>
