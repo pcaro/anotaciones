@@ -34,6 +34,8 @@ DEFAULT_CATEGORY = "Miscellaneous"
 
 # Category order in listings (unlisted categories appear alphabetically at the end)
 CATEGORY_ORDER = ["ia", "programacion", "linux", "herramientas", "infraestructura"]
+# Category thumbnails live at the site root and are shared by every i18n subsite
+CATEGORY_IMAGES_URL = "/images/categories"
 USE_FOLDER_AS_CATEGORY = False
 ARTICLE_URL = "{slug}"
 ARTICLE_SAVE_AS = "{slug}.html"
