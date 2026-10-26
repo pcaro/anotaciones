@@ -3,6 +3,11 @@ html_selector = "main"
 base_directory = "/home/runner/work/anotaciones/anotaciones/output"
 
 [[input.files]]
+path = "opencode-sesiones-remotas-tailscale-pwa.html"
+url = "/opencode-sesiones-remotas-tailscale-pwa"
+title = "OpenCode en el móvil: sesiones remotas con Tailscale y la web como PWA"
+
+[[input.files]]
 path = "opencode-desktop-linux.html"
 url = "/opencode-desktop-linux"
 title = "De OpenCode en la terminal a OpenCode Desktop (en Linux)"
@@ -971,6 +976,11 @@ title = "Corrector ortográfico de firefox 2.0 en castellano"
 path = "primera-anotacion-de-prueba.html"
 url = "/primera-anotacion-de-prueba"
 title = "Primera anotación de prueba"
+
+[[input.files]]
+path = "opencode-sesiones-remotas-tailscale-pwa-en.html"
+url = "/en/opencode-sesiones-remotas-tailscale-pwa"
+title = "OpenCode on Your Phone: Remote Sessions with Tailscale and the Web App as a PWA"
 
 [[input.files]]
 path = "opencode-desktop-linux-en.html"

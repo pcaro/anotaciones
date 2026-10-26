@@ -5,36 +5,43 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/en/</loc>
-<lastmod>2026-10-25T07:26:38-00:00</lastmod>
+<lastmod>2026-10-26T10:14:50-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/en/tags.html</loc>
-<lastmod>2026-10-25T07:26:38-00:00</lastmod>
+<lastmod>2026-10-26T10:14:50-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/en/categories.html</loc>
-<lastmod>2026-10-25T07:26:38-00:00</lastmod>
+<lastmod>2026-10-26T10:14:50-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/en/archives.html</loc>
-<lastmod>2026-10-25T07:26:38-00:00</lastmod>
+<lastmod>2026-10-26T10:14:50-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/en/search.html</loc>
-<lastmod>2026-10-25T07:26:38-00:00</lastmod>
+<lastmod>2026-10-26T10:14:50-00:00</lastmod>
 <changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/en/opencode-sesiones-remotas-tailscale-pwa</loc>
+<lastmod>2026-10-26T12:00:00+01:00</lastmod>
+<changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
@@ -817,7 +824,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/en/category/herramientas.html</loc>
-<lastmod>2026-10-25T00:00:00+00:09</lastmod>
+<lastmod>2026-10-26T12:00:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -873,20 +880,48 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/en/tag/opencode.html</loc>
-<lastmod>2026-10-25T00:00:00+00:09</lastmod>
+<lastmod>2026-10-26T12:00:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/en/tag/coding-agent.html</loc>
-<lastmod>2026-10-25T00:00:00+00:09</lastmod>
+<loc>/en/tag/tailscale.html</loc>
+<lastmod>2026-10-26T12:00:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/en/tag/pwa.html</loc>
+<lastmod>2026-10-26T12:00:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/en/tag/agentes-ia.html</loc>
+<lastmod>2026-10-26T12:00:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/en/tag/linux.html</loc>
+<lastmod>2026-10-26T12:00:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/en/tag/seguridad.html</loc>
+<lastmod>2026-10-26T12:00:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/en/tag/coding-agent.html</loc>
 <lastmod>2026-10-25T00:00:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
@@ -901,13 +936,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/en/tag/pi.html</loc>
-<lastmod>2026-10-25T00:00:00+00:09</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>/en/tag/agentes-ia.html</loc>
 <lastmod>2026-10-25T00:00:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
@@ -1887,13 +1915,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>/en/tag/seguridad.html</loc>
-<lastmod>2026-03-26T20:55:00+00:09</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
 <loc>/en/tag/review.html</loc>
 <lastmod>2026-03-22T14:49:00+00:09</lastmod>
 <changefreq>daily</changefreq>
@@ -1917,13 +1938,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>/en/tag/pi-agent.html</loc>
 <lastmod>2026-03-18T09:00:00+00:09</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>/en/tag/tailscale.html</loc>
-<lastmod>2026-03-16T10:00:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>

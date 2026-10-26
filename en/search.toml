@@ -3,6 +3,11 @@ html_selector = "main"
 base_directory = "/home/runner/work/anotaciones/anotaciones/output/en"
 
 [[input.files]]
+path = "opencode-sesiones-remotas-tailscale-pwa.html"
+url = "/opencode-sesiones-remotas-tailscale-pwa"
+title = "OpenCode on Your Phone: Remote Sessions with Tailscale and the Web App as a PWA"
+
+[[input.files]]
 path = "opencode-desktop-linux.html"
 url = "/opencode-desktop-linux"
 title = "From OpenCode in the terminal to OpenCode Desktop (on Linux)"
@@ -546,6 +551,11 @@ title = "Django: links in object list"
 path = "settings-vars-processor.html"
 url = "/settings-vars-processor"
 title = "Settings vars processor"
+
+[[input.files]]
+path = "opencode-sesiones-remotas-tailscale-pwa-es.html"
+url = "/../opencode-sesiones-remotas-tailscale-pwa"
+title = "OpenCode en el móvil: sesiones remotas con Tailscale y la web como PWA"
 
 [[input.files]]
 path = "opencode-desktop-linux-es.html"

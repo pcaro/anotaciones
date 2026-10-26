@@ -1,0 +1,530 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="/en/theme/stylesheet/style.min.css">
+
+    <link id="dark-theme-style" rel="stylesheet" type="text/css"
+        disabled="disabled"
+    href="/en/theme/stylesheet/dark-theme.min.css">
+
+    <link id="pygments-dark-theme" rel="stylesheet" type="text/css"
+            disabled="disabled"
+          href="/en/theme/pygments/github.min.css">
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+          href="/en/theme/pygments/github.min.css">
+
+
+  <link rel="stylesheet"
+        type="text/css"
+        href="/en/theme/stork/stork.css" />
+
+  <link rel="stylesheet" type="text/css" href="/en/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="/en/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="/en/theme/font-awesome/css/solid.css">
+
+  <link rel="stylesheet" type="text/css" href="/extras/custom.css">
+
+  <link rel="shortcut icon" href="/theme/img/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/theme/img/favicon.ico" type="image/x-icon">
+
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#333333">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#333333">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Microsoft EDGE -->
+  <meta name="msapplication-TileColor" content="#333333">
+
+  <link href="/en/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Annotations by Pablo Caro Atom">
+
+  <link href="/en/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Annotations by Pablo Caro RSS">
+
+<script data-goatcounter="https://pcaro.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Pablo Caro" />
+<meta name="description" content="OpenCode has no mobile app, and it doesn&#39;t need one: the server already running on your desktop serves its own web UI, and that UI installs as a PWA. This is how I reach it from my phone over Tailscale, with HTTPS and nothing exposed to the internet." />
+<meta name="keywords" content="opencode, tailscale, pwa, agentes-ia, linux, seguridad" />
+
+<link
+  rel="alternate"
+  href="/en/opencode-sesiones-remotas-tailscale-pwa"
+  hreflang="en"
+/>
+<link
+  rel="alternate"
+  href="/en/../opencode-sesiones-remotas-tailscale-pwa"
+  hreflang="es"
+/>
+    <meta property="og:site_name" content="Annotations by Pablo Caro"/>
+  <meta property="og:title" content="OpenCode on Your Phone: Remote Sessions with Tailscale and the Web App as a PWA"/>
+  <meta property="og:description" content="OpenCode has no mobile app, and it doesn&#39;t need one: the server already running on your desktop serves its own web UI, and that UI installs as a PWA. This is how I reach it from my phone over Tailscale, with HTTPS and nothing exposed to the internet."/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="/en/opencode-sesiones-remotas-tailscale-pwa"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2026-10-26 12:00:00+01:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="/en/author/pablo-caro.html">
+  <meta property="article:section" content="Herramientas"/>
+  <meta property="article:tag" content="opencode"/>
+  <meta property="article:tag" content="tailscale"/>
+  <meta property="article:tag" content="pwa"/>
+  <meta property="article:tag" content="agentes-ia"/>
+  <meta property="article:tag" content="linux"/>
+  <meta property="article:tag" content="seguridad"/>
+  <meta property="og:image" content="/theme/img/profile.png">
+ 
+  <title>Annotations by Pablo Caro &ndash; OpenCode on Your Phone: Remote Sessions with Tailscale and the Web App as a PWA</title>
+
+
+</head>
+<body class="light-theme">
+
+<aside>
+  <div>
+    <a href="/en/">
+      <img src="/theme/img/profile.png" alt="Annotations" title="Annotations" />
+    </a>
+
+    <h1>
+      <a href="/en/">Annotations</a>
+    </h1>
+
+    <p>by Pablo Caro</p>
+     <p style="font-size: 0.9em; font-style: italic; margin-bottom: 20px">
+      Dumping my brain onto the internet. A collection of technical notes and solutions written for my future self, shared here in case they save someone else a headache.
+    </p>
+      <div class="stork">
+      <label for="sidebar-search" class="sr-only"
+        >Search articles</label
+      >
+      <div class="stork-input-wrap">
+      <input
+        id="sidebar-search"
+        class="stork-input"
+        type="text"
+        autocomplete="off"
+        name="q"
+        data-stork="sitesearch"
+        placeholder="Search..."
+        onclick="loadStorkIndex()"
+      />
+      </div>
+      <div class="stork-output" data-stork="sitesearch-output"></div>
+    </div>
+      <nav>
+      <ul class="list">
+             <li>
+          <a target="_self" href="http://x.com/pcaro">pcaro@X</a>
+        </li>
+        <li>
+          <a target="_self" href="https://github.com/pcaro/">pcaro@Github</a>
+        </li>
+        <li>
+          <a target="_self" href="https://www.linkedin.com/in/pcarorevuelta/">LinkedIn</a>
+        </li>
+      </ul>
+    </nav>
+      <nav class="sidebar-categories" aria-label="Categories">
+                                                                                                                                                           <a
+        href="/en/category/ia.html"
+        class="sidebar-category"
+        title="ia (15)"
+      >
+        <img
+          src="/images/categories/ia.png"
+          alt="ia"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">ia</span>
+      </a>
+      <a
+        href="/en/category/programacion.html"
+        class="sidebar-category"
+        title="Programación (30)"
+      >
+        <img
+          src="/images/categories/programacion.png"
+          alt="Programación"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Programación</span>
+      </a>
+      <a
+        href="/en/category/linux.html"
+        class="sidebar-category"
+        title="Linux (11)"
+      >
+        <img
+          src="/images/categories/linux.png"
+          alt="Linux"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Linux</span>
+      </a>
+      <a
+        href="/en/category/herramientas.html"
+        class="sidebar-category"
+        title="Herramientas (26)"
+      >
+        <img
+          src="/images/categories/herramientas.png"
+          alt="Herramientas"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Herramientas</span>
+      </a>
+      <a
+        href="/en/category/infraestructura.html"
+        class="sidebar-category"
+        title="Infraestructura (15)"
+      >
+        <img
+          src="/images/categories/infraestructura.png"
+          alt="Infraestructura"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Infraestructura</span>
+      </a>
+      <a
+        href="/en/category/documentacion.html"
+        class="sidebar-category"
+        title="Documentación (1)"
+      >
+        <img
+          src="/images/categories/documentacion.png"
+          alt="Documentación"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Documentación</span>
+      </a>
+      <a
+        href="/en/category/finanzas.html"
+        class="sidebar-category"
+        title="Finanzas (1)"
+      >
+        <img
+          src="/images/categories/finanzas.png"
+          alt="Finanzas"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Finanzas</span>
+      </a>
+      <a
+        href="/en/category/personal.html"
+        class="sidebar-category"
+        title="Personal (2)"
+      >
+        <img
+          src="/images/categories/personal.png"
+          alt="Personal"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Personal</span>
+      </a>
+      <a
+        href="/en/category/programming.html"
+        class="sidebar-category"
+        title="Programming (1)"
+      >
+        <span class="sidebar-category-icon">Pr</span>
+        <span class="sidebar-category-label">Programming</span>
+      </a>
+      <a
+        href="/en/category/tools.html"
+        class="sidebar-category"
+        title="Tools (8)"
+      >
+        <span class="sidebar-category-icon">To</span>
+        <span class="sidebar-category-label">Tools</span>
+      </a>
+    </nav>
+  </div>
+
+</aside>
+  <main>
+
+<nav>
+  <a href="/en/">Home</a>
+
+  <a href="/en/archives.html">Archives</a>
+  <a href="/en/categories.html">Categories</a>
+  <a href="/en/tags.html">Tags</a>
+  <a href="/en/search.html">Search</a>
+  <a href="/">Español</a>
+   <a href="javascript:void(0)" onclick="theme.switch('dark')">🌙</a>
+  <a href="javascript:void(0)" onclick="theme.switch('light')">☀</a>
+   <a href="/en/feeds/all.rss.xml">RSS</a>
+</nav>
+
+<article class="single">
+  <header>
+      <div class="translations">
+            <a href="/en/../opencode-sesiones-remotas-tailscale-pwa">Leer en español</a>
+    </div>
+
+    <h1 id="opencode-sesiones-remotas-tailscale-pwa">OpenCode on Your Phone: Remote Sessions with Tailscale and the Web App as a PWA</h1>
+    <p>
+      Posted on Mon, 26 Oct 2026 in <a href="/en/category/herramientas.html">Herramientas</a>     </p>
+  </header>
+
+ 
+  <div><p>When I leave a long session working on my desktop, what I want is to check on it from the sofa. It turns out that doesn't require installing any app on the phone: <a href="https://opencode.ai/">OpenCode</a> already serves its own web interface from the same server the TUI and the desktop app use. You just have to make the phone able to reach that server.</p>
+<p>I set it up with <strong>Tailscale</strong> and the web app installed as a <strong>PWA</strong>: no public tunnels and not a single port opened on the router.</p>
+<p><img alt="Phone running the OpenCode PWA connected over Tailscale to the local desktop server" src="/images/opencode-sesiones-remotas-tailscale-pwa.png"></p>
+<h2 id="client-and-server-thats-the-whole-thing">Client and server, that's the whole thing<a class="headerlink" href="#client-and-server-thats-the-whole-thing" title="Permanent link">&para;</a></h2>
+<p>Since version 2, OpenCode is client/server. There's a background service holding the sessions, the files, the providers and the credentials, and then there are clients that talk to it: the TUI, the desktop app and the web. The desktop app, in fact, <a href="https://pablocaro.es/en/opencode-desktop-linux">starts that same service when you open it</a>.</p>
+<p>Which means a "remote session" isn't a separate feature: it's just another client connecting to the server you already have running. You can see it with:</p>
+<div class="highlight"><pre><span></span><code>opencode<span class="w"> </span>service<span class="w"> </span>status
+<span class="c1"># http://127.0.0.1:49374</span>
+</code></pre></div>
+
+<p>The default port depends on the platform: <strong>49374</strong> on macOS, Linux and WSL, and <strong>28894</strong> on Windows (Windows reserves the high ports, and WSL with mirrored networking takes a block too). By default it listens on <strong>localhost only</strong> and asks for a password, which is generated on first start.</p>
+<h2 id="how-pairing-works-by-default">How pairing works by default<a class="headerlink" href="#how-pairing-works-by-default" title="Permanent link">&para;</a></h2>
+<p>The native mechanism is <code>opencode pair</code>. It prints a one-time link and a QR code:</p>
+<div class="highlight"><pre><span></span><code>opencode<span class="w"> </span>pair
+
+<span class="c1"># Open a link to connect. Links work once and expire in 5 minutes.</span>
+<span class="c1"># http://127.0.0.1:49374/auth/connect/...</span>
+</code></pre></div>
+
+<p>Opening that link in a browser signs you in with a cookie and loads the web UI. The session lasts <strong>30 days</strong>, and changing the server password revokes all of them. In the desktop app the same thing lives under <strong>Settings → Pairing → Pair device</strong>, which shows the QR code to scan from another device.</p>
+<p>To leave localhost there are two paths, and this is the important decision:</p>
+<p><strong>The official path: OpenTunnel.</strong> <code>opencode pair --remote</code> brings up an end-to-end encrypted tunnel to a public relay and gives you an HTTPS address reachable from anywhere. The first time it warns that it's about to expose the server to the internet and asks for confirmation. You still need the password, but the server now has a door on the internet. It's exactly what the desktop's <em>Pair device</em> button does: it turns on <code>opencode service set remote true</code> and builds the QR from the tunnel's public URL (to switch it off, <code>opencode service set remote false</code>).</p>
+<p><strong>Your own path: your private network.</strong> If Tailscale is already on your devices, the phone and the desktop can see each other over a private IP without exposing anything. That's the one I use.</p>
+<h2 id="tailscale-instead-of-opentunnel">Tailscale instead of OpenTunnel<a class="headerlink" href="#tailscale-instead-of-opentunnel" title="Permanent link">&para;</a></h2>
+<p>The piece that makes this comfortable is <code>tailscale serve</code>. It keeps OpenCode listening on localhost and lets Tailscale terminate TLS and publish that port inside the tailnet. First you need <strong>MagicDNS</strong> and <strong>HTTPS Certificates</strong> enabled in the Tailscale admin console; without certificates, Serve can't give you HTTPS.</p>
+<div class="highlight"><pre><span></span><code>tailscale<span class="w"> </span>serve<span class="w"> </span>--bg<span class="w"> </span><span class="m">49374</span>
+tailscale<span class="w"> </span>serve<span class="w"> </span>status
+<span class="c1"># https://machine.tailxxxx.ts.net</span>
+</code></pre></div>
+
+<p>And now you generate the pairing link with the external URL, not with localhost:</p>
+<div class="highlight"><pre><span></span><code>opencode<span class="w"> </span>pair<span class="w"> </span>--url<span class="w"> </span>https://machine.tailxxxx.ts.net
+</code></pre></div>
+
+<p>That link already carries the right host, so it works both for pasting it on the phone and for scanning the QR. The server keeps listening on <strong><code>127.0.0.1</code> only</strong>: no need to touch <code>hostname 0.0.0.0</code> or open ports on your router. To undo it, <code>tailscale serve reset</code>.</p>
+<p>One practical detail: since <strong>Pair device</strong> is already wired to OpenTunnel, using Tailscale means going through the CLI. Leave <em>Remote access</em> off in the settings and use <code>opencode pair --url</code>, which talks to the same background service.</p>
+<h2 id="installing-it-as-a-pwa">Installing it as a PWA<a class="headerlink" href="#installing-it-as-a-pwa" title="Permanent link">&para;</a></h2>
+<p>You open the link in the phone's browser and it just works. To stop it feeling like a tab, Chrome's menu offers <strong>Install app</strong> (or <em>Add to Home screen</em>). It's not a shortcut: the web interface ships a <code>manifest</code> with <code>display: standalone</code>, 192 and 512 icons, an <code>apple-touch-icon</code> and a Workbox service worker that precaches the application shell. Opening it from the icon gives you no address bar and no tabs.</p>
+<p>This is why HTTPS matters. Installing a PWA and using the camera to scan the QR are <em>secure context</em> features: they work on <code>https://machine.tailxxxx.ts.net</code>, while on <code>http://100.x.y.z:49374</code> the browser only lets you browse. Done this way, the phone gets its own icon, full screen and a camera for the QR.</p>
+<p>The service worker caches the shell: lose coverage and the app still opens with no server behind it. There's no magic though, sessions still live on the desktop, so without a network you get an empty shell with no data.</p>
+<h2 id="what-you-can-do-from-the-phone">What you can do from the phone<a class="headerlink" href="#what-you-can-do-from-the-phone" title="Permanent link">&para;</a></h2>
+<p>The web app is the same application as the desktop one, not a cut-down version. From the phone I can:</p>
+<ul>
+<li>Watch the conversation live, with reasoning, tools and per-turn diffs.</li>
+<li><strong>Approve or deny permissions</strong>, which is 90% of what I need when I'm away.</li>
+<li>Open the integrated terminal, with an on-screen keyboard and the control keys at hand.</li>
+<li>Browse project files, including PDFs and Office documents.</li>
+<li>Switch model, agent and reasoning level.</li>
+</ul>
+<p>What I wouldn't expect from it:</p>
+<ul>
+<li><strong>No push notifications.</strong> The browser notification only fires while the page is open or hidden; if the system freezes the tab, the SSE stream dies and nothing arrives.</li>
+<li>Typing long prompts on a phone is still punishment, however good dictation is.</li>
+<li>The desktop has to be on and the service alive. Turn it off and there's no session to look at.</li>
+</ul>
+<h2 id="security-in-four-lines">Security in four lines<a class="headerlink" href="#security-in-four-lines" title="Permanent link">&para;</a></h2>
+<ul>
+<li>The server password is still mandatory; Tailscale protects the network, not the application.</li>
+<li>Restrict access in the tailnet with ACLs or Grants to <code>machine:443</code> for your devices.</li>
+<li><strong>Don't enable Funnel.</strong> Serve is for your tailnet; Funnel publishes the service to the internet, and then you're back to OpenTunnel but without its end-to-end encryption.</li>
+<li>If you ever get suspicious, change the password with <code>opencode service set password "..."</code>: every 30-day session drops at once.</li>
+</ul>
+<h2 id="alternatives">Alternatives<a class="headerlink" href="#alternatives" title="Permanent link">&para;</a></h2>
+<p>If you'd rather not set up Serve, <code>ssh -L</code> does the same for a local client:</p>
+<div class="highlight"><pre><span></span><code>ssh<span class="w"> </span>-L<span class="w"> </span><span class="m">49374</span>:127.0.0.1:49374<span class="w"> </span>my-server
+</code></pre></div>
+
+<p>And inside the tailnet, without certificates, <code>opencode service set hostname 0.0.0.0</code> plus <code>http://100.x.y.z:49374</code> also works. Traffic is still encrypted by WireGuard, but since it isn't a secure context you lose PWA installation and the camera. Fine for a one-off; for daily use, Serve is much better.</p>
+<h2 id="wrapping-up">Wrapping up<a class="headerlink" href="#wrapping-up" title="Permanent link">&para;</a></h2>
+<p>OpenCode's remote sessions aren't a separate product, they're a consequence of everything being client/server: the server is already on your desktop, and all you need is a client that can reach it. The web UI it serves is the full app, and with Tailscale Serve you get real HTTPS without exposing anything. It's the cleanest way I've found to follow a session from my phone without installing anything weird.</p>
+<p><em>Source</em>: <a href="https://opencode.ai/v2/docs/cli/web">OpenCode — Web</a>, <a href="https://opencode.ai/v2/docs/cli/commands">OpenCode — Commands</a> and <a href="https://tailscale.com/kb/1242/tailscale-serve">Tailscale Serve</a>.</p></div>
+  <div class="tag-cloud">
+    <p>
+       <a href="/en/tag/opencode.html">opencode</a>
+      <a href="/en/tag/tailscale.html">tailscale</a>
+      <a href="/en/tag/pwa.html">pwa</a>
+      <a href="/en/tag/agentes-ia.html">agentes-ia</a>
+      <a href="/en/tag/linux.html">linux</a>
+      <a href="/en/tag/seguridad.html">seguridad</a>
+     </p>
+  </div>
+
+    <div class="neighbors">
+    <a class="btn float-left" href="/en/opencode-desktop-linux" title="From OpenCode in the terminal to OpenCode Desktop (on Linux)">
+      <i class="fa fa-angle-left"></i> Previous Post
+    </a>
+  </div>
+   <div class="related-posts">
+    <h4>You might enjoy</h4>
+    <ul class="related-posts">
+      <li>
+        <a href="/en/opencode-desktop-linux"
+          >From OpenCode in the terminal to OpenCode Desktop (on Linux)</a
+        >
+      </li>
+      <li>
+        <a href="/en/tailscale-aperture-gateway-ia-seguro"
+          >Tailscale Aperture: AI Gateway Without Distributing API Keys</a
+        >
+      </li>
+      <li>
+        <a href="/en/pi-provider-opencode-console"
+          >pi-provider-opencode-console: live OpenCode Go models without waiting for pi releases</a
+        >
+      </li>
+      <li>
+        <a href="/en/aa-opencode"
+          >aa-opencode: OpenCode models with benchmarks and price in one table</a
+        >
+      </li>
+      <li>
+        <a href="/en/harnesstax-cuanto-importa-el-harness"
+          >HarnessTax: The Harness Matters Less Than You Think</a
+        >
+      </li>
+    </ul>
+  </div>
+  <!-- Disqus -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'anotaciones';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>
+    Please enable JavaScript to view comments.
+</noscript>
+<!-- End Disqus -->
+ </article>
+
+<footer>
+<p>
+  &copy; 2026  - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+  Built with <a
+    href="http://getpelican.com"
+    target="_blank"
+    >Pelican</a
+  > using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a
+  > theme   <script
+    id="dark-theme-script"
+    src="/en/theme/dark-theme/dark-theme.min.js"
+    data-enable-auto-detect-theme="False"
+    data-default-theme="light"
+    type="text/javascript"
+  ></script>
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/3.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/3.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Annotations by Pablo Caro ",
+  "url" : "/en",
+  "image": "/theme/img/profile.png",
+  "description": ""
+}
+</script>  <script src="https://files.stork-search.net/releases/v1.6.0/stork.js"></script>
+  <script>
+    window.storkIndexLoaded = false;
+    window.loadStorkIndex = function () {
+      if (window.storkIndexLoaded) {
+        return;
+      }
+      if (typeof stork === 'undefined') {
+        setTimeout(window.loadStorkIndex, 100);
+        return;
+      }
+      var url = "/en/search-index.st";
+      var opts = { showProgress: false };
+      stork.register("sitesearch", url, opts);
+      try {
+        stork.register("sitesearch-page", url, opts);
+      } catch (e) {
+        // Search page input not in DOM on this page — index still registered
+      }
+      window.storkIndexLoaded = true;
+    }
+  </script>
+
+
+  <button id="back-to-top" aria-label="Back to top" title="Back to top">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <path d="M10 16V4m0 0L5 9m5-5l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+  <script>
+  (function() {
+    var btn = document.getElementById('back-to-top');
+    if (!btn) return;
+    var ticking = false;
+    function onScroll() {
+      if (!ticking) {
+        requestAnimationFrame(function() {
+          btn.classList.toggle('visible', window.scrollY > 500);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }
+    btn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    window.addEventListener('scroll', onScroll, { passive: true });
+  })();
+  </script>
+</body>
+</html>
