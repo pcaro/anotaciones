@@ -3,6 +3,11 @@ html_selector = "main"
 base_directory = "/home/runner/work/anotaciones/anotaciones/output"
 
 [[input.files]]
+path = "degit.html"
+url = "/degit"
+title = "degit: copiar un repo sin el historial"
+
+[[input.files]]
 path = "tdt-local-docker.html"
 url = "/tdt-local-docker"
 title = "La TDT española en el NAS: imagen Docker de tdt-local"
@@ -981,6 +986,11 @@ title = "Corrector ortográfico de firefox 2.0 en castellano"
 path = "primera-anotacion-de-prueba.html"
 url = "/primera-anotacion-de-prueba"
 title = "Primera anotación de prueba"
+
+[[input.files]]
+path = "degit-en.html"
+url = "/en/degit"
+title = "degit: copy a repo without the history"
 
 [[input.files]]
 path = "tdt-local-docker-en.html"
