@@ -3,6 +3,11 @@ html_selector = "main"
 base_directory = "/home/runner/work/anotaciones/anotaciones/output"
 
 [[input.files]]
+path = "tdt-local-docker.html"
+url = "/tdt-local-docker"
+title = "La TDT española en el NAS: imagen Docker de tdt-local"
+
+[[input.files]]
 path = "opencode-sesiones-remotas-tailscale-pwa.html"
 url = "/opencode-sesiones-remotas-tailscale-pwa"
 title = "OpenCode en el móvil: sesiones remotas con Tailscale y la web como PWA"
@@ -976,6 +981,11 @@ title = "Corrector ortográfico de firefox 2.0 en castellano"
 path = "primera-anotacion-de-prueba.html"
 url = "/primera-anotacion-de-prueba"
 title = "Primera anotación de prueba"
+
+[[input.files]]
+path = "tdt-local-docker-en.html"
+url = "/en/tdt-local-docker"
+title = "Spanish DTT in the NAS: a Docker image for tdt-local"
 
 [[input.files]]
 path = "opencode-sesiones-remotas-tailscale-pwa-en.html"

@@ -1,0 +1,533 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="/en/theme/stylesheet/style.min.css">
+
+    <link id="dark-theme-style" rel="stylesheet" type="text/css"
+        disabled="disabled"
+    href="/en/theme/stylesheet/dark-theme.min.css">
+
+    <link id="pygments-dark-theme" rel="stylesheet" type="text/css"
+            disabled="disabled"
+          href="/en/theme/pygments/github.min.css">
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+          href="/en/theme/pygments/github.min.css">
+
+
+  <link rel="stylesheet"
+        type="text/css"
+        href="/en/theme/stork/stork.css" />
+
+  <link rel="stylesheet" type="text/css" href="/en/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="/en/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="/en/theme/font-awesome/css/solid.css">
+
+  <link rel="stylesheet" type="text/css" href="/extras/custom.css">
+
+  <link rel="shortcut icon" href="/theme/img/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/theme/img/favicon.ico" type="image/x-icon">
+
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#333333">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#333333">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Microsoft EDGE -->
+  <meta name="msapplication-TileColor" content="#333333">
+
+  <link href="/en/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Annotations by Pablo Caro Atom">
+
+  <link href="/en/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Annotations by Pablo Caro RSS">
+
+<script data-goatcounter="https://pcaro.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Pablo Caro" />
+<meta name="description" content="tdt-local ships no Docker, so I built an image for it: it downloads the release, verifies it with SHA-256 and starts it listening on the LAN. Here&#39;s what&#39;s inside, the Unraid template, and the trap around settings you can&#39;t save." />
+<meta name="keywords" content="docker, unraid, tdt, nas, homelab, linux" />
+
+<link
+  rel="alternate"
+  href="/en/tdt-local-docker"
+  hreflang="en"
+/>
+<link
+  rel="alternate"
+  href="/en/../tdt-local-docker"
+  hreflang="es"
+/>
+    <meta property="og:site_name" content="Annotations by Pablo Caro"/>
+  <meta property="og:title" content="Spanish DTT in the NAS: a Docker image for tdt-local"/>
+  <meta property="og:description" content="tdt-local ships no Docker, so I built an image for it: it downloads the release, verifies it with SHA-256 and starts it listening on the LAN. Here&#39;s what&#39;s inside, the Unraid template, and the trap around settings you can&#39;t save."/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="/en/tdt-local-docker"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2026-11-05 12:00:00+01:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="/en/author/pablo-caro.html">
+  <meta property="article:section" content="Herramientas"/>
+  <meta property="article:tag" content="docker"/>
+  <meta property="article:tag" content="unraid"/>
+  <meta property="article:tag" content="tdt"/>
+  <meta property="article:tag" content="nas"/>
+  <meta property="article:tag" content="homelab"/>
+  <meta property="article:tag" content="linux"/>
+  <meta property="og:image" content="/theme/img/profile.png">
+ 
+  <title>Annotations by Pablo Caro &ndash; Spanish DTT in the NAS: a Docker image for tdt-local</title>
+
+
+</head>
+<body class="light-theme">
+
+<aside>
+  <div>
+    <a href="/en/">
+      <img src="/theme/img/profile.png" alt="Annotations" title="Annotations" />
+    </a>
+
+    <h1>
+      <a href="/en/">Annotations</a>
+    </h1>
+
+    <p>by Pablo Caro</p>
+     <p style="font-size: 0.9em; font-style: italic; margin-bottom: 20px">
+      Dumping my brain onto the internet. A collection of technical notes and solutions written for my future self, shared here in case they save someone else a headache.
+    </p>
+      <div class="stork">
+      <label for="sidebar-search" class="sr-only"
+        >Search articles</label
+      >
+      <div class="stork-input-wrap">
+      <input
+        id="sidebar-search"
+        class="stork-input"
+        type="text"
+        autocomplete="off"
+        name="q"
+        data-stork="sitesearch"
+        placeholder="Search..."
+        onclick="loadStorkIndex()"
+      />
+      </div>
+      <div class="stork-output" data-stork="sitesearch-output"></div>
+    </div>
+      <nav>
+      <ul class="list">
+             <li>
+          <a target="_self" href="http://x.com/pcaro">pcaro@X</a>
+        </li>
+        <li>
+          <a target="_self" href="https://github.com/pcaro/">pcaro@Github</a>
+        </li>
+        <li>
+          <a target="_self" href="https://www.linkedin.com/in/pcarorevuelta/">LinkedIn</a>
+        </li>
+      </ul>
+    </nav>
+      <nav class="sidebar-categories" aria-label="Categories">
+                                                                                                                                                           <a
+        href="/en/category/ia.html"
+        class="sidebar-category"
+        title="ia (15)"
+      >
+        <img
+          src="/images/categories/ia.png"
+          alt="ia"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">ia</span>
+      </a>
+      <a
+        href="/en/category/programacion.html"
+        class="sidebar-category"
+        title="Programación (30)"
+      >
+        <img
+          src="/images/categories/programacion.png"
+          alt="Programación"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Programación</span>
+      </a>
+      <a
+        href="/en/category/linux.html"
+        class="sidebar-category"
+        title="Linux (11)"
+      >
+        <img
+          src="/images/categories/linux.png"
+          alt="Linux"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Linux</span>
+      </a>
+      <a
+        href="/en/category/herramientas.html"
+        class="sidebar-category"
+        title="Herramientas (27)"
+      >
+        <img
+          src="/images/categories/herramientas.png"
+          alt="Herramientas"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Herramientas</span>
+      </a>
+      <a
+        href="/en/category/infraestructura.html"
+        class="sidebar-category"
+        title="Infraestructura (15)"
+      >
+        <img
+          src="/images/categories/infraestructura.png"
+          alt="Infraestructura"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Infraestructura</span>
+      </a>
+      <a
+        href="/en/category/documentacion.html"
+        class="sidebar-category"
+        title="Documentación (1)"
+      >
+        <img
+          src="/images/categories/documentacion.png"
+          alt="Documentación"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Documentación</span>
+      </a>
+      <a
+        href="/en/category/finanzas.html"
+        class="sidebar-category"
+        title="Finanzas (1)"
+      >
+        <img
+          src="/images/categories/finanzas.png"
+          alt="Finanzas"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Finanzas</span>
+      </a>
+      <a
+        href="/en/category/personal.html"
+        class="sidebar-category"
+        title="Personal (2)"
+      >
+        <img
+          src="/images/categories/personal.png"
+          alt="Personal"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Personal</span>
+      </a>
+      <a
+        href="/en/category/programming.html"
+        class="sidebar-category"
+        title="Programming (1)"
+      >
+        <span class="sidebar-category-icon">Pr</span>
+        <span class="sidebar-category-label">Programming</span>
+      </a>
+      <a
+        href="/en/category/tools.html"
+        class="sidebar-category"
+        title="Tools (8)"
+      >
+        <span class="sidebar-category-icon">To</span>
+        <span class="sidebar-category-label">Tools</span>
+      </a>
+    </nav>
+  </div>
+
+</aside>
+  <main>
+
+<nav>
+  <a href="/en/">Home</a>
+
+  <a href="/en/archives.html">Archives</a>
+  <a href="/en/categories.html">Categories</a>
+  <a href="/en/tags.html">Tags</a>
+  <a href="/en/search.html">Search</a>
+  <a href="/">Español</a>
+   <a href="javascript:void(0)" onclick="theme.switch('dark')">🌙</a>
+  <a href="javascript:void(0)" onclick="theme.switch('light')">☀</a>
+   <a href="/en/feeds/all.rss.xml">RSS</a>
+</nav>
+
+<article class="single">
+  <header>
+      <div class="translations">
+            <a href="/en/../tdt-local-docker">Leer en español</a>
+    </div>
+
+    <h1 id="tdt-local-docker">Spanish DTT in the NAS: a Docker image for tdt-local</h1>
+    <p>
+      Posted on Thu, 05 Nov 2026 in <a href="/en/category/herramientas.html">Herramientas</a>     </p>
+  </header>
+
+ 
+  <div><p>The TV can be a browser tab. <a href="https://github.com/cibernicola/tdt-local">tdt-local</a> handles the hard part (the HLS live streams of Spanish DTT and radio, with EPG and multiview), but the project publishes no Docker.
+So I wrote the wrapper and left it running on the NAS.</p>
+<p><img alt="tdt-local in Docker playing La 1 live, with the channel list on the right" src="/images/tdt-local-docker.png"></p>
+<p>There it is: 772 channels and 975 radio stations read from the <a href="https://github.com/LaQuay/TDTChannels">TDTChannels</a> lists, La 1 live and everything else one click away.</p>
+<h2 id="what-tdt-local-is">What tdt-local is<a class="headerlink" href="#what-tdt-local-is" title="Permanent link">&para;</a></h2>
+<p>A local web viewer for Spanish DTT. It plays the HLS streams through a proxy of its own, brings EPG data, builds a four-channel multiview with rotating audio and keeps the last seven days of RTVE (U7D). It transcodes nothing: it just forwards what the broadcasters already serve, so any CPU will do.</p>
+<p>What it doesn't ship is a <code>Dockerfile</code> or a published image. That's where <a href="https://github.com/pcaro/tdt-local-docker">this repo</a> comes in.</p>
+<h2 id="whats-inside-the-image">What's inside the image<a class="headerlink" href="#whats-inside-the-image" title="Permanent link">&para;</a></h2>
+<p>The <code>Dockerfile</code> is forty lines: <code>python:3.12-slim</code>, the source code of whichever release, <code>pip install .</code> and off you go.</p>
+<div class="highlight"><pre><span></span><code><span class="k">ARG</span><span class="w"> </span><span class="nv">TDT_VERSION</span><span class="o">=</span><span class="m">1</span>.3.0
+<span class="k">ARG</span><span class="w"> </span><span class="nv">TDT_SHA256</span><span class="o">=</span>dc3f2bc7eb25d35919b572e7b2072cbf8082b062c3d80d5a4f1828f36bdf6862
+
+<span class="k">ADD</span><span class="w"> </span>https://github.com/cibernicola/tdt-local/archive/refs/tags/v<span class="si">${</span><span class="nv">TDT_VERSION</span><span class="si">}</span>.tar.gz<span class="w"> </span>/tmp/tdt-local.tar.gz
+<span class="k">RUN</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">TDT_SHA256</span><span class="si">}</span><span class="s2">  /tmp/tdt-local.tar.gz&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sha256sum<span class="w"> </span>-c<span class="w"> </span>-<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>tar<span class="w"> </span>-xzf<span class="w"> </span>/tmp/tdt-local.tar.gz<span class="w"> </span>--strip-components<span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>pip<span class="w"> </span>install<span class="w"> </span>--no-cache-dir<span class="w"> </span>.
+</code></pre></div>
+
+<p>The version is pinned and the <code>sha256sum -c</code> is not optional: if the tarball GitHub serves doesn't match, the build dies. This image ends up in anyone's <code>docker pull</code>, and I don't want its contents to depend on some third party keeping the same file forever.</p>
+<p><code>ffmpeg</code> is included because the subtitles and the SCTE-35 ad markers need it. That's about 450 MB of image: with <code>--build-arg WITH_FFMPEG=0</code> it drops to roughly 120 MB, at the cost of losing those two features.</p>
+<p>The GitHub Action builds <code>linux/amd64</code> and <code>linux/arm64</code> with buildx and pushes to GHCR under the version tag and <code>latest</code>. The same image works on an x86 NAS and on a Raspberry.</p>
+<h2 id="running-it">Running it<a class="headerlink" href="#running-it" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--name<span class="w"> </span>tdt-local<span class="w"> </span>-p<span class="w"> </span><span class="m">8788</span>:8788<span class="w"> </span>-v<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$PWD</span><span class="s2">/data:/data&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-e<span class="w"> </span><span class="nv">TDT_AI_ENABLED</span><span class="o">=</span><span class="m">0</span><span class="w"> </span>-e<span class="w"> </span><span class="nv">TDT_STT_ENABLED</span><span class="o">=</span><span class="m">0</span><span class="w"> </span>--restart<span class="w"> </span>unless-stopped<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>ghcr.io/pcaro/tdt-local-docker:latest
+</code></pre></div>
+
+<p>Then open <a href="http://NAS-IP:8788/">http://NAS-IP:8788/</a>. The first run needs internet to fetch the lists; after that it uses the copy kept in the volume. With Compose, the <code>compose.yaml</code> in the repo is ready to go.</p>
+<h2 id="unraid-the-template-and-its-traps">Unraid: the template and its traps<a class="headerlink" href="#unraid-the-template-and-its-traps" title="Permanent link">&para;</a></h2>
+<p>The NAS runs Unraid, so besides the <code>Dockerfile</code> I left a template. Over SSH or with the <strong>&gt;_</strong> button in the UI:</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-fsSL<span class="w"> </span>-o<span class="w"> </span>/boot/config/plugins/dockerMan/templates-user/my-tdt-local.xml<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>https://raw.githubusercontent.com/pcaro/tdt-local-docker/main/unraid/tdt-local.xml
+</code></pre></div>
+
+<p>Then <strong>Docker</strong> → <em>Add Container</em> → pick <strong>tdt-local</strong> under <em>Template</em>, check the port and the folder, and hit <strong>Apply</strong>.</p>
+<p>Two things I wasted time learning:</p>
+<ul>
+<li>The <strong>Template URL</strong> field on that screen downloads nothing. In Unraid's source it sits inside a <code>noshow</code> block: it's metadata for the template author, not an import button.</li>
+<li><strong>Post Arguments</strong> must stay empty. Whatever you type there replaces the image's <code>CMD</code>, and the container starts and dies without saying why.</li>
+</ul>
+<h2 id="the-big-one-you-cant-save-settings">The big one: you can't save settings<a class="headerlink" href="#the-big-one-you-cant-save-settings" title="Permanent link">&para;</a></h2>
+<p>The settings screen always answers this:</p>
+<div class="highlight"><pre><span></span><code>POST /api/settings → 403 {&quot;error&quot;: &quot;los ajustes solo se pueden cambiar desde el propio equipo&quot;}
+</code></pre></div>
+
+<p>It's not a container bug. The program only accepts settings writes when the request comes from <code>127.0.0.1</code>, and from Docker the request arrives with the bridge IP.
+Three ways to live with it, from least to most annoying:</p>
+<ol>
+<li><strong>Environment variables</strong>, which is the normal path. Any setting on that screen can be pinned with <code>TDT_&lt;SETTING_NAME_UPPERCASED&gt;</code>, and once pinned the UI shows it read-only: <code>TDT_UPDATE_HOURS=12</code>, <code>TDT_EPG_ENABLED=0</code>, <code>TDT_AUTO_CHECK=1</code>, <code>TDT_LLM_URL=http://192.168.1.10:8080/v1</code>, <code>TDT_LLM_API_KEY=…</code> (that way the key never lands in <code>settings.json</code>).</li>
+<li><strong><code>docker exec</code></strong>, for a one-off change, because inside the container <code>127.0.0.1</code> really is loopback.</li>
+<li><strong>SSH tunnel with host networking</strong>: <code>network_mode: host</code> in the compose file and then <code>ssh -L 8788:127.0.0.1:8788 root@your-nas</code>. With <code>bridge</code> networking the tunnel is useless.</li>
+</ol>
+<p>The second option, concretely, looks like this:</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>tdt-local<span class="w"> </span>python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;import urllib.request as u, json; \</span>
+<span class="s2">  r=u.Request(&#39;http://127.0.0.1:8788/api/settings&#39;, data=json.dumps({&#39;update_hours&#39;:12}).encode(), \</span>
+<span class="s2">  headers={&#39;Content-Type&#39;:&#39;application/json&#39;}); print(u.urlopen(r).read().decode())&quot;</span>
+</code></pre></div>
+
+<p>Reading settings, refreshing the lists, checking channels and adding your own channels all work fine; the only blocked thing is saving from the web UI.</p>
+<h2 id="what-it-doesnt-ship-and-what-to-keep-in-mind">What it doesn't ship, and what to keep in mind<a class="headerlink" href="#what-it-doesnt-ship-and-what-to-keep-in-mind" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>The AI assistant and subtitles are off</strong> (<code>TDT_AI_ENABLED=0</code>, <code>TDT_STT_ENABLED=0</code>). They need <code>llama.cpp</code> and <code>whisper-server</code>, which are separate programs and want real CPU and RAM. If you have an AI server on the network, point <code>TDT_LLM_URL</code> at it and flip the variable.</li>
+<li><strong>No authentication.</strong> The author says it himself and I'll repeat it: LAN or VPN, never behind a public reverse proxy.</li>
+<li><strong>All the video goes through the NAS.</strong> It doesn't transcode, but each channel costs twice its bitrate on the network card: a four-channel multiview at 6 Mbps is about 48 Mbps.</li>
+<li>Data lives in the <code>/data</code> volume: lists, EPG, your own channels and settings. That's what to copy if you want a backup.</li>
+</ul>
+<h2 id="i-vibe-coded-it-and-you-can-tell">I vibe-coded it, and you can tell<a class="headerlink" href="#i-vibe-coded-it-and-you-can-tell" title="Permanent link">&para;</a></h2>
+<p>I don't write Unraid templates every day. But as we know, that's no longer needed.
+The Unraid template was generated by pi-agent and <strong>worked first try</strong> on the NAS: the XML, the icon, the port and the folder, all in place and the container up without touching a thing.</p>
+<p>What didn't work first try was everything else, and that's where vibe coding falls short if you're not the one driving: the 403 on settings, the <em>Template URL</em> field that downloads nothing, the <em>Post Arguments</em> that eats the <code>CMD</code>, the port published on <code>127.0.0.1</code> that changes nothing.</p>
+<p>The conclusion I take from it: the code is the cheap part. The expensive part is knowing what needs verifying and not trusting that it "should work".</p>
+<h2 id="wrap-up">Wrap-up<a class="headerlink" href="#wrap-up" title="Permanent link">&para;</a></h2>
+<p>Spanish DTT fits in a 580 MB container, with no transcoding and nothing exposed to the internet. The original project does all the work; my part is a wrapper, an Unraid template and a README that is basically a log of my stumbles. If you run Unraid and miss having TV in the browser, it takes two minutes.</p>
+<p><em>Fuente original</em>: <a href="https://github.com/cibernicola/tdt-local">tdt-local</a>, <a href="https://github.com/LaQuay/TDTChannels">TDTChannels</a> and <a href="https://github.com/pcaro/tdt-local-docker">tdt-local-docker</a>.</p></div>
+  <div class="tag-cloud">
+    <p>
+       <a href="/en/tag/docker.html">docker</a>
+      <a href="/en/tag/unraid.html">unraid</a>
+      <a href="/en/tag/tdt.html">tdt</a>
+      <a href="/en/tag/nas.html">nas</a>
+      <a href="/en/tag/homelab.html">homelab</a>
+      <a href="/en/tag/linux.html">linux</a>
+     </p>
+  </div>
+
+    <div class="neighbors">
+    <a class="btn float-left" href="/en/opencode-sesiones-remotas-tailscale-pwa" title="OpenCode on Your Phone: Remote Sessions with Tailscale and the Web App as a PWA">
+      <i class="fa fa-angle-left"></i> Previous Post
+    </a>
+  </div>
+   <div class="related-posts">
+    <h4>You might enjoy</h4>
+    <ul class="related-posts">
+      <li>
+        <a href="/en/docker-http-https-echo"
+          >`docker-http-https-echo`: An Essential Tool for Network Debugging</a
+        >
+      </li>
+      <li>
+        <a href="/en/ampliar-disco-vm-aurora-unraid"
+          >Expand Aurora VM disk on Unraid and resize partitions</a
+        >
+      </li>
+      <li>
+        <a href="/en/hnrss-freshrss"
+          >hnrss: custom RSS feeds for Hacker News</a
+        >
+      </li>
+      <li>
+        <a href="/en/opencode-sesiones-remotas-tailscale-pwa"
+          >OpenCode on Your Phone: Remote Sessions with Tailscale and the Web App as a PWA</a
+        >
+      </li>
+      <li>
+        <a href="/en/opencode-desktop-linux"
+          >From OpenCode in the terminal to OpenCode Desktop (on Linux)</a
+        >
+      </li>
+    </ul>
+  </div>
+  <!-- Disqus -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'anotaciones';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>
+    Please enable JavaScript to view comments.
+</noscript>
+<!-- End Disqus -->
+ </article>
+
+<footer>
+<p>
+  &copy; 2026  - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+  Built with <a
+    href="http://getpelican.com"
+    target="_blank"
+    >Pelican</a
+  > using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a
+  > theme   <script
+    id="dark-theme-script"
+    src="/en/theme/dark-theme/dark-theme.min.js"
+    data-enable-auto-detect-theme="False"
+    data-default-theme="light"
+    type="text/javascript"
+  ></script>
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/3.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/3.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Annotations by Pablo Caro ",
+  "url" : "/en",
+  "image": "/theme/img/profile.png",
+  "description": ""
+}
+</script>  <script src="https://files.stork-search.net/releases/v1.6.0/stork.js"></script>
+  <script>
+    window.storkIndexLoaded = false;
+    window.loadStorkIndex = function () {
+      if (window.storkIndexLoaded) {
+        return;
+      }
+      if (typeof stork === 'undefined') {
+        setTimeout(window.loadStorkIndex, 100);
+        return;
+      }
+      var url = "/en/search-index.st";
+      var opts = { showProgress: false };
+      stork.register("sitesearch", url, opts);
+      try {
+        stork.register("sitesearch-page", url, opts);
+      } catch (e) {
+        // Search page input not in DOM on this page — index still registered
+      }
+      window.storkIndexLoaded = true;
+    }
+  </script>
+
+
+  <button id="back-to-top" aria-label="Back to top" title="Back to top">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <path d="M10 16V4m0 0L5 9m5-5l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+  <script>
+  (function() {
+    var btn = document.getElementById('back-to-top');
+    if (!btn) return;
+    var ticking = false;
+    function onScroll() {
+      if (!ticking) {
+        requestAnimationFrame(function() {
+          btn.classList.toggle('visible', window.scrollY > 500);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }
+    btn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    window.addEventListener('scroll', onScroll, { passive: true });
+  })();
+  </script>
+</body>
+</html>
