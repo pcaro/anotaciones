@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Anotaciones por Pablo Caro - sesiones</title><link href="https://pablocaro.es/" rel="alternate"></link><link href="https://pablocaro.es/feeds/tags/sesiones.atom.xml" rel="self"></link><id>https://pablocaro.es/</id><updated>2026-11-07T00:00:00+01:00</updated><subtitle>by Pablo Caro</subtitle><entry><title>Árboles de sesión en pi — /tree, /fork y /clone</title><link href="https://pablocaro.es/arboles-de-sesion-en-pi" rel="alternate"></link><published>2026-11-07T00:00:00+01:00</published><updated>2026-11-07T00:00:00+01:00</updated><author><name>Pablo Caro</name></author><id>tag:pablocaro.es,2026-11-07:/arboles-de-sesion-en-pi</id><summary type="html">&lt;p&gt;Qué hay debajo del árbol de sesiones de pi: entradas con id y parentId, /tree, /fork, /clone, resúmenes de rama, y el ciclo de marker y /end con el que reinicio el contexto cada día.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Cuarta entrega de la serie sobre &lt;a href="https://pi.dev/"&gt;pi&lt;/a&gt;. En la &lt;a href="https://pablocaro.es/pi-de-principiante-a-avanzado"&gt;segunda parte&lt;/a&gt; &lt;code&gt;/tree&lt;/code&gt; salió como un bullet más en una lista de comandos. Esto es lo que hay debajo del árbol de sesiones y cómo lo uso: ramificar dentro del mismo fichero, cuándo salir a una sesión nueva, y el ciclo de marker y &lt;code&gt;/end&lt;/code&gt; con el que cierro bloques de trabajo sin arrastrar ruido.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Navegador de sesiones de pi con varias ramas y entradas etiquetadas" src="/images/arboles-de-sesion-en-pi.png"&gt;&lt;/p&gt;
+&lt;h2 id="una-sesion-es-un-fichero-con-un-arbol-dentro"&gt;Una sesión es un fichero con un árbol dentro&lt;a class="headerlink" href="#una-sesion-es-un-fichero-con-un-arbol-dentro" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Nada de base de datos ni índices. Cada sesión es un JSONL en &lt;code&gt;~/.pi/agent/sessions/&lt;/code&gt;, agrupado por directorio de trabajo:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;~/.pi/agent/sessions/--home-pcaro-src-anotaciones--/&amp;lt;id&amp;gt;.jsonl
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;La primera línea es la cabecera, con &lt;code&gt;version&lt;/code&gt;, &lt;code&gt;id&lt;/code&gt;, &lt;code&gt;timestamp&lt;/code&gt; y &lt;code&gt;cwd&lt;/code&gt;. A partir de ahí, cada línea es una entrada con su propio &lt;code&gt;id&lt;/code&gt; y un &lt;code&gt;parentId&lt;/code&gt; que apunta a la anterior. Eso es el árbol entero.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;type&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;branch_summary&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;id&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;62224c4f&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;parentId&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;8e2ca4f2&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;fromId&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;8e2ca4f2&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;timestamp&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;2026-06-11T17:00:15.313Z&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;summary&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;The user explored a different conversation branch...&amp;quot;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;El detalle que importa: &lt;strong&gt;el modelo solo recibe la rama activa&lt;/strong&gt;, reconstruida desde el último mensaje (&lt;code&gt;leaf&lt;/code&gt;) hacia atrás. Las ramas que abandonas no se borran, se quedan en el fichero y no cuestan contexto.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;[user] ─ [assistant] ─┬─ [user]                 ← leaf: rama activa
+                      │
+                      └─ [branch_summary] ─ [user]   ← rama alterna
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="tree-ramificar-sin-salir-del-fichero"&gt;/tree: ramificar sin salir del fichero&lt;a class="headerlink" href="#tree-ramificar-sin-salir-del-fichero" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;/tree&lt;/code&gt; abre el navegador de sesiones. No había atajo por defecto, así que me puse uno en &lt;code&gt;~/.pi/agent/keybindings.json&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;app.session.tree&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;alt+shift+e&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;El flujo es: seleccionas un mensaje de usuario y su texto vuelve al editor. Lo editas, lo envías, y eso crea una rama nueva en ese mismo punto. Si seleccionas una respuesta del asistente en lugar de un mensaje de usuario, continúa desde ahí con el editor vacío.&lt;/p&gt;
+&lt;p&gt;Con sesiones largas el navegador de sesiones se llena, así que los filtros son la mitad de la utilidad:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;ctrl+t&lt;/code&gt; — oculta resultados de herramientas&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ctrl+u&lt;/code&gt; — solo mensajes míos&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ctrl+l&lt;/code&gt; — solo entradas etiquetadas&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ctrl+a&lt;/code&gt; — todo&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ctrl+o&lt;/code&gt; / &lt;code&gt;shift+ctrl+o&lt;/code&gt; — ciclar filtros&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Y para orientarse: &lt;code&gt;shift+l&lt;/code&gt; pone etiqueta a la entrada seleccionada, &lt;code&gt;shift+t&lt;/code&gt; muestra u oculta sus timestamps, &lt;code&gt;alt+←/→&lt;/code&gt; (o &lt;code&gt;ctrl+←/→&lt;/code&gt;) pliega un tramo de rama o salta al siguiente.&lt;/p&gt;
+&lt;p&gt;Cuándo lo uso: para comparar dos implementaciones desde el mismo punto de partida, y cuando el agente se ha ido por las ramas y prefiero volver al mensaje donde me perdí en vez de reconstruir el contexto en una sesión limpia. El intento fallido sigue ahí y puedo volver a él.&lt;/p&gt;
+&lt;h2 id="fork-y-clone-cuando-la-alternativa-es-otro-trabajo"&gt;/fork y /clone: cuando la alternativa es otro trabajo&lt;a class="headerlink" href="#fork-y-clone-cuando-la-alternativa-es-otro-trabajo" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;/fork&lt;/code&gt;&lt;/strong&gt; — sesión nueva a partir de un mensaje de usuario anterior.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;/clone&lt;/code&gt;&lt;/strong&gt; — copia la rama activa entera a una sesión nueva.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Las dos escriben un fichero nuevo con &lt;code&gt;parentSessionId&lt;/code&gt; apuntando al original. Desde la CLI existe &lt;code&gt;pi --fork &amp;lt;path|id&amp;gt;&lt;/code&gt;, que no se puede combinar con &lt;code&gt;--session&lt;/code&gt;, &lt;code&gt;--continue&lt;/code&gt;, &lt;code&gt;--resume&lt;/code&gt; ni &lt;code&gt;--no-session&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;El criterio que aplico: si la alternativa es &lt;strong&gt;otra variante del mismo trabajo&lt;/strong&gt;, me quedo dentro del fichero con &lt;code&gt;/tree&lt;/code&gt;. Si es &lt;strong&gt;otro trabajo&lt;/strong&gt; que va a vivir días, sale a sesión propia con &lt;code&gt;/fork&lt;/code&gt;. Mezclar dos tareas distintas en el mismo árbol termina con un navegador de sesiones que no hay quien lea.&lt;/p&gt;
+&lt;h2 id="abandonar-una-rama-sin-perderla"&gt;Abandonar una rama sin perderla&lt;a class="headerlink" href="#abandonar-una-rama-sin-perderla" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Cuando sales de una rama, pi ofrece resumirla y colgar ese resumen de la rama a la que entras. Se guarda como &lt;code&gt;branch_summary&lt;/code&gt; con dos referencias: &lt;code&gt;parentId&lt;/code&gt; (el punto desde el que continúas) y &lt;code&gt;fromId&lt;/code&gt; (el último mensaje de la rama que dejas).&lt;/p&gt;
+&lt;p&gt;El texto lo genera el modelo con la misma plantilla que usa al compactar: Goal, Constraints &amp;amp; Preferences, Progress, Key Decisions, Next Steps, más la lista de ficheros tocados cuando aplica. Y empieza siempre igual:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;The user explored a different conversation branch before returning here.
+Summary of that exploration:
+
+## Goal
+Corregir memory leaks causados por suscripciones a stores
+con onMount sin cleanup
+...
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Ese resumen es la razón por la que &lt;code&gt;/tree&lt;/code&gt; no es solo navegación: el trabajo de la rama abandonada llega a la nueva como contexto útil, sin arrastrar los cientos de mensajes que lo produjeron.&lt;/p&gt;
+&lt;h2 id="lo-que-hago-a-diario-marker-y-end"&gt;Lo que hago a diario: marker y /end&lt;a class="headerlink" href="#lo-que-hago-a-diario-marker-y-end" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Aquí está el 90% de mi uso del árbol, y es la parte que no viene de serie. Con la extensión &lt;a href="https://github.com/IgorWarzocha/howaboua-pi-stuff/tree/main/packages/pi-auto-trees"&gt;pi-auto-trees&lt;/a&gt; el árbol deja de ser algo que toco a mano:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;/prime [scope]&lt;/code&gt;&lt;/strong&gt; — turno de orientación sobre un repo o carpeta, con marker automático al terminar.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;/marker&lt;/code&gt;&lt;/strong&gt; — checkpoint en el punto actual, sin turno de agente.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;/end&lt;/code&gt;&lt;/strong&gt; — resume lo hecho desde el marker, vuelve a ese punto arrastrando el resumen y avanza el marker.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Hay variantes que uso según el momento: &lt;code&gt;/end git&lt;/code&gt; añade el commit que toca hacer, y &lt;code&gt;/end &amp;lt;instrucción&amp;gt;&lt;/code&gt; mete foco en el resumen (por ejemplo &lt;code&gt;/end focus on API changes&lt;/code&gt;).&lt;/p&gt;
+&lt;p&gt;La config es un fichero aparte, &lt;code&gt;~/.pi/agent/pi-auto-trees.json&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;summary&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;enabled&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kc"&gt;true&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;model&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;opencode-go/gpt-5.6-luna&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;thinking&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;low&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Un modelo ligero solo para resumir; si no está disponible, avisa y usa el de la sesión.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Antes y después de /end: el marker avanza y el ruido de implementación queda en una rama resumida" src="/images/arboles-de-sesion-en-pi-diagrama.png"&gt;&lt;/p&gt;
+&lt;p&gt;Los markers viven en la rama de la sesión, así que volver a un punto anterior los restaura, y lo que queda guardado son entradas &lt;code&gt;label&lt;/code&gt; normales: las ves en &lt;code&gt;/tree&lt;/code&gt; con el filtro &lt;code&gt;ctrl+l&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Por eso casi no abro &lt;code&gt;/tree&lt;/code&gt;: cada &lt;code&gt;/end&lt;/code&gt; me devuelve al punto de partida, se lleva el ruido de implementación y deja un checkpoint etiquetado. El árbol deja de ser un cementerio de intentos y pasa a ser el índice del trabajo.&lt;/p&gt;
+&lt;h2 id="antes-de-irte"&gt;Antes de irte&lt;a class="headerlink" href="#antes-de-irte" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;El árbol no está para acumular intentos, está para no pagar dos veces el mismo contexto. Si una rama no te va a servir ni resumida, no la abras.&lt;/p&gt;
+&lt;p&gt;En la &lt;a href="https://pablocaro.es/extensiones-pi-que-uso"&gt;tercera entrega&lt;/a&gt; repaso el resto de extensiones que uso a diario. Y si vienes de cero, la &lt;a href="https://pablocaro.es/que-es-pi-coding-agent"&gt;primera parte&lt;/a&gt; explica qué es pi y en qué se diferencia de los demás.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Fuente original&lt;/em&gt;: &lt;a href="https://github.com/earendil-works/pi/tree/main/packages/coding-agent/docs"&gt;documentación de pi&lt;/a&gt; — sesiones, formato de sesión y compaction.&lt;/p&gt;</content><category term="ia"></category><category term="pi"></category><category term="coding-agent"></category><category term="sesiones"></category><category term="branching"></category><category term="contexto"></category><category term="auto-trees"></category></entry></feed>

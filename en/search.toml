@@ -3,6 +3,11 @@ html_selector = "main"
 base_directory = "/home/runner/work/anotaciones/anotaciones/output/en"
 
 [[input.files]]
+path = "arboles-de-sesion-en-pi.html"
+url = "/arboles-de-sesion-en-pi"
+title = "Session trees in pi — /tree, /fork and /clone"
+
+[[input.files]]
 path = "degit.html"
 url = "/degit"
 title = "degit: copy a repo without the history"
@@ -561,6 +566,11 @@ title = "Django: links in object list"
 path = "settings-vars-processor.html"
 url = "/settings-vars-processor"
 title = "Settings vars processor"
+
+[[input.files]]
+path = "arboles-de-sesion-en-pi-es.html"
+url = "/../arboles-de-sesion-en-pi"
+title = "Árboles de sesión en pi — /tree, /fork y /clone"
 
 [[input.files]]
 path = "degit-es.html"
