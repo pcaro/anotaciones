@@ -1,0 +1,485 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/stylesheet/style.min.css">
+
+    <link id="dark-theme-style" rel="stylesheet" type="text/css"
+        disabled="disabled"
+    href="https://pablocaro.es/theme/stylesheet/dark-theme.min.css">
+
+    <link id="pygments-dark-theme" rel="stylesheet" type="text/css"
+            disabled="disabled"
+          href="https://pablocaro.es/theme/pygments/github.min.css">
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+          href="https://pablocaro.es/theme/pygments/github.min.css">
+
+
+  <link rel="stylesheet"
+        type="text/css"
+        href="https://pablocaro.es/theme/stork/stork.css" />
+
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/font-awesome/css/solid.css">
+
+  <link rel="stylesheet" type="text/css" href="/extras/custom.css">
+
+  <link rel="shortcut icon" href="/theme/img/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/theme/img/favicon.ico" type="image/x-icon">
+
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#333333">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#333333">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Microsoft EDGE -->
+  <meta name="msapplication-TileColor" content="#333333">
+
+  <link href="https://pablocaro.es/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Anotaciones por Pablo Caro Atom">
+
+  <link href="https://pablocaro.es/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Anotaciones por Pablo Caro RSS">
+
+<script data-goatcounter="https://pcaro.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Pablo Caro" />
+<meta name="description" content="Cuatro comandos propios encima del árbol de sesiones de pi: /branch, /compress, /branches y /handoff, y cuándo uso cada uno." />
+<meta name="keywords" content="pi, coding-agent, sesiones, contexto, extensiones" />
+
+<link
+  rel="alternate"
+  href="https://pablocaro.es/mas-contexto-y-arbol-en-pi"
+  hreflang="es"
+/>
+<link
+  rel="alternate"
+  href="https://pablocaro.es/en/mas-contexto-y-arbol-en-pi"
+  hreflang="en"
+/>
+    <meta property="og:site_name" content="Anotaciones por Pablo Caro"/>
+  <meta property="og:title" content="Más sobre el manejo de contexto y árbol en pi"/>
+  <meta property="og:description" content="Cuatro comandos propios encima del árbol de sesiones de pi: /branch, /compress, /branches y /handoff, y cuándo uso cada uno."/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://pablocaro.es/mas-contexto-y-arbol-en-pi"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2026-11-07 00:00:00+01:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://pablocaro.es/author/pablo-caro.html">
+  <meta property="article:section" content="ia"/>
+  <meta property="article:tag" content="pi"/>
+  <meta property="article:tag" content="coding-agent"/>
+  <meta property="article:tag" content="sesiones"/>
+  <meta property="article:tag" content="contexto"/>
+  <meta property="article:tag" content="extensiones"/>
+  <meta property="og:image" content="/theme/img/profile.png">
+ 
+  <title>Anotaciones por Pablo Caro &ndash; Más sobre el manejo de contexto y árbol en pi</title>
+
+
+</head>
+<body class="light-theme">
+
+<aside>
+  <div>
+    <a href="https://pablocaro.es/">
+      <img src="/theme/img/profile.png" alt="Anotaciones" title="Anotaciones" />
+    </a>
+
+    <h1>
+      <a href="https://pablocaro.es/">Anotaciones</a>
+    </h1>
+
+    <p>by Pablo Caro</p>
+     <p style="font-size: 0.9em; font-style: italic; margin-bottom: 20px">
+      Volcando mi cerebro a internet. Colección de apuntes técnicos y soluciones que escribo para mi 'yo' del futuro, pero que comparto por si a alguien más le ahorran un dolor de cabeza.
+    </p>
+      <div class="stork">
+      <label for="sidebar-search" class="sr-only"
+        >Search articles</label
+      >
+      <div class="stork-input-wrap">
+      <input
+        id="sidebar-search"
+        class="stork-input"
+        type="text"
+        autocomplete="off"
+        name="q"
+        data-stork="sitesearch"
+        placeholder="Buscar..."
+        onclick="loadStorkIndex()"
+      />
+      </div>
+      <div class="stork-output" data-stork="sitesearch-output"></div>
+    </div>
+      <nav>
+      <ul class="list">
+             <li>
+          <a target="_self" href="http://x.com/pcaro">pcaro@X</a>
+        </li>
+        <li>
+          <a target="_self" href="https://github.com/pcaro/">pcaro@Github</a>
+        </li>
+        <li>
+          <a target="_self" href="https://www.linkedin.com/in/pcarorevuelta/">LinkedIn</a>
+        </li>
+      </ul>
+    </nav>
+      <nav class="sidebar-categories" aria-label="Categorías">
+                                                                                                                                 <a
+        href="https://pablocaro.es/category/ia.html"
+        class="sidebar-category"
+        title="ia (17)"
+      >
+        <img
+          src="/images/categories/ia.png"
+          alt="ia"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">ia</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/programacion.html"
+        class="sidebar-category"
+        title="Programación (80)"
+      >
+        <img
+          src="/images/categories/programacion.png"
+          alt="Programación"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Programación</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/linux.html"
+        class="sidebar-category"
+        title="Linux (12)"
+      >
+        <img
+          src="/images/categories/linux.png"
+          alt="Linux"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Linux</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/herramientas.html"
+        class="sidebar-category"
+        title="Herramientas (36)"
+      >
+        <img
+          src="/images/categories/herramientas.png"
+          alt="Herramientas"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Herramientas</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/infraestructura.html"
+        class="sidebar-category"
+        title="Infraestructura (49)"
+      >
+        <img
+          src="/images/categories/infraestructura.png"
+          alt="Infraestructura"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Infraestructura</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/documentacion.html"
+        class="sidebar-category"
+        title="Documentación (1)"
+      >
+        <img
+          src="/images/categories/documentacion.png"
+          alt="Documentación"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Documentación</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/finanzas.html"
+        class="sidebar-category"
+        title="Finanzas (1)"
+      >
+        <img
+          src="/images/categories/finanzas.png"
+          alt="Finanzas"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Finanzas</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/personal.html"
+        class="sidebar-category"
+        title="Personal (3)"
+      >
+        <img
+          src="/images/categories/personal.png"
+          alt="Personal"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Personal</span>
+      </a>
+    </nav>
+  </div>
+
+</aside>
+  <main>
+
+<nav>
+  <a href="https://pablocaro.es/">Inicio</a>
+
+  <a href="/archives.html">Archivo</a>
+  <a href="/categories.html">Categorías</a>
+  <a href="/tags.html">Etiquetas</a>
+  <a href="/search.html">Búsqueda</a>
+  <a href="/en/">English</a>
+   <a href="javascript:void(0)" onclick="theme.switch('dark')">🌙</a>
+  <a href="javascript:void(0)" onclick="theme.switch('light')">☀</a>
+   <a href="https://pablocaro.es/feeds/all.rss.xml">RSS</a>
+</nav>
+
+<article class="single">
+  <header>
+      <div class="translations">
+            <a href="https://pablocaro.es/en/mas-contexto-y-arbol-en-pi">Read in English</a>
+    </div>
+
+    <h1 id="mas-contexto-y-arbol-en-pi">Más sobre el manejo de contexto y árbol en pi</h1>
+    <p>
+      Publicado el 07 de November de 2026 en <a href="https://pablocaro.es/category/ia.html">ia</a>     </p>
+  </header>
+
+  <div class="related-posts">
+    <h4>
+      Parte 5 de la serie Pi: el agente de código
+    </h4>
+    <h5>
+      Artículos anteriores
+    </h5>
+    <ul>
+      <li><a href="https://pablocaro.es/que-es-pi-coding-agent">¿Qué es pi? — El agente de código minimalista que se ha vuelto viral</a></li>
+      <li><a href="https://pablocaro.es/pi-de-principiante-a-avanzado">Pi de novato a avanzado — La guía completa</a></li>
+      <li><a href="https://pablocaro.es/extensiones-pi-que-uso">Las extensiones de pi que uso en mi día a día</a></li>
+      <li><a href="https://pablocaro.es/arboles-de-sesion-en-pi">Árboles de sesión en pi — /tree, /fork y /clone</a></li>
+    </ul>
+   </div>
+ 
+  <div><p>Quinta entrega de la serie. La <a href="https://pablocaro.es/arboles-de-sesion-en-pi">cuarta</a> explicó qué hay debajo del árbol; esto es lo que le tengo puesto encima. Son cuatro comandos de extensión, tres en <code>~/.pi/agent/extensions/branch.ts</code> y uno en <code>handoff.ts</code>, y todos se resuelven con la misma API que cualquier extensión de pi: <code>ctx.navigateTree</code>, <code>ctx.newSession</code> y <code>generateBranchSummary</code>.</p>
+<h2 id="branch-volver-al-ultimo-punto-de-ramificacion">/branch — volver al último punto de ramificación<a class="headerlink" href="#branch-volver-al-ultimo-punto-de-ramificacion" title="Permanent link">&para;</a></h2>
+<p>No pregunta nada. Espera a que el agente esté quieto, busca el último <code>branch_summary</code> de la rama activa (o la raíz si no hay ninguno), resume lo que dejas atrás y te coloca justo ahí.</p>
+<div class="highlight"><pre><span></span><code>/branch  →  navigateTree(última branch_summary, summarize: true)
+</code></pre></div>
+
+<p>Es <code>/tree</code> sin abrir el navegador de sesiones y sin elegir el punto: el borde lo decide la última rama resumida. Lo uso para empezar un intento distinto sin cargar con el ruido de implementación del anterior. Si ya estás en ese borde, avisa y no hace nada.</p>
+<h2 id="compress-cerrar-la-sesion-y-abrir-otra-con-el-resumen">/compress — cerrar la sesión y abrir otra con el resumen<a class="headerlink" href="#compress-cerrar-la-sesion-y-abrir-otra-con-el-resumen" title="Permanent link">&para;</a></h2>
+<p><code>/compact</code> resume dentro del mismo fichero y el resumen pasa a sustituir lo viejo en el contexto. <code>/compress</code> hace lo mismo pero estrenando sesión: el resumen es el primer mensaje de un fichero nuevo y el original sigue donde estaba, listo para reabrir con <code>pi -r</code> si lo necesitas.</p>
+<p>Antes de tocar nada te dice cuánto va a resumir, con el tamaño real de contexto, y luego tira de <code>generateBranchSummary</code>, el mismo código que usa pi al compactar. Eso le da los límites de salida, los reintentos, el thinking level y la lista de ficheros leídos y modificados sin reimplementar nada.</p>
+<p>La sesión nueva queda enlazada a la original por <code>parentSession</code>, y eso es lo que hace que <code>pi -r</code> las enseñe colgando de su madre:</p>
+<p><img alt="pi -r en vista threaded con la sesión original y las hijas colgando debajo" src="/images/mas-contexto-y-arbol-en-pi.png"></p>
+<p>El resumen entra como mensaje propio (<code>branch-compressed</code>), colapsado a una línea y expandible, no como si lo hubiera escrito yo.</p>
+<h2 id="branches-que-ramas-resumidas-arrastra-la-sesion">/branches — qué ramas resumidas arrastra la sesión<a class="headerlink" href="#branches-que-ramas-resumidas-arrastra-la-sesion" title="Permanent link">&para;</a></h2>
+<p>Lista las entradas <code>branch_summary</code> de la rama activa con preview, tokens estimados (a cuatro caracteres por token) y el porcentaje de ventana que ocupan. Es el detalle de lo que el footer resume en el status <code>🌿</code>, que se recalcula al navegar y al terminar cada turno.</p>
+<p>Sirve para lo de siempre: cuando encadenas varios <code>/end</code> sin darte cuenta, ver cuánto contexto te estás gastando en resúmenes en vez de en trabajo.</p>
+<h2 id="handoff-convertir-el-contexto-en-un-prompt">/handoff — convertir el contexto en un prompt<a class="headerlink" href="#handoff-convertir-el-contexto-en-un-prompt" title="Permanent link">&para;</a></h2>
+<p><code>/handoff &lt;objetivo&gt;</code> es el que menos tiene que ver con el árbol y el que más me sirve cuando lo siguiente ya es otra cosa. Reconstruye la rama respetando compactaciones —el resumen de compactación más todo lo que quedó detrás— y le pide al modelo un prompt autocontenido con contexto, decisiones, ficheros tocados y la tarea.</p>
+<p>El resultado se abre en el editor para corregirlo antes de enviarlo:</p>
+<p><img alt="El prompt generado por /handoff en el editor, con contexto, ficheros y tarea" src="/images/mas-contexto-y-arbol-en-pi-handoff.png"></p>
+<p>Al aprobarlo, crea la sesión nueva con <code>parentSession</code> y el prompt ya puesto en el editor. La diferencia con <code>/compress</code> es qué se llevan: <code>/compress</code> se lleva un resumen de lo hecho, <code>/handoff</code> te deja el mapa de lo que viene.</p>
+<h2 id="cuando-uso-cada-uno">Cuándo uso cada uno<a class="headerlink" href="#cuando-uso-cada-uno" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong><code>/end</code></strong> — el 90% de mi uso del árbol, con el ciclo de marker de la cuarta entrega.</li>
+<li><strong><code>/compress</code></strong> — cuando la sesión ya cumplió: resumen, fichero nuevo, original intacta.</li>
+<li><strong><code>/branch</code></strong> — un intento distinto dentro del mismo fichero de sesión.</li>
+<li><strong><code>/handoff</code></strong> — lo siguiente es otra tarea y quiero contexto destilado, no historial.</li>
+</ul>
+<p>Ninguno es core: los cuatro son extensiones mías, y por eso puedo cambiarles el criterio sin esperar a un release. El árbol de pi da las piezas; lo que haces con ellas es tuyo.</p>
+<p><em>Fuente original</em>: <a href="https://github.com/earendil-works/pi/tree/main/packages/coding-agent/docs/extensions.md">documentación de extensiones de pi</a> — <code>navigateTree</code>, <code>newSession</code> y <code>generateBranchSummary</code>.</p></div>
+  <div class="tag-cloud">
+    <p>
+       <a href="https://pablocaro.es/tag/pi.html">pi</a>
+      <a href="https://pablocaro.es/tag/coding-agent.html">coding-agent</a>
+      <a href="https://pablocaro.es/tag/sesiones.html">sesiones</a>
+      <a href="https://pablocaro.es/tag/contexto.html">contexto</a>
+      <a href="https://pablocaro.es/tag/extensiones.html">extensiones</a>
+     </p>
+  </div>
+
+    <div class="neighbors">
+    <a class="btn float-left" href="https://pablocaro.es/arboles-de-sesion-en-pi" title="Árboles de sesión en pi — /tree, /fork y /clone">
+      <i class="fa fa-angle-left"></i> Artículo anterior
+    </a>
+  </div>
+   <div class="related-posts">
+    <h4>Te puede gustar</h4>
+    <ul class="related-posts">
+      <li>
+        <a href="https://pablocaro.es/arboles-de-sesion-en-pi"
+          >Árboles de sesión en pi — /tree, /fork y /clone</a
+        >
+      </li>
+      <li>
+        <a href="https://pablocaro.es/extensiones-pi-que-uso"
+          >Las extensiones de pi que uso en mi día a día</a
+        >
+      </li>
+      <li>
+        <a href="https://pablocaro.es/extensiones-subagentes-pi"
+          >Extensiones de subagentes para pi: TintinWeb, NicoBailon y Taskplane</a
+        >
+      </li>
+      <li>
+        <a href="https://pablocaro.es/opencode-desktop-linux"
+          >De OpenCode en la terminal a OpenCode Desktop (en Linux)</a
+        >
+      </li>
+      <li>
+        <a href="https://pablocaro.es/pi-claude-bridge"
+          >pi-claude-bridge: la suscripción de Claude Pro, Max o Team dentro de pi</a
+        >
+      </li>
+    </ul>
+  </div>
+  <!-- Disqus -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'anotaciones';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>
+    Por favor, habilita JavaScript para ver los comentarios.
+</noscript>
+<!-- End Disqus -->
+ </article>
+
+<footer>
+<p>
+  &copy; 2026  - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+  Construido con <a
+    href="http://getpelican.com"
+    target="_blank"
+    >Pelican</a
+  > usando el tema <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a
+  >    <script
+    id="dark-theme-script"
+    src="https://pablocaro.es/theme/dark-theme/dark-theme.min.js"
+    data-enable-auto-detect-theme="False"
+    data-default-theme="light"
+    type="text/javascript"
+  ></script>
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/3.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/3.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Anotaciones por Pablo Caro ",
+  "url" : "https://pablocaro.es",
+  "image": "/theme/img/profile.png",
+  "description": ""
+}
+</script>  <script src="https://files.stork-search.net/releases/v1.6.0/stork.js"></script>
+  <script>
+    window.storkIndexLoaded = false;
+    window.loadStorkIndex = function () {
+      if (window.storkIndexLoaded) {
+        return;
+      }
+      if (typeof stork === 'undefined') {
+        setTimeout(window.loadStorkIndex, 100);
+        return;
+      }
+      var url = "https://pablocaro.es/search-index.st";
+      var opts = { showProgress: false };
+      stork.register("sitesearch", url, opts);
+      try {
+        stork.register("sitesearch-page", url, opts);
+      } catch (e) {
+        // Search page input not in DOM on this page — index still registered
+      }
+      window.storkIndexLoaded = true;
+    }
+  </script>
+
+
+  <button id="back-to-top" aria-label="Back to top" title="Back to top">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <path d="M10 16V4m0 0L5 9m5-5l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+  <script>
+  (function() {
+    var btn = document.getElementById('back-to-top');
+    if (!btn) return;
+    var ticking = false;
+    function onScroll() {
+      if (!ticking) {
+        requestAnimationFrame(function() {
+          btn.classList.toggle('visible', window.scrollY > 500);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }
+    btn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    window.addEventListener('scroll', onScroll, { passive: true });
+  })();
+  </script>
+</body>
+</html>

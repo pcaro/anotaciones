@@ -3,6 +3,11 @@ html_selector = "main"
 base_directory = "/home/runner/work/anotaciones/anotaciones/output"
 
 [[input.files]]
+path = "mas-contexto-y-arbol-en-pi.html"
+url = "/mas-contexto-y-arbol-en-pi"
+title = "Más sobre el manejo de contexto y árbol en pi"
+
+[[input.files]]
 path = "arboles-de-sesion-en-pi.html"
 url = "/arboles-de-sesion-en-pi"
 title = "Árboles de sesión en pi — /tree, /fork y /clone"
@@ -991,6 +996,11 @@ title = "Corrector ortográfico de firefox 2.0 en castellano"
 path = "primera-anotacion-de-prueba.html"
 url = "/primera-anotacion-de-prueba"
 title = "Primera anotación de prueba"
+
+[[input.files]]
+path = "mas-contexto-y-arbol-en-pi-en.html"
+url = "/en/mas-contexto-y-arbol-en-pi"
+title = "More on managing context and trees in pi"
 
 [[input.files]]
 path = "arboles-de-sesion-en-pi-en.html"
