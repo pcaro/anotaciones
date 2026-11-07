@@ -20,23 +20,28 @@ Fourth part of the series on [pi](https://pi.dev/). In the [second part](https:/
 No database, no index. Each session is a JSONL file under `~/.pi/agent/sessions/`, grouped by working directory:
 
 ```text
-~/.pi/agent/sessions/--home-pcaro-src-anotaciones--/2026-11-07T11-52-01-994Z_01a1b5d9-....jsonl
+~/.pi/agent/sessions/--home-pcaro-src-anotaciones--/<id>.jsonl
 ```
 
 The first line is the header, with `version`, `id`, `timestamp` and `cwd`. From there on, every line is an entry with its own `id` and a `parentId` pointing at the previous one. That is the whole tree.
 
 ```json
-{"type":"message","id":"1f9f455e","parentId":"acf8ad39","timestamp":"...","message":{"role":"user","content":[{"type":"text","text":"I'm on KDE Plasma. How do I..."}]}}
-{"type":"label","id":"608802ec","parentId":"f0c0af1a","timestamp":"...","targetId":"f0c0af1a","label":"marker"}
-{"type":"branch_summary","id":"62224c4f","parentId":"8e2ca4f2","timestamp":"...","fromId":"8e2ca4f2","summary":"The user explored a different conversation branch..."}
+{
+  "type": "branch_summary",
+  "id": "62224c4f",
+  "parentId": "8e2ca4f2",
+  "fromId": "8e2ca4f2",
+  "timestamp": "2026-06-11T17:00:15.313Z",
+  "summary": "The user explored a different conversation branch..."
+}
 ```
 
 The detail that matters: **the model only gets the active branch**, rebuilt from the last message (the `leaf`) back to the root. Branches you walk away from are not deleted, they stay in the file and cost no context.
 
 ```text
-[user] ── [assistant] ── [user] ── [assistant] ─┬─ [user]                      ← leaf, active branch
-                                                 │
-                                                 └─ [branch_summary] ── [user]  ← alternate branch
+[user] ─ [assistant] ─┬─ [user]                 ← leaf: active branch
+                      │
+                      └─ [branch_summary] ─ [user]   ← alternate branch
 ```
 
 ## /tree: branch without leaving the file
@@ -83,7 +88,8 @@ The user explored a different conversation branch before returning here.
 Summary of that exploration:
 
 ## Goal
-Fix memory leaks caused by store subscriptions with onMount and no cleanup
+Fix memory leaks caused by store subscriptions with onMount
+and no cleanup
 ...
 ```
 

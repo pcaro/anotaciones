@@ -20,23 +20,28 @@ Cuarta entrega de la serie sobre [pi](https://pi.dev/). En la [segunda parte](ht
 Nada de base de datos ni índices. Cada sesión es un JSONL en `~/.pi/agent/sessions/`, agrupado por directorio de trabajo:
 
 ```text
-~/.pi/agent/sessions/--home-pcaro-src-anotaciones--/2026-11-07T11-52-01-994Z_01a1b5d9-....jsonl
+~/.pi/agent/sessions/--home-pcaro-src-anotaciones--/<id>.jsonl
 ```
 
 La primera línea es la cabecera, con `version`, `id`, `timestamp` y `cwd`. A partir de ahí, cada línea es una entrada con su propio `id` y un `parentId` que apunta a la anterior. Eso es el árbol entero.
 
 ```json
-{"type":"message","id":"1f9f455e","parentId":"acf8ad39","timestamp":"...","message":{"role":"user","content":[{"type":"text","text":"Estoy en kde plasma. Cómo hacer que..."}]}}
-{"type":"label","id":"608802ec","parentId":"f0c0af1a","timestamp":"...","targetId":"f0c0af1a","label":"marker"}
-{"type":"branch_summary","id":"62224c4f","parentId":"8e2ca4f2","timestamp":"...","fromId":"8e2ca4f2","summary":"The user explored a different conversation branch..."}
+{
+  "type": "branch_summary",
+  "id": "62224c4f",
+  "parentId": "8e2ca4f2",
+  "fromId": "8e2ca4f2",
+  "timestamp": "2026-06-11T17:00:15.313Z",
+  "summary": "The user explored a different conversation branch..."
+}
 ```
 
 El detalle que importa: **el modelo solo recibe la rama activa**, reconstruida desde el último mensaje (`leaf`) hacia atrás. Las ramas que abandonas no se borran, se quedan en el fichero y no cuestan contexto.
 
 ```text
-[user] ── [assistant] ── [user] ── [assistant] ─┬─ [user]                      ← leaf, rama activa
-                                                 │
-                                                 └─ [branch_summary] ── [user]  ← rama alternativa
+[user] ─ [assistant] ─┬─ [user]                 ← leaf: rama activa
+                      │
+                      └─ [branch_summary] ─ [user]   ← rama alterna
 ```
 
 ## /tree: ramificar sin salir del fichero
@@ -83,7 +88,8 @@ The user explored a different conversation branch before returning here.
 Summary of that exploration:
 
 ## Goal
-Corregir memory leaks causados por suscripciones a stores con onMount sin cleanup
+Corregir memory leaks causados por suscripciones a stores
+con onMount sin cleanup
 ...
 ```
 
