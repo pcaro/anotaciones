@@ -13,7 +13,7 @@ Summary: Qué hay debajo del árbol de sesiones de pi: entradas con id y parentI
 
 Cuarta entrega de la serie sobre [pi](https://pi.dev/). En la [segunda parte](https://pablocaro.es/pi-de-principiante-a-avanzado) `/tree` salió como un bullet más en una lista de comandos. Esto es lo que hay debajo del árbol de sesiones y cómo lo uso: ramificar dentro del mismo fichero, cuándo salir a una sesión nueva, y el ciclo de marker y `/end` con el que cierro bloques de trabajo sin arrastrar ruido.
 
-![Navegador de árbol de pi con varias ramas y entradas etiquetadas](/images/arboles-de-sesion-en-pi.png)
+![Navegador de sesiones de pi con varias ramas y entradas etiquetadas](/images/arboles-de-sesion-en-pi.png)
 
 ## Una sesión es un fichero con un árbol dentro
 
@@ -46,7 +46,7 @@ El detalle que importa: **el modelo solo recibe la rama activa**, reconstruida d
 
 ## /tree: ramificar sin salir del fichero
 
-`/tree` abre el navegador. No había atajo por defecto, así que me puse uno en `~/.pi/agent/keybindings.json`:
+`/tree` abre el navegador de sesiones. No había atajo por defecto, así que me puse uno en `~/.pi/agent/keybindings.json`:
 
 ```json
 { "app.session.tree": "alt+shift+e" }
@@ -54,7 +54,7 @@ El detalle que importa: **el modelo solo recibe la rama activa**, reconstruida d
 
 El flujo es: seleccionas un mensaje de usuario y su texto vuelve al editor. Lo editas, lo envías, y eso crea una rama nueva en ese mismo punto. Si seleccionas una respuesta del asistente en lugar de un mensaje de usuario, continúa desde ahí con el editor vacío.
 
-Con sesiones largas el navegador se llena, así que los filtros son la mitad de la utilidad:
+Con sesiones largas el navegador de sesiones se llena, así que los filtros son la mitad de la utilidad:
 
 - `ctrl+t` — oculta resultados de herramientas
 - `ctrl+u` — solo mensajes míos
@@ -73,9 +73,7 @@ Cuándo lo uso: para comparar dos implementaciones desde el mismo punto de parti
 
 Las dos escriben un fichero nuevo con `parentSessionId` apuntando al original. Desde la CLI existe `pi --fork <path|id>`, que no se puede combinar con `--session`, `--continue`, `--resume` ni `--no-session`.
 
-El criterio que aplico: si la alternativa es **otra variante del mismo trabajo**, me quedo dentro del fichero con `/tree`. Si es **otro trabajo** que va a vivir días, sale a sesión propia con `/fork`. Mezclar dos tareas distintas en el mismo árbol termina con un navegador que no hay quien lea.
-
-En mis números se ve el patrón: de unas 1400 sesiones, 155 arrastran `parentSession` y solo 6 tienen `branch_summary`. El árbol nativo lo uso poco, porque el trabajo del día a día va por otro lado.
+El criterio que aplico: si la alternativa es **otra variante del mismo trabajo**, me quedo dentro del fichero con `/tree`. Si es **otro trabajo** que va a vivir días, sale a sesión propia con `/fork`. Mezclar dos tareas distintas en el mismo árbol termina con un navegador de sesiones que no hay quien lea.
 
 ## Abandonar una rama sin perderla
 

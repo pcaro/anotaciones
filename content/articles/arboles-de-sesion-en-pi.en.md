@@ -13,7 +13,7 @@ Summary: What sits under pi's session tree: entries with id and parentId, /tree,
 
 Fourth part of the series on [pi](https://pi.dev/). In the [second part](https://pablocaro.es/en/pi-de-principiante-a-avanzado) `/tree` was just another bullet in a list of commands. This is what sits under the session tree and how I use it: branching inside the same file, when to move work out to a new session, and the marker plus `/end` loop I close work blocks with so I don't drag noise along.
 
-![pi's tree navigator with several branches and labelled entries](/images/arboles-de-sesion-en-pi.png)
+![pi's session navigator with several branches and labelled entries](/images/arboles-de-sesion-en-pi.png)
 
 ## A session is a file with a tree inside
 
@@ -46,7 +46,7 @@ The detail that matters: **the model only gets the active branch**, rebuilt from
 
 ## /tree: branch without leaving the file
 
-`/tree` opens the navigator. It had no keyboard shortcut by default, so I gave it one in `~/.pi/agent/keybindings.json`:
+`/tree` opens the session navigator. It had no keyboard shortcut by default, so I gave it one in `~/.pi/agent/keybindings.json`:
 
 ```json
 { "app.session.tree": "alt+shift+e" }
@@ -54,7 +54,7 @@ The detail that matters: **the model only gets the active branch**, rebuilt from
 
 The flow: you select a user message and its text goes back into the editor. Edit it, send it, and that creates a new branch at that same point. If you select an assistant response instead, it continues from there with an empty editor.
 
-On long sessions the navigator fills up, so the filters are half the value:
+On long sessions the session navigator fills up, so the filters are half the value:
 
 - `ctrl+t` — hide tool results
 - `ctrl+u` — only my messages
@@ -73,9 +73,7 @@ When I use it: to compare two implementations from the same starting point, and 
 
 Both write a new file with `parentSessionId` pointing at the original. From the CLI there is `pi --fork <path|id>`, which cannot be combined with `--session`, `--continue`, `--resume` or `--no-session`.
 
-The rule I apply: if the alternative is **another variant of the same work**, I stay inside the file with `/tree`. If it is **other work** that will live for days, it gets its own session with `/fork`. Mixing two different tasks into one tree ends up with a navigator nobody can read.
-
-My numbers show the pattern: out of roughly 1400 sessions, 155 carry a `parentSession` and only 6 have a `branch_summary`. I barely use the native tree, because day-to-day work goes through something else.
+The rule I apply: if the alternative is **another variant of the same work**, I stay inside the file with `/tree`. If it is **other work** that will live for days, it gets its own session with `/fork`. Mixing two different tasks into one tree ends up with a session navigator nobody can read.
 
 ## Walking away from a branch without losing it
 
