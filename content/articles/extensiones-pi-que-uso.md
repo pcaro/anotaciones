@@ -10,7 +10,7 @@ series_index: 3
 featured_image: /images/pi-extensiones.png
 ---
 
-Tercera y última entrega de la serie sobre [pi](https://pi.dev/). En la [primera parte](https://pablocaro.es/que-es-pi-coding-agent) expliqué qué es pi y lo comparé con otros agents. En la [segunda](https://pablocaro.es/pi-de-principiante-a-avanzado) hice una guía completa de uso. Ahora toca lo que realmente diferencia a pi de todo lo demás: **las extensiones**.
+Tercera entrega de la serie sobre [pi](https://pi.dev/). En la [primera parte](https://pablocaro.es/que-es-pi-coding-agent) expliqué qué es pi y lo comparé con otros agents. En la [segunda](https://pablocaro.es/pi-de-principiante-a-avanzado) hice una guía completa de uso. Ahora toca lo que realmente diferencia a pi de todo lo demás: **las extensiones**.
 
 Tengo más de 20 paquetes instalados, skills de varios repositorios, y mis propias extensiones en [pcaropi](https://github.com/pcaro/pcaropi). Aquí desgloso lo que uso realmente en el día a día.
 

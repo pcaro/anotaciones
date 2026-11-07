@@ -346,6 +346,6 @@ pi --tools read,grep,find,ls -p "Review the code without modifying it"
 
 This article was written from inside pi, using the exact configuration I describe. My `settings.json` includes over 20 packages, custom skills, and extensions from [my pcaropi repository](https://github.com/pcaro/pcaropi). I also launch pi from scripts with specific personalities: `pi -p @prompt.md "Do X"` for repetitive tasks without entering interactive mode.
 
-In the **[third and final part](https://pablocaro.es/en/extensiones-pi-que-uso)** of this series, I break down all the extensions I use daily, from subagents to productivity skills, web search, agent browsing, and much more.
+In the **[next part](https://pablocaro.es/en/extensiones-pi-que-uso)** of this series, I break down all the extensions I use daily, from subagents to productivity skills, web search, agent browsing, and much more.
 
 *Source*: [pi.dev](https://pi.dev/)
