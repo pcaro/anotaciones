@@ -1,0 +1,513 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/stylesheet/style.min.css">
+
+    <link id="dark-theme-style" rel="stylesheet" type="text/css"
+        disabled="disabled"
+    href="https://pablocaro.es/theme/stylesheet/dark-theme.min.css">
+
+    <link id="pygments-dark-theme" rel="stylesheet" type="text/css"
+            disabled="disabled"
+          href="https://pablocaro.es/theme/pygments/github.min.css">
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+          href="https://pablocaro.es/theme/pygments/github.min.css">
+
+
+  <link rel="stylesheet"
+        type="text/css"
+        href="https://pablocaro.es/theme/stork/stork.css" />
+
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/font-awesome/css/solid.css">
+
+  <link rel="stylesheet" type="text/css" href="/extras/custom.css">
+
+  <link rel="shortcut icon" href="/theme/img/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/theme/img/favicon.ico" type="image/x-icon">
+
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#333333">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#333333">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Microsoft EDGE -->
+  <meta name="msapplication-TileColor" content="#333333">
+
+  <link href="https://pablocaro.es/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Anotaciones por Pablo Caro Atom">
+
+  <link href="https://pablocaro.es/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Anotaciones por Pablo Caro RSS">
+
+<script data-goatcounter="https://pcaro.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Pablo Caro" />
+<meta name="description" content="Una extensión de pi que mete una línea de explicación en el aviso de Guardrails antes de aprobar un comando de bash, sin decidir nunca por ti." />
+<meta name="keywords" content="pi, coding-agent, guardrails, extensiones, seguridad, bash" />
+
+<link
+  rel="alternate"
+  href="https://pablocaro.es/pi-guardrails-explain"
+  hreflang="es"
+/>
+<link
+  rel="alternate"
+  href="https://pablocaro.es/en/pi-guardrails-explain"
+  hreflang="en"
+/>
+    <meta property="og:site_name" content="Anotaciones por Pablo Caro"/>
+  <meta property="og:title" content="pi-guardrails-explain, o que el comando peligroso se explique antes de aprobarlo"/>
+  <meta property="og:description" content="Una extensión de pi que mete una línea de explicación en el aviso de Guardrails antes de aprobar un comando de bash, sin decidir nunca por ti."/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://pablocaro.es/pi-guardrails-explain"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2026-11-14 00:00:00+01:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://pablocaro.es/author/pablo-caro.html">
+  <meta property="article:section" content="ia"/>
+  <meta property="article:tag" content="pi"/>
+  <meta property="article:tag" content="coding-agent"/>
+  <meta property="article:tag" content="guardrails"/>
+  <meta property="article:tag" content="extensiones"/>
+  <meta property="article:tag" content="seguridad"/>
+  <meta property="article:tag" content="bash"/>
+  <meta property="og:image" content="/theme/img/profile.png">
+ 
+  <title>Anotaciones por Pablo Caro &ndash; pi-guardrails-explain, o que el comando peligroso se explique antes de aprobarlo</title>
+
+
+</head>
+<body class="light-theme">
+
+<aside>
+  <div>
+    <a href="https://pablocaro.es/">
+      <img src="/theme/img/profile.png" alt="Anotaciones" title="Anotaciones" />
+    </a>
+
+    <h1>
+      <a href="https://pablocaro.es/">Anotaciones</a>
+    </h1>
+
+    <p>by Pablo Caro</p>
+     <p style="font-size: 0.9em; font-style: italic; margin-bottom: 20px">
+      Volcando mi cerebro a internet. Colección de apuntes técnicos y soluciones que escribo para mi 'yo' del futuro, pero que comparto por si a alguien más le ahorran un dolor de cabeza.
+    </p>
+      <div class="stork">
+      <label for="sidebar-search" class="sr-only"
+        >Search articles</label
+      >
+      <div class="stork-input-wrap">
+      <input
+        id="sidebar-search"
+        class="stork-input"
+        type="text"
+        autocomplete="off"
+        name="q"
+        data-stork="sitesearch"
+        placeholder="Buscar..."
+        onclick="loadStorkIndex()"
+      />
+      </div>
+      <div class="stork-output" data-stork="sitesearch-output"></div>
+    </div>
+      <nav>
+      <ul class="list">
+             <li>
+          <a target="_self" href="http://x.com/pcaro">pcaro@X</a>
+        </li>
+        <li>
+          <a target="_self" href="https://github.com/pcaro/">pcaro@Github</a>
+        </li>
+        <li>
+          <a target="_self" href="https://www.linkedin.com/in/pcarorevuelta/">LinkedIn</a>
+        </li>
+      </ul>
+    </nav>
+      <nav class="sidebar-categories" aria-label="Categorías">
+                                                                                                                                 <a
+        href="https://pablocaro.es/category/ia.html"
+        class="sidebar-category"
+        title="ia (18)"
+      >
+        <img
+          src="/images/categories/ia.png"
+          alt="ia"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">ia</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/programacion.html"
+        class="sidebar-category"
+        title="Programación (80)"
+      >
+        <img
+          src="/images/categories/programacion.png"
+          alt="Programación"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Programación</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/linux.html"
+        class="sidebar-category"
+        title="Linux (12)"
+      >
+        <img
+          src="/images/categories/linux.png"
+          alt="Linux"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Linux</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/herramientas.html"
+        class="sidebar-category"
+        title="Herramientas (36)"
+      >
+        <img
+          src="/images/categories/herramientas.png"
+          alt="Herramientas"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Herramientas</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/infraestructura.html"
+        class="sidebar-category"
+        title="Infraestructura (49)"
+      >
+        <img
+          src="/images/categories/infraestructura.png"
+          alt="Infraestructura"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Infraestructura</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/documentacion.html"
+        class="sidebar-category"
+        title="Documentación (1)"
+      >
+        <img
+          src="/images/categories/documentacion.png"
+          alt="Documentación"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Documentación</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/finanzas.html"
+        class="sidebar-category"
+        title="Finanzas (1)"
+      >
+        <img
+          src="/images/categories/finanzas.png"
+          alt="Finanzas"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Finanzas</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/personal.html"
+        class="sidebar-category"
+        title="Personal (3)"
+      >
+        <img
+          src="/images/categories/personal.png"
+          alt="Personal"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Personal</span>
+      </a>
+    </nav>
+  </div>
+
+</aside>
+  <main>
+
+<nav>
+  <a href="https://pablocaro.es/">Inicio</a>
+
+  <a href="/archives.html">Archivo</a>
+  <a href="/categories.html">Categorías</a>
+  <a href="/tags.html">Etiquetas</a>
+  <a href="/search.html">Búsqueda</a>
+  <a href="/en/">English</a>
+   <a href="javascript:void(0)" onclick="theme.switch('dark')">🌙</a>
+  <a href="javascript:void(0)" onclick="theme.switch('light')">☀</a>
+   <a href="https://pablocaro.es/feeds/all.rss.xml">RSS</a>
+</nav>
+
+<article class="single">
+  <header>
+      <div class="translations">
+            <a href="https://pablocaro.es/en/pi-guardrails-explain">Read in English</a>
+    </div>
+
+    <h1 id="pi-guardrails-explain">pi-guardrails-explain, o que el comando peligroso se explique antes de aprobarlo</h1>
+    <p>
+      Publicado el 14 de November de 2026 en <a href="https://pablocaro.es/category/ia.html">ia</a>     </p>
+  </header>
+
+ 
+  <div><p><a href="https://github.com/aliou/pi-guardrails">Guardrails</a> ya te para cuando el agente quiere hacer algo tonto con bash. Lo que no te dice es <strong>qué hace exactamente</strong> ese comando. Y esa es justo la información que necesitas para responder al prompt en dos segundos en lugar de treinta.</p>
+<p><img alt="Aviso del permission gate de Guardrails con la línea de explicación del comando" src="/images/pi-guardrails-explain.png"></p>
+<h2 id="el-aviso-dice-el-patron-no-el-efecto">El aviso dice el patrón, no el efecto<a class="headerlink" href="#el-aviso-dice-el-patron-no-el-efecto" title="Permanent link">&para;</a></h2>
+<p>El caso típico:</p>
+<div class="highlight"><pre><span></span><code>$ rm -rf ./dist ./build
+</code></pre></div>
+
+<p>Guardrails lo detecta y te suelta:</p>
+<div class="highlight"><pre><span></span><code>Dangerous Command Detected
+This command contains recursive force delete:
+</code></pre></div>
+
+<p>Correcto, pero insuficiente. <code>rm -rf</code> no es lo mismo sobre <code>./dist</code> que sobre <code>~/src</code>. El patrón es idéntico; el destrozo, no. Y cuando el comando viene encadenado el patrón se queda corto del todo:</p>
+<div class="highlight"><pre><span></span><code>find<span class="w"> </span>.<span class="w"> </span>-name<span class="w"> </span><span class="s2">&quot;*.pyc&quot;</span><span class="w"> </span>-delete<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span><span class="s2">/.venv&quot;</span>
+</code></pre></div>
+
+<p>Ahí ya toca leer, pensar y reconstruir la intención. Que es exactamente lo que uno no quiere hacer a las tres de la mañana con un agente que lleva veinte minutos trabajando solo.</p>
+<h2 id="lo-que-hace-la-extension">Lo que hace la extensión<a class="headerlink" href="#lo-que-hace-la-extension" title="Permanent link">&para;</a></h2>
+<p><a href="https://github.com/pcaro/pi-guardrails-explain">pi-guardrails-explain</a> se engancha a la delegación de decisiones de Guardrails y añade una línea al aviso:</p>
+<div class="highlight"><pre><span></span><code>[guardrails] ? escalated: explain: Recursively deletes ./dist and ./build. · 340ms
+</code></pre></div>
+
+<p>Una frase, en el idioma que le pidas, describiendo los efectos observables: qué ficheros toca, si borra, si escribe, si sale a la red, si cambia permisos. Nada de veredictos.</p>
+<div class="highlight"><pre><span></span><code>pi<span class="w"> </span>install<span class="w"> </span>git:github.com/pcaro/pi-guardrails-explain
+</code></pre></div>
+
+<p>Sin paso de build: el paquete es TypeScript plano y pi lo carga tal cual. Hace falta Guardrails <strong>0.23.0 o superior</strong> (la delegación de decisiones llegó en esa versión) y Node 22.19+, el mínimo que pide pi 1.5.</p>
+<h2 id="nunca-decide-por-ti">Nunca decide por ti<a class="headerlink" href="#nunca-decide-por-ti" title="Permanent link">&para;</a></h2>
+<p>Esto es lo importante del diseño: el delegado <strong>siempre responde <code>ask</code></strong>. No puede permitir ni bloquear. El modelo solo describe; el prompt de Guardrails sale igual y tu respuesta sigue siendo lo único que autoriza el comando.</p>
+<p>Para lo que no es un comando de bash marcado por el permission gate, se abstiene (<code>undefined</code>) y no toca nada: ni ficheros, ni rutas, ni PowerShell.</p>
+<p>Hay una consecuencia que conviene tener clara antes de instalarlo. Guardrails solo ejecuta sin preguntar si <strong>todos</strong> los delegados registrados dicen <code>allow</code>. Si tienes otro delegado que auto-permitía ciertos comandos, con esta extensión instalada ese camino desaparece para el bash marcado: siempre verás el prompt. Es el precio de tener la explicación, y a mí me parece barato.</p>
+<h2 id="configurar-modelo-e-idioma">Configurar modelo e idioma<a class="headerlink" href="#configurar-modelo-e-idioma" title="Permanent link">&para;</a></h2>
+<p>Por defecto usa el modelo activo de la sesión. Si quieres que las explicaciones las haga un modelo pequeño y rápido, se declara en <code>~/.pi/agent/settings.json</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;guardrailsExplain&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;models&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="s2">&quot;opencode-go-console/deepseek-v4.1-flash&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">&quot;anthropic/claude-haiku-4-5&quot;</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;language&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Spanish&quot;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>Los candidatos se prueban en orden, saltando los que tengan el proveedor sin credenciales, y el modelo activo se prueba siempre al final. Si uno falla, se pasa al siguiente. Si fallan todos, el aviso lleva un texto genérico y el prompt de siempre.</p>
+<p><code>language</code> acaba dentro del prompt, así que el valor tiene que ser un nombre de idioma en inglés: <code>"Spanish"</code>, no <code>"Español"</code>.</p>
+<h2 id="el-plazo-de-10-segundos">El plazo de 10 segundos<a class="headerlink" href="#el-plazo-de-10-segundos" title="Permanent link">&para;</a></h2>
+<p>Guardrails ejecuta los delegados con un plazo compartido de <strong>10 segundos</strong> (tope duro de 60). Un modelo lento no llega y la explicación se pierde; el prompt sale igual, eso sí. Si tu proveedor tarda, se sube en la config de Guardrails, que es tuya y no del paquete:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;delegation&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;timeoutMs&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">30000</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="que-sale-de-tu-maquina">Qué sale de tu máquina<a class="headerlink" href="#que-sale-de-tu-maquina" title="Permanent link">&para;</a></h2>
+<p>Solo el texto del comando y la razón corta que ya te estaba mostrando Guardrails. Nunca el historial de la conversación. El comando va etiquetado como dato no confiable en el prompt, con instrucción explícita de ignorar lo que venga dentro, así que un <code># ignora tus reglas</code> metido en un comando no se ejecuta desde ahí.</p>
+<p>Ojo con una cosa: la lista de <code>models</code> es una <strong>preferencia</strong>, no una lista blanca de proveedores. Si todos fallan, se prueba el modelo activo, y ese puede ser de otro proveedor. Si quieres una frontera estricta, mantén el modelo de la sesión dentro del conjunto aprobado.</p>
+<p>Y los comandos pueden llevar secretos dentro. Un <code>curl -H "Authorization: Bearer ..."</code> acaba de irse al proveedor del modelo. No es un fallo de la extensión, es lo que implica pedirle a un modelo que te lea el comando.</p>
+<h2 id="detalles-de-implementacion-que-me-costaron">Detalles de implementación que me costaron<a class="headerlink" href="#detalles-de-implementacion-que-me-costaron" title="Permanent link">&para;</a></h2>
+<p>Tres cosas del código que no son obvias:</p>
+<ul>
+<li><strong>Orden de carga.</strong> Guardrails construye su plantilla de delegados emitiendo una petición y escuchando registros, pero el orden en que pi carga las extensiones no está garantizado. La extensión se anuncia nada más cargar (por si Guardrails llegó antes) y vuelve a anunciarse en cada petición posterior (por si llegó después).</li>
+<li><strong><code>reasoning: "off"</code>.</strong> Las peticiones van con 128 tokens de salida. Un modelo con razonamiento se gastaría el presupuesto entero pensando y devolvería texto vacío, así que el razonamiento va apagado y el tope se queda para la frase.</li>
+<li><strong>Caché por sesión.</strong> Las explicaciones acertadas se guardan en memoria, 64 entradas, y se limpian al cerrar o recargar. Repetir el mismo <code>rm -rf</code> no vuelve a llamar al modelo.</li>
+</ul>
+<h2 id="antes-de-irte">Antes de irte<a class="headerlink" href="#antes-de-irte" title="Permanent link">&para;</a></h2>
+<p>Los tests pasan los 65, entre manifiesto, selección de modelos, fallback y el registro del delegado. Pero lo que de verdad me convence es lo de siempre: menos tiempo mirando un comando raro, más tiempo decidiendo si lo apruebo.</p>
+<p>Si vienes de cero con pi, la <a href="https://pablocaro.es/que-es-pi-coding-agent">primera parte de la serie</a> explica qué es y en la <a href="https://pablocaro.es/extensiones-pi-que-uso">tercera</a> repaso las extensiones que uso a diario, Guardrails incluido.</p>
+<p><em>Fuente original</em>: <a href="https://github.com/pcaro/pi-guardrails-explain">pcaro/pi-guardrails-explain</a> y la <a href="https://github.com/aliou/pi-guardrails/blob/main/docs/decision-delegation.md">documentación de delegación de decisiones de Guardrails</a>.</p></div>
+  <div class="tag-cloud">
+    <p>
+       <a href="https://pablocaro.es/tag/pi.html">pi</a>
+      <a href="https://pablocaro.es/tag/coding-agent.html">coding-agent</a>
+      <a href="https://pablocaro.es/tag/guardrails.html">guardrails</a>
+      <a href="https://pablocaro.es/tag/extensiones.html">extensiones</a>
+      <a href="https://pablocaro.es/tag/seguridad.html">seguridad</a>
+      <a href="https://pablocaro.es/tag/bash.html">bash</a>
+     </p>
+  </div>
+
+    <div class="neighbors">
+    <a class="btn float-left" href="https://pablocaro.es/mas-contexto-y-arbol-en-pi" title="Más sobre el manejo de contexto y árbol en pi">
+      <i class="fa fa-angle-left"></i> Artículo anterior
+    </a>
+  </div>
+   <div class="related-posts">
+    <h4>Te puede gustar</h4>
+    <ul class="related-posts">
+      <li>
+        <a href="https://pablocaro.es/mas-contexto-y-arbol-en-pi"
+          >Más sobre el manejo de contexto y árbol en pi</a
+        >
+      </li>
+      <li>
+        <a href="https://pablocaro.es/extensiones-pi-que-uso"
+          >Las extensiones de pi que uso en mi día a día</a
+        >
+      </li>
+      <li>
+        <a href="https://pablocaro.es/extensiones-subagentes-pi"
+          >Extensiones de subagentes para pi: TintinWeb, NicoBailon y Taskplane</a
+        >
+      </li>
+      <li>
+        <a href="https://pablocaro.es/arboles-de-sesion-en-pi"
+          >Árboles de sesión en pi — /tree, /fork y /clone</a
+        >
+      </li>
+      <li>
+        <a href="https://pablocaro.es/opencode-desktop-linux"
+          >De OpenCode en la terminal a OpenCode Desktop (en Linux)</a
+        >
+      </li>
+    </ul>
+  </div>
+  <!-- Disqus -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'anotaciones';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>
+    Por favor, habilita JavaScript para ver los comentarios.
+</noscript>
+<!-- End Disqus -->
+ </article>
+
+<footer>
+<p>
+  &copy; 2026  - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+  Construido con <a
+    href="http://getpelican.com"
+    target="_blank"
+    >Pelican</a
+  > usando el tema <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a
+  >    <script
+    id="dark-theme-script"
+    src="https://pablocaro.es/theme/dark-theme/dark-theme.min.js"
+    data-enable-auto-detect-theme="False"
+    data-default-theme="light"
+    type="text/javascript"
+  ></script>
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/3.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/3.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Anotaciones por Pablo Caro ",
+  "url" : "https://pablocaro.es",
+  "image": "/theme/img/profile.png",
+  "description": ""
+}
+</script>  <script src="https://files.stork-search.net/releases/v1.6.0/stork.js"></script>
+  <script>
+    window.storkIndexLoaded = false;
+    window.loadStorkIndex = function () {
+      if (window.storkIndexLoaded) {
+        return;
+      }
+      if (typeof stork === 'undefined') {
+        setTimeout(window.loadStorkIndex, 100);
+        return;
+      }
+      var url = "https://pablocaro.es/search-index.st";
+      var opts = { showProgress: false };
+      stork.register("sitesearch", url, opts);
+      try {
+        stork.register("sitesearch-page", url, opts);
+      } catch (e) {
+        // Search page input not in DOM on this page — index still registered
+      }
+      window.storkIndexLoaded = true;
+    }
+  </script>
+
+
+  <button id="back-to-top" aria-label="Back to top" title="Back to top">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <path d="M10 16V4m0 0L5 9m5-5l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+  <script>
+  (function() {
+    var btn = document.getElementById('back-to-top');
+    if (!btn) return;
+    var ticking = false;
+    function onScroll() {
+      if (!ticking) {
+        requestAnimationFrame(function() {
+          btn.classList.toggle('visible', window.scrollY > 500);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }
+    btn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    window.addEventListener('scroll', onScroll, { passive: true });
+  })();
+  </script>
+</body>
+</html>

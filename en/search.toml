@@ -3,6 +3,11 @@ html_selector = "main"
 base_directory = "/home/runner/work/anotaciones/anotaciones/output/en"
 
 [[input.files]]
+path = "pi-guardrails-explain.html"
+url = "/pi-guardrails-explain"
+title = "pi-guardrails-explain, or having the dangerous command explained before you approve it"
+
+[[input.files]]
 path = "mas-contexto-y-arbol-en-pi.html"
 url = "/mas-contexto-y-arbol-en-pi"
 title = "More on managing context and trees in pi"
@@ -571,6 +576,11 @@ title = "Django: links in object list"
 path = "settings-vars-processor.html"
 url = "/settings-vars-processor"
 title = "Settings vars processor"
+
+[[input.files]]
+path = "pi-guardrails-explain-es.html"
+url = "/../pi-guardrails-explain"
+title = "pi-guardrails-explain, o que el comando peligroso se explique antes de aprobarlo"
 
 [[input.files]]
 path = "mas-contexto-y-arbol-en-pi-es.html"
