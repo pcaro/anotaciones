@@ -3,6 +3,11 @@ html_selector = "main"
 base_directory = "/home/runner/work/anotaciones/anotaciones/output"
 
 [[input.files]]
+path = "dffy-visor-diffs-terminal.html"
+url = "/dffy-visor-diffs-terminal"
+title = "dffy: un visor de diffs para la terminal"
+
+[[input.files]]
 path = "pi-guardrails-explain.html"
 url = "/pi-guardrails-explain"
 title = "pi-guardrails-explain, o que el comando peligroso se explique antes de aprobarlo"
@@ -1001,6 +1006,11 @@ title = "Corrector ortográfico de firefox 2.0 en castellano"
 path = "primera-anotacion-de-prueba.html"
 url = "/primera-anotacion-de-prueba"
 title = "Primera anotación de prueba"
+
+[[input.files]]
+path = "dffy-visor-diffs-terminal-en.html"
+url = "/en/dffy-visor-diffs-terminal"
+title = "dffy: a diff viewer for the terminal"
 
 [[input.files]]
 path = "pi-guardrails-explain-en.html"

@@ -1,0 +1,536 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="/en/theme/stylesheet/style.min.css">
+
+    <link id="dark-theme-style" rel="stylesheet" type="text/css"
+        disabled="disabled"
+    href="/en/theme/stylesheet/dark-theme.min.css">
+
+    <link id="pygments-dark-theme" rel="stylesheet" type="text/css"
+            disabled="disabled"
+          href="/en/theme/pygments/github.min.css">
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+          href="/en/theme/pygments/github.min.css">
+
+
+  <link rel="stylesheet"
+        type="text/css"
+        href="/en/theme/stork/stork.css" />
+
+  <link rel="stylesheet" type="text/css" href="/en/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="/en/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="/en/theme/font-awesome/css/solid.css">
+
+  <link rel="stylesheet" type="text/css" href="/extras/custom.css">
+
+  <link rel="shortcut icon" href="/theme/img/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/theme/img/favicon.ico" type="image/x-icon">
+
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#333333">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#333333">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Microsoft EDGE -->
+  <meta name="msapplication-TileColor" content="#333333">
+
+  <link href="/en/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Annotations by Pablo Caro Atom">
+
+  <link href="/en/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Annotations by Pablo Caro RSS">
+
+<script data-goatcounter="https://pcaro.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Pablo Caro" />
+<meta name="description" content="dffy is a terminal diff viewer written in Rust. File tree, search, syntax-aware diffs and an engine that opens the Linux kernel&#39;s 13,168 changed files in under 10 ms. It has replaced delta as my git pager." />
+<meta name="keywords" content="git, dffy, cli, rust, diff" />
+
+<link
+  rel="alternate"
+  href="/en/dffy-visor-diffs-terminal"
+  hreflang="en"
+/>
+<link
+  rel="alternate"
+  href="/en/../dffy-visor-diffs-terminal"
+  hreflang="es"
+/>
+    <meta property="og:site_name" content="Annotations by Pablo Caro"/>
+  <meta property="og:title" content="dffy: a diff viewer for the terminal"/>
+  <meta property="og:description" content="dffy is a terminal diff viewer written in Rust. File tree, search, syntax-aware diffs and an engine that opens the Linux kernel&#39;s 13,168 changed files in under 10 ms. It has replaced delta as my git pager."/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="/en/dffy-visor-diffs-terminal"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2026-11-17 23:10:00+01:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="/en/author/pablo-caro.html">
+  <meta property="article:section" content="Herramientas"/>
+  <meta property="article:tag" content="git"/>
+  <meta property="article:tag" content="dffy"/>
+  <meta property="article:tag" content="cli"/>
+  <meta property="article:tag" content="rust"/>
+  <meta property="article:tag" content="diff"/>
+  <meta property="og:image" content="/theme/img/profile.png">
+ 
+  <title>Annotations by Pablo Caro &ndash; dffy: a diff viewer for the terminal</title>
+
+
+</head>
+<body class="light-theme">
+
+<aside>
+  <div>
+    <a href="/en/">
+      <img src="/theme/img/profile.png" alt="Annotations" title="Annotations" />
+    </a>
+
+    <h1>
+      <a href="/en/">Annotations</a>
+    </h1>
+
+    <p>by Pablo Caro</p>
+     <p style="font-size: 0.9em; font-style: italic; margin-bottom: 20px">
+      Dumping my brain onto the internet. A collection of technical notes and solutions written for my future self, shared here in case they save someone else a headache.
+    </p>
+      <div class="stork">
+      <label for="sidebar-search" class="sr-only"
+        >Search articles</label
+      >
+      <div class="stork-input-wrap">
+      <input
+        id="sidebar-search"
+        class="stork-input"
+        type="text"
+        autocomplete="off"
+        name="q"
+        data-stork="sitesearch"
+        placeholder="Search..."
+        onclick="loadStorkIndex()"
+      />
+      </div>
+      <div class="stork-output" data-stork="sitesearch-output"></div>
+    </div>
+      <nav>
+      <ul class="list">
+             <li>
+          <a target="_self" href="http://x.com/pcaro">pcaro@X</a>
+        </li>
+        <li>
+          <a target="_self" href="https://github.com/pcaro/">pcaro@Github</a>
+        </li>
+        <li>
+          <a target="_self" href="https://www.linkedin.com/in/pcarorevuelta/">LinkedIn</a>
+        </li>
+      </ul>
+    </nav>
+      <nav class="sidebar-categories" aria-label="Categories">
+                                                                                                                                                           <a
+        href="/en/category/ia.html"
+        class="sidebar-category"
+        title="ia (18)"
+      >
+        <img
+          src="/images/categories/ia.png"
+          alt="ia"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">ia</span>
+      </a>
+      <a
+        href="/en/category/programacion.html"
+        class="sidebar-category"
+        title="Programación (30)"
+      >
+        <img
+          src="/images/categories/programacion.png"
+          alt="Programación"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Programación</span>
+      </a>
+      <a
+        href="/en/category/linux.html"
+        class="sidebar-category"
+        title="Linux (11)"
+      >
+        <img
+          src="/images/categories/linux.png"
+          alt="Linux"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Linux</span>
+      </a>
+      <a
+        href="/en/category/herramientas.html"
+        class="sidebar-category"
+        title="Herramientas (29)"
+      >
+        <img
+          src="/images/categories/herramientas.png"
+          alt="Herramientas"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Herramientas</span>
+      </a>
+      <a
+        href="/en/category/infraestructura.html"
+        class="sidebar-category"
+        title="Infraestructura (15)"
+      >
+        <img
+          src="/images/categories/infraestructura.png"
+          alt="Infraestructura"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Infraestructura</span>
+      </a>
+      <a
+        href="/en/category/documentacion.html"
+        class="sidebar-category"
+        title="Documentación (1)"
+      >
+        <img
+          src="/images/categories/documentacion.png"
+          alt="Documentación"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Documentación</span>
+      </a>
+      <a
+        href="/en/category/finanzas.html"
+        class="sidebar-category"
+        title="Finanzas (1)"
+      >
+        <img
+          src="/images/categories/finanzas.png"
+          alt="Finanzas"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Finanzas</span>
+      </a>
+      <a
+        href="/en/category/personal.html"
+        class="sidebar-category"
+        title="Personal (2)"
+      >
+        <img
+          src="/images/categories/personal.png"
+          alt="Personal"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Personal</span>
+      </a>
+      <a
+        href="/en/category/programming.html"
+        class="sidebar-category"
+        title="Programming (1)"
+      >
+        <span class="sidebar-category-icon">Pr</span>
+        <span class="sidebar-category-label">Programming</span>
+      </a>
+      <a
+        href="/en/category/tools.html"
+        class="sidebar-category"
+        title="Tools (8)"
+      >
+        <span class="sidebar-category-icon">To</span>
+        <span class="sidebar-category-label">Tools</span>
+      </a>
+    </nav>
+  </div>
+
+</aside>
+  <main>
+
+<nav>
+  <a href="/en/">Home</a>
+
+  <a href="/en/archives.html">Archives</a>
+  <a href="/en/categories.html">Categories</a>
+  <a href="/en/tags.html">Tags</a>
+  <a href="/en/search.html">Search</a>
+  <a href="/">Español</a>
+   <a href="javascript:void(0)" onclick="theme.switch('dark')">🌙</a>
+  <a href="javascript:void(0)" onclick="theme.switch('light')">☀</a>
+   <a href="/en/feeds/all.rss.xml">RSS</a>
+</nav>
+
+<article class="single">
+  <header>
+      <div class="translations">
+            <a href="/en/../dffy-visor-diffs-terminal">Leer en español</a>
+    </div>
+
+    <h1 id="dffy-visor-diffs-terminal">dffy: a diff viewer for the terminal</h1>
+    <p>
+      Posted on Tue, 17 Nov 2026 in <a href="/en/category/herramientas.html">Herramientas</a>     </p>
+  </header>
+
+ 
+  <div><p>I've changed diff programs. I'd been using <a href="https://github.com/dandavison/delta">delta</a> as my git pager for years, and for a loose diff it's perfect, but it isn't a viewer: it's a colouriser. When the change spans thirty files and I want to get to the one that matters, delta gives me no tree, no search, no way to jump between files. That's what I was missing.</p>
+<p>That something is <a href="https://github.com/amalucelli/dffy">dffy</a>, a terminal diff viewer written in Rust. I run it inside the repo and it opens the change full screen: file tree on the left, diff on the right, split or unified. Pipe something into it and it prints the diff like any pager.</p>
+<p><img alt="dffy with the file tree on the left and the diff on the right, changed words emphasised" src="/images/dffy.png"></p>
+<h2 id="what-it-is">What it is<a class="headerlink" href="#what-it-is" title="Permanent link">&para;</a></h2>
+<p>A native binary, no runtime behind it, doing three things at once: interactive viewer, git pager and diff generator for scripts. It has its own diff engine (histogram plus a syntax one) and its own terminal renderer, with no TUI framework in between.</p>
+<p>What made me switch:</p>
+<ul>
+<li><strong>Incremental start</strong>. It doesn't compute the whole diff before painting: it shows the first files as soon as it finds them and keeps working on the rest in the background. The Linux kernel's <code>v6.0..v6.1</code> range is 13,168 files and a 48 MB patch, and the first changed line is on screen in under 10 ms. With <code>--watch</code> it repaints as you edit, stage and commit.</li>
+<li><strong>Real navigation</strong>. File tree, fuzzy picker on <code>o</code>, search across the whole diff with <code>/</code>, <code>v</code> in the tree to mark files as viewed. Each file opens at its first change, and <code>n</code>/<code>N</code> jump change to change, crossing into the next file when needed.</li>
+<li><strong>Syntax-aware diff</strong>. <code>d</code> swaps the engine: it emphasises only the tokens that actually change (even when they've been reordered), dims code that was only reformatted (<code>~</code>) and marks statements or items that moved with <code>»</code>. It's what <a href="https://github.com/Wilfred/difftastic">difftastic</a> does, but inside the same viewer.</li>
+<li><strong>Staged, unstaged and untracked in one view</strong>, each file tagged with its state. Plus conflicted files from a merge, rebase or cherry-pick, with the conflict markers highlighted.</li>
+<li><strong>Split or unified picked automatically</strong> from the terminal width, highlighting for 30 languages, and the changed word emphasised inside the line.</li>
+</ul>
+<h2 id="install">Install<a class="headerlink" href="#install" title="Permanent link">&para;</a></h2>
+<p>On macOS, as a cask:</p>
+<div class="highlight"><pre><span></span><code>brew<span class="w"> </span>install<span class="w"> </span>--cask<span class="w"> </span>amalucelli/tap/dffy
+</code></pre></div>
+
+<p>On Linux I used the official script, which drops it in <code>~/.local/bin/dffy</code>:</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://raw.githubusercontent.com/amalucelli/dffy/main/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>sh
+</code></pre></div>
+
+<p>I'm on <code>0.2.1</code>.</p>
+<h2 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>dffy<span class="w">                        </span><span class="c1"># staged, unstaged and untracked</span>
+dffy<span class="w"> </span>--staged<span class="w">               </span><span class="c1"># what&#39;s in the index</span>
+dffy<span class="w"> </span>HEAD~3<span class="w">                 </span><span class="c1"># a revision against the working tree</span>
+dffy<span class="w"> </span>main...feature<span class="w">         </span><span class="c1"># changes since the merge base</span>
+dffy<span class="w"> </span>show<span class="w"> </span>HEAD<span class="w">              </span><span class="c1"># a commit with its message</span>
+dffy<span class="w"> </span>main..<span class="w"> </span>--<span class="w"> </span>src/<span class="w">         </span><span class="c1"># limited to a path</span>
+dffy<span class="w"> </span>a.txt<span class="w"> </span>b.txt<span class="w">            </span><span class="c1"># two files or folders, no repo needed</span>
+dffy<span class="w"> </span>--watch<span class="w">                </span><span class="c1"># refresh on every change</span>
+dffy<span class="w"> </span>--syntax<span class="w"> </span>v6.0<span class="w"> </span>v6.1<span class="w">     </span><span class="c1"># diff by syntax, not by lines</span>
+dffy<span class="w"> </span>--stat<span class="w"> </span>main..<span class="w">          </span><span class="c1"># also --name-only, --name-status, --exit-code</span>
+</code></pre></div>
+
+<p>Inside the viewer almost everything is a single key: <code>n</code>/<code>N</code> between changes, <code>f</code>/<code>F</code> between files, <code>/</code> searches, <code>o</code> opens the picker, <code>s</code> cycles the layout, <code>W</code> wraps long lines, <code>d</code> turns on the syntax diff, <code>space</code> opens the command panel, <code>?</code> lists the keys in effect and <code>q</code> quits.</p>
+<h2 id="as-gits-pager">As git's pager<a class="headerlink" href="#as-gits-pager" title="Permanent link">&para;</a></h2>
+<p>This is the bit that replaces delta:</p>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>core.pager<span class="w"> </span>dffy
+git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>interactive.diffFilter<span class="w"> </span><span class="s2">&quot;dffy --color-only&quot;</span>
+</code></pre></div>
+
+<p>The <code>--color-only</code> matters because it preserves the line count (38 in, 38 out), which is what <code>git add -p</code> needs to avoid complaining about "mismatched output". And as a difftool:</p>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>difftool.dffy.cmd<span class="w"> </span><span class="s1">&#39;dffy &quot;$LOCAL&quot; &quot;$REMOTE&quot;&#39;</span>
+git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>difftool.prompt<span class="w"> </span><span class="nb">false</span>
+git<span class="w"> </span>difftool<span class="w"> </span>--tool<span class="o">=</span>dffy<span class="w"> </span>-d<span class="w"> </span>main<span class="w">    </span><span class="c1"># every file at once, as two folders</span>
+</code></pre></div>
+
+<p>I also wired it into my <code>ai-diff</code> script, which now renders the preview with <code>dffy --color=always --paging=never</code>.</p>
+<h2 id="for-scripts-and-agents">For scripts and agents<a class="headerlink" href="#for-scripts-and-agents" title="Permanent link">&para;</a></h2>
+<p>Two outputs that have nothing to do with the TUI:</p>
+<div class="highlight"><pre><span></span><code>dffy<span class="w"> </span>--json<span class="w"> </span>main..<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span>-c<span class="w"> </span><span class="s1">&#39;select(.type == &quot;file&quot;) | {path, added, removed}&#39;</span>
+</code></pre></div>
+
+<p><code>--json</code> emits JSON Lines: a header, one line per file with its hunks and, for every diff line, its kind (<code>added</code>, <code>removed</code>, <code>context</code>), whether it's paired with its edit and the column ranges that were touched. That's what I use when I want an agent to read a diff without swallowing 40 MB of text.</p>
+<p>The other one is <code>dffy mcp</code>, a <a href="https://modelcontextprotocol.io">MCP</a> server that lets an agent list a change's files and read its diffs a page at a time, instead of dumping the whole patch into the prompt.</p>
+<h2 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h2>
+<p>Everything lives in <code>~/.config/dffy/config</code>, as <code>key = value</code> lines, so it can go in your dotfiles. These are the keys I look at before any other:</p>
+<div class="highlight"><pre><span></span><code>view = auto            # auto, split or unified (splits from 140 columns)
+theme = tokyo-night    # 15 built-in themes
+context = 3            # lines of context (-U)
+syntax-diff = false    # off by default; I toggle it with &#39;d&#39; in the viewer
+</code></pre></div>
+
+<p><code>dffy config --default</code> lists every key with its value, and <code>dffy themes</code> shows the themes with a preview. Bindings are rewritten with <code>keybind</code> lines, including separate tables for the tree and the command panel:</p>
+<div class="highlight"><pre><span></span><code>keybind = ctrl+d=page_down
+keybind = tree:x=mark_viewed
+</code></pre></div>
+
+<h2 id="where-it-falls-short">Where it falls short<a class="headerlink" href="#where-it-falls-short" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>It's a three-day-old project</strong>. The first public release is from 14 November, it's on 0.2.1 and it has 23 stars. That means config and flags can change without notice. I made it my pager anyway: if it breaks tomorrow, I'm back on delta in one command.</li>
+<li><strong>Git only</strong>. No Jujutsu, Mercurial or Sapling, which <a href="https://hunk.dev">hunk</a> and <a href="https://github.com/jnsahaj/lumen">lumen</a> do support. If you live in <code>jj</code>, this isn't for you.</li>
+<li><strong>No AI annotations</strong>. <a href="https://github.com/jnsahaj/lumen">Lumen</a> and <a href="https://hunk.dev">hunk</a> have an assistant layer on top of the diff; there's none of that here. The MCP server makes up for it, and that's the part I care about.</li>
+<li><strong>Renderer plugins are experimental</strong>: Markdown and Mermaid rendered inside the viewer, on <code>r</code>. It works, but it's clearly early.</li>
+</ul>
+<p>The summary: delta decorates a diff, dffy reviews it. For a two-line patch I don't care which one I use, but for the 90% of diffs I actually read, I want the tree and the keys.</p>
+<p><em>Original source</em>: <a href="https://github.com/amalucelli/dffy">amalucelli/dffy</a></p></div>
+  <div class="tag-cloud">
+    <p>
+       <a href="/en/tag/git.html">git</a>
+      <a href="/en/tag/dffy.html">dffy</a>
+      <a href="/en/tag/cli.html">cli</a>
+      <a href="/en/tag/rust.html">rust</a>
+      <a href="/en/tag/diff.html">diff</a>
+     </p>
+  </div>
+
+    <div class="neighbors">
+    <a class="btn float-left" href="/en/pi-guardrails-explain" title="pi-guardrails-explain, or having the dangerous command explained before you approve it">
+      <i class="fa fa-angle-left"></i> Previous Post
+    </a>
+  </div>
+   <div class="related-posts">
+    <h4>You might enjoy</h4>
+    <ul class="related-posts">
+      <li>
+        <a href="/en/degit"
+          >degit: copy a repo without the history</a
+        >
+      </li>
+      <li>
+        <a href="/en/gitleaks-deteccion-secrets-git"
+          >Detecting secrets in git with gitleaks</a
+        >
+      </li>
+      <li>
+        <a href="/en/sem-semantic-version-control"
+          >sem: Semantic Version Control</a
+        >
+      </li>
+      <li>
+        <a href="/en/kitty-rbw-kitten"
+          >kitty-rbw: Fast Bitwarden access from your kitty terminal</a
+        >
+      </li>
+      <li>
+        <a href="/en/rbw-bitwarden-cli"
+          >rbw: The Bitwarden terminal client you should be using</a
+        >
+      </li>
+    </ul>
+  </div>
+  <!-- Disqus -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'anotaciones';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>
+    Please enable JavaScript to view comments.
+</noscript>
+<!-- End Disqus -->
+ </article>
+
+<footer>
+<p>
+  &copy; 2026  - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+  Built with <a
+    href="http://getpelican.com"
+    target="_blank"
+    >Pelican</a
+  > using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a
+  > theme   <script
+    id="dark-theme-script"
+    src="/en/theme/dark-theme/dark-theme.min.js"
+    data-enable-auto-detect-theme="False"
+    data-default-theme="light"
+    type="text/javascript"
+  ></script>
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/3.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/3.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Annotations by Pablo Caro ",
+  "url" : "/en",
+  "image": "/theme/img/profile.png",
+  "description": ""
+}
+</script>  <script src="https://files.stork-search.net/releases/v1.6.0/stork.js"></script>
+  <script>
+    window.storkIndexLoaded = false;
+    window.loadStorkIndex = function () {
+      if (window.storkIndexLoaded) {
+        return;
+      }
+      if (typeof stork === 'undefined') {
+        setTimeout(window.loadStorkIndex, 100);
+        return;
+      }
+      var url = "/en/search-index.st";
+      var opts = { showProgress: false };
+      stork.register("sitesearch", url, opts);
+      try {
+        stork.register("sitesearch-page", url, opts);
+      } catch (e) {
+        // Search page input not in DOM on this page — index still registered
+      }
+      window.storkIndexLoaded = true;
+    }
+  </script>
+
+
+  <button id="back-to-top" aria-label="Back to top" title="Back to top">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <path d="M10 16V4m0 0L5 9m5-5l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+  <script>
+  (function() {
+    var btn = document.getElementById('back-to-top');
+    if (!btn) return;
+    var ticking = false;
+    function onScroll() {
+      if (!ticking) {
+        requestAnimationFrame(function() {
+          btn.classList.toggle('visible', window.scrollY > 500);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }
+    btn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    window.addEventListener('scroll', onScroll, { passive: true });
+  })();
+  </script>
+</body>
+</html>

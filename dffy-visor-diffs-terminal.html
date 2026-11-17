@@ -1,0 +1,520 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/stylesheet/style.min.css">
+
+    <link id="dark-theme-style" rel="stylesheet" type="text/css"
+        disabled="disabled"
+    href="https://pablocaro.es/theme/stylesheet/dark-theme.min.css">
+
+    <link id="pygments-dark-theme" rel="stylesheet" type="text/css"
+            disabled="disabled"
+          href="https://pablocaro.es/theme/pygments/github.min.css">
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+          href="https://pablocaro.es/theme/pygments/github.min.css">
+
+
+  <link rel="stylesheet"
+        type="text/css"
+        href="https://pablocaro.es/theme/stork/stork.css" />
+
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://pablocaro.es/theme/font-awesome/css/solid.css">
+
+  <link rel="stylesheet" type="text/css" href="/extras/custom.css">
+
+  <link rel="shortcut icon" href="/theme/img/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/theme/img/favicon.ico" type="image/x-icon">
+
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#333333">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#333333">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Microsoft EDGE -->
+  <meta name="msapplication-TileColor" content="#333333">
+
+  <link href="https://pablocaro.es/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Anotaciones por Pablo Caro Atom">
+
+  <link href="https://pablocaro.es/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Anotaciones por Pablo Caro RSS">
+
+<script data-goatcounter="https://pcaro.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Pablo Caro" />
+<meta name="description" content="dffy es un visor de diffs de terminal escrito en Rust. Árbol de ficheros, búsqueda, diff por sintaxis y un motor que abre los 13.168 ficheros del kernel de Linux en menos de 10 ms. Ha sustituido a delta como pager de git." />
+<meta name="keywords" content="git, dffy, cli, rust, diff" />
+
+<link
+  rel="alternate"
+  href="https://pablocaro.es/dffy-visor-diffs-terminal"
+  hreflang="es"
+/>
+<link
+  rel="alternate"
+  href="https://pablocaro.es/en/dffy-visor-diffs-terminal"
+  hreflang="en"
+/>
+    <meta property="og:site_name" content="Anotaciones por Pablo Caro"/>
+  <meta property="og:title" content="dffy: un visor de diffs para la terminal"/>
+  <meta property="og:description" content="dffy es un visor de diffs de terminal escrito en Rust. Árbol de ficheros, búsqueda, diff por sintaxis y un motor que abre los 13.168 ficheros del kernel de Linux en menos de 10 ms. Ha sustituido a delta como pager de git."/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://pablocaro.es/dffy-visor-diffs-terminal"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2026-11-17 23:10:00+01:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://pablocaro.es/author/pablo-caro.html">
+  <meta property="article:section" content="Herramientas"/>
+  <meta property="article:tag" content="git"/>
+  <meta property="article:tag" content="dffy"/>
+  <meta property="article:tag" content="cli"/>
+  <meta property="article:tag" content="rust"/>
+  <meta property="article:tag" content="diff"/>
+  <meta property="og:image" content="/theme/img/profile.png">
+ 
+  <title>Anotaciones por Pablo Caro &ndash; dffy: un visor de diffs para la terminal</title>
+
+
+</head>
+<body class="light-theme">
+
+<aside>
+  <div>
+    <a href="https://pablocaro.es/">
+      <img src="/theme/img/profile.png" alt="Anotaciones" title="Anotaciones" />
+    </a>
+
+    <h1>
+      <a href="https://pablocaro.es/">Anotaciones</a>
+    </h1>
+
+    <p>by Pablo Caro</p>
+     <p style="font-size: 0.9em; font-style: italic; margin-bottom: 20px">
+      Volcando mi cerebro a internet. Colección de apuntes técnicos y soluciones que escribo para mi 'yo' del futuro, pero que comparto por si a alguien más le ahorran un dolor de cabeza.
+    </p>
+      <div class="stork">
+      <label for="sidebar-search" class="sr-only"
+        >Search articles</label
+      >
+      <div class="stork-input-wrap">
+      <input
+        id="sidebar-search"
+        class="stork-input"
+        type="text"
+        autocomplete="off"
+        name="q"
+        data-stork="sitesearch"
+        placeholder="Buscar..."
+        onclick="loadStorkIndex()"
+      />
+      </div>
+      <div class="stork-output" data-stork="sitesearch-output"></div>
+    </div>
+      <nav>
+      <ul class="list">
+             <li>
+          <a target="_self" href="http://x.com/pcaro">pcaro@X</a>
+        </li>
+        <li>
+          <a target="_self" href="https://github.com/pcaro/">pcaro@Github</a>
+        </li>
+        <li>
+          <a target="_self" href="https://www.linkedin.com/in/pcarorevuelta/">LinkedIn</a>
+        </li>
+      </ul>
+    </nav>
+      <nav class="sidebar-categories" aria-label="Categorías">
+                                                                                                                                 <a
+        href="https://pablocaro.es/category/ia.html"
+        class="sidebar-category"
+        title="ia (18)"
+      >
+        <img
+          src="/images/categories/ia.png"
+          alt="ia"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">ia</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/programacion.html"
+        class="sidebar-category"
+        title="Programación (80)"
+      >
+        <img
+          src="/images/categories/programacion.png"
+          alt="Programación"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Programación</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/linux.html"
+        class="sidebar-category"
+        title="Linux (12)"
+      >
+        <img
+          src="/images/categories/linux.png"
+          alt="Linux"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Linux</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/herramientas.html"
+        class="sidebar-category"
+        title="Herramientas (37)"
+      >
+        <img
+          src="/images/categories/herramientas.png"
+          alt="Herramientas"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Herramientas</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/infraestructura.html"
+        class="sidebar-category"
+        title="Infraestructura (49)"
+      >
+        <img
+          src="/images/categories/infraestructura.png"
+          alt="Infraestructura"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Infraestructura</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/documentacion.html"
+        class="sidebar-category"
+        title="Documentación (1)"
+      >
+        <img
+          src="/images/categories/documentacion.png"
+          alt="Documentación"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Documentación</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/finanzas.html"
+        class="sidebar-category"
+        title="Finanzas (1)"
+      >
+        <img
+          src="/images/categories/finanzas.png"
+          alt="Finanzas"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Finanzas</span>
+      </a>
+      <a
+        href="https://pablocaro.es/category/personal.html"
+        class="sidebar-category"
+        title="Personal (3)"
+      >
+        <img
+          src="/images/categories/personal.png"
+          alt="Personal"
+          width="1408"
+          height="768"
+          loading="lazy"
+        />
+        <span class="sidebar-category-label">Personal</span>
+      </a>
+    </nav>
+  </div>
+
+</aside>
+  <main>
+
+<nav>
+  <a href="https://pablocaro.es/">Inicio</a>
+
+  <a href="/archives.html">Archivo</a>
+  <a href="/categories.html">Categorías</a>
+  <a href="/tags.html">Etiquetas</a>
+  <a href="/search.html">Búsqueda</a>
+  <a href="/en/">English</a>
+   <a href="javascript:void(0)" onclick="theme.switch('dark')">🌙</a>
+  <a href="javascript:void(0)" onclick="theme.switch('light')">☀</a>
+   <a href="https://pablocaro.es/feeds/all.rss.xml">RSS</a>
+</nav>
+
+<article class="single">
+  <header>
+      <div class="translations">
+            <a href="https://pablocaro.es/en/dffy-visor-diffs-terminal">Read in English</a>
+    </div>
+
+    <h1 id="dffy-visor-diffs-terminal">dffy: un visor de diffs para la terminal</h1>
+    <p>
+      Publicado el 17 de November de 2026 en <a href="https://pablocaro.es/category/herramientas.html">Herramientas</a>     </p>
+  </header>
+
+ 
+  <div><p>He cambiado el programa de diffs. Venía usando <a href="https://github.com/dandavison/delta">delta</a> como pager de git desde hace años y para un diff suelto está perfecto, pero no es un visor: es un coloreador. Cuando el cambio tiene treinta ficheros y quiero ir al que me interesa, delta no me da ni un árbol, ni búsqueda, ni forma de saltar entre ficheros. Ahí me faltaba algo.</p>
+<p>Ese algo es <a href="https://github.com/amalucelli/dffy">dffy</a>, un visor de diffs de terminal escrito en Rust. Lo lanzo dentro del repo y abre el cambio a pantalla completa: árbol de ficheros a la izquierda, diff a la derecha, split o unified. Si lo meto en un pipe, imprime el diff como cualquier pager.</p>
+<p><img alt="dffy con el árbol de ficheros a la izquierda y el diff a la derecha, con la palabra cambiada resaltada" src="/images/dffy.png"></p>
+<h2 id="que-es">Qué es<a class="headerlink" href="#que-es" title="Permanent link">&para;</a></h2>
+<p>Un binario nativo, sin runtime detrás, que hace tres cosas a la vez: visor interactivo, pager de git y generador de diffs para scripts. El motor de diff es suyo (histogram y uno por sintaxis), el renderer de terminal también, sin framework TUI de por medio.</p>
+<p>Lo que me hizo cambiar de herramienta:</p>
+<ul>
+<li><strong>Arranque incremental</strong>. No calcula el diff entero antes de pintar: enseña los primeros ficheros en cuanto los encuentra y sigue trabajando en el resto por detrás. El rango <code>v6.0..v6.1</code> del kernel de Linux son 13.168 ficheros y un parche de 48 MB, y la primera línea cambiada aparece en menos de 10 ms. Con <code>--watch</code> repinta solo al editar, hacer stage o commitear.</li>
+<li><strong>Navegación de verdad</strong>. Árbol de ficheros, picker difuso con <code>o</code>, búsqueda en todo el diff con <code>/</code>, <code>v</code> en el árbol para marcar ficheros como vistos. Cada fichero se abre en su primer cambio y <code>n</code>/<code>N</code> saltan de cambio en cambio, cruzando de fichero cuando toca.</li>
+<li><strong>Diff por sintaxis</strong>. Con <code>d</code> cambia el motor: resalta solo los tokens que cambian de verdad (aunque hayan cambiado de orden), atenúa el código que solo se ha reformateado (<code>~</code>) y marca con <code>»</code> las sentencias o items que se han movido de sitio. Es lo que hace <a href="https://github.com/Wilfred/difftastic">difftastic</a>, pero dentro del mismo visor.</li>
+<li><strong>Staged, unstaged y untracked en una sola vista</strong>, cada fichero marcado con su estado. Y los ficheros en conflicto de un merge, rebase o cherry-pick, con los marcadores resaltados.</li>
+<li><strong>Split o unified automático</strong> según el ancho del terminal, resaltado de 30 lenguajes y énfasis en la palabra que cambió dentro de la línea.</li>
+</ul>
+<h2 id="instalacion">Instalación<a class="headerlink" href="#instalacion" title="Permanent link">&para;</a></h2>
+<p>En macOS, por cask:</p>
+<div class="highlight"><pre><span></span><code>brew<span class="w"> </span>install<span class="w"> </span>--cask<span class="w"> </span>amalucelli/tap/dffy
+</code></pre></div>
+
+<p>En Linux lo instalé con el script oficial, que lo deja en <code>~/.local/bin/dffy</code>:</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://raw.githubusercontent.com/amalucelli/dffy/main/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>sh
+</code></pre></div>
+
+<p>La versión que tengo es la <code>0.2.1</code>.</p>
+<h2 id="uso">Uso<a class="headerlink" href="#uso" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>dffy<span class="w">                        </span><span class="c1"># staged, unstaged y untracked</span>
+dffy<span class="w"> </span>--staged<span class="w">               </span><span class="c1"># lo que está en el índice</span>
+dffy<span class="w"> </span>HEAD~3<span class="w">                 </span><span class="c1"># una revisión contra el árbol de trabajo</span>
+dffy<span class="w"> </span>main...feature<span class="w">         </span><span class="c1"># cambios desde el merge base</span>
+dffy<span class="w"> </span>show<span class="w"> </span>HEAD<span class="w">              </span><span class="c1"># un commit con su mensaje</span>
+dffy<span class="w"> </span>main..<span class="w"> </span>--<span class="w"> </span>src/<span class="w">         </span><span class="c1"># limitado a una ruta</span>
+dffy<span class="w"> </span>a.txt<span class="w"> </span>b.txt<span class="w">            </span><span class="c1"># dos ficheros o carpetas, sin repo</span>
+dffy<span class="w"> </span>--watch<span class="w">                </span><span class="c1"># refresca con cada cambio</span>
+dffy<span class="w"> </span>--syntax<span class="w"> </span>v6.0<span class="w"> </span>v6.1<span class="w">     </span><span class="c1"># compara por sintaxis, no por líneas</span>
+dffy<span class="w"> </span>--stat<span class="w"> </span>main..<span class="w">          </span><span class="c1"># también --name-only, --name-status, --exit-code</span>
+</code></pre></div>
+
+<p>Dentro del visor, casi todo es una tecla sola: <code>n</code>/<code>N</code> entre cambios, <code>f</code>/<code>F</code> entre ficheros, <code>/</code> busca, <code>o</code> abre el picker, <code>s</code> cambia el layout, <code>W</code> ajusta líneas largas, <code>d</code> activa el diff por sintaxis, <code>space</code> abre el panel de comandos, <code>?</code> lista los atajos vigentes y <code>q</code> sale.</p>
+<h2 id="como-pager-de-git">Como pager de git<a class="headerlink" href="#como-pager-de-git" title="Permanent link">&para;</a></h2>
+<p>Es lo que sustituye a delta:</p>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>core.pager<span class="w"> </span>dffy
+git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>interactive.diffFilter<span class="w"> </span><span class="s2">&quot;dffy --color-only&quot;</span>
+</code></pre></div>
+
+<p>El <code>--color-only</code> es importante porque preserva el número de líneas (38 entran, 38 salen), que es lo que <code>git add -p</code> necesita para no quejarse de "mismatched output". Y como difftool:</p>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>difftool.dffy.cmd<span class="w"> </span><span class="s1">&#39;dffy &quot;$LOCAL&quot; &quot;$REMOTE&quot;&#39;</span>
+git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>difftool.prompt<span class="w"> </span><span class="nb">false</span>
+git<span class="w"> </span>difftool<span class="w"> </span>--tool<span class="o">=</span>dffy<span class="w"> </span>-d<span class="w"> </span>main<span class="w">    </span><span class="c1"># todos los ficheros a la vez, como dos carpetas</span>
+</code></pre></div>
+
+<p>También lo he metido en mi script <code>ai-diff</code>, que ahora renderiza el preview con <code>dffy --color=always --paging=never</code>.</p>
+<h2 id="para-scripts-y-agentes">Para scripts y agentes<a class="headerlink" href="#para-scripts-y-agentes" title="Permanent link">&para;</a></h2>
+<p>Dos salidas que no tienen nada que ver con la TUI:</p>
+<div class="highlight"><pre><span></span><code>dffy<span class="w"> </span>--json<span class="w"> </span>main..<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span>-c<span class="w"> </span><span class="s1">&#39;select(.type == &quot;file&quot;) | {path, added, removed}&#39;</span>
+</code></pre></div>
+
+<p><code>--json</code> escupe JSON Lines: una cabecera, una línea por fichero con sus hunks y, por cada línea del diff, su tipo (<code>added</code>, <code>removed</code>, <code>context</code>), si está emparejada con su edición y los rangos de columnas que se han tocado. Es lo que uso cuando quiero que un agente lea un diff sin comerse 40 MB de texto.</p>
+<p>El otro es <code>dffy mcp</code>, un servidor <a href="https://modelcontextprotocol.io">MCP</a> que deja a un agente listar los ficheros de un cambio y leer los diffs página a página, en lugar de volcarle el parche entero en el prompt.</p>
+<h2 id="configuracion">Configuración<a class="headerlink" href="#configuracion" title="Permanent link">&para;</a></h2>
+<p>Todo vive en <code>~/.config/dffy/config</code>, en líneas <code>clave = valor</code>, así que se puede versionar con los dotfiles. Estas son las claves que miro antes que ninguna otra:</p>
+<div class="highlight"><pre><span></span><code>view = auto            # auto, split o unified (split a partir de 140 columnas)
+theme = tokyo-night    # 15 temas de serie
+context = 3            # líneas de contexto (-U)
+syntax-diff = false    # diff por sintaxis de serie; lo activo con &#39;d&#39; en el visor
+</code></pre></div>
+
+<p><code>dffy config --default</code> lista todas las claves con su valor, y <code>dffy themes</code> enseña los temas con una previsualización. Los atajos se reescriben con líneas <code>keybind</code>, incluyendo tablas distintas para el árbol y para el panel de comandos:</p>
+<div class="highlight"><pre><span></span><code>keybind = ctrl+d=page_down
+keybind = tree:x=mark_viewed
+</code></pre></div>
+
+<h2 id="donde-flojea">Donde flojea<a class="headerlink" href="#donde-flojea" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Es un proyecto de tres días</strong>. La primera versión pública es del 14 de noviembre, va por la 0.2.1 y tiene 23 estrellas. Eso significa que la configuración y los flags pueden cambiar sin avisar. Aun así lo he puesto como pager: si mañana se rompe, vuelvo a delta en un comando.</li>
+<li><strong>Solo git</strong>. Nada de Jujutsu, Mercurial ni Sapling, que sí soportan <a href="https://hunk.dev">hunk</a> y <a href="https://github.com/jnsahaj/lumen">lumen</a>. Si trabajas con <code>jj</code> a diario, esto no te sirve.</li>
+<li><strong>Sin anotaciones de IA</strong>. <a href="https://github.com/jnsahaj/lumen">Lumen</a> y <a href="https://hunk.dev">hunk</a> tienen su capa de asistente encima del diff; aquí no hay nada de eso. Compensa con el servidor MCP, que es la parte que a mí me interesa.</li>
+<li><strong>Los plugins de render son experimentales</strong>: Markdown y Mermaid renderizados dentro del visor, con <code>r</code>. Funciona, pero se nota que está verde.</li>
+</ul>
+<p>El resumen: delta decora un diff, dffy lo revisa. Para un parche de dos líneas me da igual el uno que el otro, pero para el 90% de los diffs que miro de verdad, quiero el árbol y las teclas.</p>
+<p><em>Fuente original</em>: <a href="https://github.com/amalucelli/dffy">amalucelli/dffy</a></p></div>
+  <div class="tag-cloud">
+    <p>
+       <a href="https://pablocaro.es/tag/git.html">git</a>
+      <a href="https://pablocaro.es/tag/dffy.html">dffy</a>
+      <a href="https://pablocaro.es/tag/cli.html">cli</a>
+      <a href="https://pablocaro.es/tag/rust.html">rust</a>
+      <a href="https://pablocaro.es/tag/diff.html">diff</a>
+     </p>
+  </div>
+
+    <div class="neighbors">
+    <a class="btn float-left" href="https://pablocaro.es/pi-guardrails-explain" title="pi-guardrails-explain, o que el comando peligroso se explique antes de aprobarlo">
+      <i class="fa fa-angle-left"></i> Artículo anterior
+    </a>
+  </div>
+   <div class="related-posts">
+    <h4>Te puede gustar</h4>
+    <ul class="related-posts">
+      <li>
+        <a href="https://pablocaro.es/degit"
+          >degit: copiar un repo sin el historial</a
+        >
+      </li>
+      <li>
+        <a href="https://pablocaro.es/gitleaks-deteccion-secrets-git"
+          >Detectando secretos en git con gitleaks</a
+        >
+      </li>
+      <li>
+        <a href="https://pablocaro.es/sem-control-de-versiones-semantico"
+          >sem: Control de versiones semántico</a
+        >
+      </li>
+      <li>
+        <a href="https://pablocaro.es/kitty-rbw-kitten"
+          >kitty-rbw: Acceso rápido a Bitwarden desde tu terminal kitty</a
+        >
+      </li>
+      <li>
+        <a href="https://pablocaro.es/rbw-bitwarden-cli"
+          >rbw: El cliente de Bitwarden para terminal que deberías usar</a
+        >
+      </li>
+    </ul>
+  </div>
+  <!-- Disqus -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'anotaciones';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>
+    Por favor, habilita JavaScript para ver los comentarios.
+</noscript>
+<!-- End Disqus -->
+ </article>
+
+<footer>
+<p>
+  &copy; 2026  - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+  Construido con <a
+    href="http://getpelican.com"
+    target="_blank"
+    >Pelican</a
+  > usando el tema <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a
+  >    <script
+    id="dark-theme-script"
+    src="https://pablocaro.es/theme/dark-theme/dark-theme.min.js"
+    data-enable-auto-detect-theme="False"
+    data-default-theme="light"
+    type="text/javascript"
+  ></script>
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/3.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/3.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Anotaciones por Pablo Caro ",
+  "url" : "https://pablocaro.es",
+  "image": "/theme/img/profile.png",
+  "description": ""
+}
+</script>  <script src="https://files.stork-search.net/releases/v1.6.0/stork.js"></script>
+  <script>
+    window.storkIndexLoaded = false;
+    window.loadStorkIndex = function () {
+      if (window.storkIndexLoaded) {
+        return;
+      }
+      if (typeof stork === 'undefined') {
+        setTimeout(window.loadStorkIndex, 100);
+        return;
+      }
+      var url = "https://pablocaro.es/search-index.st";
+      var opts = { showProgress: false };
+      stork.register("sitesearch", url, opts);
+      try {
+        stork.register("sitesearch-page", url, opts);
+      } catch (e) {
+        // Search page input not in DOM on this page — index still registered
+      }
+      window.storkIndexLoaded = true;
+    }
+  </script>
+
+
+  <button id="back-to-top" aria-label="Back to top" title="Back to top">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <path d="M10 16V4m0 0L5 9m5-5l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+  <script>
+  (function() {
+    var btn = document.getElementById('back-to-top');
+    if (!btn) return;
+    var ticking = false;
+    function onScroll() {
+      if (!ticking) {
+        requestAnimationFrame(function() {
+          btn.classList.toggle('visible', window.scrollY > 500);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }
+    btn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    window.addEventListener('scroll', onScroll, { passive: true });
+  })();
+  </script>
+</body>
+</html>

@@ -3,6 +3,11 @@ html_selector = "main"
 base_directory = "/home/runner/work/anotaciones/anotaciones/output/en"
 
 [[input.files]]
+path = "dffy-visor-diffs-terminal.html"
+url = "/dffy-visor-diffs-terminal"
+title = "dffy: a diff viewer for the terminal"
+
+[[input.files]]
 path = "pi-guardrails-explain.html"
 url = "/pi-guardrails-explain"
 title = "pi-guardrails-explain, or having the dangerous command explained before you approve it"
@@ -576,6 +581,11 @@ title = "Django: links in object list"
 path = "settings-vars-processor.html"
 url = "/settings-vars-processor"
 title = "Settings vars processor"
+
+[[input.files]]
+path = "dffy-visor-diffs-terminal-es.html"
+url = "/../dffy-visor-diffs-terminal"
+title = "dffy: un visor de diffs para la terminal"
 
 [[input.files]]
 path = "pi-guardrails-explain-es.html"
