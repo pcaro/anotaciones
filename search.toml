@@ -3,6 +3,11 @@ html_selector = "main"
 base_directory = "/home/runner/work/anotaciones/anotaciones/output"
 
 [[input.files]]
+path = "todo-fp-map.html"
+url = "/todo-fp-map"
+title = "todo-fp-map, o los ciclos de FP de España en un mapa con SQLite en el navegador"
+
+[[input.files]]
 path = "dffy-visor-diffs-terminal.html"
 url = "/dffy-visor-diffs-terminal"
 title = "dffy: un visor de diffs para la terminal"
@@ -1006,6 +1011,11 @@ title = "Corrector ortográfico de firefox 2.0 en castellano"
 path = "primera-anotacion-de-prueba.html"
 url = "/primera-anotacion-de-prueba"
 title = "Primera anotación de prueba"
+
+[[input.files]]
+path = "todo-fp-map-en.html"
+url = "/en/todo-fp-map"
+title = "todo-fp-map, or Spain's vocational training cycles on a map with SQLite in the browser"
 
 [[input.files]]
 path = "dffy-visor-diffs-terminal-en.html"

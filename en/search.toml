@@ -3,6 +3,11 @@ html_selector = "main"
 base_directory = "/home/runner/work/anotaciones/anotaciones/output/en"
 
 [[input.files]]
+path = "todo-fp-map.html"
+url = "/todo-fp-map"
+title = "todo-fp-map, or Spain's vocational training cycles on a map with SQLite in the browser"
+
+[[input.files]]
 path = "dffy-visor-diffs-terminal.html"
 url = "/dffy-visor-diffs-terminal"
 title = "dffy: a diff viewer for the terminal"
@@ -581,6 +586,11 @@ title = "Django: links in object list"
 path = "settings-vars-processor.html"
 url = "/settings-vars-processor"
 title = "Settings vars processor"
+
+[[input.files]]
+path = "todo-fp-map-es.html"
+url = "/../todo-fp-map"
+title = "todo-fp-map, o los ciclos de FP de España en un mapa con SQLite en el navegador"
 
 [[input.files]]
 path = "dffy-visor-diffs-terminal-es.html"
